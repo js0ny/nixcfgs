@@ -4,14 +4,14 @@
   pkgs,
   ...
 }: let
-  user = config.home.username;
+  flakeDir = config.nixdots.core.flakeDir;
 in
   lib.mkIf pkgs.stdenv.isDarwin {
     home.sessionPath = ["/opt/homebrew/bin"];
 
     programs.nh = {
       enable = true;
-      flake = "/Users/${user}/.dotfiles";
+      flake = flakeDir;
       clean = {
         enable = true;
         dates = "weekly";
@@ -35,9 +35,4 @@ in
       	UseKeychain yes
       	AddKeysToAgent yes
     '';
-
-    stylix = {
-      # cursor.enable = lib.mkForce false;
-      icons.enable = lib.mkForce false;
-    };
   }
