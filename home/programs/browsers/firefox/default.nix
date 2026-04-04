@@ -14,6 +14,7 @@ in {
     ./keymaps.nix
     ./search.nix
     ./betterfox.nix
+    ./styles.nix
   ];
 
   config = lib.mkIf cfg {
@@ -34,9 +35,10 @@ in {
       exec = "firefox --private-window %U";
     };
 
+    # https://github.com/nix-community/stylix/issues/2071
     stylix.targets.firefox = {
       profileNames = ["${p}"];
-      enable = true;
+      enable = false;
     };
 
     nixdots.persist.home = {

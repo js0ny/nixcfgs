@@ -39,7 +39,5 @@ in {
     codeReleasesConfigDir);
 
   catppuccin.vscode.profiles.default.enable = false;
-  programs.fish.shellAbbrs = codeAlias;
-  programs.bash.shellAliases = codeAlias;
-  programs.zsh.shellAliases = codeAlias;
+  nixdots.programs.shellAliases = codeAlias;
 }

@@ -31,6 +31,11 @@ in {
         description = "Enable Zsh.";
       };
     };
+    shellAliases = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = {};
+      description = "Shell aliases shared across Home Manager shells.";
+    };
     chromium = {
       enable = lib.mkOption {
         type = lib.types.bool;

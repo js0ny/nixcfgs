@@ -18,8 +18,6 @@ in {
         key = "N";
       };
       key_undoCloseWindow = {};
-      # Sidebery Sidebar
-      ext-key-id-_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action = {key = "VK_F1";};
       viewGenaiChatSidebarKb = {};
       key_viewInfo = {};
       key_switchTextDirection = {};

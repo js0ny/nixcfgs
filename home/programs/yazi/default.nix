@@ -137,10 +137,10 @@ in {
           }
 
           # Specific flags
-          {
-            mime = "{image}/*";
-            run = "mediainfo --no-metadata";
-          }
+          # {
+          #   mime = "{image}/*";
+          #   run = "mediainfo --no-metadata";
+          # }
           {
             mime = "{video}/*";
             run = "mediainfo --no-preview";

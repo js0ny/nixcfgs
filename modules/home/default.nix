@@ -17,6 +17,7 @@
     ./sops.nix
     ./darwin.nix
     ./gnome-keyrings.nix
+    ./shellAliases.nix
 
     ../../helper/mergetools.nix
   ];

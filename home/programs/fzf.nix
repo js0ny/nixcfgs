@@ -6,15 +6,7 @@
     enableZshIntegration = true;
     enableFishIntegration = true;
   };
-  programs = {
-    bash.shellAliases = {
-      ef = "edit-fzf";
-    };
-    zsh.shellAliases = {
-      ef = "edit-fzf";
-    };
-    fish.shellAbbrs = {
-      ef = "edit-fzf";
-    };
+  nixdots.programs.shellAliases = {
+    "ef" = "edit-fzf";
   };
 }

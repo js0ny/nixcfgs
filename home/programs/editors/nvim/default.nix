@@ -35,10 +35,7 @@ in {
     ];
   };
   # home.packages = with pkgs; [lua-language-server];
-  programs.fish.shellAbbrs = nvimAlias;
-  programs.bash.shellAliases = nvimAlias;
-  programs.zsh.shellAliases = nvimAlias;
-  programs.nushell.shellAliases = nvimAlias;
+  nixdots.programs.shellAliases = nvimAlias;
 
   xdg.configFile."nvim".source = mkSymlink "${dots}/home/programs/editors/nvim/nvim";
 

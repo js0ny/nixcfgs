@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   zoxideAliases = {
     ".." = "z ..";
     "..." = "z ../..";
@@ -12,7 +16,7 @@
     "。。。。。" = "z ../../../..";
     "。。。。。。" = "z ../../../../..";
   };
-  home = "/home/${config.home.username}";
+  home = config.nixdots.user.home;
 in {
   programs.zoxide = {
     enable = true;
@@ -20,10 +24,15 @@ in {
     enableZshIntegration = true;
     enableFishIntegration = true;
   };
-  programs.fish.shellAliases = zoxideAliases;
-  programs.bash.shellAliases = zoxideAliases;
-  programs.zsh.shellAliases = zoxideAliases;
-  home.sessionVariables._ZO_EXCLUDE_DIRS = "/sys/*:/nix/*:/dev/*:/tmp/*:/proc/*:/home/${home}/.cache/*";
+  nixdots.programs.shellAliases = zoxideAliases;
+  home.sessionVariables._ZO_EXCLUDE_DIRS = lib.concatStringsSep ":" [
+    "/sys/*"
+    "/nix/*"
+    "/dev/*"
+    "/tmp/*"
+    "/proc/*"
+    "${home}/.cache/*"
+  ];
   nixdots.persist.home = {
     directories = [
       ".local/share/zoxide"
