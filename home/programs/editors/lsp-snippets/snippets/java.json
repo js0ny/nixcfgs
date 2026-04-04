@@ -1,0 +1,61 @@
+{
+  "sout": {
+    "prefix": "sout",
+    "body": [
+      "System.out.println(${1});"
+    ],
+    "description": "System.out.println()"
+  },
+  "serr": {
+    "prefix": "serr",
+    "body": [
+      "System.err.println(${1});"
+    ],
+    "description": "System.err.println()"
+  },
+  "psfs": {
+    "prefix": "psfs",
+    "body": [
+      "public static final String"
+    ],
+    "description": "Public static final String"
+  },
+  "main": {
+    "prefix": "main",
+    "body": [
+      "public static void main(String[] args) {",
+      "",
+      "}"
+    ],
+    "description": "Main method"
+  },
+  "psvm": {
+    "prefix": "psvm",
+    "body": [
+      "public static void main(String[] args) {",
+      "",
+      "}"
+    ],
+    "description": "Public static void main(String[] args)"
+  },
+  "ifnull": {
+    "prefix": "ifn",
+    "body": [
+      "if (${1} == null) {",
+      "  ${2}",
+      "}"
+    ],
+    "description": "If null"
+  },
+  "foreach": {
+    "prefix": "foreach",
+    "body": [
+      "for (var ${1}: ${2}) {",
+      "  ${3}",
+      "}"
+    ],
+    "description": "For each"
+  }
+}
+
+

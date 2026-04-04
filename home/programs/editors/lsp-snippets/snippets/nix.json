@@ -1,0 +1,36 @@
+{
+  "let...in": {
+    "prefix": "let",
+    "body": [
+      "let",
+      "  ${2}",
+      "in"
+    ],
+    "description": "always block"
+  },
+  "traceVal": {
+    "prefix": "trace",
+    "body": [
+      "lib.traceVal \"${1:message}\" ${2:value}"
+    ],
+    "description": "traceVal"
+  },
+  "home.packages": {
+    "prefix": "packages",
+    "body": [
+      "home.packages= with pkgs; [",
+      "  $1",
+      "];"
+    ]
+  },
+  "home.persist": {
+    "prefix": "persist",
+    "body": [
+      "my.persist.home = {",
+      "  directories = [",
+      "    \"$1\"",
+      "  ];",
+      "};"
+    ]
+  }
+}

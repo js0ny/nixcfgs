@@ -1,0 +1,11 @@
+{
+    "script-ts": {
+        "prefix": "ts",
+        "body": [
+            "<script lang=\"ts\">\n",
+            "\t$0\n",
+            "</script>"
+        ],
+        "description": "Svelte TypeScript script tag"
+    }
+}

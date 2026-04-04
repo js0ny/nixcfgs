@@ -1,0 +1,40 @@
+{pkgs, ...}: {
+  programs.emacs = {
+    enable = true;
+    package =
+      if pkgs.stdenv.isLinux
+      then pkgs.emacs-pgtk
+      else null;
+    extraPackages = epkgs:
+      with epkgs; [
+        evil
+        evil-leader
+        evil-commentary
+        evil-surround
+        evil-mc
+        evil-goggles
+        telega
+        beancount
+        counsel
+        company
+        vertico
+        marginalia
+        dirvish
+        nix-ts-mode
+        flycheck
+        highlight-indent-guides
+        magit
+        elfeed
+        elfeed-org
+        olivetti
+        org-modern
+      ];
+  };
+  # TODO: tdlib version is too high
+  # See: https://github.com/zevlg/telega.el/issues/374
+  home.packages = with pkgs; [
+    tdlib
+  ];
+
+  imports = [./default.nix];
+}

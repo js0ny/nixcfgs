@@ -1,0 +1,51 @@
+# Log
+*.log
+
+# fish
+dot_config/fish/fish_variables
+dot_config/fish/completions
+dot_config/fish/functions/br.fish
+dot_config/fish/functions/dotenv.fish
+
+
+# Test files
+test/
+test.*
+
+# Archives
+*.gz
+*.tar
+*.zip
+*.tgz
+
+# Utils
+xdg-ninja/
+
+# Undone
+# Windows PowerToys
+PowerToys/
+# Nushell
+tools/nushell/
+
+# OS generated files
+.DS_Store
+
+.venv/
+
+
+# Lock files
+lazy-lock.json
+
+# Emacs
+*.elc
+
+
+default.target.wants
+
+nvim-healthcheck.txt
+
+private_pid
+private_security
+private_fish_variables
+
+/.Trash-1000

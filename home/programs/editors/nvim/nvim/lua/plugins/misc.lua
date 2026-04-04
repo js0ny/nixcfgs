@@ -1,0 +1,51 @@
+return {
+  { "nvim-lua/plenary.nvim", lazy = true },
+  { "wakatime/vim-wakatime", lazy = false },
+  { import = "plugins.mod.toggleterm" },
+  { import = "plugins.mod.which-keys-nvim" },
+  { import = "plugins.mod.copilot-lua" },
+  { import = "plugins.mod.opencode" },
+  { import = "plugins.mod.avante-nvim" },
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
+    cmd = {
+      "Leet",
+    },
+    lazy = true,
+    -- event = "VeryLazy",
+    dependencies = {
+      -- "nvim-telescope/telescope.nvim",
+      "ibhagwan/fzf-lua",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      -- configuration goes here
+    },
+  },
+  -- { import = "plugins.mod.image-nvim" },
+  { import = "plugins.mod.snacks-nvim" },
+  {
+    "vyfor/cord.nvim",
+    build = ":Cord update",
+    -- opts = {}
+  },
+  {
+    "mikesmithgh/kitty-scrollback.nvim",
+    enabled = true,
+    lazy = true,
+    cmd = {
+      "KittyScrollbackGenerateKittens",
+      "KittyScrollbackCheckHealth",
+      "KittyScrollbackGenerateCommandLineEditing",
+    },
+    event = { "User KittyScrollbackLaunch" },
+    -- version = '*', -- latest stable version, may have breaking changes if major version changed
+    -- version = '^6.0.0', -- pin major version, include fixes and features that do not have breaking changes
+    config = function()
+      require("kitty-scrollback").setup()
+    end,
+  },
+}

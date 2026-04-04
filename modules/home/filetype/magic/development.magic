@@ -1,0 +1,18 @@
+# ---------- Nix Source Code ----------
+0       regex/100   "^[[:space:]]*([{]|#|let|import)"   Nix Source Code
+!:mime  text/x-nix
+!:ext   nix
+
+# ---------- Xilinx Design Constraints ---------
+# 通过搜索前 4096 字节中标志性的管脚/电平/时序配置命令来识别
+0       search/4096 "set_property PACKAGE_PIN"  Xilinx Design Constraints file
+!:mime  text/x-xilinx-xdc
+!:ext   xdc
+
+0       search/4096 "set_property IOSTANDARD"   Xilinx Design Constraints file
+!:mime  text/x-xilinx-xdc
+!:ext   xdc
+
+0       search/4096 "create_clock -period"      Xilinx Design Constraints file
+!:mime  text/x-xilinx-xdc
+!:ext   xdc

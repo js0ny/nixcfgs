@@ -1,0 +1,40 @@
+# ---------- Nintendo 3DS CIA ----------
+0       lelong      0x00002020          Nintendo 3DS CTR Importable Archive (CIA)
+!:mime  application/x-ctr-importable-archive
+!:ext   cia
+
+# ---------- Paradox Mod Descriptor ----------
+0       search/200  name=
+>0      search/200  supported_version=  Paradox Mod Descriptor
+!:mime  text/x-pdx-descriptor
+!:ext   mod
+
+# ---------- Godot Engine Pack ----------
+0       string      GDPC                Godot Engine Game Pack
+>4      lelong      x                   \b, format version %d
+!:mime  application/x-godot-pack
+!:ext   pck
+
+# ---------- Valve Data Format ----------
+# 1. 二进制格式: appinfo.vdf (Magic Number: 27 0A 44 28 小端)
+0       lelong      0x28440a27          Valve appinfo.vdf binary data
+
+# 2. 二进制格式: shortcuts.vdf (以 NUL shortcuts NUL 开头)
+0       string      \x00shortcuts\x00   Valve shortcuts.vdf binary data
+
+# 3. 文本格式: 通过搜索前 256 字节中常见的根节点键名来识别
+0       search/256  "AppState"          Valve Data Format (Text)
+!:mime  text/x-valve-vdf
+!:ext   vdf
+
+0       search/256  "libraryfolders"    Valve Data Format (Text)
+!:mime  text/x-valve-vdf
+!:ext   vdf
+
+0       search/256  "InstallScript"     Valve Data Format (Text)
+!:mime  text/x-valve-vdf
+!:ext   vdf
+
+0       search/256  "UserConfig"        Valve Data Format (Text)
+!:mime  text/x-valve-vdf
+!:ext   vdf

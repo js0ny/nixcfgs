@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+
+  <mime-type type="text/x-nix">
+    <comment>Nix Source Code</comment>
+    <comment xml:lang="zh_CN">Nix 源代码</comment>
+    <acronym>NIX</acronym>
+    <sub-class-of type="text/plain"/>
+    <generic-icon name="text-x-script"/>
+    <glob pattern="*.nix"/>
+  </mime-type>
+
+  <mime-type type="text/x-xilinx-xdc">
+    <comment>Xilinx Design Constraints</comment>
+    <comment xml:lang="zh_CN">Xilinx 设计约束文件</comment>
+    <acronym>XDC</acronym>
+    <sub-class-of type="text/plain"/>
+    <generic-icon name="text-x-script"/>
+    <glob pattern="*.xdc"/>
+  </mime-type>
+
+</mime-info>

@@ -1,0 +1,5 @@
+{...}: {
+  imports = [
+    ./cleanup.nix
+  ];
+}

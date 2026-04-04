@@ -1,0 +1,4 @@
+patch:
+  key_binder/sequence:
+    pin: "Alt+p" # 使用 Alt-p 而不是 Ctrl-p 置顶候选项（见 ./default.custom.yaml 中 emacs editing）
+
