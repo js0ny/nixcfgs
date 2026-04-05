@@ -71,10 +71,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    nixdots.persist.home.directories = [
-      ".local/share/kxmlgui5/dolphin"
-    ];
-
+    nixdots.persist.home = {
+      directories = [
+        ".local/share/kxmlgui5/dolphin"
+      ];
+      files = [
+        ".config/dolphinrc"
+      ];
+    };
     home.packages = with pkgs.kdePackages; [
       dolphin
       dolphin-plugins # dolphin git integration

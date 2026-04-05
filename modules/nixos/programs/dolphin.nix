@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  cfg = config.nixdots.programs.chromium.enable;
+  cfg = config.nixdots.programs.dolphin.enable;
 in
   lib.mkIf cfg {
     environment.systemPackages = with pkgs.kdePackages; [

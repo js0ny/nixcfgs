@@ -82,7 +82,7 @@ in {
 
           exec flatpak run --branch=stable --arch=x86_64 com.qq.QQ "$EXTRA_APP_ARGS" "$@"
         '';
-        enable = true;
+        enable = false;
         executable = true;
       };
       "flatpak/exports/share/applications/com.qq.QQ.desktop" = {
@@ -98,7 +98,7 @@ in {
           Comment=QQ
           X-Flatpak=com.qq.QQ
         '';
-        enable = true;
+        enable = false;
         force = true;
       };
       "flatpak/exports/bin/com.tencent.WeChat" = {
@@ -118,7 +118,7 @@ in {
               exec flatpak run --branch=stable --arch=x86_64 com.tencent.WeChat "$@"
           fi
         '';
-        enable = true;
+        enable = false;
         executable = true;
       };
       "flatpak/exports/share/applications/com.tencent.WeChat.desktop" = {
@@ -137,7 +137,7 @@ in {
           Comment[zh_CN]=微信桌面版
           X-Flatpak=com.tencent.WeChat
         '';
-        enable = true;
+        enable = false;
         force = true;
       };
     }
