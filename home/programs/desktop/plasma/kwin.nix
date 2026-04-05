@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   iconFixRule = entryName: wmclass: {
     description = "Fix icon for ${entryName}";
     match = {
@@ -17,22 +21,44 @@
     "proton.vpn.app.gtk" = "python3.13 .protonvpn-app-wrapped";
   };
 in {
-  programs.plasma.window-rules =
-    lib.mkForce (lib.mapAttrsToList iconFixRule iconFixList)
-    // {
-      "float mpv" = {
-        description = "mpv float preset";
-        match = {
-          window-class = {
-            value = "mpv";
-            type = "exact";
-          };
-        };
-        apply = {
-          above = true;
-        };
+  programs.plasma = {
+    kwin = {
+      virtualDesktops.number = 9;
+      titlebarButtons = {
+        left = [
+          "more-window-actions"
+          "on-all-desktops"
+          "keep-above-windows"
+        ];
       };
     };
+    window-rules =
+      lib.mkForce (lib.mapAttrsToList iconFixRule iconFixList)
+      // {
+        "float mpv" = {
+          description = "mpv float preset";
+          match = {
+            window-class = {
+              value = "mpv";
+              type = "exact";
+            };
+          };
+          apply = {
+            above = true;
+          };
+        };
+      };
+    configFile.kwinrc = {
+      Wayland.InputMethod = "${pkgs.kdePackages.fcitx5-with-addons}/share/applications/fcitx5-wayland-launcher.desktop";
+      XWayland.Scale = 1.7;
+    };
+  };
+  nixdots.persist.home = {
+    files = [
+      ".config/kwinrc"
+      ".config/kwinrulesrc"
+    ];
+  };
 }
 /*
 TODO:

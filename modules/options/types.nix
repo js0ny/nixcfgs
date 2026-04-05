@@ -89,7 +89,6 @@
     };
   };
   inputDevice = lib.types.submodule {
-    description = "Comprehensive hardware identifiers for the built-in laptop input device.";
     options = {
       devicePath = lib.mkOption {
         type = lib.types.str;
