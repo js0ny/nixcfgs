@@ -7,8 +7,6 @@
     git
     tmux
     file
-    unzip
-    zip
   ];
   # Explicitly define default EDITOR
   programs.nano.enable = false;

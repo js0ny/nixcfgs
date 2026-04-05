@@ -10,22 +10,23 @@ in
     services.pipewire = {
       enable = true;
       pulse.enable = true;
-    };
-    environment.etc."wireplumber/wireplumber.conf.d/51-rename-laptop-microphone.conf".text = ''
-
-      monitor.alsa.rules = [
-          {
+      wireplumber.extraConfig = {
+        "rename-laptop-microphone" = {
+          "monitor.alsa.rules" = [
+            {
               matches = [
-                  {
-                      node.name = "${mic.name}";
-                  }
-              ]
+                {
+                  node.name = "${mic.name}";
+                }
+              ];
               actions = {
-                  update-props = {
-                      node.description = "${mic.description}";
-                  }
-              }
-          }
-      ]
-    '';
+                update-props = {
+                  node.description = "${mic.description}";
+                };
+              };
+            }
+          ];
+        };
+      };
+    };
   }

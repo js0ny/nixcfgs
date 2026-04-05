@@ -35,5 +35,6 @@
     openai-whisper
     ripdrag
     element-desktop
+    qpwgraph
   ];
 }

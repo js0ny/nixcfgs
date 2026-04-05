@@ -51,10 +51,4 @@ in {
       extraArgs = "--keep 5 --keep-since 3d";
     };
   };
-  networking.networkmanager = {
-    enable = true;
-    plugins = with pkgs; [
-      networkmanager-openvpn
-    ];
-  };
 }

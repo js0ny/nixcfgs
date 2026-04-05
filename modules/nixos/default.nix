@@ -11,11 +11,8 @@
     ./hardware
     ./virtualisation
 
-    ./core/configuration.nix
-    ./core/packages.nix
-    ./core/sshd.nix
-    ./core/nftables.nix
-    ./core/do-not-track.nix
+    ./core
+
     ./services/tailscale.nix
     ./services/syncthing.nix
 
