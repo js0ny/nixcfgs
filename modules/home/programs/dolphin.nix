@@ -81,20 +81,6 @@ in {
       konsole # dolphin terminal integration
     ];
 
-    mergetools.dolphinrc = {
-      target = "${config.home.homeDirectory}/.config/dolphinrc";
-      format = "ini";
-      settings = {
-        General = {
-          ShowSelectionToggle = false;
-          UseTabForSwitchingSplitView = true;
-        };
-        VersionControl = {
-          EnabledPlugins = "Subversion,Git";
-        };
-      };
-    };
-
     xdg.dataFile = mkMerge (
       mapAttrsToList (
         name: serviceCfg:

@@ -26,7 +26,7 @@
   "home.persist": {
     "prefix": "persist",
     "body": [
-      "my.persist.home = {",
+      "nixdots.persist.home = {",
       "  directories = [",
       "    \"$1\"",
       "  ];",

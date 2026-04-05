@@ -33,5 +33,19 @@ in {
       };
     };
   };
-  xdg.dataFile."kxmlgui5/dolphin/dolphinui.rc".source = mkSymlink "${dots}/users/programs/dolphin/dolphinui.rc";
+  xdg.dataFile."kxmlgui5/dolphin/dolphinui.rc".source = mkSymlink "${dots}/home/programs/dolphin/dolphinui.rc";
+
+  mergetools.dolphinrc = {
+    target = "${config.home.homeDirectory}/.config/dolphinrc";
+    format = "ini";
+    settings = {
+      General = {
+        ShowSelectionToggle = false;
+        UseTabForSwitchingSplitView = true;
+      };
+      VersionControl = {
+        EnabledPlugins = "Subversion,Git";
+      };
+    };
+  };
 }
