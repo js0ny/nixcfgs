@@ -10,6 +10,7 @@
   launcher = "walker";
   kbdBacklightDev = config.nixdots.laptop.backlight.keyboard;
   kbdBacklightStep = "1";
+  screen = config.nixdots.laptop.backlight.screen;
   nirictl = import ./scripts.nix {inherit pkgs;};
 in {
   home.packages = [
@@ -75,13 +76,14 @@ in {
     "XF86AudioMicMute".action =
       spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
 
+    # TODO: Write a script that detects and set current display brightness.
     "XF86MonBrightnessUp" = {
-      action = spawn "brightnessctl" "set" "10%+";
+      action = spawn "brightnessctl" "set" "10%+" "--device" "${screen}";
       allow-when-locked = true;
     };
 
     "XF86MonBrightnessDown" = {
-      action = spawn "brightnessctl" "set" "10%-";
+      action = spawn "brightnessctl" "set" "10%-" "--device" "${screen}";
       allow-when-locked = true;
     };
 

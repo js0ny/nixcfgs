@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./gnome-keyring.nix
+    ./tuned.nix
     ./diskutil.nix
     ./laptop.nix
     ./base.nix
