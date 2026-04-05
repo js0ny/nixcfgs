@@ -1,9 +1,10 @@
 {...}: {
   programs.carapace = {
     enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-    enableNushellIntegration = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
+    # carapace works bad for fish
+    enableFishIntegration = false;
+    enableNushellIntegration = false;
   };
 }

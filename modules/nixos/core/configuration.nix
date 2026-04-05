@@ -39,7 +39,8 @@ in {
     openssh.authorizedKeys.keys = sshKeys;
     shell = sysShell;
   };
-  programs.command-not-found.enable = true;
+  # Obsolete
+  programs.command-not-found.enable = false;
 
   programs.nh = {
     enable = true;

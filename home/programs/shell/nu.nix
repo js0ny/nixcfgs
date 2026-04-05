@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   programs.nushell = {
     enable = true;
     shellAliases = {
@@ -16,6 +16,13 @@
         sync_on_enter: true
         isolation: true
       }
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/rg/rg-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/just/just-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/uv/uv-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/podman/podman-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/ssh/ssh-completions.nu
     '';
   };
   nixdots.persist.home = {

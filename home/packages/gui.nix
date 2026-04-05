@@ -34,5 +34,6 @@
     newsboat
     openai-whisper
     ripdrag
+    element-desktop
   ];
 }

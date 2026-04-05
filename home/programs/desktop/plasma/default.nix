@@ -49,7 +49,7 @@
   };
   nixdots.persist.home = {
     directories = [
-      "kdedefaults"
+      ".config/kdedefaults"
     ];
     files = [
       ".config/kdeglobals"

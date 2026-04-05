@@ -12,7 +12,7 @@ in {
       authKeyFile = cfg.authKeyFile;
     };
     networking.firewall = {
-      trustedInterfaces = lib.mkIf cfg.trustInterface ["tailscale0"];
+      trustedInterfaces = ["tailscale0"];
     };
     nixdots.persist.system = {
       directories = [
