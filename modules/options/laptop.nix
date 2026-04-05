@@ -17,12 +17,21 @@ in {
       };
     };
     keyboard = lib.mkOption {
-      type = typing.laptopKeyboard;
+      type = typing.inputDevice;
       example = {
         devicePath = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
         name = "AT Translated Set 2 keyboard";
         vendorId = "0001";
         productId = "0001";
+      };
+    };
+    touchpad = lib.mkOption {
+      type = typing.inputDevice;
+      example = {
+        devicePath = "/dev/input/by-path/platform-AMDI0010:00-event-mouse";
+        name = "ASUP1208:00 093A:3011 Touchpad";
+        vendorId = "093A";
+        productId = "3011";
       };
     };
     backlight = {

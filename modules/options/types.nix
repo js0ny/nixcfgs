@@ -88,38 +88,35 @@
       };
     };
   };
-  laptopKeyboard = lib.mkOption {
-    description = "Comprehensive hardware identifiers for the built-in laptop keyboard.";
-    default = {};
-    type = lib.types.submodule {
-      options = {
-        devicePath = lib.mkOption {
-          type = lib.types.str;
-          default = "";
-          example = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-          description = "Absolute evdev path (usually in by-path or by-id).";
-        };
+  inputDevice = lib.types.submodule {
+    description = "Comprehensive hardware identifiers for the built-in laptop input device.";
+    options = {
+      devicePath = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        example = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+        description = "Absolute evdev path (usually in by-path or by-id).";
+      };
 
-        name = lib.mkOption {
-          type = lib.types.str;
-          default = "";
-          example = "AT Translated Set 2 keyboard";
-          description = "The exact device name exposed by evdev/libinput.";
-        };
+      name = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        example = "AT Translated Set 2 keyboard";
+        description = "The exact device name exposed by evdev/libinput.";
+      };
 
-        vendorId = lib.mkOption {
-          type = lib.types.str;
-          default = "";
-          example = "0001";
-          description = "Vendor ID (hex). Often 0001 for internal PS/2 keyboards.";
-        };
+      vendorId = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        example = "0001";
+        description = "Vendor ID (hex). Often 0001 for internal PS/2 keyboards.";
+      };
 
-        productId = lib.mkOption {
-          type = lib.types.str;
-          default = "";
-          example = "0001";
-          description = "Product ID (hex).";
-        };
+      productId = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        example = "0001";
+        description = "Product ID (hex).";
       };
     };
   };
@@ -140,5 +137,5 @@
     };
   };
 in {
-  inherit appType fontType cursorType iconType laptopDisplay laptopKeyboard audioDevice;
+  inherit appType fontType cursorType iconType laptopDisplay inputDevice audioDevice;
 }
