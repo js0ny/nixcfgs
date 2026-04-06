@@ -106,4 +106,5 @@
       show-warning = false;
     };
   };
+  services.easyeffects.enable = true;
 }
