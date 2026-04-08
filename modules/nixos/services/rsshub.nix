@@ -4,8 +4,6 @@
   config,
   ...
 }: let
-  chromePath = lib.getExe pkgs.google-chrome;
-  port = 1200;
   cfg = config.services.rsshub;
 in {
   options.services.rsshub = {
