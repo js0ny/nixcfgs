@@ -30,7 +30,7 @@
 
     ./programs/shell/bash.nix
     ./programs/shell/zsh.nix
-    ./programs/shell/fish.nix
+    ./programs/shell/fish
     ./programs/shell/direnv.nix
 
     ./programs/social/discord.nix

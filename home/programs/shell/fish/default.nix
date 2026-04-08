@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  aliasCfg = import ./aliases.nix {inherit pkgs config lib;};
+  aliasCfg = import ../aliases.nix {inherit pkgs config lib;};
 in {
   programs.fish = {
     enable = true;
@@ -58,6 +58,10 @@ in {
       // {
         l = "ls -lah";
       };
+  };
+  xdg.configFile."fish/functions" = {
+    source = ./functions;
+    recursive = true;
   };
   programs.zed-editor.extensions = ["fish"];
   nixdots.persist.home.files = [

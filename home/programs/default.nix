@@ -10,7 +10,7 @@
 
     # Shell
     ./shell/bash.nix
-    ./shell/fish.nix
+    ./shell/fish
     ./shell/carapace.nix
 
     # Editors

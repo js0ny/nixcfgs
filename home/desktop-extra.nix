@@ -38,7 +38,7 @@
 
     ./programs/shell/bash.nix
     ./programs/shell/zsh.nix
-    ./programs/shell/fish.nix
+    ./programs/shell/fish
     ./programs/shell/carapace.nix
     ./programs/shell/nu.nix
 
