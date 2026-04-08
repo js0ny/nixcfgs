@@ -14,7 +14,6 @@ return {
       cmdline = true,
       disabled_filetypes = {},
       -- https://github.com/Saghen/blink.pairs/blob/main/lua/blink/pairs/config/mappings.lua#24
-      -- Battery included!
       pairs = {
         ["'"] = {
           "''",
@@ -22,6 +21,32 @@ return {
             return ctx:text_before_cursor(1) == "'"
           end,
           languages = { "nix" },
+        },
+        ["`"] = {
+          -- 使用 luasnip 接管 ``` 的行为
+          {
+            "```",
+            when = function(ctx)
+              return ctx:text_before_cursor(2) == "``"
+            end,
+            languages = { "typst", "vimwiki" },
+          },
+          {
+            "`",
+            "'",
+            languages = { "bibtex", "latex", "plaintex" },
+          },
+          {
+            "`",
+            enter = false,
+            space = false,
+            when = function(ctx)
+              if ctx.ft == "markdown" then
+                return ctx:text_before_cursor(2) ~= "``"
+              end
+              return true
+            end,
+          },
         },
       },
     },

@@ -28,6 +28,9 @@
       "n" = "playlist-next";
       "p" = "playlist-prev";
       "r" = "cycle_values video-rotate 90 180 270 0";
+      "m" = "script-binding uosc/menu";
+      "TAB" = "script-binding uosc/toggle-ui";
+      "P" = "script-binding uosc/items";
     };
   };
 }

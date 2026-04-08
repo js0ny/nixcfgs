@@ -32,6 +32,7 @@ in {
       mermaid-cli
       ghostscript_headless
       lsof # Opencode.nvim
+      markdown-oxide
     ];
   };
   # home.packages = with pkgs; [lua-language-server];

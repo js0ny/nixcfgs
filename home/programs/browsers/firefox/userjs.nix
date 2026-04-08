@@ -12,6 +12,9 @@ in {
         "signon.rememberSignons" = false;
         "browser.urlbar.suggest.history" = false;
 
+        "browser.ml.enabled" = true;
+        "browser.ml.chat.hideLocalhost" = false;
+
         "browser.toolbars.bookmarks.visibility" = "never";
         "extensions.update.enabled" = true;
         "sidebar.expandOnHover" = true;
@@ -25,6 +28,7 @@ in {
         ### Disable Translations
         "browser.translations.enable" = false;
         "browser.translations.automaticallyPopup" = false;
+        "browser.translations.select.enable" = false;
         ### CJK IME Optimisation
         "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
         "browser.tabs.closeTabByDblclick" = true;

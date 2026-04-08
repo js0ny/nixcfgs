@@ -9,6 +9,8 @@
     ./packages/devtools.nix
     ./programs
 
+    ./programs/opencode
+
     ./programs/block-desktop-entries.nix
     ./programs/mime.nix
 

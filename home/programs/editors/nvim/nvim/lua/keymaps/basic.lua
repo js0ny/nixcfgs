@@ -100,6 +100,18 @@ local keymaps_basic = {
   { mode = mode_arrow, keys = "K", cmd = "5k" },
   -- https://github.com/LazyVim/LazyVim/blob/d1529f650fdd89cb620258bdeca5ed7b558420c7/lua/lazyvim/config/keymaps.lua#L60
   { keys = "<Esc>", cmd = "<Cmd>nohlsearch<Bar>diffupdate<CR>", opts = { desc = "Clear Search Highlight" } },
+  {
+    mode = "n",
+    keys = "za",
+    cmd = "<Cmd>silent! normal! za<CR>",
+    opts = { desc = "Toggle Fold (silent)" },
+  },
+  {
+    mode = "n",
+    keys = "zA",
+    cmd = "<Cmd>silent! normal! zA<CR>",
+    opts = { desc = "Toggle All Folds (silent)" },
+  },
 }
 
 return keymaps_basic

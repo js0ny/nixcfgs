@@ -4,25 +4,23 @@ local user = os.getenv("USER") or "unknown"
 ---@type vim.lsp.Config
 return {
   cmd = { "nixd" },
-  root_markers = { "flake.nix", "flake.lock" },
   filetypes = { "nix" },
+  root_markers = { "flake.nix", ".git" },
   settings = {
-    nixpkgs = {
-      expr = "import <nixpkgs> { }",
-    },
-    formatting = {
-      command = { "alejandra" },
-    },
-    options = {
-      nixos = {
-        expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.' .. host .. ".options",
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }",
       },
-      home_manager = {
-        expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."'
-          .. user
-          .. "@"
-          .. host
-          .. '".options',
+      formatting = {
+        command = { "nixfmt" },
+      },
+      options = {
+        nixos = {
+          expr = "(builtins.getFlake (toString ./.)).nixosConfigurations.crystal.options",
+        },
+        home_manager = {
+          expr = '"(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.crystal.options.home-manager.users.type.getSubOptions []"',
+        },
       },
     },
   },

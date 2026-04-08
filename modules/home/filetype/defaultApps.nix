@@ -18,6 +18,7 @@
     "text/x-pdx-descriptor" # .mod
     "text/csv"
     "text/markdown"
+    "application/vnd.kde.kxmlguirc"
   ];
   webpageMimes = [
     "text/html"

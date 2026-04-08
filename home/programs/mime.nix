@@ -28,6 +28,7 @@
     "image/bmp"
     "image/avif"
     "image/webp"
+    "image/x-portable-pixmap"
   ];
   audio = [
     "audio/flac"

@@ -13,30 +13,7 @@ return {
   ft = "markdown",
 
   cmd = {
-    "ObsidianNewFromTemplate",
-    "ObsidianToggleCheckbox",
-    "ObsidianQuickSwitch",
-    "ObsidianExtractNote",
-    "ObsidianFollowLink",
-    "ObsidianBacklinks",
-    "ObsidianWorkspace",
-    "ObsidianYesterday",
-    "ObsidianPasteImg",
-    "ObsidianTomorrow",
-    "ObsidianTemplate",
-    "ObsidianDailies",
-    "ObsidianLinkNew",
-    "ObsidianRename",
-    "ObsidianSearch",
-    "ObsidianCheck",
-    "ObsidianLinks",
-    "ObsidianToday",
-    "ObsidianDebug",
-    "ObsidianOpen",
-    "ObsidianTags",
-    "ObsidianLink",
-    "ObsidianNew",
-    "ObsidianTOC",
+    "Obsidian",
   },
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
   -- event = {
@@ -52,11 +29,9 @@ return {
   dependencies = {
     -- Required.
     "nvim-lua/plenary.nvim",
-
-    -- see below for full list of optional dependencies 👇
-    "ibhagwan/fzf-lua",
   },
   opts = {
+    legacy_commands = false,
     footer = {
       enabled = false,
     },
@@ -151,7 +126,7 @@ return {
     },
     -- see below for full list of options 👇
     attachments = {
-      img_folder = "90 - System/Assets",
+      folder = "90 - System/Assets",
       img_name_func = function()
         return string.format("%s-", os.time())
       end,

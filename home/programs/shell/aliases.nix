@@ -1,12 +1,14 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   inherit (lib) optionalAttrs;
 
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
+  isNvidia = config.nixdots.machine.nvidia == "nvidia";
 
   commonAliases = {
     ni = "touch";
@@ -66,7 +68,10 @@ in {
     // (optionalAttrs isDarwin darwinAliases)
     // (optionalAttrs isLinux (
       linuxAliases // linuxGuiAliases
-    ));
+    ))
+    // (optionalAttrs isNvidia {
+      nvidia-settings = ''nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'';
+    });
 
   inherit posixFx fishFx;
 }

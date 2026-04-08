@@ -56,6 +56,7 @@
       ".config/ktimezonedrc"
       ".config/kcminputrc"
       ".config/kglobalshortcutsrc"
+      ".config/plasma-org.kde.plasma.desktop-appletsrc"
     ];
   };
   xdg.configFile."plasma-localerc" = {
