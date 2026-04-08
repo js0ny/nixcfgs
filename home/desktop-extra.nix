@@ -17,12 +17,12 @@
     ./programs/editors/nvim
     ./programs/editors/neovide.nix
 
-    ./programs/gaming/steam
-    ./programs/gaming/celeste
-    ./programs/gaming/minecraft.nix
-    ./programs/gaming/emulators/retroarch.nix
-    ./programs/gaming/emulators/cemu.nix
-    ./programs/gaming/emulators/ryujinx.nix
+    ./gaming/steam
+    ./gaming/celeste
+    ./gaming/minecraft.nix
+    ./gaming/emulators/retroarch.nix
+    ./gaming/emulators/cemu.nix
+    ./gaming/emulators/ryujinx.nix
 
     ./programs/media
     ./programs/media/cider-2.nix

@@ -20,7 +20,7 @@
     ./programs/editors/nvim
     ./programs/editors/vscode.nix
 
-    ./programs/gaming/emulators/retroarch.nix
+    ./gaming/emulators/retroarch.nix
 
     ./programs/media/feishin.nix
     ./programs/media/mpv.nix

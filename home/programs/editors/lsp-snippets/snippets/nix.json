@@ -32,5 +32,11 @@
       "  ];",
       "};"
     ]
+  },
+  "fakeSha": {
+    "prefix": "fakeSha256",
+    "body": [
+      "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    ]
   }
 }
