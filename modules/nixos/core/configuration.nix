@@ -20,16 +20,6 @@ in {
     };
   };
 
-  # system.copySystemConfiguration = true;
-  nix.settings = {
-    trusted-users = ["${username}" "root"];
-    use-xdg-base-directories = true;
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."${username}" = {
     isNormalUser = true;

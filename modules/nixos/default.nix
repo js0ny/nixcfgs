@@ -17,6 +17,7 @@
     ./services/syncthing.nix
 
     ../common/styles
+    ../common/system.nix
     ../common/styles/nixos.nix
 
     ../common/impermanence/nixos.nix
