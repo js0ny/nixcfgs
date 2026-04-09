@@ -15,7 +15,6 @@
     ./gpg.nix
     ./do-not-track.nix
     ./sops.nix
-    ./darwin.nix
     ./gnome-keyrings.nix
     ./shellAliases.nix
 

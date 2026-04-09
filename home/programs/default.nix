@@ -21,7 +21,6 @@
     # Utilities & misc
     # ./xilinx.nix
     ./fzf.nix
-    ./gwenview.nix
     ./yazi
     ./libvirt.nix
     ./rtorrent.nix

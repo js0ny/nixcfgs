@@ -212,6 +212,9 @@
     nixosModules = {
       default = import ./modules/nixos;
     };
+    darwinModules = {
+      default = import ./modules/darwin;
+    };
     homeManagerModules = {
       base = import ./home/base.nix;
       server-base = import ./home/server-base.nix;

@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./base.nix
+    ./linux-base.nix
     ./packages/gui.nix
     ./packages/devtools.nix
     ./programs

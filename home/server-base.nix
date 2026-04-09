@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./base.nix
+    ./linux-base.nix
   ];
   home.packages = with pkgs; [
     kitty

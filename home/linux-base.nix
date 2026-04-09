@@ -2,6 +2,7 @@
   imports = [
     ./programs
     ../modules/home
+    ../modules/home/linux.nix
   ];
   programs.nix-index.enable = true;
   programs.nix-index.symlinkToCacheHome = true;

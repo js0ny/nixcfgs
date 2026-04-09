@@ -5,6 +5,7 @@
   ...
 }: let
   aliasCfg = import ../aliases.nix {inherit pkgs config lib;};
+  name = config.nixdots.user.name;
 in {
   programs.fish = {
     enable = true;
@@ -49,7 +50,7 @@ in {
       bind -M insert ctrl-delete kill-word
       # alt + delete (d$)
       bind -M insert alt-delete kill-line
-      fish_add_path $HOME/.nix-profile/bin
+      fish_add_path /etc/profiles/per-user/${name}/bin
       fish_add_path /nix/var/nix/profiles/default/bin
     '';
     # preferAbbrs = true;

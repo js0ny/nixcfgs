@@ -18,7 +18,7 @@ return {
     dependencies = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
     ft = { "tex", "latex", "markdown", "org" },
     opts = {},
-    dev = true,
-    dir = "~/Atelier/dot/luasnip-latex-snippets.nvim",
+    -- dev = true,
+    -- dir = "~/Atelier/dot/luasnip-latex-snippets.nvim",
   },
 }

@@ -3,11 +3,10 @@
     enable = true;
     scripts = with pkgs.mpvScripts; [
       uosc
-      mpris
       thumbfast
       sponsorblock
       bdanmaku
-    ];
+    ] ++ (if pkgs.stdenv.isLinux then [mpris] else []);
     config = {
       vo = "gpu-next";
       hwdec = "auto-safe";
