@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   xdg.configFile."opencode/oh-my-opencode.json".text = builtins.toJSON (import ./oh-my-openagent.nix);
 
   nixdots.persist.home = {
@@ -6,6 +6,14 @@
       ".local/share/opencode"
       ".config/opencode"
     ];
+  };
+
+  home.sessionVariables = {
+    # Manage LSP by DevShell
+    OPENCODE_DISABLE_LSP_DOWNLOAD =
+      if pkgs.stdenv.isLinux
+      then "true"
+      else "";
   };
 
   programs.opencode = {

@@ -52,6 +52,7 @@
     ./programs/ollama.nix
     ./programs/wine.nix
     ./programs/eza.nix
+    ./programs/cherry-studio.nix
 
     ./programs/devenvs/typst.nix
     ./programs/devenvs/lua.nix
