@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   style = config.nixdots.style;
-in {
+in
+{
   config = lib.mkIf style.stylix.enable {
     stylix = {
       enable = style.stylix.enable;
@@ -18,7 +20,10 @@ in {
       };
 
       cursor = style.cursor;
-      icons = {enable = true;} // style.icon;
+      icons = {
+        enable = true;
+      }
+      // style.icon;
       base16Scheme = lib.mkForce style.stylix.base16Scheme;
       image = ./wallpaper.jpg;
       # TODO: Add support for "auto"

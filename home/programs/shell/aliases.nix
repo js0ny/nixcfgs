@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) optionalAttrs;
 
   isDarwin = pkgs.stdenv.isDarwin;
@@ -62,13 +63,12 @@
         mkdir -p (dirname $argv[1]) && touch $argv[1] && $EDITOR $argv[1]
     end
   '';
-in {
+in
+{
   aliases =
     commonAliases
     // (optionalAttrs isDarwin darwinAliases)
-    // (optionalAttrs isLinux (
-      linuxAliases // linuxGuiAliases
-    ))
+    // (optionalAttrs isLinux (linuxAliases // linuxGuiAliases))
     // (optionalAttrs isNvidia {
       nvidia-settings = ''nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'';
     });

@@ -1,12 +1,10 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.emacs = {
     enable = true;
-    package =
-      if pkgs.stdenv.isLinux
-      then pkgs.emacs-pgtk
-      else null;
-    extraPackages = epkgs:
-      with epkgs; [
+    package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else null;
+    extraPackages =
+      epkgs: with epkgs; [
         evil
         evil-leader
         evil-commentary
@@ -36,5 +34,5 @@
     tdlib
   ];
 
-  imports = [./default.nix];
+  imports = [ ./default.nix ];
 }

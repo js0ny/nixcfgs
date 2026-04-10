@@ -2,15 +2,17 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   addons = pkgs.firefox-addons;
 
   p = config.nixdots.programs.firefox.defaultProfile;
-in {
+in
+{
   programs.firefox.profiles."${p}" = {
     extensionStorage."gemini-voyager@nagi-ovo".settings = {
       gvChangelogNotifyMode = "badge";
     };
-    extensions.packages = with addons; [gemini-voyager];
+    extensions.packages = with addons; [ gemini-voyager ];
   };
 }

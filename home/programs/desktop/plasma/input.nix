@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   touchpad = config.nixdots.laptop.touchpad;
-in {
+in
+{
   programs.plasma = {
     input.touchpads = [
       {

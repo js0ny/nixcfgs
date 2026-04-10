@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ../../gwenview.nix
     ../../dolphin
@@ -60,7 +61,7 @@
     ];
   };
   xdg.configFile."plasma-localerc" = {
-    text = lib.generators.toINI {} {
+    text = lib.generators.toINI { } {
       Formats.LANG = "en_GB.UTF-8";
     };
     force = true;

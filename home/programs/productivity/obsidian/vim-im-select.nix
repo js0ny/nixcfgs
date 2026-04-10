@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.obsidian.defaultSettings.communityPlugins."vim-im-select" = {
     enable = true;
     settings = {

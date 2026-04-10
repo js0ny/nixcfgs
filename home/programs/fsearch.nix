@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   mergetools.fsearch-conf = {
     target = "${config.home.homeDirectory}/.config/fsearch/fsearch.conf";
     format = "ini";

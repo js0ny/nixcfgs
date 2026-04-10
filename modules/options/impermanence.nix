@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nixdots.persist = {
     enable = lib.mkOption {
       type = lib.types.bool;

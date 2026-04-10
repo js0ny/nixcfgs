@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   volume-notify = pkgs.writeShellApplication {
     name = "volume-notify";
 
@@ -41,6 +42,7 @@
       notify-send -h string:x-canonical-private-synchronous:volume -t 1500 "🔊 Audio" "$TEXT"
     '';
   };
-in {
-  home.packages = [volume-notify];
+in
+{
+  home.packages = [ volume-notify ];
 }

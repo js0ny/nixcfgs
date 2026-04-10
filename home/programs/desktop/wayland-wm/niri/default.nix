@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ../packages.nix
     ./window-rules.nix
@@ -15,20 +16,27 @@
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
       workspaces = {
-        "1-master" = {};
-        "2-project" = {};
-        "3-alt" = {};
-        "4-info" = {};
-        "5-bg" = {};
+        "1-master" = { };
+        "2-project" = { };
+        "3-alt" = { };
+        "4-info" = { };
+        "5-bg" = { };
       };
 
       spawn-at-startup = [
-        {argv = ["systemctl" " --user" "start" "waylandwm-session.target"];}
+        {
+          argv = [
+            "systemctl"
+            " --user"
+            "start"
+            "waylandwm-session.target"
+          ];
+        }
       ];
 
       input = {
         keyboard = {
-          xkb = {};
+          xkb = { };
           numlock = true;
         };
 
@@ -39,8 +47,8 @@
           dwt = true; # disable on typing
         };
 
-        mouse = {};
-        trackpoint = {};
+        mouse = { };
+        trackpoint = { };
       };
 
       layout = {
@@ -48,12 +56,14 @@
         center-focused-column = "never";
 
         preset-column-widths = [
-          {proportion = 0.33333;}
-          {proportion = 0.5;}
-          {proportion = 0.66667;}
+          { proportion = 0.33333; }
+          { proportion = 0.5; }
+          { proportion = 0.66667; }
         ];
 
-        default-column-width = {proportion = 0.5;};
+        default-column-width = {
+          proportion = 0.5;
+        };
 
         focus-ring = {
           enable = true;

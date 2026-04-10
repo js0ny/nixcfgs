@@ -3,8 +3,9 @@
   pkgs,
   config,
   ...
-}: {
-  home.packages = [pkgs.picard];
+}:
+{
+  home.packages = [ pkgs.picard ];
 
   # see: https://www.navidrome.org/docs/usage/library/tagging/#picard-specific-tips
   mergetools.picard-ini = {

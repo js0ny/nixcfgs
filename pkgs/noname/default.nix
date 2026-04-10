@@ -30,13 +30,18 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   pnpmDeps = fetchPnpmDeps {
-    inherit (finalAttrs) pname version src pnpmRoot;
+    inherit (finalAttrs)
+      pname
+      version
+      src
+      pnpmRoot
+      ;
     pnpm = pnpm_10;
     fetcherVersion = 3;
     hash = "sha256-dqhESUT0LhWvLRdr/IAbQygyxMjDZyNJjh1VqAgtsE8=";
   };
 
-  pnpmInstallFlags = ["--frozen-lockfile"];
+  pnpmInstallFlags = [ "--frozen-lockfile" ];
 
   buildPhase = ''
     runHook preBuild

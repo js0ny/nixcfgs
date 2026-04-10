@@ -1,7 +1,8 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   services.dunst.enable = true;
   systemd.user.services.dunst = {
-    Install.WantedBy = lib.mkForce ["niri.service"];
+    Install.WantedBy = lib.mkForce [ "niri.service" ];
     Service = {
       # Disable on KDE
       ExecCondition = lib.mkForce ''

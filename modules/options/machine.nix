@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nixdots.machine = {
     headless = lib.mkOption {
       type = lib.types.bool;
@@ -11,7 +12,11 @@
     };
 
     role = lib.mkOption {
-      type = lib.types.enum ["host" "guest" "standalone"];
+      type = lib.types.enum [
+        "host"
+        "guest"
+        "standalone"
+      ];
       default = "standalone";
       description = ''
         The infrastructure role of this machine:
@@ -22,11 +27,12 @@
     };
 
     displayProtocol = lib.mkOption {
-      type = lib.types.enum ["x11" "wayland" "none"];
-      default =
-        if config.nixdots.machine.headless
-        then "none"
-        else "wayland";
+      type = lib.types.enum [
+        "x11"
+        "wayland"
+        "none"
+      ];
+      default = if config.nixdots.machine.headless then "none" else "wayland";
       description = ''
         The display protocol to use. 'x11' for Xorg, 'wayland' for Wayland, and 'none' for headless setups. This can be overridden by specific desktop manager modules if needed.
       '';
@@ -46,7 +52,12 @@
 
     nvidia = {
       mode = lib.mkOption {
-        type = lib.types.enum ["disable" "nouveau" "nvidia" "vfio"];
+        type = lib.types.enum [
+          "disable"
+          "nouveau"
+          "nvidia"
+          "vfio"
+        ];
         default = "disable";
         description = ''
           The NVIDIA driver mode to use:

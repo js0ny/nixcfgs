@@ -1,4 +1,5 @@
-{pkgs, ...}: let
-  mkFzfAction = (import ../_mkFzfAction.nix {inherit pkgs;}).out;
+{ pkgs, ... }:
+let
+  mkFzfAction = (import ../_mkFzfAction.nix { inherit pkgs; }).out;
 in
-  mkFzfAction "edit-fzf" ''"''${EDITOR:-vim}"''
+mkFzfAction "edit-fzf" ''"''${EDITOR:-vim}"''

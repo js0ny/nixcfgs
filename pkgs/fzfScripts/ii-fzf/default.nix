@@ -1,4 +1,5 @@
-{pkgs, ...}: let
-  mkFzfAction = (import ../_mkFzfAction.nix {inherit pkgs;}).out;
+{ pkgs, ... }:
+let
+  mkFzfAction = (import ../_mkFzfAction.nix { inherit pkgs; }).out;
 in
-  mkFzfAction "ii-fzf" ''xdg-open''
+mkFzfAction "ii-fzf" "xdg-open"

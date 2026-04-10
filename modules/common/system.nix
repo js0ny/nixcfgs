@@ -1,9 +1,14 @@
-{config, ...}: let
+{ config, ... }:
+let
   username = config.nixdots.user.name;
-in {
+in
+{
   # system.copySystemConfiguration = true;
   nix.settings = {
-    trusted-users = ["${username}" "root"];
+    trusted-users = [
+      "${username}"
+      "root"
+    ];
     use-xdg-base-directories = true;
     experimental-features = [
       "nix-command"

@@ -1,7 +1,9 @@
-{config, ...}: let
+{ config, ... }:
+let
   xdg-data = "${config.xdg.dataHome}";
   user = config.home.username;
-in {
+in
+{
   nixdots.persist.home = {
     directories = [
       ".local/share/gnupg"

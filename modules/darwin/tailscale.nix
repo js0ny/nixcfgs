@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.services.tailscale;
-in {
+in
+{
   config = lib.mkIf cfg.enable {
     services.tailscale = {
       enable = true;

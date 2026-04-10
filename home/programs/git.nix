@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   programs.git = {
     enable = true;
     settings = {
@@ -15,10 +16,7 @@
         undo = "reset --hard HEAD"; # Undo the last commit
       };
       core = {
-        editor =
-          if config.programs.neovim.enable
-          then "nvim"
-          else "vim";
+        editor = if config.programs.neovim.enable then "nvim" else "vim";
         # Done by programs.delta.enableGitIntegration = true;
         # pager =
         #   if config.programs.delta.enable

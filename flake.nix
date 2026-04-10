@@ -84,181 +84,195 @@
     impermanence.url = "github:nix-community/impermanence";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    nix-flatpak,
-    nix-darwin,
-    home-manager,
-    plasma-manager,
-    nur,
-    caelestia-shell,
-    sops-nix,
-    niri-flake,
-    xremap-flake,
-    betterfox-nix,
-    firefox-addons,
-    zen-browser,
-    nixcord,
-    catppuccin,
-    nix-index-database,
-    walker,
-    stylix,
-    nix-openclaw,
-    nixpak,
-    steam-config-nix,
-    mac-app-util,
-    deploy-rs,
-    llm-agents,
-    disko,
-    impermanence,
-    ...
-  } @ inputs: let
-    myLib = import ./lib {inherit (nixpkgs) lib;};
-    utils = myLib;
-    localOverlays = import ./overlays;
-    overlays = [
-      nix-openclaw.overlays.default
-      niri-flake.overlays.niri
-      nur.overlays.default
-      firefox-addons.overlays.default
-      (final: prev: {
-        caelestia-shell = caelestia-shell.packages.x86_64-linux.caelestia-shell;
-      })
-      (final: prev: {
-        zen-browser = zen-browser.packages.x86_64-linux.zen-browser;
-      })
-      localOverlays
-    ];
-    forSystem = system:
-      import nixpkgs {
-        inherit system overlays;
-        config.allowUnfree = true;
-      };
-    specialArgs = {inherit inputs overlays myLib;};
-    nixosHosts = [
-      # "zp"
-      "crystal"
-      "polder"
-    ];
-    darwinHosts = [
-      "zen"
-    ];
-
-    mkNixosSystem = hostname:
-      nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        inherit specialArgs;
-        modules = [
-          home-manager.nixosModules.home-manager
-          xremap-flake.nixosModules.default
-          sops-nix.nixosModules.sops
-          catppuccin.nixosModules.catppuccin
-          stylix.nixosModules.default
-          disko.nixosModules.disko
-          impermanence.nixosModules.impermanence
-          ./hosts/${hostname}
-          {nixpkgs.overlays = overlays;}
-        ];
-      };
-    mkDarwinSystem = hostname:
-      nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        inherit specialArgs;
-        modules = [
-          ./hosts/${hostname}
-          {nixpkgs.overlays = overlays;}
-          mac-app-util.darwinModules.default
-        ];
-      };
-  in {
-    homeConfigurations = {
-      "js0ny@crystal" = home-manager.lib.homeManagerConfiguration {
-        pkgs = forSystem "x86_64-linux";
-        extraSpecialArgs = specialArgs // {inherit utils;};
-        modules = [
-          ./users/js0ny/crystal.nix
-          nix-openclaw.homeManagerModules.openclaw
-          plasma-manager.homeModules.plasma-manager
-          nix-flatpak.homeManagerModules.nix-flatpak
-          sops-nix.homeManagerModules.sops
-          niri-flake.homeModules.niri
-          betterfox-nix.modules.homeManager.betterfox
-          nixcord.homeModules.nixcord
-          catppuccin.homeModules.catppuccin
-          nix-index-database.homeModules.nix-index
-          walker.homeManagerModules.default
-          stylix.homeModules.stylix
-          steam-config-nix.homeModules.default
-        ];
-      };
-      "js0ny@zen" = home-manager.lib.homeManagerConfiguration {
-        pkgs = forSystem "aarch64-darwin";
-        extraSpecialArgs = specialArgs;
-        modules = [
-          mac-app-util.homeManagerModules.default
-          nix-openclaw.homeManagerModules.openclaw
-          ./users/js0ny/zen.nix
-          catppuccin.homeModules.catppuccin
-          betterfox-nix.modules.homeManager.betterfox
-          sops-nix.homeManagerModules.sops
-          stylix.homeModules.stylix
-          nix-index-database.homeModules.nix-index
-        ];
-      };
-    };
-    # Export nixos modules for private use
-    nixosModules = {
-      default = import ./modules/nixos;
-    };
-    darwinModules = {
-      default = import ./modules/darwin;
-    };
-    homeManagerModules = {
-      base = import ./home/base.nix;
-      server-base = import ./home/server-base.nix;
-      darwin-base = import ./home/darwin-base.nix;
-      desktop-base = import ./home/desktop-base.nix;
-      desktop-extra = import ./home/desktop-extra.nix;
-    };
-    devShells =
-      nixpkgs.lib.genAttrs [
-        "x86_64-linux"
-        "aarch64-darwin"
-      ] (system: let
-        pkgs = import nixpkgs {
-          inherit system;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      nix-flatpak,
+      nix-darwin,
+      home-manager,
+      plasma-manager,
+      nur,
+      caelestia-shell,
+      sops-nix,
+      niri-flake,
+      xremap-flake,
+      betterfox-nix,
+      firefox-addons,
+      zen-browser,
+      nixcord,
+      catppuccin,
+      nix-index-database,
+      walker,
+      stylix,
+      nix-openclaw,
+      nixpak,
+      steam-config-nix,
+      mac-app-util,
+      deploy-rs,
+      llm-agents,
+      disko,
+      impermanence,
+      ...
+    }@inputs:
+    let
+      myLib = import ./lib { inherit (nixpkgs) lib; };
+      utils = myLib;
+      localOverlays = import ./overlays;
+      overlays = [
+        nix-openclaw.overlays.default
+        niri-flake.overlays.niri
+        nur.overlays.default
+        firefox-addons.overlays.default
+        (final: prev: {
+          caelestia-shell = caelestia-shell.packages.x86_64-linux.caelestia-shell;
+        })
+        (final: prev: {
+          zen-browser = zen-browser.packages.x86_64-linux.zen-browser;
+        })
+        localOverlays
+      ];
+      forSystem =
+        system:
+        import nixpkgs {
+          inherit system overlays;
+          config.allowUnfree = true;
         };
-        ciDeps = with pkgs; [
-          stylua
-          prettier
-          ruff
-          shfmt
-          shellcheck
-          alejandra
-        ];
-        devDeps = with pkgs; [
-          lua-language-server
-          typescript-language-server
-          bash-language-server
-          pyright
-          taplo
-          nixd
-        ];
-      in {
-        default = pkgs.mkShell {
-          buildInputs = ciDeps ++ devDeps;
-          shellHook = ''
+      specialArgs = { inherit inputs overlays myLib; };
+      nixosHosts = [
+        # "zp"
+        "crystal"
+        "polder"
+      ];
+      darwinHosts = [
+        "zen"
+      ];
 
-          '';
+      mkNixosSystem =
+        hostname:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          inherit specialArgs;
+          modules = [
+            home-manager.nixosModules.home-manager
+            xremap-flake.nixosModules.default
+            sops-nix.nixosModules.sops
+            catppuccin.nixosModules.catppuccin
+            stylix.nixosModules.default
+            disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
+            ./hosts/${hostname}
+            { nixpkgs.overlays = overlays; }
+          ];
         };
-        ci = pkgs.mkShell {
-          buildInputs = ciDeps;
-          shellHook = ''
+      mkDarwinSystem =
+        hostname:
+        nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          inherit specialArgs;
+          modules = [
+            ./hosts/${hostname}
+            { nixpkgs.overlays = overlays; }
+            mac-app-util.darwinModules.default
+          ];
+        };
+    in
+    {
+      homeConfigurations = {
+        "js0ny@crystal" = home-manager.lib.homeManagerConfiguration {
+          pkgs = forSystem "x86_64-linux";
+          extraSpecialArgs = specialArgs // {
+            inherit utils;
+          };
+          modules = [
+            ./users/js0ny/crystal.nix
+            nix-openclaw.homeManagerModules.openclaw
+            plasma-manager.homeModules.plasma-manager
+            nix-flatpak.homeManagerModules.nix-flatpak
+            sops-nix.homeManagerModules.sops
+            niri-flake.homeModules.niri
+            betterfox-nix.modules.homeManager.betterfox
+            nixcord.homeModules.nixcord
+            catppuccin.homeModules.catppuccin
+            nix-index-database.homeModules.nix-index
+            walker.homeManagerModules.default
+            stylix.homeModules.stylix
+            steam-config-nix.homeModules.default
+          ];
+        };
+        "js0ny@zen" = home-manager.lib.homeManagerConfiguration {
+          pkgs = forSystem "aarch64-darwin";
+          extraSpecialArgs = specialArgs;
+          modules = [
+            mac-app-util.homeManagerModules.default
+            nix-openclaw.homeManagerModules.openclaw
+            ./users/js0ny/zen.nix
+            catppuccin.homeModules.catppuccin
+            betterfox-nix.modules.homeManager.betterfox
+            sops-nix.homeManagerModules.sops
+            stylix.homeModules.stylix
+            nix-index-database.homeModules.nix-index
+          ];
+        };
+      };
+      # Export nixos modules for private use
+      nixosModules = {
+        default = import ./modules/nixos;
+      };
+      darwinModules = {
+        default = import ./modules/darwin;
+      };
+      homeManagerModules = {
+        base = import ./home/base.nix;
+        server-base = import ./home/server-base.nix;
+        darwin-base = import ./home/darwin-base.nix;
+        desktop-base = import ./home/desktop-base.nix;
+        desktop-extra = import ./home/desktop-extra.nix;
+      };
+      devShells =
+        nixpkgs.lib.genAttrs
+          [
+            "x86_64-linux"
+            "aarch64-darwin"
+          ]
+          (
+            system:
+            let
+              pkgs = import nixpkgs {
+                inherit system;
+              };
+              ciDeps = with pkgs; [
+                stylua
+                prettier
+                ruff
+                shfmt
+                shellcheck
+                nixfmt
+              ];
+              devDeps = with pkgs; [
+                lua-language-server
+                typescript-language-server
+                bash-language-server
+                pyright
+                taplo
+                nixd
+              ];
+            in
+            {
+              default = pkgs.mkShell {
+                buildInputs = ciDeps ++ devDeps;
+                shellHook = ''
 
-          '';
-        };
-      });
-  };
+                '';
+              };
+              ci = pkgs.mkShell {
+                buildInputs = ciDeps;
+                shellHook = ''
+
+                '';
+              };
+            }
+          );
+    };
 }

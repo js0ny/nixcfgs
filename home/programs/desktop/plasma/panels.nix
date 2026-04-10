@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.plasma = {
     panels = [
       # Windows-like panel at the bottom

@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.miniserve];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.miniserve ];
 
   programs.dolphin.services.miniserve = {
     mimeType = "inode/directory";

@@ -1,14 +1,16 @@
 # TODO: Add options.nix and use it here.
-{config, ...}: let
+{ config, ... }:
+let
   id = "{f4961478-ac79-4a18-87e9-d2fb8c0442c4}";
   p = config.nixdots.programs.firefox.defaultProfile;
-in {
+in
+{
   programs.firefox.profiles."${p}".extensionStorage."${id}".settings = {
     "g:config, firstUse" = 0;
-    "g:keybinds" = [];
-    "g:pageKeybinds" = [];
-    "g:browserKeybinds" = [];
-    "g:menuKeybinds" = [];
+    "g:keybinds" = [ ];
+    "g:pageKeybinds" = [ ];
+    "g:browserKeybinds" = [ ];
+    "g:menuKeybinds" = [ ];
     "g:darkTheme" = true;
     "g:hideBadge" = false;
     "g:rules" = [
@@ -19,7 +21,7 @@ in {
         overrideSpeed = 1;
         overrideJs = "// code here\n";
         condition = {
-          blockPorts = [];
+          blockPorts = [ ];
           allowParts = [
             {
               type = "CONTAINS";
@@ -47,7 +49,7 @@ in {
         overrideSpeed = 1;
         overrideJs = "// code here\n";
         condition = {
-          blockPorts = [];
+          blockPorts = [ ];
           allowParts = [
             {
               type = "CONTAINS";
@@ -75,7 +77,7 @@ in {
         overrideSpeed = 1;
         overrideJs = "// Javascript here\n";
         condition = {
-          blockPorts = [];
+          blockPorts = [ ];
           allowParts = [
             {
               type = "STARTS_WITH";

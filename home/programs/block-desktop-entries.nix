@@ -1,6 +1,7 @@
-{...}: {
+{ ... }:
+{
   misc.desktop-entries = {
-    hiddenPrefixes = ["waydroid"];
+    hiddenPrefixes = [ "waydroid" ];
     hideMethod = "delete";
   };
 }

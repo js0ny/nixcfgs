@@ -2,10 +2,12 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   profile = config.nixdots.user.name;
-in {
-  home.packages = with pkgs; [zotero];
+in
+{
+  home.packages = with pkgs; [ zotero ];
   home.file = {
     ".zotero/profiles.ini".text = ''
       [General]

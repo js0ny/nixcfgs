@@ -1,9 +1,10 @@
-{...}: {
+{ ... }:
+{
   programs.zed-editor = {
     userKeymaps = [
       {
         context = "Workspace";
-        bindings = {};
+        bindings = { };
       }
       {
         context = "Editor";
@@ -203,7 +204,7 @@
           tab_size = 2;
           formatter = {
             external = {
-              command = "alejandra";
+              command = "nixfmt";
               arguments = [
                 "--quiet"
                 "--"

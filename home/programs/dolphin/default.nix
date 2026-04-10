@@ -2,10 +2,12 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   dots = config.nixdots.core.dots;
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-in {
+in
+{
   home.packages = with pkgs.kdePackages; [
     dolphin-plugins
     konsole
@@ -33,7 +35,8 @@ in {
       };
     };
   };
-  xdg.dataFile."kxmlgui5/dolphin/dolphinui.rc".source = mkSymlink "${dots}/home/programs/dolphin/dolphinui.rc";
+  xdg.dataFile."kxmlgui5/dolphin/dolphinui.rc".source =
+    mkSymlink "${dots}/home/programs/dolphin/dolphinui.rc";
 
   mergetools.dolphinrc = {
     target = "${config.home.homeDirectory}/.config/dolphinrc";

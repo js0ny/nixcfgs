@@ -3,12 +3,17 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.programs.sdcv;
 
   sdcv-fzf = pkgs.writeShellApplication {
     name = "sdcv-fzf";
-    runtimeInputs = with pkgs; [fzf sdcv jq];
+    runtimeInputs = with pkgs; [
+      fzf
+      sdcv
+      jq
+    ];
     text = ''
       fzf --prompt="Dict: " \
           --phony \
@@ -18,13 +23,14 @@
          < <(echo)
     '';
   };
-in {
+in
+{
   options.programs.sdcv = {
     enable = lib.mkEnableOption "sdcv dictionary with fzf frontend";
 
     dictionaries = lib.mkOption {
       type = lib.types.attrsOf lib.types.package;
-      default = {};
+      default = { };
       description = "Attribute set of dictionary packages to mount. Key is the directory name.";
       example = lib.literalExpression ''
         {
@@ -44,8 +50,7 @@ in {
     xdg.dataFile = lib.mkMerge (
       lib.mapAttrsToList (name: pkg: {
         "stardict/dic/${name}".source = pkg;
-      })
-      cfg.dictionaries
+      }) cfg.dictionaries
     );
   };
 }

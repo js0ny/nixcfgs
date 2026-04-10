@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./nvidia-disable.nix
     ./nvidia-enable.nix

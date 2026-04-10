@@ -3,19 +3,27 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   sioyekCopyScript = pkgs.writeShellApplication {
     name = "sioyek-copy-page";
-    runtimeInputs = with pkgs;
-      [poppler-utils]
+    runtimeInputs =
+      with pkgs;
+      [ poppler-utils ]
       ++ (
-        if pkgs.stdenv.isLinux
-        then with pkgs; [wl-clipboard libnotify]
-        else []
+        if pkgs.stdenv.isLinux then
+          with pkgs;
+          [
+            wl-clipboard
+            libnotify
+          ]
+        else
+          [ ]
       );
     text = builtins.readFile ./sioyek-copy-page.sh;
   };
-in {
+in
+{
   xdg.configFile."sioyek/prefs_user.config".text = ''
     new_command _copy_page_to_clipboard ${lib.getExe sioyekCopyScript} %{page_number} %{file_path}
     default_dark_mode 1
@@ -44,7 +52,10 @@ in {
       "add_highlight" = "H";
 
       ### Toggles
-      "toggle_dark_mode" = ["i" ",D"];
+      "toggle_dark_mode" = [
+        "i"
+        ",D"
+      ];
       "toggle_fullscreen" = ",f";
       "toggle_custom_color" = ",d";
       # toggle_dark_mode     D

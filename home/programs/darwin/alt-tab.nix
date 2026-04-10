@@ -1,5 +1,6 @@
 # brew install alt-tab
-{...}: let
+{ ... }:
+let
   hideList = [
     "com.apple.finder"
     "com.apple.Preview"
@@ -25,7 +26,8 @@
     "ignore" = "2";
   };
   blocklist = builtins.toJSON (map mkHideApps hideList ++ map mkIgnoreApps ignoreList);
-in {
+in
+{
   targets.darwin.defaults = {
     "com.lwouis.alt-tab-macos" = {
       # 0: Small

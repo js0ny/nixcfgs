@@ -2,8 +2,10 @@
   pkgs,
   lib,
   ...
-}: let
-in {
+}:
+let
+in
+{
   imports = [
     ./vimrc-support.nix
     ./vim-im-select.nix

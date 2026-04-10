@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./core.nix
     ./style.nix

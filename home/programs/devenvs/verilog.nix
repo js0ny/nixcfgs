@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     verilator # Formatter
     iverilog # Simulator: Icarus Verilog
@@ -8,5 +9,5 @@
     svls # LSP
   ];
 
-  programs.zed-editor.extensions = ["verilog"];
+  programs.zed-editor.extensions = [ "verilog" ];
 }

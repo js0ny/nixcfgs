@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  imports = [./modules.nix];
+{ pkgs, ... }:
+{
+  imports = [ ./modules.nix ];
   home.packages = with pkgs; [
     pavucontrol
     font-awesome
@@ -9,7 +10,7 @@
     enable = true;
     systemd = {
       enable = true;
-      targets = ["niri.service"];
+      targets = [ "niri.service" ];
     };
     style = ''
       * {

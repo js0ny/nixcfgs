@@ -8,17 +8,19 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   imageTag = "ghcr.io/pdfmathtranslate/pdfmathtranslate-next";
   # version = "2.6.4";
-  mkPdf2zh = {
-    name,
-    withEnv,
-  }:
+  mkPdf2zh =
+    {
+      name,
+      withEnv,
+    }:
     pkgs.writeShellApplication {
       inherit name;
 
-      runtimeInputs = [pkgs.podman];
+      runtimeInputs = [ pkgs.podman ];
 
       text = ''
 
@@ -33,33 +35,34 @@
         CMD_ARGS=()
 
         ${
-          if withEnv
-          then ''
-            API_BASE="''${PDF2ZH_API_BASE:-https://openrouter.ai/api/v1}"
-            MODEL="''${PDF2ZH_MODEL:-google/gemini-3-flash-preview}"
+          if withEnv then
+            ''
+              API_BASE="''${PDF2ZH_API_BASE:-https://openrouter.ai/api/v1}"
+              MODEL="''${PDF2ZH_MODEL:-google/gemini-3-flash-preview}"
 
-            if [[ -n "''${PDF2ZH_API_KEY:-}" ]]; then
-              API_KEY="$PDF2ZH_API_KEY"
-            elif [[ -n "''${OPENROUTER_API_KEY:-}" ]]; then
-              API_KEY="$OPENROUTER_API_KEY"
-            else
-              echo "Error: Neither OPENROUTER_API_KEY nor PDF2ZH_API_KEY is set." >&2
-              echo "Please export one of them explicitly." >&2
-              exit 1
-            fi
+              if [[ -n "''${PDF2ZH_API_KEY:-}" ]]; then
+                API_KEY="$PDF2ZH_API_KEY"
+              elif [[ -n "''${OPENROUTER_API_KEY:-}" ]]; then
+                API_KEY="$OPENROUTER_API_KEY"
+              else
+                echo "Error: Neither OPENROUTER_API_KEY nor PDF2ZH_API_KEY is set." >&2
+                echo "Please export one of them explicitly." >&2
+                exit 1
+              fi
 
-            echo "[pdf2zh] Using Model: $MODEL"
+              echo "[pdf2zh] Using Model: $MODEL"
 
-            PODMAN_ENV_ARGS+=("-e" "OPENROUTER_API_KEY=$API_KEY")
+              PODMAN_ENV_ARGS+=("-e" "OPENROUTER_API_KEY=$API_KEY")
 
-            CMD_ARGS+=(
-              "--openaicompatible"
-              "--openai-compatible-model" "$MODEL"
-              "--openai-compatible-base-url" "$API_BASE"
-              "--openai-compatible-api-key" "$API_KEY"
-            )
-          ''
-          else ""
+              CMD_ARGS+=(
+                "--openaicompatible"
+                "--openai-compatible-model" "$MODEL"
+                "--openai-compatible-base-url" "$API_BASE"
+                "--openai-compatible-api-key" "$API_KEY"
+              )
+            ''
+          else
+            ""
         }
 
         exec podman run \
@@ -86,29 +89,32 @@
   descEn = "PDF scientific paper translation with preserved formats";
   descZh = "基于 AI 完整保留排版的 PDF 文档全文双语翻译";
 in
-  lib.mkIf pkgs.stdenv.isLinux {
-    services.podman.enable = true;
+lib.mkIf pkgs.stdenv.isLinux {
+  services.podman.enable = true;
 
-    # Declare an image, do not instantiate as a container
-    services.podman.images.pdf2zh = {
-      image = imageTag;
-      description = " ${descEn} - ${descZh}，支持 Google/DeepL/Ollama/OpenAI 等服务，提供 CLI/GUI/Docker";
+  # Declare an image, do not instantiate as a container
+  services.podman.images.pdf2zh = {
+    image = imageTag;
+    description = " ${descEn} - ${descZh}，支持 Google/DeepL/Ollama/OpenAI 等服务，提供 CLI/GUI/Docker";
+  };
+
+  home.packages = [
+    pdf2zhRunner
+    pdf2zhUnwrapped
+  ];
+
+  programs.dolphin.services.pdf2zh = {
+    mimeType = "application/pdf;";
+    icon = "translate";
+    desktopEntryExtra = {
+      "X-KDE-Priority" = "TopLevel";
+      "X-KDE-StartupNotify" = false;
     };
-
-    home.packages = [pdf2zhRunner pdf2zhUnwrapped];
-
-    programs.dolphin.services.pdf2zh = {
-      mimeType = "application/pdf;";
-      icon = "translate";
-      desktopEntryExtra = {
-        "X-KDE-Priority" = "TopLevel";
-        "X-KDE-StartupNotify" = false;
-      };
-      actions = {
-        translateToZh = {
-          name = "翻译为中文";
-          exec = "pdf2zh --openaicompatible \"%f\"";
-        };
+    actions = {
+      translateToZh = {
+        name = "翻译为中文";
+        exec = "pdf2zh --openaicompatible \"%f\"";
       };
     };
-  }
+  };
+}

@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nixdots.machine.virtualisation = {
     enable = lib.mkEnableOption "Whether to enable virtualisation features (e.g., KVM, libvirt) on this machine. This is typically enabled for host machines that run virtual machines.";
     waydroid = lib.mkEnableOption "Whether to enable Waydroid for running Android apps. This is typically enabled on desktop machines that want to run Android applications.";

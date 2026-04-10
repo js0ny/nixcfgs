@@ -4,12 +4,18 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.misc.desktop-entries;
 
   blockScript = pkgs.writeShellApplication {
     name = "block-desktop-entries";
-    runtimeInputs = [pkgs.fd pkgs.crudini pkgs.desktop-file-utils pkgs.coreutils];
+    runtimeInputs = [
+      pkgs.fd
+      pkgs.crudini
+      pkgs.desktop-file-utils
+      pkgs.coreutils
+    ];
     text = ''
       target="''${1:-}"
       method="''${2:-block}"
@@ -37,33 +43,36 @@ with lib; let
       fi
     '';
   };
-in {
+in
+{
   options.misc.desktop-entries = {
     hiddenPrefixes = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = "List of desktop file prefixes to hide (e.g., ['waydroid', 'wine']).";
     };
 
     hideMethod = mkOption {
-      type = types.enum ["block" "delete"];
+      type = types.enum [
+        "block"
+        "delete"
+      ];
       default = "block";
       description = "Method to hide desktop entries: 'block' (set NoDisplay=true) or 'delete' (remove the .desktop files).";
     };
   };
 
-  config = mkIf (cfg.hiddenPrefixes != []) {
-    home.packages = [blockScript];
+  config = mkIf (cfg.hiddenPrefixes != [ ]) {
+    home.packages = [ blockScript ];
 
-    home.activation.blockDesktopEntries = hm.dag.entryAfter ["writeBoundary"] ''
+    home.activation.blockDesktopEntries = hm.dag.entryAfter [ "writeBoundary" ] ''
       if [ -n "''${VERBOSE_ARG:-}" ]; then
         echo "Running block-desktop-entries for configured prefixes..."
       fi
 
       ${concatMapStringsSep "\n" (prefix: ''
-          ${getExe blockScript} "${prefix}" "${cfg.hideMethod}"
-        '')
-        cfg.hiddenPrefixes}
+        ${getExe blockScript} "${prefix}" "${cfg.hideMethod}"
+      '') cfg.hiddenPrefixes}
     '';
   };
 }

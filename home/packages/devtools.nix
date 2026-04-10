@@ -1,8 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # Globally installed development tools
   home.packages = with pkgs; [
     vscode-json-languageserver
-    alejandra
+    nixfmt
     jq
     jujutsu
     github-copilot-cli

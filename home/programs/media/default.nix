@@ -2,8 +2,10 @@
   pkgs,
   config,
   ...
-}: {
-  home.packages = with pkgs;
+}:
+{
+  home.packages =
+    with pkgs;
     [
       flac
       mediainfo
@@ -20,12 +22,13 @@
       localPkgs.mediatools.video-gen-grid
     ]
     ++ (
-      if config.nixdots.desktop.enable
-      then
-        with pkgs; [
+      if config.nixdots.desktop.enable then
+        with pkgs;
+        [
           picard
           kid3
         ]
-      else []
+      else
+        [ ]
     );
 }

@@ -2,9 +2,11 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   xilinxBoxHome = "${config.home.homeDirectory}/.local/distrobox/Xilinx";
-  vivadoLauncher = version:
+  vivadoLauncher =
+    version:
     pkgs.writeShellScriptBin "vivado-launcher-${version}" ''
       #!${pkgs.stdenv.shell}
       ${pkgs.wmname}/bin/wmname LG3D
@@ -20,7 +22,8 @@
   # Do not launch 2015 and 2022 simultaneously to avoid conflicts
   vivadoLauncher2022 = vivadoLauncher "2022.2";
   vivadoLauncher2015 = vivadoLauncher "2015.2";
-in {
+in
+{
   programs.distrobox = {
     enable = true;
     containers = {
@@ -73,7 +76,7 @@ in {
       type = "Application";
       terminal = false;
       icon = "vivado_logo";
-      categories = ["Development"];
+      categories = [ "Development" ];
       exec = "${vivadoLauncher2022}/bin/vivado-launcher-2022.2";
     };
     "xilinx.vivado.2015" = {
@@ -81,7 +84,7 @@ in {
       type = "Application";
       terminal = false;
       icon = "vivado_logo";
-      categories = ["Development"];
+      categories = [ "Development" ];
       exec = "${vivadoLauncher2015}/bin/vivado-launcher-2015.2";
     };
     "xilinx.vitis" = {
@@ -89,7 +92,7 @@ in {
       type = "Application";
       terminal = false;
       icon = "vivado_logo";
-      categories = ["Development"];
+      categories = [ "Development" ];
       exec = "env GDK_BACKEND=x11 distrobox enter Xilinx -- bash ${xilinxBoxHome}/.vitis-wr.sh";
     };
   };

@@ -1,7 +1,9 @@
-{config, ...}: let
+{ config, ... }:
+let
   dots = config.nixdots.core.dots;
   user = config.nixdots.user.name;
-in {
+in
+{
   programs.celeste = {
     enable = true;
     withSteam = true;
@@ -9,14 +11,9 @@ in {
     settingsFile = "${dots}/users/${user}/programs/gaming/celeste/settings.celeste";
   };
   nixdots.persist.home = {
-    directories =
-      [
-        ".local/share/Celeste"
-      ]
-      ++ (
-        if config.programs.celeste.withOlympus
-        then [".config/Olympus"]
-        else []
-      );
+    directories = [
+      ".local/share/Celeste"
+    ]
+    ++ (if config.programs.celeste.withOlympus then [ ".config/Olympus" ] else [ ]);
   };
 }

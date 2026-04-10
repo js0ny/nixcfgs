@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     typst
     typstyle
@@ -10,5 +11,5 @@
     myriad-dreamin.tinymist
   ];
 
-  programs.zed-editor.extensions = ["typst"];
+  programs.zed-editor.extensions = [ "typst" ];
 }

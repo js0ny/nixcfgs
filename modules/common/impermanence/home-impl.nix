@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.persist;
-in {
+in
+{
   config = lib.mkIf cfg.home.enable {
     home.persistence."/persist" = {
       directories = cfg.home.directories;

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./mimedb.nix
     ./libmagic.nix

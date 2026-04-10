@@ -3,10 +3,12 @@
   config,
   lib,
   ...
-}: let
-  aliasCfg = import ../aliases.nix {inherit pkgs config lib;};
+}:
+let
+  aliasCfg = import ../aliases.nix { inherit pkgs config lib; };
   name = config.nixdots.user.name;
-in {
+in
+{
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -54,17 +56,15 @@ in {
       fish_add_path /nix/var/nix/profiles/default/bin
     '';
     # preferAbbrs = true;
-    shellAbbrs =
-      aliasCfg.aliases
-      // {
-        l = "ls -lah";
-      };
+    shellAbbrs = aliasCfg.aliases // {
+      l = "ls -lah";
+    };
   };
   xdg.configFile."fish/functions" = {
     source = ./functions;
     recursive = true;
   };
-  programs.zed-editor.extensions = ["fish"];
+  programs.zed-editor.extensions = [ "fish" ];
   nixdots.persist.home.files = [
     ".local/share/fish/fish_history"
   ];

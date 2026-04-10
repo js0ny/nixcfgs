@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.imagemagick];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.imagemagick ];
 
   programs.dolphin.services."image-format" = {
     mimeType = "image/*";

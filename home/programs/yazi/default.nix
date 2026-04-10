@@ -2,9 +2,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   dots = config.nixdots.core.dots;
-in {
+in
+{
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
@@ -150,7 +152,7 @@ in {
       opener = {
         extract = [
           {
-            run = ''ouch d -y %*'';
+            run = "ouch d -y %*";
             desc = "Extract here with ouch";
             for = "windows";
           }
@@ -176,23 +178,35 @@ in {
         }
         # Find
         {
-          on = ["g" "p"];
+          on = [
+            "g"
+            "p"
+          ];
           run = "cd ~/Pictures";
           desc = "Go ~/Pictures/";
         }
         {
-          on = ["g" "c"];
+          on = [
+            "g"
+            "c"
+          ];
           run = "cd ${dots}";
           desc = "Go dotfiles";
         }
         {
-          on = ["g" "/"];
+          on = [
+            "g"
+            "/"
+          ];
           for = "unix";
           run = "cd /";
           desc = "Go to root";
         }
         {
-          on = ["g" "/"];
+          on = [
+            "g"
+            "/"
+          ];
           for = "windows";
           run = "cd C:";
           desc = "Go to root";
@@ -210,27 +224,33 @@ in {
           desc = "Open $SHELL here";
         }
         {
-          on = ["C"];
+          on = [ "C" ];
           run = "plugin ouch";
           desc = "Compress with ouch";
         }
         {
-          on = ["m"];
+          on = [ "m" ];
           run = "plugin bookmarks save";
           desc = "Save current position as a bookmark";
         }
         {
-          on = ["'"];
+          on = [ "'" ];
           run = "plugin bookmarks jump";
           desc = "Jump to a bookmark";
         }
         {
-          on = ["b" "d"];
+          on = [
+            "b"
+            "d"
+          ];
           run = "plugin bookmarks delete";
           desc = "Delete a bookmark";
         }
         {
-          on = ["b" "D"];
+          on = [
+            "b"
+            "D"
+          ];
           run = "plugin bookmarks delete_all";
           desc = "Delete all bookmarks";
         }
@@ -253,7 +273,7 @@ in {
     initLua = builtins.readFile ./init.lua;
   };
   home.packages = with pkgs; [
-    (ouch.override {enableUnfree = true;})
+    (ouch.override { enableUnfree = true; })
   ];
   nixdots.persist.home = {
     files = [

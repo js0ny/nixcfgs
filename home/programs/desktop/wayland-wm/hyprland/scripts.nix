@@ -1,7 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   launch-or-focus = pkgs.writeShellApplication {
     name = "hyprscript-launch-or-focus";
-    runtimeInputs = [pkgs.jq pkgs.hyprland pkgs.uwsm];
+    runtimeInputs = [
+      pkgs.jq
+      pkgs.hyprland
+      pkgs.uwsm
+    ];
     text = ''
       if (($# == 0)); then
         echo "Usage: hyprscript-launch-or-focus [window-pattern] [launch-command]"

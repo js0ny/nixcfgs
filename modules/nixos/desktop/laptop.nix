@@ -3,12 +3,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.laptop;
 in
-  lib.mkIf cfg.enable
-  {
-    environment.systemPackages = with pkgs; [
-      powertop
-    ];
-  }
+lib.mkIf cfg.enable {
+  environment.systemPackages = with pkgs; [
+    powertop
+  ];
+}

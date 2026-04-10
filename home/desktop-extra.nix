@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./desktop-base.nix
     ./programs
@@ -74,7 +75,8 @@
 
     ./programs/rime
   ];
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       blender
       kdePackages.kdenlive
@@ -93,7 +95,7 @@
       dconf-editor
       kdePackages.elisa
       (jetbrains.clion.override {
-        vmopts = ''-Dawt.toolkit.name=WLToolkit'';
+        vmopts = "-Dawt.toolkit.name=WLToolkit";
       })
       nix-output-monitor
       nvd

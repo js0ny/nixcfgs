@@ -3,10 +3,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.services.opencode-web;
   description = "Opencode: The open source coding agent.";
-in {
+in
+{
   options.services.opencode-web = {
     enable = lib.mkEnableOption description;
 
@@ -40,8 +42,8 @@ in {
 
     cors = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [];
-      example = ["https://example.com"];
+      default = [ ];
+      example = [ "https://example.com" ];
       description = "List of allowed CORS domains.";
     };
 
@@ -74,7 +76,7 @@ in {
 
     extraEnvironment = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
-      default = {};
+      default = { };
       description = "Extra plain-text environment variables for Opencode.";
     };
 
@@ -86,8 +88,12 @@ in {
 
     workspacePaths = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [];
-      example = ["/srv/git" "/var/www" "/home/user/projects"];
+      default = [ ];
+      example = [
+        "/srv/git"
+        "/var/www"
+        "/home/user/projects"
+      ];
       description = "Directories outside the sandbox that Opencode needs read and write access to.";
     };
 
@@ -99,7 +105,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    users.groups.${cfg.group} = {};
+    users.groups.${cfg.group} = { };
     users.users.${cfg.user} = {
       isSystemUser = true;
       group = cfg.group;
@@ -108,11 +114,11 @@ in {
       description = "Opencode Web Service User";
     };
 
-    environment.systemPackages = [cfg.package];
+    environment.systemPackages = [ cfg.package ];
 
-    systemd.services.opencode-web = let
-      args =
-        [
+    systemd.services.opencode-web =
+      let
+        args = [
           "web"
           "--port"
           (toString cfg.port)
@@ -120,17 +126,24 @@ in {
           cfg.hostname
         ]
         ++ lib.optionals cfg.mdns.enable (
-          ["--mdns"] ++ lib.optionals (cfg.mdns.domain != null) ["--mdns-domain" cfg.mdns.domain]
+          [ "--mdns" ]
+          ++ lib.optionals (cfg.mdns.domain != null) [
+            "--mdns-domain"
+            cfg.mdns.domain
+          ]
         )
-        ++ lib.concatMap (domain: ["--cors" domain]) cfg.cors;
-    in {
-      description = description;
-      after = ["network-online.target"];
-      wantedBy = ["multi-user.target"];
-      environment = cfg.extraEnvironment;
+        ++ lib.concatMap (domain: [
+          "--cors"
+          domain
+        ]) cfg.cors;
+      in
+      {
+        description = description;
+        after = [ "network-online.target" ];
+        wantedBy = [ "multi-user.target" ];
+        environment = cfg.extraEnvironment;
 
-      serviceConfig =
-        {
+        serviceConfig = {
           ExecStart = "${lib.getExe cfg.package} ${lib.escapeShellArgs args}";
           Restart = "always";
           RestartSec = "10s";
@@ -142,10 +155,7 @@ in {
           PrivateTmp = true;
           NoNewPrivileges = true;
           ProtectSystem = "strict";
-          ProtectHome =
-            if cfg.allowHomeAccess
-            then false
-            else true;
+          ProtectHome = if cfg.allowHomeAccess then false else true;
         }
         // lib.optionalAttrs (cfg.envFile != null) {
           EnvironmentFile = cfg.envFile;
@@ -153,8 +163,8 @@ in {
         // lib.optionalAttrs (builtins.length cfg.workspacePaths > 0) {
           ReadWritePaths = cfg.workspacePaths;
         };
-    };
+      };
 
-    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
   };
 }

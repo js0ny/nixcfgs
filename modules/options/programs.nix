@@ -3,15 +3,17 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots;
-in {
+in
+{
   options.nixdots.programs = {
     obs-studio = {
       enable = lib.mkEnableOption "Enable OBS Studio for streaming and recording.";
       plugins = lib.mkOption {
         type = lib.types.listOf lib.types.package;
-        default = [];
+        default = [ ];
         description = "List of OBS Studio plugins to install.";
       };
       theme = lib.mkOption {
@@ -33,7 +35,7 @@ in {
     };
     shellAliases = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
-      default = {};
+      default = { };
       description = "Shell aliases shared across Home Manager shells.";
     };
     chromium = {
@@ -72,20 +74,14 @@ in {
     rime = {
       enable = lib.mkOption {
         type = lib.types.bool;
-        default =
-          if (config.nixdots.machine.role == "host")
-          then true
-          else false;
+        default = if (config.nixdots.machine.role == "host") then true else false;
         description = "Enable Rime input method.";
       };
     };
     steam = {
       enable = lib.mkOption {
         type = lib.types.bool;
-        default =
-          if (config.nixdots.machine.role == "host")
-          then true
-          else false;
+        default = if (config.nixdots.machine.role == "host") then true else false;
         description = "Enable Steam gaming platform.";
       };
     };

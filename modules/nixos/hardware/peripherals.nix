@@ -1,3 +1,4 @@
-{...}: {
+{ ... }:
+{
   hardware.qmk.enable = true;
 }

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.retroarch = {
     enable = true;
     cores = {

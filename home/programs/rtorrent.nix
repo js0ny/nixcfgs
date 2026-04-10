@@ -1,7 +1,9 @@
-{config, ...}: let
+{ config, ... }:
+let
   dataDir = "${config.xdg.dataHome}/rtorrent";
   user = config.home.username;
-in {
+in
+{
   programs.rtorrent = {
     enable = true;
     extraConfig = ''

@@ -1,6 +1,8 @@
-{lib, ...}: let
-  typing = import ./types.nix {inherit lib;};
-in {
+{ lib, ... }:
+let
+  typing = import ./types.nix { inherit lib; };
+in
+{
   options.nixdots.laptop = {
     enable = lib.mkEnableOption "Enable laptop-specific configurations and optimizations.";
     asus = lib.mkOption {

@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   extensions = with pkgs.gnomeExtensions; [
     dash-to-dock
     caffeine
@@ -15,11 +16,13 @@
     arcmenu
     run-or-raise
   ];
-in {
+in
+{
   imports = [
     ./copyous.nix
   ];
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       gnome-tweaks
       sushi
@@ -27,11 +30,12 @@ in {
     ]
     ++ extensions;
   programs.gnome-shell.enable = true;
-  programs.gnome-shell.extensions = let
-    extensionHelper = p: {
-      package = p;
-    };
-  in
+  programs.gnome-shell.extensions =
+    let
+      extensionHelper = p: {
+        package = p;
+      };
+    in
     map extensionHelper extensions;
 
   dconf.settings = {
@@ -55,8 +59,8 @@ in {
       ];
     };
     "org/gnome/shell/keybindings" = {
-      toggle-overview = ["<Super>w"];
-      toggle-message-tray = ["<Super>n"];
+      toggle-overview = [ "<Super>w" ];
+      toggle-message-tray = [ "<Super>n" ];
       # G14 Compatibility
       show-screenshot-ui = [
         "<Shift><Super>s"
@@ -68,39 +72,39 @@ in {
       resize-with-right-button = true;
     };
     "org/gnome/desktop/wm/keybindings" = {
-      activate-window-menu = ["<Alt>F3"];
-      show-desktop = ["<Super>d"];
+      activate-window-menu = [ "<Alt>F3" ];
+      show-desktop = [ "<Super>d" ];
       close = [
         "<Super>q"
         "<Alt>F4"
       ];
-      switch-windows = ["<Alt>Tab"];
-      switch-windows-backward = ["<Shift><Alt>Tab"];
-      switch-applications = ["<Super>Tab"];
-      switch-applications-backward = ["<Shift><Super>Tab"];
-      minimize = ["<Super>m"];
+      switch-windows = [ "<Alt>Tab" ];
+      switch-windows-backward = [ "<Shift><Alt>Tab" ];
+      switch-applications = [ "<Super>Tab" ];
+      switch-applications-backward = [ "<Shift><Super>Tab" ];
+      minimize = [ "<Super>m" ];
       maximize = [
         "<Shift><Super>m"
         "<Super>Up"
       ];
-      switch-to-workspace-1 = ["<Super>1"];
-      switch-to-workspace-2 = ["<Super>2"];
-      switch-to-workspace-3 = ["<Super>3"];
-      switch-to-workspace-4 = ["<Super>4"];
-      switch-to-workspace-5 = ["<Super>5"];
-      switch-to-workspace-6 = ["<Super>6"];
-      switch-to-workspace-7 = ["<Super>7"];
-      switch-to-workspace-8 = ["<Super>8"];
-      switch-to-workspace-last = ["<Super>9"];
-      move-to-workspace-1 = ["<Shift><Super>1"];
-      move-to-workspace-2 = ["<Shift><Super>2"];
-      move-to-workspace-3 = ["<Shift><Super>3"];
-      move-to-workspace-4 = ["<Shift><Super>4"];
-      move-to-workspace-5 = ["<Shift><Super>5"];
-      move-to-workspace-6 = ["<Shift><Super>6"];
-      move-to-workspace-7 = ["<Shift><Super>7"];
-      move-to-workspace-8 = ["<Shift><Super>8"];
-      move-to-workspace-last = ["<Shift><Super>9"];
+      switch-to-workspace-1 = [ "<Super>1" ];
+      switch-to-workspace-2 = [ "<Super>2" ];
+      switch-to-workspace-3 = [ "<Super>3" ];
+      switch-to-workspace-4 = [ "<Super>4" ];
+      switch-to-workspace-5 = [ "<Super>5" ];
+      switch-to-workspace-6 = [ "<Super>6" ];
+      switch-to-workspace-7 = [ "<Super>7" ];
+      switch-to-workspace-8 = [ "<Super>8" ];
+      switch-to-workspace-last = [ "<Super>9" ];
+      move-to-workspace-1 = [ "<Shift><Super>1" ];
+      move-to-workspace-2 = [ "<Shift><Super>2" ];
+      move-to-workspace-3 = [ "<Shift><Super>3" ];
+      move-to-workspace-4 = [ "<Shift><Super>4" ];
+      move-to-workspace-5 = [ "<Shift><Super>5" ];
+      move-to-workspace-6 = [ "<Shift><Super>6" ];
+      move-to-workspace-7 = [ "<Shift><Super>7" ];
+      move-to-workspace-8 = [ "<Shift><Super>8" ];
+      move-to-workspace-last = [ "<Shift><Super>9" ];
     };
     "org/gnome/mutter/keybindings" = {
       toggle-tiled-left = [
@@ -114,10 +118,10 @@ in {
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       # www = ["<Super>b"]; # use run-or-raise instead
-      help = [""];
-      home = ["<Super>e"];
-      screenreader = [""];
-      screensaver = [""];
+      help = [ "" ];
+      home = [ "<Super>e" ];
+      screenreader = [ "" ];
+      screensaver = [ "" ];
     };
     # "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-0" = {
     #   name = "Open File Explorer";
@@ -174,7 +178,7 @@ in {
       use-custom-icon = false;
     };
     "org/gnome/shell/extensions/clipboard-indicator" = {
-      toggle-menu = ["<Super>v"];
+      toggle-menu = [ "<Super>v" ];
     };
     "org/gnome/shell/extensions/lunar-calendar" = {
       yuyan = 0;
@@ -196,13 +200,13 @@ in {
     "org/gnome/shell/extensions/arcmenu" = {
       "menu-button-icon" = "nix-snowflake-white";
       "menu-button-icon-size" = 25;
-      "runner-hotkey" = ["<Alt>space"];
+      "runner-hotkey" = [ "<Alt>space" ];
     };
     "org/gnome/shell/extensions/dash-to-dock" = {
       # shortcut: Hit to focus the dock
       # disable this behaviour as it conflicts with *QUIT*
       # Default: <Super>Q
-      shortcut = [];
+      shortcut = [ ];
       # scroll action: mouse scroll on dock icons
       # Default: 'do-nothing
       # Options: 'do-nothing', 'cycle-windows', 'switch-workspace'
@@ -219,7 +223,7 @@ in {
       switcher-popup-tooltip-title = 3;
     };
   };
-  xdg.configFile."run-or-raise/shortcuts.conf". text = ''
+  xdg.configFile."run-or-raise/shortcuts.conf".text = ''
     <Super>b,firefox,,
     <Shift><Super>b,firefox --private-window,,
     <Super>o,obsidian,,

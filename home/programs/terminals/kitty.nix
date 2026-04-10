@@ -3,13 +3,12 @@
   pkgs,
   lib,
   ...
-}: let
-  alt =
-    if pkgs.stdenv.isDarwin
-    then "cmd"
-    else "alt";
+}:
+let
+  alt = if pkgs.stdenv.isDarwin then "cmd" else "alt";
   shell = config.nixdots.apps.interactiveShell.package;
-in {
+in
+{
   xdg.configFile."kitty/kitty.conf".force = true;
   programs.kitty = {
     enable = true;
@@ -78,11 +77,13 @@ in {
       mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
     '';
     actionAliases =
-      if config.programs.neovim.enable
-      then {
-        "kitty_scrollback_nvim" = "kitten ${config.home.homeDirectory}/.local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py";
-      }
-      else {};
+      if config.programs.neovim.enable then
+        {
+          "kitty_scrollback_nvim" =
+            "kitten ${config.home.homeDirectory}/.local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py";
+        }
+      else
+        { };
   };
   programs = {
     bash.bashrcExtra = ''

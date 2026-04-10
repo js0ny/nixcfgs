@@ -3,10 +3,12 @@
   lib,
   config,
   ...
-}: let
-  types = import ./types.nix {inherit lib;};
+}:
+let
+  types = import ./types.nix { inherit lib; };
   appType = types.appType;
-in {
+in
+{
   options.nixdots = {
     user = {
       name = lib.mkOption {
@@ -17,9 +19,10 @@ in {
       home = lib.mkOption {
         type = lib.types.str;
         default =
-          if pkgs.stdenv.isDarwin
-          then "/Users/${config.nixdots.user.name}"
-          else "/home/${config.nixdots.user.name}";
+          if pkgs.stdenv.isDarwin then
+            "/Users/${config.nixdots.user.name}"
+          else
+            "/home/${config.nixdots.user.name}";
         description = "Primary user home directory.";
       };
       shell = lib.mkOption {
@@ -33,7 +36,7 @@ in {
       };
       sshKeys = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [];
+        default = [ ];
         description = "List of SSH public keys for the user.";
       };
     };

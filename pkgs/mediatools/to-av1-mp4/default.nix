@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 pkgs.writeShellApplication {
   name = "to-av1-mp4";
   runtimeInputs = with pkgs; [

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     grimblast
   ];
@@ -21,7 +22,7 @@
       ecosystem = {
         no_update_news = true;
       };
-      exec-once = ["systemctl --user start waylandwm-session.target"];
+      exec-once = [ "systemctl --user start waylandwm-session.target" ];
       general = {
         gaps_in = 2;
         gaps_out = 2;

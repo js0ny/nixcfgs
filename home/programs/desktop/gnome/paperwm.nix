@@ -1,9 +1,10 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs.gnomeExtensions; [
     paperwm
   ];
   programs.gnome-shell.extensions = [
-    {package = pkgs.gnomeExtensions.paperwm;}
+    { package = pkgs.gnomeExtensions.paperwm; }
   ];
   dconf.settings = {
     # Inspect window class with <Alt>F2 -> `lg`
@@ -21,13 +22,13 @@
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      screensaver = ["<Alt><Super>i"];
+      screensaver = [ "<Alt><Super>i" ];
     };
     "org/gnome/shell/extensions/paperwm/keybindings" = {
-      close-window = ["<Super>q"];
-      new-window = [];
-      switch-next = [];
-      switch-previous = [];
+      close-window = [ "<Super>q" ];
+      new-window = [ ];
+      switch-next = [ ];
+      switch-previous = [ ];
       switch-left = [
         "<Super>Left"
         "<Super>h"
@@ -44,23 +45,23 @@
         "<Super>Up"
         "<Super>k"
       ];
-      move-left = ["<Shift><Super>h"];
-      move-right = ["<Shift><Super>l"];
-      move-up = [""];
-      move-down = [""];
-      switch-down-or-else-workspace = ["<Super><Shift>j"];
-      switch-up-or-else-workspace = ["<Super><Shift>k"];
-      center-vertically = [""];
-      drift-left = [""];
-      drift-right = [""];
-      move-up-workspace = ["<Control><Super>k"];
-      move-down-workspace = ["<Control><Super>j"];
-      slurp-in = ["<Super>bracketleft"];
-      barf-out = ["<Super>bracketright"];
-      barf-out-active = [];
+      move-left = [ "<Shift><Super>h" ];
+      move-right = [ "<Shift><Super>l" ];
+      move-up = [ "" ];
+      move-down = [ "" ];
+      switch-down-or-else-workspace = [ "<Super><Shift>j" ];
+      switch-up-or-else-workspace = [ "<Super><Shift>k" ];
+      center-vertically = [ "" ];
+      drift-left = [ "" ];
+      drift-right = [ "" ];
+      move-up-workspace = [ "<Control><Super>k" ];
+      move-down-workspace = [ "<Control><Super>j" ];
+      slurp-in = [ "<Super>bracketleft" ];
+      barf-out = [ "<Super>bracketright" ];
+      barf-out-active = [ ];
       # Use AATWS
-      live-alt-tab = [];
-      live-alt-tab-backward = [];
+      live-alt-tab = [ ];
+      live-alt-tab-backward = [ ];
     };
   };
 }

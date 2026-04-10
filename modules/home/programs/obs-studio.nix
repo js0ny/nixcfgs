@@ -3,12 +3,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.programs.obs-studio;
-in {
-  config =
-    lib.mkIf (cfg.enable && pkgs.stdenv.isLinux)
-    (lib.mkMerge [
+in
+{
+  config = lib.mkIf (cfg.enable && pkgs.stdenv.isLinux) (
+    lib.mkMerge [
       {
         programs.obs-studio = {
           enable = true;
@@ -27,5 +28,6 @@ in {
           };
         };
       })
-    ]);
+    ]
+  );
 }

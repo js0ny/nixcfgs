@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   absolutePathType = lib.types.addCheck lib.types.str (path: lib.hasPrefix "/" path);
   secretType = lib.types.submodule {
     freeformType = lib.types.attrsOf lib.types.anything;
@@ -14,7 +15,8 @@
       description = "Home-only shell environment variable populated from this secret file at runtime.";
     };
   };
-in {
+in
+{
   options.nixdots.sops = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -32,9 +34,10 @@ in {
     sopsEditor = lib.mkOption {
       type = with lib.types; nullOr str;
       default =
-        if config ? programs && config.programs ? neovim && config.programs.neovim.enable
-        then "nvim --clean"
-        else null;
+        if config ? programs && config.programs ? neovim && config.programs.neovim.enable then
+          "nvim --clean"
+        else
+          null;
       example = "nvim --clean";
       description = "Editor command exported as `SOPS_EDITOR`.";
     };
@@ -48,7 +51,7 @@ in {
 
     secrets = lib.mkOption {
       type = with lib.types; attrsOf secretType;
-      default = {};
+      default = { };
       example = lib.literalExpression ''
         {
           openrouter_api = {

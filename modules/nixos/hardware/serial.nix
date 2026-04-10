@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   username = config.nixdots.user.name;
   serial = {
     # Xilinx Artix-7 Basys 3
@@ -13,14 +14,13 @@
       symlink = "basys3";
     };
   };
-  serialRules =
-    lib.mapAttrsToList (_: device: ''
-      ATTRS{idVendor}=="${device.idVendor}", ATTRS{idProduct}=="${device.idProduct}", MODE="0660", GROUP="dialout", SYMLINK+="${device.symlink}"
-    '')
-    serial;
-in {
+  serialRules = lib.mapAttrsToList (_: device: ''
+    ATTRS{idVendor}=="${device.idVendor}", ATTRS{idProduct}=="${device.idProduct}", MODE="0660", GROUP="dialout", SYMLINK+="${device.symlink}"
+  '') serial;
+in
+{
   services.udev.extraRules = lib.concatStringsSep "\n" serialRules;
   users.users."${username}" = {
-    extraGroups = ["dialout"];
+    extraGroups = [ "dialout" ];
   };
 }

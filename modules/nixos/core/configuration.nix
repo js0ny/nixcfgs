@@ -2,12 +2,14 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   username = config.nixdots.user.name;
   flake = config.nixdots.core.flakeDir;
   sysShell = config.nixdots.user.shell;
   sshKeys = config.nixdots.user.sshKeys;
-in {
+in
+{
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_GB.UTF-8";

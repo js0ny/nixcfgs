@@ -1,13 +1,13 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
-    alejandra
+    nixfmt
     nil
     nixd
   ];
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
-    kamadorueda.alejandra
     jnoortheen.nix-ide
   ];
 
-  programs.zed-editor.extensions = ["nix"];
+  programs.zed-editor.extensions = [ "nix" ];
 }

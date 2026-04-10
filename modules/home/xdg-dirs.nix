@@ -3,8 +3,7 @@
   pkgs,
   ...
 }:
-lib.mkIf pkgs.stdenv.isLinux
-{
+lib.mkIf pkgs.stdenv.isLinux {
   xdg.configFile."user-dirs.dirs".text = ''
     XDG_DESKTOP_DIR="$HOME/Desktop"
     XDG_DOWNLOAD_DIR="$HOME/Downloads"

@@ -2,10 +2,12 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   addons = pkgs.firefox-addons;
   p = config.nixdots.programs.firefox.defaultProfile;
-in {
+in
+{
   imports = [
     ./surfingkeys
     ./cookie-autodelete

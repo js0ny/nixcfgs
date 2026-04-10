@@ -1,5 +1,6 @@
 # ~/.config/nix-config/common/packages-headless.nix
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     vim
     wget

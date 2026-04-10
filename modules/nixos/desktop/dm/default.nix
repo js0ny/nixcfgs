@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./cosmic-greeter.nix
     ./gdm.nix

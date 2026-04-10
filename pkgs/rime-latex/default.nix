@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation {
     hash = "sha256-i8Rgze+tQhbE+nl+JSj09ILXeUvf6MOS9Eqsuqis1n0=";
   };
 
-  nativeBuildInputs = [fd];
+  nativeBuildInputs = [ fd ];
 
   postPatch = ''
     fd -e md -t f -X rm

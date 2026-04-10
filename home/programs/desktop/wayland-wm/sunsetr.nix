@@ -1,12 +1,13 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # Expose CLI tool
-  home.packages = [pkgs.sunsetr];
+  home.packages = [ pkgs.sunsetr ];
 
   systemd.user.services.sunsetr = {
     Unit = {
       Description = "Sunsetr blue-light filtering";
-      PartOf = ["waylandwm-session.target"];
-      After = ["graphical-session.target"];
+      PartOf = [ "waylandwm-session.target" ];
+      After = [ "graphical-session.target" ];
     };
 
     Service = {
@@ -19,7 +20,7 @@
     };
 
     Install = {
-      WantedBy = ["niri.service"];
+      WantedBy = [ "niri.service" ];
     };
   };
 

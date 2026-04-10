@@ -3,11 +3,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   catppuccinEnable = config.catppuccin.enable or false;
   catppuccinFlavor = config.catppuccin.flavor or "mocha";
   catppuccinAccent = config.catppuccin.accent or "mauve";
-in {
+in
+{
   programs.rofi = {
     enable = true;
     terminal = "${pkgs.alacritty}/bin/alacritty";

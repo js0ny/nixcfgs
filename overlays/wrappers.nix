@@ -1,21 +1,23 @@
-final: prev: let
+final: prev:
+let
   lib = prev.lib;
   pkgs = final;
 
   getMainProgram = p: p.meta.mainProgram or p.pname;
 
-  mkWrapperFor = {
-    nameSuffix ? "wrapped",
-    extraNativeBuildInputs ? [],
-    makeWrapperArgs ? [],
-    runScript ? null,
-  }:
+  mkWrapperFor =
+    {
+      nameSuffix ? "wrapped",
+      extraNativeBuildInputs ? [ ],
+      makeWrapperArgs ? [ ],
+      runScript ? null,
+    }:
     map (
       p:
-        lib.hiPrio (
-          pkgs.runCommand "${p.name}-${nameSuffix}"
+      lib.hiPrio (
+        pkgs.runCommand "${p.name}-${nameSuffix}"
           {
-            nativeBuildInputs = [pkgs.makeWrapper] ++ extraNativeBuildInputs;
+            nativeBuildInputs = [ pkgs.makeWrapper ] ++ extraNativeBuildInputs;
             meta = p.meta;
           }
           ''
@@ -29,7 +31,7 @@ final: prev: let
               ${lib.concatStringsSep " \\\n            " makeWrapperArgs} \
               ${lib.optionalString (runScript != null) "--run '${runScript}'"}
           ''
-        )
+      )
     );
 
   mkFcitxIM = mkWrapperFor {
@@ -52,17 +54,18 @@ final: prev: let
   };
 
   mkLegacyJavaGUIApp = mkWrapperFor {
-    extraNativeBuildInputs = [pkgs.wmname];
+    extraNativeBuildInputs = [ pkgs.wmname ];
     runScript = "wmname LG3D";
   };
 
   # TODO: Patch desktop file. + Extra Envs
-  mkFakeHomeWrapper = {
-    pkg,
-    name ? "${getMainProgram pkg}-fakehome",
-    fakeHome ? ''"$HOME/.sandbox/.per-app/${getMainProgram pkg}"'',
-    xdg ? true,
-  }:
+  mkFakeHomeWrapper =
+    {
+      pkg,
+      name ? "${getMainProgram pkg}-fakehome",
+      fakeHome ? ''"$HOME/.sandbox/.per-app/${getMainProgram pkg}"'',
+      xdg ? true,
+    }:
     pkgs.writeShellScriptBin name ''
       set -euo pipefail
 
@@ -77,18 +80,17 @@ final: prev: let
 
       export HOME="$fake_home"
 
-      ${
-        lib.optionalString xdg ''
-          export XDG_CONFIG_HOME="$HOME/.config"
-          export XDG_CACHE_HOME="$HOME/.cache"
-          export XDG_DATA_HOME="$HOME/.local/share"
-          export XDG_STATE_HOME="$HOME/.local/state"
-        ''
-      }
+      ${lib.optionalString xdg ''
+        export XDG_CONFIG_HOME="$HOME/.config"
+        export XDG_CACHE_HOME="$HOME/.cache"
+        export XDG_DATA_HOME="$HOME/.local/share"
+        export XDG_STATE_HOME="$HOME/.local/state"
+      ''}
 
       exec ${lib.getExe pkg} "$@"
     '';
-in {
+in
+{
   inherit
     mkFcitxIM
     mkElectronWayland

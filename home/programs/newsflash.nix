@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   home.packages = [
     pkgs.newsflash
   ];

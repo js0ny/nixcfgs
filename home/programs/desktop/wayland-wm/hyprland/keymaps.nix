@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   term = lib.getExe pkgs.xdg-terminal-exec;
   iconTheme = config.nixdots.desktop.style.iconTheme.dark;
   explorer = lib.getExe config.nixdots.apps.fileManager.gui;
@@ -13,9 +14,10 @@
   kbdBacklightStep = "1";
   mainMod = "SUPER";
   screenshotPath = "$HOME/Pictures/Screenshots/\"$(%Y-%m-%d_%H-%M-%S.png)\"";
-  hyprscripts = import ./scripts.nix {inherit pkgs;};
+  hyprscripts = import ./scripts.nix { inherit pkgs; };
   resizeStep = toString 20;
-in {
+in
+{
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "${mainMod}";
     bind = [

@@ -1,3 +1,4 @@
-{lib}: {
-  dolphin = import ./dolphin.nix {inherit lib;};
+{ lib }:
+{
+  dolphin = import ./dolphin.nix { inherit lib; };
 }

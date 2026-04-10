@@ -3,11 +3,10 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   pwaBrowser =
-    if config.programs.chromium.enable
-    then config.programs.chromium.package
-    else pkgs.chromium;
+    if config.programs.chromium.enable then config.programs.chromium.package else pkgs.chromium;
   pwaExe = lib.getExe pwaBrowser;
   pwaBuilder = name: url: icon: genericName: {
     name = name;
@@ -21,7 +20,8 @@
     };
   };
   pwaBuilderDefault = name: url: pwaBuilder name url "web-app-icon" "Web Application";
-in {
+in
+{
   xdg.desktopEntries = {
     claude = pwaBuilderDefault "Claude" "https://claude.ai";
     grok = pwaBuilderDefault "Grok" "https://grok.com";

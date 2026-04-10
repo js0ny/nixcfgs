@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   systemd.user.tmpfiles.rules = [
     "d ${config.home.homeDirectory}/.sandbox/.per-app/wechat 0700 ${config.home.username} users -"
   ];

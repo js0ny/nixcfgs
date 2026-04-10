@@ -3,10 +3,12 @@
 # kanshictl switch <profile-name>
 # to get all profiles:
 # rg "profile (\w*)" ~/.config/kanshi/config -o -r "\$1"
-{config, ...}: let
+{ config, ... }:
+let
   g14-internal = config.nixdots.laptop.display.makeModel;
   lg4k60 = "LG Electronics LG HDR 4K 0x0004DC58";
-in {
+in
+{
   services.kanshi = {
     enable = true;
     systemdTarget = "niri.service";

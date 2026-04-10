@@ -2,17 +2,20 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   mkNixPak = inputs.nixpak.lib.nixpak {
     inherit (pkgs) lib;
     inherit pkgs;
   };
 
-  callNixPak = path:
+  callNixPak =
+    path:
     pkgs.callPackage path {
       inherit mkNixPak;
     };
-in {
+in
+{
   nixpkgs.overlays = [
     (_: prev: {
       nixpaks = {

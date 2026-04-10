@@ -2,15 +2,20 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.nixdots.desktop = {
     enable = lib.mkEnableOption "Whether to enable desktop environment modules. This is a global toggle that can be overridden by specific desktop manager modules if needed.";
     dm = lib.mkOption {
-      type = lib.types.enum ["ly" "gdm" "sddm" "tuigreet" "cosmic-greeter" "none"];
-      default =
-        if config.nixdots.machine.headless
-        then "none"
-        else "gdm";
+      type = lib.types.enum [
+        "ly"
+        "gdm"
+        "sddm"
+        "tuigreet"
+        "cosmic-greeter"
+        "none"
+      ];
+      default = if config.nixdots.machine.headless then "none" else "gdm";
       description = ''
         The desktop manager to use. Options include:
         - 'ly': A lightweight TUI-based display manager.
@@ -22,11 +27,18 @@
       '';
     };
     de = lib.mkOption {
-      type = lib.types.listOf (lib.types.enum ["niri" "hyprland" "sway" "kde" "gnome" "cosmic" "none"]);
-      default =
-        if config.nixdots.machine.headless
-        then ["none"]
-        else ["niri"];
+      type = lib.types.listOf (
+        lib.types.enum [
+          "niri"
+          "hyprland"
+          "sway"
+          "kde"
+          "gnome"
+          "cosmic"
+          "none"
+        ]
+      );
+      default = if config.nixdots.machine.headless then [ "none" ] else [ "niri" ];
       description = ''
         The window manager(s) or desktop environment(s) to use.
       '';

@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 pkgs.writeShellApplication {
   name = "rename-zero-pad";
   runtimeInputs = with pkgs; [

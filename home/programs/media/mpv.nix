@@ -1,12 +1,16 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.mpv = {
     enable = true;
-    scripts = with pkgs.mpvScripts; [
-      uosc
-      thumbfast
-      sponsorblock
-      bdanmaku
-    ] ++ (if pkgs.stdenv.isLinux then [mpris] else []);
+    scripts =
+      with pkgs.mpvScripts;
+      [
+        uosc
+        thumbfast
+        sponsorblock
+        bdanmaku
+      ]
+      ++ (if pkgs.stdenv.isLinux then [ mpris ] else [ ]);
     config = {
       vo = "gpu-next";
       hwdec = "auto-safe";

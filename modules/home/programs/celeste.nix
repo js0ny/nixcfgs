@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.programs.celeste;
-in {
+in
+{
   options.programs.celeste = {
     enable = mkEnableOption "Celeste";
 
@@ -66,22 +68,18 @@ in {
     home.packages =
       # Olympus mod manager
       (optional cfg.withOlympus (
-        if cfg.withSteam
-        then pkgs.olympus.override {celesteWrapper = "steam-run";}
+        if cfg.withSteam then
+          pkgs.olympus.override { celesteWrapper = "steam-run"; }
         else
-          (
-            if cfg.gameDir != null
-            then pkgs.olympus.override {finderHints = cfg.gameDir;}
-            else pkgs.olympus
-          )
+          (if cfg.gameDir != null then pkgs.olympus.override { finderHints = cfg.gameDir; } else pkgs.olympus)
       ))
       # celestegame (itch.io DRM-free version)
       ++ (optional (!cfg.withSteam) (
         pkgs.celestegame.override (
-          {}
-          // (optionalAttrs cfg.withEverest {withEverest = true;})
-          // (optionalAttrs (cfg.writableDir != null) {writableDir = cfg.writableDir;})
-          // (optionalAttrs (cfg.gameDir != null) {gameDir = cfg.gameDir;})
+          { }
+          // (optionalAttrs cfg.withEverest { withEverest = true; })
+          // (optionalAttrs (cfg.writableDir != null) { writableDir = cfg.writableDir; })
+          // (optionalAttrs (cfg.gameDir != null) { gameDir = cfg.gameDir; })
         )
       ));
 

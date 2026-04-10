@@ -1,9 +1,10 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   systemd.user.services.hyprpolkitagent = {
     Unit = {
       Description = "Hyprland Polkit Authentication Agent";
-      PartOf = ["niri.service"];
-      After = ["graphical-session.target"];
+      PartOf = [ "niri.service" ];
+      After = [ "graphical-session.target" ];
     };
 
     Service = {
@@ -15,7 +16,7 @@
     };
 
     Install = {
-      WantedBy = ["waylandwm-session.target"];
+      WantedBy = [ "waylandwm-session.target" ];
     };
   };
 }

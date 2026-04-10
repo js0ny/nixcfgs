@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   home.username = config.nixdots.user.name;
   home.homeDirectory = config.nixdots.user.home;
 

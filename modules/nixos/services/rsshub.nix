@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.services.rsshub;
-in {
+in
+{
   options.services.rsshub = {
     enable = lib.mkEnableOption "RSSHub: 🧡 Everything is RSSible";
 
@@ -56,7 +58,7 @@ in {
 
     extraEnvironment = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
-      default = {};
+      default = { };
       description = "Extra plain-text environment variables for RSSHub.";
     };
 
@@ -67,31 +69,32 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable (let
-    chromePath = lib.getExe cfg.browserPackage;
-  in {
-    users.groups.${cfg.group} = {};
-    users.users.${cfg.user} = {
-      isSystemUser = true;
-      group = cfg.group;
-      home = cfg.dataDir;
-      createHome = true;
-      description = "RSSHub Service User";
-    };
-    systemd.tmpfiles.rules = [
-      "d ${cfg.dataDir}/.cache/puppeteer 0755 ${cfg.user} ${cfg.group} - -"
-    ];
+  config = lib.mkIf cfg.enable (
+    let
+      chromePath = lib.getExe cfg.browserPackage;
+    in
+    {
+      users.groups.${cfg.group} = { };
+      users.users.${cfg.user} = {
+        isSystemUser = true;
+        group = cfg.group;
+        home = cfg.dataDir;
+        createHome = true;
+        description = "RSSHub Service User";
+      };
+      systemd.tmpfiles.rules = [
+        "d ${cfg.dataDir}/.cache/puppeteer 0755 ${cfg.user} ${cfg.group} - -"
+      ];
 
-    environment.systemPackages = with pkgs; [
-      cfg.package
-      cfg.browserPackage
-    ];
-    systemd.services.rsshub = {
-      description = "RSSHub: 🧡 Everything is RSSible";
-      after = ["network-online.target"];
-      wantedBy = ["multi-user.target"];
-      environment =
-        {
+      environment.systemPackages = with pkgs; [
+        cfg.package
+        cfg.browserPackage
+      ];
+      systemd.services.rsshub = {
+        description = "RSSHub: 🧡 Everything is RSSible";
+        after = [ "network-online.target" ];
+        wantedBy = [ "multi-user.target" ];
+        environment = {
           PUPPETEER_EXECUTABLE_PATH = chromePath;
           PUPPETEER_CACHE_DIR = "${cfg.dataDir}/.cache/puppeteer";
           PORT = toString cfg.port;
@@ -99,8 +102,7 @@ in {
         }
         // cfg.extraEnvironment;
 
-      serviceConfig =
-        {
+        serviceConfig = {
           ExecStart = lib.getExe cfg.package;
           Restart = "always";
           RestartSec = "10s";
@@ -117,10 +119,11 @@ in {
         // lib.optionalAttrs (cfg.envFile != null) {
           EnvironmentFile = cfg.envFile;
         };
-      path = [
-        cfg.browserPackage
-      ];
-    };
-    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
-  });
+        path = [
+          cfg.browserPackage
+        ];
+      };
+      networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
+    }
+  );
 }

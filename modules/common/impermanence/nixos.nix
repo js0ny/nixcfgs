@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.persist;
-in {
+in
+{
   options.nixdots.persist.system = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -13,11 +15,11 @@ in {
     };
     directories = lib.mkOption {
       type = with lib.types; listOf str;
-      default = [];
+      default = [ ];
     };
     files = lib.mkOption {
       type = with lib.types; listOf str;
-      default = [];
+      default = [ ];
     };
   };
 

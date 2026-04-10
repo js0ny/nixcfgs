@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   term = "xdg-terminal-exec";
   # TODO: Don't default to dark
   iconTheme = config.nixdots.style.icon.dark;
@@ -11,8 +12,9 @@
   kbdBacklightDev = config.nixdots.laptop.backlight.keyboard;
   kbdBacklightStep = "1";
   screen = config.nixdots.laptop.backlight.screen;
-  nirictl = import ./scripts.nix {inherit pkgs;};
-in {
+  nirictl = import ./scripts.nix { inherit pkgs; };
+in
+{
   home.packages = [
     nirictl.focusOrLaunch
   ];
@@ -28,7 +30,8 @@ in {
     "Mod+O".hotkey-overlay.title = "Focus or launch Obsidian";
     "Mod+O".action = spawn "${lib.getExe nirictl.focusOrLaunch}" "obsidian" "obsidian";
     # See: programs/obsidian/obsidian-grep.nix
-    "Mod+Shift+O".action = spawn-sh "${term} --app-id=terminal-popup -e obsidian-grep && ${lib.getExe nirictl.focusOrLaunch} obsidian obsidian";
+    "Mod+Shift+O".action =
+      spawn-sh "${term} --app-id=terminal-popup -e obsidian-grep && ${lib.getExe nirictl.focusOrLaunch} obsidian obsidian";
     # TODO: Change "org.kde.dolphin" to a more generic explorer app id via config.currentUser
     "Mod+E".hotkey-overlay.title = "Launch file explorer";
     # "Mod+E".action = spawn "${lib.getExe nirictl.focusOrLaunch}" "org.kde.dolphin" "dolphin";
@@ -51,12 +54,10 @@ in {
     "Mod+Alt+i".action = spawn "hyprlock";
 
     "Alt+Space".hotkey-overlay.title = "Run an Application: ${launcher}";
-    "Alt+Space".action =
-      spawn "${launcher}";
+    "Alt+Space".action = spawn "${launcher}";
 
     "Mod+W".hotkey-overlay.title = "Search open Window: ${launcher}";
-    "Mod+W".action =
-      spawn "${launcher}" "-m" "windows";
+    "Mod+W".action = spawn "${launcher}" "-m" "windows";
 
     "Mod+V".action =
       # spawn-sh "cliphist list | ${launcher} -dmenu | cliphist decode | wl-copy";
@@ -64,17 +65,13 @@ in {
 
     # See ../volume-notify.nix
     "XF86AudioRaiseVolume".allow-when-locked = true;
-    "XF86AudioRaiseVolume".action =
-      spawn "volume-notify" "up";
+    "XF86AudioRaiseVolume".action = spawn "volume-notify" "up";
     "XF86AudioLowerVolume".allow-when-locked = true;
-    "XF86AudioLowerVolume".action =
-      spawn "volume-notify" "down";
+    "XF86AudioLowerVolume".action = spawn "volume-notify" "down";
     "XF86AudioMute".allow-when-locked = true;
-    "XF86AudioMute".action =
-      spawn "volume-notify" "mute";
+    "XF86AudioMute".action = spawn "volume-notify" "mute";
     "XF86AudioMicMute".allow-when-locked = true;
-    "XF86AudioMicMute".action =
-      spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+    "XF86AudioMicMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
 
     # TODO: Write a script that detects and set current display brightness.
     "XF86MonBrightnessUp" = {
@@ -97,8 +94,12 @@ in {
     # INFO: Seems that niri does not support touchpad toggle, waiting for upstream implementation.
     "XF86TouchpadToggle".action = spawn "";
     # TODO: Write logic for default case
-    "XF86KbdBrightnessUp".action = spawn "brightnessctl" "--device" "${kbdBacklightDev}" "set" "${kbdBacklightStep}+";
-    "XF86KbdBrightnessDown".action = spawn "brightnessctl" "--device" "${kbdBacklightDev}" "set" "${kbdBacklightStep}-";
+    "XF86KbdBrightnessUp".action = spawn "brightnessctl" "--device" "${
+      kbdBacklightDev
+    }" "set" "${kbdBacklightStep}+";
+    "XF86KbdBrightnessDown".action = spawn "brightnessctl" "--device" "${
+      kbdBacklightDev
+    }" "set" "${kbdBacklightStep}-";
 
     # NOTE: This is a host-specific config
     # G14 Power Profiles Switcher
@@ -106,8 +107,9 @@ in {
     # AURA Key: XF86Launch3
     # Fan Key: XF86Launch4
     "XF86Launch4".action = spawn "${lib.getExe pkgs.localPkgs.power-profiles-next}";
-    "XF86Launch1".action =
-      spawn "${launcher}" "-show" "drun" "-icon-theme" "${iconTheme}" "-show-icons";
+    "XF86Launch1".action = spawn "${launcher}" "-show" "drun" "-icon-theme" "${
+      iconTheme
+    }" "-show-icons";
 
     "Mod+Tab".action = toggle-overview;
     "Mod+Q".action = close-window;
@@ -226,12 +228,24 @@ in {
     "Mod+G".action = toggle-column-tabbed-display;
 
     # Disable pointer by default, toggle with `p` key
-    "Mod+Shift+S".action.screenshot = {show-pointer = false;};
-    "Print".action.screenshot = {show-pointer = false;};
-    "Ctrl+Print".action.screenshot-screen = {show-pointer = false;};
-    "Mod+Alt+S".action.screenshot-screen = {show-pointer = false;};
-    "Alt+Print".action.screenshot-window = {write-to-disk = true;};
-    "Mod+S".action.screenshot-window = {write-to-disk = true;};
+    "Mod+Shift+S".action.screenshot = {
+      show-pointer = false;
+    };
+    "Print".action.screenshot = {
+      show-pointer = false;
+    };
+    "Ctrl+Print".action.screenshot-screen = {
+      show-pointer = false;
+    };
+    "Mod+Alt+S".action.screenshot-screen = {
+      show-pointer = false;
+    };
+    "Alt+Print".action.screenshot-window = {
+      write-to-disk = true;
+    };
+    "Mod+S".action.screenshot-window = {
+      write-to-disk = true;
+    };
 
     "Mod+Escape".allow-inhibiting = false;
     "Mod+Escape".action = toggle-keyboard-shortcuts-inhibit;

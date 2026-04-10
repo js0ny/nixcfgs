@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   mergetools.elisarc = {
     target = "${config.home.homeDirectory}/.config/elisarc";
     format = "ini";

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./firefox
     ./block-desktop-entries.nix

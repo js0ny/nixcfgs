@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   targets.darwin.defaults = {
     "com.colliderli.iina" = {
       ### General

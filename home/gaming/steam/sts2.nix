@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   id = 2868840;
-in {
+in
+{
   # Fix: Slay the Spire 2 "SpeedX" mod initialization crash
   # MonoMod extracts 'mm-exhelper.so' at runtime to /tmp, bypassing NixOS RPATH patching.
   # It fails to resolve '_Unwind_RaiseException' due to missing libgcc_s.so.1.

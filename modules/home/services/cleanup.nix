@@ -3,9 +3,9 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkOption
     mkIf
     types
@@ -18,57 +18,61 @@
 
   cfg = config.services.cleanup;
 
-  jobType = types.submodule ({name, ...}: {
-    options = {
-      path = mkOption {
-        type = types.str;
-        description = "Directory to clean.";
-      };
+  jobType = types.submodule (
+    { name, ... }:
+    {
+      options = {
+        path = mkOption {
+          type = types.str;
+          description = "Directory to clean.";
+        };
 
-      olderThan = mkOption {
-        type = types.int;
-        default = 7;
-        description = "Delete entries older than this many days.";
-      };
+        olderThan = mkOption {
+          type = types.int;
+          default = 7;
+          description = "Delete entries older than this many days.";
+        };
 
-      filesOnly = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Only delete regular files.";
-      };
+        filesOnly = mkOption {
+          type = types.bool;
+          default = false;
+          description = "Only delete regular files.";
+        };
 
-      recursive = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Whether to recurse into subdirectories.";
-      };
+        recursive = mkOption {
+          type = types.bool;
+          default = false;
+          description = "Whether to recurse into subdirectories.";
+        };
 
-      onCalendar = mkOption {
-        type = types.str;
-        default = "daily";
-        description = "systemd timer schedule.";
-      };
+        onCalendar = mkOption {
+          type = types.str;
+          default = "daily";
+          description = "systemd timer schedule.";
+        };
 
-      dryRun = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Print what would be deleted without deleting.";
+        dryRun = mkOption {
+          type = types.bool;
+          default = false;
+          description = "Print what would be deleted without deleting.";
+        };
       };
-    };
-  });
+    }
+  );
 
-  mkCleanupScript = jobName: job:
+  mkCleanupScript =
+    jobName: job:
     pkgs.writeShellApplication {
       name = "cleanup-${jobName}";
-      runtimeInputs = with pkgs; [fd coreutils gnused];
+      runtimeInputs = with pkgs; [
+        fd
+        coreutils
+        gnused
+      ];
       text = ''
         job_name=${escapeShellArg jobName}
         dir=${escapeShellArg job.path}
-        dry_run=${
-          if job.dryRun
-          then "true"
-          else "false"
-        }
+        dry_run=${if job.dryRun then "true" else "false"}
 
         log() {
           printf '[cleanup:%s] %s\n' "$job_name" "$*"
@@ -112,48 +116,45 @@
         fi
       '';
     };
-in {
+in
+{
   options.services.cleanup.jobs = mkOption {
     type = types.attrsOf jobType;
-    default = {};
+    default = { };
     description = "Cleanup jobs.";
   };
 
-  config = mkIf (cfg.jobs != {}) {
-    systemd.user.services =
-      mapAttrs' (
-        jobName: job:
-          nameValuePair "cleanup-${jobName}" {
-            Unit = {
-              Description = "Cleanup job ${jobName}";
-            };
+  config = mkIf (cfg.jobs != { }) {
+    systemd.user.services = mapAttrs' (
+      jobName: job:
+      nameValuePair "cleanup-${jobName}" {
+        Unit = {
+          Description = "Cleanup job ${jobName}";
+        };
 
-            Service = {
-              Type = "oneshot";
-              ExecStart = getExe (mkCleanupScript jobName job);
-            };
-          }
-      )
-      cfg.jobs;
+        Service = {
+          Type = "oneshot";
+          ExecStart = getExe (mkCleanupScript jobName job);
+        };
+      }
+    ) cfg.jobs;
 
-    systemd.user.timers =
-      mapAttrs' (
-        jobName: job:
-          nameValuePair "cleanup-${jobName}" {
-            Unit = {
-              Description = "Timer for cleanup job ${jobName}";
-            };
+    systemd.user.timers = mapAttrs' (
+      jobName: job:
+      nameValuePair "cleanup-${jobName}" {
+        Unit = {
+          Description = "Timer for cleanup job ${jobName}";
+        };
 
-            Timer = {
-              OnCalendar = job.onCalendar;
-              Persistent = true;
-            };
+        Timer = {
+          OnCalendar = job.onCalendar;
+          Persistent = true;
+        };
 
-            Install = {
-              WantedBy = ["timers.target"];
-            };
-          }
-      )
-      cfg.jobs;
+        Install = {
+          WantedBy = [ "timers.target" ];
+        };
+      }
+    ) cfg.jobs;
   };
 }

@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   catppuccinCider = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "cider";
@@ -11,13 +12,14 @@
     sha256 = "sha256-wzlRiGDDmVAqAazhhXAl4LepNY/UyyWdLLQVvkHTTSE=";
   };
 
-  ctp-mocha = pkgs.runCommand "cider-theme-ctp-mocha" {} ''
+  ctp-mocha = pkgs.runCommand "cider-theme-ctp-mocha" { } ''
     cp -r ${catppuccinCider}/themes/ctp-mocha $out
     chmod -R u+w $out
     echo "marketplaceID: 12" >> "$out/theme.yml"
     echo 'version: "25.02"' >> "$out/theme.yml"
   '';
-in {
+in
+{
   mergetools.cider-spa-config = {
     target = "${config.home.homeDirectory}/.config/sh.cider.genten/spa-config.yml";
     format = "yaml";
@@ -25,7 +27,10 @@ in {
       general = {
         language = "zh-CN";
         keybindings = {
-          commandCenter = ["ctrlKey" "KeyO"];
+          commandCenter = [
+            "ctrlKey"
+            "KeyO"
+          ];
         };
         closeToTray = true;
         checkForUpdates = false;

@@ -1,9 +1,11 @@
 {
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.programs.shellAliases;
-in {
+in
+{
   config = {
     programs.nushell.shellAliases = cfg;
     programs.zsh.shellAliases = cfg;

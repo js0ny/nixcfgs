@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   pcloudAntidots = pkgs.writeShellScriptBin "pcloud-antidots" ''
     set -euo pipefail
 
@@ -30,9 +31,13 @@
     desktopName = "pCloud (Antidots)";
     exec = "${lib.getExe pcloudAntidots}";
     terminal = false;
-    categories = ["Network" "FileTransfer"];
+    categories = [
+      "Network"
+      "FileTransfer"
+    ];
   };
-in {
+in
+{
   home.packages = [
     pcloudAntidots
     pcloudAntidotsDesktop

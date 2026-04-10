@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.carapace = {
     enable = true;
     enableBashIntegration = false;

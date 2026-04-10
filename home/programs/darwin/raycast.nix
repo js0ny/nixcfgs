@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   user = config.home.username;
-in {
+in
+{
   targets.darwin.defaults."com.raycast.macos" = {
     onboardingCompleted = 1;
     "onboarding_setupAlias" = 1;

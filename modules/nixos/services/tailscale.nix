@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.services.tailscale;
-in {
+in
+{
   config = lib.mkIf cfg.enable {
     services.tailscale = {
       enable = true;
@@ -12,7 +14,7 @@ in {
       authKeyFile = cfg.authKeyFile;
     };
     networking.firewall = {
-      trustedInterfaces = ["tailscale0"];
+      trustedInterfaces = [ "tailscale0" ];
     };
     nixdots.persist.system = {
       directories = [

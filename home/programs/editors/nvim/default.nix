@@ -2,16 +2,18 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   nvimAlias = {
     "v" = "nvim";
     "g" = "nvim +Neogit";
   };
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   dots = config.nixdots.core.dots;
-  snippets = (import ../lsp-snippets {inherit pkgs config;}).out;
-in {
-  imports = [../default.nix];
+  snippets = (import ../lsp-snippets { inherit pkgs config; }).out;
+in
+{
+  imports = [ ../default.nix ];
   programs.neovim = {
     enable = true;
     defaultEditor = true;

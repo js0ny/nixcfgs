@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   xdg-data = "${config.xdg.dataHome}";
-in {
+in
+{
   services.ollama = {
     enable = true;
   };

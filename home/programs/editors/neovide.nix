@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.neovide = {
     enable = true;
     settings = {
@@ -14,7 +15,7 @@
       vsync = true;
       wsl = false;
       font = {
-        normal = ["Maple Mono NF CN"];
+        normal = [ "Maple Mono NF CN" ];
         size = 14;
       };
     };

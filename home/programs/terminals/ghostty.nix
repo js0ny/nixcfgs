@@ -3,18 +3,17 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   shell = config.nixdots.apps.interactiveShell.package;
-in {
+in
+{
   programs.ghostty = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
-    systemd.enable =
-      if pkgs.stdenv.isDarwin
-      then false
-      else true;
+    systemd.enable = if pkgs.stdenv.isDarwin then false else true;
     # Not ready
     settings = {
       command = lib.getExe shell;

@@ -1,9 +1,13 @@
 # Stolen from basecamp/omarchy
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   focusOrLaunch = pkgs.writeShellApplication {
     name = "nirictl-focus-or-launch";
 
-    runtimeInputs = [pkgs.jq pkgs.niri];
+    runtimeInputs = [
+      pkgs.jq
+      pkgs.niri
+    ];
 
     text = ''
 

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   wayland.windowManager.hyprland.settings = {
     windowrule = [
       # windowrule = match:class mpv, float on, move (monitor_w-20-window_w) (monitor_h-20-window_h), pin on

@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   p = config.nixdots.programs.firefox.defaultProfile;
-in {
+in
+{
   programs.firefox.profiles."${p}".cookie-autodelete = {
     enable = true;
     active = true;

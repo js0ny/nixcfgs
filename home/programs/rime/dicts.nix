@@ -2,13 +2,14 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   rime-wanxiang = pkgs.localPkgs.rime-wanxiang-zrm;
   rime-cantonese = pkgs.localPkgs.rime-cantonese;
   rime-dieghv = pkgs.localPkgs.rime-dieghv;
   rime-latex = pkgs.localPkgs.rime-latex;
 
-  rimeConfigMerged = pkgs.runCommandLocal "rime-config-merged" {} ''
+  rimeConfigMerged = pkgs.runCommandLocal "rime-config-merged" { } ''
     mkdir -p $out
 
     # 引入基础配置并赋予写权限以便后续修改
@@ -23,11 +24,9 @@
     cp -r --no-preserve=mode ${rime-dieghv}/* $out/
     cp -r --no-preserve=mode ${rime-latex}/* $out/
   '';
-  rimePath =
-    if pkgs.stdenv.isDarwin
-    then "Library/Rime"
-    else ".local/share/fcitx5/rime";
-in {
+  rimePath = if pkgs.stdenv.isDarwin then "Library/Rime" else ".local/share/fcitx5/rime";
+in
+{
   home.file.${rimePath} = {
     source = rimeConfigMerged;
     recursive = true;
@@ -40,7 +39,7 @@ in {
     # 感觉用 custom_phrase.txt 更方便一些，用 user.dict.yaml 需要去 base.dict.yaml 里找字
     # 而且适合纯粹汉语拼音输入，不适合通过有独特含义的外文来输入汉字
     "${rimePath}/custom_phrase.txt" = {
-      text = builtins.replaceStrings ["\\t"] ["\t"] ''
+      text = builtins.replaceStrings [ "\\t" ] [ "\t" ] ''
         #给自定义用户词扩展一个换行:\n, 制表符：\t, 回车符：\r, 空格：\s
         NixOS\tnixos\t1000
         国族\tgozu\t1000

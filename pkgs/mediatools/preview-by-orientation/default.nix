@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 pkgs.writeShellApplication {
   name = "preview-by-orientation";
   runtimeInputs = with pkgs; [

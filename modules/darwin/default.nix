@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./brew.nix
     ./determinate.nix

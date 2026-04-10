@@ -3,10 +3,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.programs.thunderbird.enable;
   profile = config.nixdots.user.name;
-in {
+in
+{
   programs.thunderbird = {
     enable = true;
     profiles."${profile}" = {

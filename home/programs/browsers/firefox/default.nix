@@ -4,10 +4,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.programs.firefox.enable;
   p = config.nixdots.programs.firefox.defaultProfile;
-in {
+in
+{
   imports = [
     ./addons
     ./userjs.nix
@@ -37,7 +39,7 @@ in {
 
     # https://github.com/nix-community/stylix/issues/2071
     stylix.targets.firefox = {
-      profileNames = ["${p}"];
+      profileNames = [ "${p}" ];
       enable = false;
     };
 

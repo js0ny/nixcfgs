@@ -6,9 +6,11 @@
   sloth,
   config,
   ...
-}: let
+}:
+let
   inherit (config.flatpak) appId;
-in {
+in
+{
   config = {
     # list all dbus services:
     #   ls -al /run/current-system/sw/share/dbus-1/services/
@@ -17,56 +19,55 @@ in {
       # `--see`: The bus name can be enumerated by the application.
       # `--talk`: The application can send messages to, and receive replies and signals from, the bus name.
       # `--own`: The application can own the bus name
-      policies =
-        {
-          "${appId}" = "own";
-          "${appId}.*" = "own";
-          "org.freedesktop.DBus" = "talk";
-          "ca.desrt.dconf" = "talk";
-          "org.freedesktop.appearance" = "talk";
-          "org.freedesktop.appearance.*" = "talk";
-        }
-        // (builtins.listToAttrs (
-          map (id: lib.nameValuePair "org.kde.StatusNotifierItem-${toString id}-1" "own") (
-            lib.lists.range 2 29
-          )
-        ))
-        // {
-          # --- MPRIS Media Control ---
-          # Allows the app to register as a media player. These are derived from the appID.
-          "org.mpris.MediaPlayer2.${appId}" = "own";
-          "org.mpris.MediaPlayer2.${appId}.*" = "own";
-          "org.mpris.MediaPlayer2.${lib.lists.last (lib.strings.splitString "." appId)}" = "own";
-          "org.mpris.MediaPlayer2.${lib.lists.last (lib.strings.splitString "." appId)}.*" = "own";
+      policies = {
+        "${appId}" = "own";
+        "${appId}.*" = "own";
+        "org.freedesktop.DBus" = "talk";
+        "ca.desrt.dconf" = "talk";
+        "org.freedesktop.appearance" = "talk";
+        "org.freedesktop.appearance.*" = "talk";
+      }
+      // (builtins.listToAttrs (
+        map (id: lib.nameValuePair "org.kde.StatusNotifierItem-${toString id}-1" "own") (
+          lib.lists.range 2 29
+        )
+      ))
+      // {
+        # --- MPRIS Media Control ---
+        # Allows the app to register as a media player. These are derived from the appID.
+        "org.mpris.MediaPlayer2.${appId}" = "own";
+        "org.mpris.MediaPlayer2.${appId}.*" = "own";
+        "org.mpris.MediaPlayer2.${lib.lists.last (lib.strings.splitString "." appId)}" = "own";
+        "org.mpris.MediaPlayer2.${lib.lists.last (lib.strings.splitString "." appId)}.*" = "own";
 
-          # --- General Desktop Integration ---
-          "com.canonical.AppMenu.Registrar" = "talk"; # For Ubuntu AppMenu
-          "org.freedesktop.FileManager1" = "talk";
-          "org.freedesktop.Notifications" = "talk";
-          "org.kde.StatusNotifierWatcher" = "talk";
-          "org.gnome.Shell.Screencast" = "talk";
+        # --- General Desktop Integration ---
+        "com.canonical.AppMenu.Registrar" = "talk"; # For Ubuntu AppMenu
+        "org.freedesktop.FileManager1" = "talk";
+        "org.freedesktop.Notifications" = "talk";
+        "org.kde.StatusNotifierWatcher" = "talk";
+        "org.gnome.Shell.Screencast" = "talk";
 
-          # --- Accessibility (a11y) 无障碍服务 ---
-          "org.a11y.Bus" = "see";
+        # --- Accessibility (a11y) 无障碍服务 ---
+        "org.a11y.Bus" = "see";
 
-          # --- Portal Access ---
-          # "org.freedesktop.portal.*" = "talk";
-          "org.freedesktop.portal.Documents" = "talk";
-          "org.freedesktop.portal.FileTransfer" = "talk";
-          "org.freedesktop.portal.FileTransfer.*" = "talk";
-          "org.freedesktop.portal.Notification" = "talk";
-          "org.freedesktop.portal.OpenURI" = "talk";
-          "org.freedesktop.portal.OpenURI.OpenFile" = "talk";
-          "org.freedesktop.portal.OpenURI.OpenURI" = "talk";
-          "org.freedesktop.portal.Print" = "talk";
-          "org.freedesktop.portal.Request" = "see";
+        # --- Portal Access ---
+        # "org.freedesktop.portal.*" = "talk";
+        "org.freedesktop.portal.Documents" = "talk";
+        "org.freedesktop.portal.FileTransfer" = "talk";
+        "org.freedesktop.portal.FileTransfer.*" = "talk";
+        "org.freedesktop.portal.Notification" = "talk";
+        "org.freedesktop.portal.OpenURI" = "talk";
+        "org.freedesktop.portal.OpenURI.OpenFile" = "talk";
+        "org.freedesktop.portal.OpenURI.OpenURI" = "talk";
+        "org.freedesktop.portal.Print" = "talk";
+        "org.freedesktop.portal.Request" = "see";
 
-          # --- Input Method Portals ---
-          "org.freedesktop.portal.Fcitx" = "talk";
-          "org.freedesktop.portal.Fcitx.*" = "talk";
-          "org.freedesktop.portal.IBus" = "talk";
-          "org.freedesktop.portal.IBus.*" = "talk";
-        };
+        # --- Input Method Portals ---
+        "org.freedesktop.portal.Fcitx" = "talk";
+        "org.freedesktop.portal.Fcitx.*" = "talk";
+        "org.freedesktop.portal.IBus" = "talk";
+        "org.freedesktop.portal.IBus.*" = "talk";
+      };
       # '--call' rules permit specific method calls on D-Bus interfaces.
       rules.call = {
         # --- Accessibility (a11y) 无障碍服务 ---
@@ -76,21 +77,21 @@ in {
         ];
 
         # --- General Portal Rules ---
-        "org.freedesktop.FileManager1" = ["*"];
-        "org.freedesktop.Notifications.*" = ["*"];
-        "org.freedesktop.portal.Documents" = ["*"];
-        "org.freedesktop.portal.FileTransfer" = ["*"];
-        "org.freedesktop.portal.FileTransfer.*" = ["*"];
-        "org.freedesktop.portal.Fcitx" = ["*"];
-        "org.freedesktop.portal.Fcitx.*" = ["*"];
-        "org.freedesktop.portal.IBus" = ["*"];
-        "org.freedesktop.portal.IBus.*" = ["*"];
-        "org.freedesktop.portal.Notification" = ["*"];
-        "org.freedesktop.portal.OpenURI" = ["*"];
-        "org.freedesktop.portal.OpenURI.OpenFile" = ["*"];
-        "org.freedesktop.portal.OpenURI.OpenURI" = ["*"];
-        "org.freedesktop.portal.Print" = ["*"];
-        "org.freedesktop.portal.Request" = ["*"];
+        "org.freedesktop.FileManager1" = [ "*" ];
+        "org.freedesktop.Notifications.*" = [ "*" ];
+        "org.freedesktop.portal.Documents" = [ "*" ];
+        "org.freedesktop.portal.FileTransfer" = [ "*" ];
+        "org.freedesktop.portal.FileTransfer.*" = [ "*" ];
+        "org.freedesktop.portal.Fcitx" = [ "*" ];
+        "org.freedesktop.portal.Fcitx.*" = [ "*" ];
+        "org.freedesktop.portal.IBus" = [ "*" ];
+        "org.freedesktop.portal.IBus.*" = [ "*" ];
+        "org.freedesktop.portal.Notification" = [ "*" ];
+        "org.freedesktop.portal.OpenURI" = [ "*" ];
+        "org.freedesktop.portal.OpenURI.OpenFile" = [ "*" ];
+        "org.freedesktop.portal.OpenURI.OpenURI" = [ "*" ];
+        "org.freedesktop.portal.Print" = [ "*" ];
+        "org.freedesktop.portal.Request" = [ "*" ];
 
         # --- Main Desktop Portal Interface ---
         # A comprehensive list of permissions for interacting with the desktop environment.
@@ -173,7 +174,7 @@ in {
 
       # 'broadcast' rules permit receiving signals from D-Bus names.
       rules.broadcast = {
-        "org.freedesktop.portal.*" = ["@/org/freedesktop/portal/*"];
+        "org.freedesktop.portal.*" = [ "@/org/freedesktop/portal/*" ];
       };
       args = [
         "--filter"
@@ -227,7 +228,7 @@ in {
         (sloth.concat' sloth.xdgConfigHome "/fontconfig")
         (sloth.concat' sloth.xdgConfigHome "/dconf")
       ];
-      bind.dev = ["/dev/shm"] ++ (map (id: "/dev/video${toString id}") (lib.lists.range 0 9));
+      bind.dev = [ "/dev/shm" ] ++ (map (id: "/dev/video${toString id}") (lib.lists.range 0 9));
     };
   };
 }

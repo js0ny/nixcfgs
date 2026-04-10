@@ -1,4 +1,5 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   appType = lib.types.submodule {
     options = {
       package = lib.mkOption {
@@ -135,6 +136,15 @@
       };
     };
   };
-in {
-  inherit appType fontType cursorType iconType laptopDisplay inputDevice audioDevice;
+in
+{
+  inherit
+    appType
+    fontType
+    cursorType
+    iconType
+    laptopDisplay
+    inputDevice
+    audioDevice
+    ;
 }

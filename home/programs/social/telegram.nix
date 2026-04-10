@@ -1,8 +1,6 @@
-{pkgs, ...}: let
-  mod =
-    if pkgs.stdenv.isDarwin
-    then "meta"
-    else "alt";
+{ pkgs, ... }:
+let
+  mod = if pkgs.stdenv.isDarwin then "meta" else "alt";
   shortcuts = builtins.toJSON [
     {
       command = "previous_chat";
@@ -85,7 +83,8 @@
       keys = "${mod}+9";
     }
   ];
-in {
+in
+{
   home.packages = with pkgs; [
     ayugram-desktop
     materialgram
@@ -101,9 +100,10 @@ in {
     "materialgram/tdata/shortcuts-custom.json".text = shortcuts;
   };
   home.file =
-    if pkgs.stdenv.isDarwin
-    then {
-      "Library/Application Support/Telegram Desktop/tdata/shortcuts-custom.json".text = shortcuts;
-    }
-    else {};
+    if pkgs.stdenv.isDarwin then
+      {
+        "Library/Application Support/Telegram Desktop/tdata/shortcuts-custom.json".text = shortcuts;
+      }
+    else
+      { };
 }

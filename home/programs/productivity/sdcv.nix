@@ -2,7 +2,8 @@
   pkgs,
   # lib,
   ...
-}: {
+}:
+{
   programs.sdcv = {
     enable = true;
 

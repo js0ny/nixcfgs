@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./asus.nix
     ./audio.nix

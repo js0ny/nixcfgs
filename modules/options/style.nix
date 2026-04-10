@@ -2,12 +2,14 @@
   lib,
   pkgs,
   ...
-}: let
-  types = import ./types.nix {inherit lib;};
+}:
+let
+  types = import ./types.nix { inherit lib; };
   fontType = types.fontType;
   cursorType = types.cursorType;
   iconType = types.iconType;
-in {
+in
+{
   options.nixdots.style = {
     enable = lib.mkEnableOption "Enable theming and font management for applications.";
     mountFHS = lib.mkOption {
@@ -16,7 +18,11 @@ in {
       description = "Whether to mount fonts and icons into FHS location for better compatibility.";
     };
     polarity = lib.mkOption {
-      type = lib.types.enum ["light" "dark" "auto"];
+      type = lib.types.enum [
+        "light"
+        "dark"
+        "auto"
+      ];
       default = "dark";
       description = "Overall theme polarity, affecting color scheme and wallpaper selection.";
     };

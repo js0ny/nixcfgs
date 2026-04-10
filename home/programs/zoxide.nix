@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   zoxideAliases = {
     ".." = "z ..";
     "..." = "z ../..";
@@ -17,7 +18,8 @@
     "。。。。。。" = "z ../../../../..";
   };
   home = config.nixdots.user.home;
-in {
+in
+{
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;

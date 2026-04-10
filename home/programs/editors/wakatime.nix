@@ -2,9 +2,11 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   xdg-config = "${config.xdg.configHome}";
-in {
+in
+{
   home.packages = with pkgs; [
     wakatime-cli
   ];
@@ -12,7 +14,7 @@ in {
     WAKATIME_HOME = "${xdg-config}/wakatime"; # ~/.wakatime
   };
 
-  sops.secrets.wakatime_api_key = {};
+  sops.secrets.wakatime_api_key = { };
   sops.templates."wakatime.cfg" = {
     content = ''
       [settings]

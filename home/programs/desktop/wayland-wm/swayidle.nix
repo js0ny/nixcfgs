@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.swayidle = {
     enable = true;
-    systemdTargets = ["niri.service"];
+    systemdTargets = [ "niri.service" ];
     timeouts = [
       {
         timeout = 300;

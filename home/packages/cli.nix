@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   programs.bat.enable = true;
   programs.btop.enable = true;
   programs.delta = {
@@ -15,13 +16,12 @@
     enable = true;
     settings = {
       git.pagers =
-        if config.programs.delta.enable
-        then [{pager = "delta --dark --paging=never";}]
-        else [];
+        if config.programs.delta.enable then [ { pager = "delta --dark --paging=never"; } ] else [ ];
     };
   };
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       gnumake
       rclone
@@ -54,15 +54,16 @@
       rar
       deploy-rs
       # rar support requires unfree flag.
-      (ouch.override {enableUnfree = true;})
+      (ouch.override { enableUnfree = true; })
       localPkgs.rename-zero-pad
       nix-diff
     ]
     ++ (
-      if pkgs.stdenv.isDarwin
-      then with pkgs; [duti]
+      if pkgs.stdenv.isDarwin then
+        with pkgs; [ duti ]
       else
-        with pkgs; [
+        with pkgs;
+        [
           steam-run
           proton-vpn-cli
         ]

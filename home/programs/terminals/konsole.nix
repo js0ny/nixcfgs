@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   shell = config.nixdots.apps.interactiveShell.package;
-in {
+in
+{
   # Dependency: plasma-manager
   # Required by dolphin's terminal integration
   programs.konsole = {

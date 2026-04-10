@@ -1,5 +1,6 @@
 # vim:foldmethod=marker
-{...}: {
+{ ... }:
+{
   programs.niri = {
     settings.window-rules = [
       {
@@ -187,44 +188,44 @@
       }
       {
         matches = [
-          {app-id = "^firefox$";}
+          { app-id = "^firefox$"; }
         ];
         open-on-workspace = "1-master";
       }
       {
         matches = [
-          {app-id = "^code$";}
-          {app-id = "^dev.zed.Zed$";}
-          {app-id = "^Vitis IDE$";}
-          {app-id = "^Vivado$";}
+          { app-id = "^code$"; }
+          { app-id = "^dev.zed.Zed$"; }
+          { app-id = "^Vitis IDE$"; }
+          { app-id = "^Vivado$"; }
         ];
         open-on-workspace = "2-project";
       }
       {
         matches = [
-          {app-id = "^org.kde.krdc$";}
-          {app-id = "^org.remmina.Remmina$";}
-          {app-id = "^\.virt-manager-wrapped$";}
-          {title = "^🌐 ssh.*";}
+          { app-id = "^org.kde.krdc$"; }
+          { app-id = "^org.remmina.Remmina$"; }
+          { app-id = "^\.virt-manager-wrapped$"; }
+          { title = "^🌐 ssh.*"; }
         ];
         open-on-workspace = "3-alt";
       }
       {
         matches = [
-          {app-id = "^org.telegram.desktop$";}
-          {app-id = "^io.github.kukuruzka165.materialgram$";}
-          {app-id = "^com.ayugram.desktop$";}
-          {app-id = "^wechat$";}
-          {app-id = "^QQ$";}
-          {app-id = "^discord$";}
-          {app-id = "^thunderbird$";}
+          { app-id = "^org.telegram.desktop$"; }
+          { app-id = "^io.github.kukuruzka165.materialgram$"; }
+          { app-id = "^com.ayugram.desktop$"; }
+          { app-id = "^wechat$"; }
+          { app-id = "^QQ$"; }
+          { app-id = "^discord$"; }
+          { app-id = "^thunderbird$"; }
         ];
         open-on-workspace = "4-info";
       }
       {
         matches = [
-          {app-id = "^feishin$";}
-          {app-id = "^Cider$";}
+          { app-id = "^feishin$"; }
+          { app-id = "^Cider$"; }
         ];
         open-on-workspace = "5-bg";
       }

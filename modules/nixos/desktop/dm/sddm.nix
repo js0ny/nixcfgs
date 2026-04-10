@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.nixdots.desktop.dm;
   # See https://www.reddit.com/r/NixOS/comments/1kcj34p/how_to_apply_this_sddm_theme_on_nixos/
   custom-sddm-astronaut = pkgs.sddm-astronaut.override {
@@ -14,24 +15,24 @@
     #};
   };
 in
-  lib.mkIf (config.nixdots.desktop.enable && cfg == "sddm") {
-    services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      extraPackages = [
-        custom-sddm-astronaut
-      ];
+lib.mkIf (config.nixdots.desktop.enable && cfg == "sddm") {
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    extraPackages = [
+      custom-sddm-astronaut
+    ];
 
-      theme = "sddm-astronaut-theme";
-      settings = {
-        Theme = {
-          Current = "sddm-astronaut-theme";
-        };
+    theme = "sddm-astronaut-theme";
+    settings = {
+      Theme = {
+        Current = "sddm-astronaut-theme";
       };
     };
+  };
 
-    environment.systemPackages = with pkgs; [
-      custom-sddm-astronaut
-      kdePackages.qtmultimedia
-    ];
-  }
+  environment.systemPackages = with pkgs; [
+    custom-sddm-astronaut
+    kdePackages.qtmultimedia
+  ];
+}

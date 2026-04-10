@@ -1,12 +1,14 @@
 #  https://wiki.archlinux.org/title/XDG_Base_Directory
-{config, ...}: let
+{ config, ... }:
+let
   xdg-data = "${config.xdg.dataHome}";
   xdg-config = "${config.xdg.configHome}";
   xdg-cache = "${config.xdg.cacheHome}";
   xdg-state = "${config.xdg.stateHome}";
   home = "${config.home.homeDirectory}";
   user = "${config.home.username}";
-in {
+in
+{
   home.sessionVariables = {
     _JAVA_OPTIONS =
       "-Djava.util.prefs.userRoot='${xdg-config}/java'" # ~/.java/fonts

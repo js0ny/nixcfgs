@@ -4,9 +4,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   mod = "Mod4";
-in {
+in
+{
   wayland.windowManager.sway = {
     checkConfig = true;
     # config = {

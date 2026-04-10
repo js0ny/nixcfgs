@@ -3,9 +3,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   p = config.nixdots.programs.firefox.defaultProfile;
-in {
+in
+{
   programs.firefox = {
     profiles."${p}" = {
       settings = {
@@ -33,10 +35,7 @@ in {
         "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
         "browser.tabs.closeTabByDblclick" = true;
         # Disable Ctrl-Q / Ctrl-Shift-W
-        "browser.quitShortcut.disabled" =
-          if pkgs.stdenv.isDarwin
-          then false
-          else true;
+        "browser.quitShortcut.disabled" = if pkgs.stdenv.isDarwin then false else true;
         ### Session
         # * 0: Blank Page
         # * 1: Home Page

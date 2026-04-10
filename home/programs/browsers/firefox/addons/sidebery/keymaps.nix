@@ -1,8 +1,10 @@
-{config, ...}: let
+{ config, ... }:
+let
   id = "{3c078156-979c-498b-8990-85f7987dd929}";
   home = config.nixdots.user.home;
   p = config.nixdots.programs.firefox.defaultProfile;
-in {
+in
+{
   mergetools."sidebery-keymaps" = {
     target = "${home}/.mozilla/firefox/${p}/extension-settings.json";
     format = "json";
@@ -13,7 +15,9 @@ in {
             {
               "id" = id;
               "installDate" = 1000;
-              "value" = {"shortcut" = "Ctrl+1";};
+              "value" = {
+                "shortcut" = "Ctrl+1";
+              };
               "enabled" = true;
             }
           ];
@@ -23,7 +27,9 @@ in {
             {
               "id" = id;
               "installDate" = 1000;
-              "value" = {"shortcut" = "Ctrl+2";};
+              "value" = {
+                "shortcut" = "Ctrl+2";
+              };
               "enabled" = true;
             }
           ];
@@ -33,7 +39,9 @@ in {
             {
               "id" = id;
               "installDate" = 1000;
-              "value" = {"shortcut" = "Ctrl+3";};
+              "value" = {
+                "shortcut" = "Ctrl+3";
+              };
               "enabled" = true;
             }
           ];
@@ -43,7 +51,9 @@ in {
             {
               "id" = id;
               "installDate" = 1000;
-              "value" = {"shortcut" = "Ctrl+4";};
+              "value" = {
+                "shortcut" = "Ctrl+4";
+              };
               "enabled" = true;
             }
           ];
@@ -53,7 +63,9 @@ in {
             {
               "id" = id;
               "installDate" = 1000;
-              "value" = {"shortcut" = "";};
+              "value" = {
+                "shortcut" = "";
+              };
               "enabled" = true;
             }
           ];
@@ -63,7 +75,9 @@ in {
             {
               "id" = id;
               "installDate" = 1000;
-              "value" = {"shortcut" = "";};
+              "value" = {
+                "shortcut" = "";
+              };
               "enabled" = true;
             }
           ];
@@ -73,7 +87,9 @@ in {
             {
               "id" = id;
               "installDate" = 1000;
-              "value" = {"shortcut" = "Alt+H";};
+              "value" = {
+                "shortcut" = "Alt+H";
+              };
               "enabled" = true;
             }
           ];
@@ -83,7 +99,9 @@ in {
             {
               "id" = id;
               "installDate" = 1000;
-              "value" = {"shortcut" = "Alt+L";};
+              "value" = {
+                "shortcut" = "Alt+L";
+              };
               "enabled" = true;
             }
           ];

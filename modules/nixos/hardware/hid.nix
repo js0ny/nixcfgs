@@ -1,15 +1,17 @@
-{config, ...}: let
+{ config, ... }:
+let
   username = config.nixdots.user.name;
-in {
+in
+{
   # WebUSB support for Via configuration
   # 19f5: Nuphy Keyboards
   services.udev.extraRules = ''
     KERNEL=="hidraw*", ATTRS{idVendor}=="19f5", SUBSYSTEM=="hidraw", GROUP="plugdev", MODE="0660"
   '';
 
-  users.groups.plugdev = {};
+  users.groups.plugdev = { };
 
   users.users."${username}" = {
-    extraGroups = ["plugdev"];
+    extraGroups = [ "plugdev" ];
   };
 }

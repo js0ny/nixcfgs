@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     jdt-language-server
     jdk21
@@ -9,7 +10,7 @@
     vscjava.vscode-java-pack
   ];
   programs.zed-editor = {
-    extensions = ["java"];
+    extensions = [ "java" ];
     extraPackages = with pkgs; [
       jdt-language-server
     ];

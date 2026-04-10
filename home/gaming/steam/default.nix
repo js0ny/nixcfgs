@@ -1,5 +1,6 @@
 # https://github.com/different-name/steam-config-nix
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     # Steam Achievement Manager
     samira
