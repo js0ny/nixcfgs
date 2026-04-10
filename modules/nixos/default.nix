@@ -2,7 +2,6 @@
 {
   imports = [
     ./compat.nix
-    ./server
 
     ../options
     ../common/sops.nix

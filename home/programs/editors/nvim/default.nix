@@ -17,6 +17,9 @@ in
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      nvim-treesitter.withAllGrammars
+    ];
     extraPackages = with pkgs; [
       lua5_1
       lua51Packages.luarocks

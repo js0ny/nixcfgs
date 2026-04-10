@@ -219,6 +219,7 @@
       # Export nixos modules for private use
       nixosModules = {
         default = import ./modules/nixos;
+        server = import ./modules/nixos/server;
       };
       darwinModules = {
         default = import ./modules/darwin;
