@@ -13,5 +13,6 @@
     ./dm
     ./de
     ../hardware/audio.nix
+    ./networkmanager.nix
   ];
 }
