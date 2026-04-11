@@ -57,6 +57,7 @@
       (ouch.override { enableUnfree = true; })
       localPkgs.rename-zero-pad
       nix-diff
+      openssl
     ]
     ++ (
       if pkgs.stdenv.isDarwin then

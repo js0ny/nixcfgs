@@ -15,19 +15,21 @@ in
 {
   imports = [ ./default.nix ];
   programs.vscode = {
-    package = pkgs.vscode;
+    package = pkgs.vscode-fhs;
     enable = true;
   };
 
   programs.vscode.profiles.default = {
     extensions = with pkgs.vscode-extensions; [
-      golang.go
-      vscodevim.vim
       pkief.material-icon-theme
-      catppuccin.catppuccin-vsc
+      vscodevim.vim
       vspacecode.vspacecode
       vspacecode.whichkey
+      christian-kohler.path-intellisense
     ];
+    userSettings = {
+      workbench.iconTheme = "material-icon-theme";
+    };
   };
 
   # Remove default snippet dir before running this to avoid conflicts

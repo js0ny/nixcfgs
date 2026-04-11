@@ -34,8 +34,9 @@ in
         ];
       };
     };
-    window-rules = lib.mkForce (lib.mapAttrsToList iconFixRule iconFixList) // {
-      "float mpv" = {
+    window-rules = (lib.mapAttrsToList iconFixRule iconFixList) ++ [
+      {
+
         description = "mpv float preset";
         match = {
           window-class = {
@@ -46,8 +47,8 @@ in
         apply = {
           above = true;
         };
-      };
-    };
+      }
+    ];
     configFile.kwinrc = {
       Wayland.InputMethod = "${pkgs.kdePackages.fcitx5-with-addons}/share/applications/fcitx5-wayland-launcher.desktop";
       XWayland.Scale = 1.7;

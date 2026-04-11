@@ -17,4 +17,5 @@ lib.mkIf cfg {
       # This is default to true, make sure override it when needed.
     };
   };
+  networking.firewall.allowedTCPPorts = [ 22 ];
 }
