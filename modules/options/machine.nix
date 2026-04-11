@@ -20,7 +20,7 @@
       default = "standalone";
       description = ''
         The infrastructure role of this machine:
-        - 'host': A bare-metal hypervisor that runs other VMs (e.g., your Zephyrus if it hosts libvirt/qemu).
+        - 'host': A bare-metal hypervisor that runs other VMs.
         - 'guest': A virtual machine or VPS instance.
         - 'standalone': A standard physical machine not acting as a hypervisor.
       '';
@@ -28,13 +28,12 @@
 
     displayProtocol = lib.mkOption {
       type = lib.types.enum [
-        "x11"
         "wayland"
         "none"
       ];
       default = if config.nixdots.machine.headless then "none" else "wayland";
       description = ''
-        The display protocol to use. 'x11' for Xorg, 'wayland' for Wayland, and 'none' for headless setups. This can be overridden by specific desktop manager modules if needed.
+        The display protocol to use. 'wayland' for Wayland, and 'none' for headless setups. This can be overridden by specific desktop manager modules if needed.
       '';
     };
 

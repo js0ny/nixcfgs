@@ -7,7 +7,6 @@
     ../common/sops.nix
     ./sops.nix
 
-    ./desktop
     ./hardware
     ./virtualisation
 

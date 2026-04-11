@@ -14,5 +14,6 @@
     ./de
     ../hardware/audio.nix
     ./networkmanager.nix
+    ../default.nix
   ];
 }

@@ -220,6 +220,7 @@
       nixosModules = {
         default = import ./modules/nixos;
         server = import ./modules/nixos/server;
+        desktop = import ./modules/nixos/desktop;
       };
       darwinModules = {
         default = import ./modules/darwin;
