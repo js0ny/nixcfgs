@@ -43,4 +43,14 @@ in
       extraArgs = "--keep 5 --keep-since 3d";
     };
   };
+
+  nixdots.persist.system.files = [
+    "/etc/machine-id"
+  ];
+
+  nixdots.persist.system.directories = [
+    "/var/log"
+    "/var/lib/nixos"
+    "/var/lib/systemd/coredump"
+  ];
 }

@@ -25,6 +25,12 @@ lib.mkIf cfg {
     powerOnBoot = true;
   };
 
+  nixdots.persist.system = {
+    directories = [
+      "/var/lib/bluetooth"
+    ];
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 

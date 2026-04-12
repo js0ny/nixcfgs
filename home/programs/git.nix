@@ -22,8 +22,8 @@
         #   if config.programs.delta.enable
         #   then "delta"
         #   else "diff";
-        autocrlf = true;
-        safecrlf = true;
+        autocrlf = false;
+        safecrlf = false;
         quotePath = false; # zh-CN: 解决中文路径问题
         eol = "lf";
       };

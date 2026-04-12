@@ -14,11 +14,11 @@ in
       description = "Enable impermanence for home directory";
     };
     directories = lib.mkOption {
-      type = with lib.types; listOf str;
+      type = with lib.types; listOf (either str attrs);
       default = [ ];
     };
     files = lib.mkOption {
-      type = with lib.types; listOf str;
+      type = with lib.types; listOf (either str attrs);
       default = [ ];
     };
   };

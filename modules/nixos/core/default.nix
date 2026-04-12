@@ -5,5 +5,6 @@
     ./nftables.nix
     ./packages.nix
     ./sshd.nix
+    ./ssh.nix
   ];
 }

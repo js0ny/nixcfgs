@@ -8,4 +8,10 @@
       "2001:4860:4860::8888"
     ];
   };
+  nixdots.persist.system = {
+    directories = [
+      "/var/lib/systemd/network"
+      "/var/lib/systemd/rfkill"
+    ];
+  };
 }
