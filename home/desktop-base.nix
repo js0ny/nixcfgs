@@ -14,6 +14,7 @@
 
     ./programs/block-desktop-entries.nix
     ./programs/mime.nix
+    ./programs/pim.nix
 
     ./programs/browsers/firefox
     ./programs/desktop/wayland-wm/niri

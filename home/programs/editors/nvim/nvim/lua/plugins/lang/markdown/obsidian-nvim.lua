@@ -49,17 +49,17 @@ return {
     ui = {
       enable = false,
     },
-    templates = {
-      folder = "90 - System/LuaTemplates",
-      date_format = "%Y-%m-%d",
-      time_format = "%H:%M",
-      substitutions = {
-        yesterday = function()
-          return os.date("%Y-%m-%d", os.time() - 86400)
-        end,
-        uuid = uuid(),
-      },
-    },
+    -- templates = {
+    --   folder = "90 - System/LuaTemplates",
+    --   date_format = "%Y-%m-%d",
+    --   time_format = "%H:%M",
+    --   substitutions = {
+    --     yesterday = function()
+    --       return os.date("%Y-%m-%d", os.time() - 86400)
+    --     end,
+    --     uuid = uuid(),
+    --   },
+    -- },
     ---@return table
     frontmatter = {
       -- Update frontmatter in order
@@ -106,13 +106,13 @@ return {
         -- 同时，如果 metadata 里本来就有 id，这里会再次确认覆盖，保证一致性。
         out = vim.tbl_extend("force", out, meta)
 
-        -- 6. 强制更新 mtime (这是你希望每次保存都更新的)
-        out.mtime = os.date("%Y-%m-%dT%H:%M:%S")
+        -- 6. 强制更新 mtime
+        out.modified = os.date("%Y-%m-%dT%H:%M:%S")
 
         -- 7. 保持 date (创建时间) 不变
-        -- 如果 metadata 里没有 date，也许你想补一个？如果不需要，可以删掉下面这行
-        if out.date == nil then
-          out.date = os.date("%Y-%m-%dT%H:%M:%S")
+        -- 如果 metadata 里没有 date
+        if out.created == nil then
+          out.created = os.date("%Y-%m-%dT%H:%M:%S")
         end
 
         return out

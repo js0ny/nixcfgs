@@ -47,4 +47,6 @@ in
     "d ${xdg-data}/gnupg 0700 ${user} users -"
     "d ${xdg-state}/sqlite 0755 ${user} users -"
   ];
+
+  home.preferXdgDirectories = true;
 }

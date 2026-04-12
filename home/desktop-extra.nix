@@ -36,6 +36,7 @@
 
     ./programs/terminals/kitty.nix
     ./programs/terminals/ghostty.nix
+    ./programs/terminals/zellij.nix
 
     ./programs/shell/bash.nix
     ./programs/shell/zsh.nix
@@ -105,6 +106,11 @@
       pkgs.cider-2
     ]);
   services.protonmail-bridge.enable = true;
+  nixdots.persist.home = {
+    directories = [
+      ".local/share/protonmail"
+    ];
+  };
   dconf.settings = {
     "ca/desrt/dconf-editor" = {
       show-warning = false;
