@@ -8,11 +8,11 @@ let
   term = "xdg-terminal-exec";
   # TODO: Don't default to dark
   iconTheme = config.nixdots.style.icon.dark;
-  launcher = "walker";
   kbdBacklightDev = config.nixdots.laptop.backlight.keyboard;
   kbdBacklightStep = "1";
   screen = config.nixdots.laptop.backlight.screen;
   nirictl = import ./scripts.nix { inherit pkgs; };
+  vicinae = import ../../../vicinae-reg.nix;
 in
 {
   home.packages = [
@@ -37,7 +37,7 @@ in
     # "Mod+E".action = spawn "${lib.getExe nirictl.focusOrLaunch}" "org.kde.dolphin" "dolphin";
     "Mod+E".action = spawn-sh "xdg-open ~";
     "Mod+Shift+E".action = spawn "fsearch";
-    "Mod+Alt+E".action = spawn "${term} yazi";
+    "Mod+Alt+E".action = spawn "${term}" "yazi";
     "Mod+Shift+Return".action = spawn-sh "${term} --app-id=terminal-popup";
     # "Mod+Shift+Alt+Return".action = spawn-sh "${term} --app-id=kitty--terminal-popup --working-directory='${config.home.homeDirectory}/.config/shells/nohist' -e nix develop";
 
@@ -53,15 +53,12 @@ in
     "Mod+Alt+i".hotkey-overlay.title = "Hyprlock";
     "Mod+Alt+i".action = spawn "hyprlock";
 
-    "Alt+Space".hotkey-overlay.title = "Run an Application: ${launcher}";
-    "Alt+Space".action = spawn "${launcher}";
+    "Alt+Space".hotkey-overlay.title = "Picker";
+    "Alt+Space".action.spawn = vicinae.toggle;
 
-    "Mod+W".hotkey-overlay.title = "Search open Window: ${launcher}";
-    "Mod+W".action = spawn "${launcher}" "-m" "windows";
+    "Mod+W".action.spawn = vicinae.windows;
 
-    "Mod+V".action =
-      # spawn-sh "cliphist list | ${launcher} -dmenu | cliphist decode | wl-copy";
-      spawn "${launcher}" "-m" "clipboard";
+    "Mod+V".action.spawn = vicinae.cliphist;
 
     # See ../volume-notify.nix
     "XF86AudioRaiseVolume".allow-when-locked = true;
@@ -107,9 +104,7 @@ in
     # AURA Key: XF86Launch3
     # Fan Key: XF86Launch4
     "XF86Launch4".action = spawn "${lib.getExe pkgs.localPkgs.power-profiles-next}";
-    "XF86Launch1".action = spawn "${launcher}" "-show" "drun" "-icon-theme" "${
-      iconTheme
-    }" "-show-icons";
+    "XF86Launch1".action.spawn = vicinae.toggle;
 
     "Mod+Tab".action = toggle-overview;
     "Mod+Q".action = close-window;

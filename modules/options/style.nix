@@ -30,7 +30,7 @@ in
       enable = lib.mkEnableOption "Enable stylix for theming and font management.";
       base16Scheme = lib.mkOption {
         type = lib.types.path;
-        default = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-soft.yaml";
+        default = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
         description = "Path to the Base16 color scheme YAML file.";
       };
       wallpaper = lib.mkOption {

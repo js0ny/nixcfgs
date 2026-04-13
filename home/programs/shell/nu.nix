@@ -8,8 +8,9 @@
       "l" = "ls -la";
       "ll" = "ls -l";
       "fg" = "job unfreeze";
+      "cls" = "clear";
     };
-    extraConfig = ''
+    extraConfig = /* nu */ ''
       $env.config.show_banner = false
       $env.config.history = {
         file_format: sqlite
@@ -17,6 +18,17 @@
         sync_on_enter: true
         isolation: true
       }
+      $env.config.keybindings ++= [
+        {
+          name: insert_last_token
+          modifier: alt
+          keycode: char_.
+          mode: emacs
+          event: [
+            { edit: InsertString, value: " nu" }
+            { send: Enter }
+          ]
+        }]
       source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu
       source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu
       source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/rg/rg-completions.nu

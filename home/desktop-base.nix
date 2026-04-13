@@ -45,7 +45,8 @@
     ./programs/miniserve.nix
     ./programs/pcloud.nix
     ./programs/sandboxed.nix
-    ./programs/walker.nix
+    # ./programs/walker.nix
+    ./programs/vicinae.nix
 
     ./programs/productivity/obsidian
     ./programs/productivity/sioyek

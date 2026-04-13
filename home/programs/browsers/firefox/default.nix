@@ -24,19 +24,6 @@ in
       enable = true;
     };
 
-    xdg.desktopEntries."firefox-private" = {
-      name = "Firefox Private Window";
-      genericName = "Web Browser";
-      icon = "firefox-nightly";
-      type = "Application";
-      terminal = false;
-      categories = [
-        "Network"
-        "WebBrowser"
-      ];
-      exec = "firefox --private-window %U";
-    };
-
     # https://github.com/nix-community/stylix/issues/2071
     stylix.targets.firefox = {
       profileNames = [ "${p}" ];
