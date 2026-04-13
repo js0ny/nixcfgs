@@ -49,4 +49,5 @@ in
   ];
 
   home.preferXdgDirectories = true;
+  xresources.path = ".config/X11/Xresouces";
 }
