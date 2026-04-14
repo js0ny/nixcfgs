@@ -35,6 +35,7 @@ in
   programs.sioyek = {
     enable = true;
     # prefs_user.config
+    config.startup_commands = lib.mkForce [ "toggle_custom_color" ];
     bindings = {
       ## Movement
       "screen_down" = "J";

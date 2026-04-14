@@ -22,6 +22,7 @@
     ../common/impermanence/nixos.nix
 
     ./security/howdy.nix
+    ./security/apparmor.nix
 
     ./programs/chromium.nix
     ./programs/dolphin.nix

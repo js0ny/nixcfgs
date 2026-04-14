@@ -2,10 +2,10 @@
 
 let
   sources = pkgs.callPackage ../../_sources/generated.nix { };
-  p = sources.rime_wanxiang_zrm;
+  p = sources.rime_wanxiang_flypy;
 in
 pkgs.stdenv.mkDerivation {
-  pname = "rime-wanxiang-zrm";
+  pname = "rime-wanxiang-flypy";
   inherit (p) version src;
 
   nativeBuildInputs = [ pkgs.unzip ];

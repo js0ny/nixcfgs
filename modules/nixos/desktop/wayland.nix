@@ -11,4 +11,5 @@ lib.mkIf (cfg == "wayland") {
   environment.systemPackages = with pkgs; [
     wl-clipboard
   ];
+  programs.gpu-screen-recorder.enable = true;
 }

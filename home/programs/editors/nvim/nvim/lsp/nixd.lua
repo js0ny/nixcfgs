@@ -18,9 +18,9 @@ return {
         nixos = {
           expr = "(builtins.getFlake (toString ./.)).nixosConfigurations.crystal.options",
         },
-        home_manager = {
-          expr = '"(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.crystal.options.home-manager.users.type.getSubOptions []"',
-        },
+        -- home_manager = {
+        --   expr = '(builtins.getFlake ("git+file://${toString ./.}")).homeConfigurations."js0ny@crystal".options',
+        -- },
       },
     },
   },

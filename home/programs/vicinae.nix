@@ -8,7 +8,7 @@ in
     enable = true;
     systemd = {
       enable = true;
-      target = "niri.service";
+      # target = "niri.service";
       autoStart = true;
     };
     settings = {

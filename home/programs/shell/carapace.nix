@@ -6,6 +6,6 @@
     enableZshIntegration = false;
     # carapace works bad for fish
     enableFishIntegration = false;
-    enableNushellIntegration = false;
+    enableNushellIntegration = true;
   };
 }

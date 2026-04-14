@@ -1,0 +1,32 @@
+{
+    "rime_wanxiang_flypy": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "rime_wanxiang_flypy",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-39M9HO+rUFuUtqZLL8ZYXKYbORLAZGIlGIUP4IOQwdw=",
+            "type": "url",
+            "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.7.1/rime-wanxiang-flypy-fuzhu.zip"
+        },
+        "version": "v15.7.1"
+    },
+    "rime_wanxiang_zrm": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "rime_wanxiang_zrm",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-X9Ef+Uxr+9COljsXDAa6PtUFui7NWfsDF9+boyFZRrg=",
+            "type": "url",
+            "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.7.1/rime-wanxiang-zrm-fuzhu.zip"
+        },
+        "version": "v15.7.1"
+    }
+}

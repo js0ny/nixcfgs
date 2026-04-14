@@ -12,6 +12,11 @@
         key = "Meta+Return";
         command = "xdg-terminal-exec";
       };
+      "launch-vicinae" = {
+        name = "Launch Vicinae";
+        key = "Alt+Space";
+        command = "vicinae toggle";
+      };
     };
     configFile = {
       spectaclerc = {
@@ -52,14 +57,6 @@
         cyclePrevAction = [ ];
         edit_clipboard = [ ];
         "manage activities" = [ ];
-      };
-      "services/org.kde.krunner.desktop" = {
-        RunClipboard = [ ];
-        _launch = [
-          "Search"
-          "Alt+Space"
-        ];
-        ShowOSD = [ ];
       };
       "services/org.kde.plasma.emojier.desktop"._launch = "Meta+.";
       "services/org.kde.spectacle.desktop".CurrentMonitorScreenShot = [ ];

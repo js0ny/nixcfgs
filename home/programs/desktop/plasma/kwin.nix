@@ -54,12 +54,6 @@ in
       XWayland.Scale = 1.7;
     };
   };
-  nixdots.persist.home = {
-    files = [
-      ".config/kwinrc"
-      ".config/kwinrulesrc"
-    ];
-  };
 }
 /*
   TODO:

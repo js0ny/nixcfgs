@@ -177,6 +177,13 @@
             mac-app-util.darwinModules.default
           ];
         };
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
       homeConfigurations = {
@@ -232,6 +239,7 @@
         desktop-base = import ./home/desktop-base.nix;
         desktop-extra = import ./home/desktop-extra.nix;
       };
+
       devShells =
         nixpkgs.lib.genAttrs
           [
@@ -276,5 +284,24 @@
               };
             }
           );
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+          };
+        in
+        import ./pkgs {
+          inherit pkgs;
+          lib = pkgs.lib;
+        }
+      );
+
+      overlays.default = final: prev: {
+        js0ny = import ./pkgs {
+          pkgs = prev;
+          lib = prev.lib;
+        };
+      };
     };
 }

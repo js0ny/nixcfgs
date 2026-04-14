@@ -1,0 +1,7 @@
+[rime_wanxiang_zrm]
+src.github = "amzxyz/rime_wanxiang"
+fetch.url = "https://github.com/amzxyz/rime_wanxiang/releases/download/$ver/rime-wanxiang-zrm-fuzhu.zip"
+
+[rime_wanxiang_flypy]
+src.github = "amzxyz/rime_wanxiang"
+fetch.url = "https://github.com/amzxyz/rime_wanxiang/releases/download/$ver/rime-wanxiang-flypy-fuzhu.zip"

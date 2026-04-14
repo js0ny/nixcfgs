@@ -17,6 +17,7 @@ in
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    withRuby = false;
     extraPackages = with pkgs; [
       lua5_1
       lua51Packages.luarocks

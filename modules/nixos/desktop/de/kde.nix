@@ -15,6 +15,10 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "kde" cfg) {
     kdepim-addons
   ];
 
+  xdg.portal = {
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+  };
+
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     kate # kate and kwrite
   ];

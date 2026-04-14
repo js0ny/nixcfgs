@@ -16,7 +16,6 @@
   ];
   home.packages = with pkgs; [
     # kdePackages.yakuake
-    krunner-vscodeprojects
     plasmusic-toolbar
     plasma-plugin-blurredwallpaper
     kdePackages.krohnkite
@@ -53,11 +52,8 @@
       ".config/kdedefaults"
     ];
     files = [
-      ".config/kdeglobals"
       ".config/ktimezonedrc"
       ".config/kcminputrc"
-      ".config/kglobalshortcutsrc"
-      ".config/plasma-org.kde.plasma.desktop-appletsrc"
     ];
   };
   xdg.configFile."plasma-localerc" = {
