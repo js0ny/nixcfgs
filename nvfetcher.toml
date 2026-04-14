@@ -5,3 +5,8 @@ fetch.url = "https://github.com/amzxyz/rime_wanxiang/releases/download/$ver/rime
 [rime_wanxiang_flypy]
 src.github = "amzxyz/rime_wanxiang"
 fetch.url = "https://github.com/amzxyz/rime_wanxiang/releases/download/$ver/rime-wanxiang-flypy-fuzhu.zip"
+
+[RIME-LMDG]
+src.github = "amzxyz/RIME-LMDG"
+fetch.url = "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram"
+

@@ -1,4 +1,19 @@
 {
+    "RIME-LMDG": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "RIME-LMDG",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-XNANGNCLnhPOnS06LkY3C03oslqlHrdOs8jRsEQa5TI=",
+            "type": "url",
+            "url": "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram"
+        },
+        "version": "dict-nightly"
+    },
     "rime_wanxiang_flypy": {
         "cargoLock": null,
         "date": null,

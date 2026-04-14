@@ -6,6 +6,14 @@
   dockerTools,
 }:
 {
+  RIME-LMDG = {
+    pname = "RIME-LMDG";
+    version = "dict-nightly";
+    src = fetchurl {
+      url = "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram";
+      sha256 = "sha256-XNANGNCLnhPOnS06LkY3C03oslqlHrdOs8jRsEQa5TI=";
+    };
+  };
   rime_wanxiang_flypy = {
     pname = "rime_wanxiang_flypy";
     version = "v15.7.1";
