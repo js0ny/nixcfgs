@@ -3,7 +3,6 @@
   imports = [
     ./desktop-base.nix
     ./programs
-    ./packages/gaming.nix
     ./packages/flatpak.nix
 
     ./programs/browsers/firefox
@@ -18,6 +17,7 @@
     ./programs/editors/nvim
     ./programs/editors/neovide.nix
 
+    ./gaming
     ./gaming/steam
     ./gaming/celeste
     ./gaming/minecraft.nix

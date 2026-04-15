@@ -20,6 +20,7 @@ let
     "text/csv"
     "text/markdown"
     "application/vnd.kde.kxmlguirc"
+    "application/atom+xml" # .atom
   ];
   webpageMimes = [
     "text/html"
@@ -46,6 +47,7 @@ let
       "nix"
       "yaml"
       "lock"
+      "atom"
     ];
     #     "${apps.browser.bundleIdentifier}" = ["html" "htm"];
   };

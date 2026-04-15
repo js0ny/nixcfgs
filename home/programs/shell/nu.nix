@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  home.sessionVariables = {
+    NU_EXPERIMENTAL_OPTIONS = "native-clip";
+  };
   programs.nushell = {
     enable = true;
     shellAliases = {
