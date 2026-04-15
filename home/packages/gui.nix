@@ -21,6 +21,7 @@
     loupe # SUPER FAST 有催人跑的感觉 w/ GPU Accel.
     qbittorrent
     nixpaks.qq
+    nixpaks.ticktick
     signal-desktop
     # Theming
     papirus-icon-theme
@@ -37,4 +38,10 @@
     ripdrag
     qpwgraph
   ];
+
+  nixdots.persist.home = {
+    directories = [
+      ".var"
+    ];
+  };
 }
