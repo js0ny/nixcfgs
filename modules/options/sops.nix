@@ -9,10 +9,13 @@ let
     freeformType = lib.types.attrsOf lib.types.anything;
 
     options.env = lib.mkOption {
-      type = with lib.types; nullOr str;
-      default = null;
-      example = "OPENROUTER_API_KEY";
-      description = "Home-only shell environment variable populated from this secret file at runtime.";
+      type = with lib.types; coercedTo str (v: [ v ]) (listOf str);
+      default = [ ];
+      example = [
+        "OPENROUTER_API_KEY"
+        "OPENROUTER_API_KEY_BACKUP"
+      ];
+      description = "Home-only shell environment variables populated from this secret file at runtime. Accepts a single string or a list of strings.";
     };
   };
 in

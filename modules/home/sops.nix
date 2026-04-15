@@ -6,28 +6,34 @@
 }:
 let
   cfg = config.nixdots.sops;
-  envSecrets = lib.filterAttrs (_: secret: secret.env != null) cfg.secrets;
-  envNames = lib.mapAttrsToList (_: secret: secret.env) envSecrets;
+  envBindings = builtins.concatMap (
+    secretName:
+    let
+      secret = lib.getAttr secretName cfg.secrets;
+      path = (lib.getAttr secretName config.sops.secrets).path;
+    in
+    builtins.map (name: {
+      inherit name path;
+    }) secret.env
+  ) (builtins.attrNames cfg.secrets);
+
+  envNames = builtins.map (binding: binding.name) envBindings;
   hasEnvVars = builtins.length envNames > 0;
 
-  secretPaths = lib.mapAttrs' (
-    secretName: secret: lib.nameValuePair secret.env (lib.getAttr secretName config.sops.secrets).path
-  ) envSecrets;
-
   posixInit = builtins.concatStringsSep "\n" (
-    lib.mapAttrsToList (name: path: ''
-      if [ -r "${path}" ]; then
-        export ${name}="$(< "${path}")"
+    builtins.map (binding: ''
+      if [ -r "${binding.path}" ]; then
+        export ${binding.name}="$(< "${binding.path}")"
       fi
-    '') secretPaths
+    '') envBindings
   );
 
   fishInit = builtins.concatStringsSep "\n" (
-    lib.mapAttrsToList (name: path: ''
-      if test -r "${path}"
-        set -gx "${name}" (cat "${path}")
+    builtins.map (binding: ''
+      if test -r "${binding.path}"
+        set -gx "${binding.name}" (cat "${binding.path}")
       end
-    '') secretPaths
+    '') envBindings
   );
 in
 {
@@ -37,7 +43,7 @@ in
         assertions = [
           {
             assertion = builtins.length envNames == builtins.length (lib.unique envNames);
-            message = "my.sops.secrets.*.env must be unique.";
+            message = "my.sops.secrets.*.env entries must be unique.";
           }
         ];
 
