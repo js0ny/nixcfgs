@@ -17,7 +17,6 @@ let
     aic = "aichat -s";
     aicc = "aichat -c";
     py = "nix run 'nixpkgs#python3'";
-    oc = "opencode";
     # Hide impermanence mounted directories from duf.
     duf = "duf -hide-mp '/etc/*,/var/*,/home/*/*,/home/*/.*'";
   };

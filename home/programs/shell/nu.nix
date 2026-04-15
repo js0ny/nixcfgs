@@ -25,7 +25,7 @@
           keycode: char_.
           mode: emacs
           event: [
-            { edit: InsertString, value: " nu" }
+            { edit: InsertString, value: " !$" }
             { send: Enter }
           ]
         }]
@@ -36,6 +36,7 @@
       source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/uv/uv-completions.nu
       source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/podman/podman-completions.nu
       source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/ssh/ssh-completions.nu
+      source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/zellij/zellij-completions.nu
     '';
   };
   nixdots.persist.home = {

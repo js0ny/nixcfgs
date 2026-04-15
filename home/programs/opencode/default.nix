@@ -21,4 +21,8 @@
       model = "openai/gpt-5.4";
     };
   };
+
+  nixdots.programs.shellAliases = {
+    "oc" = "opencode";
+  };
 }

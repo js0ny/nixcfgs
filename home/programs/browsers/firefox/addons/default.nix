@@ -64,10 +64,11 @@ in
       # Misc
       rsshub-radar
       proton-pass
-      # proton-vpn
+      proton-vpn-firefox-extension
       styl-us
       kiss-translator
       auto-tab-discard
+      gesturefy
 
       # Disabled
       # view-page-archive # Web Archives
