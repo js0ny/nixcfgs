@@ -23,6 +23,7 @@ in
         termius = callNixPak ./termius.nix;
         zoom-us = callNixPak ./zoom-us.nix;
         spotify = callNixPak ./spotify.nix;
+        ticktick = callNixPak ./ticktick.nix;
       };
     })
   ];
