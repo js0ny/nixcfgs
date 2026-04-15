@@ -10,3 +10,18 @@ fetch.url = "https://github.com/amzxyz/rime_wanxiang/releases/download/$ver/rime
 src.github = "amzxyz/RIME-LMDG"
 fetch.url = "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram"
 
+[bbdown-linux-x64]
+src.github = "nilaoda/BBDown"
+fetch.url = "https://github.com/nilaoda/BBDown/releases/download/$ver/BBDown_$ver_20240814_linux-x64.zip"
+
+[bbdown-linux-arm64]
+src.github = "nilaoda/BBDown"
+fetch.url = "https://github.com/nilaoda/BBDown/releases/download/$ver/BBDown_$ver_20240814_linux-arm64.zip"
+
+[bbdown-osx-arm64]
+src.github = "nilaoda/BBDown"
+fetch.url = "https://github.com/nilaoda/BBDown/releases/download/$ver/BBDown_$ver_20240814_osx-arm64.zip"
+
+[noname]
+src.github = "libnoname/noname"
+fetch.github = "libnoname/noname"

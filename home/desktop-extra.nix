@@ -101,6 +101,7 @@
       })
       nix-output-monitor
       nvd
+      localPkgs.BBDown
     ]
     ++ (pkgs.mkElectronWayland [
       pkgs.cider-2

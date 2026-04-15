@@ -8,17 +8,15 @@
   makeWrapper,
   nodejs_24,
   pnpm_10,
+  callPackage,
 }:
+let
+  sources = callPackage ../../_sources/generated.nix { };
+  p = sources.noname;
+in
 stdenv.mkDerivation (finalAttrs: {
   pname = "noname";
-  version = "v1.11.3";
-
-  src = fetchFromGitHub {
-    owner = "libnoname";
-    repo = "noname";
-    rev = finalAttrs.version;
-    hash = "sha256-NXm9nFdTAvcKo9eiNDG1tgFwCfB7waFwEZebLv8ah3c=";
-  };
+  inherit (p) version src;
 
   pnpmRoot = ".";
 
