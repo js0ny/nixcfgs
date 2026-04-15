@@ -18,6 +18,7 @@ in
     enable = true;
     defaultEditor = true;
     withRuby = false;
+    withPython3 = true;
     extraPackages = with pkgs; [
       lua5_1
       lua51Packages.luarocks
