@@ -8,7 +8,7 @@
     "d ${config.home.homeDirectory}/.sandbox/.per-app/wechat 0700 ${config.home.username} users -"
   ];
   home.packages = with pkgs; [
-    wechat-uos-sandboxed
+    localPkgs.wechat-bwrap
   ];
   nixdots.persist.home = {
     directories = [
