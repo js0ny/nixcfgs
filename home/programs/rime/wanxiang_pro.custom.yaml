@@ -1,4 +1,5 @@
 patch:
-  key_binder/sequence:
+  super_sequence:
     pin: "Alt+p" # 使用 Alt-p 而不是 Ctrl-p 置顶候选项（见 ./default.custom.yaml 中 emacs editing）
-
+  key_binder/bindings:
+    - { when: always, accept: Shift+space, send: noop }

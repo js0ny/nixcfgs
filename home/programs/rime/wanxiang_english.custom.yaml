@@ -1,0 +1,3 @@
+patch:
+  key_binder/bindings:
+    - { when: always, accept: Shift+space, send: noop }

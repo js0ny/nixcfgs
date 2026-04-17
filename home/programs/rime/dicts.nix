@@ -35,6 +35,7 @@ in
   home.file = {
     "${rimePath}/default.custom.yaml".source = ./default.custom.yaml;
     "${rimePath}/wanxiang_pro.custom.yaml".source = ./wanxiang_pro.custom.yaml;
+    "${rimePath}/wanxiang_english.custom.yaml".source = ./wanxiang_english.custom.yaml;
     "${rimePath}/squirrel.custom.yaml".source = ./squirrel.custom.yaml;
   };
 }
