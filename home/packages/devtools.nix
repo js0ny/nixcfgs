@@ -13,6 +13,5 @@
     httpie
     gron
     jless
-    codex
   ];
 }

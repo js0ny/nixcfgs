@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [
     ./cosmic-greeter.nix
@@ -6,4 +6,6 @@
     ./ly.nix
     ./sddm.nix
   ];
+
+  services.displayManager.defaultSession = builtins.head config.nixdots.desktop.de;
 }

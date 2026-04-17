@@ -26,7 +26,7 @@ let
   username = config.nixdots.user.name;
   cfg = config.nixdots.desktop.xremap.enable;
 in
-lib.mkIf cfg {
+{
   # Keycode: https://github.com/emberian/evdev/blob/1d020f11b283b0648427a2844b6b980f1a268221/src/scancodes.rs#L15
   # Alias for mods:
   #     SHIFT-
@@ -35,8 +35,8 @@ lib.mkIf cfg {
   #     WIN-, SUPER-, WINDOWS-
 
   services.xremap = {
-    enable = true;
-    withGnome = true;
+    enable = cfg;
+    withNiri = true;
     # modmap: single key
     serviceMode = "user";
     userName = username;

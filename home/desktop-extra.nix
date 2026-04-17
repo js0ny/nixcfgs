@@ -56,12 +56,15 @@
     ./programs/eza.nix
     ./programs/cherry-studio.nix
     ./programs/element.nix
+    ./programs/codex.nix
+    ./programs/claude-code.nix
 
     ./programs/devenvs/typst.nix
     ./programs/devenvs/lua.nix
     ./programs/devenvs/nix.nix
 
     ./programs/pdf2zh
+    ./programs/easyeffects
 
     ./programs/productivity/obsidian
     ./programs/productivity/sioyek
@@ -118,5 +121,4 @@
       show-warning = false;
     };
   };
-  services.easyeffects.enable = true;
 }

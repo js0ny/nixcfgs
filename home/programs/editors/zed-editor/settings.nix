@@ -131,13 +131,11 @@
         use_system_clipboard = "on_yank";
         use_smartcase_find = true;
       };
-      features = {
-        edit_prediction_provider = "zed";
-      };
       outline_panel = {
         dock = "right";
       };
       edit_predictions = {
+        provider = "zed";
         disabled_globs = [
           "*.bean"
           "*.env"

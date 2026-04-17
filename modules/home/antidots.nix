@@ -20,7 +20,6 @@ in
     DOCKER_CONFIG = "${xdg-config}/docker";
     GRADLE_USER_HOME = "${xdg-data}/gradle";
     PASSWORD_STORE_DIR = "${xdg-data}/password-store";
-    CODEX_HOME = "${xdg-config}/codex";
     KIVY_HOME = "${xdg-data}/kivy"; # python-kivy ~/.kivy
     LEIN_HOME = "${xdg-data}/lein"; # leiningen ~/.lein ~/.m2
     NPM_CONFIG_USERCONFIG = "${xdg-config}/npm/npmrc";

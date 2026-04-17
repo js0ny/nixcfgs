@@ -16,7 +16,7 @@
     };
 
     Install = {
-      WantedBy = [ "waylandwm-session.target" ];
+      WantedBy = [ "graphical-session.target" ];
     };
   };
 }
