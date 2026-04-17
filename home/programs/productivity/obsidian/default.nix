@@ -4,7 +4,10 @@
 }:
 {
   home.packages = with pkgs; [
-    obsidian
+    (obsidian.override {
+      commandLineArgs = "--password-store=gnome-libsecret";
+      electron = pkgs.electron_39;
+    })
   ];
   nixdots.persist.home = {
     directories = [

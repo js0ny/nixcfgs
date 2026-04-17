@@ -15,8 +15,12 @@ in
 {
   imports = [ ./default.nix ];
   programs.vscode = {
-    package = pkgs.vscode-fhs;
     enable = true;
+    package = (
+      pkgs.vscode.override {
+        commandLineArgs = "--password-store=gnome-libsecret";
+      }
+    );
   };
 
   programs.vscode.profiles.default = {

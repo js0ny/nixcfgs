@@ -6,6 +6,8 @@
     ];
   };
   home.packages = with pkgs; [
-    element-desktop
+    (element-desktop.override {
+      commandLineArgs = "--password-store=gnome-libsecret";
+    })
   ];
 }

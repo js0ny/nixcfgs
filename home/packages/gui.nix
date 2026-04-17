@@ -3,6 +3,13 @@
   config,
   ...
 }:
+let
+  forceElectron39 =
+    p:
+    (p.override {
+      electron = pkgs.electron_39;
+    });
+in
 {
   imports = [
     ../../hardening/nixpaks
@@ -27,7 +34,7 @@
     papirus-icon-theme
     mission-center
     remmina
-    siyuan
+    (forceElectron39 siyuan)
     localsend
     proton-vpn
     showmethekey
@@ -38,7 +45,6 @@
     ripdrag
     qpwgraph
   ];
-
   nixdots.persist.home = {
     directories = [
       ".var"

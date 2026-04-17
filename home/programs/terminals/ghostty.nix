@@ -16,6 +16,10 @@ in
     systemd.enable = if pkgs.stdenv.isDarwin then false else true;
     # Not ready
     settings = {
+      env = [
+        "COLORTERM=truecolor"
+        "TERM_PROGRAM=ghostty"
+      ];
       command = lib.getExe shell;
       font-size = 13;
       font-family = (builtins.head config.nixdots.style.fonts.editorMono).name;

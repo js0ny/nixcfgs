@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../packages.nix
+    ../.
     ./window-rules.nix
     ./keymaps.nix
   ];

@@ -1,8 +1,6 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  services.swww = {
+  services.awww = {
     enable = true;
-    # NOTE: Upstream changes the name of the package, override this to avoid warnings.
-    package = pkgs.awww;
   };
 }

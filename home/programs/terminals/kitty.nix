@@ -19,6 +19,7 @@ in
     };
     environment = {
       "TERM_PROGRAM" = "kitty";
+      "COLORTERM" = "truecolor";
     };
     font = {
       size = 12;

@@ -24,6 +24,7 @@ in
   nixdots.persist.home = {
     directories = [
       ".config/zed"
+      ".local/share/zed"
     ];
   };
 }
