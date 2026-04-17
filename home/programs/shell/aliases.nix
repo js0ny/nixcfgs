@@ -14,8 +14,6 @@ let
   commonAliases = {
     ni = "touch";
     cls = "clear";
-    aic = "aichat -s";
-    aicc = "aichat -c";
     py = "nix run 'nixpkgs#python3'";
     # Hide impermanence mounted directories from duf.
     duf = "duf -hide-mp '/etc/*,/var/*,/home/*/*,/home/*/.*'";

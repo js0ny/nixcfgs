@@ -20,6 +20,7 @@ in
 {
   imports = [
     ./copyous.nix
+    ../../dconf-editor.nix
   ];
   home.packages =
     with pkgs;

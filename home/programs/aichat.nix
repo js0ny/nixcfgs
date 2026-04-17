@@ -1,9 +1,15 @@
 { ... }:
 {
+  nixdots.programs.shellAliases = {
+    aic = "aichat -s";
+  };
   programs.aichat = {
     enable = true;
     settings = {
       model = "openrouter:qwen/qwen3-235b-a22b-2507";
+      save_session = false;
+      wrap = "auto";
+      keybindings = "emacs";
       clients = [
         {
           type = "openai-compatible";

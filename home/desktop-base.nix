@@ -15,6 +15,7 @@
     ./programs/block-desktop-entries.nix
     ./programs/mime.nix
     ./programs/pim.nix
+    ./programs/nix-index.nix
 
     ./programs/browsers/firefox
     ./programs/desktop/wayland-wm/niri
@@ -33,6 +34,7 @@
     ./programs/shell/bash.nix
     ./programs/shell/zsh.nix
     ./programs/shell/fish
+    ./programs/shell/nu.nix
     ./programs/shell/direnv.nix
 
     ./programs/social/discord.nix

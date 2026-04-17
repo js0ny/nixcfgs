@@ -29,9 +29,7 @@
     ./programs/media/cider-2.nix
     ./programs/media/gallery-dl.nix
     ./programs/media/beets.nix
-    ./programs/media/celluloid.nix
     ./programs/media/feishin.nix
-    ./programs/media/lollypop.nix
     ./programs/media/picard.nix
 
     ./programs/terminals/kitty.nix
@@ -97,7 +95,6 @@
       file-roller
       piliplus
       calibre
-      dconf-editor
       kdePackages.elisa
       (jetbrains.clion.override {
         vmopts = "-Dawt.toolkit.name=WLToolkit";
@@ -110,15 +107,4 @@
     ++ (pkgs.mkElectronWayland [
       pkgs.cider-2
     ]);
-  services.protonmail-bridge.enable = true;
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/protonmail"
-    ];
-  };
-  dconf.settings = {
-    "ca/desrt/dconf-editor" = {
-      show-warning = false;
-    };
-  };
 }

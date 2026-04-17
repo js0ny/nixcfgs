@@ -28,6 +28,7 @@
     ./programs/social/telegram.nix
 
     ./programs/aichat.nix
+    ./programs/nix-index.nix
 
     ./programs/productivity/obsidian
     ./programs/productivity/sioyek

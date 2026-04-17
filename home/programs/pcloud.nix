@@ -38,6 +38,7 @@ let
   };
 in
 {
+  imports = [ ./sandboxed.nix ];
   home.packages = [
     pcloudAntidots
     pcloudAntidotsDesktop

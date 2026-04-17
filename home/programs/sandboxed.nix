@@ -8,4 +8,10 @@ in
     "d ${home}/.sandbox/exchange 0755 ${user} users -"
     "d ${home}/.sandbox/downloads 0755 ${user} users -"
   ];
+  nixdots.persist.home = {
+    directories = [
+      ".sandbox/.per-app"
+      ".var"
+    ];
+  };
 }

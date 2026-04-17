@@ -15,11 +15,7 @@ in
     ../../hardening/nixpaks
   ];
   home.packages = with pkgs; [
-    asciinema
-    visidata
     imagemagick
-    ansi2html
-    gocryptfs
     uv
     pandoc
     dex
@@ -32,7 +28,6 @@ in
     signal-desktop
     # Theming
     papirus-icon-theme
-    mission-center
     remmina
     (forceElectron39 siyuan)
     localsend
@@ -40,14 +35,7 @@ in
     showmethekey
     localPkgs.edit-clipboard
     bluetui
-    newsboat
-    openai-whisper
     ripdrag
     qpwgraph
   ];
-  nixdots.persist.home = {
-    directories = [
-      ".var"
-    ];
-  };
 }
