@@ -16,6 +16,7 @@ in
   imports = [ ../default.nix ];
   programs.neovim = {
     enable = true;
+    sideloadInitLua = true;
     defaultEditor = true;
     withRuby = false;
     withPython3 = true;
