@@ -9,7 +9,15 @@ let
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram "$out/bin/opencode" \
-        --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.bun ]}
+        --prefix PATH : ${
+          pkgs.lib.makeBinPath [
+            pkgs.bun
+            pkgs.git
+            pkgs.cacert
+          ]
+        } \
+        --set BUN_TELEMETRY_DISABLED 1 \
+        --set CI 1
     '';
   };
 in
@@ -36,8 +44,21 @@ in
       model = "openai/gpt-5.4";
       plugin = [
         "@mohak34/opencode-notifier@latest"
-        "opencode-wakatime"
+        "opencode-btw"
       ];
+      permission = {
+        bash = {
+          "git commit*" = "ask";
+          "git push*" = "deny";
+          "git add*" = "ask";
+          "git status" = "allow";
+        };
+        read = {
+          "*" = "allow";
+          "*.env" = "deny";
+          "*.env.example" = "allow";
+        };
+      };
     };
   };
 

@@ -56,6 +56,7 @@
     ./programs/element.nix
     ./programs/codex.nix
     ./programs/claude-code.nix
+    ./programs/protonmail-bridge.nix
 
     ./programs/devenvs/typst.nix
     ./programs/devenvs/lua.nix
@@ -99,10 +100,14 @@
       (jetbrains.clion.override {
         vmopts = "-Dawt.toolkit.name=WLToolkit";
       })
+      (jetbrains.datagrip.override {
+        vmopts = "-Dawt.toolkit.name=WLToolkit";
+      })
       nix-output-monitor
       nvd
       localPkgs.BBDown
       localPkgs.danmaku2ass
+      octaveFull
     ]
     ++ (pkgs.mkElectronWayland [
       pkgs.cider-2
