@@ -8,7 +8,7 @@
 
     ./programs/opencode
 
-    ./programs/darwin/duti.nix
+    ./programs/darwin
 
     ./programs/browsers/firefox
 
@@ -19,9 +19,11 @@
     ./programs/terminals/kitty.nix
     ./programs/terminals/tmux.nix
     ./programs/terminals/ghostty.nix
+    ./programs/terminals/zellij.nix
 
     ./programs/shell/bash.nix
     ./programs/shell/zsh.nix
+    ./programs/shell/nu.nix
     ./programs/shell/fish
     ./programs/shell/direnv.nix
 
