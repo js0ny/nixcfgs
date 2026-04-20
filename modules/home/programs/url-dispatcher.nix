@@ -108,9 +108,8 @@ in
       type = types.enum [
         "allow"
         "deny"
-        "ask"
       ];
-      default = "ask";
+      default = "allow";
       description = "Default behaviour when no list is matched: allow (primary browser), deny (isolated browser), ask (Fuzzel prompt)";
     };
 
