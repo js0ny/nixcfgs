@@ -8,5 +8,6 @@
     ./dolphin.nix
     ./obs-studio.nix
     ./sdcv.nix
+    ./url-dispatcher.nix
   ];
 }

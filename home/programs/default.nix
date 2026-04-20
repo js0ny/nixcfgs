@@ -27,6 +27,7 @@
     ./rtorrent.nix
     ./git.nix
     ./tldr.nix
+    ./bat.nix
 
     # General Program config (Shared)
     ./lsd.nix

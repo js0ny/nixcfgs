@@ -48,6 +48,7 @@
     ./programs/pcloud.nix
     ./programs/sandboxed.nix
     # ./programs/walker.nix
+    ./programs/url-dispatcher.nix
     ./programs/vicinae.nix
 
     ./programs/productivity/obsidian
