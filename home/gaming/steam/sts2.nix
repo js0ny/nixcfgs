@@ -8,9 +8,14 @@ in
   # It fails to resolve '_Unwind_RaiseException' due to missing libgcc_s.so.1.
   programs.steam.config.apps.sts2 = {
     id = id;
-    launchOptions.preHook = ''
-      export LD_PRELOAD="${pkgs.stdenv.cc.cc.lib}/lib/libgcc_s.so.1"
-    '';
+    launchOptions = {
+      env = {
+        LD_PRELOAD = "${pkgs.stdenv.cc.cc.lib}/lib/libgcc_s.so.1";
+      };
+      args = [
+        "--display-driver wayland"
+      ];
+    };
   };
   nixdots.persist.home = {
     directories = [

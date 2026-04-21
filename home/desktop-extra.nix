@@ -108,8 +108,14 @@
       localPkgs.BBDown
       localPkgs.danmaku2ass
       octaveFull
+      krabby
     ]
     ++ (pkgs.mkElectronWayland [
       pkgs.cider-2
     ]);
+
+  xdg.configFile."krabby/config.toml".text = ''
+    language = "en"
+    shiny_rate = 0.0078125
+  '';
 }

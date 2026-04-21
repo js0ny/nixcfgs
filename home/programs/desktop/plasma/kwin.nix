@@ -20,6 +20,7 @@ let
   iconFixList = {
     "virt-manager" = "python3.13 .virt-manager-wrapped";
     "proton.vpn.app.gtk" = "python3.13 .protonvpn-app-wrapped";
+    "GameConqueror" = "python3.13 GameConqueror.py";
   };
 in
 {

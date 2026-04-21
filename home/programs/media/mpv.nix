@@ -14,7 +14,7 @@
     config = {
       vo = "gpu-next";
       hwdec = "auto-safe";
-      keep-open = "always";
+      # keep-open = "always";
     };
     bindings = {
       "h" = "seek -5";

@@ -33,6 +33,18 @@
     krunner = {
       position = "center";
     };
+    workspace = {
+      splashScreen.theme = "org.kde.breeze.desktop";
+      iconTheme = "Papirus-Dark";
+    };
+    configFile = {
+      kdeglobals = {
+        General = {
+          TerminalApplication = lib.getExe config.nixdots.apps.terminal.package;
+          TerminalService = config.nixdots.apps.terminal.desktop;
+        };
+      };
+    };
   };
   programs.okular = {
     enable = true;

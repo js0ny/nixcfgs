@@ -36,6 +36,7 @@
         };
       };
     };
+    lfs.enable = true;
     ignores = [
       ".Trash-1000"
       ".Trash-1000/"

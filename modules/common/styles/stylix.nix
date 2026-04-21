@@ -25,7 +25,6 @@ in
       }
       // style.icon;
       base16Scheme = lib.mkForce style.stylix.base16Scheme;
-      image = ./wallpaper.jpg;
       # TODO: Add support for "auto"
       polarity = "dark";
     };

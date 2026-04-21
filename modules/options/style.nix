@@ -33,10 +33,6 @@ in
         default = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
         description = "Path to the Base16 color scheme YAML file.";
       };
-      wallpaper = lib.mkOption {
-        type = lib.types.path;
-        description = "Path to the wallpaper image file.";
-      };
     };
     fonts = {
       sansSerif = lib.mkOption {
