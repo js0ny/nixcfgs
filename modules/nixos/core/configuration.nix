@@ -5,7 +5,6 @@
 }:
 let
   username = config.nixdots.user.name;
-  flake = config.nixdots.core.flakeDir;
   sysShell = config.nixdots.user.shell;
   sshKeys = config.nixdots.user.sshKeys;
 in
@@ -34,16 +33,6 @@ in
   # Obsolete
   programs.command-not-found.enable = false;
 
-  programs.nh = {
-    enable = true;
-    flake = flake;
-    clean = {
-      enable = true;
-      dates = "weekly";
-      extraArgs = "--keep 5 --keep-since 3d";
-    };
-  };
-
   nixdots.persist.system.files = [
     "/etc/machine-id"
   ];
@@ -53,4 +42,9 @@ in
     "/var/lib/nixos"
     "/var/lib/systemd/coredump"
   ];
+
+  environment.sessionVariables = {
+    # Default value: FRSXMK, where S indicates "Chops long lines"
+    SYSTEMD_LESS = "FRXMK";
+  };
 }

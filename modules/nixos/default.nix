@@ -4,7 +4,6 @@
     ./compat.nix
 
     ../options
-    ../common/sops.nix
     ./sops.nix
 
     ./hardware
@@ -15,9 +14,11 @@
     ./services/tailscale.nix
     ./services/syncthing.nix
 
+    ../common/sops.nix
     ../common/styles
     ../common/system.nix
     ../common/styles/nixos.nix
+    ../common/nix-helper.nix
 
     ../common/impermanence/nixos.nix
 

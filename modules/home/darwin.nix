@@ -4,21 +4,9 @@
   pkgs,
   ...
 }:
-let
-  flakeDir = config.nixdots.core.flakeDir;
-in
-lib.mkIf pkgs.stdenv.isDarwin {
+{
+  imports = [ ../common/nix-helper.nix ];
   home.sessionPath = [ "/opt/homebrew/bin" ];
-
-  programs.nh = {
-    enable = true;
-    flake = flakeDir;
-    clean = {
-      enable = true;
-      dates = "weekly";
-      extraArgs = "--keep 5 --keep-since 3d";
-    };
-  };
 
   xdg.desktopEntries = lib.mkForce { };
 
@@ -30,10 +18,10 @@ lib.mkIf pkgs.stdenv.isDarwin {
 
   systemd.user.tmpfiles.rules = lib.mkForce [ ];
 
-  home.file.".ssh/config".text = ''
-    # ~/.ssh/config
-    Host *
-    	UseKeychain yes
-    	AddKeysToAgent yes
-  '';
+  # home.file.".ssh/config".text = ''
+  #   # ~/.ssh/config
+  #   Host *
+  #   	UseKeychain yes
+  #   	AddKeysToAgent yes
+  # '';
 }
