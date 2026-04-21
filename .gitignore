@@ -52,3 +52,5 @@ private_fish_variables
 
 # 
 history.jsonl
+
+.direnv/

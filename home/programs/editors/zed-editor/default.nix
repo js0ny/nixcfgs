@@ -10,6 +10,7 @@ in
   imports = [
     ../default.nix
     ./settings.nix
+    ./keymaps.nix
   ];
   xdg.configFile."zed/snippets".source = snippets;
   programs.zed-editor = {

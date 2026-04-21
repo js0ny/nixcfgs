@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./nixdots
-    ./nixdefs
+    ./lsp.nix
+    ./mcp.nix
   ];
 }

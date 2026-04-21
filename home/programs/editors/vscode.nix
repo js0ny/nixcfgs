@@ -33,6 +33,7 @@ in
     ];
     userSettings = {
       workbench.iconTheme = "material-icon-theme";
+      nix.serverSettings.nixd = config.nixdefs.lsp.servers.nixd.serverSettings;
     };
   };
 

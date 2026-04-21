@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 let
   system = pkgs.stdenv.system;
   opencodePkg = inputs.llm-agents.packages.${system}.opencode;
@@ -59,6 +64,7 @@ in
           "*.env.example" = "allow";
         };
       };
+      mcp = config.nixdefs.mcp.servers;
     };
   };
 
