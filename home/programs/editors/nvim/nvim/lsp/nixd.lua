@@ -1,5 +1,18 @@
-local host = os.getenv("HOSTNAME") or "unknown"
-local user = os.getenv("USER") or "unknown"
+local function getHostname()
+  local f = io.popen("/usr/bin/env hostname")
+  local hostname = f:read("*a") or ""
+  f:close()
+  hostname = string.gsub(hostname, "\n$", "")
+  return hostname
+end
+
+local host = getHostname()
+-- Assuming using nix-helper, if not set, fallback to cwd
+local flake = os.getenv("NH_FLAKE") or "${toString ./.}"
+
+local base_expr = '(builtins.getFlake ("git+file://' .. flake .. '"))'
+local nixos_expr = base_expr .. ".nixosConfigurations." .. host .. ".options"
+local home_expr = nixos_expr .. ".home-manager.users.type.getSubOptions []"
 
 ---@type vim.lsp.Config
 return {
@@ -16,11 +29,11 @@ return {
       },
       options = {
         nixos = {
-          expr = "(builtins.getFlake (toString ./.)).nixosConfigurations.crystal.options",
+          expr = nixos_expr,
         },
-        -- home_manager = {
-        --   expr = '(builtins.getFlake ("git+file://${toString ./.}")).homeConfigurations."js0ny@crystal".options',
-        -- },
+        home_manager = {
+          expr = home_expr,
+        },
       },
     },
   },
