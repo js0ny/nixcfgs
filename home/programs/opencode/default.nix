@@ -46,7 +46,7 @@ in
     package = opencodeWithBun;
     settings = {
       autoupdate = false;
-      model = "openai/gpt-5.4";
+      model = config.nixdefs.llm.routing.code-plan.model;
       plugin = [
         "@mohak34/opencode-notifier@latest"
         "opencode-btw"

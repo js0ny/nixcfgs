@@ -7,6 +7,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 let
@@ -116,5 +117,11 @@ lib.mkIf pkgs.stdenv.isLinux {
         exec = "pdf2zh --openaicompatible \"%f\"";
       };
     };
+  };
+
+  nixdefs.llm.enable = true;
+
+  home.sessionVariables = {
+    PDF2ZH_MODEL = config.nixdefs.llm.routing.translation.model;
   };
 }
