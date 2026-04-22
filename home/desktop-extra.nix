@@ -57,6 +57,7 @@
     ./programs/codex.nix
     ./programs/claude-code.nix
     ./programs/protonmail-bridge.nix
+    ./programs/quickemu.nix
 
     ./programs/devenvs/typst.nix
     ./programs/devenvs/lua.nix
