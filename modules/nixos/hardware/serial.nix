@@ -4,23 +4,21 @@
   ...
 }:
 let
+  cfg = config.nixdefs.hardware;
+  # serial:
+  # * group: dialout
+  serial = config.nixdefs.hardware.serial;
   username = config.nixdots.user.name;
-  serial = {
-    # Xilinx Artix-7 Basys 3
-    # See: https://www.devicekb.com/hardware/usb-vendors/vid_0403-pid_6010
-    basys3 = {
-      idVendor = "0403";
-      idProduct = "6010";
-      symlink = "basys3";
-    };
-  };
   serialRules = lib.mapAttrsToList (_: device: ''
-    ATTRS{idVendor}=="${device.idVendor}", ATTRS{idProduct}=="${device.idProduct}", MODE="0660", GROUP="dialout", SYMLINK+="${device.symlink}"
-  '') serial;
+    ATTRS{idVendor}=="${device.dev.vendorId}", ATTRS{idProduct}=="${device.dev.productId}", MODE="0660", GROUP="${serial.group}", SYMLINK+="${device.symlink}"
+  '') serial.device;
 in
-{
+lib.mkIf cfg.enable {
   services.udev.extraRules = lib.concatStringsSep "\n" serialRules;
+
+  users.groups."${serial.group}" = { };
+
   users.users."${username}" = {
-    extraGroups = [ "dialout" ];
+    extraGroups = [ "${serial.group}" ];
   };
 }

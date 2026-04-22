@@ -16,4 +16,5 @@
     ./networkmanager.nix
     ../default.nix
   ];
+  nixdefs.hardware.enable = true;
 }

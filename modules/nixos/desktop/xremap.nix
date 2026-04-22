@@ -22,7 +22,10 @@ let
     "usb-NuPhy_NuPhy_Air75_V2-if01-mouse"
     "usb-NuPhy_NuPhy_Air75_V2-if02-hidraw"
   ];
-  nuphyAir75V2Inputs = map (name: "/dev/input/by-id/" + name) _nuphyAir75V2Inputs;
+  # keyboard = config.nixdefs.hardware.peripheral.keyboard;
+  # qmkKeyboards = lib.filterAttrs (name: kbd: kbd.qmk.enable) keyboard;
+  # _qmkInputs = builtins.concatLists qmkKeyboards.paths;
+  qmkInputs = map (name: "/dev/input/by-id/" + name) _nuphyAir75V2Inputs;
   username = config.nixdots.user.name;
   cfg = config.nixdots.desktop.xremap.enable;
 in
@@ -45,7 +48,7 @@ in
         {
           name = "Global";
           device = {
-            not = nuphyAir75V2Inputs;
+            not = qmkInputs;
           };
           remap = {
             "KEY_CAPSLOCK" = {
@@ -61,7 +64,7 @@ in
           # * BTN_SIDE  -> Back button
           name = "Mouse";
           device = {
-            not = nuphyAir75V2Inputs;
+            not = qmkInputs;
           };
           remap = {
             "BTN_EXTRA" = "KEY_ENTER";
