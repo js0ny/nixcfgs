@@ -40,12 +40,6 @@
       #   dark = "Catppuccin Mocha";
       # };
       remove_trailing_whitespace_on_save = true;
-      agent = {
-        default_model = {
-          provider = "openrouter";
-          model = "openai/gpt-5.1-codex";
-        };
-      };
       inlay_hints = {
         enabled = true;
         show_type_hints = true;
@@ -109,7 +103,6 @@
         nixd.settings = config.nixdefs.lsp.servers.nixd.serverSettings;
         lua-language-server.settings = config.nixdefs.lsp.servers.lua-language-server.serverSettings;
       };
-      context_servers = removeAttrs config.nixdefs.mcp.servers [ "type" ];
     };
   };
 }

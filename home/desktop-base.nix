@@ -67,4 +67,9 @@
       ".local/state/wireplumber"
     ];
   };
+
+  nixdefs = {
+    llm.enable = true;
+    mcp.enable = true;
+  };
 }

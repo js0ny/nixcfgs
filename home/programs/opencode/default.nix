@@ -5,6 +5,7 @@
   ...
 }:
 let
+  llm = config.nixdefs.llm;
   system = pkgs.stdenv.system;
   opencodePkg = inputs.llm-agents.packages.${system}.opencode;
   # Wrap bun to perform plugin installation
@@ -46,7 +47,6 @@ in
     package = opencodeWithBun;
     settings = {
       autoupdate = false;
-      model = config.nixdefs.llm.routing.code-plan.model;
       plugin = [
         "@mohak34/opencode-notifier@latest"
         "opencode-btw"
@@ -64,7 +64,6 @@ in
           "*.env.example" = "allow";
         };
       };
-      mcp = config.nixdefs.mcp.servers;
     };
   };
 

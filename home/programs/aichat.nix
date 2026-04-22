@@ -1,43 +1,23 @@
-{ config, ... }:
-let
-  route = config.nixdefs.llm.routing.chat;
-in
+{ ... }:
 {
+  /*
+    Secret installation: (if you do not want to set environment globally)
+    sops.templates."aichat.env" = {
+      content =  ''
+        SPECIFICCLIENT_API_KEY=${config.sops.placeholder.specific_client_api}
+      '';
+      path = "${config.xdg.configHome}/aichat/.env";
+    };
+  */
   nixdots.programs.shellAliases = {
     aic = "aichat -s";
   };
   programs.aichat = {
     enable = true;
     settings = {
-      model = "${route.provider}:${route.model}";
       save_session = false;
       wrap = "auto";
       keybindings = "emacs";
-      clients = [
-        {
-          type = "openai-compatible";
-          name = "openrouter";
-          api_base = "https://openrouter.ai/api/v1";
-          models = [
-            { name = "google/gemini-2.5-flash"; }
-            { name = "google/gemini-2.5-pro"; }
-            { name = "google/gemini-3-pro-preview"; }
-            { name = "google/gemini-3-flash-preview"; }
-            { name = "anthropic/claude-sonnet-4.5"; }
-            { name = "anthropic/claude-haiku-4.5"; }
-            { name = "anthropic/claude-opus-4.5"; }
-            { name = "openai/gpt-5.1"; }
-            { name = "openai/gpt-5.1-codex"; }
-            { name = "openai/gpt-5-mini"; }
-            { name = "x-ai/grok-code-fast-1"; }
-            { name = "x-ai/grok-4-fast"; }
-            { name = "x-ai/grok-4"; }
-            { name = "deepseek/deepseek-v3.2-exp"; }
-            { name = "qwen/qwen3-235b-a22b-2507"; }
-            { name = "qwen/qwen3-max"; }
-          ];
-        }
-      ];
     };
   };
 }

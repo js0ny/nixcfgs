@@ -120,8 +120,4 @@ lib.mkIf pkgs.stdenv.isLinux {
   };
 
   nixdefs.llm.enable = true;
-
-  home.sessionVariables = {
-    PDF2ZH_MODEL = config.nixdefs.llm.routing.translation.model;
-  };
 }

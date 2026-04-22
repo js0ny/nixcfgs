@@ -18,6 +18,8 @@
     ./sops.nix
     ./gnome-keyrings.nix
     ./shellAliases.nix
+    ./mcp.nix
+    ./llm.nix
 
     ../../helper/mergetools.nix
   ];

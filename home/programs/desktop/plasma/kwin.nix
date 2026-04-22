@@ -57,14 +57,25 @@ in
   };
 }
 /*
-  TODO:
-  [a0cac373-462b-4b7e-a796-13e67404e7db]
-  Description=float - mpv
-  above=true
-  aboverule=3
-  opacityinactive=90
-  opacityinactiverule=2
-  skippagerrule=3
-  wmclass=mpv
-  wmclassmatch=1
+    TODO:
+    [a0cac373-462b-4b7e-a796-13e67404e7db]
+    Description=float - mpv
+    above=true
+    aboverule=3
+    opacityinactive=90
+    opacityinactiverule=2
+    skippagerrule=3
+    wmclass=mpv
+    wmclassmatch=1
+    [e06c523b-8cd3-4f04-a198-b8a65c6bae94]
+    Description=Window settings for firefox
+    opacityinactive=80
+    opacityinactiverule=2
+    placement=6
+    placementrule=2
+    title=Picture-in-Picture
+    titlematch=1
+    types=1
+    wmclass=firefox
+    wmclassmatch=1
 */
