@@ -33,11 +33,14 @@ in
     locale.enable = true;
     bubblewrap = {
       network = lib.mkDefault false;
-      bind.rw = [
-        [
-          (envSuffix "HOME" "/.var/app/${config.flatpak.appId}/cache")
-          sloth.xdgCacheHome
-        ]
+      bind.rw =
+        (lib.optionals config.flatpakDataDir [
+          [
+            (envSuffix "HOME" "/.var/app/${config.flatpak.appId}/cache")
+            sloth.xdgCacheHome
+          ]
+        ])
+        ++ [
         (sloth.concat' sloth.xdgCacheHome "/fontconfig")
         (sloth.concat' sloth.xdgCacheHome "/mesa_shader_cache")
 

@@ -36,6 +36,7 @@ let
           binPath = "bin/qq";
         };
         flatpak.appId = appId;
+        flatpakDataDir = true;
 
         imports = [
           ./modules/gui-base.nix

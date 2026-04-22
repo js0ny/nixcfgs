@@ -29,6 +29,7 @@ let
           binPath = "bin/ticktick";
         };
         flatpak.appId = appId;
+        flatpakDataDir = true;
 
         imports = [
           ./modules/gui-base.nix

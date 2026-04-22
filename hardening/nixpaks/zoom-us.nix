@@ -24,6 +24,7 @@ let
           binPath = "bin/zoom";
         };
         flatpak.appId = appId;
+        flatpakDataDir = true;
 
         imports = [
           ./modules/gui-base.nix

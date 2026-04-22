@@ -25,6 +25,7 @@ let
           binPath = "bin/spotify";
         };
         flatpak.appId = appId;
+        flatpakDataDir = true;
 
         imports = [
           ./modules/gui-base.nix

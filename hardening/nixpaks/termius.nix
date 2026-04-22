@@ -26,6 +26,7 @@ let
           binPath = "bin/termius-app";
         };
         flatpak.appId = appId;
+        flatpakDataDir = true;
 
         imports = [
           ./modules/gui-base.nix
