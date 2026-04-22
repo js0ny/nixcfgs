@@ -5,5 +5,7 @@
     ./mcp.nix
     ./llm.nix
     ./hardware.nix
+    ./misc.nix
+    ./consts.nix
   ];
 }

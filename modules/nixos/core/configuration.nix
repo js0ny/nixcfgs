@@ -6,7 +6,7 @@
 let
   username = config.nixdots.user.name;
   sysShell = config.nixdots.user.shell;
-  sshKeys = config.nixdots.user.sshKeys;
+  sshKeys = config.nixdefs.misc.ssh.sshKeys;
 in
 {
   # Select internationalisation properties.
