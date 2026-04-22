@@ -90,12 +90,8 @@
       gimp
       kicad
       kdePackages.kdeconnect-kde
-      qutebrowser
-      proton-pass
       rustdesk
       kdePackages.qttools
-      file-roller
-      piliplus
       calibre
       kdePackages.elisa
       (jetbrains.clion.override {

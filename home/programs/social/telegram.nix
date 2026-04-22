@@ -86,8 +86,8 @@ let
 in
 {
   home.packages = with pkgs; [
-    ayugram-desktop
-    materialgram
+    nixpaks.ayugram-desktop
+    nixpaks.materialgram
   ];
   nixdots.persist.home = {
     directories = [

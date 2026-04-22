@@ -14,26 +14,31 @@
 }:
 let
   appId = "com.discordapp.Discord";
+  socatBin = lib.getExe pkgs.socat;
+  mkdirBin = lib.getExe' pkgs.coreutils "mkdir";
+  dirnameBin = lib.getExe' pkgs.coreutils "dirname";
+  rmBin = lib.getExe' pkgs.coreutils "rm";
+  discordBin = lib.getExe pkgs.discord;
   discordRpcBridge = pkgs.writeShellScriptBin "discord-rpc-bridge" ''
     set -eu
 
     OUR_SOCKET="''${XDG_RUNTIME_DIR}/app/${appId}/discord-ipc-0"
     DISCORD_SOCKET="''${XDG_RUNTIME_DIR}/discord-ipc-0"
 
-    mkdir -p "$(dirname "$OUR_SOCKET")"
+    ${mkdirBin} -p "$(${dirnameBin} "$OUR_SOCKET")"
 
     invoke_socat=true
     if [ -S "$OUR_SOCKET" ]; then
-      if ${pkgs.socat}/bin/socat -u OPEN:/dev/null "UNIX-CONNECT:$OUR_SOCKET" >/dev/null 2>&1; then
+      if ${socatBin} -u OPEN:/dev/null "UNIX-CONNECT:$OUR_SOCKET" >/dev/null 2>&1; then
         invoke_socat=false
       else
-        rm -f "$OUR_SOCKET"
+        ${rmBin} -f "$OUR_SOCKET"
       fi
     fi
 
     socat_pid=""
     if [ "$invoke_socat" = true ]; then
-      ${pkgs.socat}/bin/socat "UNIX-LISTEN:$OUR_SOCKET,forever,fork" "UNIX-CONNECT:$DISCORD_SOCKET" &
+      ${socatBin} "UNIX-LISTEN:$OUR_SOCKET,forever,fork" "UNIX-CONNECT:$DISCORD_SOCKET" &
       socat_pid=$!
     fi
 
@@ -44,7 +49,7 @@ let
     }
     trap cleanup EXIT INT TERM
 
-    ${pkgs.discord}/bin/discord "$@"
+    ${discordBin} "$@"
   '';
 
   wrapped = mkNixPak {

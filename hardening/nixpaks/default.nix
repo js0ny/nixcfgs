@@ -21,6 +21,8 @@ in
       nixpaks = {
         discord = callNixPak ./discord.nix;
         qq = callNixPak ./qq.nix;
+        materialgram = callNixPak ./materialgram.nix;
+        ayugram-desktop = callNixPak ./ayugram-desktop.nix;
         termius = callNixPak ./termius.nix;
         zoom-us = callNixPak ./zoom-us.nix;
         spotify = callNixPak ./spotify.nix;
