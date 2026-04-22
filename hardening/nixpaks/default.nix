@@ -27,6 +27,8 @@ in
         zoom-us = callNixPak ./zoom-us.nix;
         spotify = callNixPak ./spotify.nix;
         ticktick = callNixPak ./ticktick.nix;
+        feishin = callNixPak ./feishin.nix;
+        cider-2 = callNixPak ./cider-2.nix;
       };
     })
   ];

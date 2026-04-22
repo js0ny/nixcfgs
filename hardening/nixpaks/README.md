@@ -15,7 +15,8 @@
 ├── spotify.nix
 ├── termius.nix
 ├── ticktick.nix
-└── zoom-us.nix
+├── zoom-us.nix
+└── feishin.nix
 ```
 
 ## 数据目录映射
@@ -124,3 +125,7 @@ buildEnv {
 ```
 
 然后在 `default.nix` 的 overlay 中注册即可。
+
+## Electron 应用注意事项
+
+Electron 应用将所有用户数据写入 XDG config 目录（`~/.config/<AppName>`），不会写 XDG data 或 cache 目录。因此 `xdgBind` 只需 bind `config`，无需 bind `data` 和 `cache`。

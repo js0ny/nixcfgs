@@ -6,7 +6,7 @@
 }:
 {
   home.packages = [
-    pkgs.feishin
+    pkgs.nixpaks.feishin
   ];
   mergetools.feishin-config = {
     target = "${config.home.homeDirectory}/.config/feishin/config.json";

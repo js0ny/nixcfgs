@@ -80,36 +80,34 @@
 
     ./programs/rime
   ];
-  home.packages =
-    with pkgs;
-    [
-      blender
-      kdePackages.kdenlive
-      # PDF Viewer
-      kdePackages.okular
-      gimp
-      kicad
-      kdePackages.kdeconnect-kde
-      rustdesk
-      kdePackages.qttools
-      calibre
-      kdePackages.elisa
-      (jetbrains.clion.override {
-        vmopts = "-Dawt.toolkit.name=WLToolkit";
-      })
-      (jetbrains.datagrip.override {
-        vmopts = "-Dawt.toolkit.name=WLToolkit";
-      })
-      nix-output-monitor
-      nvd
-      localPkgs.BBDown
-      localPkgs.danmaku2ass
-      octaveFull
-      krabby
-    ]
-    ++ (pkgs.mkElectronWayland [
-      pkgs.cider-2
-    ]);
+  home.packages = with pkgs; [
+    blender
+    kdePackages.kdenlive
+    # PDF Viewer
+    kdePackages.okular
+    gimp
+    kicad
+    kdePackages.kdeconnect-kde
+    rustdesk
+    kdePackages.qttools
+    calibre
+    kdePackages.elisa
+    (jetbrains.clion.override {
+      vmopts = "-Dawt.toolkit.name=WLToolkit";
+    })
+    (jetbrains.datagrip.override {
+      vmopts = "-Dawt.toolkit.name=WLToolkit";
+    })
+    nix-output-monitor
+    nvd
+    localPkgs.BBDown
+    localPkgs.danmaku2ass
+    octaveFull
+    krabby
+  ];
+  # ++ (pkgs.mkElectronWayland [
+  #   pkgs.cider-2
+  # ]);
 
   xdg.configFile."krabby/config.toml".text = ''
     language = "en"

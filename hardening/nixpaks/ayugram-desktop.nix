@@ -15,7 +15,7 @@ let
       {
         app = {
           package = buildEnv {
-            name = "ayugram";
+            name = "nixpak-ayugram";
             paths = [ ayugram-desktop ];
           };
           binPath = "bin/AyuGram";

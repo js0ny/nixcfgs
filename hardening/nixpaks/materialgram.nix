@@ -16,7 +16,7 @@ let
       {
         app = {
           package = buildEnv {
-            name = "materialgram";
+            name = "nixpak-materialgram";
             paths = [ materialgram ];
           };
           binPath = "bin/materialgram";
