@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.nixdots.services.sshd;
-  port = config.nixdefs.ports.SSH;
+  port = config.nixdefs.endpoints.ssh.port;
 in
 lib.mkIf cfg {
   services.openssh = {

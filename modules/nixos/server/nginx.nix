@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  ports = config.nixdefs.ports;
+  ports = config.nixdefs.endpoints;
 in
 {
   imports = [
@@ -36,9 +36,9 @@ in
 
   };
   networking.firewall.allowedTCPPorts = [
-    ports.HTTP
-    ports.HTTPS
+    ports.http.port
+    ports.https.port
   ];
   # HTTP/3 is built on UDP
-  networking.firewall.allowedUDPPorts = [ ports.HTTPS ];
+  networking.firewall.allowedUDPPorts = [ ports.https.port ];
 }
