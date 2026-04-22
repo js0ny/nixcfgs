@@ -11,6 +11,7 @@
 │   ├── gui-base.nix     # GUI 基础（GPU、字体、Wayland/PulseAudio、主题）
 │   └── network.nix      # 网络访问（SSL 证书、DNS）
 ├── qq.nix
+├── discord.nix
 ├── spotify.nix
 ├── termius.nix
 ├── ticktick.nix
@@ -48,7 +49,19 @@ xdgBind = {
 
 未在 `xdgBind` 中声明的子目录对沙箱不可见，实现最小权限。
 
+### 当前偏好约定
+
+本仓库默认优先使用标准 XDG 目录映射（`flatpakDataDir = false` + `xdgBind`），避免把配置落到 `~/.var/app/*`。
+
 ## 添加新沙箱
+
+### Flatpak manifest 参考
+
+新建或维护某个应用的 nixpak 时，优先参考对应 Flathub manifest 的 `finish-args`，将权限逐项映射到 `dbus.policies`、`bubblewrap.sockets`、`bubblewrap.bind` 等字段。
+
+- Discord: https://github.com/flathub/com.discordapp.Discord/blob/master/com.discordapp.Discord.json
+
+建议在每个应用文件顶部保留 manifest 链接注释，便于后续 session 快速追溯权限来源。
 
 ```nix
 # example.nix

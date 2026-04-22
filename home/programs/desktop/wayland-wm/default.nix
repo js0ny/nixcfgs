@@ -31,6 +31,52 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
     ];
+    config = {
+      niri = {
+        default = [
+          "wlr"
+          "gnome"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+        "org.freedesktop.impl.portal.RemoteDesktop" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+        "org.freedesktop.impl.portal.FileChooser" = [
+          "gnome"
+          "gtk"
+        ];
+      };
+      kde = {
+        default = [
+          "kde"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "kde" ];
+        "org.freedesktop.impl.portal.RemoteDesktop" = [ "kde" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "kde" ];
+        "org.freedesktop.impl.portal.FileChooser" = [
+          "kde"
+          "gtk"
+        ];
+      };
+      hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+      };
+      sway = {
+        default = [
+          "wlr"
+          "gtk"
+        ];
+      };
+      gnome = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
+    };
   };
   # TODO: Allow launching components from all wayland-wm sessions
   # services.cliphist.enable = true; # use elephant + walker

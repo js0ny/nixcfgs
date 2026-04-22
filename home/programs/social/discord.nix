@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.nixcord = {
     enable = true;
@@ -6,6 +6,7 @@
     # Clients
     discord = {
       enable = true;
+      package = pkgs.nixpaks.discord;
       autoscroll.enable = true;
       vencord.enable = true;
     };
@@ -40,6 +41,9 @@
   nixdots.persist.home = {
     directories = [
       ".config/discord"
+      ".config/Vencord"
+      ".local/share/discord"
+      ".cache/discord"
     ];
   };
 }
