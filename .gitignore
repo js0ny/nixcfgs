@@ -50,7 +50,9 @@ private_fish_variables
 
 /.Trash-1000
 
-# 
+#
 history.jsonl
 
-.direnv/
+.direnv
+
+opencode.jsonc

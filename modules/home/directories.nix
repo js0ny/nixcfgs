@@ -45,6 +45,11 @@ let
         default = false;
         description = "Pin directory via gtk bookmarks";
       };
+      icon = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+        description = "Icon name for the directory";
+      };
     };
   };
 in
