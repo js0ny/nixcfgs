@@ -11,5 +11,13 @@
         description = "List of SSH public keys for the user.";
       };
     };
+    binary-cache = {
+      substituters = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+      };
+      trusted-public-keys = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+      };
+    };
   };
 }

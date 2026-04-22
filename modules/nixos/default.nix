@@ -43,4 +43,13 @@
   systemd.tmpfiles.rules = [
     "L /var/lib/dbus/machine-id - - - - /etc/machine-id"
   ];
+
+  nix.settings = {
+    substituters = config.nixdefs.misc.binary-cache.substituters;
+    trusted-public-keys = config.nixdefs.misc.binary-cache.trusted-public-keys;
+    trusted-users = [
+      "root"
+      config.nixdots.user.name
+    ];
+  };
 }

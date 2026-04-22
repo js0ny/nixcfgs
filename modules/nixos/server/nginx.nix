@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+let
+  ports = config.nixdefs.ports;
+in
 {
   imports = [
     ./acme.nix
@@ -33,9 +36,9 @@
 
   };
   networking.firewall.allowedTCPPorts = [
-    80
-    443
+    ports.HTTP
+    ports.HTTPS
   ];
   # HTTP/3 is built on UDP
-  networking.firewall.allowedUDPPorts = [ 443 ];
+  networking.firewall.allowedUDPPorts = [ ports.HTTPS ];
 }

@@ -7,5 +7,6 @@
     ./hardware.nix
     ./misc.nix
     ./consts.nix
+    ./ports.nix
   ];
 }
