@@ -5,3 +5,22 @@
 ## Flake Inputs
 
 - When adding a new input to `flake.nix`, run `nix flake metadata` and remove duplicated inputs using `inputs.MODULE.follows = "MODULE";` (e.g. `inputs.nixpkgs.follows = "nixpkgs";`, `inputs.flake-parts.follows = "flake-parts";`).
+
+## Neovim Documentation
+
+- To query Neovim help docs from the terminal, use this headless command:
+
+```bash
+nvim --headless \
+  '+help vim.lsp.Config' \
+  '+execute ".,.+50w! /dev/stdout"' \
+  '+qa'
+```
+
+- To change the number of output lines, edit `+50` in `'+execute ".,.+50w! /dev/stdout"'` (for example, use `+100` to print 100 lines after the current help line).
+- To query a different help topic, replace `vim.lsp.Config` in `'+help vim.lsp.Config'` with the target tag (for example, `:help lua-guide`).
+
+## Neovim LSP Configuration
+
+- **Native LSP:** This configuration uses Neovim's native LSP framework (`vim.lsp.enable` / `vim.lsp.config`) instead of the popular `nvim-lspconfig` plugin.
+- **Naming Convention:** When creating new LSP configuration files in `nvim/lsp/*.lua`, the filename **must** strictly match the standard LSP client name (e.g., `lua_ls.lua`, `ts_ls.lua`). Do not use custom names (like `luals.lua`). This is critical because native Neovim's `vim.lsp.enable()` relies on exact string matches of the client name.

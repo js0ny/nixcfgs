@@ -1,113 +1,113 @@
 {
-    "RIME-LMDG": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "RIME-LMDG",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-7D5RoVPZoPt076GckuvgoE2lTHgZPximUBeGKAr9eys=",
-            "type": "url",
-            "url": "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram"
-        },
-        "version": "dict-nightly"
+  "RIME-LMDG": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "RIME-LMDG",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-7D5RoVPZoPt076GckuvgoE2lTHgZPximUBeGKAr9eys=",
+      "type": "url",
+      "url": "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram"
     },
-    "bbdown-linux-arm64": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "bbdown-linux-arm64",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-9Y4KGN8aWJN1QooK8n6mH1zpb/r2fRFfM11fm+6aNNw=",
-            "type": "url",
-            "url": "https://github.com/nilaoda/BBDown/releases/download/1.6.3/BBDown_1.6.3_20240814_linux-arm64.zip"
-        },
-        "version": "1.6.3"
+    "version": "dict-nightly"
+  },
+  "bbdown-linux-arm64": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "bbdown-linux-arm64",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-9Y4KGN8aWJN1QooK8n6mH1zpb/r2fRFfM11fm+6aNNw=",
+      "type": "url",
+      "url": "https://github.com/nilaoda/BBDown/releases/download/1.6.3/BBDown_1.6.3_20240814_linux-arm64.zip"
     },
-    "bbdown-linux-x64": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "bbdown-linux-x64",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-7CM7fY1AscxER9rAW+ND9Tp1fcYFdDqICKuqjpfl0Q4=",
-            "type": "url",
-            "url": "https://github.com/nilaoda/BBDown/releases/download/1.6.3/BBDown_1.6.3_20240814_linux-x64.zip"
-        },
-        "version": "1.6.3"
+    "version": "1.6.3"
+  },
+  "bbdown-linux-x64": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "bbdown-linux-x64",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-7CM7fY1AscxER9rAW+ND9Tp1fcYFdDqICKuqjpfl0Q4=",
+      "type": "url",
+      "url": "https://github.com/nilaoda/BBDown/releases/download/1.6.3/BBDown_1.6.3_20240814_linux-x64.zip"
     },
-    "bbdown-osx-arm64": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "bbdown-osx-arm64",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-TfhAFNgYvW3/KzZbhHZFNA6JVcRFD+llaI9Br4mji6o=",
-            "type": "url",
-            "url": "https://github.com/nilaoda/BBDown/releases/download/1.6.3/BBDown_1.6.3_20240814_osx-arm64.zip"
-        },
-        "version": "1.6.3"
+    "version": "1.6.3"
+  },
+  "bbdown-osx-arm64": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "bbdown-osx-arm64",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-TfhAFNgYvW3/KzZbhHZFNA6JVcRFD+llaI9Br4mji6o=",
+      "type": "url",
+      "url": "https://github.com/nilaoda/BBDown/releases/download/1.6.3/BBDown_1.6.3_20240814_osx-arm64.zip"
     },
-    "noname": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "noname",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "libnoname",
-            "repo": "noname",
-            "rev": "v1.11.3",
-            "sha256": "sha256-NXm9nFdTAvcKo9eiNDG1tgFwCfB7waFwEZebLv8ah3c=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "v1.11.3"
+    "version": "1.6.3"
+  },
+  "noname": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "noname",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "deepClone": false,
+      "fetchSubmodules": false,
+      "leaveDotGit": false,
+      "name": null,
+      "owner": "libnoname",
+      "repo": "noname",
+      "rev": "v1.11.3",
+      "sha256": "sha256-NXm9nFdTAvcKo9eiNDG1tgFwCfB7waFwEZebLv8ah3c=",
+      "sparseCheckout": [],
+      "type": "github"
     },
-    "rime_wanxiang_flypy": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "rime_wanxiang_flypy",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-rFtNPMpY9MDwODSGcfMpyNxtaWmILO/UxscnsLo2/Sg=",
-            "type": "url",
-            "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.5/rime-wanxiang-flypy-fuzhu.zip"
-        },
-        "version": "v15.8.5"
+    "version": "v1.11.3"
+  },
+  "rime_wanxiang_flypy": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "rime_wanxiang_flypy",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-rFtNPMpY9MDwODSGcfMpyNxtaWmILO/UxscnsLo2/Sg=",
+      "type": "url",
+      "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.5/rime-wanxiang-flypy-fuzhu.zip"
     },
-    "rime_wanxiang_zrm": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "rime_wanxiang_zrm",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-lqeC/CcEIUdkrHh7sTIXdus+0xBN11983vs5NNenEmY=",
-            "type": "url",
-            "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.5/rime-wanxiang-zrm-fuzhu.zip"
-        },
-        "version": "v15.8.5"
-    }
+    "version": "v15.8.5"
+  },
+  "rime_wanxiang_zrm": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "rime_wanxiang_zrm",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-lqeC/CcEIUdkrHh7sTIXdus+0xBN11983vs5NNenEmY=",
+      "type": "url",
+      "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.5/rime-wanxiang-zrm-fuzhu.zip"
+    },
+    "version": "v15.8.5"
+  }
 }

@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ../../walker.nix
+    # ../../walker.nix
     ./waybar
     ./awww.nix
     ./kanshi.nix

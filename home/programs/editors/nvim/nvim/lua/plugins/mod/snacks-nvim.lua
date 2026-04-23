@@ -1,20 +1,5 @@
 -- Welcome to nvim's systemd :D
 
-local newcmd = vim.api.nvim_create_user_command
-local Snacks = require("snacks")
-
-newcmd("Dashboard", function()
-  Snacks.dashboard()
-end, { desc = "Toggle Dashboard" })
-
-newcmd("Picker", function()
-  Snacks.picker()
-end, { desc = "Toggle Picker" })
-
-newcmd("Explorer", function()
-  Snacks.explorer()
-end, { desc = "Toggle Explorer" })
-
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -94,60 +79,61 @@ return {
       },
     },
   },
+
   keys = {
     {
       "<leader>ba",
       function()
-        Snacks.dashboard()
+        require("snacks").dashboard()
       end,
       desc = "Toggle Dashboard",
     },
     {
       "<leader>ft",
       function()
-        Snacks.explorer()
+        require("snacks").explorer()
       end,
       desc = "Toggle File Tree",
     },
     {
       "<leader>fc",
       function()
-        Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+        require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
       end,
       desc = "Edit Configs",
     },
     {
       "<leader>/",
       function()
-        Snacks.picker.grep()
+        require("snacks").picker.grep()
       end,
       desc = "Grep Files",
     },
     {
       "<leader>;",
       function()
-        Snacks.picker.commands()
+        require("snacks").picker.commands()
       end,
       desc = "Show Commands",
     },
     {
       "<leader>ui",
       function()
-        Snacks.picker.colorschemes()
+        require("snacks").picker.colorschemes()
       end,
       desc = "Change Colorscheme",
     },
     {
       "<leader>pd",
       function()
-        Snacks.picker.zoxide()
+        require("snacks").picker.zoxide()
       end,
       desc = "List Recent Directories (Zoxide)",
     },
     {
       "<leader>R",
       function()
-        Snacks.picker.resume()
+        require("snacks").picker.resume()
       end,
       desc = "Resume Picker",
     },
@@ -156,21 +142,21 @@ return {
     {
       "<leader>gs",
       function()
-        Snacks.picker.git_status()
+        require("snacks").picker.git_status()
       end,
       desc = "Git Status",
     },
     {
       "<leader>gt",
       function()
-        Snacks.picker.git_branches()
+        require("snacks").picker.git_branches()
       end,
       desc = "Git Branches",
     },
     {
       "<leader>gc",
       function()
-        Snacks.picker.git_log()
+        require("snacks").picker.git_log()
       end,
       desc = "Git Log (Commits)",
     },
@@ -179,35 +165,35 @@ return {
     {
       "<leader>ff",
       function()
-        Snacks.picker.files()
+        require("snacks").picker.files()
       end,
       desc = "Find Files",
     },
     {
       "<leader>fb",
       function()
-        Snacks.picker.buffers()
+        require("snacks").picker.buffers()
       end,
       desc = "List Buffers",
     },
     {
       "<leader>bB",
       function()
-        Snacks.picker.buffers()
+        require("snacks").picker.buffers()
       end,
       desc = "List Buffers",
     }, -- 保持你原有的冗余映射
     {
       "<leader>fh",
       function()
-        Snacks.picker.recent()
+        require("snacks").picker.recent()
       end,
       desc = "Recent Files",
     },
     {
       "<leader>fl",
       function()
-        Snacks.picker.filetypes()
+        require("snacks").picker.filetypes()
       end,
       desc = "Set Filetype",
     },
@@ -217,7 +203,7 @@ return {
     {
       "<leader>cs",
       function()
-        Snacks.picker.lsp_symbols()
+        require("snacks").picker.lsp_symbols()
       end,
       desc = "Search Symbols",
     },
@@ -225,7 +211,7 @@ return {
     {
       "<leader>cS",
       function()
-        Snacks.picker.grep_word()
+        require("snacks").picker.grep_word()
       end,
       desc = "Search Current Symbol",
       mode = { "n", "x" },
@@ -235,21 +221,21 @@ return {
     {
       "<leader><space>",
       function()
-        Snacks.picker.smart()
+        require("snacks").picker.smart()
       end,
       desc = "Smart Find Files",
     },
     {
       "<leader>e",
       function()
-        Snacks.explorer()
+        require("snacks").explorer()
       end,
       desc = "File Explorer",
     },
     {
       "<leader>sd",
       function()
-        Snacks.picker.diagnostics()
+        require("snacks").picker.diagnostics()
       end,
       desc = "Diagnostics",
     },
@@ -258,14 +244,14 @@ return {
     {
       "gd",
       function()
-        Snacks.picker.lsp_definitions()
+        require("snacks").picker.lsp_definitions()
       end,
       desc = "Goto Definition",
     },
     {
       "gr",
       function()
-        Snacks.picker.lsp_references()
+        require("snacks").picker.lsp_references()
       end,
       nowait = true,
       desc = "References",
@@ -273,7 +259,7 @@ return {
     {
       "gy",
       function()
-        Snacks.picker.lsp_type_definitions()
+        require("snacks").picker.lsp_type_definitions()
       end,
       desc = "Goto T[y]pe Definition",
     },

@@ -3,7 +3,6 @@ return {
   { "wakatime/vim-wakatime", lazy = false },
   { import = "plugins.mod.toggleterm" },
   { import = "plugins.mod.which-keys-nvim" },
-  { import = "plugins.mod.copilot-lua" },
   { import = "plugins.mod.opencode" },
   { import = "plugins.mod.avante-nvim" },
   {
