@@ -63,7 +63,6 @@
     ./programs/devenvs/lua.nix
     ./programs/devenvs/nix.nix
 
-    ./programs/pdf2zh
     ./programs/easyeffects
 
     ./programs/productivity/obsidian
@@ -80,6 +79,7 @@
 
     ./programs/rime
   ];
+  programs.pdf2zh.enable = true;
   home.packages = with pkgs; [
     blender
     kdePackages.kdenlive

@@ -18,8 +18,6 @@
     ./sops.nix
     ./gnome-keyrings.nix
     ./shellAliases.nix
-    ./mcp.nix
-    ./llm.nix
     ./ssh.nix
     ./directories.nix
 

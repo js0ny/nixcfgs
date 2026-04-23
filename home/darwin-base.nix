@@ -40,7 +40,10 @@
     ./programs/productivity/sdcv.nix
   ];
 
+  programs.pdf2zh.enable = true;
+
   nixdefs = {
+    acp.enable = true;
     llm.enable = true;
     mcp.enable = true;
     hardware.enable = false;
