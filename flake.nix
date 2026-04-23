@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs-stable.url = "github:nixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     # flake-utils.url = "github:numtide/flake-utils";
     nix-darwin = {
@@ -19,7 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     # sops - Secrets
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -28,15 +33,30 @@
     # Niri - Wayland Window Manager
     niri-flake.url = "github:sodiboo/niri-flake";
     # xremap - kay remapper like keyd
-    xremap-flake.url = "github:xremap/nix-flake";
+    xremap-flake = {
+      url = "github:xremap/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     # betterfox - preconfigured firefox user.js
-    betterfox-nix.url = "github:HeitorAugustoLN/betterfox-nix";
+    betterfox-nix = {
+      url = "github:HeitorAugustoLN/betterfox-nix";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     firefox-addons = {
       url = "github:petrkozorezov/firefox-addons-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixcord.url = "github:kaylorben/nixcord";
-    catppuccin.url = "github:catppuccin/nix";
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,9 +66,15 @@
     walker = {
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:nix-community/stylix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nur.follows = "nur";
+    };
     nix-openclaw = {
       url = "github:openclaw/nix-openclaw";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,184 +83,50 @@
     nixpak = {
       url = "github:nixpak/nixpak";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     # mac-app-util: 将通过 Nix 安装的 Darwin GUI 软件统一入口，使路径能被 Spotlight 识别且不会出现 Dock 上的重复图标
     # 在 Darwin Host 上导入后会自动启用，无需额外配置
-    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     deploy-rs.url = "github:serokell/deploy-rs";
-    llm-agents.url = "github:numtide/llm-agents.nix";
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-stable,
-      nix-flatpak,
-      nix-darwin,
-      home-manager,
-      plasma-manager,
-      nur,
-      sops-nix,
-      niri-flake,
-      xremap-flake,
-      betterfox-nix,
-      firefox-addons,
-      nixcord,
-      catppuccin,
-      nix-index-database,
-      walker,
-      stylix,
-      nix-openclaw,
-      nixpak,
-      steam-config-nix,
-      mac-app-util,
-      deploy-rs,
-      llm-agents,
-      disko,
-      impermanence,
-      ...
-    }@inputs:
-    let
-      myLib = import ./lib { inherit (nixpkgs) lib; };
-      utils = myLib;
-      localOverlays = import ./overlays;
-      overlays = [
-        nix-openclaw.overlays.default
-        niri-flake.overlays.niri
-        nur.overlays.default
-        firefox-addons.overlays.default
-        localOverlays
-      ];
-      forSystem =
-        system:
-        import nixpkgs {
-          inherit system overlays;
-          config.allowUnfree = true;
-        };
-      specialArgs = { inherit inputs overlays myLib; };
-      nixosHosts = [
-        # "zp"
-        "crystal"
-        "polder"
-      ];
-      darwinHosts = [
-        "zen"
-      ];
-
-      mkNixosSystem =
-        hostname:
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          inherit specialArgs;
-          modules = [
-            home-manager.nixosModules.home-manager
-            xremap-flake.nixosModules.default
-            sops-nix.nixosModules.sops
-            catppuccin.nixosModules.catppuccin
-            stylix.nixosModules.default
-            disko.nixosModules.disko
-            impermanence.nixosModules.impermanence
-            ./hosts/${hostname}
-            { nixpkgs.overlays = overlays; }
-          ];
-        };
-      mkDarwinSystem =
-        hostname:
-        nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          inherit specialArgs;
-          modules = [
-            ./hosts/${hostname}
-            { nixpkgs.overlays = overlays; }
-            mac-app-util.darwinModules.default
-          ];
-        };
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
         "aarch64-linux"
         "aarch64-darwin"
       ];
-
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-    in
-    {
-      homeConfigurations = {
-        "js0ny@crystal" = home-manager.lib.homeManagerConfiguration {
-          pkgs = forSystem "x86_64-linux";
-          extraSpecialArgs = specialArgs // {
-            inherit utils;
-          };
-          modules = [
-            ./users/js0ny/crystal.nix
-            nix-openclaw.homeManagerModules.openclaw
-            plasma-manager.homeModules.plasma-manager
-            nix-flatpak.homeManagerModules.nix-flatpak
-            sops-nix.homeManagerModules.sops
-            niri-flake.homeModules.niri
-            betterfox-nix.modules.homeManager.betterfox
-            nixcord.homeModules.nixcord
-            catppuccin.homeModules.catppuccin
-            nix-index-database.homeModules.nix-index
-            walker.homeManagerModules.default
-            stylix.homeModules.stylix
-            steam-config-nix.homeModules.default
-          ];
-        };
-        "js0ny@zen" = home-manager.lib.homeManagerConfiguration {
-          pkgs = forSystem "aarch64-darwin";
-          extraSpecialArgs = specialArgs;
-          modules = [
-            mac-app-util.homeManagerModules.default
-            nix-openclaw.homeManagerModules.openclaw
-            ./users/js0ny/zen.nix
-            catppuccin.homeModules.catppuccin
-            betterfox-nix.modules.homeManager.betterfox
-            sops-nix.homeManagerModules.sops
-            stylix.homeModules.stylix
-            nix-index-database.homeModules.nix-index
-          ];
-        };
-      };
-      # Export nixos modules for private use
-      nixosModules = {
-        default = import ./modules/nixos;
-        server = import ./modules/nixos/server;
-        desktop = import ./modules/nixos/desktop;
-      };
-      darwinModules = {
-        default = import ./modules/darwin;
-      };
-      homeManagerModules = {
-        base = import ./home/base.nix;
-        server-base = import ./home/server-base.nix;
-        darwin-base = import ./home/darwin-base.nix;
-        desktop-base = import ./home/desktop-base.nix;
-        desktop-extra = import ./home/desktop-extra.nix;
-      };
-
-      devShells =
-        nixpkgs.lib.genAttrs
-          [
-            "x86_64-linux"
-            "aarch64-darwin"
-          ]
-          (
-            system:
+      perSystem =
+        { pkgs, ... }:
+        {
+          devShells =
             let
-              pkgs = import nixpkgs {
-                inherit system;
-              };
               ciDeps = with pkgs; [
                 stylua
                 prettier
@@ -245,45 +137,46 @@
               ];
               devDeps = with pkgs; [
                 lua-language-server
-                typescript-language-server
-                bash-language-server
+                pkgs.typescript-language-server
+                pkgs.bash-language-server
                 pyright
                 taplo
                 nixd
               ];
             in
             {
-              default = pkgs.mkShell {
-                buildInputs = ciDeps ++ devDeps;
-                shellHook = ''
-
-                '';
-              };
-              ci = pkgs.mkShell {
-                buildInputs = ciDeps;
-                shellHook = ''
-
-                '';
-              };
-            }
-          );
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
+              default = pkgs.mkShell { buildInputs = ciDeps ++ devDeps; };
+              ci = pkgs.mkShell { buildInputs = ciDeps; };
+            };
+          packages = import ./pkgs {
+            inherit pkgs;
+            lib = pkgs.lib;
           };
-        in
-        import ./pkgs {
-          inherit pkgs;
-          lib = pkgs.lib;
-        }
-      );
+        };
+      flake = {
+        nixosModules = {
+          default = import ./modules/nixos;
+          server = import ./modules/nixos/server;
+          desktop = import ./modules/nixos/desktop;
+        };
 
-      overlays.default = final: prev: {
-        js0ny = import ./pkgs {
-          pkgs = prev;
-          lib = prev.lib;
+        darwinModules = {
+          default = import ./modules/darwin;
+        };
+
+        homeManagerModules = {
+          base = import ./home/base.nix;
+          server-base = import ./home/server-base.nix;
+          darwin-base = import ./home/darwin-base.nix;
+          desktop-base = import ./home/desktop-base.nix;
+          desktop-extra = import ./home/desktop-extra.nix;
+        };
+
+        overlays.default = final: prev: {
+          localPkgs = import ./pkgs {
+            pkgs = prev;
+            lib = prev.lib;
+          };
         };
       };
     };
