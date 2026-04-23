@@ -2,15 +2,17 @@
 Sidebery Friendly Minimalist Style
 */
 :root {
---tab-min-height: 30px !important;
---toolbarbutton-inner-padding: 6px !important;
+    --tab-min-height: 30px !important;
+    --toolbarbutton-inner-padding: 6px !important;
 }
 
 #main-window:has(#sidebar-box:not([hidden])) #TabsToolbar {
-visibility: collapse !important;
+    visibility: collapse !important;
 }
 
-#sidebar-header { display: none; }
+#sidebar-header {
+    display: none;
+}
 #sidebar-box {
     padding: 0 !important;
 }

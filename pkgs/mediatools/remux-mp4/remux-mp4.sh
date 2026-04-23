@@ -12,10 +12,10 @@ AUDIO_BITRATE="192k"
 
 _log_level_num() {
   case "$1" in
-    DEBUG) echo 0 ;;
-    INFO) echo 1 ;;
-    ERROR) echo 2 ;;
-    *) echo 1 ;;
+  DEBUG) echo 0 ;;
+  INFO) echo 1 ;;
+  ERROR) echo 2 ;;
+  *) echo 1 ;;
   esac
 }
 
@@ -26,7 +26,7 @@ _log() {
   current_level="$(_log_level_num "$LOG_LEVEL")"
   target_level="$(_log_level_num "$level")"
 
-  if [[ "$target_level" -ge "$current_level" ]]; then
+  if [[ $target_level -ge $current_level ]]; then
     printf '[%s] [%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$level" "$*" >&2
   fi
 }
@@ -74,63 +74,78 @@ parse_args() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      -d|--debug)
-        LOG_LEVEL="DEBUG"
-        shift
-        ;;
-      --reencode)
-        REENCODE=true
-        shift
-        ;;
-      --crf)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --crf"; exit 1; }
-        CRF="$2"
-        shift 2
-        ;;
-      --preset)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --preset"; exit 1; }
-        PRESET="$2"
-        shift 2
-        ;;
-      --video-codec)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --video-codec"; exit 1; }
-        VIDEO_CODEC="$2"
-        shift 2
-        ;;
-      --audio-codec)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --audio-codec"; exit 1; }
-        AUDIO_CODEC="$2"
-        shift 2
-        ;;
-      --audio-bitrate)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --audio-bitrate"; exit 1; }
-        AUDIO_BITRATE="$2"
-        shift 2
-        ;;
-      -h|--help)
-        print_usage
-        exit 0
-        ;;
-      --)
-        shift
-        while [[ $# -gt 0 ]]; do
-          positional+=("$1")
-          shift
-        done
-        ;;
-      -*)
-        log_error "Unknown option: $1"
-        print_usage
+    -d | --debug)
+      LOG_LEVEL="DEBUG"
+      shift
+      ;;
+    --reencode)
+      REENCODE=true
+      shift
+      ;;
+    --crf)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --crf"
         exit 1
-        ;;
-      *)
+      }
+      CRF="$2"
+      shift 2
+      ;;
+    --preset)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --preset"
+        exit 1
+      }
+      PRESET="$2"
+      shift 2
+      ;;
+    --video-codec)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --video-codec"
+        exit 1
+      }
+      VIDEO_CODEC="$2"
+      shift 2
+      ;;
+    --audio-codec)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --audio-codec"
+        exit 1
+      }
+      AUDIO_CODEC="$2"
+      shift 2
+      ;;
+    --audio-bitrate)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --audio-bitrate"
+        exit 1
+      }
+      AUDIO_BITRATE="$2"
+      shift 2
+      ;;
+    -h | --help)
+      print_usage
+      exit 0
+      ;;
+    --)
+      shift
+      while [[ $# -gt 0 ]]; do
         positional+=("$1")
         shift
-        ;;
+      done
+      ;;
+    -*)
+      log_error "Unknown option: $1"
+      print_usage
+      exit 1
+      ;;
+    *)
+      positional+=("$1")
+      shift
+      ;;
     esac
   done
 
-  if [[ "${#positional[@]}" -lt 1 ]]; then
+  if [[ ${#positional[@]} -lt 1 ]]; then
     log_error "Missing required argument: video file"
     print_usage
     exit 1
@@ -154,7 +169,7 @@ build_ffmpeg_args() {
 
   args=(-hide_banner -loglevel error -y -i "$VIDEO_PATH" -map 0:v -map 0:a?)
 
-  if [[ "$REENCODE" == true ]]; then
+  if [[ $REENCODE == true ]]; then
     args+=(-c:v "$VIDEO_CODEC" -preset "$PRESET" -crf "$CRF")
     args+=(-c:a "$AUDIO_CODEC" -b:a "$AUDIO_BITRATE")
   else
@@ -170,23 +185,23 @@ main() {
 
   require_command ffmpeg
 
-  if [[ ! -f "$VIDEO_PATH" ]]; then
+  if [[ ! -f $VIDEO_PATH ]]; then
     log_error "Video file not found: $VIDEO_PATH"
     exit 1
   fi
 
-  if [[ -z "$OUTPUT_PATH" ]]; then
+  if [[ -z $OUTPUT_PATH ]]; then
     OUTPUT_PATH="$(infer_output_path "$VIDEO_PATH")"
   fi
 
   case "${VIDEO_PATH##*.}" in
-    webm|WebM|mkv|MKV) ;;
-    *)
-      log_info "Input is not .webm/.mkv; proceeding anyway"
-      ;;
+  webm | WebM | mkv | MKV) ;;
+  *)
+    log_info "Input is not .webm/.mkv; proceeding anyway"
+    ;;
   esac
 
-  if [[ "${OUTPUT_PATH##*.}" != "mp4" ]]; then
+  if [[ ${OUTPUT_PATH##*.} != "mp4" ]]; then
     log_error "Output file must end with .mp4"
     exit 1
   fi
@@ -196,7 +211,7 @@ main() {
 
   log_info "Input: $VIDEO_PATH"
   log_info "Output: $OUTPUT_PATH"
-  if [[ "$REENCODE" == true ]]; then
+  if [[ $REENCODE == true ]]; then
     log_info "Mode: re-encode (${VIDEO_CODEC}/${AUDIO_CODEC})"
   else
     log_info "Mode: stream copy"

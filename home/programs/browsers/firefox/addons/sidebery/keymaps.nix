@@ -1,12 +1,14 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 let
   id = "{3c078156-979c-498b-8990-85f7987dd929}";
   home = config.nixdots.user.home;
   p = config.nixdots.programs.firefox.defaultProfile;
+  profileDir =
+    if pkgs.stdenv.isDarwin then "Library/Application Support/Firefox/Profiles" else ".mozilla/firefox";
 in
 {
   mergetools."sidebery-keymaps" = {
-    target = "${home}/.mozilla/firefox/${p}/extension-settings.json";
+    target = "${home}/${profileDir}/${p}/extension-settings.json";
     format = "json";
     settings = {
       commands = {

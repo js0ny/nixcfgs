@@ -1,12 +1,12 @@
 {
-    "Figure": {
-        "prefix": "fig",
-        "body": [
-            "#figure(",
-            "  image(\"../assets/$1.png\"),",
-            "  caption: [$2]",
-            ")<$1>"
-        ],
-        "description": "Figure"
-    }
+  "Figure": {
+    "prefix": "fig",
+    "body": [
+      "#figure(",
+      "  image(\"../assets/$1.png\"),",
+      "  caption: [$2]",
+      ")<$1>"
+    ],
+    "description": "Figure"
+  }
 }

@@ -19,70 +19,69 @@ in
         options = {
           data = lib.mkOption {
             type = lib.types.listOf lib.types.str;
-            default = [];
+            default = [ ];
             description = "Subdirectory names to bind-mount from XDG_DATA_HOME (effective when flatpakDataDir is disabled)";
           };
           config = lib.mkOption {
             type = lib.types.listOf lib.types.str;
-            default = [];
+            default = [ ];
             description = "Subdirectory names to bind-mount from XDG_CONFIG_HOME (effective when flatpakDataDir is disabled)";
           };
           cache = lib.mkOption {
             type = lib.types.listOf lib.types.str;
-            default = [];
+            default = [ ];
             description = "Subdirectory names to bind-mount from XDG_CACHE_HOME (effective when flatpakDataDir is disabled)";
           };
         };
       };
-      default = {};
+      default = { };
     };
   };
 
   config = {
     dbus = {
-      policies =
-        {
-          "${appId}" = "own";
-          "${appId}.*" = "own";
-          "org.freedesktop.DBus" = "talk";
-          "ca.desrt.dconf" = "talk";
-          "org.freedesktop.appearance" = "talk";
-          "org.freedesktop.appearance.*" = "talk";
-        }
-        // (builtins.listToAttrs (
-          map (id: lib.nameValuePair "org.kde.StatusNotifierItem-${toString id}-1" "own") (
-            lib.lists.range 2 29
-          )
-        ))
-        // {
-          "org.mpris.MediaPlayer2.${appId}" = "own";
-          "org.mpris.MediaPlayer2.${appId}.*" = "own";
-          "org.mpris.MediaPlayer2.${lib.lists.last (lib.strings.splitString "." appId)}" = "own";
-          "org.mpris.MediaPlayer2.${lib.lists.last (lib.strings.splitString "." appId)}.*" = "own";
+      policies = {
+        "${appId}" = "own";
+        "${appId}.*" = "own";
+        "org.freedesktop.DBus" = "talk";
+        "ca.desrt.dconf" = "talk";
+        "org.freedesktop.appearance" = "talk";
+        "org.freedesktop.appearance.*" = "talk";
+      }
+      // (builtins.listToAttrs (
+        map (id: lib.nameValuePair "org.kde.StatusNotifierItem-${toString id}-1" "own") (
+          lib.lists.range 2 29
+        )
+      ))
+      // {
+        "org.mpris.MediaPlayer2.${appId}" = "own";
+        "org.mpris.MediaPlayer2.${appId}.*" = "own";
+        "org.mpris.MediaPlayer2.${lib.lists.last (lib.strings.splitString "." appId)}" = "own";
+        "org.mpris.MediaPlayer2.${lib.lists.last (lib.strings.splitString "." appId)}.*" = "own";
 
-          "com.canonical.AppMenu.Registrar" = "talk";
-          "org.freedesktop.FileManager1" = "talk";
-          "org.freedesktop.Notifications" = "talk";
-          "org.kde.StatusNotifierWatcher" = "talk";
-          "org.gnome.Shell.Screencast" = "talk";
+        "com.canonical.AppMenu.Registrar" = "talk";
+        "org.freedesktop.FileManager1" = "talk";
+        "org.freedesktop.Notifications" = "talk";
+        "org.kde.StatusNotifierWatcher" = "talk";
+        "org.gnome.Shell.Screencast" = "talk";
 
-          "org.a11y.Bus" = "see";
+        "org.a11y.Bus" = "see";
 
-          "org.freedesktop.portal.Documents" = "talk";
-          "org.freedesktop.portal.FileTransfer" = "talk";
-          "org.freedesktop.portal.FileTransfer.*" = "talk";
-          "org.freedesktop.portal.Notification" = "talk";
-          "org.freedesktop.portal.OpenURI" = "talk";
-          "org.freedesktop.portal.OpenURI.OpenFile" = "talk";
-          "org.freedesktop.portal.OpenURI.OpenURI" = "talk";
-          "org.freedesktop.portal.Print" = "talk";
-          "org.freedesktop.portal.Request" = "see";
+        "org.freedesktop.portal.Documents" = "talk";
+        "org.freedesktop.portal.FileTransfer" = "talk";
+        "org.freedesktop.portal.FileTransfer.*" = "talk";
+        "org.freedesktop.portal.Notification" = "talk";
+        "org.freedesktop.portal.OpenURI" = "talk";
+        "org.freedesktop.portal.OpenURI.OpenFile" = "talk";
+        "org.freedesktop.portal.OpenURI.OpenURI" = "talk";
+        "org.freedesktop.portal.Print" = "talk";
+        "org.freedesktop.portal.Request" = "see";
 
-          "org.freedesktop.portal.Fcitx" = "talk";
-          "org.freedesktop.portal.Fcitx.*" = "talk";
-          "org.freedesktop.portal.IBus" = "talk";
-          "org.freedesktop.portal.IBus.*" = "talk";
-        };
+        "org.freedesktop.portal.Fcitx" = "talk";
+        "org.freedesktop.portal.Fcitx.*" = "talk";
+        "org.freedesktop.portal.IBus" = "talk";
+        "org.freedesktop.portal.IBus.*" = "talk";
+      };
       rules.call = {
         "org.a11y.Bus" = [
           "org.a11y.Bus.GetAddress@/org/a11y/bus"
@@ -182,9 +181,18 @@ in
 
       bind.rw =
         (lib.optionals config.flatpakDataDir [
-          [ (sloth.mkdir sloth.appDataDir) sloth.xdgDataHome ]
-          [ (sloth.mkdir sloth.appConfigDir) sloth.xdgConfigHome ]
-          [ (sloth.mkdir sloth.appCacheDir) sloth.xdgCacheHome ]
+          [
+            (sloth.mkdir sloth.appDataDir)
+            sloth.xdgDataHome
+          ]
+          [
+            (sloth.mkdir sloth.appConfigDir)
+            sloth.xdgConfigHome
+          ]
+          [
+            (sloth.mkdir sloth.appCacheDir)
+            sloth.xdgCacheHome
+          ]
         ])
         ++ (lib.optionals (!config.flatpakDataDir) (
           (map (dir: [

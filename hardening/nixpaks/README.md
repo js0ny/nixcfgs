@@ -27,11 +27,11 @@
 
 沿用 Flatpak 约定，数据存放在 `~/.var/app/${appId}/` 下：
 
-| 宿主机路径 | 沙箱内路径 |
-|---|---|
-| `~/.var/app/${appId}/data` | `~/.local/share` |
+| 宿主机路径                   | 沙箱内路径        |
+| ---------------------------- | ----------------- |
+| `~/.var/app/${appId}/data`   | `~/.local/share`  |
 | `~/.var/app/${appId}/config` | `~/.local/config` |
-| `~/.var/app/${appId}/cache` | `~/.local/cache` |
+| `~/.var/app/${appId}/cache`  | `~/.local/cache`  |
 
 每个应用独占子树，互不干扰。
 

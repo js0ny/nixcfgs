@@ -147,20 +147,24 @@ let
       "+@href" = href;
       info = {
         metadata = [
-          ({
-            "+@owner" = "http://freedesktop.org";
-          }
-          // optionalAttrs (icon != null) {
-            "bookmark:icon" = {
-              "+@name" = icon;
-            };
-          })
-          ({
-            "+@owner" = "http://www.kde.org";
-          }
-          // optionalAttrs systemItem {
-            isSystemItem = "true";
-          })
+          (
+            {
+              "+@owner" = "http://freedesktop.org";
+            }
+            // optionalAttrs (icon != null) {
+              "bookmark:icon" = {
+                "+@name" = icon;
+              };
+            }
+          )
+          (
+            {
+              "+@owner" = "http://www.kde.org";
+            }
+            // optionalAttrs systemItem {
+              isSystemItem = "true";
+            }
+          )
         ];
       };
       inherit title;

@@ -225,7 +225,7 @@ api.map("g/", "gU"); // Goto Root Domain
 // TODO: Add SPC keymap as leader (maybe change `,` to `SPC`)
 api.unmap("<space>"); // Leader Key
 
-api.map("'","om"); // Use ' to search vim quickmarks
+api.map("'", "om"); // Use ' to search vim quickmarks
 
 forwardFactory.pull(mapLists);
 // vForwardFactory.pull(vMapLists);
@@ -234,8 +234,8 @@ api.map("gH", "g/");
 api.map("J", "d");
 api.map("K", "e");
 
-map('>', '>>');
-map('<', '<<');
+map(">", ">>");
+map("<", "<<");
 
 // #endregion
 
@@ -937,10 +937,15 @@ api.Hints.setCharacters("qwertasdfgzx"); // Left-hand keys
 
 // #region Theming
 // Reference: https://github.com/Foldex/surfingkeys-config
-Hints.style('border: solid 2px #373B41; color:#52C196; background: initial; background-color: #1D1F21;');
-Hints.style("border: solid 2px #373B41 !important; padding: 1px !important; color: #C5C8C6 !important; background: #1D1F21 !important;", "text");
-Visual.style('marks', 'background-color: #52C19699;');
-Visual.style('cursor', 'background-color: #81A2BE;');
+Hints.style(
+  "border: solid 2px #373B41; color:#52C196; background: initial; background-color: #1D1F21;",
+);
+Hints.style(
+  "border: solid 2px #373B41 !important; padding: 1px !important; color: #C5C8C6 !important; background: #1D1F21 !important;",
+  "text",
+);
+Visual.style("marks", "background-color: #52C19699;");
+Visual.style("cursor", "background-color: #81A2BE;");
 
 settings.theme = `
 /* Edit these variables for easy theme making */

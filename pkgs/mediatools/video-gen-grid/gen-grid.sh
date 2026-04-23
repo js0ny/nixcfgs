@@ -24,10 +24,10 @@ FORMAT=""
 
 _log_level_num() {
   case "$1" in
-    DEBUG) echo 0 ;;
-    INFO) echo 1 ;;
-    ERROR) echo 2 ;;
-    *) echo 1 ;;
+  DEBUG) echo 0 ;;
+  INFO) echo 1 ;;
+  ERROR) echo 2 ;;
+  *) echo 1 ;;
   esac
 }
 
@@ -38,7 +38,7 @@ _log() {
   current_level="$(_log_level_num "$LOG_LEVEL")"
   target_level="$(_log_level_num "$level")"
 
-  if [[ "$target_level" -ge "$current_level" ]]; then
+  if [[ $target_level -ge $current_level ]]; then
     printf '[%s] [%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$level" "$*" >&2
   fi
 }
@@ -81,11 +81,11 @@ EOF
 }
 
 is_uint() {
-  [[ "$1" =~ ^[0-9]+$ ]]
+  [[ $1 =~ ^[0-9]+$ ]]
 }
 
 is_ufloat() {
-  [[ "$1" =~ ^[0-9]+([.][0-9]+)?$ ]]
+  [[ $1 =~ ^[0-9]+([.][0-9]+)?$ ]]
 }
 
 require_command() {
@@ -97,7 +97,7 @@ require_command() {
 }
 
 parse_thumb_size() {
-  if [[ ! "$THUMB_SIZE" =~ ^([0-9]+)x([0-9]+)$ ]]; then
+  if [[ ! $THUMB_SIZE =~ ^([0-9]+)x([0-9]+)$ ]]; then
     log_error "Invalid --thumb-size format: $THUMB_SIZE (expected WxH, e.g. 320x180)"
     exit 1
   fi
@@ -114,104 +114,155 @@ parse_args() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      -d|--debug)
-        LOG_LEVEL="DEBUG"
-        shift
-        ;;
-      -g|--grid)
-        [[ $# -ge 2 ]] || { log_error "Missing value for $1"; exit 1; }
-        is_uint "$2" || { log_error "--grid must be a non-negative integer"; exit 1; }
-        ROWS="$2"
-        COLS="$2"
-        shift 2
-        ;;
-      --rows)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --rows"; exit 1; }
-        is_uint "$2" || { log_error "--rows must be a non-negative integer"; exit 1; }
-        ROWS="$2"
-        shift 2
-        ;;
-      --cols)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --cols"; exit 1; }
-        is_uint "$2" || { log_error "--cols must be a non-negative integer"; exit 1; }
-        COLS="$2"
-        shift 2
-        ;;
-      --start)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --start"; exit 1; }
-        is_ufloat "$2" || { log_error "--start must be a non-negative number"; exit 1; }
-        START_TIME="$2"
-        shift 2
-        ;;
-      --end)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --end"; exit 1; }
-        is_ufloat "$2" || { log_error "--end must be a non-negative number"; exit 1; }
-        END_TIME="$2"
-        shift 2
-        ;;
-      --thumb-size)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --thumb-size"; exit 1; }
-        THUMB_SIZE="$2"
-        shift 2
-        ;;
-      --padding)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --padding"; exit 1; }
-        is_uint "$2" || { log_error "--padding must be a non-negative integer"; exit 1; }
-        PADDING="$2"
-        shift 2
-        ;;
-      --margin)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --margin"; exit 1; }
-        is_uint "$2" || { log_error "--margin must be a non-negative integer"; exit 1; }
-        MARGIN="$2"
-        shift 2
-        ;;
-      --bg)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --bg"; exit 1; }
-        BG_COLOR="$2"
-        shift 2
-        ;;
-      --format)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --format"; exit 1; }
-        case "$2" in
-          png|jpg|jpeg|webp|avif)
-            FORMAT="$2"
-            ;;
-          *)
-            log_error "--format must be one of: png, jpg, jpeg, webp, avif"
-            exit 1
-            ;;
-        esac
-        shift 2
-        ;;
-      --keep-frames)
-        KEEP_FRAMES=true
-        shift
-        ;;
-      -h|--help)
-        print_usage
-        exit 0
-        ;;
-      --)
-        shift
-        while [[ $# -gt 0 ]]; do
-          positional+=("$1")
-          shift
-        done
-        ;;
-      -*)
-        log_error "Unknown option: $1"
-        print_usage
+    -d | --debug)
+      LOG_LEVEL="DEBUG"
+      shift
+      ;;
+    -g | --grid)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for $1"
         exit 1
+      }
+      is_uint "$2" || {
+        log_error "--grid must be a non-negative integer"
+        exit 1
+      }
+      ROWS="$2"
+      COLS="$2"
+      shift 2
+      ;;
+    --rows)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --rows"
+        exit 1
+      }
+      is_uint "$2" || {
+        log_error "--rows must be a non-negative integer"
+        exit 1
+      }
+      ROWS="$2"
+      shift 2
+      ;;
+    --cols)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --cols"
+        exit 1
+      }
+      is_uint "$2" || {
+        log_error "--cols must be a non-negative integer"
+        exit 1
+      }
+      COLS="$2"
+      shift 2
+      ;;
+    --start)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --start"
+        exit 1
+      }
+      is_ufloat "$2" || {
+        log_error "--start must be a non-negative number"
+        exit 1
+      }
+      START_TIME="$2"
+      shift 2
+      ;;
+    --end)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --end"
+        exit 1
+      }
+      is_ufloat "$2" || {
+        log_error "--end must be a non-negative number"
+        exit 1
+      }
+      END_TIME="$2"
+      shift 2
+      ;;
+    --thumb-size)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --thumb-size"
+        exit 1
+      }
+      THUMB_SIZE="$2"
+      shift 2
+      ;;
+    --padding)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --padding"
+        exit 1
+      }
+      is_uint "$2" || {
+        log_error "--padding must be a non-negative integer"
+        exit 1
+      }
+      PADDING="$2"
+      shift 2
+      ;;
+    --margin)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --margin"
+        exit 1
+      }
+      is_uint "$2" || {
+        log_error "--margin must be a non-negative integer"
+        exit 1
+      }
+      MARGIN="$2"
+      shift 2
+      ;;
+    --bg)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --bg"
+        exit 1
+      }
+      BG_COLOR="$2"
+      shift 2
+      ;;
+    --format)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --format"
+        exit 1
+      }
+      case "$2" in
+      png | jpg | jpeg | webp | avif)
+        FORMAT="$2"
         ;;
       *)
+        log_error "--format must be one of: png, jpg, jpeg, webp, avif"
+        exit 1
+        ;;
+      esac
+      shift 2
+      ;;
+    --keep-frames)
+      KEEP_FRAMES=true
+      shift
+      ;;
+    -h | --help)
+      print_usage
+      exit 0
+      ;;
+    --)
+      shift
+      while [[ $# -gt 0 ]]; do
         positional+=("$1")
         shift
-        ;;
+      done
+      ;;
+    -*)
+      log_error "Unknown option: $1"
+      print_usage
+      exit 1
+      ;;
+    *)
+      positional+=("$1")
+      shift
+      ;;
     esac
   done
 
-  if [[ "${#positional[@]}" -lt 1 ]]; then
+  if [[ ${#positional[@]} -lt 1 ]]; then
     log_error "Missing required argument: video file"
     print_usage
     exit 1
@@ -220,8 +271,11 @@ parse_args() {
   VIDEO_PATH="${positional[0]}"
   OUTPUT_IMAGE="${positional[1]:-}"
 
-  if [[ -n "${positional[2]:-}" ]]; then
-    is_uint "${positional[2]}" || { log_error "grid_size positional argument must be a non-negative integer"; exit 1; }
+  if [[ -n ${positional[2]:-} ]]; then
+    is_uint "${positional[2]}" || {
+      log_error "grid_size positional argument must be a non-negative integer"
+      exit 1
+    }
     ROWS="${positional[2]}"
     COLS="${positional[2]}"
   fi
@@ -259,22 +313,22 @@ create_grid() {
   local -a encode_opts
 
   case "$format" in
-    png)
-      encode_opts=()
-      ;;
-    jpg|jpeg)
-      encode_opts=(-q:v 2)
-      ;;
-    webp)
-      encode_opts=(-c:v libwebp -quality 90)
-      ;;
-    avif)
-      encode_opts=(-c:v libaom-av1 -still-picture 1 -crf 30 -cpu-used 6 -pix_fmt yuv420p)
-      ;;
-    *)
-      log_error "Unsupported format: $format"
-      return 1
-      ;;
+  png)
+    encode_opts=()
+    ;;
+  jpg | jpeg)
+    encode_opts=(-q:v 2)
+    ;;
+  webp)
+    encode_opts=(-c:v libwebp -quality 90)
+    ;;
+  avif)
+    encode_opts=(-c:v libaom-av1 -still-picture 1 -crf 30 -cpu-used 6 -pix_fmt yuv420p)
+    ;;
+  *)
+    log_error "Unsupported format: $format"
+    return 1
+    ;;
   esac
 
   ffmpeg -hide_banner -loglevel error -y -framerate 1 -i "$input_dir/frame_%04d.png" \
@@ -290,12 +344,12 @@ infer_format_from_output() {
   ext="${output##*.}"
   ext="${ext,,}"
   case "$ext" in
-    png|jpg|jpeg|webp|avif)
-      echo "$ext"
-      ;;
-    *)
-      echo ""
-      ;;
+  png | jpg | jpeg | webp | avif)
+    echo "$ext"
+    ;;
+  *)
+    echo ""
+    ;;
   esac
 }
 
@@ -306,31 +360,31 @@ main() {
   require_command ffprobe
   require_command awk
 
-  if [[ ! -f "$VIDEO_PATH" ]]; then
+  if [[ ! -f $VIDEO_PATH ]]; then
     log_error "Video file not found: $VIDEO_PATH"
     exit 1
   fi
 
-  if [[ "$ROWS" -eq 0 || "$COLS" -eq 0 ]]; then
+  if [[ $ROWS -eq 0 || $COLS -eq 0 ]]; then
     log_error "--rows and --cols must be >= 1"
     exit 1
   fi
 
   parse_thumb_size
 
-  if [[ -z "$OUTPUT_IMAGE" ]]; then
+  if [[ -z $OUTPUT_IMAGE ]]; then
     local base name
     base="$(basename "$VIDEO_PATH")"
     name="${base%.*}"
-    if [[ -z "$FORMAT" ]]; then
+    if [[ -z $FORMAT ]]; then
       FORMAT="png"
     fi
     OUTPUT_IMAGE="${name}_grid.${FORMAT}"
   fi
 
-  if [[ -z "$FORMAT" ]]; then
+  if [[ -z $FORMAT ]]; then
     FORMAT="$(infer_format_from_output "$OUTPUT_IMAGE")"
-    if [[ -z "$FORMAT" ]]; then
+    if [[ -z $FORMAT ]]; then
       log_error "Cannot infer format from output path. Please set --format (png|jpg|jpeg|webp|avif)."
       exit 1
     fi
@@ -338,7 +392,7 @@ main() {
 
   local duration
   duration="$(get_video_duration "$VIDEO_PATH")"
-  if [[ ! "$duration" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+  if [[ ! $duration =~ ^[0-9]+([.][0-9]+)?$ ]]; then
     log_error "Failed to read video duration from ffprobe"
     exit 1
   fi
@@ -346,7 +400,7 @@ main() {
   local sample_start sample_end
   sample_start="$START_TIME"
   sample_end="$END_TIME"
-  if [[ -z "$sample_end" ]]; then
+  if [[ -z $sample_end ]]; then
     sample_end="$duration"
   fi
 
@@ -370,7 +424,7 @@ main() {
 
   local tmpdir
   tmpdir="$(mktemp -d)"
-  if [[ "$KEEP_FRAMES" == true ]]; then
+  if [[ $KEEP_FRAMES == true ]]; then
     log_info "Keeping temp frames in: $tmpdir"
   else
     TMPDIR_CLEANUP="$tmpdir"

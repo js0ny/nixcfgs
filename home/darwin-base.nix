@@ -39,4 +39,10 @@
     ./programs/productivity/anki.nix
     ./programs/productivity/sdcv.nix
   ];
+
+  nixdefs = {
+    llm.enable = true;
+    mcp.enable = true;
+    hardware.enable = false;
+  };
 }

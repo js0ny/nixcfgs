@@ -30,5 +30,3 @@ patch:
     dev.zed.Zed:
       vim_mode: true
       ascii_mode: true
-
-

@@ -12,7 +12,6 @@ return {
   settings = {
     -- See setting options
     -- https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server#settings
-    json = {
-    },
+    json = {},
   },
 }

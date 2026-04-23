@@ -1,27 +1,17 @@
 {
   "let...in": {
     "prefix": "let",
-    "body": [
-      "let",
-      "  ${2}",
-      "in"
-    ],
+    "body": ["let", "  ${2}", "in"],
     "description": "always block"
   },
   "traceVal": {
     "prefix": "trace",
-    "body": [
-      "lib.traceVal \"${1:message}\" ${2:value}"
-    ],
+    "body": ["lib.traceVal \"${1:message}\" ${2:value}"],
     "description": "traceVal"
   },
   "home.packages": {
     "prefix": "packages",
-    "body": [
-      "home.packages= with pkgs; [",
-      "  $1",
-      "];"
-    ]
+    "body": ["home.packages= with pkgs; [", "  $1", "];"]
   },
   "home.persist": {
     "prefix": "persist",
@@ -35,8 +25,6 @@
   },
   "fakeSha": {
     "prefix": "fakeSha256",
-    "body": [
-      "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-    ]
+    "body": ["sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="]
   }
 }

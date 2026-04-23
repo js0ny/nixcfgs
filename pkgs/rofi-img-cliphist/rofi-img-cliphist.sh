@@ -3,9 +3,9 @@
 tmp_dir="/tmp/cliphist"
 rm -rf "$tmp_dir"
 
-if [[ -n "$1" ]]; then
-    cliphist decode <<<"$1" | wl-copy
-    exit
+if [[ -n $1 ]]; then
+  cliphist decode <<<"$1" | wl-copy
+  exit
 fi
 
 mkdir -p "$tmp_dir"
@@ -20,4 +20,3 @@ match(\$0, /^([0-9]+)\s(\[\[\s)?binary.*(jpg|jpeg|png|bmp)/, grp) {
 1
 EOF
 cliphist list | gawk "$prog"
-

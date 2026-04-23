@@ -1,36 +1,22 @@
 {
   "always": {
     "prefix": "always",
-    "body": [
-      "always @(${1}) begin",
-      "  ${2}",
-      "end"
-    ],
+    "body": ["always @(${1}) begin", "  ${2}", "end"],
     "description": "always block"
   },
   "defstate": {
     "prefix": "defstate",
-    "body": [
-      "localparam S_${1:STATE_NAME} = ${2:STATE_VALUE};"
-    ],
+    "body": ["localparam S_${1:STATE_NAME} = ${2:STATE_VALUE};"],
     "description": "Define state parameter"
   },
   "begin": {
     "prefix": "begin",
-    "body": [
-      "begin",
-      "  ${1}",
-      "end"
-    ],
+    "body": ["begin", "  ${1}", "end"],
     "description": "begin...end block"
   },
   "if": {
     "prefix": "if",
-    "body": [
-      "if (${1}) begin",
-      "\n${0}",
-      "\nend"
-    ],
+    "body": ["if (${1}) begin", "\n${0}", "\nend"],
     "description": "If statement"
   },
   "if-else": {
@@ -47,20 +33,12 @@
   },
   "else-if": {
     "prefix": "eif",
-    "body": [
-      "else if (${1}) begin",
-      "\n${0}",
-      "\nend"
-    ],
+    "body": ["else if (${1}) begin", "\n${0}", "\nend"],
     "description": "else-if statement"
   },
   "else": {
     "prefix": "el",
-    "body": [
-      "else begin",
-      "\n${0}",
-      "\nend"
-    ],
+    "body": ["else begin", "\n${0}", "\nend"],
     "description": "else-if statement"
   },
   "for": {

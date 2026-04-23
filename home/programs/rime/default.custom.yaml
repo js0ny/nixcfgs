@@ -23,4 +23,3 @@ patch:
   #   - { when: composing, accept: Control+b, send: Left }
   #   - { when: composing, accept: Control+f, send: Right }
   #
-

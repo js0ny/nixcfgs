@@ -1,10 +1,26 @@
-#root.root {--tabs-margin: 2px;}
-#root.root {--nav-btn-len-margin: 0px;}
-#root.root {--nav-btn-border-radius: 9999px;}
+#root.root {
+    --tabs-margin: 2px;
+}
+#root.root {
+    --nav-btn-len-margin: 0px;
+}
+#root.root {
+    --nav-btn-border-radius: 9999px;
+}
 
-#root.root {--nav-btn-width: 30px;}
+#root.root {
+    --nav-btn-width: 30px;
+}
 
-#root.root {--tabs-height: 30px;}
-#root.root {--tabs-indent: 6px;}
-#root.root {--tabs-inner-gap: 5px;}
-#root.root {--general-margin: 2px;}
+#root.root {
+    --tabs-height: 30px;
+}
+#root.root {
+    --tabs-indent: 6px;
+}
+#root.root {
+    --tabs-inner-gap: 5px;
+}
+#root.root {
+    --general-margin: 2px;
+}

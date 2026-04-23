@@ -8,10 +8,10 @@ PRESET="${TO_AV1_PRESET:-8}"
 
 _log_level_num() {
   case "$1" in
-    DEBUG) echo 0 ;;
-    INFO) echo 1 ;;
-    ERROR) echo 2 ;;
-    *) echo 1 ;;
+  DEBUG) echo 0 ;;
+  INFO) echo 1 ;;
+  ERROR) echo 2 ;;
+  *) echo 1 ;;
   esac
 }
 
@@ -22,7 +22,7 @@ _log() {
   current_level="$(_log_level_num "$LOG_LEVEL")"
   target_level="$(_log_level_num "$level")"
 
-  if [[ "$target_level" -ge "$current_level" ]]; then
+  if [[ $target_level -ge $current_level ]]; then
     printf '[%s] [%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$level" "$*" >&2
   fi
 }
@@ -55,44 +55,50 @@ parse_args() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      -d|--debug)
-        LOG_LEVEL="DEBUG"
-        shift
-        ;;
-      --crf)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --crf"; exit 1; }
-        CRF="$2"
-        shift 2
-        ;;
-      --preset)
-        [[ $# -ge 2 ]] || { log_error "Missing value for --preset"; exit 1; }
-        PRESET="$2"
-        shift 2
-        ;;
-      -h|--help)
-        print_usage
-        exit 0
-        ;;
-      --)
-        shift
-        while [[ $# -gt 0 ]]; do
-          INPUTS+=("$1")
-          shift
-        done
-        ;;
-      -*)
-        log_error "Unknown option: $1"
-        print_usage
+    -d | --debug)
+      LOG_LEVEL="DEBUG"
+      shift
+      ;;
+    --crf)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --crf"
         exit 1
-        ;;
-      *)
+      }
+      CRF="$2"
+      shift 2
+      ;;
+    --preset)
+      [[ $# -ge 2 ]] || {
+        log_error "Missing value for --preset"
+        exit 1
+      }
+      PRESET="$2"
+      shift 2
+      ;;
+    -h | --help)
+      print_usage
+      exit 0
+      ;;
+    --)
+      shift
+      while [[ $# -gt 0 ]]; do
         INPUTS+=("$1")
         shift
-        ;;
+      done
+      ;;
+    -*)
+      log_error "Unknown option: $1"
+      print_usage
+      exit 1
+      ;;
+    *)
+      INPUTS+=("$1")
+      shift
+      ;;
     esac
   done
 
-  if [[ "${#INPUTS[@]}" -eq 0 ]]; then
+  if [[ ${#INPUTS[@]} -eq 0 ]]; then
     log_error "Missing required input files"
     print_usage
     exit 1
@@ -105,7 +111,7 @@ main() {
 
   local input output
   for input in "${INPUTS[@]}"; do
-    if [[ ! -f "$input" ]]; then
+    if [[ ! -f $input ]]; then
       log_error "File not found: $input"
       continue
     fi

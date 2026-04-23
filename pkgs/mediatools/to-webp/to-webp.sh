@@ -27,35 +27,38 @@ parse_args() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --quality)
-        [[ $# -ge 2 ]] || { printf 'Missing value for --quality\n' >&2; exit 1; }
-        QUALITY="$2"
-        shift 2
-        ;;
-      -h|--help)
-        print_usage
-        exit 0
-        ;;
-      --)
-        shift
-        while [[ $# -gt 0 ]]; do
-          INPUTS+=("$1")
-          shift
-        done
-        ;;
-      -*)
-        printf 'Unknown option: %s\n' "$1" >&2
-        print_usage
+    --quality)
+      [[ $# -ge 2 ]] || {
+        printf 'Missing value for --quality\n' >&2
         exit 1
-        ;;
-      *)
+      }
+      QUALITY="$2"
+      shift 2
+      ;;
+    -h | --help)
+      print_usage
+      exit 0
+      ;;
+    --)
+      shift
+      while [[ $# -gt 0 ]]; do
         INPUTS+=("$1")
         shift
-        ;;
+      done
+      ;;
+    -*)
+      printf 'Unknown option: %s\n' "$1" >&2
+      print_usage
+      exit 1
+      ;;
+    *)
+      INPUTS+=("$1")
+      shift
+      ;;
     esac
   done
 
-  if [[ "${#INPUTS[@]}" -eq 0 ]]; then
+  if [[ ${#INPUTS[@]} -eq 0 ]]; then
     printf 'Missing required input files\n' >&2
     print_usage
     exit 1
@@ -69,7 +72,7 @@ main() {
 
   local input output
   for input in "${INPUTS[@]}"; do
-    if [[ ! -f "$input" ]]; then
+    if [[ ! -f $input ]]; then
       printf 'File not found: %s\n' "$input" >&2
       continue
     fi

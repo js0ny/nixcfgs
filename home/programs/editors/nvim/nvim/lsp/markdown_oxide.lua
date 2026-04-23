@@ -9,7 +9,6 @@ return {
   },
   filetypes = { "markdown" },
   settings = {
-    Markdown = {
-    },
+    Markdown = {},
   },
 }

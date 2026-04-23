@@ -41,21 +41,21 @@ in
           ]
         ])
         ++ [
-        (sloth.concat' sloth.xdgCacheHome "/fontconfig")
-        (sloth.concat' sloth.xdgCacheHome "/mesa_shader_cache")
+          (sloth.concat' sloth.xdgCacheHome "/fontconfig")
+          (sloth.concat' sloth.xdgCacheHome "/mesa_shader_cache")
 
-        (sloth.concat [
-          (sloth.env "XDG_RUNTIME_DIR")
-          "/"
-          (sloth.envOr "WAYLAND_DISPLAY" "no")
-        ])
+          (sloth.concat [
+            (sloth.env "XDG_RUNTIME_DIR")
+            "/"
+            (sloth.envOr "WAYLAND_DISPLAY" "no")
+          ])
 
-        (envSuffix "XDG_RUNTIME_DIR" "/at-spi/bus")
-        (envSuffix "XDG_RUNTIME_DIR" "/gvfsd")
-        (envSuffix "XDG_RUNTIME_DIR" "/pulse")
+          (envSuffix "XDG_RUNTIME_DIR" "/at-spi/bus")
+          (envSuffix "XDG_RUNTIME_DIR" "/gvfsd")
+          (envSuffix "XDG_RUNTIME_DIR" "/pulse")
 
-        "/run/dbus"
-      ];
+          "/run/dbus"
+        ];
       bind.ro = [
         (envSuffix "XDG_RUNTIME_DIR" "/doc")
         (sloth.concat' sloth.xdgConfigHome "/gtk-2.0")

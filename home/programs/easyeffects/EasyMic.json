@@ -65,11 +65,7 @@
       "stereo-link": 100.0,
       "threshold": -1.5
     },
-    "plugins_order": [
-      "rnnoise#0",
-      "compressor#0",
-      "limiter#0"
-    ],
+    "plugins_order": ["rnnoise#0", "compressor#0", "limiter#0"],
     "rnnoise#0": {
       "bypass": false,
       "enable-vad": true,

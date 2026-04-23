@@ -12,7 +12,7 @@ return {
           require("img-clip").paste_image()
         end,
         desc = "Paste Image",
-      }
+      },
     },
     opts = {
       -- recommended settings
@@ -25,6 +25,6 @@ return {
         -- required for Windows users
         use_absolute_path = true,
       },
-    }
-  }
+    },
+  },
 }

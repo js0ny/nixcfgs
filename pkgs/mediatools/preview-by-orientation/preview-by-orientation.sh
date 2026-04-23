@@ -18,19 +18,22 @@ dir="${2:-.}"
 viewer="${3:-gwenview}"
 
 case "$orientation" in
-  landscape|portrait|square) ;;
-  l) orientation="landscape" ;;
-  p) orientation="portrait" ;;
-  s) orientation="square" ;;
-  -h|--help) usage; exit 0 ;;
-  *)
-    echo "Invalid orientation: $orientation" >&2
-    usage
-    exit 1
-    ;;
+landscape | portrait | square) ;;
+l) orientation="landscape" ;;
+p) orientation="portrait" ;;
+s) orientation="square" ;;
+-h | --help)
+  usage
+  exit 0
+  ;;
+*)
+  echo "Invalid orientation: $orientation" >&2
+  usage
+  exit 1
+  ;;
 esac
 
-if [[ ! -d "$dir" ]]; then
+if [[ ! -d $dir ]]; then
   echo "Directory not found: $dir" >&2
   exit 1
 fi
@@ -55,21 +58,21 @@ selected=()
 
 while IFS= read -r -d '' file; do
   dims="$("${IDENTIFY[@]}" -ping -format '%w %h' "$file" 2>/dev/null || true)"
-  [[ -z "$dims" ]] && continue
+  [[ -z $dims ]] && continue
 
   read -r w h <<<"$dims"
-  [[ -z "${w:-}" || -z "${h:-}" ]] && continue
+  [[ -z ${w:-} || -z ${h:-} ]] && continue
 
   case "$orientation" in
-    landscape) (( w > h )) && selected+=("$file") ;;
-    portrait) (( h > w )) && selected+=("$file") ;;
-    square) (( w == h )) && selected+=("$file") ;;
+  landscape) ((w > h)) && selected+=("$file") ;;
+  portrait) ((h > w)) && selected+=("$file") ;;
+  square) ((w == h)) && selected+=("$file") ;;
   esac
 done < <(
   find "$search_dir" -type f \
     \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \
-       -o -iname '*.bmp' -o -iname '*.gif' -o -iname '*.tif' -o -iname '*.tiff' \
-       -o -iname '*.heic' -o -iname '*.avif' \) \
+    -o -iname '*.bmp' -o -iname '*.gif' -o -iname '*.tif' -o -iname '*.tiff' \
+    -o -iname '*.heic' -o -iname '*.avif' \) \
     -print0
 )
 

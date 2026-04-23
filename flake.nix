@@ -2,6 +2,15 @@
   description = "Public flake for my personal NixOS and Home Manager configurations";
 
   inputs = {
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs-stable.url = "github:nixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -90,13 +99,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    # mac-app-util: 将通过 Nix 安装的 Darwin GUI 软件统一入口，使路径能被 Spotlight 识别且不会出现 Dock 上的重复图标
-    # 在 Darwin Host 上导入后会自动启用，无需额外配置
-    mac-app-util = {
-      url = "github:hraban/mac-app-util";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    deploy-rs.url = "github:serokell/deploy-rs";
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -122,9 +124,28 @@
         "aarch64-linux"
         "aarch64-darwin"
       ];
+
+      imports = [
+        inputs.treefmt-nix.flakeModule
+        inputs.git-hooks.flakeModule
+      ];
+
       perSystem =
-        { pkgs, ... }:
+        { config, pkgs, ... }:
         {
+          treefmt.config = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = true;
+            programs.stylua.enable = true;
+            programs.prettier.enable = true;
+            programs.shfmt.enable = true;
+          };
+
+          pre-commit = {
+            check.enable = true;
+            settings.hooks.treefmt.enable = true;
+          };
+
           devShells =
             let
               ciDeps = with pkgs; [
@@ -134,6 +155,7 @@
                 shfmt
                 shellcheck
                 nixfmt
+                nvfetcher
               ];
               devDeps = with pkgs; [
                 lua-language-server
@@ -145,7 +167,10 @@
               ];
             in
             {
-              default = pkgs.mkShell { buildInputs = ciDeps ++ devDeps; };
+              default = pkgs.mkShell {
+                inputsFrom = [ config.pre-commit.devShell ];
+                buildInputs = ciDeps ++ devDeps;
+              };
               ci = pkgs.mkShell { buildInputs = ciDeps; };
             };
           packages = import ./pkgs {
