@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./acp.nix
     ./lsp.nix
     ./mcp.nix
     ./llm.nix
