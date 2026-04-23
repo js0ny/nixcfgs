@@ -1,5 +1,5 @@
 {
-  pkgs,
+  lib,
   config,
   ...
 }:
@@ -73,4 +73,9 @@
     mcp.enable = true;
     hardware.enable = true;
   };
+
+  # Hidden directories under $HOME
+  home.file.".hidden".text = lib.concatStringsSep "\n" [
+    "PDX"
+  ];
 }

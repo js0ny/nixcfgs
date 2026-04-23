@@ -81,6 +81,15 @@ in
         // mkAssoc apps.editor.gui.desktop textMimes
         // mkAssoc apps.browser.desktop webpageMimes;
       };
+
+      programs.plasma.configFile = {
+        kdeglobals = {
+          General = {
+            TerminalApplication = lib.getExe config.nixdots.apps.terminal.package;
+            TerminalService = config.nixdots.apps.terminal.desktop;
+          };
+        };
+      };
     })
 
     (lib.mkIf pkgs.stdenv.isDarwin {

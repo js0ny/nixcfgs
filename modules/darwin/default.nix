@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [
     ./brew.nix
@@ -8,5 +8,5 @@
     ../options
     ../common/system.nix
   ];
-  time.timeZone = "Europe/London";
+  time.timeZone = builtins.head config.nixdots.core.timezones;
 }

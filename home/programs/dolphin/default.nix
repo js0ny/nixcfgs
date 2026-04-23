@@ -51,8 +51,4 @@ in
       };
     };
   };
-  # Hidden directories under $HOME
-  home.file.".hidden".text = ''
-    PDX
-  '';
 }

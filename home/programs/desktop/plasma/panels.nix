@@ -1,5 +1,13 @@
-{ ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  home.packages = with pkgs; [
+    plasmusic-toolbar
+  ];
   programs.plasma = {
     panels = [
       # Windows-like panel at the bottom
@@ -23,7 +31,7 @@
                 launchers = [
                   # "applications:org.kde.dolphin.desktop"
                   "applications:firefox.desktop"
-                  "applications:kitty.desktop"
+                  # "applications:kitty.desktop"
                 ];
               };
             };
@@ -37,7 +45,8 @@
                 dateFormat = "isoDate";
                 enabledCalendarPlugins = "alternatecalendar,holidaysevents";
                 firstDayOfWeek = 1;
-                selectedTimeZones = "Local,Asia/Shanghai,Europe/London";
+                # selectedTimeZones = "Local,Etc/UTC,Asia/Shanghai,Europe/London";
+                selectedTimeZones = "Local,${lib.concatStringsSep "," config.nixdots.core.timezones}";
                 showSeconds = "Always";
                 showWeekNumbers = true;
                 use24hFormat = 2;
@@ -55,8 +64,10 @@
         widgets = [
           "org.kde.plasma.pager"
           "org.kde.plasma.windowlist"
-          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.panelspacer"
+          "plasmusic-toolbar"
           "org.kde.plasma.systemmonitor.memory"
+          "org.kde.plasma.systemmonitor.cpucore"
         ];
         opacity = "translucent";
         hiding = "none";

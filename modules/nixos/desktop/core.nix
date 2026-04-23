@@ -9,7 +9,7 @@ let
 in
 lib.mkIf cfg {
   # Set your time zone.
-  time.timeZone = "Europe/London";
+  time.timeZone = builtins.head config.nixdots.core.timezones;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

@@ -43,12 +43,17 @@ let
       pin = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Pin directory via gtk bookmarks";
+        description = "Pin directory to the sidebar of file managers";
       };
       icon = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
         default = null;
         description = "Icon name for the directory";
+      };
+      index = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether index the full folder or not";
       };
     };
   };

@@ -51,6 +51,11 @@ in
         default = "nixos";
         description = "Hostname for the machine.";
       };
+      timezones = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        example = [ "Etc/UTC" ];
+        description = "Timezones for the system, the first item will be set as timezone.";
+      };
     };
     services = {
       tailscale = {

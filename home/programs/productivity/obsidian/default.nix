@@ -9,9 +9,17 @@
       electron = pkgs.electron_39;
     })
   ];
+  home.directories."Obsidian" = {
+    create = true;
+    persist = true;
+    backup = true;
+    sync = false;
+    icon = "folder-violet-obsidian";
+    index = true;
+    pin = true;
+  };
   nixdots.persist.home = {
     directories = [
-      "Obsidian"
       ".config/obsidian"
     ];
   };
