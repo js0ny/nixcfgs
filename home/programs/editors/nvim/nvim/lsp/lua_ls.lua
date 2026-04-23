@@ -14,6 +14,11 @@ Accompanied with a wrapper script
 #!/bin/bash
 exec "$HOME/.local/build/lua-language-server/bin/lua-language-server" "$@"
 --]]
+-- Note: The filename MUST be strictly `lua_ls.lua` to match the standard LSP client name.
+-- We do not manually configure `workspace.library` or Neovim API types here.
+-- `lazydev.nvim` automatically injects the Neovim runtime and plugins into `lua_ls`
+-- based on this exact client name, making manual configuration redundant and potentially conflicting.
+---@type vim.lsp.Config
 return {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
@@ -38,14 +43,12 @@ return {
           version = "LuaJIT",
         },
         workspace = {
-          checkThirdParty = false,
-          library = {
-            vim.env.VIMRUNTIME,
-            "${3rd}/luv/library",
-          },
+          maxPreload = 10000,
+          preloadFileSize = 1000,
         },
       },
     })
+    client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
   end,
   settings = {
     Lua = {
@@ -69,22 +72,6 @@ return {
       diagnostics = {
         globals = { "vim" },
       },
-      -- Lua LS offers a code formatter
-      -- Ref: https://github.com/LuaLS/lua-language-server/wiki/Formatter
-      -- format = {
-      --     enable = true,
-      --     defaultConfig = {
-      --         indent_size = "4",
-      --         max_line_length = "100",
-      --         continuation_indent = "8",
-      --     },
-      -- },
-      -- diagnostics = {
-      --     -- Code style checking offered by the Lua LS code formatter
-      --     neededFileStatus = {
-      --         ["codestyle-check"] = "Any",
-      --     },
-      -- },
     },
   },
 }
