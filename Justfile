@@ -1,5 +1,7 @@
 fmt:
-    fd -e nix -x nixfmt
+    nix fmt
 
 update:
+    nix run github:berberman/nvfetcher
     nix flake update
+

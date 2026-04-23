@@ -11,7 +11,7 @@
     version = "dict-nightly";
     src = fetchurl {
       url = "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram";
-      sha256 = "sha256-JLAaH3Z3ROhrihBhg1tg7fseWQzpT8NSHHbd/pNTKXI=";
+      sha256 = "sha256-7D5RoVPZoPt076GckuvgoE2lTHgZPximUBeGKAr9eys=";
     };
   };
   bbdown-linux-arm64 = {
@@ -51,18 +51,18 @@
   };
   rime_wanxiang_flypy = {
     pname = "rime_wanxiang_flypy";
-    version = "v15.8.3";
+    version = "v15.8.5";
     src = fetchurl {
-      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.3/rime-wanxiang-flypy-fuzhu.zip";
-      sha256 = "sha256-/taS91w7jSykXEvGJPP/eDGfH8GYl9yb1evTtM7Fw2U=";
+      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.5/rime-wanxiang-flypy-fuzhu.zip";
+      sha256 = "sha256-rFtNPMpY9MDwODSGcfMpyNxtaWmILO/UxscnsLo2/Sg=";
     };
   };
   rime_wanxiang_zrm = {
     pname = "rime_wanxiang_zrm";
-    version = "v15.8.3";
+    version = "v15.8.5";
     src = fetchurl {
-      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.3/rime-wanxiang-zrm-fuzhu.zip";
-      sha256 = "sha256-Pd/ZnoOR3aPLqYyyvd9kZlByOppDndgPtgEID9Ec21s=";
+      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.5/rime-wanxiang-zrm-fuzhu.zip";
+      sha256 = "sha256-lqeC/CcEIUdkrHh7sTIXdus+0xBN11983vs5NNenEmY=";
     };
   };
 }
