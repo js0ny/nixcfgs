@@ -14,9 +14,9 @@
       "fg" = "job unfreeze";
       "cls" = "clear";
     };
-    plugins = with pkgs.nushellPlugins; [
-      desktop_notifications
-    ];
+    # plugins = with pkgs.nushellPlugins; [
+    #   desktop_notifications
+    # ];
     extraConfig = /* nu */ ''
       $env.config.show_banner = false
       $env.config.history = {
