@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   mod = if pkgs.stdenv.isDarwin then "meta" else "alt";
   shortcuts = builtins.toJSON [
@@ -85,10 +85,17 @@ let
   ];
 in
 {
-  home.packages = with pkgs; [
-    nixpaks.ayugram-desktop
-    nixpaks.materialgram
-  ];
+  home.packages =
+    if pkgs.stdenv.isLinux then
+      [
+        pkgs.nixpaks.ayugram-desktop
+        pkgs.nixpaks.materialgram
+      ]
+    else
+      [
+        pkgs.ayugram-desktop
+        pkgs.materialgram
+      ];
   nixdots.persist.home = {
     directories = [
       ".local/share/AyuGramDesktop"

@@ -17,6 +17,7 @@ in
     ./search.nix
     ./betterfox.nix
     ./styles.nix
+    ./policies.nix
   ];
 
   config = lib.mkIf cfg {

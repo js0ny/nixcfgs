@@ -10,6 +10,8 @@
 
     ./programs/darwin
 
+    ./programs/rime
+
     ./programs/browsers/firefox
 
     ./programs/editors/nvim

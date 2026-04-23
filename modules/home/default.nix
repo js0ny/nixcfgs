@@ -20,8 +20,10 @@
     ./shellAliases.nix
     ./mcp.nix
     ./llm.nix
+    ./ssh.nix
     ./directories.nix
 
     ../../helper/mergetools.nix
   ];
+
 }

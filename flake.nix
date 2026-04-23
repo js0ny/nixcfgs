@@ -20,11 +20,6 @@
       inputs.home-manager.follows = "home-manager";
     };
     nur.url = "github:nix-community/NUR";
-    # caelestia-shell - shell for wms
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # sops - Secrets
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -38,10 +33,6 @@
     betterfox-nix.url = "github:HeitorAugustoLN/betterfox-nix";
     firefox-addons = {
       url = "github:petrkozorezov/firefox-addons-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixcord.url = "github:kaylorben/nixcord";
@@ -94,13 +85,11 @@
       home-manager,
       plasma-manager,
       nur,
-      caelestia-shell,
       sops-nix,
       niri-flake,
       xremap-flake,
       betterfox-nix,
       firefox-addons,
-      zen-browser,
       nixcord,
       catppuccin,
       nix-index-database,
@@ -125,12 +114,6 @@
         niri-flake.overlays.niri
         nur.overlays.default
         firefox-addons.overlays.default
-        (final: prev: {
-          caelestia-shell = caelestia-shell.packages.x86_64-linux.caelestia-shell;
-        })
-        (final: prev: {
-          zen-browser = zen-browser.packages.x86_64-linux.zen-browser;
-        })
         localOverlays
       ];
       forSystem =

@@ -5,7 +5,10 @@
   ...
 }:
 {
-  imports = [ ../common/nix-helper.nix ];
+  imports = [
+    ../common/nix-helper.nix
+    ./filetype/darwin.nix
+  ];
   home.sessionPath = [ "/opt/homebrew/bin" ];
 
   xdg.desktopEntries = lib.mkForce { };
@@ -17,11 +20,4 @@
   programs.firefox.package = lib.mkForce pkgs.firefox-bin;
 
   systemd.user.tmpfiles.rules = lib.mkForce [ ];
-
-  # home.file.".ssh/config".text = ''
-  #   # ~/.ssh/config
-  #   Host *
-  #   	UseKeychain yes
-  #   	AddKeysToAgent yes
-  # '';
 }

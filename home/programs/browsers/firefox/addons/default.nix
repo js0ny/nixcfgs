@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 let
@@ -82,7 +83,7 @@ in
   };
 
   programs.firefox = {
-    policies = {
+    policies = lib.mkIf pkgs.stdenv.isLinux {
       ExtensionSettings = [
         {
           name = "zotero@chnm.gmu.edu";

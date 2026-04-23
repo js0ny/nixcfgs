@@ -9,4 +9,5 @@
     ../common/system.nix
   ];
   time.timeZone = builtins.head config.nixdots.core.timezones;
+  programs.ssh.knownHosts = config.nixdefs.misc.ssh.knownHosts;
 }

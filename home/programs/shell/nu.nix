@@ -4,7 +4,8 @@
     NU_EXPERIMENTAL_OPTIONS = "native-clip";
   };
   programs.nushell = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
+    # install nushell via brew in darwin.
     shellAliases = {
       "la" = "ls -a";
       "lt" = "lsd --tree";
@@ -13,6 +14,9 @@
       "fg" = "job unfreeze";
       "cls" = "clear";
     };
+    plugins = with pkgs.nushellPlugins; [
+      desktop_notifications
+    ];
     extraConfig = /* nu */ ''
       $env.config.show_banner = false
       $env.config.history = {
