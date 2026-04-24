@@ -4,6 +4,7 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
     dashboard = {
@@ -77,6 +78,10 @@ return {
         enabled = true,
         font_size = "small",
       },
+    },
+    picker = {
+      enabled = true,
+      ui_select = true,
     },
   },
 
@@ -189,13 +194,6 @@ return {
         require("snacks").picker.recent()
       end,
       desc = "Recent Files",
-    },
-    {
-      "<leader>fl",
-      function()
-        require("snacks").picker.filetypes()
-      end,
-      desc = "Set Filetype",
     },
 
     -- 4. 符号与搜索 (LSP/Treesitter 转换)

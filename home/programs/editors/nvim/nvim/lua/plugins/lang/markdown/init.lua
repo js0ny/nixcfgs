@@ -3,4 +3,9 @@ return {
   -- { import = "plugins.mod.lang.markdown.markview" },
   { import = "plugins.lang.markdown.obsidian-nvim" },
   { "bullets-vim/bullets.vim", ft = "markdown" },
+  {
+    "jmbuhr/otter.nvim",
+    ft = { "markdown" },
+    opts = {},
+  },
 }

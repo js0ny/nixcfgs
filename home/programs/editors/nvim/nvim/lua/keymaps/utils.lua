@@ -4,7 +4,7 @@ local M = {}
 local default_opts = { noremap = true, silent = true }
 local default_mode = { "n" }
 
-M.set_keymaps = function(maps)
+function M.set_keymaps(maps)
   for _, map in ipairs(maps) do
     local opts = vim.tbl_extend("force", default_opts, map.opts or {})
     local mode = map.mode or default_mode
@@ -12,7 +12,7 @@ M.set_keymaps = function(maps)
   end
 end
 
-M.set_lang_keymaps = function(maps)
+function M.set_lang_keymaps(maps)
   vim.api.create_autocmd("FileType", {
     pattern = maps.filetype,
     callback = function()
@@ -22,7 +22,7 @@ M.set_lang_keymaps = function(maps)
 end
 
 -- This fuction is used in ftplugin/*.lua
-M.set_buf_keymaps = function(maps)
+function M.set_buf_keymaps(maps)
   if not maps then
     return
   end
@@ -32,7 +32,7 @@ M.set_buf_keymaps = function(maps)
   end
 end
 
-M.set_buf_keymaps_prefix = function(maps)
+function M.set_buf_keymaps_prefix(maps)
   local n_prefix = "<leader>m"
   local i_prefix = "<C-;>" -- Using C-M will stuck when <CR>
   if not maps then

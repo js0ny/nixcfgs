@@ -6,11 +6,12 @@ vim.opt_local.spelllang = { "en_us", "cjk" }
 vim.opt_local.spell = true
 
 local bufmap = {
-  { mode = "x", keys = "i", cmd = 'c*<C-r>"*', opt = { desc = "Add italic to selected text" } },
-  { mode = "x", keys = "b", cmd = 'c**<C-r>"**', opt = { desc = "Add bold to selected text" } },
-  { mode = "x", keys = "c", cmd = 'c`<CR><C-r>"<CR>`', opt = { desc = "Add code block to selected text" } },
-  { mode = "x", keys = "D", cmd = 'c~~<C-r>"~~', opt = { desc = "Add strikethrough to selected text" } },
-  { mode = "x", keys = "h", cmd = 'c==<C-r>"==', opt = { desc = "Add highlight to selected text" } },
+  { mode = "x", keys = "mi", cmd = 'c*<C-r>"*', opt = { desc = "Add italic to selected text" } },
+  { mode = "x", keys = "mb", cmd = 'c**<C-r>"**', opt = { desc = "Add bold to selected text" } },
+  { mode = "x", keys = "mc", cmd = 'c`<CR><C-r>"<CR>`', opt = { desc = "Add code block to selected text" } },
+  { mode = "x", keys = "mD", cmd = 'c~~<C-r>"~~', opt = { desc = "Add strikethrough to selected text" } },
+  { mode = "x", keys = "mh", cmd = 'c==<C-r>"==', opt = { desc = "Add highlight to selected text" } },
+  { mode = "n", keys = "J", cmd = "<Nop>" },
   {
     mode = "n",
     keys = "<Tab>",

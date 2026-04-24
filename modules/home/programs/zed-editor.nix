@@ -9,6 +9,13 @@ let
       enabledAcps;
 in
 lib.mkMerge [
+  {
+    programs.zed-editor = {
+      userSettings = {
+        load_direnv = if config.programs.direnv.enable then "direct" else "disabled";
+      };
+    };
+  }
   (lib.mkIf config.nixdefs.acp.enable {
     programs.zed-editor = {
       userSettings.agent_servers = acpToZed;
@@ -19,14 +26,15 @@ lib.mkMerge [
       userSettings.context_servers = mcpToZed;
     };
   })
-  (lib.mkIf llm.enable {
-    programs.zed-editor.userSettings = {
-      agent = {
-        default_model = {
-          provider = llm.routing.code-plan.provider;
-          model = llm.routing.code-plan.model;
-        };
-      };
-    };
-  })
+  # TODO: [AFTER] model details for custom providers since tokens and capabilities are required by zed.
+  # (lib.mkIf llm.enable {
+  #   programs.zed-editor.userSettings = {
+  #     agent = {
+  #       default_model = {
+  #         provider = llm.routing.code-plan.provider;
+  #         model = llm.routing.code-plan.model;
+  #       };
+  #     };
+  #   };
+  # })
 ]

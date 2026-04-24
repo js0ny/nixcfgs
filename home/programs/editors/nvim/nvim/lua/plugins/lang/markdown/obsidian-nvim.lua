@@ -24,12 +24,13 @@ return {
   --   "BufNewFile path/to/my-vault/*.md",
   -- },
   keys = {
-    { "<leader>fo", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian: Quick Switch" },
+    { "<leader>fo", "<cmd>Obsidian quick_switch<CR>", desc = "Obsidian: Quick Switch" },
   },
   dependencies = {
     -- Required.
     "nvim-lua/plenary.nvim",
   },
+  ---@type obsidian.config
   opts = {
     legacy_commands = false,
     footer = {

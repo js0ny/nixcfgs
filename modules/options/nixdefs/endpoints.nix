@@ -44,5 +44,9 @@ in
     ssh.port = lib.mkDefault 22;
     http.port = lib.mkDefault 80;
     https.port = lib.mkDefault 443;
+    ollama = {
+      port = lib.mkDefault 11434;
+      bindAddress = "127.0.0.1";
+    };
   };
 }

@@ -156,6 +156,7 @@
                 shellcheck
                 nixfmt
                 nvfetcher
+                nufmt
               ];
               devDeps = with pkgs; [
                 lua-language-server

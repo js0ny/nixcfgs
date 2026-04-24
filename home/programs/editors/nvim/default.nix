@@ -53,6 +53,7 @@ in
     directories = [
       # nvim(lazy) will download plugins to this dir
       ".local/share/nvim"
+      ".local/state/nvim"
     ];
   };
 }

@@ -73,18 +73,6 @@ local keymaps_basic = {
     opts = { desc = "End of Line" },
   },
   {
-    mode = mode_arrow,
-    keys = "J",
-    cmd = "5j",
-    opts = { desc = "Up 5 Lines" },
-  },
-  {
-    mode = mode_arrow,
-    keys = "K",
-    cmd = "5e",
-    opts = { desc = "Down 5 Lines" },
-  },
-  {
     mode = "v",
     keys = "<",
     cmd = "<gv",
@@ -96,8 +84,6 @@ local keymaps_basic = {
   },
   -- { keys = "<CR>", cmd = "%" },
   { keys = "Y", cmd = "y$", opts = { desc = "Yank to End of Line" } },
-  { mode = mode_arrow, keys = "J", cmd = "5j" },
-  { mode = mode_arrow, keys = "K", cmd = "5k" },
   -- https://github.com/LazyVim/LazyVim/blob/d1529f650fdd89cb620258bdeca5ed7b558420c7/lua/lazyvim/config/keymaps.lua#L60
   { keys = "<Esc>", cmd = "<Cmd>nohlsearch<Bar>diffupdate<CR>", opts = { desc = "Clear Search Highlight" } },
   {
@@ -112,6 +98,18 @@ local keymaps_basic = {
     cmd = "<Cmd>silent! normal! zA<CR>",
     opts = { desc = "Toggle All Folds (silent)" },
   },
+  {
+    mode = "n",
+    keys = "q:",
+    cmd = ":",
+    opts = { desc = "Disable cmd window" }
+  },
+  {
+    mode = {"n", "c"},
+    keys = "<C-g>",
+    cmd = "<Esc>",
+    opts = { desc = "C-g to esc" }
+  }
 }
 
 return keymaps_basic
