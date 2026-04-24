@@ -42,6 +42,6 @@ in
   ];
 
   imports = [
-    ./packages.nix
+    ./.
   ];
 }

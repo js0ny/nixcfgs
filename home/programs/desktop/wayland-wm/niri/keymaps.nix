@@ -7,12 +7,11 @@
 let
   term = "xdg-terminal-exec";
   # TODO: Don't default to dark
-  iconTheme = config.nixdots.style.icon.dark;
   kbdBacklightDev = config.nixdots.laptop.backlight.keyboard;
   kbdBacklightStep = "1";
   screen = config.nixdots.laptop.backlight.screen;
   nirictl = import ./scripts.nix { inherit pkgs; };
-  vicinae = import ../../../vicinae-reg.nix;
+  launcher = import ../../../vicinae-reg.nix;
 in
 {
   home.packages = [
@@ -54,11 +53,11 @@ in
     "Mod+Alt+i".action = spawn "hyprlock";
 
     "Alt+Space".hotkey-overlay.title = "Picker";
-    "Alt+Space".action.spawn = vicinae.toggle;
+    "Alt+Space".action.spawn = launcher.toggle;
 
-    "Mod+W".action.spawn = vicinae.windows;
+    "Mod+W".action.spawn = launcher.windows;
 
-    "Mod+V".action.spawn = vicinae.cliphist;
+    "Mod+V".action.spawn = launcher.cliphist;
 
     # See ../volume-notify.nix
     "XF86AudioRaiseVolume".allow-when-locked = true;
@@ -104,7 +103,7 @@ in
     # AURA Key: XF86Launch3
     # Fan Key: XF86Launch4
     "XF86Launch4".action = spawn "${lib.getExe pkgs.localPkgs.power-profiles-next}";
-    "XF86Launch1".action.spawn = vicinae.toggle;
+    "XF86Launch1".action.spawn = launcher.toggle;
 
     "Mod+Tab".action = toggle-overview;
     "Mod+Q".action = close-window;

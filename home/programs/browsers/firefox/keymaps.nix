@@ -6,8 +6,7 @@
   ...
 }:
 let
-  profileDir =
-    if pkgs.stdenv.isDarwin then "Library/Application Support/Firefox/Profiles" else ".mozilla/firefox";
+  profileDir = config.nixdefs.consts.firefox.profileDir;
   p = config.nixdots.programs.firefox.defaultProfile;
 in
 {

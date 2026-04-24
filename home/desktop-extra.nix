@@ -51,6 +51,7 @@
     # ./programs/newsflash.nix
     ./programs/ollama.nix
     ./programs/wine.nix
+    ./programs/bottles.nix
     ./programs/eza.nix
     ./programs/cherry-studio.nix
     ./programs/element.nix

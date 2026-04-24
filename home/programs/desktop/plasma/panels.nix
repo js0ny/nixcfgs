@@ -45,7 +45,6 @@
                 dateFormat = "isoDate";
                 enabledCalendarPlugins = "alternatecalendar,holidaysevents";
                 firstDayOfWeek = 1;
-                # selectedTimeZones = "Local,Etc/UTC,Asia/Shanghai,Europe/London";
                 selectedTimeZones = "Local,${lib.concatStringsSep "," config.nixdots.core.timezones}";
                 showSeconds = "Always";
                 showWeekNumbers = true;

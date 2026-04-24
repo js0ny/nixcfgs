@@ -89,5 +89,6 @@
   # https://wiki.archlinux.org/title/Visual_Studio_Code
   home.sessionVariables = {
     ELECTRON_TRASH = "trash-cli";
+    XAUTHORITY = "$XDG_RUNTIME_DIR/.XAuthority";
   };
 }

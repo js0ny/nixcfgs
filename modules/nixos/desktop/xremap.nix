@@ -4,28 +4,11 @@
   ...
 }:
 let
-  _nuphyAir75V2Inputs = [
-    "usb-Nordic_Semiconductor_NuPhy_Air75_V2_Dongle-event-kbd"
-    "usb-Nordic_Semiconductor_NuPhy_Air75_V2_Dongle-hidraw"
-    "usb-Nordic_Semiconductor_NuPhy_Air75_V2_Dongle-if01-event-kbd"
-    "usb-Nordic_Semiconductor_NuPhy_Air75_V2_Dongle-if01-event-mouse"
-    "usb-Nordic_Semiconductor_NuPhy_Air75_V2_Dongle-if01-hidraw"
-    "usb-Nordic_Semiconductor_NuPhy_Air75_V2_Dongle-if01-mouse"
-    "usb-Nordic_Semiconductor_NuPhy_Air75_V2_Dongle-if02-hidraw"
-    "usb-NuPhy_NuPhy_Air75_V2-event-if01"
-    "usb-NuPhy_NuPhy_Air75_V2-event-kbd"
-    "usb-NuPhy_NuPhy_Air75_V2-hidraw"
-    "usb-NuPhy_NuPhy_Air75_V2-if01-event-joystick"
-    "usb-NuPhy_NuPhy_Air75_V2-if01-event-kbd"
-    "usb-NuPhy_NuPhy_Air75_V2-if01-event-mouse"
-    "usb-NuPhy_NuPhy_Air75_V2-if01-hidraw"
-    "usb-NuPhy_NuPhy_Air75_V2-if01-mouse"
-    "usb-NuPhy_NuPhy_Air75_V2-if02-hidraw"
-  ];
-  # keyboard = config.nixdefs.hardware.peripheral.keyboard;
-  # qmkKeyboards = lib.filterAttrs (name: kbd: kbd.qmk.enable) keyboard;
-  # _qmkInputs = builtins.concatLists qmkKeyboards.paths;
-  qmkInputs = map (name: "/dev/input/by-id/" + name) _nuphyAir75V2Inputs;
+  keyboard = config.nixdefs.hardware.peripheral.keyboard;
+  qmkKeyboards = lib.filterAttrs (_: kbd: kbd.qmk) keyboard;
+  _qmkInputs = builtins.concatLists (lib.mapAttrsToList (_: kbd: kbd.paths) qmkKeyboards);
+  # Use global keymaps
+  qmkInputs = map (name: "/dev/input/by-id/" + name) _qmkInputs;
   username = config.nixdots.user.name;
   cfg = config.nixdots.desktop.xremap.enable;
 in

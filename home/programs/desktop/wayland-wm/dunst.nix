@@ -1,13 +1,20 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
+let
+  launcher = import ../../vicinae-reg.nix;
+in
 {
-  services.dunst.enable = true;
+  services.dunst = {
+    enable = true;
+    settings = {
+      global = {
+        follow = "mouse";
+        indicate_hidden = "yes";
+        dmenu = lib.concatStringsSep " " launcher.dmenu;
+        browser = lib.getExe' pkgs.xdg-utils "xdg-open";
+      };
+    };
+  };
   systemd.user.services.dunst = {
     Install.WantedBy = lib.mkForce [ "niri.service" ];
-    Service = {
-      # Disable on KDE
-      ExecCondition = lib.mkForce ''
-        /bin/sh -c '[ "$XDG_CURRENT_DESKTOP" != "KDE" ] && [ "$XDG_CURRENT_DESKTOP" != "Plasma" ]'
-      '';
-    };
   };
 }

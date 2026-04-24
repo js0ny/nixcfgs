@@ -1,3 +1,4 @@
+# NOTE: This module only contains programs that has to be configured in both home-manager and NixOS
 {
   pkgs,
   lib,
@@ -62,6 +63,11 @@ in
         type = lib.types.bool;
         default = false;
         description = "Enable Thunderbird email client.";
+      };
+      defaultProfile = lib.mkOption {
+        type = lib.types.str;
+        default = config.nixdots.user.name;
+        description = "Default profile that applies to thunderbird";
       };
     };
     dolphin = {
