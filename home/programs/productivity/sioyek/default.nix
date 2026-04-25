@@ -22,10 +22,12 @@ let
       );
     text = builtins.readFile ./sioyek-copy-page.sh;
   };
+  clip = if pkgs.stdenv.isLinux then "wl-copy" else "pbcopy";
 in
 {
   xdg.configFile."sioyek/prefs_user.config".text = ''
     new_command _copy_page_to_clipboard ${lib.getExe sioyekCopyScript} %{page_number} %{file_path}
+    new_command _copy_file_path  ${clip} "%{file_path}"
     default_dark_mode 1
     font_size 14
     case_sensitive_search 0
@@ -38,8 +40,8 @@ in
     config.startup_commands = lib.mkForce [ "toggle_custom_color" ];
     bindings = {
       ## Movement
-      "screen_down" = "J";
-      "screen_up" = "K";
+      "screen_down" = "<C-d>";
+      "screen_up" = "<C-u>";
 
       "move_up_smooth" = "k";
       "move_down_smooth" = "j";
@@ -69,7 +71,7 @@ in
       ### Misc
       "quit" = "Q";
 
-      "copy" = "y";
+      "copy" = "yy";
 
       "goto_toc" = "<tab>";
 
@@ -81,9 +83,13 @@ in
 
       "command" = "<A-x>";
       "search" = "<C-f>";
+      "goto_next_tab" = "L";
+      "goto_prev_tab" = "H";
 
       ## User Defined Commands
       "_copy_page_to_clipboard" = "<A-c>";
+      "_copy_file_path" = "yf";
+      "_dict" = "K";
     };
   };
   nixdots.persist.home = {

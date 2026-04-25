@@ -13,5 +13,12 @@
     httpie
     gron
     jless
+    mtr # my-traceroute
+    dig
+  ];
+
+  programs.zed-editor.extensions = [
+    "json5"
+    "jsonl"
   ];
 }

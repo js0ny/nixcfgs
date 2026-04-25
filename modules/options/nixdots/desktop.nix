@@ -15,7 +15,7 @@
         "cosmic-greeter"
         "none"
       ];
-      default = if config.nixdots.machine.headless then "none" else "gdm";
+      default = if config.nixdots.linux.display == "none" then "none" else "gdm";
       description = ''
         The desktop manager to use. Options include:
         - 'ly': A lightweight TUI-based display manager.
@@ -38,7 +38,7 @@
           "none"
         ]
       );
-      default = if config.nixdots.machine.headless then [ "none" ] else [ "niri" ];
+      default = if config.nixdots.linux.display == "none" then [ "none" ] else [ "niri" ];
       description = ''
         The window manager(s) or desktop environment(s) to use.
       '';

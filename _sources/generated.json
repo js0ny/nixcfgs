@@ -8,7 +8,7 @@
     "pinned": false,
     "src": {
       "name": null,
-      "sha256": "sha256-7D5RoVPZoPt076GckuvgoE2lTHgZPximUBeGKAr9eys=",
+      "sha256": "sha256-JLAaH3Z3ROhrihBhg1tg7fseWQzpT8NSHHbd/pNTKXI=",
       "type": "url",
       "url": "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram"
     },
@@ -59,6 +59,21 @@
     },
     "version": "1.6.3"
   },
+  "dwproton-linux-x64": {
+    "cargoLock": null,
+    "date": null,
+    "extract": null,
+    "name": "dwproton-linux-x64",
+    "passthru": null,
+    "pinned": false,
+    "src": {
+      "name": null,
+      "sha256": "sha256-wPnN7VY0TxoFPCIrkFD+XFSpMu1lBKsmhaKh3geywCg=",
+      "type": "url",
+      "url": "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-10.0-24/dwproton-10.0-24-x86_64.tar.xz"
+    },
+    "version": "dwproton-10.0-24"
+  },
   "noname": {
     "cargoLock": null,
     "date": null,
@@ -89,11 +104,11 @@
     "pinned": false,
     "src": {
       "name": null,
-      "sha256": "sha256-rFtNPMpY9MDwODSGcfMpyNxtaWmILO/UxscnsLo2/Sg=",
+      "sha256": "sha256-rig4Jft8e9NrqxD1PplPQtIdViyDtPZnePO5zg/oHx4=",
       "type": "url",
-      "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.5/rime-wanxiang-flypy-fuzhu.zip"
+      "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.9.0/rime-wanxiang-flypy-fuzhu.zip"
     },
-    "version": "v15.8.5"
+    "version": "v15.9.0"
   },
   "rime_wanxiang_zrm": {
     "cargoLock": null,
@@ -104,10 +119,10 @@
     "pinned": false,
     "src": {
       "name": null,
-      "sha256": "sha256-lqeC/CcEIUdkrHh7sTIXdus+0xBN11983vs5NNenEmY=",
+      "sha256": "sha256-nB/H6BOZUFBGjsNsMBl265y7nWkPmbWE5Q1x//Aghf8=",
       "type": "url",
-      "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.8.5/rime-wanxiang-zrm-fuzhu.zip"
+      "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.9.0/rime-wanxiang-zrm-fuzhu.zip"
     },
-    "version": "v15.8.5"
+    "version": "v15.9.0"
   }
 }

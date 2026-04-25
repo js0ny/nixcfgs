@@ -9,7 +9,7 @@ let
 
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
-  isNvidia = config.nixdots.machine.nvidia == "nvidia";
+  isNvidia = config.nixdots.linux.gpu == "nvidia";
 
   commonAliases = {
     ni = "touch";

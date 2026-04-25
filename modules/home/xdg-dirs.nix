@@ -1,20 +1,27 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
+let
+  xdg-data = config.xdg.dataHome;
+in
 lib.mkIf pkgs.stdenv.isLinux {
-  xdg.configFile."user-dirs.dirs".text = ''
-    XDG_DESKTOP_DIR="$HOME/Desktop"
-    XDG_DOWNLOAD_DIR="$HOME/Downloads"
-    XDG_TEMPLATES_DIR="$HOME/Templates"
-    XDG_PUBLICSHARE_DIR="$HOME/Public"
-    XDG_DOCUMENTS_DIR="$HOME/Documents"
-    XDG_MUSIC_DIR="$HOME/Music"
-    XDG_PICTURES_DIR="$HOME/Pictures"
-    XDG_VIDEOS_DIR="$HOME/Videos"
-  '';
   xdg.configFile."user-dirs.locale".text = ''
     en_GB.UTF-8
   '';
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = false;
+    setSessionVariables = true;
+    desktop = "$HOME/Desktop";
+    documents = "$HOME/Documents";
+    download = "$HOME/Downloads";
+    music = "$HOME/Music";
+    pictures = "$HOME/Pictures";
+    publicShare = "/var/empty";
+    templates = "${xdg-data}/Templates";
+    videos = "$HOME/Videos";
+  };
 }

@@ -11,8 +11,8 @@ let
   llm = config.nixdefs.llm;
   queryProvider = provider: llm.providers."${provider}";
 
-  imageTag = "ghcr.io/pdfmathtranslate/pdfmathtranslate-next";
-  # version = "2.6.4";
+  basePkg = pkgs.localPkgs.pdf2zh-next;
+
   mkPdf2zh =
     {
       name,
@@ -21,17 +21,7 @@ let
     pkgs.writeShellApplication {
       inherit name;
 
-      runtimeInputs = [ pkgs.podman ];
-
       text = ''
-        IMAGE_TAG="${imageTag}"
-
-        if ! podman image exists "$IMAGE_TAG"; then
-          echo "[pdf2zh] Pulling image $IMAGE_TAG ..."
-          podman pull "$IMAGE_TAG"
-        fi
-
-        PODMAN_ENV_ARGS=()
         CMD_ARGS=()
 
         ${
@@ -52,8 +42,6 @@ let
 
               echo "[pdf2zh] Using Model: $MODEL"
 
-              PODMAN_ENV_ARGS+=("-e" "OPENROUTER_API_KEY=$API_KEY")
-
               CMD_ARGS+=(
                 "--openaicompatible"
                 "--openai-compatible-model" "$MODEL"
@@ -65,17 +53,7 @@ let
             ""
         }
 
-        exec podman run \
-          --rm \
-          -it \
-          -p 7860:7860 \
-          -v "$(pwd):/data" \
-          -w /data \
-          "''${PODMAN_ENV_ARGS[@]}" \
-          "$IMAGE_TAG" \
-          pdf2zh \
-          "''${CMD_ARGS[@]}" \
-          "$@"
+        exec ${lib.getExe basePkg} "''${CMD_ARGS[@]}" "$@"
       '';
     };
 
@@ -97,6 +75,15 @@ in
   };
 
   config = mkIf cfg.enable (mkMerge [
+    {
+      nixdefs.llm.enable = true;
+
+      home.packages = [
+        pdf2zhRunner
+        pdf2zhUnwrapped
+      ];
+    }
+
     (mkIf llm.enable {
       home.sessionVariables = {
         PDF2ZH_MODEL = llm.routing.translation.model;
@@ -106,19 +93,25 @@ in
 
     (mkIf pkgs.stdenv.isLinux (mkMerge [
       {
-        services.podman.enable = true;
-
-        services.podman.images.pdf2zh = {
-          image = imageTag;
-          description = " ${descEn} - ${descZh}，支持 Google/DeepL/Ollama/OpenAI 等服务，提供 CLI/GUI/Docker";
+        xdg.desktopEntries.pdf2zh = {
+          name = "pdf2zh";
+          genericName = "PDF Translator";
+          comment = descZh;
+          exec = "pdf2zh \"%f\"";
+          icon = "translate";
+          terminal = false;
+          categories = [
+            "Office"
+            "Utility"
+          ];
+          mimeType = [ "application/pdf" ];
+          actions = {
+            webui = {
+              name = "打开 WebUI";
+              exec = "pdf2zh --gui";
+            };
+          };
         };
-
-        home.packages = [
-          pdf2zhRunner
-          pdf2zhUnwrapped
-        ];
-
-        nixdefs.llm.enable = true;
       }
       (mkIf config.programs.dolphin.enable {
         programs.dolphin.services.pdf2zh = {
@@ -131,21 +124,11 @@ in
           actions = {
             translateToZh = {
               name = "翻译为中文";
-              exec = "pdf2zh --openaicompatible \"%f\"";
+              exec = "pdf2zh \"%f\"";
             };
           };
         };
       })
     ]))
-
-    (mkIf pkgs.stdenv.isDarwin {
-      home.packages = [ pkgs.uv ];
-      home.activation.uvInstallPdf2Zh = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        mkdir -p "$HOME/.local/bin"
-        if [ ! -f $HOME/.local/bin/pdf2zh ]; then
-          uv tool install pdf2zh-next
-        fi
-      '';
-    })
   ]);
 }

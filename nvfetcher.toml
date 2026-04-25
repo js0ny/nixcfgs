@@ -25,3 +25,7 @@ fetch.url = "https://github.com/nilaoda/BBDown/releases/download/$ver/BBDown_$ve
 [noname]
 src.github = "libnoname/noname"
 fetch.github = "libnoname/noname"
+
+[dwproton-linux-x64]
+src.cmd = "curl -sSL https://dawn.wine/api/v1/repos/dawn-winery/dwproton/releases/latest | jq -r .tag_name"
+fetch.url = "https://dawn.wine/dawn-winery/dwproton/releases/download/$ver/$ver-x86_64.tar.xz"

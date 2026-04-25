@@ -12,20 +12,6 @@ in
   options.nixdots.programs = {
     obs-studio = {
       enable = lib.mkEnableOption "Enable OBS Studio for streaming and recording.";
-      plugins = lib.mkOption {
-        type = lib.types.listOf lib.types.package;
-        default = [ ];
-        description = "List of OBS Studio plugins to install.";
-      };
-      theme = lib.mkOption {
-        type = lib.types.str;
-        default = "";
-        description = ''
-          OBS Studio theme to use. This option will merge the theme config to main OBS config.
-          The theme name should be found by manually setting the theme in OBS and then checking the generated config file at ~/.config/obs-studio/user.ini.
-          The theme name is the value of "Appearance.Theme" in that file.
-        '';
-      };
     };
     zsh = {
       enable = lib.mkOption {

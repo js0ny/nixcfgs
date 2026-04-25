@@ -51,4 +51,5 @@
       ".config/nushell"
     ];
   };
+  programs.zed-editor.extensions = [ "nu" ];
 }

@@ -4,9 +4,9 @@
   ...
 }:
 let
-  cfg = config.nixdots.programs.chromium.enable;
+  cfg = config.nixdots.programs.chromium;
 in
-{
+lib.mkIf cfg.enable {
   programs.chromium = {
     enable = true;
     commandLineArgs = [

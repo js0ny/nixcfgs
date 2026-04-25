@@ -1,0 +1,41 @@
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  types = import ./types.nix { inherit lib; };
+  appType = types.appType;
+in
+{
+  options.nixdots.linux = {
+    enable = lib.mkEnableOption "Whether this is a linux host";
+    display = lib.mkOption {
+      type = lib.types.enum [
+        "wayland"
+        "none"
+      ];
+      default = "none";
+      description = ''
+        The display protocol to use. 'wayland' for Wayland, and 'none' for headless setups. This can be overridden by specific desktop manager modules if needed.
+      '';
+    };
+    gpu = lib.mkOption {
+      type = lib.types.enum [
+        "none" # igpu
+        "nouveau"
+        "nvidia"
+        "vfio" # EXPERIMENTAL
+      ];
+      default = "none";
+      description = ''
+        The GPU Hardware and driver to use
+        - 'none': iGPU
+        - 'nouveau': Use the open-source Nouveau driver.
+        - 'nvidia': Use the proprietary NVIDIA driver.
+        - 'vfio': Enable VFIO passthrough for NVIDIA GPU (experimental).
+      '';
+    };
+  };
+}

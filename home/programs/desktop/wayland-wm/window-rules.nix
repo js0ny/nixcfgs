@@ -76,7 +76,7 @@
       title = "Add";
     }
     {
-      class = "kitty-terminal-popup";
+      class = "terminal-popup";
     }
     {
       title = "Open File|打开文件|Select a File|选择文件|Choose wallpaper|Open Folder|Save As|保存|Library|File Upload(.*)";

@@ -11,5 +11,6 @@
     ./virtualisation.nix
     ./impermanence.nix
     ./server.nix
+    ./linux.nix
   ];
 }

@@ -26,5 +26,9 @@
   "fakeSha": {
     "prefix": "fakeSha256",
     "body": ["sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="]
+  },
+  "cfgenable": {
+    "prefix": "cfgenable",
+    "body": ["let", "  cfg = $1", "in", "lib.mkIf cfg.enable {", "$2", "}"]
   }
 }

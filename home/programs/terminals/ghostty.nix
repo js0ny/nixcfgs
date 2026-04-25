@@ -58,4 +58,5 @@ in
       # https://github.com/hackr-sh/ghostty-shaders
     };
   };
+  programs.zed-editor.extensions = [ "ghostty" ];
 }

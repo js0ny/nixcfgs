@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ../.
@@ -9,7 +9,7 @@
   programs.niri = {
     enable = true;
     # pkgs.niri: use nixpkgs
-    package = pkgs.niri;
+    package = pkgs.niri-unstable;
 
     settings = {
       prefer-no-csd = true;

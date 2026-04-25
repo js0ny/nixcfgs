@@ -37,7 +37,7 @@ in
     "Mod+E".action = spawn-sh "xdg-open ~";
     "Mod+Shift+E".action = spawn "fsearch";
     "Mod+Alt+E".action = spawn "${term}" "yazi";
-    "Mod+Shift+Return".action = spawn-sh "${term} --app-id=terminal-popup";
+    "Mod+Shift+Return".action = spawn-sh "kitty --class=terminal-popup";
     # "Mod+Shift+Alt+Return".action = spawn-sh "${term} --app-id=kitty--terminal-popup --working-directory='${config.home.homeDirectory}/.config/shells/nohist' -e nix develop";
 
     "Mod+Alt+Return".action = spawn "neovide" "${config.home.homeDirectory}/Atelier";

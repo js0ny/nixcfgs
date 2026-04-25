@@ -9,7 +9,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.machine.nvidia.mode;
+  cfg = config.nixdots.linux.gpu;
 in
 lib.mkIf (cfg == "vfio") {
   boot.extraModprobeConfig = ''

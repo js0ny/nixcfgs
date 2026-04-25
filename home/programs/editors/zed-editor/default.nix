@@ -17,9 +17,7 @@ in
     enable = true;
     package = if pkgs.stdenv.isLinux then pkgs.zed-editor-fhs else pkgs.zed-editor;
     extensions = [
-      "catppuccin"
       "material-icon-theme"
-      "git-firefly"
     ];
   };
   nixdots.persist.home = {

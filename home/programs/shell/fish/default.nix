@@ -11,7 +11,7 @@ in
 {
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
+    interactiveShellInit = /* fish */ ''
       set fish_greeting
       function __last_history_item; echo $history[1]; end
       abbr -a !! --position anywhere --function __last_history_item

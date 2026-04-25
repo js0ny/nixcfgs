@@ -12,6 +12,7 @@ in
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_GB.UTF-8";
+    defaultCharset = "UTF-8";
     extraLocales = [
       "en_GB.UTF-8/UTF-8"
     ];

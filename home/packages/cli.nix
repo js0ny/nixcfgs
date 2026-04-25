@@ -19,6 +19,14 @@
     };
   };
 
+  programs.jujutsu.enable = true;
+
+  programs.zed-editor.extensions = [
+    "make"
+    "just"
+    "git-firefly"
+  ];
+
   home.packages =
     with pkgs;
     [

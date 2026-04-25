@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.machine.displayProtocol;
+  cfg = config.nixdots.linux.display;
 in
 lib.mkIf (cfg == "wayland") {
   environment.systemPackages = with pkgs; [
