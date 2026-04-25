@@ -34,7 +34,12 @@ in
         type = lib.types.str;
         default = "me@example.com";
       };
+      avatar = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+      };
     };
+
     core = {
       dots = lib.mkOption {
         type = lib.types.str;
@@ -55,6 +60,34 @@ in
         type = lib.types.listOf lib.types.str;
         example = [ "Etc/UTC" ];
         description = "Timezones for the system, the first item will be set as timezone.";
+      };
+      locales = {
+        langcode = lib.mkOption {
+          type = lib.types.str;
+          default = "en_GB";
+        };
+        charset = lib.mkOption {
+          type = lib.types.str;
+          default = "UTF-8";
+        };
+        default = lib.mkOption {
+          type = lib.types.str;
+          default =
+            let
+              l = config.nixdots.core.locales;
+            in
+            "${l.langcode}.${l.charset}";
+        };
+        guiLocale = lib.mkOption {
+          type = lib.types.str;
+          default = config.nixdots.core.locales.default;
+        };
+        settings = lib.mkOption {
+          type = lib.types.attrsOf lib.types.str;
+          default = {
+            LC_ALL = config.nixdots.core.locales.default;
+          };
+        };
       };
     };
     services = {

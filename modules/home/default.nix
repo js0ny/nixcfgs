@@ -3,7 +3,6 @@
   imports = [
     ../options
 
-    ../common/impermanence/home.nix
     ../common/sops.nix
     ../common/styles/home.nix
 

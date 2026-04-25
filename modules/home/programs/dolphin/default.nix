@@ -19,7 +19,7 @@ let
     types
     ;
   cfg = config.programs.dolphin;
-  dolphinLib = import ../../../lib/dolphin.nix { inherit lib; };
+  dolphinLib = import ./lib.nix { inherit lib; };
   boolToString = value: if value then "true" else "false";
 
   placeBookmarkType = types.submodule (

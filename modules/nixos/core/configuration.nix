@@ -10,17 +10,18 @@ let
 in
 {
   # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_GB.UTF-8";
-    defaultCharset = "UTF-8";
-    extraLocales = [
-      "en_GB.UTF-8/UTF-8"
-    ];
-    extraLocaleSettings = {
-      # LC_CTYPE = "en_GB.UTF-8";
-      LC_ALL = "en_GB.UTF-8";
+  i18n =
+    let
+      locales = config.nixdots.core.locales;
+    in
+    {
+      defaultLocale = locales.default;
+      defaultCharset = locales.charset;
+      extraLocales = [
+        "en_GB.UTF-8/UTF-8"
+      ];
+      extraLocaleSettings = locales.settings;
     };
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."${username}" = {
@@ -48,4 +49,6 @@ in
     # Default value: FRSXMK, where S indicates "Chops long lines"
     SYSTEMD_LESS = "FRXMK";
   };
+
+  boot.kernelPackages = config.nixdots.linux.kernel;
 }

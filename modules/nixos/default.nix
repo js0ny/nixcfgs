@@ -20,8 +20,6 @@
     ../common/styles/nixos.nix
     ../common/nix-helper.nix
 
-    ../common/impermanence/nixos.nix
-
     ./security/howdy.nix
     ./security/apparmor.nix
 
@@ -36,6 +34,7 @@
 
     ../../hardening/nixpaks
     ../common
+    ./impermanence.nix
   ];
 
   networking.hostName = config.nixdots.core.hostname;

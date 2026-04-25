@@ -1,11 +1,12 @@
 { lib, config, ... }:
 let
   toINI = lib.generators.toINI;
+  locales = config.nixdots.core.locales;
 in
 {
   xdg.configFile = {
     "plasma-localerc".text = toINI { } {
-      Formats.LANG = "en_GB.UTF-8";
+      Formats.LANG = locales.default;
     };
     "ktimezonedrc".text = toINI { } {
       TimeZones = {

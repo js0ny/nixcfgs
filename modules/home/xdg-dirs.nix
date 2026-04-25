@@ -6,10 +6,11 @@
 }:
 let
   xdg-data = config.xdg.dataHome;
+  locales = config.nixdots.core.locales;
 in
 lib.mkIf pkgs.stdenv.isLinux {
   xdg.configFile."user-dirs.locale".text = ''
-    en_GB.UTF-8
+    ${locales.default}
   '';
   xdg.userDirs = {
     enable = true;

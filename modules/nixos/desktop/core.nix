@@ -6,6 +6,8 @@
 }:
 let
   cfg = config.nixdots.desktop.enable;
+  user = config.nixdots.user.name;
+  avatar = config.nixdots.user.avatar;
 in
 lib.mkIf cfg {
   # Set your time zone.
@@ -56,4 +58,12 @@ lib.mkIf cfg {
   xdg.terminal-exec.enable = true;
 
   services.gvfs.enable = true;
+
+  systemd.tmpfiles.rules =
+    if avatar != null then
+      [
+        "L+ /var/lib/AccountsService/icons/${user} - - - - ${avatar}"
+      ]
+    else
+      [ ];
 }
