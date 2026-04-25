@@ -147,7 +147,7 @@ in
       urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
       icon = "https://nixos.org/favicon.ico";
       definedAliases = [
-        "no"
+        "@no"
         "nixopt"
       ];
     };
@@ -166,6 +166,14 @@ in
       definedAliases = [
         "@flatpak"
         "@flathub"
+      ];
+    };
+    noogle = {
+      name = "noogλe";
+      urls = [ { template = "https://noogle.dev/q/?term={searchTerms}"; } ];
+      definedAliases = [
+        "noogle"
+        "@nixl"
       ];
     };
   };

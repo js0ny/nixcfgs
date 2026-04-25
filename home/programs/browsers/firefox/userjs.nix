@@ -12,7 +12,7 @@ in
     profiles."${p}" = {
       settings = {
         "signon.rememberSignons" = false;
-        "browser.urlbar.suggest.history" = false;
+        "browser.urlbar.suggest.history" = true;
 
         "browser.ml.enabled" = true;
         "browser.ml.chat.hideLocalhost" = false;

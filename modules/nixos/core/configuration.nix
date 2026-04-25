@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -50,5 +51,5 @@ in
     SYSTEMD_LESS = "FRXMK";
   };
 
-  boot.kernelPackages = config.nixdots.linux.kernel;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 }

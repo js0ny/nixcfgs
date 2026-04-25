@@ -98,4 +98,10 @@ in
       ".local/share/sioyek"
     ];
   };
+  catppuccin = {
+    enable = false;
+    flavor = "mocha";
+    accent = "pink";
+    sioyek.enable = true; # Stylix does not support sioyek yet, use ctpn as fallback
+  };
 }

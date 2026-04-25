@@ -6,5 +6,7 @@
     ./packages.nix
     ./sshd.nix
     ./ssh.nix
+    ./impermanence.nix
+    ./sops.nix
   ];
 }

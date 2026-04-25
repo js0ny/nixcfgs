@@ -9,7 +9,7 @@ let
 in
 lib.mkIf cfg.enable {
   services.howdy = {
-    enable = false;
+    enable = true;
     # control: "required" - the user must pass the howdy check to log in
     # control: "sufficient" - the user can log in if they pass the how
     control = "sufficient";

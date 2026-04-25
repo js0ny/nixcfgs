@@ -25,5 +25,11 @@
       };
       "Executable scripts".behaviourOnLaunch = "alwaysAsk";
     };
+    kdeglobals = {
+      General = {
+        TerminalApplication = lib.getExe config.nixdots.apps.terminal.package;
+        TerminalService = config.nixdots.apps.terminal.desktop;
+      };
+    };
   };
 }

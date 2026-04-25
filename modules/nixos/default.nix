@@ -1,10 +1,13 @@
-{ config, ... }:
+{ lib, config, ... }:
+let
+  mylib = import ../../lib { inherit lib; };
+in
 {
+  _module.args.mylib = mylib;
   imports = [
     ./compat.nix
 
     ../options
-    ./sops.nix
 
     ./hardware
     ./virtualisation
@@ -34,7 +37,6 @@
 
     ../../hardening/nixpaks
     ../common
-    ./impermanence.nix
   ];
 
   networking.hostName = config.nixdots.core.hostname;

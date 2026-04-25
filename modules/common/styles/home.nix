@@ -29,10 +29,4 @@ lib.mkIf cfg.enable {
     };
   };
   gtk.gtk4.theme = config.gtk.theme;
-  catppuccin = {
-    enable = false;
-    flavor = "mocha";
-    accent = "pink";
-    sioyek.enable = true; # Stylix does not support sioyek yet, use ctpn as fallback
-  };
 }

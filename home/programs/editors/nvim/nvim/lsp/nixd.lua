@@ -53,6 +53,12 @@ else
   end
 end
 
+if os.getenv("NIXD_NVIM_DEBUG") then
+  print(nixos_home_expr)
+  print(nixos_options_expr)
+  print(darwin_home_expr)
+end
+
 ---@type vim.lsp.Config
 return {
   cmd = { "nixd" },

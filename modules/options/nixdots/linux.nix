@@ -6,10 +6,6 @@
 {
   options.nixdots.linux = {
     enable = lib.mkEnableOption "Whether this is a linux host";
-    kernel = lib.mkOption {
-      type = lib.types.raw;
-      default = lib.mkDefault pkgs.linuxPackages_latest;
-    };
     # boot.loader = lib.mkOption {
     #   type = lib.types.enum [
     #     "systemd-boot"
