@@ -6,26 +6,6 @@
 }:
 let
   llm = config.nixdefs.llm;
-  system = pkgs.stdenv.system;
-  opencodePkg = inputs.llm-agents.packages.${system}.opencode;
-  # Wrap bun to perform plugin installation
-  opencodeWithBun = pkgs.symlinkJoin {
-    name = "opencode-with-bun";
-    paths = [ opencodePkg ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram "$out/bin/opencode" \
-        --prefix PATH : ${
-          pkgs.lib.makeBinPath [
-            pkgs.bun
-            pkgs.git
-            pkgs.cacert
-          ]
-        } \
-        --set BUN_TELEMETRY_DISABLED 1 \
-        --set CI 1
-    '';
-  };
 in
 {
   xdg.configFile."opencode/oh-my-opencode.json".text = builtins.toJSON (import ./oh-my-openagent.nix);
@@ -44,9 +24,7 @@ in
 
   programs.opencode = {
     enable = true;
-    package = opencodeWithBun;
     settings = {
-      autoupdate = false;
       plugin = [
         "@mohak34/opencode-notifier@latest"
         "opencode-btw"

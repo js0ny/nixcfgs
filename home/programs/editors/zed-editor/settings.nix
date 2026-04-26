@@ -54,12 +54,6 @@
           };
         };
         dock = "bottom";
-        env = {
-          EDITOR = "zeditor --wait";
-        };
-        shell = {
-          program = "zsh";
-        };
         option_as_meta = true;
       };
       file_types = {

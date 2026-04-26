@@ -105,6 +105,7 @@
     localPkgs.danmaku2ass
     octaveFull
     krabby
+    gh
   ];
   # ++ (pkgs.mkElectronWayland [
   #   pkgs.cider-2

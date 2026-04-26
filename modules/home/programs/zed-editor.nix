@@ -13,6 +13,10 @@ lib.mkMerge [
     programs.zed-editor = {
       userSettings = {
         load_direnv = if config.programs.direnv.enable then "direct" else "disabled";
+        terminal = {
+          env.EDITOR = "zeditor";
+          shell.program = config.nixdots.apps.interactiveShell.exe;
+        };
       };
     };
   }

@@ -1,5 +1,31 @@
-{ lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 let
+  system = pkgs.stdenv.system;
+  ocpkg = inputs.llm-agents.packages.${system}.opencode;
+  # Wrap bun to perform plugin installation
+  ocbun = pkgs.symlinkJoin {
+    name = "opencode-with-bun";
+    paths = [ ocpkg ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram "$out/bin/opencode" \
+        --prefix PATH : ${
+          pkgs.lib.makeBinPath [
+            pkgs.bun
+            pkgs.git
+            pkgs.cacert
+          ]
+        } \
+        --set BUN_TELEMETRY_DISABLED 1 \
+        --set CI 1
+    '';
+  };
   llm = config.nixdefs.llm;
   enabledProviders = lib.filterAttrs (name: providerCfg: providerCfg.enable) llm.providers;
   npmSdkMap = {
@@ -35,6 +61,14 @@ let
   }) enabledProviders;
 in
 lib.mkMerge [
+  {
+    programs.opencode = {
+      package = ocbun;
+      settings = {
+        autoupdate = false;
+      };
+    };
+  }
   (lib.mkIf config.nixdefs.acp.enable {
     nixdefs.acp.servers.opencode = {
       enable = config.programs.opencode.enable;
