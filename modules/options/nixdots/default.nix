@@ -13,5 +13,6 @@
     ./server.nix
     ./linux.nix
     ./darwin.nix
+    ./devenvs.nix
   ];
 }

@@ -13,7 +13,6 @@ in
     _JAVA_OPTIONS =
       "-Djava.util.prefs.userRoot='${xdg-config}/java'" # ~/.java/fonts
       + "-Djavafx.cachedir='${xdg-cache}/openjfx'"; # ~/.openjfx
-    CARGO_HOME = "${xdg-data}/cargo";
     # Sometimes required under Wayland
     XCOMPOSEFILE = "${xdg-config}/X11/XCompose";
     XCOMPOSECACHE = "${xdg-cache}/X11/XCompose";
@@ -24,7 +23,6 @@ in
     LEIN_HOME = "${xdg-data}/lein"; # leiningen ~/.lein ~/.m2
     NPM_CONFIG_USERCONFIG = "${xdg-config}/npm/npmrc";
     NUGET_PACKAGES = "${xdg-data}/nuget/packages";
-    RUSTUP_HOME = "${xdg-data}/rustup";
     W3M_DIR = "${xdg-state}/w3m";
     WAKATIME_HOME = "${xdg-config}/wakatime"; # ~/.wakatime
     WGETRC = "${xdg-config}/wget/wgetrc";

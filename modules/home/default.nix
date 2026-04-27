@@ -9,6 +9,7 @@
     ./filetype
     ./programs
     ./services
+    ./devenvs
 
     ./antidots.nix
     ./core.nix

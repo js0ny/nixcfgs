@@ -1,16 +1,22 @@
 {
-  pkgs,
+  lib,
   config,
+  pkgs,
   ...
 }:
-{
-  home.packages = with pkgs; [
-    uv
-    ruff
-  ];
-  home.sessionVariables = {
-    PYTHON_HISTORY = "${config.xdg.dataHome}/python/history";
-  };
+let
+  cfg = config.nixdots.devenvs.python;
+in
+lib.mkIf cfg.enable {
+  home.packages = [
+    pkgs.uv
+  ]
+  ++ lib.optionals cfg.global (
+    with pkgs;
+    [
+      ruff
+    ]
+  );
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     ms-python.python
     ms-python.debugpy

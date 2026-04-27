@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ ... }:
 {
   imports = [
     # Packages
@@ -34,7 +29,5 @@
     ./starship.nix
     ./zoxide.nix
 
-    # Development setup
-    ./devenvs/nix.nix
   ];
 }

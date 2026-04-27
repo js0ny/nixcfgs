@@ -59,10 +59,6 @@
     ./programs/protonmail-bridge.nix
     ./programs/quickemu.nix
 
-    ./programs/devenvs/typst.nix
-    ./programs/devenvs/lua.nix
-    ./programs/devenvs/nix.nix
-
     ./programs/easyeffects
 
     ./programs/productivity/obsidian
@@ -91,14 +87,9 @@
     kdePackages.qttools
     calibre
     kdePackages.elisa
-    (jetbrains.clion.override {
-      vmopts = "-Dawt.toolkit.name=WLToolkit";
-    })
     (jetbrains.datagrip.override {
       vmopts = "-Dawt.toolkit.name=WLToolkit";
     })
-    nix-output-monitor
-    nvd
     localPkgs.BBDown
     localPkgs.danmaku2ass
     octaveFull
