@@ -7,7 +7,7 @@
 let
   cfg = config.nixdots.programs.obs-studio;
 in
-lib.mkIf cfg.enable {
+lib.mkIf (cfg.enable && pkgs.stdenv.isLinux) {
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [

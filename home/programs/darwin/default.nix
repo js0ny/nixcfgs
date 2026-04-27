@@ -4,6 +4,5 @@ _: {
     ./duti.nix
     ./iina.nix
     ./raycast.nix
-    ./spotlight.nix
   ];
 }

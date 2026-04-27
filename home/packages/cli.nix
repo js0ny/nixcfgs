@@ -52,7 +52,6 @@
       # Misc ta-lib ddgr protonvpn-cli
       miniserve
       jq
-      srm
       ddgr
       aria2
       p7zip
@@ -74,6 +73,8 @@
         [
           steam-run
           proton-vpn-cli
+          # https://github.com/NixOS/nixpkgs/pull/513252
+          srm
         ]
     );
 }

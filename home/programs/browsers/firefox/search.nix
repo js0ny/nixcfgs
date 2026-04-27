@@ -9,7 +9,6 @@ let
 in
 {
   # Overwrite search.json.mozlz4
-  home.file."${profileDir}/${p}/search.json.mozlz4".force = lib.mkForce true;
   programs.firefox.profiles."${p}".search.engines = {
     alternativeto = {
       name = "AlternativeTo";

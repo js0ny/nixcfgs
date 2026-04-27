@@ -1,27 +1,38 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
-{
-  home.sessionVariables.ANKI_WAYLAND = 1;
-  programs.anki = {
-    enable = true;
-    addons = with pkgs.ankiAddons; [
-      anki-connect
-      review-heatmap
-      # recolor # Use stylix
-    ];
-    profiles."User 1".sync = {
-      autoSync = true;
-      autoSyncMediaMinutes = 15;
-      username = "ankiweb.unusable450@passmail.net";
-      keyFile = config.sops.secrets.anki_sync_key.path;
+lib.mkMerge [
+  {
+    programs.anki = {
+      profiles."User 1".sync = {
+        autoSync = true;
+        autoSyncMediaMinutes = 15;
+      };
     };
-  };
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/Anki2"
-    ];
-  };
-}
+  }
+  (lib.mkIf pkgs.stdenv.isDarwin {
+    programs.anki = {
+      package = pkgs.anki-bin;
+      addons = [ ];
+    };
+    stylix.targets.anki.enable = false;
+  })
+  (lib.mkIf pkgs.stdenv.isLinux {
+    programs.anki = {
+      package = pkgs.anki;
+      addons = with pkgs.ankiAddons; [
+        anki-connect
+        review-heatmap
+        # recolor # Use stylix
+      ];
+    };
+    nixdots.persist.home = {
+      directories = [
+        ".local/share/Anki2"
+      ];
+    };
+  })
+]
