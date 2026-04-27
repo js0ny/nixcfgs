@@ -4,7 +4,10 @@
   config,
   ...
 }:
-{
+let
+  cfg = config.nixdots.programs.onlyoffice;
+in
+lib.mkIf cfg.enable {
   home.packages = with pkgs; [
     onlyoffice-desktopeditors
     corefonts

@@ -77,5 +77,11 @@ in
         description = "Enable Steam gaming platform.";
       };
     };
+    onlyoffice = {
+      enable = lib.mkEnableOption ''
+        Whether to enable onlyoffice-desktopeditors.
+        Office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit local documents
+      '';
+    };
   };
 }

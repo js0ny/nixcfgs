@@ -13,5 +13,6 @@
     ./url-dispatcher.nix
     ./opencode.nix
     ./zed-editor.nix
+    ./onlyoffice.nix
   ];
 }
