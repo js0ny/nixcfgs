@@ -12,5 +12,6 @@
     ./impermanence.nix
     ./server.nix
     ./linux.nix
+    ./darwin.nix
   ];
 }

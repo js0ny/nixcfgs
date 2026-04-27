@@ -90,4 +90,6 @@
       SPACE cycle pause
     '';
   };
+
+  nixdots.darwin.homebrew.casks = [ "iina" ];
 }

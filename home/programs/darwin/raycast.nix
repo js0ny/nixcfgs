@@ -56,4 +56,6 @@ in
     faviconProvider = "raycast";
     "emojiPicker_skinTone" = "standard";
   };
+
+  nixdots.darwin.homebrew.casks = [ "raycast" ];
 }

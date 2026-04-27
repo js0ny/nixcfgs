@@ -19,4 +19,7 @@ lib.mkIf pkgs.stdenv.isDarwin {
       ];
     };
   };
+  nixdots.darwin.homebrew.casks = [
+    "squirrel-app" # Input Method
+  ];
 }

@@ -23,16 +23,22 @@
 
   targets.darwin = {
     linkApps.enable = true;
-    "com.apple.desktopservices" = {
-      DSDontWriteNetworkStores = true;
-      DSDontWriteUSBStores = true;
+    defaults = {
+      "com.apple.desktopservices" = {
+        DSDontWriteNetworkStores = true;
+        DSDontWriteUSBStores = true;
+      };
+      "com.apple.Spotlight" = {
+        # macOS 26 Spotlight
+        # 不显示 iPhone Apps
+        EnabledPreferenceRules = [
+          "System.iphoneApps"
+        ];
+      };
     };
-    "com.apple.Spotlight" = {
-      # macOS 26 Spotlight
-      # 不显示 iPhone Apps
-      EnabledPreferenceRules = [
-        "System.iphoneApps"
-      ];
-    };
+  };
+  home.sessionVariables = {
+    HOMEBREW_NO_AUTO_UPDATE = 1;
+    HOMEBREW_NO_ENV_HINTS = 1;
   };
 }

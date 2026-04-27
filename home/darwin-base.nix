@@ -4,6 +4,7 @@
     ../modules/home
     ../modules/home/darwin.nix
     ./packages/devtools.nix
+    ./packages/gui.nix
     ./programs
 
     ./programs/opencode
@@ -30,9 +31,11 @@
     ./programs/shell/direnv.nix
 
     ./programs/social/telegram.nix
+    ./programs/social/discord.nix
 
     ./programs/aichat.nix
     ./programs/nix-index.nix
+    ./programs/cherry-studio.nix
 
     ./programs/productivity/obsidian
     ./programs/productivity/sioyek
@@ -48,4 +51,5 @@
     mcp.enable = true;
     hardware.enable = false;
   };
+
 }

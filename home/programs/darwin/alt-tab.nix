@@ -75,4 +75,6 @@ in
       blacklist = toString blocklist;
     };
   };
+
+  nixdots.darwin.homebrew.casks = [ "alt-tab" ];
 }

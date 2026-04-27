@@ -1,12 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
+  imports = [ inputs.nixcord.homeModules.nixcord ];
   programs.nixcord = {
     enable = true;
 
     # Clients
     discord = {
       enable = true;
-      package = pkgs.nixpaks.discord;
+      package =
+        if pkgs.stdenv.isLinux then
+          pkgs.nixpaks.discord
+        else
+          inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.discord;
       autoscroll.enable = true;
       vencord.enable = true;
     };
@@ -46,4 +51,5 @@
       ".cache/discord"
     ];
   };
+  # nixdots.darwin.homebrew.casks = [ "discord" ];
 }

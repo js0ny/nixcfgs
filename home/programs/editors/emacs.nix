@@ -34,5 +34,9 @@
     tdlib
   ];
 
+  nixdots.darwin.homebrew = {
+    taps = [ "railwaycat/emacsmacport" ];
+  };
+
   imports = [ ./default.nix ];
 }
