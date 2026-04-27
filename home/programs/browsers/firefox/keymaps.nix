@@ -6,7 +6,7 @@
   ...
 }:
 let
-  profileDir = config.nixdefs.consts.firefox.profileDir;
+  profileDir = config.programs.firefox.configPath;
   p = config.nixdots.programs.firefox.defaultProfile;
 in
 {
