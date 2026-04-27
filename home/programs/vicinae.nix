@@ -1,6 +1,7 @@
 { config, ... }:
 let
-  firefox = config.home.username;
+  firefox = config.nixdefs.consts.firefox.profileDir;
+  fxProfile = config.nixdots.programs.firefox.defaultProfile;
 in
 {
   # TODO: Declare plugin installation here
@@ -29,7 +30,7 @@ in
         };
         "@knoopx/store.vicinae.firefox" = {
           preferences = {
-            profile_dir = ".mozilla/firefox/${firefox}";
+            profile_dir = "${firefox}/${fxProfile}";
           };
         };
         clipboard.entrypoints = {

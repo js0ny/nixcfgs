@@ -26,5 +26,10 @@ lib.mkIf cfg.enable {
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     jnoortheen.nix-ide
   ];
+  programs.vscode.profiles.default.userSettings = {
+    "nix.enableLanguageServer" = true;
+    "nix.serverPath" = lib.getExe pkgs.nixd;
+    "nix.formatterPath" = lib.getExe pkgs.nixfmt;
+  };
   programs.zed-editor.extensions = [ "nix" ];
 }

@@ -1,7 +1,4 @@
 { lib, config, ... }:
-let
-  global = config.nixdots.devenvs.global;
-in
 {
   options.nixdots.devenvs = {
     global = lib.mkOption {
@@ -87,6 +84,14 @@ in
         type = lib.types.bool;
         default = config.nixdots.devenvs.global;
         description = "Whether to install Verilog devenv packages with PATH";
+      };
+    };
+    markdown = {
+      enable = lib.mkEnableOption "Whether to enable markdown devenv";
+      global = lib.mkOption {
+        type = lib.types.bool;
+        default = config.nixdots.devenvs.global;
+        description = "Whether to install Markdown devenv packages with PATH";
       };
     };
   };

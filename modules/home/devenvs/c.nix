@@ -17,11 +17,15 @@ lib.mkIf cfg.enable {
     ]
     ++ lib.optionals cfg.global [
       gcc
-      llvmPackages_21
+      clang-tools
     ];
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     llvm-vs-code-extensions.vscode-clangd
   ];
+  programs.vscode.profiles.default.userSettings = {
+    "clangd.enable" = true;
+    "clangd.path" = lib.getExe' pkgs.clang-tools "clangd";
+  };
   nixdots.programs.shellAliases = lib.mkIf cfg.global {
     "gcc-static" = "nix run nixpkgs#pkgsStatic.gcc";
   };

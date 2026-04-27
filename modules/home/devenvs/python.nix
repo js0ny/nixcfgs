@@ -24,4 +24,7 @@ lib.mkIf cfg.enable {
     charliermarsh.ruff
     njpwerner.autodocstring
   ];
+  xdg.configFile."conda/.condarc".text = ''
+    auto_activate_base: false
+  '';
 }

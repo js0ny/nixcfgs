@@ -1,15 +1,28 @@
 {
   lib,
-  writeShellApplication,
+  pkgs,
   uv,
 }:
 
-writeShellApplication {
+pkgs.buildFHSEnv {
   name = "pdf2zh";
 
-  runtimeInputs = [ uv ];
+  targetPkgs =
+    pkgs: with pkgs; [
+      uv
+      fontconfig
+      freetype
+      glib
+      libGL
+      libxkbcommon
+      libx11
+      libxext
+      libxrender
+      libxcb
+      zlib
+    ];
 
-  text = ''
+  runScript = pkgs.writeShellScript "pdf2zh-wrapper" ''
     exec ${lib.getExe uv} tool run --python 3.12 --from pdf2zh-next pdf2zh "$@"
   '';
 

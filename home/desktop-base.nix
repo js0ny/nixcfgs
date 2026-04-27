@@ -21,7 +21,7 @@
     ./programs/desktop/wayland-wm/niri
 
     ./programs/editors/nvim
-    ./programs/editors/vscode.nix
+    ./programs/editors/vscode
 
     ./gaming/emulators/retroarch.nix
 

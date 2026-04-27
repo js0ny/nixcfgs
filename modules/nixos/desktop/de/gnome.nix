@@ -39,4 +39,8 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
     gnome-font-viewer
     gnome-maps
   ];
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "kitty";
+  };
 }

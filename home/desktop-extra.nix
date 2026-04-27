@@ -13,7 +13,7 @@
 
     ./programs/editors/zed-editor
     ./programs/editors/emacs.nix
-    ./programs/editors/vscode.nix
+    ./programs/editors/vscode
     ./programs/editors/nvim
     ./programs/editors/neovide.nix
 

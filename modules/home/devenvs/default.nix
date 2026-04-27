@@ -14,6 +14,7 @@ in
     ./rust.nix
     ./typst.nix
     ./verilog.nix
+    ./markdown.nix
   ];
   home.sessionVariables = {
     PYTHON_HISTORY = "${xdg-data}/python/history";
