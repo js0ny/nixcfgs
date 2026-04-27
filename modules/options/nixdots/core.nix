@@ -136,6 +136,17 @@ in
         default = config.nixdots.server.enable;
         description = "Whether to enable the SSH daemon for remote access. This is typically enabled for headless or server machines.";
       };
+      ollama = {
+        enable = lib.mkEnableOption "Whether to enable ollama server for local large language models.";
+        models = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+          example = [ "bge-m3" ];
+          description = ''
+            Download these models using ollama pull as soon as ollama.service has started.
+          '';
+        };
+      };
     };
     # This section is for home-manager and nix-darwin
     apps = {

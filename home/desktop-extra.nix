@@ -49,7 +49,6 @@
     ./programs/libvirt.nix
     ./programs/magick.nix
     # ./programs/newsflash.nix
-    ./programs/ollama.nix
     ./programs/wine.nix
     ./programs/bottles.nix
     ./programs/eza.nix
@@ -70,7 +69,6 @@
     ./programs/productivity/sioyek
     ./programs/productivity/anki.nix
     ./programs/productivity/libreoffice.nix
-    ./programs/productivity/onlyoffice.nix
     ./programs/productivity/goldendict.nix
     ./programs/productivity/readest.nix
     ./programs/productivity/sdcv.nix

@@ -47,6 +47,7 @@ in
         "alt+shift+|=new_split:right"
         "alt+shift+_=new_split:down"
         "alt+shift+enter=new_split:auto"
+        "ctrl+enter=ignore"
       ];
 
       ### Misc

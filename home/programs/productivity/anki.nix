@@ -7,6 +7,7 @@
 lib.mkMerge [
   {
     programs.anki = {
+      enable = true;
       profiles."User 1".sync = {
         autoSync = true;
         autoSyncMediaMinutes = 15;

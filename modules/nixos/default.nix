@@ -16,6 +16,7 @@ in
 
     ./services/tailscale.nix
     ./services/syncthing.nix
+    ./services/ollama.nix
 
     ../common/sops.nix
     ../common/styles
@@ -43,7 +44,17 @@ in
 
   systemd.tmpfiles.rules = [
     "L /var/lib/dbus/machine-id - - - - /etc/machine-id"
+    "z /var/lib/private 0700 root root -"
   ];
+
+  nixdots.persist.system = {
+    directories = [
+      {
+        directory = "/var/lib/private";
+        mode = "0700";
+      }
+    ];
+  };
 
   nix.settings = {
     substituters = config.nixdefs.misc.binary-cache.substituters;

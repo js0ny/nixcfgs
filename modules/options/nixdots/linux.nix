@@ -13,6 +13,13 @@
     #   ];
     #   default = "systemd-boot";
     # };
+    nixos = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        Whether this is a NixOS host.
+      '';
+    };
     display = lib.mkOption {
       type = lib.types.enum [
         "wayland"

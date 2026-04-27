@@ -194,7 +194,6 @@
         };
 
         homeManagerModules = {
-          base = import ./home/base.nix;
           server-base = import ./home/server-base.nix;
           darwin-base = import ./home/darwin-base.nix;
           desktop-base = import ./home/desktop-base.nix;
