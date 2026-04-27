@@ -6,6 +6,7 @@
 }:
 let
   p = config.nixdots.programs.firefox.defaultProfile;
+  baseprefs = import ../../../common/firefox-baseprefs.nix;
 in
 {
   programs.firefox = {
@@ -81,7 +82,8 @@ in
         # New Features
         # 147: Keep playing videos in Picture-in-Picture when switching tabs
         "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = false;
-      };
+      }
+      // (if pkgs.stdenv.isDarwin then baseprefs else { });
     };
   };
 }
