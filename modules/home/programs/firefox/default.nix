@@ -25,12 +25,6 @@ in
     enable = cfg.enable;
   };
 
-  # Upstream: https://github.com/nix-community/stylix/issues/2071
-  stylix.targets.firefox = {
-    profileNames = [ "${p}" ];
-    enable = false;
-  };
-
   nixdots.persist.home =
     if cfg.enable then
       {
