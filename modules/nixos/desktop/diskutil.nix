@@ -16,5 +16,6 @@ lib.mkIf cfg {
     pkgs.smartmontools
   ];
   # davfs2 is for WebDAV mounts.
-  services.davfs2.enable = true;
+  # NOTE: Upstream: https://github.com/NixOS/nixpkgs/issues/512953
+  # services.davfs2.enable = true;
 }

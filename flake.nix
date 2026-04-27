@@ -54,7 +54,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-addons = {
-      url = "github:petrkozorezov/firefox-addons-nix";
+      # NOTE: Upstream: https://github.com/petrkozorezov/firefox-addons-nix/pull/2
+      # url = "github:petrkozorezov/firefox-addons-nix";
+      url = "github:xddxdd/firefox-addons-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -4,11 +4,11 @@
   ...
 }:
 let
-  forceElectron39 =
-    p:
-    (p.override {
-      electron = pkgs.electron_39;
-    });
+  # forceElectron39 =
+  #   p:
+  #   (p.override {
+  #     electron = pkgs.electron_39;
+  #   });
 in
 {
   imports = [
@@ -29,7 +29,7 @@ in
     # Theming
     papirus-icon-theme
     remmina
-    (forceElectron39 siyuan)
+    siyuan
     localsend
     proton-vpn
     showmethekey
