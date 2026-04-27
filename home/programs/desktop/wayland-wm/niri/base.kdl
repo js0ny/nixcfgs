@@ -1,0 +1,52 @@
+  input {
+      keyboard {
+          xkb {
+              layout ""
+              model ""
+              rules ""
+              variant ""
+          }
+          repeat-delay 600
+          repeat-rate 25
+          track-layout "global"
+          numlock
+      }
+      touchpad {
+          tap
+          dwt
+          natural-scroll
+      }
+  }
+  screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+  prefer-no-csd
+  layout {
+      gaps 16
+      struts {
+          left 0
+          right 0
+          top 0
+          bottom 0
+      }
+      focus-ring {
+          width 4
+          active-color "#7fc8ff"
+          inactive-color "#505050"
+      }
+      border { off; }
+      default-column-width { proportion 0.500000; }
+      preset-column-widths {
+          proportion 0.333330
+          proportion 0.500000
+          proportion 0.666670
+      }
+      center-focused-column "never"
+  }
+  cursor {
+      xcursor-theme "default"
+      xcursor-size 24
+  }
+  workspace "1-master"
+  workspace "2-project"
+  workspace "3-alt"
+  workspace "4-info"
+  workspace "5-bg"

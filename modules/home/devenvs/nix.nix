@@ -11,6 +11,7 @@ lib.mkIf cfg.enable {
   home.packages =
     with pkgs;
     [
+      nix-diff
       nix-output-monitor
       nvd
     ]

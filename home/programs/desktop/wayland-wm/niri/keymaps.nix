@@ -1,251 +1,160 @@
 {
-  config,
   pkgs,
   lib,
-  ...
+  config,
 }:
 let
-  term = "xdg-terminal-exec";
-  # TODO: Don't default to dark
-  kbdBacklightDev = config.nixdots.laptop.backlight.keyboard;
-  kbdBacklightStep = "1";
-  screen = config.nixdots.laptop.backlight.screen;
   nirictl = import ./scripts.nix { inherit pkgs; };
-  launcher = import ../../../vicinae-reg.nix;
+  homeDir = config.home.homeDirectory;
+  nirictl-focus = lib.getExe nirictl.focusOrLaunch;
+  vicinae = config.nixdefs.consts.vicinae;
+  vicinaeCmd = cmd: builtins.concatStringsSep " " (map (x: ''"${x}"'') cmd);
+  powerprofiles = lib.getExe pkgs.localPkgs.power-profiles-next;
+  term = lib.getExe pkgs.xdg-terminal-exec;
+  screenDevice = config.nixdots.laptop.backlight.screen;
+  kbdDevice = config.nixdots.laptop.backlight.keyboard;
+  kbdStep = "1";
 in
-{
-  home.packages = [
-    nirictl.focusOrLaunch
-  ];
-  programs.niri.settings.binds = with config.lib.niri.actions; {
-    # === Application Runner ===
-    "Mod+B".hotkey-overlay.title = "Focus or launch web browser";
-    "Mod+B".action = spawn "${lib.getExe nirictl.focusOrLaunch}" "firefox" "firefox";
-    "Mod+Shift+B".hotkey-overlay.title = "Launch web browser in private mode";
-    "Mod+Shift+B".action = spawn "firefox" "--private-window";
-    "Mod+A".action = spawn-sh "${term} --class=terminal-popup -e aichat --session";
-    "Mod+Shift+A".hotkey-overlay.title = "Focus or launch CherryStudio (AI assistant)";
-    "Mod+Shift+A".action = spawn "${lib.getExe nirictl.focusOrLaunch}" "CherryStudio" "cherry-studio";
-    "Mod+O".hotkey-overlay.title = "Focus or launch Obsidian";
-    "Mod+O".action = spawn "${lib.getExe nirictl.focusOrLaunch}" "obsidian" "obsidian";
-    # See: programs/obsidian/obsidian-grep.nix
-    "Mod+Shift+O".action =
-      spawn-sh "${term} --app-id=terminal-popup -e obsidian-grep && ${lib.getExe nirictl.focusOrLaunch} obsidian obsidian";
-    # TODO: Change "org.kde.dolphin" to a more generic explorer app id via config.currentUser
-    "Mod+E".hotkey-overlay.title = "Launch file explorer";
-    # "Mod+E".action = spawn "${lib.getExe nirictl.focusOrLaunch}" "org.kde.dolphin" "dolphin";
-    "Mod+E".action = spawn-sh "xdg-open ~";
-    "Mod+Shift+E".action = spawn "fsearch";
-    "Mod+Alt+E".action = spawn "${term}" "yazi";
-    "Mod+Shift+Return".action = spawn-sh "kitty --class=terminal-popup";
-    # "Mod+Shift+Alt+Return".action = spawn-sh "${term} --app-id=kitty--terminal-popup --working-directory='${config.home.homeDirectory}/.config/shells/nohist' -e nix develop";
-
-    "Mod+Alt+Return".action = spawn "neovide" "${config.home.homeDirectory}/Atelier";
-    "Mod+Apostrophe".action =
-      spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal";
-
-    "Mod+Shift+Slash".action = show-hotkey-overlay;
-
-    "Mod+Return".hotkey-overlay.title = "Open a Terminal: ${term}";
-    "Mod+Return".action = spawn "${term}";
-
-    "Mod+Alt+i".hotkey-overlay.title = "Hyprlock";
-    "Mod+Alt+i".action = spawn "hyprlock";
-
-    "Alt+Space".hotkey-overlay.title = "Picker";
-    "Alt+Space".action.spawn = launcher.toggle;
-
-    "Mod+W".action.spawn = launcher.windows;
-
-    "Mod+V".action.spawn = launcher.cliphist;
-
-    # See ../volume-notify.nix
-    "XF86AudioRaiseVolume".allow-when-locked = true;
-    "XF86AudioRaiseVolume".action = spawn "volume-notify" "up";
-    "XF86AudioLowerVolume".allow-when-locked = true;
-    "XF86AudioLowerVolume".action = spawn "volume-notify" "down";
-    "XF86AudioMute".allow-when-locked = true;
-    "XF86AudioMute".action = spawn "volume-notify" "mute";
-    "XF86AudioMicMute".allow-when-locked = true;
-    "XF86AudioMicMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
-
-    # TODO: Write a script that detects and set current display brightness.
-    "XF86MonBrightnessUp" = {
-      action = spawn "brightnessctl" "set" "10%+" "--device" "${screen}";
-      allow-when-locked = true;
-    };
-
-    "XF86MonBrightnessDown" = {
-      action = spawn "brightnessctl" "set" "10%-" "--device" "${screen}";
-      allow-when-locked = true;
-    };
-
-    "XF86AudioPrev".action = spawn "playerctl" "previous";
-    "XF86AudioNext".action = spawn "playerctl" "next";
-    "XF86AudioPlay".action = spawn "playerctl" "playpause";
-
-    # NOTE: This is a host-specific config
-    # G14 Built-in Fn+Enter
-    "XF86Calculator".action = spawn "";
-    # INFO: Seems that niri does not support touchpad toggle, waiting for upstream implementation.
-    "XF86TouchpadToggle".action = spawn "";
-    # TODO: Write logic for default case
-    "XF86KbdBrightnessUp".action = spawn "brightnessctl" "--device" "${
-      kbdBacklightDev
-    }" "set" "${kbdBacklightStep}+";
-    "XF86KbdBrightnessDown".action = spawn "brightnessctl" "--device" "${
-      kbdBacklightDev
-    }" "set" "${kbdBacklightStep}-";
-
-    # NOTE: This is a host-specific config
-    # G14 Power Profiles Switcher
-    # ROG Key: XF86Launch1
-    # AURA Key: XF86Launch3
-    # Fan Key: XF86Launch4
-    "XF86Launch4".action = spawn "${lib.getExe pkgs.localPkgs.power-profiles-next}";
-    "XF86Launch1".action.spawn = launcher.toggle;
-
-    "Mod+Tab".action = toggle-overview;
-    "Mod+Q".action = close-window;
-
-    "Mod+Left".action = focus-column-left;
-    "Mod+Down".action = focus-window-down;
-    "Mod+Up".action = focus-window-up;
-    "Mod+Right".action = focus-column-right;
-    "Mod+H".action = focus-column-left;
-    "Mod+J".action = focus-window-or-workspace-down;
-    "Mod+K".action = focus-window-or-workspace-up;
-    "Mod+L".action = focus-column-right;
-
-    "Mod+Shift+Left".action = move-column-left;
-    "Mod+Shift+Down".action = move-window-down;
-    "Mod+Shift+Up".action = move-window-up;
-    "Mod+Shift+Right".action = move-column-right;
-    "Mod+Shift+H".action = move-column-left;
-    "Mod+Shift+J".action = move-window-to-workspace-down;
-    "Mod+Shift+K".action = move-window-to-workspace-up;
-    "Mod+Shift+L".action = move-column-right;
-
-    "Mod+Home".action = focus-column-first;
-    "Mod+End".action = focus-column-last;
-    "Mod+Ctrl+Home".action = move-column-to-first;
-    "Mod+Ctrl+End".action = move-column-to-last;
-
-    "Mod+Alt+Left".action = focus-monitor-left;
-    "Mod+Alt+Down".action = focus-monitor-down;
-    "Mod+Alt+Up".action = focus-monitor-up;
-    "Mod+Alt+Right".action = focus-monitor-right;
-    "Mod+Alt+H".action = focus-monitor-left;
-    "Mod+Alt+J".action = focus-monitor-down;
-    "Mod+Alt+K".action = focus-monitor-up;
-    "Mod+Alt+L".action = focus-monitor-right;
-
-    "Mod+Shift+Ctrl+Left".action = move-column-to-monitor-left;
-    "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
-    "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
-    "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
-    "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
-    "Mod+Shift+Ctrl+J".action = move-column-to-monitor-down;
-    "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
-    "Mod+Shift+Ctrl+L".action = move-column-to-monitor-right;
-
-    "Mod+Page_Down".action = focus-workspace-down;
-    "Mod+Page_Up".action = focus-workspace-up;
-    "Mod+U".action = focus-workspace-down;
-    "Mod+I".action = focus-workspace-up;
-    "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
-    "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
-    "Mod+Ctrl+U".action = move-column-to-workspace-down;
-    "Mod+Ctrl+I".action = move-column-to-workspace-up;
-
-    "Mod+Shift+Page_Down".action = move-workspace-down;
-    "Mod+Shift+Page_Up".action = move-workspace-up;
-    "Mod+Shift+U".action = move-workspace-down;
-    "Mod+Shift+I".action = move-workspace-up;
-
-    "Mod+WheelScrollDown".cooldown-ms = 150;
-    "Mod+WheelScrollDown".action = focus-workspace-down;
-    "Mod+WheelScrollUp".cooldown-ms = 150;
-    "Mod+WheelScrollUp".action = focus-workspace-up;
-    "Mod+Ctrl+WheelScrollDown".cooldown-ms = 150;
-    "Mod+Ctrl+WheelScrollDown".action = move-column-to-workspace-down;
-    "Mod+Ctrl+WheelScrollUp".cooldown-ms = 150;
-    "Mod+Ctrl+WheelScrollUp".action = move-column-to-workspace-up;
-
-    "Mod+WheelScrollRight".action = focus-column-right;
-    "Mod+WheelScrollLeft".action = focus-column-left;
-    "Mod+Ctrl+WheelScrollRight".action = move-column-right;
-    "Mod+Ctrl+WheelScrollLeft".action = move-column-left;
-
-    "Mod+Shift+WheelScrollDown".action = focus-column-right;
-    "Mod+Shift+WheelScrollUp".action = focus-column-left;
-    "Mod+Ctrl+Shift+WheelScrollDown".action = move-column-right;
-    "Mod+Ctrl+Shift+WheelScrollUp".action = move-column-left;
-
-    "Mod+1".action = focus-workspace "1-master";
-    "Mod+2".action = focus-workspace "2-project";
-    "Mod+3".action = focus-workspace "3-alt";
-    "Mod+4".action = focus-workspace "4-info";
-    "Mod+5".action = focus-workspace "5-bg";
-    "Mod+6".action = focus-workspace 6;
-    "Mod+7".action = focus-workspace 7;
-    "Mod+8".action = focus-workspace 8;
-    "Mod+9".action = focus-workspace 9;
-    "Mod+Shift+1".action.move-column-to-workspace = "1-master";
-    "Mod+Shift+2".action.move-column-to-workspace = "2-project";
-    "Mod+Shift+3".action.move-column-to-workspace = "3-alt";
-    "Mod+Shift+4".action.move-column-to-workspace = "4-info";
-    "Mod+Shift+5".action.move-column-to-workspace = "5-bg";
-    "Mod+Shift+6".action.move-column-to-workspace = 6;
-    "Mod+Shift+7".action.move-column-to-workspace = 7;
-    "Mod+Shift+8".action.move-column-to-workspace = 8;
-    "Mod+Shift+9".action.move-column-to-workspace = 9;
-
-    "Mod+BracketLeft".action = consume-or-expel-window-left;
-    "Mod+BracketRight".action = consume-or-expel-window-right;
-
-    "Mod+R".action = switch-preset-column-width;
-    "Mod+Shift+R".action = switch-preset-window-height;
-    "Mod+Ctrl+R".action = reset-window-height;
-    "Mod+M".action = maximize-column;
-    "Mod+Shift+M".action = fullscreen-window;
-    "Mod+Ctrl+F".action = expand-column-to-available-width;
-    "Mod+C".action = center-column;
-    "Mod+Ctrl+C".action = center-visible-columns;
-    "Mod+Minus".action = set-column-width "-10%";
-    "Mod+Equal".action = set-column-width "+10%";
-    "Mod+Shift+Minus".action = set-window-height "-10%";
-    "Mod+Shift+Equal".action = set-window-height "+10%";
-    "Mod+F".action = toggle-window-floating;
-    "Mod+Shift+F".action = switch-focus-between-floating-and-tiling;
-    "Mod+G".hotkey-overlay.title = "Toggle Grouped Display";
-    "Mod+G".action = toggle-column-tabbed-display;
-
-    # Disable pointer by default, toggle with `p` key
-    "Mod+Shift+S".action.screenshot = {
-      show-pointer = false;
-    };
-    "Print".action.screenshot = {
-      show-pointer = false;
-    };
-    "Ctrl+Print".action.screenshot-screen = {
-      show-pointer = false;
-    };
-    "Mod+Alt+S".action.screenshot-screen = {
-      show-pointer = false;
-    };
-    "Alt+Print".action.screenshot-window = {
-      write-to-disk = true;
-    };
-    "Mod+S".action.screenshot-window = {
-      write-to-disk = true;
-    };
-
-    "Mod+Escape".allow-inhibiting = false;
-    "Mod+Escape".action = toggle-keyboard-shortcuts-inhibit;
-
-    "Mod+Grave".action = focus-workspace-previous;
-
-    "Ctrl+Alt+Delete".action = quit;
-  };
-}
+/* kdl */ ''
+  binds {
+      Alt+Print { screenshot-window write-to-disk=true; }
+      Alt+Space hotkey-overlay-title="Picker" { spawn ${vicinaeCmd vicinae.toggle}; }
+      Ctrl+Alt+Delete { quit; }
+      Ctrl+Print { screenshot-screen show-pointer=false; }
+      Mod+1 { focus-workspace "1-master"; }
+      Mod+2 { focus-workspace "2-project"; }
+      Mod+3 { focus-workspace "3-alt"; }
+      Mod+4 { focus-workspace "4-info"; }
+      Mod+5 { focus-workspace "5-bg"; }
+      Mod+6 { focus-workspace 6; }
+      Mod+7 { focus-workspace 7; }
+      Mod+8 { focus-workspace 8; }
+      Mod+9 { focus-workspace 9; }
+      Mod+A { spawn-sh "${term} --class=terminal-popup -e aichat --session"; }
+      Mod+Alt+Down { focus-monitor-down; }
+      Mod+Alt+E { spawn "${term}" "yazi"; }
+      Mod+Alt+H { focus-monitor-left; }
+      Mod+Alt+J { focus-monitor-down; }
+      Mod+Alt+K { focus-monitor-up; }
+      Mod+Alt+L { focus-monitor-right; }
+      Mod+Alt+Left { focus-monitor-left; }
+      Mod+Alt+Return { spawn "neovide" "${homeDir}/Atelier"; }
+      Mod+Alt+Right { focus-monitor-right; }
+      Mod+Alt+S { screenshot-screen show-pointer=false; }
+      Mod+Alt+Up { focus-monitor-up; }
+      Mod+Alt+i hotkey-overlay-title="Hyprlock" { spawn "hyprlock"; }
+      Mod+Apostrophe { spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal"; }
+      Mod+B hotkey-overlay-title="Focus or launch web browser" { spawn "${nirictl-focus}" "firefox" "firefox"; }
+      Mod+BracketLeft { consume-or-expel-window-left; }
+      Mod+BracketRight { consume-or-expel-window-right; }
+      Mod+C { center-column; }
+      Mod+Ctrl+C { center-visible-columns; }
+      Mod+Ctrl+End { move-column-to-last; }
+      Mod+Ctrl+F { expand-column-to-available-width; }
+      Mod+Ctrl+Home { move-column-to-first; }
+      Mod+Ctrl+I { move-column-to-workspace-up; }
+      "Mod+Ctrl+Page_Down" { move-column-to-workspace-down; }
+      "Mod+Ctrl+Page_Up" { move-column-to-workspace-up; }
+      Mod+Ctrl+R { reset-window-height; }
+      Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+      Mod+Ctrl+Shift+WheelScrollUp { move-column-left; }
+      Mod+Ctrl+U { move-column-to-workspace-down; }
+      Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+      Mod+Ctrl+WheelScrollLeft { move-column-left; }
+      Mod+Ctrl+WheelScrollRight { move-column-right; }
+      Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
+      Mod+Down { focus-window-down; }
+      Mod+E hotkey-overlay-title="Launch file explorer" { spawn-sh "xdg-open ~"; }
+      Mod+End { focus-column-last; }
+      Mod+Equal { set-column-width "+10%"; }
+      Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+      Mod+F { toggle-window-floating; }
+      Mod+G hotkey-overlay-title="Toggle Grouped Display" { toggle-column-tabbed-display; }
+      Mod+Grave { focus-workspace-previous; }
+      Mod+H { focus-column-left; }
+      Mod+Home { focus-column-first; }
+      Mod+I { focus-workspace-up; }
+      Mod+J { focus-window-or-workspace-down; }
+      Mod+K { focus-window-or-workspace-up; }
+      Mod+L { focus-column-right; }
+      Mod+Left { focus-column-left; }
+      Mod+M { maximize-column; }
+      Mod+Minus { set-column-width "-10%"; }
+      Mod+O hotkey-overlay-title="Focus or launch Obsidian" { spawn "${nirictl-focus}" "obsidian" "obsidian"; }
+      "Mod+Page_Down" { focus-workspace-down; }
+      "Mod+Page_Up" { focus-workspace-up; }
+      Mod+Q { close-window; }
+      Mod+R { switch-preset-column-width; }
+      Mod+Return hotkey-overlay-title="Open a Terminal: ${term}" { spawn "${term}"; }
+      Mod+Right { focus-column-right; }
+      Mod+S { screenshot-window write-to-disk=true; }
+      Mod+Shift+1 { move-column-to-workspace "1-master"; }
+      Mod+Shift+2 { move-column-to-workspace "2-project"; }
+      Mod+Shift+3 { move-column-to-workspace "3-alt"; }
+      Mod+Shift+4 { move-column-to-workspace "4-info"; }
+      Mod+Shift+5 { move-column-to-workspace "5-bg"; }
+      Mod+Shift+6 { move-column-to-workspace 6; }
+      Mod+Shift+7 { move-column-to-workspace 7; }
+      Mod+Shift+8 { move-column-to-workspace 8; }
+      Mod+Shift+9 { move-column-to-workspace 9; }
+      Mod+Shift+A hotkey-overlay-title="Focus or launch CherryStudio (AI assistant)" { spawn "${nirictl-focus}" "CherryStudio" "cherry-studio"; }
+      Mod+Shift+B hotkey-overlay-title="Launch web browser in private mode" { spawn "firefox" "--private-window"; }
+      Mod+Shift+Ctrl+Down { move-column-to-monitor-down; }
+      Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+      Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
+      Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
+      Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+      Mod+Shift+Ctrl+Left { move-column-to-monitor-left; }
+      Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+      Mod+Shift+Ctrl+Up { move-column-to-monitor-up; }
+      Mod+Shift+Down { move-window-down; }
+      Mod+Shift+E { spawn "fsearch"; }
+      Mod+Shift+Equal { set-window-height "+10%"; }
+      Mod+Shift+F { switch-focus-between-floating-and-tiling; }
+      Mod+Shift+H { move-column-left; }
+      Mod+Shift+I { move-workspace-up; }
+      Mod+Shift+J { move-window-to-workspace-down; }
+      Mod+Shift+K { move-window-to-workspace-up; }
+      Mod+Shift+L { move-column-right; }
+      Mod+Shift+Left { move-column-left; }
+      Mod+Shift+M { fullscreen-window; }
+      Mod+Shift+Minus { set-window-height "-10%"; }
+      Mod+Shift+O { spawn-sh "${term} --app-id=terminal-popup -e obsidian-grep && ${nirictl-focus} obsidian obsidian"; }
+      "Mod+Shift+Page_Down" { move-workspace-down; }
+      "Mod+Shift+Page_Up" { move-workspace-up; }
+      Mod+Shift+R { switch-preset-window-height; }
+      Mod+Shift+Return { spawn-sh "kitty --class=terminal-popup"; }
+      Mod+Shift+Right { move-column-right; }
+      Mod+Shift+S { screenshot show-pointer=false; }
+      Mod+Shift+Slash { show-hotkey-overlay; }
+      Mod+Shift+U { move-workspace-down; }
+      Mod+Shift+Up { move-window-up; }
+      Mod+Shift+WheelScrollDown { focus-column-right; }
+      Mod+Shift+WheelScrollUp { focus-column-left; }
+      Mod+Tab { toggle-overview; }
+      Mod+U { focus-workspace-down; }
+      Mod+Up { focus-window-up; }
+      Mod+V { spawn ${vicinaeCmd vicinae.cliphist}; }
+      Mod+W { spawn ${vicinaeCmd vicinae.windows}; }
+      Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+      Mod+WheelScrollLeft { focus-column-left; }
+      Mod+WheelScrollRight { focus-column-right; }
+      Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+      Print { screenshot show-pointer=false; }
+      XF86AudioLowerVolume allow-when-locked=true { spawn "volume-notify" "down"; }
+      XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+      XF86AudioMute allow-when-locked=true { spawn "volume-notify" "mute"; }
+      XF86AudioNext { spawn "playerctl" "next"; }
+      XF86AudioPlay { spawn "playerctl" "playpause"; }
+      XF86AudioPrev { spawn "playerctl" "previous"; }
+      XF86AudioRaiseVolume allow-when-locked=true { spawn "volume-notify" "up"; }
+      XF86Calculator { spawn ""; }
+      XF86KbdBrightnessDown { spawn "brightnessctl" "--device" "${kbdDevice}" "set" "${kbdStep}-"; }
+      XF86KbdBrightnessUp { spawn "brightnessctl" "--device" "${kbdDevice}" "set" "${kbdStep}+"; }
+      XF86Launch1 { spawn ${vicinaeCmd vicinae.toggle}; }
+      XF86Launch4 { spawn "${powerprofiles}"; }
+      XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "10%-" "--device" "${screenDevice}"; }
+      XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "10%+" "--device" "${screenDevice}"; }
+      XF86TouchpadToggle { spawn ""; }
+  }
+''

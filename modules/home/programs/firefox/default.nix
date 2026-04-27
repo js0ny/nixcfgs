@@ -19,7 +19,7 @@ in
     ./surfingkeys.nix
     ./userjs.nix
   ];
-  programs.firefox.configPath = profile;
+  programs.firefox.configPath = "${config.home.homeDirectory}/${profile}";
 
   programs.firefox = {
     enable = cfg.enable;

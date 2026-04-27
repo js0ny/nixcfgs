@@ -1,6 +1,11 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
-  launcher = import ../../vicinae-reg.nix;
+  vicinae = config.nixdefs.consts.vicinae;
 in
 {
   services.dunst = {
@@ -9,7 +14,7 @@ in
       global = {
         follow = "mouse";
         indicate_hidden = "yes";
-        dmenu = lib.concatStringsSep " " launcher.dmenu;
+        dmenu = lib.concatStringsSep " " vicinae.dmenu;
         browser = lib.getExe' pkgs.xdg-utils "xdg-open";
       };
     };

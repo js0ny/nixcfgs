@@ -3,7 +3,7 @@ let
   id = "{3c078156-979c-498b-8990-85f7987dd929}";
   home = config.nixdots.user.home;
   p = config.nixdots.programs.firefox.defaultProfile;
-  profileDir = config.programs.firefox.configPath;
+  profileDir = config.nixdefs.consts.firefox.profileDir;
 in
 {
   mergetools."sidebery-keymaps" = {

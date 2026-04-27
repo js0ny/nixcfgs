@@ -62,7 +62,6 @@
       # rar support requires unfree flag.
       (ouch.override { enableUnfree = true; })
       localPkgs.rename-zero-pad
-      nix-diff
       openssl
     ]
     ++ (

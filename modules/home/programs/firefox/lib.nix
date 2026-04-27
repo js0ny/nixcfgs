@@ -4,6 +4,10 @@
   pkgs,
   ...
 }:
+let
+  profileDir = config.nixdefs.consts.firefox.profileDir;
+  p = config.nixdots.programs.firefox.defaultProfile;
+in
 {
   options.programs.firefox.profiles = lib.mkOption {
     type = lib.types.attrsOf (
@@ -29,11 +33,7 @@
     lib.mapAttrsToList (
       profileName: profileCfg:
       let
-        basePath =
-          if pkgs.stdenv.isDarwin then
-            "${config.home.homeDirectory}/Library/Application Support/Firefox/Profiles/${profileName}"
-          else
-            "${config.home.homeDirectory}/.mozilla/firefox/${profileName}";
+        basePath = "${config.home.homeDirectory}/${profileDir}/${p}";
       in
       lib.mapAttrs' (
         uuid: extCfg:
@@ -41,6 +41,7 @@
           target = "${basePath}/browser-extension-data/${uuid}/storage.js";
           format = "json";
           settings = extCfg.settings;
+          force = true;
         }
       ) profileCfg.extensionStorage
     ) config.programs.firefox.profiles
