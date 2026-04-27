@@ -17,7 +17,6 @@ in
   imports = [
     ./cookie-autodelete.nix
     ./surfingkeys.nix
-    ./betterfox.nix
     ./userjs.nix
   ];
   programs.firefox.configPath = profile;
