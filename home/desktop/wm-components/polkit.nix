@@ -1,22 +1,22 @@
 { pkgs, ... }:
 {
-  systemd.user.services.hyprpolkitagent = {
+  systemd.user.services.polkit-agent = {
     Unit = {
-      Description = "Hyprland Polkit Authentication Agent";
+      Description = "Polkit agent";
       PartOf = [ "niri.service" ];
       After = [ "graphical-session.target" ];
     };
 
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+      ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
     };
 
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = [ "niri.target" ];
     };
   };
 }

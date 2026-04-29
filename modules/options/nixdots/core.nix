@@ -237,6 +237,7 @@ in
     pam = {
       howdy = {
         enable = lib.mkEnableOption "Enable Howdy facial recognition for PAM authentication.";
+        setup = lib.mkEnableOption "This module requires human intervention to configure, please make sure you have done most of the steps.";
       };
     };
     networking = {

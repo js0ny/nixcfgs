@@ -9,7 +9,7 @@ let
 in
 lib.mkIf cfg.enable {
   services.howdy = {
-    enable = true;
+    enable = cfg.setup;
     # control: "required" - the user must pass the howdy check to log in
     # control: "sufficient" - the user can log in if they pass the how
     control = "sufficient";
@@ -29,7 +29,13 @@ lib.mkIf cfg.enable {
   };
   security.pam.services = {
     hyprlock.howdy.enable = true;
-    polkit-1.howdy.enable = false;
+    polkit-1.howdy.enable = true; # KDE/Gnome Polkit is preferred
+    login.howdy.enable = true; # GDM is preferred.
   };
   programs.hyprlock.enable = true;
+
+  systemd.services."polkit-agent-helper@".serviceConfig = {
+    PrivateDevices = false;
+    DeviceAllow = "char-video4linux rw";
+  };
 }
