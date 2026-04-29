@@ -1,7 +1,8 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
   firefox = config.nixdefs.consts.firefox.profileDir;
   fxProfile = config.nixdots.programs.firefox.defaultProfile;
+  selfhosted = config.nixdefs.selfhosted;
 in
 {
   # TODO: Declare plugin installation here
@@ -42,7 +43,23 @@ in
           options.alias = "opts";
           packages.alias = "pkgs";
         };
-      };
+      }
+      // (lib.optionalAttrs selfhosted.searxng.enable {
+        "@Ninetonine/store.vicinae.searxng" = {
+          preferences = {
+            instance_domain = selfhosted.searxng.url;
+            default_category = lib.mkDefault "general";
+            details_start_open = lib.mkDefault false;
+            keep_previous_search = lib.mkDefault true;
+            languages = lib.mkDefault "en";
+          };
+          entrypoints = {
+            search-with-searxng = {
+              alias = selfhosted.searxng.alias;
+            };
+          };
+        };
+      });
     };
   };
 

@@ -6,6 +6,7 @@
 let
   profileDir = config.nixdefs.consts.firefox.profileDir;
   p = config.nixdots.programs.firefox.defaultProfile;
+  searxng = config.nixdefs.selfhosted.searxng;
 in
 {
   # Overwrite search.json.mozlz4
@@ -175,5 +176,16 @@ in
         "@nixl"
       ];
     };
-  };
+  }
+  // (lib.optionalAttrs (searxng.enable) {
+    searxng = {
+      name = "SearXNG";
+      urls = [ { template = "${searxng.url}?q={searchTerms}"; } ];
+      icon = "${searxng.url}/favicon.ico";
+      definedAliases = [
+        searxng.alias
+        "searxng"
+      ];
+    };
+  });
 }

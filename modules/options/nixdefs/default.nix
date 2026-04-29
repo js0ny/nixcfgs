@@ -9,5 +9,6 @@
     ./misc.nix
     ./consts.nix
     ./endpoints.nix
+    ./selfhosted.nix
   ];
 }
