@@ -14,5 +14,6 @@
     ./opencode.nix
     ./zed-editor.nix
     ./onlyoffice.nix
+    ./thunderbird.nix
   ];
 }

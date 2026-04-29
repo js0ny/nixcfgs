@@ -5,10 +5,11 @@
   ...
 }:
 let
-  cfg = config.nixdots.programs.thunderbird.enable;
+  cfg = config.nixdots.programs.thunderbird;
   profile = config.nixdots.user.name;
+  nur-addons = pkgs.nur.repos.rycee.thunderbird-addons;
 in
-{
+lib.mkIf cfg.enable {
   programs.thunderbird = {
     enable = true;
     profiles."${profile}" = {
@@ -16,9 +17,7 @@ in
       settings = {
         "mailnews.message_display.disable_remote_image" = false;
       };
-      extensions = with pkgs.nur.repos.rycee.thunderbird-addons; [
-        tbkeys
-      ];
+      extensions = with nur-addons; [ tbkeys ];
     };
   };
   catppuccin.thunderbird.profile = profile;
@@ -30,9 +29,4 @@ in
   home.packages = with pkgs; [
     birdtray
   ];
-  # Track prefs.js change
-  home.file.".thunderbird/${profile}/.gitignore".text = ''
-    *
-    !*.js
-  '';
 }

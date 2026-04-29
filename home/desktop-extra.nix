@@ -68,7 +68,6 @@
     ./programs/productivity/goldendict.nix
     ./programs/productivity/readest.nix
     ./programs/productivity/sdcv.nix
-    ./programs/productivity/thunderbird.nix
     ./programs/productivity/zotero.nix
     ./programs/productivity/zoom-us.nix
 
@@ -96,9 +95,6 @@
     krabby
     gh
   ];
-  # ++ (pkgs.mkElectronWayland [
-  #   pkgs.cider-2
-  # ]);
 
   xdg.configFile."krabby/config.toml".text = ''
     language = "en"
