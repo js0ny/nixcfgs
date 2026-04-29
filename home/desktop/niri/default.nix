@@ -9,7 +9,7 @@ let
 in
 {
   imports = [
-    ../.
+    ../wm-components
   ];
 
   programs.niri = {
