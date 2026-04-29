@@ -25,7 +25,7 @@ in
   ];
   programs.plasma = {
     workspace = {
-      iconTheme = "Papirus-Dark";
+      iconTheme = config.nixdots.style.icon.dark;
       lookAndFeel = "stylix";
 
     };

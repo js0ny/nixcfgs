@@ -140,5 +140,13 @@ in
         dark = "Papirus-Dark";
       };
     };
+    wallpaper = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+    };
+    wallpaperDir = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+    };
   };
 }

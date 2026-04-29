@@ -6,7 +6,7 @@
   # TODO: Try to isolate these variables to just Hyprland and its children
   # Maybe use systemctl --user import-environment?
   imports = [
-    ../wm-components/vanilla.nix
+    ../wm-components
     ./keymaps.nix
     ./window-rules.nix
   ];

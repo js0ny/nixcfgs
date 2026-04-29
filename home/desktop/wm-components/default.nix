@@ -2,13 +2,15 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 {
   imports = [
-    # ../../walker.nix
     ./kanshi.nix
     ./polkit.nix
+    ../../../modules/home/noctalia.nix
+    inputs.noctalia.homeModules.default
   ];
   home.packages = with pkgs; [
     brightnessctl

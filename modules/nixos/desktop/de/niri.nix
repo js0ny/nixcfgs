@@ -5,12 +5,12 @@
   ...
 }:
 let
-  cfg = config.nixdots.desktop.de;
+  desktop = config.nixdots.desktop;
 in
-lib.mkIf (config.nixdots.desktop.enable && builtins.elem "niri" cfg) {
+lib.mkIf (config.nixdots.desktop.enable && builtins.elem "niri" desktop.de) {
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable;
+    package = desktop.niri.package;
   };
   environment.systemPackages = with pkgs; [
     xwayland-satellite

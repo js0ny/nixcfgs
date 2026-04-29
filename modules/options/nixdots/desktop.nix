@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -42,6 +43,26 @@
       description = ''
         The window manager(s) or desktop environment(s) to use.
       '';
+    };
+    wmShell = lib.mkOption {
+      type = lib.types.enum [
+        "vanilla"
+        "noctalia"
+      ];
+      default = "vanilla";
+      description = ''
+        The shell interface that accopanied with a window manager (like niri)
+      '';
+    };
+    niri = {
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.niri;
+      };
+      extraConfig = lib.mkOption {
+        type = lib.types.lines;
+        default = "";
+      };
     };
     keyd = {
       enable = lib.mkEnableOption "Enable keyd for advanced keyboard remapping.";

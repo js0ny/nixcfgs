@@ -4,11 +4,12 @@
   config,
 }:
 let
+  vicinae = config.nixdefs.consts.vicinae;
+  noctalia = config.nixdefs.consts.noctalia;
   nirictl = import ./scripts.nix { inherit pkgs; };
   homeDir = config.home.homeDirectory;
   nirictl-focus = lib.getExe nirictl.focusOrLaunch;
-  vicinae = config.nixdefs.consts.vicinae;
-  vicinaeCmd = cmd: builtins.concatStringsSep " " (map (x: ''"${x}"'') cmd);
+  genCmd = cmd: builtins.concatStringsSep " " (map (x: ''"${x}"'') cmd);
   powerprofiles = lib.getExe pkgs.localPkgs.power-profiles-next;
   term = lib.getExe pkgs.xdg-terminal-exec;
   screenDevice = config.nixdots.laptop.backlight.screen;
@@ -18,7 +19,7 @@ in
 /* kdl */ ''
   binds {
       Alt+Print { screenshot-window write-to-disk=true; }
-      Alt+Space hotkey-overlay-title="Picker" { spawn ${vicinaeCmd vicinae.toggle}; }
+      Alt+Space hotkey-overlay-title="Picker" { spawn ${genCmd vicinae.toggle}; }
       Ctrl+Alt+Delete { quit; }
       Ctrl+Print { screenshot-screen show-pointer=false; }
       Mod+1 { focus-workspace "1-master"; }
@@ -42,7 +43,7 @@ in
       Mod+Alt+Right { focus-monitor-right; }
       Mod+Alt+S { screenshot-screen show-pointer=false; }
       Mod+Alt+Up { focus-monitor-up; }
-      Mod+Alt+i hotkey-overlay-title="Hyprlock" { spawn "hyprlock"; }
+      Mod+Alt+i hotkey-overlay-title="Lockscreen" { spawn ${genCmd noctalia.lock}; }
       Mod+Apostrophe { spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal"; }
       Mod+B hotkey-overlay-title="Focus or launch web browser" { spawn "${nirictl-focus}" "firefox" "firefox"; }
       Mod+BracketLeft { consume-or-expel-window-left; }
@@ -134,24 +135,24 @@ in
       Mod+Tab { toggle-overview; }
       Mod+U { focus-workspace-down; }
       Mod+Up { focus-window-up; }
-      Mod+V { spawn ${vicinaeCmd vicinae.cliphist}; }
-      Mod+W { spawn ${vicinaeCmd vicinae.windows}; }
+      Mod+V { spawn ${genCmd vicinae.cliphist}; }
+      Mod+W { spawn ${genCmd vicinae.windows}; }
       Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
       Mod+WheelScrollLeft { focus-column-left; }
       Mod+WheelScrollRight { focus-column-right; }
       Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
       Print { screenshot show-pointer=false; }
-      XF86AudioLowerVolume allow-when-locked=true { spawn "volume-notify" "down"; }
       XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
       XF86AudioMute allow-when-locked=true { spawn "volume-notify" "mute"; }
-      XF86AudioNext { spawn "playerctl" "next"; }
-      XF86AudioPlay { spawn "playerctl" "playpause"; }
-      XF86AudioPrev { spawn "playerctl" "previous"; }
-      XF86AudioRaiseVolume allow-when-locked=true { spawn "volume-notify" "up"; }
+      XF86AudioNext { spawn ${genCmd noctalia.media.next}; }
+      XF86AudioPlay { spawn ${genCmd noctalia.media.playpause}; }
+      XF86AudioPrev { spawn ${genCmd noctalia.media.prev}; }
+      XF86AudioRaiseVolume allow-when-locked=true { spawn ${genCmd noctalia.volume.up}; }
+      XF86AudioLowerVolume allow-when-locked=true { spawn ${genCmd noctalia.volume.down}; }
       XF86Calculator { spawn ""; }
       XF86KbdBrightnessDown { spawn "brightnessctl" "--device" "${kbdDevice}" "set" "${kbdStep}-"; }
       XF86KbdBrightnessUp { spawn "brightnessctl" "--device" "${kbdDevice}" "set" "${kbdStep}+"; }
-      XF86Launch1 { spawn ${vicinaeCmd vicinae.toggle}; }
+      XF86Launch1 { spawn ${genCmd vicinae.toggle}; }
       XF86Launch4 { spawn "${powerprofiles}"; }
       XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "10%-" "--device" "${screenDevice}"; }
       XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "10%+" "--device" "${screenDevice}"; }

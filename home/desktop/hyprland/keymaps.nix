@@ -6,7 +6,7 @@
 }:
 let
   term = lib.getExe pkgs.xdg-terminal-exec;
-  iconTheme = config.nixdots.desktop.style.iconTheme.dark;
+  iconTheme = config.nixdots.desktop.style.icon.dark;
   explorer = lib.getExe config.nixdots.apps.fileManager.gui;
   explorerTerm = lib.getExe config.nixdots.apps.fileManager.tui;
   launcher = "walker";

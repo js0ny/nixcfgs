@@ -19,6 +19,7 @@ in
     ./sunsetr.nix
     ./systemd.nix
     ./volume-notify.nix
+    ./.
   ];
   home.packages = with pkgs; [
     brightnessctl

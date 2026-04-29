@@ -6,15 +6,17 @@
 }:
 let
   xdg-config = config.xdg.configHome;
+  desktop = config.nixdots.desktop;
+  extraCfg = desktop.niri.extraConfig;
 in
 {
   imports = [
-    ../wm-components/vanilla.nix
+    ../wm-components
   ];
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable;
+    package = desktop.niri.package;
   };
 
   systemd.user.tmpfiles.rules = [
@@ -26,5 +28,6 @@ in
     include "${xdg-config}/niri/local_test.kdl"
     ${import ./keymaps.nix { inherit pkgs lib config; }}
     ${import ./window-rules.nix}
-  '';
+  ''
+  + lib.optionalString (extraCfg != "") "\n${extraCfg}";
 }
