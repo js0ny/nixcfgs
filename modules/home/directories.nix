@@ -76,5 +76,10 @@ in
     gtk.gtk3.bookmarks = lib.mapAttrsToList (name: _: "file://${home}/${name}") (
       lib.filterAttrs (_: dir: dir.enable && dir.pin) cfg
     );
+    dconf.settings."org/freedesktop/tracker/miner/files" = {
+      "index-recursive-directories" = lib.mapAttrsToList (name: _: "${home}/${name}") (
+        lib.filterAttrs (_: dir: dir.enable && dir.index) cfg
+      );
+    };
   };
 }

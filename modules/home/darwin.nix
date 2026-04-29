@@ -4,12 +4,15 @@
   pkgs,
   ...
 }:
+let
+  brew = config.nixdots.darwin.homebrew;
+in
 {
   imports = [
     ../common/nix-helper.nix
     ./filetype/darwin.nix
   ];
-  home.sessionPath = [ "/opt/homebrew/bin" ];
+  home.sessionPath = [ "${brew.prefix}/bin" ];
 
   xdg.desktopEntries = lib.mkForce { };
 

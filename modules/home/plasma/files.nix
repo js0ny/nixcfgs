@@ -11,9 +11,6 @@
             lib.filterAttrs (_: dir: dir.enable && dir.pin) config.home.directories
           )
         );
-        # [
-        #   "$HOME/Academia/,$HOME/Atelier/,$HOME/Obsidian/"
-        # ];
         "only basic indexing" = false;
       };
     };

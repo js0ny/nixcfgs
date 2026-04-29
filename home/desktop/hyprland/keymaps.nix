@@ -23,7 +23,6 @@ in
     bind = [
       # === Run Applications ===
       "$mainMod, return, exec, ${term}"
-      "$mainMod SHIFT, return, exec, ${term} --dir=~/Atelier nvim"
       "$mainMod, B, exec, ${lib.getExe hyprscripts.launch-or-focus} firefox firefox"
       "$mainMod SHIFT, B, exec, firefox --private-window"
       "$mainMod, A, exec, kitty --class=kitty-terminal-popup -e aichat --session"

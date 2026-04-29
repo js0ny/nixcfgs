@@ -39,7 +39,6 @@ in
       Mod+Alt+K { focus-monitor-up; }
       Mod+Alt+L { focus-monitor-right; }
       Mod+Alt+Left { focus-monitor-left; }
-      Mod+Alt+Return { spawn "neovide" "${homeDir}/Atelier"; }
       Mod+Alt+Right { focus-monitor-right; }
       Mod+Alt+S { screenshot-screen show-pointer=false; }
       Mod+Alt+Up { focus-monitor-up; }

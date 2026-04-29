@@ -166,9 +166,6 @@ in
         "&MUSIC"
         "&PICTURES"
         "&VIDEOS"
-        "/home/${config.home.username}/Obsidian"
-        "/home/${config.home.username}/Atelier"
-        "/home/${config.home.username}/Academia"
       ];
     };
     # Extension settings
