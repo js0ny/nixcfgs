@@ -18,7 +18,7 @@
     ./programs/nix-index.nix
 
     ./programs/browsers/firefox
-    ./desktop/wayland-wm/niri
+    ./desktop/niri
 
     ./programs/editors/nvim
     ./programs/editors/vscode

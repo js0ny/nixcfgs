@@ -90,6 +90,17 @@ in
         };
       };
     };
+    geo = {
+      longitude = lib.mkOption {
+        type = lib.types.nullOr lib.types.number;
+      };
+      latitude = lib.mkOption {
+        type = lib.types.nullOr lib.types.number;
+      };
+      city = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+      };
+    };
     services = {
       tailscale = {
         enable = lib.mkEnableOption "Enable Tailscale VPN client and service daemon.";

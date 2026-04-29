@@ -1,4 +1,12 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+let
+  geo = config.nixdots.geo;
+in
 {
   # Expose CLI tool
   home.packages = [ pkgs.sunsetr ];
@@ -12,8 +20,8 @@
 
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.sunsetr}/bin/sunsetr -b";
-      ExecStop = "${pkgs.sunsetr}/bin/sunsetr stop";
+      ExecStart = "${lib.getExe pkgs.sunsetr} -b";
+      ExecStop = "${lib.getExe pkgs.sunsetr} stop";
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
@@ -51,8 +59,10 @@
     sunrise = "06:00:00"     # Time for manual sunrise calculations (HH:MM:SS)
     transition_duration = 45 # Transition duration in minutes (5-120)
 
-    #[Geolocation]
-    latitude = 55.950000     # Geographic latitude (auto-detected on first run)
-    longitude = -3.200000    # Geographic longitude (use 'sunsetr geo' to change)
+    ${lib.optionalString (geo.latitude != null && geo.longitude != null) ''
+      #[Geolocation]
+      latitude = ${toString geo.latitude}
+      longitude = ${toString geo.longitude}
+    ''}
   '';
 }
