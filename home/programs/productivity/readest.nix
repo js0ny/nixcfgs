@@ -17,7 +17,7 @@
         defaultCJKFont = "LXGW WenKai GB Screen";
         sansSerifFont = config.stylix.fonts.sansSerif.name;
         monospaceFont = "${config.stylix.fonts.monospace.name} Regular";
-        uiLanguage = "zh-CN";
+        uiLanguage = config.nixdots.core.locales.guiLocale;
       };
       telemetryEnabled = false;
     };

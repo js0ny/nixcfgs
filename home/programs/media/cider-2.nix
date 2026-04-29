@@ -25,7 +25,7 @@ in
     format = "yaml";
     settings = {
       general = {
-        language = "zh-CN";
+        language = config.nixdots.core.locales.guiLocale;
         keybindings = {
           commandCenter = [
             "ctrlKey"

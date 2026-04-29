@@ -171,11 +171,13 @@ lib.mkIf enable {
         keybinds = {
           keyUp = [ "Up" ];
         };
+        language = config.nixdots.core.locales.guiLocale;
       };
       wallpaper = {
         enabled = lib.mkDefault true;
         overviewEnabled = lib.mkDefault true;
         showHiddenFiles = lib.mkDefault true;
+        viewMode = lib.mkDefault "recursive";
       }
       // (lib.optionalAttrs (d.style.wallpaperDir != null) {
         directory = d.style.wallpaperDir;

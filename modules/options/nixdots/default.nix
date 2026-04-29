@@ -14,5 +14,6 @@
     ./linux.nix
     ./darwin.nix
     ./devenvs.nix
+    ./keymaps.nix
   ];
 }

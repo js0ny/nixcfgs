@@ -5,7 +5,7 @@
 }:
 let
   username = config.nixdots.user.name;
-  cfg = config.nixdots.desktop.xremap.enable;
+  cfg = config.nixdots.keymaps.xremap.enable;
 in
 lib.mkIf cfg {
   hardware.uinput.enable = true;

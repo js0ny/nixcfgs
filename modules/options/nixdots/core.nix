@@ -78,9 +78,14 @@ in
             in
             "${l.langcode}.${l.charset}";
         };
+        ietf = lib.mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = builtins.replaceStrings [ "_" "-" ] config.nixdots.core.locales.langcode;
+        };
         guiLocale = lib.mkOption {
           type = lib.types.str;
-          default = config.nixdots.core.locales.default;
+          default = config.nixdots.core.locales.ietf;
         };
         settings = lib.mkOption {
           type = lib.types.attrsOf lib.types.str;

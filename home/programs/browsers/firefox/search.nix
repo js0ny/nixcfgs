@@ -183,7 +183,7 @@ in
       urls = [ { template = "${searxng.url}?q={searchTerms}"; } ];
       icon = "${searxng.url}/favicon.ico";
       definedAliases = [
-        searxng.alias
+        searxng.integrations.alias
         "searxng"
       ];
     };

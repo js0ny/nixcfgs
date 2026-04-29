@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.desktop.keyd.enable;
+  cfg = config.nixdots.keymaps.keyd.enable;
   key = config.nixdots.laptop.keyboard;
 in
 lib.mkIf cfg {

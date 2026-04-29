@@ -12,7 +12,7 @@ in
 lib.mkIf cfg {
   programs.firefox = {
     enable = true;
-    languagePacks = [ "zh-CN" ];
+    languagePacks = [ config.nixdots.core.locales.guiLocale ];
     preferences = baseprefs;
     policies = policies;
   };

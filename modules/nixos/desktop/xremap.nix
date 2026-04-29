@@ -10,7 +10,7 @@ let
   # Use global keymaps
   qmkInputs = map (name: "/dev/input/by-id/" + name) _qmkInputs;
   username = config.nixdots.user.name;
-  cfg = config.nixdots.desktop.xremap.enable;
+  cfg = config.nixdots.keymaps.xremap.enable;
 in
 {
   # Keycode: https://github.com/emberian/evdev/blob/1d020f11b283b0648427a2844b6b980f1a268221/src/scancodes.rs#L15
@@ -87,6 +87,20 @@ in
             "M-k" = "KEY_PAGEUP";
           };
         }
+        {
+          name = "GTK4 Software Remaps N/P";
+          application = {
+            only = [
+              "org.gnome.Loupe"
+            ];
+          };
+          remap = {
+            "p" = "KEY_LEFT";
+            "n" = "KEY_RIGHT";
+            "KEY_LEFTBRACE" = "KEY_LEFT";
+            "KEY_RIGHTBRACE" = "KEY_RIGHT";
+          };
+        }
       ];
     };
   };
@@ -99,4 +113,6 @@ in
     MatchUdevType=keyboard
     AttrKeyboardIntegration=internal
   '';
+  # bind to niri.service to activate mappings
+  systemd.user.services.xremap.after = [ "niri.service" ];
 }

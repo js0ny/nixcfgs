@@ -15,7 +15,7 @@
       enableDeveloperMode = true;
       enableDataCollection = false;
       autoUpdate = false;
-      language = "zh-CN";
+      language = config.nixdots.core.locales.guiLocale;
       theme = "system";
       tray = true;
       enableQuickAssistant = true;

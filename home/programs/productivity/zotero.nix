@@ -24,7 +24,7 @@ in
     ".zotero/${profile}/user.js".text = ''
       user_pref("extensions.zotero.dataDir", "${config.home.homeDirectory}/.local/share/Zotero");
       user_pref("extensions.zotero.export.quickCopy.setting", "bibliography=http://www.zotero.org/styles/ieee");
-      user_pref("intl.locale.requested", "zh-CN");
+      user_pref("intl.locale.requested", "${config.nixdots.core.locales.guiLocale}");
     '';
   };
   nixdots.persist.home = {

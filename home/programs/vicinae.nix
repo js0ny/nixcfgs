@@ -25,7 +25,7 @@ in
             "default_category" = "general";
             "details_start_open" = false;
             "keep_previous_search" = true;
-            "languages" = "zh-CN";
+            "languages" = lib.mkDefault config.nixdots.core.locales.guiLocale;
           };
           entrypoints.search-with-searxng.alias = "sx";
         };
@@ -55,7 +55,7 @@ in
           };
           entrypoints = {
             search-with-searxng = {
-              alias = selfhosted.searxng.alias;
+              alias = selfhosted.searxng.integrations.alias;
             };
           };
         };
