@@ -8,8 +8,7 @@
     ./programs/browsers/firefox
     ./programs/browsers/chromium.nix
 
-    ./programs/desktop/wayland-wm/niri
-    # ./programs/desktop/plasma
+    ./desktop/wayland-wm/niri
 
     ./programs/editors/zed-editor
     ./programs/editors/emacs.nix

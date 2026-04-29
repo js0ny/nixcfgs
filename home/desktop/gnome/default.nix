@@ -20,14 +20,13 @@ in
 {
   imports = [
     ./copyous.nix
-    ../../dconf-editor.nix
+    ../../programs/dconf-editor.nix
   ];
   home.packages =
     with pkgs;
     [
       gnome-tweaks
       sushi
-      nautilus-open-any-terminal
     ]
     ++ extensions;
   programs.gnome-shell.enable = true;
