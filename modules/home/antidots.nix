@@ -21,7 +21,6 @@ in
     PASSWORD_STORE_DIR = "${xdg-data}/password-store";
     KIVY_HOME = "${xdg-data}/kivy"; # python-kivy ~/.kivy
     LEIN_HOME = "${xdg-data}/lein"; # leiningen ~/.lein ~/.m2
-    NPM_CONFIG_USERCONFIG = "${xdg-config}/npm/npmrc";
     NUGET_PACKAGES = "${xdg-data}/nuget/packages";
     W3M_DIR = "${xdg-state}/w3m";
     WAKATIME_HOME = "${xdg-config}/wakatime"; # ~/.wakatime
@@ -29,12 +28,6 @@ in
     WINEPREFIX = "${xdg-data}/wineprefixes/default";
     SQLITE_HISTORY = "${xdg-state}/sqlite/history"; # ~/.sqlite/history
   };
-  xdg.configFile."npm/npmrc".text = ''
-    prefix=${xdg-data}/npm
-    cache=${xdg-cache}/npm
-    init-module=${xdg-config}/npm/config/npm-init.js
-    logs-dir=${xdg-state}/npm/logs
-  '';
   xdg.configFile."wget/wgetrc".text = ''
     hsts-file = ${xdg-state}/wget/wget-hsts
   '';
@@ -43,6 +36,7 @@ in
     "d ${xdg-data}/wineprefixes 0700 ${user} users -"
     "d ${xdg-data}/gnupg 0700 ${user} users -"
     "d ${xdg-state}/sqlite 0755 ${user} users -"
+    "d ${xdg-data}/npm/lib 0755 ${user} users -"
   ];
 
   home.preferXdgDirectories = true;

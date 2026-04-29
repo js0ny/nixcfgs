@@ -86,7 +86,7 @@ in
 
   programs.cider-2 = {
     enable = true;
-    package = pkgs.nixpaks.cider-2;
+    package = pkgs.cider-2;
 
     # --- Themes ---
     themes = {

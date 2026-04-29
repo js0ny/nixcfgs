@@ -48,5 +48,9 @@ in
       port = lib.mkDefault 11434;
       bindAddress = "127.0.0.1";
     };
+    pdf2zh = {
+      port = lib.mkDefault 7860;
+      bindAddress = lib.mkDefault "0.0.0.0";
+    };
   };
 }

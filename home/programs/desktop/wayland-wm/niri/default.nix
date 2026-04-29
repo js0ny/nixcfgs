@@ -18,12 +18,12 @@ in
   };
 
   systemd.user.tmpfiles.rules = [
-    "f ${xdg-config}/local_test.kdl 0644 ${config.home.username} users -"
+    "f ${xdg-config}/niri/local_test.kdl 0644 ${config.home.username} users -"
   ];
 
   xdg.configFile."niri/config.kdl".text = ''
     include "${./base.kdl}"
-    include "${xdg-config}/local_test.kdl"
+    include "${xdg-config}/niri/local_test.kdl"
     ${import ./keymaps.nix { inherit pkgs lib config; }}
     ${import ./window-rules.nix}
   '';

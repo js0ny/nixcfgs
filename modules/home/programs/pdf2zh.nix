@@ -11,7 +11,8 @@ let
   llm = config.nixdefs.llm;
   queryProvider = provider: llm.providers."${provider}";
 
-  basePkg = pkgs.localPkgs.pdf2zh-next;
+  basePkg =
+    if pkgs.stdenv.isLinux then pkgs.localPkgs.pdf2zh-next-fhs else pkgs.localPkgs.pdf2zh-next;
 
   mkPdf2zh =
     {
@@ -47,6 +48,7 @@ let
                 "--openai-compatible-model" "$MODEL"
                 "--openai-compatible-base-url" "$API_BASE"
                 "--openai-compatible-api-key" "$API_KEY"
+                "--openai-compatible-timeout" "5"
               )
             ''
           else

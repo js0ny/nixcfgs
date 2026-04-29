@@ -11,7 +11,7 @@ return {
     "--function-arg-placeholders",
     "--fallback-style=none",
   },
-  filetypes = { "c", "cpp" },
+  filetypes = { "c", "cpp", "cuda" },
   root_markers = {
     ".clangd",
     ".clang-format",
