@@ -20,6 +20,7 @@
     ./shellAliases.nix
     ./ssh.nix
     ./directories.nix
+    ./customDirs.nix
 
     ../../helper/mergetools.nix
   ];

@@ -13,7 +13,8 @@ let
   kbdBacklightDev = config.nixdots.laptop.backlight.keyboard;
   kbdBacklightStep = "1";
   mainMod = "SUPER";
-  screenshotPath = "$HOME/Pictures/Screenshots/\"$(%Y-%m-%d_%H-%M-%S.png)\"";
+  customDirs = config.home.customDirs;
+  screenshotPath = ''${customDirs.screenshots}/"$(%Y-%m-%d_%H-%M-%S.png)"'';
   hyprscripts = import ./scripts.nix { inherit pkgs; };
   resizeStep = toString 20;
 in

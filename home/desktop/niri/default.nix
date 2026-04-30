@@ -27,6 +27,7 @@ in
     include "${./base.kdl}"
     include "${xdg-config}/niri/local_test.kdl"
     ${import ./keymaps.nix { inherit pkgs lib config; }}
+    ${import ./interpolates.nix { inherit config; }}
     ${import ./window-rules.nix}
   ''
   + lib.optionalString (extraCfg != "") "\n${extraCfg}";

@@ -1,4 +1,7 @@
-{ ... }:
+{ config, ... }:
+let
+  customDirs = config.home.customDirs;
+in
 {
   programs.plasma = {
     hotkeys.commands = {
@@ -20,8 +23,14 @@
     };
     configFile = {
       spectaclerc = {
-        ImageSave.translatedScreenshotsFolder = "Screenshots";
-        VideoSave.translatedScreencastsFolder = "Screencasts";
+        ImageSave = {
+          translatedScreenshotsFolder = "Screenshots";
+          imageSaveLocation = "file://${customDirs.screenshots}";
+        };
+        VideoSave = {
+          translatedScreencastsFolder = "Screencasts";
+          videoSaveLocation = "file://${customDirs.screencasts}";
+        };
       };
       kdeglobals.Shortcuts = {
         Help = "";

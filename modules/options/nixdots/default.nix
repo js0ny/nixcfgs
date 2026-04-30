@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./apps.nix
     ./core.nix
     ./style.nix
     ./laptop.nix

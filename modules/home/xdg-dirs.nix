@@ -8,21 +8,24 @@ let
   xdg-data = config.xdg.dataHome;
   locales = config.nixdots.core.locales;
 in
-lib.mkIf pkgs.stdenv.isLinux {
-  xdg.configFile."user-dirs.locale".text = ''
-    ${locales.default}
-  '';
+{
+  xdg.configFile."user-dirs.locale" = {
+    enable = if pkgs.stdenv.isDarwin then false else true;
+    text = ''
+      ${locales.default}
+    '';
+  };
   xdg.userDirs = {
     enable = true;
     createDirectories = false;
-    setSessionVariables = true;
-    desktop = "$HOME/Desktop";
-    documents = "$HOME/Documents";
-    download = "$HOME/Downloads";
-    music = "$HOME/Music";
-    pictures = "$HOME/Pictures";
-    publicShare = "/var/empty";
-    templates = "${xdg-data}/Templates";
-    videos = "$HOME/Videos";
+    setSessionVariables = lib.mkDefault true;
+    desktop = lib.mkDefault "$HOME/Desktop";
+    documents = lib.mkDefault "$HOME/Documents";
+    download = lib.mkDefault "$HOME/Downloads";
+    music = lib.mkDefault "$HOME/Music";
+    pictures = lib.mkDefault "$HOME/Pictures";
+    publicShare = lib.mkDefault "/var/empty";
+    templates = lib.mkDefault "${xdg-data}/Templates";
+    videos = lib.mkDefault "$HOME/Videos";
   };
 }

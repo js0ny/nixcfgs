@@ -1,4 +1,3 @@
-# See also: ~/.dotfiles/home/dot_config/sway
 # https://d19qhx4ioawdt7.cloudfront.net/docs/nix-home-manager-sway.html
 {
   lib,

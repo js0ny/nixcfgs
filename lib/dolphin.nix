@@ -47,7 +47,6 @@ with lib;
       iniContent = mainEntry // actionEntries;
     in
     {
-      # 利用 xdg.dataFile 直接将文件放入 ~/.local/share/kio/servicemenus/
       xdg.dataFile."kio/servicemenus/${name}.desktop".text = generators.toINI { } iniContent;
     };
 }

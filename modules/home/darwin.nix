@@ -6,6 +6,7 @@
 }:
 let
   brew = config.nixdots.darwin.homebrew;
+  customDirs = config.home.customDirs;
 in
 {
   imports = [
@@ -27,6 +28,9 @@ in
   targets.darwin = {
     linkApps.enable = true;
     defaults = {
+      "com.apple.screencapture" = {
+        location = customDirs.screenshots;
+      };
       "com.apple.desktopservices" = {
         DSDontWriteNetworkStores = true;
         DSDontWriteUSBStores = true;

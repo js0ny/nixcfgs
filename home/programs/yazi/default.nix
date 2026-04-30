@@ -5,6 +5,7 @@
 }:
 let
   dots = config.nixdots.core.dots;
+  xdgDirs = config.xdg.userDirs;
 in
 {
   programs.yazi = {
@@ -182,8 +183,8 @@ in
             "g"
             "p"
           ];
-          run = "cd ~/Pictures";
-          desc = "Go ~/Pictures/";
+          run = "cd ${xdgDirs.pictures}";
+          desc = "Goto Pictures/";
         }
         {
           on = [

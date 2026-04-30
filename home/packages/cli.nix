@@ -1,4 +1,3 @@
-# ~/.config/nix-config/common/packages-headless.nix
 {
   pkgs,
   config,

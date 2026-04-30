@@ -179,8 +179,8 @@ lib.mkIf enable {
         showHiddenFiles = lib.mkDefault true;
         viewMode = lib.mkDefault "recursive";
       }
-      // (lib.optionalAttrs (d.style.wallpaperDir != null) {
-        directory = d.style.wallpaperDir;
+      // (lib.optionalAttrs (config.home.customDirs.wallpaper != null) {
+        directory = config.home.customDirs.wallpaper;
       });
       location = {
         monthBeforeDay = true;
