@@ -33,4 +33,16 @@ in
       ".local/share/Zotero"
     ];
   };
+  services.xremap.config.keymap = [
+    {
+      name = "Zotero PDF Navigator";
+      application = {
+        only = [ "Zotero" ];
+      };
+      remap = {
+        "M-j" = "KEY_PAGEDOWN";
+        "M-k" = "KEY_PAGEUP";
+      };
+    }
+  ];
 }

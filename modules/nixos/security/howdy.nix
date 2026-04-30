@@ -16,15 +16,15 @@ lib.mkIf cfg.enable {
     control = "sufficient";
     settings = {
       core = {
-        abort_if_lid_closed = lib.mkDefault true;
-        abort_if_ssh = lib.mkDefault true;
-        detection_notice = lib.mkDefault true;
-        timeout_notice = lib.mkDefault true;
-        no_confirmation = lib.mkDefault false;
+        abort_if_lid_closed = true;
+        abort_if_ssh = true;
+        detection_notice = true;
+        timeout_notice = true;
+        no_confirmation = false;
       };
       video = {
         device_path = hw;
-        dark_threshold = lib.mkDefault 80;
+        dark_threshold = 80;
       };
     };
   };

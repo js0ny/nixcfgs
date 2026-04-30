@@ -40,6 +40,7 @@
     ./programs/social/discord.nix
     ./programs/social/telegram.nix
     ./programs/social/wechat.nix
+    ./programs/social/qq.nix
 
     ./programs/aichat.nix
     ./programs/dolphin
@@ -50,6 +51,7 @@
     # ./programs/walker.nix
     ./programs/url-dispatcher.nix
     ./programs/vicinae.nix
+    ./programs/loupe.nix
 
     ./programs/productivity/obsidian
     ./programs/productivity/sioyek

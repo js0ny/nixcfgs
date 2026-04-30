@@ -54,15 +54,19 @@
       jq
       ddgr
       aria2
-      p7zip
       pass
-      # rar: Unfree, the only way (afaik) to unarchive some very old partition rars
-      rar
       deploy-rs
-      # rar support requires unfree flag.
-      (ouch.override { enableUnfree = true; })
       localPkgs.rename-zero-pad
       openssl
+      rip2
+
+      # Archiving
+      p7zip
+      # rar: Unfree, the only way (afaik) to unarchive some very old partition rars
+      rar
+      unar # For Non UTF-8 archives like gbk or sjis
+      # rar support requires unfree flag.
+      (ouch.override { enableUnfree = true; })
     ]
     ++ (
       if pkgs.stdenv.isDarwin then
@@ -74,6 +78,7 @@
           proton-vpn-cli
           # https://github.com/NixOS/nixpkgs/pull/513252
           srm
+          podman-compose
         ]
     );
 }

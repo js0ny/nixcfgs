@@ -16,4 +16,16 @@
       ".sandbox/.per-app/wechat"
     ];
   };
+  services.xremap.config.keymap = [
+    {
+      name = "IM Navigator - Alt-Up/Down";
+      application = {
+        only = [ "wechat" ];
+      };
+      remap = {
+        "M-j" = "M-down";
+        "M-k" = "M-up";
+      };
+    }
+  ];
 }
