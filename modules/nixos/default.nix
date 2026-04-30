@@ -26,6 +26,7 @@ in
 
     ./security/howdy.nix
     ./security/apparmor.nix
+    ./security/hardening.nix
 
     ./programs/chromium.nix
     ./programs/dolphin.nix
