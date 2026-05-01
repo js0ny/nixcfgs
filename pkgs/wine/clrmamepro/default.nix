@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  winepkg ? pkgs.wine64,
+  ...
+}:
 let
   version = "0.6.3";
 in
@@ -16,7 +20,7 @@ pkgs.stdenv.mkDerivation {
     pkgs.makeWrapper
   ];
 
-  buildInputs = [ pkgs.wineWow64Packages.waylandFull ];
+  buildInputs = [ winepkg ];
 
   unpackPhase = ''
     unzip $src
@@ -28,10 +32,10 @@ pkgs.stdenv.mkDerivation {
 
     mkdir -p $out/bin
 
-    makeWrapper ${pkgs.wineWow64Packages.waylandFull}/bin/wine $out/bin/clrmameUI \
+    makeWrapper lib.getExe winepkg $out/bin/clrmameUI \
       --add-flags "$out/opt/clrmamepro/clrmameUI.exe"
 
-    makeWrapper ${pkgs.wineWow64Packages.waylandFull}/bin/wine $out/bin/clrmame \
+    makeWrapper lib.getExe winepkg $out/bin/clrmame \
       --add-flags "$out/opt/clrmamepro/clrmame.exe"
   '';
 }
