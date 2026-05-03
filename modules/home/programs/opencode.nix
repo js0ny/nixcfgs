@@ -50,10 +50,10 @@ let
     options = {
       baseURL = providerCfg.baseUrl;
       apiKey =
-        if providerCfg.apiKeyEnv != null then
-          "{env:${providerCfg.apiKeyEnv}}"
-        else if providerCfg.apiKeyFile != null then
+        if providerCfg.apiKeyFile != null then
           "{file:${providerCfg.apiKeyFile}}"
+        else if providerCfg.apiKeyEnv != null then
+          "{env:${providerCfg.apiKeyEnv}}"
         else
           "";
     };

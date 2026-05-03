@@ -28,4 +28,10 @@
       ".config/CherryStudio"
     ];
   };
+  systemd.user.tmpfiles.rules = (
+    lib.optionals config.nixdefs.mcp.enable [
+      "L+ ${config.home.homeDirectory}/.cherrystudio/bin/uv - - - - ${lib.getExe pkgs.uv}"
+      "L+ ${config.home.homeDirectory}/.cherrystudio/bin/bun - - - - ${lib.getExe pkgs.bun}"
+    ]
+  );
 }

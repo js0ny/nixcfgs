@@ -38,14 +38,15 @@ in
       ghostscript_headless
       lsof # Opencode.nvim
       markdown-oxide
+      # typst-preview.nvim
+      tinymist
+      websocat
     ];
   };
   # home.packages = with pkgs; [lua-language-server];
   nixdots.programs.shellAliases = nvimAlias;
 
-  xdg.configFile."nvim-0".source = mkSymlink "${dots}/home/programs/editors/nvim/nvim";
-
-  home.sessionVariables.NVIM_APPNAME = "nvim-0";
+  xdg.configFile."nvim".source = mkSymlink "${dots}/home/programs/editors/nvim/nvim";
 
   xdg.configFile."lsp-snippets".source = snippets;
 

@@ -1,6 +1,7 @@
 {
   pkgs,
   winepkg ? pkgs.wine64,
+  lib,
   ...
 }:
 let
@@ -32,10 +33,10 @@ pkgs.stdenv.mkDerivation {
 
     mkdir -p $out/bin
 
-    makeWrapper lib.getExe winepkg $out/bin/clrmameUI \
+    makeWrapper ${lib.getExe winepkg} $out/bin/clrmameUI \
       --add-flags "$out/opt/clrmamepro/clrmameUI.exe"
 
-    makeWrapper lib.getExe winepkg $out/bin/clrmame \
+    makeWrapper ${lib.getExe winepkg} $out/bin/clrmame \
       --add-flags "$out/opt/clrmamepro/clrmame.exe"
   '';
 }

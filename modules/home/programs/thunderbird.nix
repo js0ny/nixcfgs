@@ -20,7 +20,6 @@ lib.mkIf cfg.enable {
       extensions = with nur-addons; [ tbkeys ];
     };
   };
-  catppuccin.thunderbird.profile = profile;
   nixdots.persist.home = {
     directories = [
       ".thunderbird"

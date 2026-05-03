@@ -19,9 +19,9 @@ in
 /* kdl */ ''
   binds {
       Alt+Print { screenshot-window write-to-disk=true; }
+      Ctrl+Print { screenshot-screen show-pointer=false; }
       Alt+Space hotkey-overlay-title="Picker" { spawn ${genCmd vicinae.toggle}; }
       Ctrl+Alt+Delete { quit; }
-      Ctrl+Print { screenshot-screen show-pointer=false; }
       Mod+1 { focus-workspace "1-master"; }
       Mod+2 { focus-workspace "2-project"; }
       Mod+3 { focus-workspace "3-alt"; }

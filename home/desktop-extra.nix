@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
     ./desktop-base.nix
@@ -99,4 +99,5 @@
     language = "en"
     shiny_rate = 0.0078125
   '';
+  catppuccin.thunderbird.profile = config.home.username;
 }

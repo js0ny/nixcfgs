@@ -32,6 +32,16 @@ in
         url = "https://mcp.grep.app";
         enabled = true;
       };
+      mcp-nixos = {
+        type = "local";
+        command = [
+          "nix"
+          "run"
+          "github:utensils/mcp-nixos"
+          "--"
+        ];
+        enabled = true;
+      };
     };
   };
 }

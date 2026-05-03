@@ -21,17 +21,13 @@
       match app-id="^firefox$" title="^Picture-in-Picture$"
       match title="^Picture in picture$"
       match app-id="^steam$" title="^Recordings & Screenshots$"
-      match app-id="^steam$" title="^Friends List$"
+      match app-id="^steam$" title="^(Friends List)|(好友列表)$"
       open-floating true
       opacity 0.800000
       default-floating-position relative-to="bottom-right" x=50 y=50
   }
   window-rule {
       match app-id="^mpv$"
-      open-floating true
-      default-floating-position relative-to="bottom-right" x=50 y=50
-  }
-  window-rule {
       match app-id="^org.gnome.Loupe$"
       open-floating true
       default-floating-position relative-to="bottom-right" x=50 y=50
@@ -92,5 +88,10 @@
       match app-id="^feishin$"
       match app-id="^Cider$"
       open-on-workspace "5-bg"
+  }
+  window-rule {
+      match app-id="^sioyek$"
+      match title="^Select Document$"
+      open-floating true
   }
 ''
