@@ -40,10 +40,6 @@
       }
       center-focused-column "never"
   }
-  cursor {
-      xcursor-theme "default"
-      xcursor-size 24
-  }
   workspace "1-master"
   workspace "2-project"
   workspace "3-alt"

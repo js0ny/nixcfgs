@@ -28,10 +28,12 @@ in
         ### Disable Menu when pressing <Alt>
         "ui.key.menuAccessKey" = -1;
         "ui.key.menuAccessKeyFocuses" = false;
+        # Disable GTK native emoji picker (Ctrl+.)
+        "widget.gtk.native-emoji-dialog" = lib.mkDefault false;
         ### Disable Translations
-        "browser.translations.enable" = false;
-        "browser.translations.automaticallyPopup" = false;
-        "browser.translations.select.enable" = false;
+        "browser.translations.enable" = lib.mkDefault false;
+        "browser.translations.automaticallyPopup" = lib.mkDefault false;
+        "browser.translations.select.enable" = lib.mkDefault false;
         ### CJK IME Optimisation
         "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
         "browser.tabs.closeTabByDblclick" = true;

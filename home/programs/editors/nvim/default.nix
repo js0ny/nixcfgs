@@ -18,31 +18,40 @@ in
     enable = true;
     sideloadInitLua = true;
     defaultEditor = true;
+    withNodeJs = false;
+    withPerl = false;
     withRuby = false;
-    withPython3 = true;
+    withPython3 = false;
     extraPackages = with pkgs; [
+      # lua devenvs (luajit)
       lua5_1
       lua51Packages.luarocks
-      # image support
-      pkg-config
-      imagemagick
-      stylua
-      nodejs-slim_24 # for copilot-lua
       lua-language-server
+      stylua
+      # tree-sitter
+      tree-sitter
+      # copilot-lua
+      nodejs-slim_24
       vimPlugins.nvim-treesitter-parsers.diff
       vimPlugins.nvim-treesitter-parsers.nix
-      # Dependency of snacks.image
+      # snacks.image
+      pkg-config
+      imagemagick
       tectonic
       vimPlugins.nvim-treesitter-parsers.latex
       mermaid-cli
       ghostscript_headless
-      lsof # Opencode.nvim
       markdown-oxide
       # typst-preview.nvim
       tinymist
       websocat
+      # cli deps
+      ripgrep
     ];
   };
+
+  nixdots.devenvs.lua.enable = true;
+
   # home.packages = with pkgs; [lua-language-server];
   nixdots.programs.shellAliases = nvimAlias;
 
