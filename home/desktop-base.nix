@@ -59,10 +59,6 @@
     ./programs/productivity/readest.nix
     ./programs/productivity/sdcv.nix
   ];
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = 1;
-  };
-  gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
   nixdots.persist.home = {
     directories = [

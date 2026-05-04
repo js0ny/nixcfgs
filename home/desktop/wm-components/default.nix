@@ -5,6 +5,9 @@
   inputs,
   ...
 }:
+let
+  wm = config.nixdots.desktop.wm;
+in
 {
   imports = [
     ./kanshi.nix
@@ -22,4 +25,5 @@
     ELECTRON_TRASH = "trash-cli";
     XAUTHORITY = "$XDG_RUNTIME_DIR/.XAuthority";
   };
+  services.cliphist.enable = (wm.clipboard == "cliphist");
 }

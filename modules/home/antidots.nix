@@ -9,6 +9,7 @@ let
   user = "${config.home.username}";
 in
 {
+  gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   home.sessionVariables = {
     _JAVA_OPTIONS =
       "-Djava.util.prefs.userRoot='${xdg-config}/java'" # ~/.java/fonts

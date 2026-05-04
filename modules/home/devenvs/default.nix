@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   xdg-data = config.xdg.dataHome;
   xdg-cache = "${config.xdg.cacheHome}";
@@ -27,7 +32,10 @@ in
     CARGO_HOME = "${xdg-data}/cargo";
     NPM_CONFIG_USERCONFIG = "${xdg-config}/npm/npmrc";
     NODE_REPL_HISTORY = "${xdg-data}/npm/node_repl_history";
-  };
+  }
+  // (lib.optionalAttrs (pkgs.stdenv.isLinux) {
+    MPLBACKEND = "webagg"; # matplotlib
+  });
   xdg.configFile."npm/npmrc".text = ''
     prefix=${xdg-data}/npm
     cache=${xdg-cache}/npm

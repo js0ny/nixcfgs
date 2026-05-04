@@ -44,15 +44,27 @@
         The window manager(s) or desktop environment(s) to use.
       '';
     };
-    wmShell = lib.mkOption {
-      type = lib.types.enum [
-        "vanilla"
-        "noctalia"
-      ];
-      default = "vanilla";
-      description = ''
-        The shell interface that accopanied with a window manager (like niri)
-      '';
+    wm = {
+      shell = lib.mkOption {
+        type = lib.types.enum [
+          "vanilla"
+          "noctalia"
+        ];
+        default = "vanilla";
+        description = ''
+          The shell interface that accopanied with a window manager (like niri)
+        '';
+      };
+      clipboard = lib.mkOption {
+        type = lib.types.enum [
+          "cliphist"
+          "vicinae"
+        ];
+        default = "cliphist";
+        description = ''
+          The clipboard history provider that accopanied with a window manager (like niri)
+        '';
+      };
     };
     niri = {
       package = lib.mkOption {

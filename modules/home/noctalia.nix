@@ -7,7 +7,7 @@
 }:
 let
   d = config.nixdots;
-  enable = d.desktop.wmShell == "noctalia";
+  enable = d.desktop.wm.shell == "noctalia";
   basepkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
   # https://github.com/noctalia-dev/noctalia-shell/issues/1440#issuecomment-3872048063
   pkg = pkgs.runCommand "noctalia-shell-wrapped" { nativeBuildInputs = [ pkgs.makeWrapper ]; } ''
@@ -222,14 +222,23 @@ lib.mkIf enable {
           ];
         };
       };
-      appLauncher = {
-        enableClipboardHistory = lib.mkDefault false;
-        autoPasteClipboard = lib.mkDefault false;
-        clipboardWatchTextCommand = "wl-paste --type text --watch cliphist store";
-        clipboardWatchImageCommand = "wl-paste --type image --watch cliphist store";
-        terminalCommand = lib.mkDefault "xdg-terminal-exec";
-        customLauncherPrefix = lib.mkDefault false;
-      };
+      appLauncher =
+        if d.desktop.wm.clipboard == "cliphist" then
+          {
+            enableClipboardHistory = lib.mkDefault true;
+            autoPasteClipboard = lib.mkDefault true;
+          }
+        else
+          {
+            enableClipboardHistory = lib.mkDefault false;
+            autoPasteClipboard = lib.mkDefault false;
+          }
+          // {
+            customLauncherPrefix = lib.mkDefault false;
+            terminalCommand = lib.mkDefault "xdg-terminal-exec";
+            clipboardWatchTextCommand = "wl-paste --type text --watch cliphist store";
+            clipboardWatchImageCommand = "wl-paste --type image --watch cliphist store";
+          };
     };
   };
   nixdots.desktop.niri.extraConfig = /* kdl */ ''

@@ -28,7 +28,6 @@ in
     trash-cli
   ];
   # TODO: Allow launching components from all wayland-wm sessions
-  # services.cliphist.enable = true; # use elephant + walker
   services.network-manager-applet.enable = true;
   services.blueman-applet.enable = true;
   services.blueman-applet.systemdTargets = [ "niri.service" ];

@@ -12,4 +12,7 @@ lib.mkIf (cfg == "wayland") {
     wl-clipboard
   ];
   programs.gpu-screen-recorder.enable = true;
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = 1;
+  };
 }
