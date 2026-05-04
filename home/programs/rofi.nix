@@ -12,7 +12,7 @@ in
 {
   programs.rofi = {
     enable = true;
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    terminal = lib.getExe pkgs.alacritty;
     plugins = with pkgs; [
       rofimoji
       rofi-power-menu

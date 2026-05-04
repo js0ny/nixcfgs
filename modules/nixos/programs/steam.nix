@@ -20,8 +20,8 @@ lib.mkIf cfg.enable {
     enableRenice = true;
     settings = {
       custom = {
-        start = "${pkgs.libnotify}/bin/notify-send -u low -a 'GameMode' 'GameMode Started'";
-        end = "${pkgs.libnotify}/bin/notify-send -u low -a 'GameMode' 'GameMode Ended'";
+        start = "${lib.getExe pkgs.libnotify} -u low -a 'GameMode' 'GameMode Started'";
+        end = "${lib.getExe pkgs.libnotify} -u low -a 'GameMode' 'GameMode Ended'";
       };
     };
   };

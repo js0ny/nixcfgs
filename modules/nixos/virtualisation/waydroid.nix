@@ -26,7 +26,7 @@ lib.mkIf cfg {
     services.waydroid-mount = {
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
-        ExecStart = "${pkgs.waydroid-helper}/bin/waydroid-helper --start-mount";
+        ExecStart = "${lib.getExe pkgs.waydroid-helper} --start-mount";
       };
     };
   };

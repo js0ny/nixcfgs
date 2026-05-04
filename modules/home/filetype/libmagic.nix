@@ -9,7 +9,7 @@ let
   customMagicCompiled = pkgs.runCommand "custom.magic.mgc" { } ''
     cat ${magicDir}/*.magic > custom.magic
 
-    ${pkgs.file}/bin/file -C -m custom.magic
+    ${lib.getExe pkgs.file} -C -m custom.magic
 
     mv custom.magic.mgc $out
   '';

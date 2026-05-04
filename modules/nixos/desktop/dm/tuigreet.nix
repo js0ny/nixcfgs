@@ -14,7 +14,7 @@ lib.mkIf (config.nixdots.desktop.enable && cfg == "tuigreet") {
     settings = {
       default_session = {
         user = username;
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'uwsm start hyprland'";
+        command = "${lib.getExe pkgs.tuigreet} --time --cmd 'uwsm start hyprland'";
       };
     };
   };

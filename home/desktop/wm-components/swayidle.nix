@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   services.swayidle = {
     enable = true;
@@ -6,11 +6,11 @@
     timeouts = [
       {
         timeout = 300;
-        command = "${pkgs.hyprlock}/bin/hyprlock";
+        command = lib.mkDefault lib.getExe pkgs.hyprlock;
       }
       {
         timeout = 600;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
+        command = lib.mkDefault "${lib.getExe' pkgs.systemd "systemctl"} suspend";
       }
     ];
   };

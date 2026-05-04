@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -9,12 +10,12 @@ let
     version:
     pkgs.writeShellScriptBin "vivado-launcher-${version}" ''
       #!${pkgs.stdenv.shell}
-      ${pkgs.wmname}/bin/wmname LG3D
+      ${lib.getExe pkgs.wmname} LG3D
 
       CACHE="${config.xdg.cacheHome}/vivado"
       mkdir -p "$CACHE"
 
-      exec ${pkgs.distrobox}/bin/distrobox enter Xilinx -- /opt/Xilinx/Vivado/${version}/bin/vivado \
+      exec ${lib.getExe pkgs.distrobox} enter Xilinx -- /opt/Xilinx/Vivado/${version}/bin/vivado \
         -log "$CACHE/vivado.log" \
         -journal "$CACHE/vivado.jou" \
         "$@"

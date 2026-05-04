@@ -26,7 +26,7 @@ lib.mkIf cfg.enable {
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
         if (action.id == "org.freedesktop.policykit.exec" &&
-            action.lookup("program") == "${pkgs.kmod}/bin/modprobe" &&
+            action.lookup("program") == "${lib.getExe' pkgs.kmod "modprobe"}" &&
             subject.isInGroup("video")) {
             return polkit.Result.YES;
         }

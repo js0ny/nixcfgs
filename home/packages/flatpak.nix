@@ -148,7 +148,7 @@ in
     ${lib.concatMapStringsSep "\n" (appid: ''
       DESKTOP_FILE="${config.xdg.dataHome}/flatpak/exports/share/applications/${appid}.desktop"
       if [ -f "$DESKTOP_FILE" ]; then
-        $DRY_RUN_CMD ${pkgs.gnused}/bin/sed -i "s|^\(Exec=.*${appid}\)|\\1 ${waylandFlags}|g" "$DESKTOP_FILE"
+        $DRY_RUN_CMD ${lib.getExe pkgs.gnused} -i "s|^\(Exec=.*${appid}\)|\\1 ${waylandFlags}|g" "$DESKTOP_FILE"
       fi
     '') electronApps}
   '';

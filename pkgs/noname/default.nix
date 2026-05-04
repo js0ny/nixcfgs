@@ -58,7 +58,7 @@ stdenv.mkDerivation (finalAttrs: {
 
     mkdir -p $out/bin
 
-    makeWrapper ${nodejs_24}/bin/node $out/bin/noname-server \
+    makeWrapper ${lib.getExe nodejs_24} $out/bin/noname-server \
             --add-flags "$out/share/noname/packages/fs/dist/entry.cjs" \
             --add-flags "--server" \
             --add-flags "--dirname=$out/share/noname/dist"

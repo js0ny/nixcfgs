@@ -70,11 +70,11 @@ let
   getMergeCmdStr =
     task: patchPath:
     if task.format == "json" then
-      ''${pkgs.yq-go}/bin/yq -i -o json -P --indent 2 ". *= load(\"${patchPath}\")" "$TARGET"''
+      ''${lib.getExe pkgs.yq-go} -i -o json -P --indent 2 ". *= load(\"${patchPath}\")" "$TARGET"''
     else if task.format == "yaml" then
-      ''${pkgs.yq-go}/bin/yq -i -oy -P ". *= load(\"${patchPath}\")" "$TARGET"''
+      ''${lib.getExe pkgs.yq-go} -i -oy -P ". *= load(\"${patchPath}\")" "$TARGET"''
     else
-      ''${pkgs.crudini}/bin/crudini --merge "$TARGET" < "${patchPath}"'';
+      ''${lib.getExe pkgs.crudini} --merge "$TARGET" < "${patchPath}"'';
 in
 {
   options.mergetools = mkOption {

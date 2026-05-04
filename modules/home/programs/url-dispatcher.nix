@@ -125,7 +125,7 @@ in
 
     xdg.desktopEntries.url-dispatcher = {
       name = "URL Dispatcher";
-      exec = "${dispatcherScript}/bin/url-dispatcher %U";
+      exec = "${lib.getExe dispatcherScript} %U";
       terminal = false;
       categories = [
         "Network"

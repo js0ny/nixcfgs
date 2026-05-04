@@ -12,6 +12,6 @@ lib.mkIf pkgs.stdenv.isLinux {
   xdg.mime.enable = true;
 
   home.activation.updateMimeDatabase = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${pkgs.shared-mime-info}/bin/update-mime-database "${config.xdg.dataHome}/mime"
+    ${lib.getExe pkgs.shared-mime-info} "${config.xdg.dataHome}/mime"
   '';
 }

@@ -6,7 +6,7 @@
 }:
 let
   apps = config.nixdots.apps;
-  duti = "${pkgs.duti}/bin/duti";
+  duti = lib.getExe pkgs.duti;
   mkDutiCommands = app: extensions: map (ext: "${duti} -s ${app} ${ext} all") extensions;
   dutiMaps = {
     "${apps.editor.gui.bundleIdentifier}" = [
