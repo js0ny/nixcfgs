@@ -190,12 +190,12 @@ in
       ];
     };
   })
-  // (lib.optionalAttrs (open-webui.enable && open-webui.searchEngine) {
+  // (lib.optionalAttrs (open-webui.enable && open-webui.integrations.searchEngine) {
     searxng = {
       name = "SearXNG";
-      urls = [ { template = "${open-webui.url}/${open-webui.searchParams}{searchTerms}"; } ];
+      urls = [ { template = "${open-webui.url}/${open-webui.integrations.searchParams}{searchTerms}"; } ];
       icon = "${open-webui.url}/favicon.ico";
-      definedAliases = open-webui.searchAlias;
+      definedAliases = open-webui.integrations.searchAlias;
     };
   });
 }

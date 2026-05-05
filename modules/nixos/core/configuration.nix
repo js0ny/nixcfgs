@@ -10,6 +10,8 @@ let
   sshKeys = config.nixdefs.misc.ssh.sshKeys;
 in
 {
+  time.timeZone = builtins.head config.nixdots.core.timezones;
+
   # Select internationalisation properties.
   i18n =
     let

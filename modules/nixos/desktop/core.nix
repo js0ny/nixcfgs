@@ -10,9 +10,6 @@ let
   avatar = config.nixdots.user.avatar;
 in
 lib.mkIf cfg {
-  # Set your time zone.
-  time.timeZone = builtins.head config.nixdots.core.timezones;
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";

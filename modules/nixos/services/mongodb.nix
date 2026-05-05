@@ -15,4 +15,5 @@ lib.mkIf (config.services.librechat.enable) {
     enableAuth = lib.mkDefault false;
     bind_ip = ep.bindAddress;
   };
+  environment.systemPackages = with pkgs; [ mongosh ];
 }

@@ -50,5 +50,6 @@ in
     librechat.port = lib.mkDefault 3080;
     pdf2zh.port = lib.mkDefault 7860;
     mongodb.port = lib.mkDefault 27017;
+    open-webui.port = lib.mkDefault 8080;
   };
 }

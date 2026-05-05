@@ -6,6 +6,8 @@
 }:
 let
   ep = config.nixdefs.endpoints.librechat;
+  url = ep.domain;
+  port = ep.port;
 in
 {
   services.librechat = {
@@ -53,4 +55,30 @@ in
   systemd.services.librechat = {
     path = lib.optionals (config.nixdefs.mcp.enable) [ pkgs.mcp-nixos ];
   };
+  services.nginx.virtualHosts =
+    if url != null then
+      {
+        "${url}" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://localhost:${toString port}";
+            proxyWebsockets = true;
+            # proxy_http_version 1.1;
+            extraConfig = ''
+              proxy_buffering off;
+              proxy_cache off;
+              proxy_read_timeout 1800;
+              proxy_send_timeout 1800;
+              proxy_connect_timeout 1800;
+              add_header X-Accel-Buffering "no" always;
+            '';
+          };
+          extraConfig = ''
+            add_header Alt-Svc 'h3=":443"; ma=86400';
+          '';
+        };
+      }
+    else
+      { };
 }

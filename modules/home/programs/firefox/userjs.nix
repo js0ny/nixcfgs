@@ -88,7 +88,7 @@ in
         "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = false;
       }
       // (lib.optionalAttrs (pkgs.stdenv.isDarwin) baseprefs)
-      // (lib.optionalAttrs (open-webui.enable && open-webui.firefox) {
+      // (lib.optionalAttrs (open-webui.enable && open-webui.integrations.firefox) {
         browser.ml.chat.provider = open-webui.url;
       });
     };

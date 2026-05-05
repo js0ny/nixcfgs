@@ -50,5 +50,15 @@ in
         };
       };
     };
+    openid = {
+      enable = mkEnableOption "Enable OpenID integration";
+      name = mkOption {
+        type = lib.types.str;
+        default = "Authelia";
+      };
+      discovery = mkOption {
+        type = lib.types.str;
+      };
+    };
   };
 }
