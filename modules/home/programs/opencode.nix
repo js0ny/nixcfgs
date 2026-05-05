@@ -77,7 +77,7 @@ lib.mkMerge [
     };
   })
   (lib.mkIf config.nixdefs.mcp.enable {
-    programs.opencode.settings.mcp = config.nixdefs.mcp.servers;
+    programs.opencode.settings.mcp = config.nixdefs.mcp.clientConfigs.opencode;
   })
   (lib.mkIf config.nixdefs.llm.enable {
     programs.opencode.settings = {

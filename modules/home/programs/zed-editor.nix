@@ -1,9 +1,7 @@
 { lib, config, ... }:
 let
-  mcp = config.nixdefs.mcp;
   llm = config.nixdefs.llm;
   enabledAcps = lib.filterAttrs (name: server: server.enable) config.nixdefs.acp.servers;
-  mcpToZed = (builtins.mapAttrs (name: value: removeAttrs value [ "type" ])) mcp.servers;
   acpToZed =
     (builtins.mapAttrs (name: server: (removeAttrs server [ "enable" ]) // { type = "custom"; }))
       enabledAcps;
@@ -27,7 +25,7 @@ lib.mkMerge [
   })
   (lib.mkIf config.nixdefs.mcp.enable {
     programs.zed-editor = {
-      userSettings.context_servers = mcpToZed;
+      userSettings.context_servers = config.nixdefs.mcp.clientConfigs.zed-editor;
     };
   })
   # TODO: [AFTER] model details for custom providers since tokens and capabilities are required by zed.

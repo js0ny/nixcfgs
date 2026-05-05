@@ -9,6 +9,7 @@ let
 in
 lib.mkIf (config.services.librechat.enable) {
   services.mongodb = {
+    enable = true;
     # The default mongodb package does not provide pre-compiled binaries
     package = lib.mkDefault pkgs.mongodb-ce;
     enableAuth = lib.mkDefault false;

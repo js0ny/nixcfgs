@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   ep = config.nixdefs.endpoints.librechat;
 in
@@ -40,7 +45,12 @@ in
           openNewTab = true;
         };
       };
+      mcpServers = config.nixdefs.mcp.clientConfigs.librechat or { };
     };
     # enableLocalDB = true;
+  };
+
+  systemd.services.librechat = {
+    path = lib.optionals (config.nixdefs.mcp.enable) [ pkgs.mcp-nixos ];
   };
 }
