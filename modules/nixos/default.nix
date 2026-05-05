@@ -14,9 +14,7 @@ in
 
     ./core
 
-    ./services/tailscale.nix
-    ./services/syncthing.nix
-    ./services/ollama.nix
+    ./services
 
     ../common/sops.nix
     ../common/styles

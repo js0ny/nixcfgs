@@ -46,11 +46,9 @@ in
     https.port = lib.mkDefault 443;
     ollama = {
       port = lib.mkDefault 11434;
-      bindAddress = "127.0.0.1";
     };
-    pdf2zh = {
-      port = lib.mkDefault 7860;
-      bindAddress = lib.mkDefault "0.0.0.0";
-    };
+    librechat.port = lib.mkDefault 3080;
+    pdf2zh.port = lib.mkDefault 7860;
+    mongodb.port = lib.mkDefault 27017;
   };
 }

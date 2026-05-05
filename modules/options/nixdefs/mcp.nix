@@ -35,10 +35,7 @@ in
       mcp-nixos = {
         type = "local";
         command = [
-          "nix"
-          "run"
-          "github:utensils/mcp-nixos"
-          "--"
+          "mcp-nixos"
         ];
         enabled = true;
       };
