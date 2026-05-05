@@ -7,6 +7,8 @@
 let
   p = config.nixdots.programs.firefox.defaultProfile;
   baseprefs = import ../../../common/firefox-baseprefs.nix;
+  selfhosted = config.nixdefs.selfhosted;
+  open-webui = selfhosted.open-webui;
 in
 {
   programs.firefox = {
@@ -85,7 +87,10 @@ in
         # 147: Keep playing videos in Picture-in-Picture when switching tabs
         "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = false;
       }
-      // (if pkgs.stdenv.isDarwin then baseprefs else { });
+      // (lib.optionalAttrs (pkgs.stdenv.isDarwin) baseprefs)
+      // (lib.optionalAttrs (open-webui.enable && open-webui.firefox) {
+        browser.ml.chat.provider = open-webui.url;
+      });
     };
   };
 }

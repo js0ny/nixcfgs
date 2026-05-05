@@ -6,7 +6,9 @@
 let
   profileDir = config.nixdefs.consts.firefox.profileDir;
   p = config.nixdots.programs.firefox.defaultProfile;
-  searxng = config.nixdefs.selfhosted.searxng;
+  selfhosted = config.nixdefs.selfhosted;
+  searxng = selfhosted.searxng;
+  open-webui = selfhosted.open-webui;
 in
 {
   # Overwrite search.json.mozlz4
@@ -186,6 +188,14 @@ in
         searxng.integrations.alias
         "searxng"
       ];
+    };
+  })
+  // (lib.optionalAttrs (open-webui.enable && open-webui.searchEngine) {
+    searxng = {
+      name = "SearXNG";
+      urls = [ { template = "${open-webui.url}/${open-webui.searchParams}{searchTerms}"; } ];
+      icon = "${open-webui.url}/favicon.ico";
+      definedAliases = open-webui.searchAlias;
     };
   });
 }
