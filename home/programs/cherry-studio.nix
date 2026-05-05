@@ -4,9 +4,14 @@
   config,
   ...
 }:
+let
+  dotDir = ".local/share/CherryStudio";
+in
 {
   home.packages = [
-    pkgs.cherry-studio
+    (pkgs.nixpaks.cherry-studio.override {
+      dotDir = dotDir;
+    })
   ];
   mergetools.cherry-studio-config = {
     target = "${config.home.homeDirectory}/.config/CherryStudio/config.json";
@@ -30,8 +35,8 @@
   };
   systemd.user.tmpfiles.rules = (
     lib.optionals config.nixdefs.mcp.enable [
-      "L+ ${config.home.homeDirectory}/.cherrystudio/bin/uv - - - - ${lib.getExe pkgs.uv}"
-      "L+ ${config.home.homeDirectory}/.cherrystudio/bin/bun - - - - ${lib.getExe pkgs.bun}"
+      "L+ ${config.home.homeDirectory}/${dotDir}/bin/uv - - - - ${lib.getExe pkgs.uv}"
+      "L+ ${config.home.homeDirectory}/${dotDir}/bin/bun - - - - ${lib.getExe pkgs.bun}"
     ]
   );
 }
