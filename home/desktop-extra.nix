@@ -93,6 +93,7 @@
     octaveFull
     krabby
     gh
+    awscli2
   ];
 
   xdg.configFile."krabby/config.toml".text = ''

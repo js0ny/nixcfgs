@@ -94,5 +94,13 @@
         description = "Whether to install Markdown devenv packages with PATH";
       };
     };
+    configfiles = {
+      enable = lib.mkEnableOption "Whether to enable config files devenv";
+      global = lib.mkOption {
+        type = lib.types.bool;
+        default = config.nixdots.devenvs.global;
+        description = "Whether to install config files devenv packages with PATH";
+      };
+    };
   };
 }

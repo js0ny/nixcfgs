@@ -28,6 +28,8 @@ in
     WGETRC = "${xdg-config}/wget/wgetrc";
     WINEPREFIX = "${xdg-data}/wineprefixes/default";
     SQLITE_HISTORY = "${xdg-state}/sqlite/history"; # ~/.sqlite/history
+    AWS_SHARED_CREDENTIALS_FILE = "${xdg-config}/aws/credentials";
+    AWS_CONFIG_FILE = "${xdg-config}/aws/config";
   };
   xdg.configFile."wget/wgetrc".text = ''
     hsts-file = ${xdg-state}/wget/wget-hsts

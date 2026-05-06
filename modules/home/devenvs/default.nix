@@ -14,6 +14,7 @@ in
 {
   imports = [
     ./c.nix
+    ./configfiles.nix
     ./go.nix
     ./java.nix
     ./latex.nix

@@ -57,6 +57,10 @@ let
             wayland = true;
             pipewire = true;
           };
+          env = {
+            PATH = "${pkgs.flatpak-xdg-utils}/bin:${pkgs.nix}/bin";
+          };
+
         };
       };
   };
