@@ -77,7 +77,7 @@
         ietf = lib.mkOption {
           type = lib.types.str;
           readOnly = true;
-          default = builtins.replaceStrings [ "_" "-" ] config.nixdots.core.locales.langcode;
+          default = builtins.replaceStrings [ "_" ] [ "-" ] config.nixdots.core.locales.langcode;
         };
         guiLocale = lib.mkOption {
           type = lib.types.str;
