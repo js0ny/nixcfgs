@@ -11,6 +11,7 @@ in
   imports = [
     # keep-sorted start
     ./.
+    ./awww.nix
     ./hyprlock.nix
     ./kanshi.nix
     # ./swaylock.nix
@@ -41,10 +42,6 @@ in
     ELECTRON_TRASH = "trash-cli";
     XAUTHORITY = "$XDG_RUNTIME_DIR/.XAuthority";
   };
-  services.awww = {
-    enable = true;
-  };
-  systemd.user.services.awww.Install.WantedBy = [ "niri.service" ];
   services.dunst = {
     enable = true;
     settings = {

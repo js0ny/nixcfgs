@@ -14,7 +14,6 @@
     ./packages/gui.nix
     ./programs
     ./programs/aichat.nix
-    ./programs/block-desktop-entries.nix
     ./programs/browsers/firefox
     ./programs/dolphin
     ./programs/editors/nvim

@@ -115,7 +115,7 @@ in
           else
             "${pkgs.writeText "${name}-patch.${task.format}" (getContent task)}";
       in
-      hm.dag.entryAfter [ "writeBoundary" ] ''
+      hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
         TARGET="${task.target}"
         PATCH="${patchPath}"
         FORCE="${if task.force then "true" else "false"}"

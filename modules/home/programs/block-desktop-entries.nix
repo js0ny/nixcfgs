@@ -1,3 +1,4 @@
+# TODO: Complete refactor required
 {
   config,
   lib,
@@ -6,7 +7,7 @@
 }:
 with lib;
 let
-  cfg = config.misc.desktop-entries;
+  cfg = config.misc.block-desktop-entries;
 
   blockScript = pkgs.writeShellApplication {
     name = "block-desktop-entries";
@@ -45,8 +46,14 @@ let
   };
 in
 {
-  options.misc.desktop-entries = {
-    hiddenPrefixes = mkOption {
+  options.misc.block-desktop-entries = {
+    prefixes = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "List of desktop file prefixes to hide (e.g., ['waydroid', 'wine']).";
+    };
+
+    desktops = mkOption {
       type = types.listOf types.str;
       default = [ ];
       description = "List of desktop file prefixes to hide (e.g., ['waydroid', 'wine']).";
@@ -62,17 +69,28 @@ in
     };
   };
 
-  config = mkIf (cfg.hiddenPrefixes != [ ]) {
-    home.packages = [ blockScript ];
+  config = mkMerge [
+    (mkIf (cfg.prefixes != [ ]) {
+      home.packages = [ blockScript ];
 
-    home.activation.blockDesktopEntries = hm.dag.entryAfter [ "writeBoundary" ] ''
-      if [ -n "''${VERBOSE_ARG:-}" ]; then
-        echo "Running block-desktop-entries for configured prefixes..."
-      fi
+      home.activation.blockDesktopEntries = hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
+        if [ -n "''${VERBOSE_ARG:-}" ]; then
+          echo "Running block-desktop-entries for configured prefixes..."
+        fi
 
-      ${concatMapStringsSep "\n" (prefix: ''
-        ${getExe blockScript} "${prefix}" "${cfg.hideMethod}"
-      '') cfg.hiddenPrefixes}
-    '';
-  };
+        ${concatMapStringsSep "\n" (prefix: ''
+          ${getExe blockScript} "${prefix}" "${cfg.hideMethod}"
+        '') cfg.prefixes}
+      '';
+    })
+    (mkIf (cfg.desktops != [ ]) {
+      programs.vicinae = {
+        settings = {
+          providers."applications".entrypoints = lib.genAttrs cfg.desktops (name: {
+            enabled = false;
+          });
+        };
+      };
+    })
+  ];
 }

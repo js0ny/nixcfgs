@@ -6,6 +6,9 @@
   ...
 }:
 let
+  vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
+  inherit (lib) mkDefault;
+  wallpaperDir = config.home.customDirs.wallpaper;
   d = config.nixdots;
   enable = d.desktop.wm.shell == "noctalia";
   basepkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -179,8 +182,8 @@ lib.mkIf enable {
         showHiddenFiles = lib.mkDefault true;
         viewMode = lib.mkDefault "recursive";
       }
-      // (lib.optionalAttrs (config.home.customDirs.wallpaper != null) {
-        directory = config.home.customDirs.wallpaper;
+      // (lib.optionalAttrs (wallpaperDir != null) {
+        directory = wallpaperDir;
       });
       location = {
         monthBeforeDay = true;
@@ -261,4 +264,13 @@ lib.mkIf enable {
 
     spawn-at-startup "noctalia-shell"
   '';
+  programs.vicinae = {
+    extensions = with vicinae-extensions; [ noctalia-shell-wallpaper-selector ];
+    settings.providers."@Gimblet/vicinae-extension-noctalia-shell-wallpaper-selector-0" = {
+      preferences = {
+        wallpaper_directory = wallpaperDir;
+        display_name = mkDefault config.nixdots.laptop.display.connector;
+      };
+    };
+  };
 }

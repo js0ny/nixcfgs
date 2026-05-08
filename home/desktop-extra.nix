@@ -14,7 +14,6 @@
     ./gaming/steam
     ./packages/flatpak.nix
     ./programs
-    ./programs/block-desktop-entries.nix
     ./programs/bottles.nix
     ./programs/browsers/chromium.nix
     ./programs/browsers/firefox

@@ -3,6 +3,7 @@
   imports = [
     # keep-sorted start
 
+    ../../helper/makeMutable.nix
     ../../helper/mergetools.nix
     ../common/sops.nix
     ../common/styles/home.nix
