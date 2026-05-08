@@ -2,19 +2,21 @@
 {
   # Globally installed development tools
   home.packages = with pkgs; [
-    vscode-json-languageserver
-    nixfmt
+    # keep-sorted start
+    dig
+    dos2unix
+    github-copilot-cli
+    gron
+    httpie
+    jless
     jq
     jujutsu
-    github-copilot-cli
-    dos2unix
-    yq-go
-    socat
-    httpie
-    gron
-    jless
     mtr # my-traceroute
-    dig
+    nixfmt
+    socat
+    vscode-json-languageserver
+    yq-go
+    # keep-sorted end
   ];
 
   programs.zed-editor.extensions = [

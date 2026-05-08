@@ -1,20 +1,22 @@
 { ... }:
 {
   imports = [
+    # keep-sorted start
     ./apps.nix
     ./core.nix
-    ./style.nix
-    ./laptop.nix
-    ./programs.nix
-    ./sops.nix
-    ./desktop.nix
-    ./machine.nix
-    ./virtualisation.nix
-    ./impermanence.nix
-    ./server.nix
-    ./linux.nix
     ./darwin.nix
+    ./desktop.nix
     ./devenvs.nix
+    ./impermanence.nix
     ./keymaps.nix
+    ./laptop.nix
+    ./linux.nix
+    ./machine.nix
+    ./programs.nix
+    ./server.nix
+    ./sops.nix
+    ./style.nix
+    ./virtualisation.nix
+    # keep-sorted end
   ];
 }

@@ -1,99 +1,94 @@
 { pkgs, config, ... }:
 {
   imports = [
+    # keep-sorted start
+
     ./desktop-base.nix
-    ./programs
-    ./packages/flatpak.nix
-
-    ./programs/browsers/firefox
-    ./programs/browsers/chromium.nix
-
     ./desktop/niri
-
-    ./programs/editors/zed-editor
-    ./programs/editors/emacs.nix
-    ./programs/editors/vscode
-    ./programs/editors/nvim
-    ./programs/editors/neovide.nix
-
     ./gaming
-    ./gaming/steam
     ./gaming/celeste
-    ./gaming/minecraft.nix
-    ./gaming/emulators/retroarch.nix
     ./gaming/emulators/cemu.nix
+    ./gaming/emulators/retroarch.nix
     ./gaming/emulators/ryujinx.nix
-
-    ./programs/media
-    ./programs/media/cider-2.nix
-    ./programs/media/gallery-dl.nix
-    ./programs/media/beets.nix
-    ./programs/media/feishin.nix
-    ./programs/media/picard.nix
-
-    ./programs/terminals/kitty.nix
-    ./programs/terminals/ghostty.nix
-    ./programs/terminals/zellij.nix
-
-    ./programs/shell/bash.nix
-    ./programs/shell/zsh.nix
-    ./programs/shell/fish
-    ./programs/shell/carapace.nix
-    ./programs/shell/nu.nix
-
-    ./programs/mime.nix
+    ./gaming/minecraft.nix
+    ./gaming/steam
+    ./packages/flatpak.nix
+    ./programs
     ./programs/block-desktop-entries.nix
-
+    ./programs/bottles.nix
+    ./programs/browsers/chromium.nix
+    ./programs/browsers/firefox
+    ./programs/cherry-studio.nix
+    ./programs/claude-code.nix
+    ./programs/codex.nix
+    ./programs/easyeffects
+    ./programs/editors/emacs.nix
+    ./programs/editors/neovide.nix
+    ./programs/editors/nvim
+    ./programs/editors/vscode
+    ./programs/editors/zed-editor
+    ./programs/element.nix
+    ./programs/eza.nix
     ./programs/gwenview.nix
     ./programs/libvirt.nix
     ./programs/magick.nix
-    # ./programs/newsflash.nix
-    ./programs/wine.nix
-    ./programs/bottles.nix
-    ./programs/eza.nix
-    ./programs/cherry-studio.nix
-    ./programs/element.nix
-    ./programs/codex.nix
-    ./programs/claude-code.nix
-    ./programs/protonmail-bridge.nix
-    ./programs/quickemu.nix
-
-    ./programs/easyeffects
-
-    ./programs/productivity/obsidian
-    ./programs/productivity/sioyek
+    ./programs/media
+    ./programs/media/beets.nix
+    ./programs/media/cider-2.nix
+    ./programs/media/feishin.nix
+    ./programs/media/gallery-dl.nix
+    ./programs/media/picard.nix
+    ./programs/mime.nix
     ./programs/productivity/anki.nix
-    ./programs/productivity/libreoffice.nix
     ./programs/productivity/goldendict.nix
+    ./programs/productivity/libreoffice.nix
+    ./programs/productivity/obsidian
     ./programs/productivity/readest.nix
     ./programs/productivity/sdcv.nix
-    ./programs/productivity/zotero.nix
+    ./programs/productivity/sioyek
     ./programs/productivity/zoom-us.nix
-
+    ./programs/productivity/zotero.nix
+    ./programs/protonmail-bridge.nix
+    ./programs/quickemu.nix
     ./programs/rime
+    ./programs/shell/bash.nix
+    ./programs/shell/carapace.nix
+    ./programs/shell/fish
+    ./programs/shell/nu.nix
+    ./programs/shell/zsh.nix
+    ./programs/terminals/ghostty.nix
+    ./programs/terminals/kitty.nix
+    ./programs/terminals/zellij.nix
+    # ./programs/newsflash.nix
+    ./programs/wine.nix
+    # keep-sorted end
   ];
   programs.pdf2zh.enable = true;
   home.packages = with pkgs; [
-    blender
-    kdePackages.kdenlive
-    # PDF Viewer
-    kdePackages.okular
-    gimp
-    kicad
-    kdePackages.kdeconnect-kde
-    rustdesk
-    kdePackages.qttools
-    calibre
-    kdePackages.elisa
     (jetbrains.datagrip.override {
       vmopts = "-Dawt.toolkit.name=WLToolkit";
     })
+    # keep-sorted start
+    awscli2
+    blender
+    calibre
+    gh
+    gimp
+    kdePackages.elisa
+    kdePackages.kdeconnect-kde
+    kdePackages.kdenlive
+    # PDF Viewer
+    kdePackages.okular
+    kdePackages.qttools
+    kicad
+    krabby
     localPkgs.BBDown
     localPkgs.danmaku2ass
+    newsflash
     octaveFull
-    krabby
-    gh
-    awscli2
+    rustdesk
+    tor-browser
+    # keep-sorted end
   ];
 
   xdg.configFile."krabby/config.toml".text = ''

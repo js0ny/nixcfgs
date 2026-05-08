@@ -35,6 +35,8 @@ in
           "git push*" = "deny";
           "git add*" = "ask";
           "git status" = "allow";
+          "cat *.env" = "deny";
+          "cat *.env.example" = "allow";
         };
         read = {
           "*" = "allow";

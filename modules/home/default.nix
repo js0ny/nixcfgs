@@ -1,28 +1,27 @@
 { ... }:
 {
   imports = [
-    ../options
-
-    ../common/sops.nix
-    ../common/styles/home.nix
-
-    ./filetype
-    ./programs
-    ./services
-    ./devenvs
-
-    ./antidots.nix
-    ./core.nix
-    ./gpg.nix
-    ./do-not-track.nix
-    ./sops.nix
-    ./gnome-keyrings.nix
-    ./shellAliases.nix
-    ./ssh.nix
-    ./directories.nix
-    ./customDirs.nix
+    # keep-sorted start
 
     ../../helper/mergetools.nix
+    ../common/sops.nix
+    ../common/styles/home.nix
+    ../options
+    ./antidots.nix
+    ./core.nix
+    ./customDirs.nix
+    ./devenvs
+    ./directories.nix
+    ./do-not-track.nix
+    ./filetype
+    ./gnome-keyrings.nix
+    ./gpg.nix
+    ./programs
+    ./services
+    ./shellAliases.nix
+    ./sops.nix
+    ./ssh.nix
+    # keep-sorted end
   ];
 
 }

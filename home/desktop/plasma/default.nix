@@ -6,15 +6,17 @@
 }:
 {
   imports = [
+    # keep-sorted start
+    ../../../modules/home/plasma
     ../../programs/dolphin
-    ./kwin.nix
-    ./keymaps.nix
     ./calendar.nix
-    ./panels.nix
     ./input.nix
+    ./keymaps.nix
+    ./kwin.nix
+    ./panels.nix
     ./plasmarc.nix
     ./powerdevil.nix
-    ../../../modules/home/plasma
+    # keep-sorted end
   ];
   home.packages = with pkgs; [
     # kdePackages.yakuake

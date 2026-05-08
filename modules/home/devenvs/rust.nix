@@ -11,15 +11,17 @@ lib.mkIf cfg.enable {
   home.packages = lib.optionals cfg.global (
     with pkgs;
     [
-      rust-analyzer
-      rustc
+      # keep-sorted start
       cargo
       clippy
-      rustfmt
-      gnumake
       cmake
-      llvm
       gcc
+      gnumake
+      llvm
+      rust-analyzer
+      rustc
+      rustfmt
+      # keep-sorted end
     ]
   );
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [

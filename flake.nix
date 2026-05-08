@@ -14,6 +14,10 @@
     nixpkgs-stable.url = "github:nixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     # flake-utils.url = "github:numtide/flake-utils";
     nix-darwin = {
@@ -141,10 +145,19 @@
         {
           treefmt.config = {
             projectRootFile = "flake.nix";
+            programs.keep-sorted = {
+              enable = true;
+              excludes = [
+                "*.json"
+                "*.md"
+              ];
+            };
+            # keep-sorted start
             programs.nixfmt.enable = true;
-            programs.stylua.enable = true;
             programs.prettier.enable = true;
             programs.shfmt.enable = true;
+            programs.stylua.enable = true;
+            # keep-sorted end
           };
 
           pre-commit = {

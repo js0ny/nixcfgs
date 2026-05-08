@@ -5,27 +5,19 @@ in
 {
   _module.args.mylib = mylib;
   imports = [
-    ./compat.nix
+    # keep-sorted start
 
-    ../options
-
-    ./hardware
-    ./virtualisation
-
-    ./core
-
-    ./services
-
+    ../../hardening/nixpaks
+    ../common
+    ../common/nix-helper.nix
     ../common/sops.nix
     ../common/styles
-    ../common/system.nix
     ../common/styles/nixos.nix
-    ../common/nix-helper.nix
-
-    ./security/howdy.nix
-    ./security/apparmor.nix
-    ./security/hardening.nix
-
+    ../common/system.nix
+    ../options
+    ./compat.nix
+    ./core
+    ./hardware
     ./programs/chromium.nix
     ./programs/dolphin.nix
     ./programs/firefox.nix
@@ -34,9 +26,11 @@ in
     ./programs/steam.nix
     ./programs/thunderbird.nix
     ./programs/zsh.nix
-
-    ../../hardening/nixpaks
-    ../common
+    ./security/hardening.nix
+    ./security/howdy.nix
+    ./services
+    ./virtualisation
+    # keep-sorted end
   ];
 
   networking.hostName = config.nixdots.core.hostname;

@@ -1,13 +1,15 @@
 { config, ... }:
 {
   imports = [
+    # keep-sorted start
+    ../common/system.nix
+    ../options
     ./brew.nix
     ./core.nix
     ./determinate.nix
-    ./tailscale.nix
-    ./pam.nix
     ./finder.nix
-    ../options
-    ../common/system.nix
+    ./pam.nix
+    ./tailscale.nix
+    # keep-sorted end
   ];
 }

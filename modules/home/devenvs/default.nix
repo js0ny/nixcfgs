@@ -13,18 +13,20 @@ let
 in
 {
   imports = [
+    # keep-sorted start
     ./c.nix
     ./configfiles.nix
     ./go.nix
     ./java.nix
     ./latex.nix
     ./lua.nix
+    ./markdown.nix
     ./nix.nix
     ./python.nix
     ./rust.nix
     ./typst.nix
     ./verilog.nix
-    ./markdown.nix
+    # keep-sorted end
   ];
   home.sessionVariables = {
     PYTHON_HISTORY = "${xdg-data}/python/history";

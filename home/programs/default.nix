@@ -1,33 +1,31 @@
 { ... }:
 {
   imports = [
+    # keep-sorted start
+
     # Packages
     ../packages/cli.nix
-
-    # Shell
-    ./shell/bash.nix
-    ./shell/fish
-    ./shell/carapace.nix
-
+    ./bat.nix
     # Editors
     ./editors/vim
-
-    ./terminals/tmux.nix
-
     # Utilities & misc
     # ./xilinx.nix
     ./fzf.nix
-    ./yazi
-    ./libvirt.nix
-    ./rtorrent.nix
     ./git.nix
-    ./tldr.nix
-    ./bat.nix
-
+    ./libvirt.nix
     # General Program config (Shared)
     ./lsd.nix
+    ./rtorrent.nix
+    # Shell
+    ./shell/bash.nix
+    ./shell/carapace.nix
+    ./shell/fish
     ./starship.nix
+    ./terminals/tmux.nix
+    ./tldr.nix
+    ./yazi
     ./zoxide.nix
 
+    # keep-sorted end
   ];
 }

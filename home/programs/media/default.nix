@@ -7,10 +7,9 @@
   home.packages =
     with pkgs;
     [
-      flac
-      mediainfo
+      # keep-sorted start
       exiftool
-      yt-dlp
+      flac
       localPkgs.mediatools.extract-audio
       localPkgs.mediatools.preview-by-orientation
       localPkgs.mediatools.remux-mp4
@@ -20,6 +19,9 @@
       localPkgs.mediatools.to-avif
       localPkgs.mediatools.to-webp
       localPkgs.mediatools.video-gen-grid
+      mediainfo
+      yt-dlp
+      # keep-sorted end
     ]
     ++ (
       if config.nixdots.desktop.enable then

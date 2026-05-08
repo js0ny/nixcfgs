@@ -4,7 +4,7 @@
     Unit = {
       Description = "Polkit agent";
       PartOf = [ "niri.service" ];
-      After = [ "graphical-session.target" ];
+      After = [ "niri.service" ];
     };
 
     Service = {

@@ -1,12 +1,14 @@
 { ... }:
 {
   imports = [
+    # keep-sorted start
     ./asus.nix
     ./audio.nix
-    ./serial.nix
-    ./uinput.nix
     ./hid.nix
     ./nvidia
+    ./serial.nix
+    ./uinput.nix
+    # keep-sorted end
   ];
   hardware.enableRedistributableFirmware = true;
 }

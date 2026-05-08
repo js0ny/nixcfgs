@@ -1,13 +1,15 @@
 { ... }:
 {
   imports = [
-    ./librechat.nix
+    # keep-sorted start
     ./garage.nix
+    ./librechat.nix
     ./mongodb.nix
     ./ollama.nix
+    ./open-webui.nix
     ./opencode-web.nix
     ./syncthing.nix
     ./tailscale.nix
-    ./open-webui.nix
+    # keep-sorted end
   ];
 }

@@ -1,19 +1,21 @@
 { pkgs, ... }:
 {
   imports = [
-    ./gnome-keyring.nix
-    ./diskutil.nix
-    ./laptop.nix
+    # keep-sorted start
+    ../default.nix
+    ../hardware/audio.nix
     ./base.nix
     ./core.nix
-    ./wayland.nix
-    ./keyd.nix
-    ./xremap.nix
-    ./dm
     ./de
-    ../hardware/audio.nix
+    ./diskutil.nix
+    ./dm
+    ./gnome-keyring.nix
+    ./keyd.nix
+    ./laptop.nix
     ./networkmanager.nix
-    ../default.nix
+    ./wayland.nix
+    ./xremap.nix
+    # keep-sorted end
   ];
   nixdefs.hardware.enable = true;
 }

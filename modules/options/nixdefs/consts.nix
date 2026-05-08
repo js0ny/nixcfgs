@@ -109,6 +109,14 @@
             "notifications"
             "toggleDND"
           ];
+          enableDND = [
+            "notifications"
+            "enableDND"
+          ];
+          disableDND = [
+            "notifications"
+            "disableDND"
+          ];
           clear = [
             "notifications"
             "clear"

@@ -9,17 +9,19 @@ let
 in
 {
   imports = [
-    # ../../walker.nix
-    ./waybar.nix
+    # keep-sorted start
+    ./.
+    ./hyprlock.nix
     ./kanshi.nix
     # ./swaylock.nix
     ./polkit.nix
-    ./hyprlock.nix
-    ./swayidle.nix
     ./sunsetr.nix
+    ./swayidle.nix
     ./systemd.nix
     ./volume-notify.nix
-    ./.
+    # ../../walker.nix
+    ./waybar.nix
+    # keep-sorted end
   ];
   home.packages = with pkgs; [
     brightnessctl

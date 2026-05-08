@@ -8,8 +8,10 @@
   dconf.enable = false;
 
   home.packages = with pkgs; [
-    kitty.terminfo
-    kitty.kitten
+    # keep-sorted start
     ghostty.terminfo
+    kitty.kitten
+    kitty.terminfo
+    # keep-sorted end
   ];
 }
