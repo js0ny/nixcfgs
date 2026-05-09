@@ -68,4 +68,5 @@ in
 
   catppuccin.vscode.profiles.default.enable = false;
   nixdots.programs.shellAliases = codeAlias;
+  makeMutable = [ ".config/Code/User/settings.json" ];
 }

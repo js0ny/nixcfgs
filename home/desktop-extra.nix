@@ -38,6 +38,7 @@
     ./programs/media/gallery-dl.nix
     ./programs/media/picard.nix
     ./programs/mime.nix
+    ./programs/pi-agent.nix
     ./programs/productivity/anki.nix
     ./programs/productivity/goldendict.nix
     ./programs/productivity/libreoffice.nix
@@ -86,6 +87,7 @@
     newsflash
     octaveFull
     rustdesk
+    tea
     tor-browser
     # keep-sorted end
   ];

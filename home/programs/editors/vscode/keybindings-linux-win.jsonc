@@ -70,53 +70,10 @@
     },
     // #endregion
     // #region Nvim-Tree like File Explorer
-    // n, e : move cursor up/down
-    // h    : move cursor to parent folder
-    // i    : open file or folder
-    {
-        "key": "e",
-        "command": "list.focusUp",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
-        "key": "k",
-        "command": "-list.focusUp",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
-        "key": "e",
-        "command": "list.focusUp",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "k",
-        "command": "-list.focusUp",
-        "when": "listFocus && !inputFocus"
-    },
     {
         "key": "f",
         "command": "filesExplorer.findInWorkspace",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-    },
-    {
-        "key": "n",
-        "command": "list.focusDown",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "j",
-        "command": "-list.focusDown",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "i",
-        "command": "list.select",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "l",
-        "command": "-list.select",
-        "when": "listFocus && !inputFocus"
     },
     { // ctrl-w enter: open in vertical split / to side
         "key": "ctrl+w enter",
@@ -221,17 +178,17 @@
         "when": "editorHoverFocused"
     },
     {
-        "key": "n",
+        "key": "j",
         "command": "editor.action.scrollDownHover",
         "when": "editorHoverFocused"
     },
     {
-        "key": "e",
+        "key": "k",
         "command": "editor.action.scrollUpHover",
         "when": "editorHoverFocused"
     },
     {
-        "key": "i",
+        "key": "l",
         "command": "editor.action.scrollRightHover",
         "when": "editorHoverFocused"
     },

@@ -67,6 +67,31 @@ lib.mkMerge [
       settings = {
         autoupdate = false;
       };
+      tui = {
+        keymap = {
+          sections = {
+            global = {
+              "command.palette.show" = [
+                "ctrl+p"
+                "alt+x"
+                "<leader>;"
+              ];
+            };
+            prompt = {
+              "prompt.editor" = [
+                "alt+e"
+                "<leader>e"
+              ];
+            };
+            autocomplete = {
+              "prompt.autocomplete.select" = [
+                "return"
+                "ctrl+y"
+              ];
+            };
+          };
+        };
+      };
     };
   }
   (lib.mkIf config.nixdefs.acp.enable {

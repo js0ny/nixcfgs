@@ -15,6 +15,7 @@ lib.mkMerge [
           env.EDITOR = "zeditor";
           shell.program = config.nixdots.apps.interactiveShell.exe;
         };
+        relative_line_numbers = "enabled";
       };
     };
   }

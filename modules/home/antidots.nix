@@ -30,13 +30,19 @@ in
     SQLITE_HISTORY = "${xdg-state}/sqlite/history"; # ~/.sqlite/history
     AWS_SHARED_CREDENTIALS_FILE = "${xdg-config}/aws/credentials";
     AWS_CONFIG_FILE = "${xdg-config}/aws/config";
+    # PostgreSQL
+    PSQLRC = "${xdg-config}/pg/psqlrc";
+    PGPASSFILE = "${xdg-config}/pg/pgpass";
+    PGSERVICEFILE = "${xdg-config}/pg/pg_service.conf";
+    PSQL_HISTORY = "${xdg-state}/psql_history";
   };
   xdg.configFile."wget/wgetrc".text = ''
     hsts-file = ${xdg-state}/wget/wget-hsts
   '';
   systemd.user.tmpfiles.rules = [
     "d ${xdg-config}/wakatime 0700 ${user} users -"
-    "d ${xdg-data}/wineprefixes 0700 ${user} users -"
+    "d ${xdg-config}/pg 0750 ${user} users -"
+    "d ${xdg-data}/wineprefixes 0750 ${user} users -"
     "d ${xdg-data}/gnupg 0700 ${user} users -"
     "d ${xdg-state}/sqlite 0755 ${user} users -"
     "d ${xdg-data}/npm/lib 0755 ${user} users -"
