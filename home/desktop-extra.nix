@@ -43,6 +43,7 @@
     ./programs/productivity/goldendict.nix
     ./programs/productivity/libreoffice.nix
     ./programs/productivity/obsidian
+    ./programs/productivity/okular
     ./programs/productivity/readest.nix
     ./programs/productivity/sdcv.nix
     ./programs/productivity/sioyek
@@ -77,8 +78,6 @@
     kdePackages.elisa
     kdePackages.kdeconnect-kde
     kdePackages.kdenlive
-    # PDF Viewer
-    kdePackages.okular
     kdePackages.qttools
     kicad
     krabby
