@@ -22,8 +22,17 @@ in
     OPENCODE_DISABLE_LSP_DOWNLOAD = if pkgs.stdenv.isLinux then "true" else "";
   };
 
+  sops.templates."opencode-web.env".content = ''
+    OPENCODE_SERVER_USERNAME=${config.sops.placeholder.opencode_web_username}
+    OPENCODE_SERVER_PASSWORD=${config.sops.placeholder.opencode_web_password}
+  '';
+
   programs.opencode = {
     enable = true;
+    web = {
+      enable = true;
+      environmentFile = config.sops.templates."opencode-web.env".path;
+    };
     settings = {
       plugin = [
         "@mohak34/opencode-notifier@latest"
@@ -35,8 +44,9 @@ in
           "git push*" = "deny";
           "git add*" = "ask";
           "git status" = "allow";
-          "cat *.env" = "deny";
-          "cat *.env.example" = "allow";
+          "*.env" = "deny";
+          "*.env.example" = "allow";
+          "sops*" = "deny";
         };
         read = {
           "*" = "allow";

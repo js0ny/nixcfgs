@@ -7,6 +7,8 @@
 let
   system = pkgs.stdenv.system;
   pipkg = inputs.llm-agents.packages.${system}.pi;
+  llm = config.nixdefs.llm;
+  models = llm.routing;
 in
 {
   home.packages = [ pipkg ];
@@ -17,7 +19,11 @@ in
     PI_OFFLINE = "1";
   };
   xdg.configFile = {
-    "pi/agent/settings.json" = builtins.toJSON {
+    "pi/agent/settings.json".text = builtins.toJSON {
+      lastChangelogVersion = "0.72.1";
+      defaultProvider = models.code-build.provider;
+      defaultModel = models.code-build.model;
+      defaultThinkingLevel = "high";
       npmCommand = [
         "nix"
         "shell"
@@ -35,4 +41,8 @@ in
       ".config/pi"
     ];
   };
+
+  makeMutable = [
+    ".config/pi/agent/settings.json"
+  ];
 }

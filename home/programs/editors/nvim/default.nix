@@ -55,7 +55,7 @@ in
   # home.packages = with pkgs; [lua-language-server];
   nixdots.programs.shellAliases = nvimAlias;
 
-  xdg.configFile."nvim".source = mkSymlink "${dots}/home/programs/editors/nvim/nvim";
+  xdg.configFile."nvim-0".source = mkSymlink "${dots}/home/programs/editors/nvim/nvim";
 
   xdg.configFile."lsp-snippets".source = snippets;
 

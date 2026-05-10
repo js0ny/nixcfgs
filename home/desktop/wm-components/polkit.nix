@@ -19,4 +19,8 @@
       WantedBy = [ "niri.target" ];
     };
   };
+
+  nixdots.desktop.niri.extraConfig = /* kdl */ ''
+    spawn-at-startup "systemctl restart --user polkit-agent"
+  '';
 }

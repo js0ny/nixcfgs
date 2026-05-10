@@ -52,6 +52,8 @@ in
           externalUrl = "https://librechat.ai/tos";
           openNewTab = true;
         };
+        marketplace.use = false;
+        runCode = false;
       };
       mcpServers = config.nixdefs.mcp.clientConfigs.librechat or { };
     };

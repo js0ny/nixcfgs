@@ -6,6 +6,7 @@
   ...
 }:
 let
+  ep = config.nixdefs.endpoints;
   system = pkgs.stdenv.system;
   ocpkg = inputs.llm-agents.packages.${system}.opencode;
   # Wrap bun to perform plugin installation
@@ -66,6 +67,10 @@ lib.mkMerge [
       package = ocbun;
       settings = {
         autoupdate = false;
+        server = {
+          port = ep.opencode.port;
+          hostname = ep.opencode.bindAddress;
+        };
       };
       tui = {
         keymap = {
