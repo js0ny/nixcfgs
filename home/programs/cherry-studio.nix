@@ -6,15 +6,24 @@
 }:
 let
   dotDir = ".local/share/CherryStudio";
+  electronBase =
+    if pkgs.stdenv.isDarwin then
+      "${config.home.homeDirectory}/Library/Application Support"
+    else
+      "${config.xdg.configHome}";
 in
 {
-  home.packages = [
-    (pkgs.nixpaks.cherry-studio.override {
-      dotDir = dotDir;
-    })
-  ];
+  home.packages =
+    if pkgs.stdenv.isLinux then
+      [
+        (pkgs.nixpaks.cherry-studio.override {
+          dotDir = dotDir;
+        })
+      ]
+    else
+      [ pkgs.cherry-studio ];
   mergetools.cherry-studio-config = {
-    target = "${config.home.homeDirectory}/.config/CherryStudio/config.json";
+    target = "${electronBase}/CherryStudio/config.json";
     format = "json";
     settings = {
       enableDeveloperMode = true;

@@ -25,7 +25,5 @@ lib.mkIf cfg.enable {
       ".thunderbird"
     ];
   };
-  home.packages = with pkgs; [
-    birdtray
-  ];
+  home.packages = lib.optionals (pkgs.stdenv.isLinux) [ pkgs.birdtray ];
 }

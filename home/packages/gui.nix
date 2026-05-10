@@ -51,7 +51,7 @@ in
       "im-select"
     ];
     casks = [
-      "TickTick"
+      "ticktick"
       "protonvpn"
       "proton-drive"
       "rustdesk"
