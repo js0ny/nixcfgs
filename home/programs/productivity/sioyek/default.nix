@@ -34,6 +34,8 @@ in
     super_fast_search 1
     should_launch_new_window 1
     search_url_d https://duckduckgo.com/?q=
+    show_document_name_in_statusbar 1
+    status_bar_format  Page %{current_page} / %{num_pages}%{chapter_name}%{search_results}%{search_progress}%{link_status}%{waiting_for_symbol}%{indexing}%{preview_index}%{synctex}%{drag}%{presentation}%{visual_scroll}%{locked_scroll}%{highlight}%{closest_bookmark}%{close_portal}%{rect_select}%{custom_message}%{document_name}
   '';
   xdg.configFile."sioyek/keys_user.config".source = ./keys_user.config;
   programs.sioyek = {
@@ -45,11 +47,5 @@ in
       # annotations
       ".local/share/sioyek"
     ];
-  };
-  catppuccin = {
-    enable = false;
-    flavor = "mocha";
-    accent = "pink";
-    sioyek.enable = true; # Stylix does not support sioyek yet, use ctpn as fallback
   };
 }

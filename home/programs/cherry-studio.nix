@@ -18,6 +18,7 @@ in
       [
         (pkgs.nixpaks.cherry-studio.override {
           dotDir = dotDir;
+          extraMnts = [ "Desktop" ];
         })
       ]
     else

@@ -47,5 +47,6 @@ in
   '';
   systemd.user.tmpfiles.rules = [
     "d ${xdg-data}/npm/lib 0755 ${user} users -"
+    "d ${xdg-data}/python 0755 ${user} users -"
   ];
 }
