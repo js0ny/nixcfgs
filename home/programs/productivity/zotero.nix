@@ -4,14 +4,25 @@
   ...
 }:
 let
+  dotDir = ".local/share/dot_zotero";
+  libraryDir = ".local/share/Zotero";
   profile = config.nixdots.user.name;
   nur-addons = pkgs.nur.repos.rycee.firefox-addons;
   p = config.nixdots.programs.firefox.defaultProfile;
 in
 {
-  home.packages = with pkgs; [ zotero ];
+  home.packages =
+    if pkgs.stdenv.isLinux then
+      [
+        (pkgs.nixpaks.zotero.override {
+          dotDir = dotDir;
+          libraryDir = libraryDir;
+        })
+      ]
+    else
+      [ pkgs.zotero ];
   home.file = {
-    ".zotero/profiles.ini".text = ''
+    "${dotDir}/profiles.ini".text = ''
       [General]
       StartWithLastProfile=1
       Version=2
@@ -22,17 +33,15 @@ in
       Name=${profile}
       Path=${profile}
     '';
-    # Antidots
-    ".zotero/${profile}/user.js".text = ''
-      user_pref("extensions.zotero.dataDir", "${config.home.homeDirectory}/.local/share/Zotero");
+    "${dotDir}/${profile}/user.js".text = /* javascript */ ''
       user_pref("extensions.zotero.export.quickCopy.setting", "bibliography=http://www.zotero.org/styles/ieee");
       user_pref("intl.locale.requested", "${config.nixdots.core.locales.guiLocale}");
     '';
   };
   nixdots.persist.home = {
     directories = [
-      ".zotero"
-      ".local/share/Zotero"
+      dotDir
+      libraryDir
     ];
   };
   services.xremap.config.keymap = [

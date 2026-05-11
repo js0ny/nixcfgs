@@ -30,6 +30,7 @@ in
         feishin = callNixPak ./feishin.nix;
         cider-2 = callNixPak ./cider-2.nix;
         cherry-studio = callNixPak ./cherry-studio.nix;
+        zotero = callNixPak ./zotero.nix;
       };
     })
   ];

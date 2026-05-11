@@ -10,9 +10,7 @@
     baseIndex = 1;
     resizeAmount = 5;
     terminal = "tmux-256color";
-    # TODO: Waiting for upstream fix:
-    # libtmux~=0.53.0 not satisfied by version 0.55.0
-    tmuxp.enable = false;
+    tmuxp.enable = true;
     plugins = with pkgs.tmuxPlugins; [
       pain-control
       yank
