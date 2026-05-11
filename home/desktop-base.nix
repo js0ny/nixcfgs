@@ -68,4 +68,6 @@
   home.file.".hidden".text = lib.concatStringsSep "\n" [
     "PDX"
   ];
+
+  catppuccin.cache.enable = true;
 }

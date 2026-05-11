@@ -9,6 +9,7 @@ let
     "text/x-csrc" # .c
     "text/x-chdr" # .h
     "text/javascript"
+    "text/typescript" # .ts
     "text/x-python"
     "application/yaml" # .yaml, .yml
     "text/x-patch" # .patch .diff
@@ -17,6 +18,7 @@ let
     "text/x-pdx-descriptor" # .mod (custom defined below)
     "text/csv"
     "text/markdown"
+    "text/vnd.trolltech.linguist" # .ts (Qt Translation Source File)
   ]
   ++ [
   ];

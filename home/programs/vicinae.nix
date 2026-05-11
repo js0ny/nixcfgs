@@ -52,7 +52,12 @@ in
         clipboard.entrypoints = {
           "history".alias = mkDefault "clip";
         };
-        system.entrypoints.run.alias = mkDefault ">";
+        system.entrypoints.run = {
+          alias = mkDefault ">";
+          # run directly without open a terminal window
+          # accompanied with nix-index comma
+          preferences."default-action" = "run";
+        };
         "@knoopx/vicinae-extension-nix-0".entrypoints = {
           "home-manager-options".alias = mkDefault "hm";
           "options".alias = mkDefault "no";

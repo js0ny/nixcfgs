@@ -10,6 +10,18 @@
     <glob pattern="*.nix"/>
   </mime-type>
 
+  <mime-type type="text/typescript">
+    <comment>TypeScript Source Code</comment>
+    <comment xml:lang="zh_CN">TypeScript 源代码</comment>
+    <acronym>TS</acronym>
+    <sub-class-of type="text/javascript"/>
+    <generic-icon name="text-javascript"/>
+    <glob pattern="*.ts"/>
+    <alias type="text/x-typescript"/>
+    <alias type="application/typescript"/>
+    <alias type="application/x-typescript"/>
+  </mime-type>
+
   <mime-type type="text/x-xilinx-xdc">
     <comment>Xilinx Design Constraints</comment>
     <comment xml:lang="zh_CN">Xilinx 设计约束文件</comment>

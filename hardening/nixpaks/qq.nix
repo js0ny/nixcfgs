@@ -61,6 +61,7 @@ let
             "${pkgs.krb5.lib}/lib"
             "${pkgs.stdenv.cc.cc.lib}/lib"
             (sloth.concat' sloth.xdgPicturesDir "/Screenshots")
+            (sloth.envOr "XAUTHORITY" (sloth.concat' sloth.runtimeDir "/.Xauthority"))
           ];
           sockets = {
             x11 = false;
@@ -70,7 +71,7 @@ let
           env = {
             LD_LIBRARY_PATH = "${pkgs.libx11}/lib:${pkgs.libxcb}/lib:${pkgs.krb5.lib}/lib:${pkgs.libgssglue}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.fcitx5-gtk}/lib:${pkgs.kdePackages.fcitx5-qt}/lib";
             NIXOS_OZONE_WL = "1";
-            # XAUTHORITY = sloth.envOr "XAUTHORITY" (sloth.concat' sloth.runtimeDir "/.Xauthority");
+            XAUTHORITY = "";
             # QT_QPA_PLATFORM = "xcb";
             # ELECTRON_OZONE_PLATFORM_HINT = "x11";
             # QT_PLUGIN_PATH = "${pkgs.kdePackages.fcitx5-qt}/lib/qt-6/plugins";

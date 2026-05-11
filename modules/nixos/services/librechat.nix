@@ -73,7 +73,7 @@ in
             proxyPass = "http://localhost:${toString port}";
             proxyWebsockets = true;
             # proxy_http_version 1.1;
-            extraConfig = ''
+            extraConfig = /* nginx */ ''
               proxy_buffering off;
               proxy_cache off;
               proxy_read_timeout 1800;
@@ -82,7 +82,7 @@ in
               add_header X-Accel-Buffering "no" always;
             '';
           };
-          extraConfig = ''
+          extraConfig = /* nginx */ ''
             add_header Alt-Svc 'h3=":443"; ma=86400';
           '';
         };
