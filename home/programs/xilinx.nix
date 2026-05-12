@@ -48,7 +48,7 @@ in
   ];
   home.file = {
     "${xilinxBoxHome}/.vitis-wr.sh" = {
-      text = ''
+      text = /* bash */ ''
         #!/bin/bash
         # ~/.vitis-wr.sh
 
@@ -66,7 +66,7 @@ in
     "${xilinxBoxHome}/.Xilinx/Vivado/Vivado_init.tcl" = {
       enable = true;
       # set_param general.journaldir /tmp
-      text = ''
+      text = /* tcl */ ''
         set_param general.logdir /tmp
       '';
     };

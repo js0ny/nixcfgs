@@ -23,7 +23,7 @@ lib.mkIf cfg {
     };
   };
   # See https://github.com/rvaiya/keyd?tab=readme-ov-file#faqs
-  environment.etc."libinput/local-overrides.quirks".text = ''
+  environment.etc."libinput/local-overrides.quirks".text = /* ini */ ''
     [Serial Keyboards]
     MatchUdevType=keyboard
     MatchName=keyd*keyboard

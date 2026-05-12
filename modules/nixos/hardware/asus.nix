@@ -16,7 +16,7 @@ lib.mkIf cfg {
   services.asusd.enable = true;
   services.supergfxd.enable = true;
 
-  environment.etc."asusd/slash.ron".text = ''
+  environment.etc."asusd/slash.ron".text = /* ron */ ''
     (
         enabled: true,
         brightness: 255,

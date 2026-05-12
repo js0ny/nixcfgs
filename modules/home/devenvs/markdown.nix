@@ -17,7 +17,7 @@ lib.mkIf cfg.enable {
       markdown-oxide
     ]
   );
-  xdg.configFile."glow/config.yml".text = ''
+  xdg.configFile."glow/config.yml".text = /* yaml */ ''
     style: "auto"
     mouse: true
     pager: true

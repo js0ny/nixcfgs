@@ -32,7 +32,7 @@ in
     };
   };
 
-  xdg.configFile."sunsetr/sunsetr.toml".text = ''
+  xdg.configFile."sunsetr/sunsetr.toml".text = /* toml */ ''
     #[Backend]
     backend = "auto"         # Backend to use: "auto", "hyprland", "hyprsunset" or "wayland"
     transition_mode = "geo"  # Select: "geo", "finish_by", "start_at", "center", "static"

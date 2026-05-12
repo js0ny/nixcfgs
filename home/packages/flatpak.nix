@@ -17,7 +17,7 @@ let
     map (appid: {
       name = "flatpak/exports/bin/${appid}";
       value = {
-        text = ''
+        text = /* bash */ ''
           #!/bin/sh
           exec flatpak run ${appid} ${waylandFlags} "$@"
         '';
@@ -73,7 +73,7 @@ in
     # Patch for Hyprland (scale XWayland by hand)
     "flatpak/exports/bin/com.qq.QQ" = {
       force = true;
-      text = ''
+      text = /* bash */ ''
         #!/bin/sh
 
         EXTRA_APP_ARGS=""
@@ -88,7 +88,7 @@ in
       executable = true;
     };
     "flatpak/exports/share/applications/com.qq.QQ.desktop" = {
-      text = ''
+      text = /* desktop */ ''
         [Desktop Entry]
         Name=QQ
         Exec=${config.xdg.dataHome}/flatpak/exports/bin/com.qq.QQ

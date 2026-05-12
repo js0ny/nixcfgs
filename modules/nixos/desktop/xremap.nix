@@ -14,7 +14,7 @@ lib.mkIf cfg.enable {
   # since most "Disable Trackpad While Typing"
   # won't work if you are using a virtual keyboard.
   # https://github.com/xremap/xremap/discussions/656
-  environment.etc."libinput/local-overrides.quirks".text = ''
+  environment.etc."libinput/local-overrides.quirks".text = /* ini */ ''
     [xremap]
     MatchName=xremap
     MatchUdevType=keyboard

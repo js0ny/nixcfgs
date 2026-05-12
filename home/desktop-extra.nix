@@ -91,7 +91,7 @@
     # keep-sorted end
   ];
 
-  xdg.configFile."krabby/config.toml".text = ''
+  xdg.configFile."krabby/config.toml".text = /* toml */ ''
     language = "en"
     shiny_rate = 0.0078125
   '';
