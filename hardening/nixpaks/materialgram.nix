@@ -36,9 +36,12 @@ let
         dbus = {
           enable = true;
           policies = {
+            "com.canonical.AppMenu.Registrar" = "talk";
             "com.canonical.indicator.application" = "talk";
             "org.ayatana.indicator.application" = "talk";
+            "org.freedesktop.Notifications" = "talk";
             "org.gnome.Mutter.IdleMonitor" = "talk";
+            "org.kde.StatusNotifierWatcher" = "talk";
             "org.sigxcpu.Feedback" = "talk";
           };
         };
@@ -74,7 +77,7 @@ buildEnv {
       exec = "${exePath} -- %u";
       icon = "${materialgram}/share/icons/hicolor/512x512/apps/${appId}.png";
       startupNotify = true;
-      startupWMClass = "materialgram";
+      startupWMClass = appId;
       terminal = false;
       type = "Application";
       categories = [

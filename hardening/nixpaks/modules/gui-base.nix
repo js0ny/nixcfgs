@@ -86,12 +86,15 @@ in
       ];
 
       env = {
+        # Telegram/AyuGram/Materialgram rely on FLATPAK_ID to set their Wayland app_id / wmclass when running inside a flatpak-like sandbox.
+        FLATPAK_ID = config.flatpak.appId;
         XDG_DATA_DIRS = lib.mkForce (
-          lib.makeSearchPath "share" [
+          "/app/share:"
+          + (lib.makeSearchPath "share" [
             iconTheme
             cursorTheme
             pkgs.shared-mime-info
-          ]
+          ])
         );
         XCURSOR_PATH = lib.mkForce (
           lib.concatStringsSep ":" [

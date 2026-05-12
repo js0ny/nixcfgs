@@ -35,9 +35,12 @@ let
         dbus = {
           enable = true;
           policies = {
+            "com.canonical.AppMenu.Registrar" = "talk";
             "com.canonical.indicator.application" = "talk";
             "org.ayatana.indicator.application" = "talk";
+            "org.freedesktop.Notifications" = "talk";
             "org.gnome.Mutter.IdleMonitor" = "talk";
+            "org.kde.StatusNotifierWatcher" = "talk";
             "org.sigxcpu.Feedback" = "talk";
           };
         };
