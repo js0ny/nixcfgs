@@ -67,6 +67,7 @@ let
 in
 buildEnv {
   inherit (wrapped.config.script) name meta passthru;
+  ignoreCollisions = true;
   paths = [
     wrapped.config.script
     (makeDesktopItem {
@@ -115,5 +116,6 @@ buildEnv {
         X-GNOME-SingleWindow = "true";
       };
     })
+    materialgram
   ];
 }
