@@ -1,3 +1,4 @@
+# For more information (bugs), see ./materialgram.nix
 {
   lib,
   mkNixPak,

@@ -1,4 +1,6 @@
 # https://raw.githubusercontent.com/flathub/io.github.kukuruzka165.materialgram/refs/heads/master/io.github.kukuruzka165.materialgram.yml
+# BUG:
+# * Tray icon will not appear when using monochrome icon
 {
   lib,
   materialgram,
