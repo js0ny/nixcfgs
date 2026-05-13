@@ -11,7 +11,7 @@ in
 {
   services.kanshi = {
     enable = true;
-    systemdTarget = "niri.service";
+    systemdTarget = "waylandwm-session.target";
     settings = [
       # Outputs
       {

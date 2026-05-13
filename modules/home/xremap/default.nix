@@ -23,5 +23,11 @@ in
     withNiri = true;
   };
 
-  systemd.user.services.xremap.Install.WantedBy = lib.mkForce [ "niri.service" ];
+  systemd.user.services.xremap = {
+    Unit = {
+      PartOf = [ "waylandwm-session.target" ];
+      After = [ "waylandwm-session.target" ];
+    };
+    Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
+  };
 }

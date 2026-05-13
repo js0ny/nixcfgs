@@ -9,7 +9,7 @@
     enable = true;
     systemd = {
       enable = true;
-      targets = [ "niri.service" ];
+      targets = [ "waylandwm-session.target" ];
     };
     style = ''
       * {

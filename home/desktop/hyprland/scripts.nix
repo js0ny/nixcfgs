@@ -1,10 +1,14 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  hyprlandPackage ? pkgs.hyprland,
+  ...
+}:
 {
   launch-or-focus = pkgs.writeShellApplication {
     name = "hyprscript-launch-or-focus";
     runtimeInputs = [
       pkgs.jq
-      pkgs.hyprland
+      hyprlandPackage
       pkgs.uwsm
     ];
     text = ''

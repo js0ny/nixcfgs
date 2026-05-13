@@ -12,6 +12,7 @@ in
   imports = [
     ./kanshi.nix
     ./polkit.nix
+    ./systemd.nix
     ../../../modules/home/noctalia.nix
     inputs.noctalia.homeModules.default
   ];

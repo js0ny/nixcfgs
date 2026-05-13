@@ -14,7 +14,13 @@ in
   services.awww = {
     enable = true;
   };
-  systemd.user.services.awww.Install.WantedBy = [ "niri.service" ];
+  systemd.user.services.awww = {
+    Unit = {
+      PartOf = [ "waylandwm-session.target" ];
+      After = [ "waylandwm-session.target" ];
+    };
+    Install.WantedBy = [ "waylandwm-session.target" ];
+  };
   programs.vicinae = {
     extensions = with vicinae-extensions; [ awww-switcher ];
     settings.providers = {

@@ -28,7 +28,7 @@ in
     };
 
     Install = {
-      WantedBy = [ "niri.service" ];
+      WantedBy = [ "waylandwm-session.target" ];
     };
   };
 

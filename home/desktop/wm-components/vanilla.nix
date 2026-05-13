@@ -30,12 +30,23 @@ in
     localPkgs.power-profiles-next
     trash-cli
   ];
-  # TODO: Allow launching components from all wayland-wm sessions
   services.network-manager-applet.enable = true;
   services.blueman-applet.enable = true;
-  services.blueman-applet.systemdTargets = [ "niri.service" ];
-  systemd.user.services.hypridle.Install.WantedBy = [ "niri.service" ];
-  systemd.user.services.network-manager-applet.Install.WantedBy = lib.mkForce [ "niri.service" ];
+  services.blueman-applet.systemdTargets = [ "waylandwm-session.target" ];
+  systemd.user.services.hypridle = {
+    Unit = {
+      PartOf = [ "waylandwm-session.target" ];
+      After = [ "waylandwm-session.target" ];
+    };
+    Install.WantedBy = [ "waylandwm-session.target" ];
+  };
+  systemd.user.services.network-manager-applet = {
+    Unit = {
+      PartOf = [ "waylandwm-session.target" ];
+      After = [ "waylandwm-session.target" ];
+    };
+    Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
+  };
   programs.wleave.enable = true;
   # https://wiki.archlinux.org/title/Visual_Studio_Code
   home.sessionVariables = {
@@ -54,6 +65,10 @@ in
     };
   };
   systemd.user.services.dunst = {
-    Install.WantedBy = lib.mkForce [ "niri.service" ];
+    Unit = {
+      PartOf = [ "waylandwm-session.target" ];
+      After = [ "waylandwm-session.target" ];
+    };
+    Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
   };
 }

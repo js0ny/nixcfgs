@@ -6,16 +6,19 @@
 }:
 let
   term = lib.getExe pkgs.xdg-terminal-exec;
-  iconTheme = config.nixdots.desktop.style.icon.dark;
-  explorer = lib.getExe config.nixdots.apps.fileManager.gui;
-  explorerTerm = lib.getExe config.nixdots.apps.fileManager.tui;
-  launcher = "walker";
+  vicinae = config.nixdefs.consts.vicinae;
+  genCmd = cmd: builtins.concatStringsSep " " (map (x: ''"${x}"'') cmd);
+  explorer = config.nixdots.apps.fileManager.gui.exe;
+  explorerTerm = config.nixdots.apps.fileManager.tui.exe;
   kbdBacklightDev = config.nixdots.laptop.backlight.keyboard;
   kbdBacklightStep = "1";
   mainMod = "SUPER";
   customDirs = config.home.customDirs;
   screenshotPath = ''${customDirs.screenshots}/"$(%Y-%m-%d_%H-%M-%S.png)"'';
-  hyprscripts = import ./scripts.nix { inherit pkgs; };
+  hyprscripts = import ./scripts.nix {
+    inherit pkgs;
+    hyprlandPackage = config.wayland.windowManager.hyprland.package;
+  };
   resizeStep = toString 20;
 in
 {
@@ -34,10 +37,10 @@ in
       "$mainMod, Q, killactive"
       ''$mainMod SHIFT, F, exec, hyprctl --batch "dispatch togglefloating ;  dispatch resizeactive exact 1440 810 ; dispatch centerwindow 1;"''
       "$mainMod SHIFT, M, fullscreen"
-      "$mainMod, W, exec, ${launcher} -m windows"
+      "$mainMod, W, exec, ${genCmd vicinae.windows}"
       "$mainMod, Apostrophe, exec, EDITOR_MINIMAL=1 ${term} --app-id=terminal-popup edit-clipboard --minimal"
-      "$mainMod, V, exec, ${launcher} -m clipboard"
-      "alt, space, exec, ${launcher} -m desktopapplications"
+      "$mainMod, V, exec, ${genCmd vicinae.cliphist}"
+      "alt, space, exec, ${genCmd vicinae.toggle}"
       "$mainMod, E, exec, ${lib.getExe hyprscripts.launch-or-focus} org.kde.dolphin ${explorer}"
       "$mainMod SHIFT, E, exec, ${term} ${explorerTerm}"
       "CTRL ALT, DELETE, exec, uwsm exit"
@@ -107,7 +110,7 @@ in
       ", XF86KbdBrightnessUp, exec, brightnessctl --device ${kbdBacklightDev} set ${kbdBacklightStep}+"
       ", XF86KbdBrightnessDown, exec, brightnessctl --device ${kbdBacklightDev} set ${kbdBacklightStep}-"
       ", XF86Launch4, exec, ${lib.getExe pkgs.localPkgs.power-profiles-next}"
-      ", XF86Launch1, exec, ${launcher} -show drun -icon-theme ${iconTheme} -show-icons"
+      ", XF86Launch1, exec, ${genCmd vicinae.toggle}"
       "$mainMod, equal, resizeactive, ${resizeStep} 0"
       "$mainMod, minus, resizeactive, -${resizeStep} 0"
       "$mainMod SHIFT, equal, resizeactive, 0 ${resizeStep}"

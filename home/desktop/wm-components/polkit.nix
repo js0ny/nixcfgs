@@ -3,8 +3,8 @@
   systemd.user.services.polkit-agent = {
     Unit = {
       Description = "Polkit agent";
-      PartOf = [ "niri.service" ];
-      After = [ "niri.service" ];
+      PartOf = [ "waylandwm-session.target" ];
+      After = [ "waylandwm-session.target" ];
     };
 
     Service = {
@@ -16,11 +16,7 @@
     };
 
     Install = {
-      WantedBy = [ "niri.target" ];
+      WantedBy = [ "waylandwm-session.target" ];
     };
   };
-
-  nixdots.desktop.niri.extraConfig = /* kdl */ ''
-    spawn-at-startup "systemctl restart --user polkit-agent"
-  '';
 }

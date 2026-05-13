@@ -2,7 +2,7 @@
 {
   services.swayidle = {
     enable = true;
-    systemdTargets = [ "niri.service" ];
+    systemdTargets = [ "waylandwm-session.target" ];
     timeouts = [
       {
         timeout = 300;

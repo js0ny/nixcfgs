@@ -32,7 +32,7 @@ in
     ];
     systemd = {
       enable = true;
-      # target = "niri.service";
+      target = "waylandwm-session.target";
       autoStart = true;
     };
     # https://docs.vicinae.com/config

@@ -1,4 +1,11 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   home.packages = with pkgs; [
     grimblast
@@ -12,7 +19,8 @@
   ];
   wayland.windowManager.hyprland = {
     enable = true;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    package = hyprland.hyprland;
+    portalPackage = hyprland.xdg-desktop-portal-hyprland;
     systemd.enableXdgAutostart = true;
     xwayland.enable = true;
     # extraConfig = ''

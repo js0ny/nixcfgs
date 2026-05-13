@@ -23,13 +23,9 @@ let
 in
 {
   xdg.desktopEntries = {
-    claude = pwaBuilderDefault "Claude" "https://claude.ai";
-    grok = pwaBuilderDefault "Grok" "https://grok.com";
     chatgpt = pwaBuilderDefault "ChatGPT" "https://chatgpt.com";
     gemini = pwaBuilderDefault "Gemini" "https://gemini.google.com";
     notebooklm = pwaBuilderDefault "NotebookLM" "https://notebooklm.google.com";
-    qwenai = pwaBuilderDefault "QwenAI" "https://chat.qwen.ai";
-    folo = pwaBuilderDefault "Folo" "https://app.folo.is";
     tradingview = pwaBuilderDefault "TradingView" "https://www.tradingview.com";
   };
 }

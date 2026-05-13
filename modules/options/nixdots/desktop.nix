@@ -76,5 +76,15 @@
         default = "";
       };
     };
+    hyprland = {
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.hyprland;
+      };
+      portalPackage = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.xdg-desktop-portal-hyprland;
+      };
+    };
   };
 }
