@@ -50,6 +50,7 @@
     ./programs/productivity/zoom-us.nix
     ./programs/productivity/zotero.nix
     ./programs/protonmail-bridge.nix
+    ./programs/pwa
     ./programs/quickemu.nix
     ./programs/rime
     ./programs/shell/bash.nix

@@ -40,11 +40,25 @@
   };
   dwproton-linux-x64 = {
     pname = "dwproton-linux-x64";
-    version = "dwproton-10.0-25";
+    version = "dwproton-11.0-1";
     src = fetchurl {
-      url = "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-10.0-25/dwproton-10.0-25-x86_64.tar.xz";
-      sha256 = "sha256-QFp8VjzaztyFOD75XEEOycNk/cCiLkhMla/Izm0NfYg=";
+      url = "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-11.0-1/dwproton-11.0-1-x86_64.tar.xz";
+      sha256 = "sha256-5RjicnGSmlXHL/eEdTY+1aTHpkt2PcLo7FFRYBHPx2s=";
     };
+  };
+  lobe-icons = {
+    pname = "lobe-icons";
+    version = "0c66d0a318b2eeee1e04d005ba0f7df7121ecdf4";
+    src = fetchgit {
+      url = "https://github.com/lobehub/lobe-icons.git";
+      rev = "0c66d0a318b2eeee1e04d005ba0f7df7121ecdf4";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-Af9suJv5jwdIVWqVyRfyTAUTqDe1EP9iiFQfNzdQQZw=";
+    };
+    date = "2026-05-07";
   };
   noname = {
     pname = "noname";
@@ -59,18 +73,18 @@
   };
   rime_wanxiang_flypy = {
     pname = "rime_wanxiang_flypy";
-    version = "v15.9.3";
+    version = "v15.9.13";
     src = fetchurl {
-      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.9.3/rime-wanxiang-flypy-fuzhu.zip";
-      sha256 = "sha256-Wgvmf32HArdpXJysWn/sCupM5ESUA+ioZHBIDZ9dz1g=";
+      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.9.13/rime-wanxiang-flypy-fuzhu.zip";
+      sha256 = "sha256-jdP6ophXe7MIunGbD9hiph2dOIlGWK3iGmejZJtszSc=";
     };
   };
   rime_wanxiang_zrm = {
     pname = "rime_wanxiang_zrm";
-    version = "v15.9.3";
+    version = "v15.9.13";
     src = fetchurl {
-      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.9.3/rime-wanxiang-zrm-fuzhu.zip";
-      sha256 = "sha256-u2mKTd0Lx12ByAOX/aOnKFQ8J3zQ391KEAoWIol2YWE=";
+      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.9.13/rime-wanxiang-zrm-fuzhu.zip";
+      sha256 = "sha256-8rHywrTCZsv4qQn3+iGNmTRN+da0aCGbId2KNhDo2HQ=";
     };
   };
 }

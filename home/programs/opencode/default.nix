@@ -53,6 +53,9 @@ in
           "*.env" = "deny";
           "*.env.example" = "allow";
         };
+        external_directory = {
+          "/nix/store/**" = "allow";
+        };
       };
     };
   };

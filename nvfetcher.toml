@@ -29,3 +29,7 @@ fetch.github = "libnoname/noname"
 [dwproton-linux-x64]
 src.cmd = "curl -sSL https://dawn.wine/api/v1/repos/dawn-winery/dwproton/releases/latest | jq -r .tag_name"
 fetch.url = "https://dawn.wine/dawn-winery/dwproton/releases/download/$ver/$ver-x86_64.tar.xz"
+
+[lobe-icons]
+fetch.git = "https://github.com/lobehub/lobe-icons.git"
+src.git = "https://github.com/lobehub/lobe-icons.git"

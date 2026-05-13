@@ -149,6 +149,9 @@
         {
           treefmt.config = {
             projectRootFile = "flake.nix";
+            settings.excludes = [
+              "_sources/generated.json"
+            ];
             programs.keep-sorted = {
               enable = true;
               excludes = [
@@ -156,9 +159,14 @@
                 "*.md"
               ];
             };
+            programs.prettier = {
+              enable = true;
+              excludes = [
+                "_sources/*.json"
+              ];
+            };
             # keep-sorted start
             programs.nixfmt.enable = true;
-            programs.prettier.enable = true;
             programs.shfmt.enable = true;
             programs.stylua.enable = true;
             # keep-sorted end
