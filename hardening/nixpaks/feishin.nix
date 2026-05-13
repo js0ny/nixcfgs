@@ -15,11 +15,7 @@ let
       { sloth, ... }:
       {
         app = {
-          package = buildEnv {
-            name = "nixpak-feishin";
-            paths = [ pkgs.feishin ];
-          };
-          binPath = "bin/feishin";
+          package = pkgs.feishin;
         };
         flatpak.appId = appId;
         flatpakDataDir = false;

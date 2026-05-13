@@ -15,11 +15,7 @@ let
       { sloth, ... }:
       {
         app = {
-          package = buildEnv {
-            name = "nixpak-ayugram";
-            paths = [ ayugram-desktop ];
-          };
-          binPath = "bin/AyuGram";
+          package = ayugram-desktop;
         };
         flatpak.appId = appId;
         flatpakDataDir = false;

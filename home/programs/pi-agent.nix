@@ -6,7 +6,21 @@
 }:
 let
   system = pkgs.stdenv.system;
-  pipkg = inputs.llm-agents.packages.${system}.pi;
+  pipkg-base = inputs.llm-agents.packages.${system}.pi;
+  pipkg = pkgs.symlinkJoin {
+    name = "pi-with-mcp";
+    paths = [ pipkg-base ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram "$out/bin/pi" \
+        --prefix PATH : ${
+          pkgs.lib.makeBinPath [
+            pkgs.nodejs_24
+            pkgs.uv
+          ]
+        }
+    '';
+  };
   llm = config.nixdefs.llm;
   models = llm.routing;
 in
@@ -33,6 +47,7 @@ in
       ];
       packages = [
         "npm:pi-provider-litellm"
+        "npm:pi-mcp-adapter"
       ];
     };
   };

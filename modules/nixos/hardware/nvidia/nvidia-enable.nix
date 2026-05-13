@@ -13,7 +13,7 @@ lib.mkIf (cfg == "nvidia") {
     powerManagement.enable = true;
     open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
     # powerManagement.finegrained = true;
     # prime = {
     #   offload.enable = true;

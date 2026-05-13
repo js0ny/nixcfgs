@@ -16,8 +16,10 @@ ideavimrc linguist-language=VimL
 
 *.kbd linguist-language=Lisp
 
+_sources/models.json binary
 
-*.png binar binary
+
+*.png binary
 *.ico binary
 *.zip binary
 *.pdf binary

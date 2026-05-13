@@ -7,6 +7,7 @@
   buildEnv,
   mkNixPak,
   makeDesktopItem,
+  withMcp ? true,
   package ? pkgs.cherry-studio,
   dotDir ? ".cherrystudio",
   extraPkgs ? [ ],
@@ -21,15 +22,7 @@ let
       { sloth, ... }:
       {
         app = {
-          package = buildEnv {
-            name = "nixpak-cherry-studio";
-            paths = [
-              package
-              pkgs.flatpak-xdg-utils
-            ]
-            ++ extraPkgs;
-          };
-          binPath = "bin/cherry-studio";
+          package = package;
         };
         flatpak.appId = appId;
         flatpakDataDir = false;
@@ -58,7 +51,7 @@ let
             pipewire = true;
           };
           env = {
-            PATH = "${pkgs.flatpak-xdg-utils}/bin:${pkgs.nix}/bin";
+            PATH = "${pkgs.flatpak-xdg-utils}/bin:${pkgs.uv}/bin:${pkgs.nodejs_24}/bin";
           };
 
         };

@@ -7,6 +7,7 @@
 }:
 let
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
+  soundFile = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/dialog-warning.ogg";
   inherit (lib) mkDefault;
   wallpaperDir = config.home.customDirs.wallpaper;
   d = config.nixdots;
@@ -172,9 +173,38 @@ lib.mkIf enable {
         # language = d.core.locales.guiLocale;
         telemetryEnabled = lib.mkForce false;
         keybinds = {
-          keyUp = [ "Up" ];
+          keyUp = [
+            "Up"
+            "Ctrl+P"
+            "Ctrl+K"
+          ];
+          keyDown = [
+            "Down"
+            "Ctrl+N"
+            "Ctrl+J"
+          ];
+          keyLeft = [
+            "Up"
+            "Ctrl+B"
+            "Ctrl+H"
+          ];
+          keyRight = [
+            "Down"
+            "Ctrl+F"
+            "Ctrl+L"
+          ];
         };
         language = config.nixdots.core.locales.guiLocale;
+      };
+      notifications = {
+        enabled = true;
+        enableMarkdown = mkDefault false;
+        sounds = mkDefault {
+          separateSounds = false;
+          criticalSoundFile = soundFile;
+          normalSoundFile = soundFile;
+          lowSoundFile = soundFile;
+        };
       };
       wallpaper = {
         enabled = lib.mkDefault true;
