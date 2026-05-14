@@ -19,7 +19,6 @@ lib.mkIf cfg.enable {
       "--enable-features=TouchpadOverscrollHistoryNavigation"
     ];
     extensions = [
-      { id = "logpjaacgmcbpdkdchjiaagddngobkck"; } # Shrotkeys
       { id = "bggfcpfjbdkhfhfmkjpbhnkhnpjjeomc"; } # Material Icons for GitHub
       { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # uBlock Origin Lite
       { id = "ghmbeldphafepmbegfdlkpapadhbakde"; } # proton pass
@@ -38,5 +37,14 @@ lib.mkIf cfg.enable {
     directories = [
       ".config/chromium"
     ];
+  };
+  mergetools.chromiumPrefs = {
+    target = "${config.xdg.configHome}/chromium/Default/Preferences";
+    format = "json";
+    force = true;
+
+    settings = {
+      extensions.ui.developer_mode = true;
+    };
   };
 }

@@ -61,6 +61,10 @@ in
         "services.sync.engine.tabs" = true;
         "services.sync.engins.tabs.filteredSchemes" = "about|resource|chrome|file|blob|moz-extension|data";
 
+        # disable: Website registering mailto handler
+        "network.protocol-handler.external.mailto" = false;
+        "network.protocol-handler.warn-external.mailto" = false;
+
         # * Middle Key Behaivour
         # Autoscroll on middle-click
         "general.autoScroll" = true;
