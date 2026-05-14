@@ -2,7 +2,6 @@
 {
   services.tlp.enable = lib.mkForce false;
   services.power-profiles-daemon.enable = lib.mkForce false;
-  services.upower.enable = true;
 
   services.tuned = {
     enable = true;

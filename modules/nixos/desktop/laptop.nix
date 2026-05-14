@@ -11,4 +11,5 @@ lib.mkIf cfg.enable {
   environment.systemPackages = with pkgs; [
     powertop
   ];
+  services.upower.enable = true;
 }

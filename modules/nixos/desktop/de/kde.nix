@@ -9,11 +9,11 @@ let
 in
 lib.mkIf (config.nixdots.desktop.enable && builtins.elem "kde" cfg) {
   services.desktopManager.plasma6.enable = true;
-  environment.systemPackages = with pkgs.kdePackages; [
-    akonadi
-    korganizer
-    kdepim-addons
-  ];
+  # environment.systemPackages = with pkgs.kdePackages; [
+  #   akonadi
+  #   korganizer
+  #   kdepim-addons
+  # ];
 
   xdg.portal = {
     enable = true;
@@ -35,5 +35,9 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "kde" cfg) {
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     kate # kate and kwrite
+    # disable kwallet, use ../gnome-keyring.nix
+    kwallet # provides helper service
+    kwallet-pam # provides helper service
+    kwalletmanager # provides KCMs and stuff
   ];
 }

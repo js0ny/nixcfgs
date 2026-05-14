@@ -6,9 +6,7 @@
   programs.seahorse.enable = true;
   programs.ssh = {
     enableAskPassword = true;
-    askPassword = "${pkgs.seahorse}/libexec/seahorse/askpass";
+    askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
   };
-  environment.systemPackages = with pkgs; [
-    seahorse
-  ];
+  security.pam.services.gdm-password.enableGnomeKeyring = true;
 }
