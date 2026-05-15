@@ -16,6 +16,7 @@
     ./do-not-track.nix
     ./filetype
     ./gnome-keyring.nix
+    ./gocryptfs.nix
     ./gpg.nix
     ./programs
     ./services

@@ -45,13 +45,14 @@
   }
   window-rule {
       match app-id="^anki$" title="^Add$"
-      match app-id="^org.kde.dolphin$" title="^(Copying|Compressing).*$"
+      match app-id="^org.kde.dolphin$" title="^(Copying|Compressing|Deleting).*$"
+      match app-id="^org\.kde\.dolphin$" title="^正在删除.*Dolphin$"
       match app-id="^thunar$" title="^File Operation Progress$"
       match app-id="^QQ$" title="^图片查看器$"
       match app-id="^QQ$" title="^群聊的聊天记录$"
-      match app-id="^org.telegram.desktop$" title="^Media viewer$"
+      match app-id="^org.telegram.desktop$" title="^m|Media viewer$"
       match app-id="^com.ayugram.desktop$" title="^m|Media viewer$"
-      match app-id="^io.github.kukuruzka165.materialgram$" title="^Media viewer$"
+      match app-id="^io.github.kukuruzka165.materialgram$" title="^m|Media viewer$"
       match app-id="^wechat$" title="^图片和视频$"
       match app-id="^CherryStudio$" title="^Cherry Studio Quick Assistant$"
       open-floating true
