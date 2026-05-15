@@ -30,6 +30,8 @@ lib.mkIf cfg.enable {
   };
   security.pam.services = {
     polkit-1.howdy.enable = true; # KDE/Gnome Polkit is preferred
+    # Howdy does not provide the login password to PAM, so GNOME Keyring cannot
+    # be unlocked automatically when this succeeds before password auth.
     login.howdy.enable = lib.mkDefault (if desktop.dm == "gdm" then true else false);
   };
 

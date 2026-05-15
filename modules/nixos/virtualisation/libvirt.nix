@@ -29,4 +29,9 @@ lib.mkIf cfg.enable {
   };
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   virtualisation.spiceUSBRedirection.enable = true;
+  nixdots.persist.system = {
+    directories = [
+      "/var/lib/libvirt"
+    ];
+  };
 }

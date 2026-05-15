@@ -1,5 +1,5 @@
-{ pkgs, lib, ... }:
-lib.mkIf pkgs.stdenv.isLinux {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     quickemu
   ];

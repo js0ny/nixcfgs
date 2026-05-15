@@ -46,7 +46,7 @@
   window-rule {
       match app-id="^anki$" title="^Add$"
       match app-id="^org.kde.dolphin$" title="^(Copying|Compressing|Deleting).*$"
-      match app-id="^org\.kde\.dolphin$" title="^正在删除.*Dolphin$"
+      match app-id="^org.kde.dolphin$" title="^正在删除.*Dolphin$"
       match app-id="^thunar$" title="^File Operation Progress$"
       match app-id="^QQ$" title="^图片查看器$"
       match app-id="^QQ$" title="^群聊的聊天记录$"
