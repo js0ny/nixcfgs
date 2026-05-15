@@ -13,7 +13,7 @@ in
     extraConfig = (builtins.readFile ./zellij.kdl);
   };
 
-  nixdots.programs.shellAliases = {
+  misc.shellAliases = {
     zj = "zellij";
   };
 }

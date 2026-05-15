@@ -60,7 +60,7 @@ in
     };
   };
 
-  nixdots.programs.shellAliases = {
+  misc.shellAliases = {
     "oc" = "opencode";
   };
 }

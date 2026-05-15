@@ -9,7 +9,7 @@
       path = "${config.xdg.configHome}/aichat/.env";
     };
   */
-  nixdots.programs.shellAliases = {
+  misc.shellAliases = {
     aic = "aichat -s";
   };
   programs.aichat = {

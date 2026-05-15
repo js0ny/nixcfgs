@@ -26,7 +26,7 @@ in
     enableZshIntegration = true;
     enableFishIntegration = true;
   };
-  nixdots.programs.shellAliases = zoxideAliases;
+  misc.shellAliases = zoxideAliases;
   home.sessionVariables._ZO_EXCLUDE_DIRS = lib.concatStringsSep ":" [
     "/sys/*"
     "/nix/*"

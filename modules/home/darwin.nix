@@ -48,4 +48,17 @@ in
     HOMEBREW_NO_AUTO_UPDATE = 1;
     HOMEBREW_NO_ENV_HINTS = 1;
   };
+
+  misc.shellAliases = {
+    reboot = "sudo reboot";
+    clip = "pbcopy";
+    paste = "pbpaste";
+    ii = "open";
+
+    brewi = "brew install";
+    brewr = "brew remove";
+    brewu = "brew upgrade && brew update";
+    brewc = "brew cleanup";
+    brewl = "brew list";
+  };
 }

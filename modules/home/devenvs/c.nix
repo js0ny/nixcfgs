@@ -26,7 +26,7 @@ lib.mkIf cfg.enable {
     "clangd.enable" = true;
     "clangd.path" = lib.getExe' pkgs.clang-tools "clangd";
   };
-  nixdots.programs.shellAliases = lib.mkIf cfg.global {
+  misc.shellAliases = lib.mkIf cfg.global {
     "gcc-static" = "nix run nixpkgs#pkgsStatic.gcc";
   };
 }

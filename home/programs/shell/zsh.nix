@@ -5,7 +5,6 @@
   ...
 }:
 let
-  aliasCfg = import ./aliases.nix { inherit pkgs config lib; };
   cfg = config.nixdots.programs.zsh.enable;
 in
 lib.mkIf cfg {
@@ -21,7 +20,6 @@ lib.mkIf cfg {
     historySubstringSearch.enable = true;
     enableCompletion = true;
     dotDir = "${config.xdg.configHome}/zsh";
-    shellAliases = aliasCfg.aliases;
     defaultKeymap = "emacs";
     # zsh-abbr = {
     #   enable = true;
@@ -48,7 +46,6 @@ lib.mkIf cfg {
     };
 
     initContent = ''
-      ${aliasCfg.posixFx}
       # Misc
       # ==========
       # Remove / from word characters, for easier path navigation (using backward-word, forward-word, etc)

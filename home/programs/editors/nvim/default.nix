@@ -53,7 +53,7 @@ in
   nixdots.devenvs.lua.enable = true;
 
   # home.packages = with pkgs; [lua-language-server];
-  nixdots.programs.shellAliases = nvimAlias;
+  misc.shellAliases = nvimAlias;
 
   xdg.configFile."nvim-0".source = mkSymlink "${dots}/home/programs/editors/nvim/nvim";
 

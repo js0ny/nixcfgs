@@ -10,7 +10,7 @@
     enableZshIntegration = true;
     enableFishIntegration = true;
   };
-  nixdots.programs.shellAliases = {
+  misc.shellAliases = {
     "ef" = "edit-fzf";
   };
 }

@@ -24,4 +24,12 @@
       # keep-sorted end
     ];
   };
+
+  misc.shellAliases = {
+    ii = "xdg-open";
+    open = "xdg-open";
+    clip = "wl-copy";
+    paste = "wl-paste";
+  };
+
 }

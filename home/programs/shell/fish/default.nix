@@ -5,7 +5,6 @@
   ...
 }:
 let
-  aliasCfg = import ../aliases.nix { inherit pkgs config lib; };
   name = config.nixdots.user.name;
 in
 {
@@ -18,7 +17,6 @@ in
       function tv
           touch $argv[1] && $EDITOR $argv[1]
       end
-      ${aliasCfg.fishFx}
 
       fish_vi_key_bindings
 
@@ -56,9 +54,6 @@ in
       fish_add_path /nix/var/nix/profiles/default/bin
     '';
     # preferAbbrs = true;
-    shellAbbrs = aliasCfg.aliases // {
-      l = "ls -lah";
-    };
   };
   xdg.configFile."fish/functions" = {
     source = ./functions;
