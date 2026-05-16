@@ -12,14 +12,5 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "niri" desktop.de) {
     enable = true;
     package = desktop.niri.package;
   };
-  environment.systemPackages = with pkgs; [
-    xwayland-satellite
-    hyprpolkitagent
-  ];
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
-    config.niri = {
-    };
-  };
+  environment.systemPackages = with pkgs; [ xwayland-satellite ];
 }
