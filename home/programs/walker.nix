@@ -36,7 +36,7 @@
       };
     };
   };
-  xdg.configFile."elephant/websearch.toml".text = lib.mkDefault ''
+  xdg.configFile."elephant/websearch.toml".text = lib.mkDefault /* toml */ ''
     [[entries]]
     default = true
     name = "DuckDuckGo"

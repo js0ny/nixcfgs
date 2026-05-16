@@ -23,13 +23,14 @@ in
     "f ${xdg-config}/niri/local_test.kdl 0644 ${config.home.username} users -"
   ];
 
-  xdg.configFile."niri/config.kdl".text = ''
-    include "${./base.kdl}"
-    include "${xdg-config}/niri/local_test.kdl"
-    spawn-at-startup "systemctl" "--user" "start" "waylandwm-session.target"
-    ${import ./keymaps.nix { inherit pkgs lib config; }}
-    ${import ./interpolates.nix { inherit config; }}
-    ${import ./window-rules.nix}
-  ''
-  + lib.optionalString (extraCfg != "") "\n${extraCfg}";
+  xdg.configFile."niri/config.kdl".text =
+    /* kdl */ ''
+      include "${./base.kdl}"
+      include "${xdg-config}/niri/local_test.kdl"
+      spawn-at-startup "systemctl" "--user" "start" "waylandwm-session.target"
+      ${import ./keymaps.nix { inherit pkgs lib config; }}
+      ${import ./interpolates.nix { inherit config; }}
+      ${import ./window-rules.nix}
+    ''
+    + lib.optionalString (extraCfg != "") "\n${extraCfg}";
 }

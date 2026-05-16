@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./filetype/linux.nix
@@ -31,6 +31,9 @@
     clip = "wl-copy";
     paste = "wl-paste";
   };
+
+  home.packages = [ pkgs.kdePackages.qtstyleplugin-kvantum ];
+
   # Upstream: stylix: qt: `config.stylix.targets.qt.platform` other than 'qtct' are currently unsupported: kde. Support may be added in the future.
   # stylix.targets.qt.platform = "qtct";
 }
