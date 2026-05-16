@@ -13,6 +13,9 @@ let
   ocbun = pkgs.symlinkJoin {
     name = "opencode-with-bun";
     paths = [ ocpkg ];
+    meta = ocpkg.meta // {
+      mainProgram = "opencode";
+    };
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram "$out/bin/opencode" \

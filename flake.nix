@@ -228,15 +228,7 @@
           desktop-extra = import ./home/desktop-extra.nix;
         };
 
-        overlays.default =
-          final: prev:
-          (import ./overlays/wrappers.nix final prev)
-          // {
-            localPkgs = import ./pkgs {
-              pkgs = prev;
-              lib = prev.lib;
-            };
-          };
+        overlays.default = import ./overlays;
       };
     };
 }

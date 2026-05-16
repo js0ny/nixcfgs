@@ -37,7 +37,6 @@
       };
     };
     workspace = {
-      splashScreen.theme = "org.kde.breeze.desktop";
       wallpaperCustomPlugin = {
         plugin = "a2n.blur";
       };

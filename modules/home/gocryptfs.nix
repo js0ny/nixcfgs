@@ -22,7 +22,7 @@ let
     runtimeInputs = with pkgs; [ coreutils ];
     text = /* bash */ ''
       mkdir -p ${lib.escapeShellArg mountPath}
-      exec ${lib.getExe pkgs.gocryptfs} ${lib.escapeShellArgs gocryptfsArgs}
+      exec ${lib.getExe' pkgs.gocryptfs "gocryptfs"} ${lib.escapeShellArgs gocryptfsArgs}
     '';
   };
 in
