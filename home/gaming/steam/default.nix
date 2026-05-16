@@ -16,4 +16,20 @@
       ".steam"
     ];
   };
+  # Lost & Found
+  xdg.desktopEntries = {
+    samira = {
+      name = "Samira";
+      icon = "samira";
+      comment = "Steam achievement manager for Linux";
+      exec = "samira";
+      terminal = false;
+      categories = [
+        "Game"
+      ];
+      settings = {
+        StartupWMClass = "samira";
+      };
+    };
+  };
 }
