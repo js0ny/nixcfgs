@@ -11,9 +11,6 @@ let
   #   });
 in
 {
-  imports = [
-    ../../hardening/nixpaks
-  ];
   home.packages =
     with pkgs;
     if pkgs.stdenv.isLinux then
