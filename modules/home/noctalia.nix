@@ -303,4 +303,6 @@ lib.mkIf enable {
       };
     };
   };
+  # stylix
+  services.hyprpaper.enable = lib.mkForce false;
 }

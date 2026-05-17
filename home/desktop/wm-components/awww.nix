@@ -43,4 +43,6 @@ in
 
     };
   };
+  # stylix
+  services.hyprpaper.enable = lib.mkForce false;
 }

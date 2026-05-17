@@ -16,4 +16,6 @@ lib.mkIf enable {
     enable = true;
     systemd.enable = true;
   };
+  # stylix
+  services.hyprpaper.enable = lib.mkForce false;
 }
