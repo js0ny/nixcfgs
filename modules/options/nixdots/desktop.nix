@@ -49,6 +49,7 @@
         type = lib.types.enum [
           "vanilla"
           "noctalia"
+          "dank-material-shell"
         ];
         default = "vanilla";
         description = ''

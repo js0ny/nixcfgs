@@ -5,7 +5,7 @@
 }:
 let
   vicinae = config.nixdefs.consts.vicinae;
-  noctalia = config.nixdefs.consts.noctalia;
+  shell = config.nixdefs.consts.dank-material-shell;
   nirictl = import ./scripts.nix { inherit pkgs; };
   homeDir = config.home.homeDirectory;
   nirictl-focus = lib.getExe nirictl.focusOrLaunch;
@@ -42,7 +42,7 @@ in
       Mod+Alt+Right { focus-monitor-right; }
       Mod+Alt+S { screenshot-screen show-pointer=false; }
       Mod+Alt+Up { focus-monitor-up; }
-      Mod+Alt+i hotkey-overlay-title="Lockscreen" { spawn ${genCmd noctalia.lock}; }
+      Mod+Alt+i hotkey-overlay-title="Lockscreen" { spawn ${genCmd shell.lock}; }
       Mod+Apostrophe { spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal"; }
       Mod+B hotkey-overlay-title="Focus or launch web browser" { spawn "${nirictl-focus}" "firefox" "firefox"; }
       Mod+BracketLeft { consume-or-expel-window-left; }
@@ -143,11 +143,11 @@ in
       Print { screenshot show-pointer=false; }
       XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
       XF86AudioMute allow-when-locked=true { spawn "volume-notify" "mute"; }
-      XF86AudioNext { spawn ${genCmd noctalia.media.next}; }
-      XF86AudioPlay { spawn ${genCmd noctalia.media.playpause}; }
-      XF86AudioPrev { spawn ${genCmd noctalia.media.prev}; }
-      XF86AudioRaiseVolume allow-when-locked=true { spawn ${genCmd noctalia.volume.up}; }
-      XF86AudioLowerVolume allow-when-locked=true { spawn ${genCmd noctalia.volume.down}; }
+      XF86AudioNext { spawn ${genCmd shell.media.next}; }
+      XF86AudioPlay { spawn ${genCmd shell.media.playpause}; }
+      XF86AudioPrev { spawn ${genCmd shell.media.prev}; }
+      XF86AudioRaiseVolume allow-when-locked=true { spawn ${genCmd shell.volume.up}; }
+      XF86AudioLowerVolume allow-when-locked=true { spawn ${genCmd shell.volume.down}; }
       XF86Calculator { spawn ""; }
       XF86KbdBrightnessDown { spawn "brightnessctl" "--device" "${kbdDevice}" "set" "${kbdStep}-"; }
       XF86KbdBrightnessUp { spawn "brightnessctl" "--device" "${kbdDevice}" "set" "${kbdStep}+"; }

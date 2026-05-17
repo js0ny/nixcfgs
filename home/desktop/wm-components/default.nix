@@ -13,8 +13,8 @@ in
     ./kanshi.nix
     ./polkit.nix
     ./systemd.nix
-    ../../../modules/home/noctalia.nix
-    inputs.noctalia.homeModules.default
+    ../../../modules/home/dank-material-shell.nix
+    inputs.dank-material-shell.homeModules.default
   ];
   home.packages = with pkgs; [
     brightnessctl

@@ -45,10 +45,6 @@
     };
     # Niri - Wayland Window Manager
     niri-flake.url = "github:sodiboo/niri-flake";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # xremap - kay remapper like keyd
     xremap-flake = {
       url = "github:xremap/nix-flake";
@@ -126,6 +122,10 @@
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dank-material-shell = {
+      url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

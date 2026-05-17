@@ -127,5 +127,93 @@
           ];
         };
       };
+    dank-material-shell =
+      let
+        ipc = [
+          "dms"
+          "ipc"
+          "call"
+        ];
+      in
+      {
+        toggle = ipc ++ [
+          "spotlight"
+          "toggle"
+        ];
+        cliphist = ipc ++ [
+          "clipboard"
+          "toggle"
+        ];
+        lock = ipc ++ [
+          "lock"
+          "lock"
+        ];
+        session = ipc ++ [
+          "powermenu"
+          "toggle"
+        ];
+        volume = {
+          up = ipc ++ [
+            "audio"
+            "increment"
+            "3"
+          ];
+          down = ipc ++ [
+            "audio"
+            "decrement"
+            "3"
+          ];
+          mute = ipc ++ [
+            "audio"
+            "mute"
+          ];
+        };
+        media = {
+          playpause = ipc ++ [
+            "mpris"
+            "playPause"
+          ];
+          next = ipc ++ [
+            "mpris"
+            "next"
+          ];
+          prev = ipc ++ [
+            "mpris"
+            "previous"
+          ];
+        };
+        brightness = {
+          up = ipc ++ [
+            "brightness"
+            "increment"
+            "5"
+            ""
+          ];
+          down = ipc ++ [
+            "brightness"
+            "decrement"
+            "5"
+            ""
+          ];
+        };
+        notifications = {
+          toggle = ipc ++ [
+            "notifications"
+            "toggle"
+          ];
+          dnd = ipc ++ [
+            "notifications"
+            "toggleDoNotDisturb"
+          ];
+          clear = ipc ++ [
+            "notifications"
+            "clearAll"
+          ];
+          dismiss = ipc ++ [
+            "notifications"
+            "dismissAllPopups"
+          ];
+        };
+      };
   };
 }
