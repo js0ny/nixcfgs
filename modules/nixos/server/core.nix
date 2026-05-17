@@ -11,4 +11,11 @@ lib.mkIf config.nixdots.server.enable {
   # Server config
   virtualisation.podman.enable = true;
   virtualisation.oci-containers.backend = "podman";
+  environment.shellAliases = {
+    sc = "systemctl";
+    scc = "systemctl cat";
+    scs = "systemctl status";
+    jc = "journalctl";
+    jcx = "journalctl -xeu";
+  };
 }

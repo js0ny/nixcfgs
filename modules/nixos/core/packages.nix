@@ -3,11 +3,15 @@
 {
   environment.systemPackages = with pkgs; [
     # keep-sorted start
+    bind
     curl
+    dig
     file
     git
     lsof
+    moreutils
     psmisc
+    socat
     tmux
     vim
     wget
@@ -20,4 +24,8 @@
     defaultEditor = true;
     viAlias = true;
   };
+  programs.mtr.enable = true;
+  programs.tcpdump.enable = true;
+  programs.iotop.enable = true;
+  programs.iftop.enable = true;
 }

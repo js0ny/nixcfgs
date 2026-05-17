@@ -69,6 +69,7 @@
       rip2
       ripgrep
       ripgrep-all
+      srm
       unar # For Non UTF-8 archives like gbk or sjis
       wget
       zoxide
@@ -82,8 +83,6 @@
         [
           steam-run
           proton-vpn-cli
-          # https://github.com/NixOS/nixpkgs/pull/513252
-          srm
           podman-compose
         ]
     );

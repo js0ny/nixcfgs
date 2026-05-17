@@ -7,15 +7,14 @@
     ./base.nix
     ./core.nix
     ./de
-    ./diskutil.nix
     ./dm
     ./gnome-keyring.nix
-    ./keyd.nix
+    ./gui.nix
+    ./input
     ./laptop.nix
     ./networkmanager.nix
     ./packages.nix
     ./wayland.nix
-    ./xremap.nix
     # keep-sorted end
   ];
   nixdefs.hardware.enable = true;

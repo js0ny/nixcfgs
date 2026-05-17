@@ -9,4 +9,5 @@
     askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
   };
   security.pam.services.gdm-password.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 }

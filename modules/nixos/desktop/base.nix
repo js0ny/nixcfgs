@@ -16,7 +16,6 @@ lib.mkIf cfg {
   # Use unfree software
   nixpkgs.config.allowUnfree = true;
 
-  services.flatpak.enable = true;
   # Disable modem
   networking.modemmanager.enable = false;
   zramSwap = {

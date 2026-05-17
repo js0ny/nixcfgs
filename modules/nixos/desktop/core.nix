@@ -6,18 +6,13 @@
 }:
 let
   cfg = config.nixdots.desktop.enable;
-  user = config.nixdots.user.name;
-  avatar = config.nixdots.user.avatar;
 in
 lib.mkIf cfg {
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
-  security.pam.services.login.enableGnomeKeyring = true;
 
   hardware.bluetooth = {
     enable = true;
@@ -30,9 +25,6 @@ lib.mkIf cfg {
     ];
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -44,19 +36,8 @@ lib.mkIf cfg {
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
   };
-  xdg.terminal-exec.enable = true;
 
-  services.gvfs.enable = true;
-
-  systemd.tmpfiles.rules =
-    if avatar != null then
-      [
-        "L+ /var/lib/AccountsService/icons/${user} - - - - ${avatar}"
-      ]
-    else
-      [ ];
 }
