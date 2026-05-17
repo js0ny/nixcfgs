@@ -38,5 +38,5 @@
     taps = [ "railwaycat/emacsmacport" ];
   };
 
-  imports = [ ./default.nix ];
+  imports = [ ./. ];
 }

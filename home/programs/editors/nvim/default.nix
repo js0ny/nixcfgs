@@ -13,7 +13,7 @@ let
   snippets = (import ../lsp-snippets { inherit pkgs config; }).out;
 in
 {
-  imports = [ ../default.nix ];
+  imports = [ ../. ];
   programs.neovim = {
     enable = true;
     sideloadInitLua = true;
