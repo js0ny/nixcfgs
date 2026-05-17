@@ -18,6 +18,10 @@
     };
   };
 
+  home.sessionVariables = {
+    PROTON_PASS_LINUX_KEYRING = "dbus";
+  };
+
   programs.jujutsu.enable = true;
 
   programs.zed-editor.extensions = [
@@ -58,6 +62,7 @@
       p7zip
       pass
       procs
+      proton-pass-cli
       # rar: Unfree, the only way (afaik) to unarchive some very old partition rars
       rar
       rclone
