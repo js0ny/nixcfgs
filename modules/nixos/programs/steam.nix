@@ -9,10 +9,17 @@ let
 in
 lib.mkIf cfg.enable {
   nixpkgs.config.allowUnfree = true;
+
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
   };
 
   programs.gamemode = {
