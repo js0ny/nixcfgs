@@ -63,6 +63,7 @@ let
               pkgs.discord
               pkgs.socat
               discordRpcBridge
+              pkgs.coreutils
             ];
           };
           binPath = "bin/discord-rpc-bridge";
