@@ -2,12 +2,16 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    # keep-sorted start
+    curl
+    file
+    git
+    lsof
+    psmisc
+    tmux
     vim
     wget
-    curl
-    git
-    tmux
-    file
+    # keep-sorted end
   ];
   # Explicitly define default EDITOR
   programs.nano.enable = false;

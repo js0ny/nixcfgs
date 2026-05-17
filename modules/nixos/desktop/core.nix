@@ -48,10 +48,6 @@ lib.mkIf cfg {
   programs.gnupg.agent = {
     enable = true;
   };
-  environment.systemPackages = with pkgs; [
-    libnotify
-    gnome-disk-utility
-  ];
   xdg.terminal-exec.enable = true;
 
   services.gvfs.enable = true;

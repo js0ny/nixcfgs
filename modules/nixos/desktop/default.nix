@@ -2,7 +2,7 @@
 {
   imports = [
     # keep-sorted start
-    ../default.nix
+    ../.
     ../hardware/audio.nix
     ./base.nix
     ./core.nix
@@ -13,6 +13,7 @@
     ./keyd.nix
     ./laptop.nix
     ./networkmanager.nix
+    ./packages.nix
     ./wayland.nix
     ./xremap.nix
     # keep-sorted end

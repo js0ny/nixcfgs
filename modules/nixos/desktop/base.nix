@@ -9,16 +9,9 @@ let
 in
 lib.mkIf cfg {
   # Use the systemd-boot EFI boot loader.
+  # TODO: Migrate
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  environment.systemPackages = with pkgs; [
-    pciutils
-    usbutils
-    v4l-utils
-    f2fs-tools
-    openvpn
-  ];
 
   # Use unfree software
   nixpkgs.config.allowUnfree = true;
