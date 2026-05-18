@@ -17,6 +17,7 @@ lib.mkIf cfg.enable {
       # "--ozone-platform-hint=auto"
       # See: https://wiki.archlinux.org/title/Chromium#Touchpad_gestures_for_navigation
       "--enable-features=TouchpadOverscrollHistoryNavigation"
+      "--enable-features=MiddleClickAutoscroll"
     ];
     extensions = [
       { id = "bggfcpfjbdkhfhfmkjpbhnkhnpjjeomc"; } # Material Icons for GitHub

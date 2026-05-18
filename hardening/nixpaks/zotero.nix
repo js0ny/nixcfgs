@@ -3,7 +3,8 @@
   mkNixPak,
   buildEnv,
   makeDesktopItem,
-  zotero,
+  pkgs,
+  package ? pkgs.zotero,
   dotDir ? ".zotero",
   libraryDir ? "Zotero",
   ...
@@ -15,10 +16,7 @@ let
     config =
       { sloth, ... }:
       {
-        app = {
-          package = zotero;
-          binPath = "bin/zotero";
-        };
+        app.package = package;
         flatpak.appId = appId;
         flatpakDataDir = false;
 

@@ -6,6 +6,7 @@
   buildEnv,
   makeDesktopItem,
   pkgs,
+  package ? pkgs.cider-2,
   ...
 }:
 let
@@ -15,13 +16,7 @@ let
     config =
       { sloth, ... }:
       {
-        app = {
-          package = buildEnv {
-            name = "nixpak-cider-2";
-            paths = (pkgs.mkElectronWayland [ pkgs.cider-2 ]);
-          };
-          binPath = "bin/cider-2";
-        };
+        app.package = package;
         flatpak.appId = appId;
         flatpakDataDir = false;
         xdgBind = {

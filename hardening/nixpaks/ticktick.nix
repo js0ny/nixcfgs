@@ -2,10 +2,9 @@
 # - Flatpak manifest's docs:
 #   - https://docs.flatpak.org/en/latest/manifests.html
 #   - https://docs.flatpak.org/en/latest/sandbox-permissions.html
-# - QQ's flatpak manifest: https://github.com/flathub/com.qq.QQ/blob/master/com.qq.QQ.yaml
 {
   lib,
-  ticktick,
+  package ? pkgs.ticktick,
   pkgs,
   mkNixPak,
   buildEnv,
@@ -19,15 +18,7 @@ let
     config =
       { sloth, ... }:
       {
-        app = {
-          package = buildEnv {
-            name = "nixpak-ticktick";
-            paths = [
-              ticktick
-            ];
-          };
-          binPath = "bin/ticktick";
-        };
+        app.package = package;
         flatpak.appId = appId;
         flatpakDataDir = true;
 

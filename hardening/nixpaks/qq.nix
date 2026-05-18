@@ -5,7 +5,7 @@
 # - QQ's flatpak manifest: https://github.com/flathub/com.qq.QQ/blob/master/com.qq.QQ.yaml
 {
   lib,
-  qq,
+  package ? pkgs.qq,
   pkgs,
   mkNixPak,
   buildEnv,
@@ -23,7 +23,7 @@ let
           package = buildEnv {
             name = "nixpak-qq";
             paths = [
-              qq
+              package
               pkgs.libx11
               pkgs.libxcb
               pkgs.krb5.lib
@@ -98,7 +98,7 @@ buildEnv {
       comment = "Tencent QQ, also known as QQ, is an instant messaging software service and web portal developed by the Chinese technology company Tencent.";
       exec = "${exePath} %U";
       terminal = false;
-      icon = "${qq}/share/icons/hicolor/512x512/apps/qq.png";
+      icon = "${package}/share/icons/hicolor/512x512/apps/qq.png";
       startupNotify = true;
       startupWMClass = "QQ";
       type = "Application";

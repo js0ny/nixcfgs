@@ -1,7 +1,8 @@
 # https://raw.githubusercontent.com/flathub/io.github.kukuruzka165.materialgram/refs/heads/master/io.github.kukuruzka165.materialgram.yml
 {
   lib,
-  materialgram,
+  pkgs,
+  package ? pkgs.materialgram,
   mkNixPak,
   buildEnv,
   makeDesktopItem,
@@ -15,7 +16,7 @@ let
       { sloth, ... }:
       {
         app = {
-          package = materialgram;
+          package = package;
         };
         flatpak.appId = appId;
         flatpakDataDir = false;
@@ -72,7 +73,7 @@ buildEnv {
       comment = "Unofficial Telegram Desktop with Material Design";
       tryExec = "materialgram";
       exec = "${exePath} -- %u";
-      icon = "${materialgram}/share/icons/hicolor/512x512/apps/${appId}.png";
+      icon = "${package}/share/icons/hicolor/512x512/apps/${appId}.png";
       startupNotify = true;
       startupWMClass = appId;
       terminal = false;
@@ -112,6 +113,6 @@ buildEnv {
         X-GNOME-SingleWindow = "true";
       };
     })
-    materialgram
+    package
   ];
 }

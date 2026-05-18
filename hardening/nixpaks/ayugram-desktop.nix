@@ -4,7 +4,8 @@
   mkNixPak,
   buildEnv,
   makeDesktopItem,
-  ayugram-desktop,
+  pkgs,
+  package ? pkgs.ayugram-desktop,
   ...
 }:
 let
@@ -15,7 +16,7 @@ let
       { sloth, ... }:
       {
         app = {
-          package = ayugram-desktop;
+          package = package;
         };
         flatpak.appId = appId;
         flatpakDataDir = false;
@@ -72,7 +73,7 @@ buildEnv {
       comment = "Desktop version of AyuGram - ToS breaking Telegram client";
       tryExec = "AyuGram";
       exec = "${exePath} -- %u";
-      icon = "${ayugram-desktop}/share/icons/hicolor/512x512/apps/${appId}.png";
+      icon = "${package}/share/icons/hicolor/512x512/apps/${appId}.png";
       startupNotify = true;
       startupWMClass = appId;
       terminal = false;
@@ -112,6 +113,6 @@ buildEnv {
         X-GNOME-SingleWindow = "true";
       };
     })
-    ayugram-desktop
+    package
   ];
 }

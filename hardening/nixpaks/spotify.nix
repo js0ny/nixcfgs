@@ -6,6 +6,7 @@
   buildEnv,
   makeDesktopItem,
   extraModules ? [ ],
+  package ? pkgs.spotify,
   ...
 }:
 let
@@ -15,15 +16,7 @@ let
     config =
       { sloth, ... }:
       {
-        app = {
-          package = buildEnv {
-            name = "nixpak-spotify";
-            paths = with pkgs; [
-              spotify
-            ];
-          };
-          binPath = "bin/spotify";
-        };
+        app.package = package;
         flatpak.appId = appId;
         flatpakDataDir = true;
 
@@ -86,7 +79,7 @@ buildEnv {
       comment = "";
       exec = "${exePath} --ozone-platform-hint=auto %U";
       terminal = false;
-      icon = "${pkgs.spotify}/share/icons/hicolor/512x512/apps/spotify-client.png";
+      icon = "${package}/share/icons/hicolor/512x512/apps/spotify-client.png";
       startupNotify = true;
       startupWMClass = "spotify";
       type = "Application";

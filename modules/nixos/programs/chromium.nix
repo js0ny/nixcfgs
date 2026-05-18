@@ -16,7 +16,6 @@ lib.mkIf cfg {
     extraOpts = {
       "BrowserSignin" = 1;
       "PasswordManagerEnabled" = false;
-      "ExtensionManifestV2Availability" = 2;
       "DefaultBrowserSettingEnabled" = false;
     };
     extensions = [

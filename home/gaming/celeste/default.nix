@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
   dots = config.nixdots.core.dots;
   user = config.nixdots.user.name;
@@ -14,6 +14,6 @@ in
     directories = [
       ".local/share/Celeste"
     ]
-    ++ (if config.programs.celeste.withOlympus then [ ".config/Olympus" ] else [ ]);
+    ++ (lib.optionals config.programs.celeste.withOlympus [ ".config/Olympus" ]);
   };
 }

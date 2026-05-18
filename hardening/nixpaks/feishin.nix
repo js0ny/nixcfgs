@@ -5,6 +5,7 @@
   mkNixPak,
   buildEnv,
   makeDesktopItem,
+  package ? pkgs.feishin,
   ...
 }:
 let
@@ -14,9 +15,7 @@ let
     config =
       { sloth, ... }:
       {
-        app = {
-          package = pkgs.feishin;
-        };
+        app.package = package;
         flatpak.appId = appId;
         flatpakDataDir = false;
         xdgBind = {

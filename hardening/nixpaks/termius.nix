@@ -4,6 +4,7 @@
   mkNixPak,
   buildEnv,
   makeDesktopItem,
+  package ? pkgs.termius,
   ...
 }:
 let
@@ -16,11 +17,11 @@ let
         app = {
           package = buildEnv {
             name = "nixpak-termius";
-            paths = with pkgs; [
-              termius
-              libglvnd
-              mesa
-              stdenv.cc.cc.lib
+            paths = [
+              package
+              pkgs.libglvnd
+              pkgs.mesa
+              pkgs.stdenv.cc.cc.lib
             ];
           };
           binPath = "bin/termius-app";

@@ -5,6 +5,7 @@
   mkNixPak,
   buildEnv,
   makeDesktopItem,
+  package ? pkgs.zoom-us,
   ...
 }:
 let
@@ -14,15 +15,7 @@ let
     config =
       { sloth, ... }:
       {
-        app = {
-          package = buildEnv {
-            name = "nixpak-zoom";
-            paths = with pkgs; [
-              zoom-us
-            ];
-          };
-          binPath = "bin/zoom";
-        };
+        app.package = package;
         flatpak.appId = appId;
         flatpakDataDir = true;
 
