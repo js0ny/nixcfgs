@@ -5,7 +5,6 @@
     ../.
     ../hardware/audio.nix
     ./base.nix
-    ./core.nix
     ./de
     ./dm
     ./gnome-keyring.nix

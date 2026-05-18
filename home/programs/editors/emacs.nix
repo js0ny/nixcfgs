@@ -1,10 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.emacs = {
     enable = true;
     package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else null;
     extraPackages =
-      epkgs: with epkgs; [
+      epkgs:
+      with epkgs;
+      [
+        avy
+        dashboard
         evil
         evil-leader
         evil-commentary
@@ -26,7 +30,8 @@
         elfeed-org
         olivetti
         org-modern
-      ];
+      ]
+      ++ (lib.optionals pkgs.stdenv.isLinux [ epkgs.xclip ]);
   };
   # TODO: tdlib version is too high
   # See: https://github.com/zevlg/telega.el/issues/374

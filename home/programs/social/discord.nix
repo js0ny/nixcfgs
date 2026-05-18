@@ -46,9 +46,6 @@
   nixdots.persist.home = {
     directories = [
       ".config/discord"
-      ".config/Vencord"
-      ".local/share/discord"
-      ".cache/discord"
     ];
   };
   # nixdots.darwin.homebrew.casks = [ "discord" ];

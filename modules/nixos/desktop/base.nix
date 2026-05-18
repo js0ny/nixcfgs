@@ -24,4 +24,8 @@ lib.mkIf cfg {
     algorithm = "lz4";
     priority = 100;
   };
+
+  programs.gnupg.agent.enable = true;
+
+  services.printing.enable = true;
 }
