@@ -39,4 +39,6 @@ lib.mkIf cfg.enable {
     PrivateDevices = false;
     DeviceAllow = "char-video4linux rw";
   };
+
+  nixdots.persist.system.directories = [ "/var/lib/howdy" ];
 }

@@ -40,6 +40,9 @@
     ignores = [
       ".Trash-1000"
       ".Trash-1000/"
+      ".DS_Store"
+      ".direnv"
+      ".direnv/"
     ];
   };
 }

@@ -17,5 +17,6 @@ in
   systemd.tmpfiles.rules = lib.optionals (avatar != null) [
     "L+ /var/lib/AccountsService/icons/${user} - - - - ${avatar}"
   ];
+  nixdots.persist.system.directories = [ "/var/lib/AccountsService" ];
   services.flatpak.enable = true;
 }

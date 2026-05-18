@@ -6,7 +6,6 @@ in
   _module.args.mylib = mylib;
   imports = [
     # keep-sorted start
-
     ../../hardening/nixpaks
     ../common
     ../common/nix-helper.nix

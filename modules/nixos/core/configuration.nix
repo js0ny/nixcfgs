@@ -54,4 +54,7 @@ in
   };
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+
+  # provides `/bin/bash` compatibility
+  services.envfs.enable = true;
 }
