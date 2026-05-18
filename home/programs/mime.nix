@@ -3,25 +3,6 @@ let
   # Why using nvim gui:
   #   * when `rga-fzf`: nvim wrapper failed to launch
   #   * nvim wrapper reports error on parsing filename with spaces
-  gvim = "neovide.desktop";
-  simpleText = [
-    "text/plain"
-    "text/x-csrc" # .c
-    "text/x-chdr" # .h
-    "text/javascript"
-    "text/typescript" # .ts
-    "text/x-python"
-    "application/yaml" # .yaml, .yml
-    "text/x-patch" # .patch .diff
-    "text/x-devicetree-source" # .dts
-    "text/x-nix" # .nix (custom defined below)
-    "text/x-pdx-descriptor" # .mod (custom defined below)
-    "text/csv"
-    "text/markdown"
-    "text/vnd.trolltech.linguist" # .ts (Qt Translation Source File)
-  ]
-  ++ [
-  ];
   image = [
     "image/jpeg"
     "image/jpg"
@@ -81,7 +62,6 @@ in
     # In Dolphin, middle click to open with 2nd order default app
     defaultApplications =
       mkAssoc "sioyek.desktop;org.kde.okular;" [ "application/pdf" ]
-      // mkAssoc gvim simpleText
       // mkAssoc imageViewers image
       // mkAssoc "onlyoffice-desktopeditors.desktop" [
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -93,10 +73,6 @@ in
       #     audio: mpv: simple and fast
       // mkAssoc audioPlayers audio
       // mkAssoc browsers browser
-      // mkAssoc "org.telegram.desktop.desktop" [
-        "x-scheme-handler/tg"
-        "x-scheme-handler/tonsite"
-      ]
       // mkAssoc archiveManager archive
       // mkAssoc "mpv.desktop" video
       // {

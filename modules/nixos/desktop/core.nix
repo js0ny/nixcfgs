@@ -14,17 +14,6 @@ lib.mkIf cfg {
 
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-
-  nixdots.persist.system = {
-    directories = [
-      "/var/lib/bluetooth"
-    ];
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

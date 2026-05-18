@@ -30,7 +30,7 @@
   };
   nixdots.persist.home = {
     directories = [
-      ".local/sahre/PrismLauncher"
+      ".local/share/PrismLauncher"
     ];
   };
 }

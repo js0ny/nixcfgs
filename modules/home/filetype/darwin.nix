@@ -12,7 +12,10 @@ let
     "${apps.editor.gui.bundleIdentifier}" = [
       "md"
       "json"
+      "diff"
+      "patch"
       "js"
+      "ts"
       "txt"
       "xml"
       "nix"

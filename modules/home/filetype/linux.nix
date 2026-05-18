@@ -12,6 +12,7 @@ let
     "text/x-csrc" # .c
     "text/x-chdr" # .h
     "text/javascript"
+    "text/typescript"
     "text/x-python"
     "application/yaml" # .yaml, .yml
     "text/x-patch" # .patch .diff
@@ -22,6 +23,7 @@ let
     "text/markdown"
     "application/vnd.kde.kxmlguirc"
     "application/atom+xml" # .atom
+    "text/vnd.trolltech.linguist" # .ts (Qt Translation Source File)
   ];
   webpageMimes = [
     "text/html"
