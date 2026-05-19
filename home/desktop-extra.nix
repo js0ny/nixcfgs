@@ -50,6 +50,7 @@
     ./programs/productivity/zotero.nix
     ./programs/protonmail-bridge.nix
     ./programs/pwa
+    ./programs/qalculate.nix
     ./programs/quickemu.nix
     ./programs/rime
     ./programs/shell/bash.nix
@@ -84,10 +85,8 @@
     localPkgs.BBDown
     localPkgs.danmaku2ass
     newsflash
-    octaveFull
     rustdesk
     tea
-    tor-browser
     # keep-sorted end
   ];
 

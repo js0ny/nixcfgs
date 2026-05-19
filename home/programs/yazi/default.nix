@@ -189,6 +189,14 @@ in
         {
           on = [
             "g"
+            "D"
+          ];
+          run = "cd ${xdgDirs.documents}";
+          desc = "Goto Documents/";
+        }
+        {
+          on = [
+            "g"
             "c"
           ];
           run = "cd ${dots}";

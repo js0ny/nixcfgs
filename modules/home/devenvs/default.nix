@@ -10,6 +10,7 @@ let
   xdg-config = "${config.xdg.configHome}";
   xdg-state = "${config.xdg.stateHome}";
   user = "${config.home.username}";
+  home = config.home.homeDirectory;
 in
 {
   imports = [
@@ -49,4 +50,10 @@ in
     "d ${xdg-data}/npm/lib 0755 ${user} users -"
     "d ${xdg-data}/python 0755 ${user} users -"
   ];
+  programs.cargo = {
+    cargoHome = "${xdg-data}/cargo";
+    settings = {
+      install.root = "${home}/.local/bin";
+    };
+  };
 }

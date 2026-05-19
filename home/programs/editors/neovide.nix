@@ -14,11 +14,6 @@
       title-hidden = true;
       vsync = true;
       wsl = false;
-      font = {
-        normal = [ "Maple Mono NF CN" ];
-        size = 14;
-      };
     };
   };
-  stylix.targets.neovide.enable = false;
 }

@@ -3,6 +3,7 @@
 
 import argparse
 import sys
+import re
 from pathlib import Path
 from collections import Counter
 from datetime import datetime
@@ -30,6 +31,11 @@ def parse_args():
         "--numeral",
         action="store_true",
         help="Sort by numeric part in filename",
+    )
+    p.add_argument(
+        "--paren-number",
+        action="store_true",
+        help="Extract number from parentheses in filename, e.g. '1 (23).jpg' -> 23",
     )
     p.add_argument(
         "--renumber",
@@ -65,6 +71,11 @@ def extract_number(stem: str) -> int | None:
     return int(digits) if digits else None
 
 
+def extract_paren_number(stem: str) -> int | None:
+    matches = re.findall(r"\((\d+)\)", stem)
+    return int(matches[-1]) if matches else None
+
+
 def auto_detect_ext(files: list[Path]) -> str | None:
     exts = [f.suffix.lstrip(".") for f in files if f.suffix]
     if not exts:
@@ -98,6 +109,7 @@ def build_rename_plan(
     files: list[Path],
     ext: str,
     numeral: bool,
+    paren_number: bool,
     renumber: bool,
     pattern: str | None,
     initial: int,
@@ -117,19 +129,19 @@ def build_rename_plan(
         return []
 
     # 排序阶段
-    if numeral:
+    if numeral or paren_number:
         numbered = []
         for f in files:
-            n = extract_number(f.stem)
+            n = extract_paren_number(f.stem) if paren_number else extract_number(f.stem)
             if n is None:
-                msg = f"[SKIP] {display_dir}: no number in {f.name}"
+                msg = f"[SKIP] {display_dir}: no parentheses number in {f.name}" if paren_number else f"[SKIP] {display_dir}: no number in {f.name}"
                 print(msg)
                 log_skip(msg)
                 continue
             numbered.append((n, f))
 
         if not numbered:
-            msg = f"[SKIP] {display_dir}: no files contain numeric parts"
+            msg = f"[SKIP] {display_dir}: no files contain parentheses numbers" if paren_number else f"[SKIP] {display_dir}: no files contain numeric parts"
             print(msg)
             log_skip(msg)
             return []
@@ -189,6 +201,7 @@ def main():
             files=files,
             ext=ext,
             numeral=args.numeral,
+            paren_number=args.paren_number,
             renumber=args.renumber,
             pattern=args.pattern,
             initial=args.initial,

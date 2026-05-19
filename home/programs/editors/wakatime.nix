@@ -16,7 +16,7 @@ in
 
   sops.secrets.wakatime_api_key = { };
   sops.templates."wakatime.cfg" = {
-    content = ''
+    content = /* ini */ ''
       [settings]
       debug = false
       hidefilenames = false

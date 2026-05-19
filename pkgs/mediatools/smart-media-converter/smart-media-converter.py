@@ -13,6 +13,7 @@
 #   --dir: Target directory (default: current directory)
 #   --workers(-j): Number of parallel workers (default: 3)
 #   --video-container: Video output container format mp4 | mkv (default: mp4)
+#   --gpu-video(--gpu): Use GPU video encoding with av1_nvenc
 #   --picture-quality: Image quality for magick (default: 85)
 #   --picture-format: Image output format for magick (default: webp)
 ##########
@@ -30,6 +31,7 @@ from typing import List, Tuple, Optional
 # Configuration Constants
 VIDEO_CRF = "32"
 VIDEO_PRESET = "8"
+GPU_VIDEO_PRESET = "p7"
 
 # Extensions Configuration (Normalized to lowercase)
 # Do not consider .avif and .webp as input extensions
@@ -249,7 +251,7 @@ def convert_image(file_path: Path, dry_run: bool, remove_source: bool, picture_q
     cmd = ["magick", str(file_path), "-quality", str(picture_quality), str(output_path)]
     run_command(cmd, dry_run, file_path, output_path, remove_source)
 
-def convert_video(file_path: Path, dry_run: bool, remove_source: bool, video_container: str) -> None:
+def convert_video(file_path: Path, dry_run: bool, remove_source: bool, video_container: str, gpu_video: bool) -> None:
     """Converts video to AV1 with progress tracking."""
     output_ext = f".av1.{video_container}"
 
@@ -266,16 +268,24 @@ def convert_video(file_path: Path, dry_run: bool, remove_source: bool, video_con
     if duration is None:
         logger.warning(f"[VID] Could not probe duration for {file_path.name}, no progress bar")
 
-    logger.info(f"[VID] {file_path.name} -> AV1")
+    encoder_label = "AV1 (GPU)" if gpu_video else "AV1"
+    logger.info(f"[VID] {file_path.name} -> {encoder_label}")
 
     cmd = [
         "ffmpeg", "-hide_banner", "-loglevel", "error",
         "-progress", "pipe:1",
         "-i", str(file_path),
-        "-c:v", "libsvtav1", "-crf", VIDEO_CRF, "-preset", VIDEO_PRESET,
+    ]
+
+    if gpu_video:
+        cmd.extend(["-c:v", "av1_nvenc", "-cq", VIDEO_CRF, "-preset", GPU_VIDEO_PRESET])
+    else:
+        cmd.extend(["-c:v", "libsvtav1", "-crf", VIDEO_CRF, "-preset", VIDEO_PRESET])
+
+    cmd.extend([
         "-c:a", "aac", "-b:a", "192k",
         "-sn",
-    ]
+    ])
 
     if video_container == "mp4":
         cmd.extend(["-movflags", "+faststart"])
@@ -321,6 +331,7 @@ def main():
     parser.add_argument("--rm", action="store_true", help="Remove source file after successful conversion")
     parser.add_argument("-j", "--workers", type=int, default=3, help="Number of parallel workers")
     parser.add_argument("--video-container", choices=["mp4", "mkv"], default="mp4", help="Video output container format")
+    parser.add_argument("--gpu-video", "--gpu", dest="gpu_video", action="store_true", help="Use GPU video encoding with av1_nvenc")
     parser.add_argument("--picture-quality", type=int, default=85, help="Image quality for magick")
     parser.add_argument("--picture-format", choices=["webp", "avif"], default="webp", help="Image output format for magick")
     
@@ -360,7 +371,7 @@ def main():
             futures.append(executor.submit(convert_image, img, args.dry_run, args.rm, args.picture_quality, args.picture_format))
         
         for vid in video_files:
-            futures.append(executor.submit(convert_video, vid, args.dry_run, args.rm, args.video_container))
+            futures.append(executor.submit(convert_video, vid, args.dry_run, args.rm, args.video_container, args.gpu_video))
 
         for future in as_completed(futures):
             try:
