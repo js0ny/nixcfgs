@@ -17,6 +17,7 @@
       type = lib.types.bool;
       default = false;
       example = true;
+      description = "Whether to enable lanzaboote/secure boot";
     };
     nixos = lib.mkOption {
       type = lib.types.bool;

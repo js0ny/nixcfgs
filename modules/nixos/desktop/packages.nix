@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     # keep-sorted start
+    efibootmgr
     f2fs-tools
     libnotify
     libva-utils
@@ -9,6 +10,7 @@
     mesa-demos
     openvpn
     pciutils
+    sbctl
     smartmontools
     strace
     usbutils

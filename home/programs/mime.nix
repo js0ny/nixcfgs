@@ -57,6 +57,9 @@ let
     );
 in
 {
+  home.packages = with pkgs; [
+    kdePackages.ark
+  ];
   xdg.mimeApps = {
     enable = true;
     # In Dolphin, middle click to open with 2nd order default app

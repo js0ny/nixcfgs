@@ -10,6 +10,7 @@ let
   wallpaperDir = config.home.customDirs.wallpaper;
   geo = d.geo;
   locale = builtins.replaceStrings [ "-" ] [ "_" ] d.core.locales.guiLocale;
+  user = config.home.username;
   inherit (lib) mkDefault;
 in
 lib.mkIf enable {
@@ -167,11 +168,20 @@ lib.mkIf enable {
     include "${xdg-config}/niri/dms/binds.kdl"
     include "${xdg-config}/niri/dms/colors.kdl"
     include "${xdg-config}/niri/dms/cursor.kdl"
-    include "${xdg-config}/niri/dms/layout.kdl"
     include "${xdg-config}/niri/dms/outputs.kdl"
     include "${xdg-config}/niri/dms/windowrules.kdl"
     include "${xdg-config}/niri/dms/wpblur.kdl"
   '';
+
+  systemd.user.tmpfiles.rules = [
+    "f ${xdg-config}/niri/dms/alttab.kdl 0644 ${user} users -"
+    "f ${xdg-config}/niri/dms/binds.kdl 0644 ${user} users -"
+    "f ${xdg-config}/niri/dms/colors.kdl 0644 ${user} users -"
+    "f ${xdg-config}/niri/dms/cursor.kdl 0644 ${user} users -"
+    "f ${xdg-config}/niri/dms/outputs.kdl 0644 ${user} users -"
+    "f ${xdg-config}/niri/dms/windowrules.kdl 0644 ${user} users -"
+    "f ${xdg-config}/niri/dms/wpblur.kdl 0644 ${user} users -"
+  ];
   # stylix
   services.hyprpaper.enable = lib.mkForce false;
 }
