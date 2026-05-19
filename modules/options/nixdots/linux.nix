@@ -13,6 +13,11 @@
     #   ];
     #   default = "systemd-boot";
     # };
+    lanzaboote = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      example = true;
+    };
     nixos = lib.mkOption {
       type = lib.types.bool;
       default = true;

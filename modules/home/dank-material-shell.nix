@@ -4,6 +4,7 @@
   ...
 }:
 let
+  xdg-config = config.xdg.configHome;
   d = config.nixdots;
   enable = d.desktop.wm.shell == "dank-material-shell";
   wallpaperDir = config.home.customDirs.wallpaper;
@@ -33,8 +34,15 @@ lib.mkIf enable {
       timeLocale = mkDefault locale;
     };
     settings = {
+      # Theme
       currentThemeName = "custom";
       currentThemeCategory = "generic";
+      syncModeWithPPortal = true;
+      iconTheme = "System Default";
+      cursorSettings = {
+        theme = "System Default";
+        size = config.stylix.cursor.size;
+      };
       # wallpaper
       wallpaperFillMode = "Fill";
       blurredWallpaperLayer = false;
@@ -50,9 +58,120 @@ lib.mkIf enable {
       workspaceAppIconSizeOffset = 0;
       groupWorkspaceApps = true;
       workspaceFollowFocus = false;
+      # Media Player
+      waveProgressEnabled = true;
+      scrollTitleEnabled = true;
+      mediaAdaptiveWidthEnabled = true;
+      audioVisualizerEnabled = true;
+      audioScrollMode = "song";
+      audioWheelScrollAmount = 5;
       muxType = if config.programs.zellij.enable then "zellij" else "tmux";
+      # clock
+      desktopClockShowDate = true;
+      desktopClockShowAnalogNumbers = false;
+      desktopClockShowAnalogSeconds = true;
+      firstDayOfWeek = 1;
+      showWeekNumber = true;
+      # launcher
+      launcherLogoMode = "os";
+      launcherLogoColorOverride = "primary";
+      # OSD
+      osdAlwaysShowValue = true;
+      osdPosition = 2;
+      osdVolumeEnabled = true;
+      osdMediaVolumeEnabled = true;
+      osdMediaPlaybackEnabled = true;
+      osdBrightnessEnabled = true;
+      osdIdleInhibitorEnabled = true;
+      osdMicMuteEnabled = true;
+      osdCapsLockEnabled = true;
+      osdPowerProfileEnabled = true;
+      osdAudioOutputEnabled = true;
+      barConfigs = [
+        {
+          id = "default";
+          name = "Main Bar";
+          enabled = true;
+          position = 0;
+          screenPreferences = [
+            "all"
+          ];
+          showOnLastDisplay = true;
+          leftWidgets = [
+            "launcherButton"
+            {
+              id = "music";
+              enabled = true;
+            }
+          ];
+          centerWidgets = [
+            {
+              id = "workspaceSwitcher";
+              enabled = true;
+            }
+          ];
+          rightWidgets = [
+            {
+              id = "notificationButton";
+              enabled = true;
+            }
+            {
+              id = "systemTray";
+              enabled = true;
+            }
+            {
+              id = "battery";
+              enabled = true;
+            }
+            {
+              id = "controlCenterButton";
+              enabled = true;
+              showAudioPercent = false;
+              showBrightnessIcon = false;
+              showBrightnessPercent = false;
+              showBatteryIcon = false;
+            }
+            {
+              id = "clock";
+              enabled = true;
+              clockCompactMode = false;
+            }
+          ];
+          spacing = 4;
+          innerPadding = 4;
+          bottomGap = 0;
+          transparency = 1;
+          widgetTransparency = 1;
+          squareCorners = false;
+          noBackground = false;
+          gothCornersEnabled = false;
+          gothCornerRadiusOverride = false;
+          gothCornerRadiusValue = 12;
+          borderEnabled = false;
+          borderColor = "surfaceText";
+          borderOpacity = 1;
+          borderThickness = 1;
+          fontScale = 1;
+          autoHide = false;
+          autoHideDelay = 250;
+          openOnOverview = false;
+          visible = true;
+          popupGapsAuto = true;
+          popupGapsManual = 4;
+        }
+      ];
     };
   };
+  nixdots.desktop.niri.extraConfig = /* kdl */ ''
+    include "${xdg-config}/niri/dms/alttab.kdl"
+    include "${xdg-config}/niri/dms/binds.kdl"
+    include "${xdg-config}/niri/dms/colors.kdl"
+    include "${xdg-config}/niri/dms/cursor.kdl"
+    include "${xdg-config}/niri/dms/layout.kdl"
+    include "${xdg-config}/niri/dms/outputs.kdl"
+    include "${xdg-config}/niri/dms/windowrules.kdl"
+    include "${xdg-config}/niri/dms/wpblur.kdl"
+  '';
   # stylix
   services.hyprpaper.enable = lib.mkForce false;
 }

@@ -10,6 +10,7 @@
     ./gnome-keyring.nix
     ./gui.nix
     ./input
+    ./lanzaboote.nix
     ./laptop.nix
     ./networkmanager.nix
     ./packages.nix
