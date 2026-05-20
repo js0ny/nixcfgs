@@ -59,7 +59,15 @@ in
 
   xdg.configFile."lsp-snippets".source = snippets;
 
-  stylix.targets.neovim.enable = false;
+  stylix.targets.neovim = {
+    enable = true;
+    plugin = "mini.base16";
+    transparentBackground = {
+      main = false;
+      signColumn = false;
+      numberLine = false;
+    };
+  };
 
   nixdots.persist.home = {
     directories = [

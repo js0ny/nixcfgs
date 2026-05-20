@@ -79,6 +79,7 @@
     kdePackages.elisa
     kdePackages.kdeconnect-kde
     kdePackages.kdenlive
+    kdePackages.partitionmanager
     kdePackages.qttools
     kicad
     krabby

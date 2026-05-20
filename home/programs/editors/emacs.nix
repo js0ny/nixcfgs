@@ -10,6 +10,7 @@
         avy
         dashboard
         evil
+        counsel
         evil-leader
         evil-commentary
         evil-surround

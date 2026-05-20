@@ -7,4 +7,6 @@
     xpadneo.enable = true;
     steam-hardware.enable = true;
   };
+  # disable xpad to prevent conflicts with xpadneo
+  boot.blacklistedKernelModules = [ "xpad" ];
 }

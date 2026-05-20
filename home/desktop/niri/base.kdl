@@ -11,6 +11,11 @@ input {
         track-layout "global"
         numlock
     }
+    touchpad {
+        tap
+        dwt
+        natural-scroll
+    }
 }
 prefer-no-csd
 layout {
