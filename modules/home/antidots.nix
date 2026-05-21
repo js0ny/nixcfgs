@@ -11,9 +11,6 @@ in
 {
   gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   home.sessionVariables = {
-    _JAVA_OPTIONS =
-      "-Djava.util.prefs.userRoot='${xdg-config}/java'" # ~/.java/fonts
-      + "-Djavafx.cachedir='${xdg-cache}/openjfx'"; # ~/.openjfx
     # Sometimes required under Wayland
     XCOMPOSEFILE = "${xdg-config}/X11/XCompose";
     XCOMPOSECACHE = "${xdg-cache}/X11/XCompose";
@@ -36,6 +33,14 @@ in
     PGSERVICEFILE = "${xdg-config}/pg/pg_service.conf";
     PSQL_HISTORY = "${xdg-state}/psql_history";
   };
+
+  home.sessionSearchVariables = {
+    _JAVA_OPTIONS = [
+      "-Djava.util.prefs.userRoot='${xdg-config}/java'" # ~/.java/fonts
+      "-Djavafx.cachedir='${xdg-cache}/openjfx'" # ~/.openjfx
+    ];
+  };
+
   xdg.configFile."wget/wgetrc".text = ''
     hsts-file = ${xdg-state}/wget/wget-hsts
   '';

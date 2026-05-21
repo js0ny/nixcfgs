@@ -15,10 +15,9 @@ let
   '';
 in
 lib.mkIf pkgs.stdenv.isLinux {
-  home.sessionSearchVariables = {
-    MAGIC = [
-      "${customMagicCompiled}"
-      "/run/current-system/sw/share/misc/magic"
-    ];
-  };
+  # home.sessionSearchVariables = {
+  #   MAGIC = [
+  #     "${customMagicCompiled}"
+  #   ];
+  # };
 }
