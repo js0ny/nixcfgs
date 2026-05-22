@@ -1,0 +1,5 @@
+# nvim
+
+## Dependencies
+
+- `ripgrep`: `grepprg`
