@@ -106,9 +106,6 @@ in
               add_header X-Accel-Buffering "no" always;
             '';
           };
-          extraConfig = /* nginx */ ''
-            add_header Alt-Svc 'h3=":443"; ma=86400';
-          '';
         };
       }
     else

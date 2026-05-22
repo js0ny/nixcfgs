@@ -201,6 +201,7 @@
                 pyright
                 taplo
                 nixd
+                nushell
               ];
             in
             {
@@ -250,7 +251,9 @@
           darwin-base = import ./home/darwin-base.nix;
           desktop-base = import ./home/desktop-base.nix;
           desktop-extra = import ./home/desktop-extra.nix;
+          wsl = import ./home/wsl.nix;
         };
+
 
         overlays.default = import ./overlays;
       };

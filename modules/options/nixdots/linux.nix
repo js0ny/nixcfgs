@@ -26,6 +26,13 @@
         Whether this is a NixOS host.
       '';
     };
+    wsl = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        Whether this is a NixOS host.
+      '';
+    };
     display = lib.mkOption {
       type = lib.types.enum [
         "wayland"

@@ -39,6 +39,5 @@ in
     ports.http.port
     ports.https.port
   ];
-  # HTTP/3 is built on UDP
-  networking.firewall.allowedUDPPorts = [ ports.https.port ];
+
 }

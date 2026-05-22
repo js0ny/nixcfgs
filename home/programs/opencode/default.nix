@@ -46,7 +46,9 @@ in
           "git status" = "allow";
           "*.env" = "deny";
           "*.env.example" = "allow";
-          "sops*" = "deny";
+          "sops -d*" = "deny";
+          "sops --decrypt*" = "deny";
+          "sops*" = "ask";
         };
         read = {
           "*" = "allow";

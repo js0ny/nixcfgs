@@ -74,6 +74,7 @@ lib.mkMerge [
           port = ep.opencode.port;
           hostname = ep.opencode.bindAddress;
         };
+          lsp = true;
       };
       tui = {
         keymap = {

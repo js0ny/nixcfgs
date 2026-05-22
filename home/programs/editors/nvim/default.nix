@@ -47,6 +47,8 @@ in
       websocat
       # cli deps
       ripgrep
+      # cc
+      clang
     ];
   };
 

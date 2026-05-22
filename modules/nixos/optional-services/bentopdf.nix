@@ -12,9 +12,7 @@ in
       virtualHost = {
         forceSSL = lib.mkDefault true;
         enableACME = lib.mkDefault true;
-        extraConfig = /* nginx */ ''
-          add_header Alt-Svc 'h3=":443"; ma=86400';
-        '';
+
       };
     };
   };
