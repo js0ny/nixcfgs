@@ -26,8 +26,10 @@ in
         nixpaks.ticktick
         pandoc
         # Theming
+        fastfetch # TODO: Override featrue flasgs
         papirus-icon-theme
-        proton-vpn
+        proton-pass-cli
+        proton-vpn-cli
         qbittorrent
         qpwgraph
         remmina
@@ -36,6 +38,8 @@ in
         signal-desktop
         siyuan
         trash-cli
+        ripgrep-all
+        ffmpeg
         # keep-sorted end
       ]
     else
@@ -61,5 +65,8 @@ in
       "betterdisplay"
       "scroll-reverser" # Natural scrolling for trackpad only
     ];
+  };
+  home.sessionVariables = {
+    PROTON_PASS_LINUX_KEYRING = "dbus";
   };
 }

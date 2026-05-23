@@ -1,10 +1,10 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   services.tlp.enable = lib.mkForce false;
   services.power-profiles-daemon.enable = lib.mkForce false;
 
   services.tuned = {
-    enable = true;
+    enable = !config.nixdots.linux.wsl;
     ppdSupport = true; # Analogous to power-profiles-daemon support, but for tuned
   };
 

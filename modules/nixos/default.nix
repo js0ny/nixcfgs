@@ -34,6 +34,8 @@ in
 
   networking.hostName = config.nixdots.core.hostname;
 
+  nixpkgs.config.allowUnfree = true;
+
   systemd.tmpfiles.rules = [
     "L /var/lib/dbus/machine-id - - - - /etc/machine-id"
     "z /var/lib/private 0700 root root -"

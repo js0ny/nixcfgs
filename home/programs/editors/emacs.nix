@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   programs.emacs = {
-    enable = true;
+    enable = false;
     package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else null;
     extraPackages =
       epkgs:

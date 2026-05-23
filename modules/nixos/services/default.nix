@@ -2,7 +2,6 @@
 {
   imports = [
     # keep-sorted start
-    ./garage.nix
     ./librechat.nix
     ./mongodb.nix
     ./ollama.nix

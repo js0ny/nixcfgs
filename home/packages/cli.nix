@@ -18,9 +18,6 @@
     };
   };
 
-  home.sessionVariables = {
-    PROTON_PASS_LINUX_KEYRING = "dbus";
-  };
 
   programs.jujutsu.enable = true;
 
@@ -45,9 +42,7 @@
       deploy-rs
       duf
       dust
-      fastfetch
       fd
-      ffmpeg
       git
       glow
       gnumake
@@ -62,13 +57,11 @@
       p7zip
       pass
       procs
-      proton-pass-cli
       # rar: Unfree, the only way (afaik) to unarchive some very old partition rars
       rar
       rclone
       rip2
       ripgrep
-      ripgrep-all
       srm
       unar # For Non UTF-8 archives like gbk or sjis
       wget
@@ -81,8 +74,6 @@
       else
         with pkgs;
         [
-          steam-run
-          proton-vpn-cli
           podman-compose
         ]
     );

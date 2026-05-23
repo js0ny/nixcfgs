@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 let
@@ -39,7 +40,6 @@ in
       imagemagick
       tectonic
       vimPlugins.nvim-treesitter-parsers.latex
-      mermaid-cli
       ghostscript_headless
       markdown-oxide
       # typst-preview.nvim
@@ -49,7 +49,7 @@ in
       ripgrep
       # cc
       clang
-    ];
+    ] ++ (lib.optionals (!config.nixdots.linux.wsl) [ pkgs.mermaid-cli ]);
   };
 
   nixdots.devenvs.lua.enable = true;
