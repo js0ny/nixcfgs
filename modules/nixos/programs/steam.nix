@@ -20,6 +20,7 @@ lib.mkIf cfg.enable {
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     gamescopeSession.enable = true;
+    fontPackages = with pkgs; [ source-han-sans ];
   };
 
   programs.gamemode = {

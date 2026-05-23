@@ -36,11 +36,7 @@ in
 
     sopsEditor = lib.mkOption {
       type = with lib.types; nullOr str;
-      default =
-        if config ? programs && config.programs ? neovim && config.programs.neovim.enable then
-          "nvim --clean"
-        else
-          null;
+      default = null;
       example = "nvim --clean";
       description = "Editor command exported as `SOPS_EDITOR`.";
     };

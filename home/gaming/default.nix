@@ -4,6 +4,9 @@
     scanmem
     localPkgs.noname
     ludusavi
+    lutris
+    protontricks
+    protonplus
 
     localPkgs.wine.clrmamepro
   ];

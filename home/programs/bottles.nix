@@ -1,5 +1,5 @@
-{ pkgs, lib, ... }:
-lib.mkIf pkgs.stdenv.isx86_64 {
+{ pkgs, ... }:
+{
   home.packages = [
     (pkgs.bottles.override {
       removeWarningPopup = true;
@@ -11,8 +11,6 @@ lib.mkIf pkgs.stdenv.isx86_64 {
       startup-view = "page_library";
     };
   };
-
-  xdg.dataFile."bottles/runners/${pkgs.localPkgs.dwproton.version}".source = pkgs.localPkgs.dwproton;
 
   nixdots.persist.home = {
     directories = [

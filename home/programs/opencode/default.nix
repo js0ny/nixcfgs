@@ -22,7 +22,7 @@ in
     OPENCODE_DISABLE_LSP_DOWNLOAD = if pkgs.stdenv.isLinux then "true" else "";
   };
 
-  sops.templates."opencode-web.env".content = ''
+  sops.templates."opencode-web.env".content = /* bash */ ''
     OPENCODE_SERVER_USERNAME=${config.sops.placeholder.opencode_web_username}
     OPENCODE_SERVER_PASSWORD=${config.sops.placeholder.opencode_web_password}
   '';

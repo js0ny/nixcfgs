@@ -86,6 +86,7 @@
     localPkgs.BBDown
     localPkgs.danmaku2ass
     newsflash
+    nur.repos.Ev357.helium
     rustdesk
     tea
     # keep-sorted end
