@@ -6,6 +6,7 @@ local parsers = {
   'cpp',
   'go',
   'html',
+  'ini',
   'json',
   'kdl',
   'lua',

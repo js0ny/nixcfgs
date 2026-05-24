@@ -9,6 +9,5 @@ in
 lib.mkIf (config.nixdots.desktop.enable && cfg == "gdm") {
   services.displayManager.gdm = {
     enable = true;
-    wayland = true;
   };
 }

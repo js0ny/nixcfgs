@@ -18,4 +18,5 @@
     # keep-sorted end
   ];
   nixdefs.hardware.enable = true;
+  programs.appimage.enable = true;
 }
