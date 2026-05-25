@@ -38,6 +38,19 @@
       "m" = "script-binding uosc/menu";
       "TAB" = "script-binding uosc/toggle-ui";
       "P" = "script-binding uosc/items";
+      "a" = "apply-profile anime4k";
+      "A" = ''change-list glsl-shaders clr ""'';
+    };
+    profiles.anime4k = {
+      glsl-shaders = [
+        "${pkgs.anime4k}/glsl/Anime4K_Clamp_Highlights.glsl"
+        "${pkgs.anime4k}/glsl/Anime4K_Restore_CNN_VL.glsl"
+        "${pkgs.anime4k}/glsl/Anime4K_Upscale_CNN_x2_VL.glsl"
+        "${pkgs.anime4k}/glsl/Anime4K_AutoDownscalePre_x2.glsl"
+        "${pkgs.anime4k}/glsl/Anime4K_AutoDownscalePre_x4.glsl"
+        "${pkgs.anime4k}/glsl/Anime4K_AutoDownscalePost_x2.glsl"
+        "${pkgs.anime4k}/glsl/Anime4K_AutoDownscalePost_x4.glsl"
+      ];
     };
   };
 }
