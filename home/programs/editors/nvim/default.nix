@@ -23,33 +23,36 @@ in
     withPerl = false;
     withRuby = false;
     withPython3 = false;
-    extraPackages = with pkgs; [
-      # lua devenvs (luajit)
-      lua5_1
-      lua51Packages.luarocks
-      lua-language-server
-      stylua
-      # tree-sitter
-      tree-sitter
-      # copilot-lua
-      nodejs-slim_24
-      vimPlugins.nvim-treesitter-parsers.diff
-      vimPlugins.nvim-treesitter-parsers.nix
-      # snacks.image
-      pkg-config
-      imagemagick
-      tectonic
-      vimPlugins.nvim-treesitter-parsers.latex
-      ghostscript_headless
-      markdown-oxide
-      # typst-preview.nvim
-      tinymist
-      websocat
-      # cli deps
-      ripgrep
-      # cc
-      clang
-    ] ++ (lib.optionals (!config.nixdots.linux.wsl) [ pkgs.mermaid-cli ]);
+    extraPackages =
+      with pkgs;
+      [
+        # lua devenvs (luajit)
+        lua5_1
+        lua51Packages.luarocks
+        lua-language-server
+        stylua
+        # tree-sitter
+        tree-sitter
+        # copilot-lua
+        nodejs-slim_24
+        vimPlugins.nvim-treesitter-parsers.diff
+        vimPlugins.nvim-treesitter-parsers.nix
+        # snacks.image
+        pkg-config
+        imagemagick
+        tectonic
+        vimPlugins.nvim-treesitter-parsers.latex
+        ghostscript_headless
+        markdown-oxide
+        # typst-preview.nvim
+        tinymist
+        websocat
+        # cli deps
+        ripgrep
+        # cc
+        clang
+      ]
+      ++ (lib.optionals (!config.nixdots.linux.wsl) [ pkgs.mermaid-cli ]);
   };
 
   nixdots.devenvs.lua.enable = true;

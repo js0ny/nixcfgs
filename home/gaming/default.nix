@@ -8,6 +8,8 @@
     protontricks
     protonplus
 
-    localPkgs.wine.clrmamepro
+    (localPkgs.wine.clrmamepro.override {
+      winepkg = pkgs.wineWow64Packages.waylandFull;
+    })
   ];
 }

@@ -31,41 +31,19 @@ in
       plugin = {
         prepend_fetchers = [
           {
-            id = "git";
-            name = "*";
+            group = "git";
+            url = "*";
             run = "git";
           }
           {
-            id = "git";
-            name = "*/";
+            group = "git";
+            url = "*/";
             run = "git";
           }
         ];
         prepend_preloaders = [
           {
-            mime = "{audio,video,image}/*";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/subrip";
-            run = "mediainfo";
-          }
-
-          # Adobe Illustrator & Postscript
-          {
-            mime = "application/postscript";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/illustrator";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/dvb.ait";
-            run = "mediainfo";
-          }
-          {
-            mime = "application/vnd.adobe.illustrator";
+            mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}";
             run = "mediainfo";
           }
           {
@@ -73,23 +51,19 @@ in
             run = "mediainfo";
           }
           {
-            mime = "application/eps";
-            run = "mediainfo";
-          }
-
-          # Extension fallback for AI files
-          {
             url = "*.{ai,eps,ait}";
             run = "mediainfo";
           }
-
-          # Specific flags
           {
-            mime = "{image}/*";
+            mime = "audio/*";
+            run = "mediainfo";
+          }
+          {
+            mime = "image/*";
             run = "mediainfo --no-metadata";
           }
           {
-            mime = "{video}/*";
+            mime = "video/*";
             run = "mediainfo --no-preview";
           }
         ];

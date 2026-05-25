@@ -12,9 +12,7 @@
     jq
     jujutsu
     mtr # my-traceroute
-    nixfmt
     socat
-    vscode-json-languageserver
     yq-go
     # keep-sorted end
   ];

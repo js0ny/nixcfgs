@@ -3,17 +3,13 @@
   imports = [
     # keep-sorted start
 
-    # Packages
     ../packages/cli.nix
     ./bat.nix
-    # Editors
     ./editors/vim
-    # Utilities & misc
-    # ./xilinx.nix
+    ./fastfetch.nix
     ./fzf.nix
     ./git.nix
     ./libvirt.nix
-    # General Program config (Shared)
     ./lsd.nix
     ./rtorrent.nix
     # Shell

@@ -18,6 +18,7 @@ in
         # keep-sorted start
         bluetui
         dex
+        ffmpeg
         imagemagick
         localPkgs.edit-clipboard
         localsend
@@ -26,7 +27,6 @@ in
         nixpaks.ticktick
         pandoc
         # Theming
-        fastfetch # TODO: Override featrue flasgs
         papirus-icon-theme
         proton-pass-cli
         proton-vpn-cli
@@ -34,12 +34,11 @@ in
         qpwgraph
         remmina
         ripdrag
+        ripgrep-all
         showmethekey
         signal-desktop
         siyuan
         trash-cli
-        ripgrep-all
-        ffmpeg
         # keep-sorted end
       ]
     else
