@@ -14,6 +14,7 @@ lib.mkIf cfg.enable {
       nix-diff
       nix-output-monitor
       nvd
+      nix-tree
     ]
     ++ lib.optionals cfg.global (
       with pkgs;

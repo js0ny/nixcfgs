@@ -90,11 +90,6 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.nur.follows = "nur";
     };
-    nix-openclaw = {
-      url = "github:openclaw/nix-openclaw";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
     nixpak = {
       url = "github:nixpak/nixpak";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -131,6 +126,11 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -254,8 +254,7 @@
           wsl = import ./home/wsl.nix;
         };
 
-
-        overlays.default = import ./overlays;
+        overlays.default = import ./overlays { inherit inputs; };
       };
     };
 }
