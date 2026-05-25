@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = with pkgs; [
     scanmem
@@ -12,4 +12,10 @@
       winepkg = pkgs.wineWow64Packages.waylandFull;
     })
   ];
+  programs.mangohud = {
+    enable = true;
+    package = pkgs.mangohud.override {
+      nvidiaSupport = config.nixdots.linux.gpu == "nvidia";
+    };
+  };
 }

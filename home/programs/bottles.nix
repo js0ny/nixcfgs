@@ -6,7 +6,11 @@
   #     removeWarningPopup = true;
   #   })
   # ];
-  services.flatpak.packages = [ "com.usebottles.bottles" ];
+  services.flatpak.packages = [
+    "com.usebottles.bottles"
+    "org.freedesktop.Platform.VulkanLayer.MangoHud"
+    "org.freedesktop.Platform.VulkanLayer.vkBasalt"
+  ];
   dconf.settings = {
     "com/usebottles/bottles" = {
       update-date = true;

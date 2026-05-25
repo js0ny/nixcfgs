@@ -4,7 +4,12 @@
   ...
 }:
 {
-  programs.btop.enable = true;
+  programs.btop = {
+    enable = true;
+    package = pkgs.btop.override {
+      cudaSupport = config.nixdots.linux.gpu == "nvidia";
+    };
+  };
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
@@ -17,7 +22,6 @@
         if config.programs.delta.enable then [ { pager = "delta --dark --paging=never"; } ] else [ ];
     };
   };
-
 
   programs.jujutsu.enable = true;
 

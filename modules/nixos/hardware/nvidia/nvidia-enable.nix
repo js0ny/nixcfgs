@@ -14,6 +14,10 @@ in
 lib.mkIf (cfg == "nvidia") (
   lib.mkMerge [
     {
+      nixpkgs.config = {
+        allowUnfreePredicate = pkgs._cuda.lib.allowUnfreeCudaPredicate;
+        # cudaSupport = true;
+      };
       hardware.nvidia = {
         modesetting.enable = true;
         powerManagement.enable = true;
@@ -27,6 +31,7 @@ lib.mkIf (cfg == "nvidia") (
         enable32Bit = true;
       };
       services.ollama.package = pkgs.ollama-cuda;
+      environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
     }
 
     (lib.mkIf laptop {
