@@ -6,7 +6,10 @@ in
 {
   nixdots.persist.home = {
     directories = [
-      ".local/share/gnupg"
+      {
+        directory = ".local/share/gnupg";
+        mode = "0700";
+      }
     ];
   };
   home.sessionVariables = {

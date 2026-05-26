@@ -88,5 +88,11 @@ in
       ".local/share/Celeste/Backups/settings.celeste".source =
         config.lib.file.mkOutOfStoreSymlink cfg.settingsFile;
     };
+    nixdots.persist.home = {
+      directories = [
+        ".local/share/Celeste"
+      ]
+      ++ (if cfg.withOlympus then [ ".config/Olympus" ] else [ ]);
+    };
   };
 }

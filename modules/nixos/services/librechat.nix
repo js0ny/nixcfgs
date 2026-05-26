@@ -10,6 +10,7 @@ let
   port = ep.port;
 in
 {
+  imports = [ ./mongodb.nix ];
   services.librechat = {
     # https://www.librechat.ai/docs/configuration/dotenv
     env = lib.mkMerge [

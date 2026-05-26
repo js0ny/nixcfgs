@@ -27,7 +27,7 @@ let
 
         ${
           if withEnv then
-            ''
+            /* bash */ ''
               API_BASE="''${PDF2ZH_API_BASE:-https://openrouter.ai/api/v1}"
               MODEL="''${PDF2ZH_MODEL:-google/gemini-3-flash-preview}"
 

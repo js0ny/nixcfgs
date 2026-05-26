@@ -7,7 +7,7 @@
 {
   imports = [
     # keep-sorted start
-    ../../../modules/home/plasma
+    ../../../modules/home/linux/desktop/plasma
     ../../programs/dolphin
     ./calendar.nix
     ./input.nix

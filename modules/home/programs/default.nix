@@ -8,6 +8,7 @@
     ./cider-2.nix
     ./dolphin
     ./firefox
+    ./gocryptfs.nix
     ./obs-studio.nix
     ./onlyoffice.nix
     ./opencode.nix

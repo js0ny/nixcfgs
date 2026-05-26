@@ -10,10 +10,4 @@ in
     withOlympus = true;
     settingsFile = "${dots}/users/${user}/programs/gaming/celeste/settings.celeste";
   };
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/Celeste"
-    ]
-    ++ (lib.optionals config.programs.celeste.withOlympus [ ".config/Olympus" ]);
-  };
 }

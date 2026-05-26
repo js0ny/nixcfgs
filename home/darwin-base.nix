@@ -5,8 +5,7 @@
 
     # ./programs/media/mpv.nix
 
-    ../modules/home
-    ../modules/home/darwin.nix
+    ../modules/home/darwin
     ./packages/devtools.nix
     ./packages/gui.nix
     ./programs

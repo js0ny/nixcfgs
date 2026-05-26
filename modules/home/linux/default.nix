@@ -1,7 +1,9 @@
 { pkgs, ... }:
 {
   imports = [
-    ./filetype/linux.nix
+    ../.
+    ../filetype/linux.nix
+    ./gnome-keyring.nix
     ./impermanence.nix
     ./xremap/spcl.nix
     ./xremap/caps-esc-ctrl.nix
