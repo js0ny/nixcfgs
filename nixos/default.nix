@@ -6,13 +6,13 @@ in
   _module.args.mylib = mylib;
   imports = [
     # keep-sorted start
-    ../../hardening/nixpaks
     ../common
     ../common/nix-helper.nix
     ../common/sops.nix
     ../common/styles
     ../common/styles/nixos.nix
     ../common/system.nix
+    ../nixpaks
     ../options
     ./compat.nix
     ./core

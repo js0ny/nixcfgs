@@ -70,7 +70,7 @@ in
   };
   xdg.dataFile = appWrappers;
   home.activation.patchFlatpakDesktopFiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ${lib.concatMapStringsSep "\n" (appid: ''
+    ${lib.concatMapStringsSep "\n" (appid: /* bash */ ''
       DESKTOP_FILE="${config.xdg.dataHome}/flatpak/exports/share/applications/${appid}.desktop"
       if [ -f "$DESKTOP_FILE" ]; then
         $DRY_RUN_CMD ${lib.getExe pkgs.gnused} -i "s|^\(Exec=.*${appid}\)|\\1 ${waylandFlags}|g" "$DESKTOP_FILE"

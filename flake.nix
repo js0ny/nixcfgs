@@ -237,13 +237,13 @@
         };
       flake = {
         nixosModules = {
-          default = import ./modules/nixos;
-          server = import ./modules/nixos/server;
-          desktop = import ./modules/nixos/desktop;
+          default = import ./nixos;
+          server = import ./nixos/server;
+          desktop = import ./nixos/desktop;
         };
 
         darwinModules = {
-          default = import ./modules/darwin;
+          default = import ./darwin;
         };
 
         homeManagerModules = {

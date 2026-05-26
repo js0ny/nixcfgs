@@ -15,7 +15,7 @@ in
     polarity = "dark";
   }
   // lib.optionalAttrs (style.stylix.enable) {
-      #    autoEnable = true;
+    #    autoEnable = true;
     fonts = {
       sansSerif = builtins.head style.fonts.sansSerif;
       serif = builtins.head style.fonts.serif;

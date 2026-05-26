@@ -2,7 +2,7 @@
 {
   imports = [
     # keep-sorted start
-    ../modules/home/linux
+    ./linux
     ./programs
     # keep-sorted end
   ];
