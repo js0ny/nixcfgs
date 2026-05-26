@@ -7,7 +7,6 @@
     ../options
     ./antidots.nix
     ./core.nix
-    ./customDirs.nix
     ./devenvs
     ./directories.nix
     ./do-not-track.nix

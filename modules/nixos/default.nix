@@ -27,7 +27,6 @@ in
     ./programs/zsh.nix
     ./security/hardening.nix
     ./security/howdy.nix
-    ./services
     ./virtualisation
     # keep-sorted end
   ];

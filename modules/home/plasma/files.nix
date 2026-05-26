@@ -1,6 +1,5 @@
 { config, lib, ... }:
 {
-
   programs.plasma.configFile = {
     baloofilerc = {
       General = {

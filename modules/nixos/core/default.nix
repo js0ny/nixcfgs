@@ -9,6 +9,7 @@
     ./sops.nix
     ./ssh.nix
     ./sshd.nix
+    ./tailscale.nix
     ./tuned.nix
     # keep-sorted end
   ];
