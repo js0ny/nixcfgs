@@ -1,4 +1,13 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
+  dots = config.nixdots.core.dots;
+in
 {
   programs.emacs = {
     enable = false;
@@ -31,18 +40,23 @@
         elfeed-org
         olivetti
         org-modern
+        nix-ts-mode
+        (epkgs.treesit-grammars.with-grammars (grammars: [
+          grammars.tree-sitter-nix
+        ]))
       ]
       ++ (lib.optionals pkgs.stdenv.isLinux [ epkgs.xclip ]);
   };
   # TODO: tdlib version is too high
   # See: https://github.com/zevlg/telega.el/issues/374
-  home.packages = with pkgs; [
-    tdlib
-  ];
+  # home.packages = with pkgs; [
+  #   tdlib
+  # ];
 
   nixdots.darwin.homebrew = {
     taps = [ "railwaycat/emacsmacport" ];
   };
 
-  imports = [ ./. ];
+  imports = [ ../. ];
+  xdg.configFile."emacs".source = mkSymlink "${dots}/home/programs/editors/emacs";
 }

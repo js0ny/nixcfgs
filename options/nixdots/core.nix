@@ -123,17 +123,6 @@
           example = "host.tailexample.ts.net";
           description = "The MagicDNS hostname for this specific node.";
         };
-        openFirewall = lib.mkOption {
-          type = lib.types.bool;
-          default = true;
-          description = "Open UDP 41641 for Tailscale peer-to-peer connections.";
-        };
-
-        trustInterface = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Trust the Tailscale interface, allowing all incoming traffic from the Tailnet.";
-        };
 
         authKeyFile = lib.mkOption {
           type = lib.types.str;

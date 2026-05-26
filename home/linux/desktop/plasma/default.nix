@@ -13,7 +13,7 @@ let
       desktopfile = entryName;
     };
   };
-  iconFixList = {
+  iconFixMap = {
     "virt-manager" = "python3.13 .virt-manager-wrapped";
     "proton.vpn.app.gtk" = "python3.13 .protonvpn-app-wrapped";
     "GameConqueror" = "python3.13 GameConqueror.py";
@@ -35,6 +35,6 @@ in
       general.family = "${config.stylix.fonts.sansSerif.name}";
       general.pointSize = 10;
     };
-    window-rules = (lib.mapAttrsToList iconFixRule iconFixList);
+    window-rules = (lib.mapAttrsToList iconFixRule iconFixMap);
   };
 }

@@ -9,7 +9,6 @@ in
 lib.mkIf cfg.enable {
   services.tailscale = {
     enable = true;
-    openFirewall = cfg.openFirewall;
     authKeyFile = cfg.authKeyFile;
   };
   networking.firewall = {

@@ -53,6 +53,7 @@ in
         clang
       ]
       ++ (lib.optionals (!config.nixdots.linux.wsl) [ pkgs.mermaid-cli ]);
+    extraLuaPackages = ps: [ ps.magick ];
   };
 
   nixdots.devenvs.lua.enable = true;

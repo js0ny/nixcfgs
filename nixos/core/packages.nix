@@ -1,4 +1,3 @@
-# ~/.config/nix-config/common/packages-headless.nix
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
@@ -7,25 +6,32 @@
     curl
     dig
     file
+    ghostty.terminfo
     git
+    kitty.kitten
+    kitty.terminfo
     lsof
     moreutils
     psmisc
     socat
-    tmux
-    vim
     wget
     # keep-sorted end
   ];
-  # Explicitly define default EDITOR
+  # keep-sorted start
+  programs.iftop.enable = true;
+  programs.iotop.enable = true;
+  programs.less.enable = true;
+  programs.mtr.enable = true;
   programs.nano.enable = false;
+  programs.neovim.enable = true;
+  programs.tcpdump.enable = true;
+  # keep-sorted end
+
   programs.neovim = {
-    enable = true;
     defaultEditor = true;
     viAlias = true;
+    withNodeJs = false;
+    withPython3 = false;
+    withRuby = false;
   };
-  programs.mtr.enable = true;
-  programs.tcpdump.enable = true;
-  programs.iotop.enable = true;
-  programs.iftop.enable = true;
 }

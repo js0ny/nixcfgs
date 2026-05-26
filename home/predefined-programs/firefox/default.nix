@@ -25,14 +25,6 @@ in
     enable = cfg.enable;
   };
 
-  nixdots.persist.home =
-    if cfg.enable then
-      {
-        directories = [
-          persistDir
-        ];
-      }
-    else
-      { };
+  nixdots.persist.home = lib.mkIf (cfg.enable) { directories = [ persistDir ]; };
   programs.firefox.policies = lib.mkIf pkgs.stdenv.isDarwin policies;
 }

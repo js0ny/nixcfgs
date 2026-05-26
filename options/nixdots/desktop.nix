@@ -51,7 +51,7 @@
           "noctalia"
           "dank-material-shell"
         ];
-        default = "vanilla";
+        default = "dank-material-shell";
         description = ''
           The shell interface that accopanied with a window manager (like niri)
         '';

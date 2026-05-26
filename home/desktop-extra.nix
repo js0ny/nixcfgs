@@ -21,7 +21,8 @@
     ./programs/claude-code.nix
     ./programs/codex.nix
     ./programs/easyeffects
-    ./programs/editors/emacs.nix
+    ./programs/editors/emacs
+    ./programs/editors/helix.nix
     ./programs/editors/neovide.nix
     ./programs/editors/nvim
     ./programs/editors/vscode

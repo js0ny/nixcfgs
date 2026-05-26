@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  home.packages = with pkgs; [
+  home.packages = lib.optionals (pkgs.stdenv.isLinux && pkgs.stdenv.isx86_64) [
     # WiiU Emulator
-    cemu
+    pkgs.cemu
   ];
+  nixdots.darwin.homebrew.casks = [ "cemu" ];
 }

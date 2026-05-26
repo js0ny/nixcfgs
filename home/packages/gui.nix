@@ -1,15 +1,8 @@
 {
   pkgs,
-  config,
+  lib,
   ...
 }:
-let
-  # forceElectron39 =
-  #   p:
-  #   (p.override {
-  #     electron = pkgs.electron_39;
-  #   });
-in
 {
   home.packages =
     with pkgs;
@@ -29,7 +22,6 @@ in
         # Theming
         papirus-icon-theme
         proton-pass-cli
-        proton-vpn-cli
         qbittorrent
         qpwgraph
         remmina
@@ -52,7 +44,6 @@ in
     ];
     casks = [
       "ticktick"
-      "protonvpn"
       "proton-drive"
       "rustdesk"
       "localsend"
@@ -65,7 +56,7 @@ in
       "scroll-reverser" # Natural scrolling for trackpad only
     ];
   };
-  home.sessionVariables = {
+  home.sessionVariables = lib.optionalAttrs (pkgs.stdenv.isLinux) {
     PROTON_PASS_LINUX_KEYRING = "dbus";
   };
 }

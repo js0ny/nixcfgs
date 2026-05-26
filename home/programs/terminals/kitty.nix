@@ -9,7 +9,6 @@ let
   shell = config.nixdots.apps.interactiveShell.package;
 in
 {
-  xdg.configFile."kitty/kitty.conf".force = true;
   programs.kitty = {
     enable = true;
     shellIntegration = {
@@ -77,17 +76,13 @@ in
     extraConfig = ''
       mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
     '';
-    actionAliases =
-      if config.programs.neovim.enable then
-        {
-          "kitty_scrollback_nvim" =
-            "kitten ${config.home.homeDirectory}/.local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py";
-        }
-      else
-        { };
+    actionAliases = lib.mkIf (config.programs.neovim.enable) {
+      "kitty_scrollback_nvim" =
+        "kitten ${config.home.homeDirectory}/.local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py";
+    };
   };
   programs = {
-    bash.bashrcExtra = ''
+    bash.bashrcExtra = /* bash */ ''
       if [ "$TERM" = "xterm-kitty" ]; then
           alias ssh="kitty +kitten ssh"
           alias icat="kitty +kitten icat"
@@ -96,7 +91,7 @@ in
           alias clip="kitty +kitten clipboard"
       fi
     '';
-    zsh.initContent = ''
+    zsh.initContent = /* bash */ ''
       if [ "$TERM" = "xterm-kitty" ]; then
           alias ssh="kitty +kitten ssh"
           alias icat="kitty +kitten icat"
@@ -105,7 +100,7 @@ in
           alias clip="kitty +kitten clipboard"
       fi
     '';
-    fish.interactiveShellInit = ''
+    fish.interactiveShellInit = /* fish */ ''
       if test "$TERM" = "xterm-kitty"
           abbr --add ssh "kitty +kitten ssh"
           abbr --add icat "kitty +kitten icat"

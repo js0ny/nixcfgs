@@ -16,6 +16,10 @@
       ".steam"
     ];
   };
+  programs.steam.config = {
+    enable = true;
+    closeSteam = true;
+  };
   # Lost & Found
   xdg.desktopEntries = {
     samira = {

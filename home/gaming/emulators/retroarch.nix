@@ -1,7 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.retroarch = {
-    enable = true;
+    enable = !pkgs.stdenv.isDarwin;
     cores = {
       # Nintendo
       # ==================
@@ -19,4 +19,5 @@
       ppsspp.enable = true; # PSP
     };
   };
+  nixdots.darwin.homebrew.casks = [ "retroarch" ];
 }

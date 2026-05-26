@@ -87,28 +87,24 @@ in
     ];
   };
 
-  services.nginx.virtualHosts =
-    if url != null then
-      {
-        "${url}" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            proxyPass = "http://localhost:${toString port}";
-            proxyWebsockets = true;
-            # proxy_http_version 1.1;
-            extraConfig = /* nginx */ ''
-              proxy_buffering off;
-              proxy_cache off;
-              proxy_read_timeout 1800;
-              proxy_send_timeout 1800;
-              proxy_connect_timeout 1800;
-              add_header X-Accel-Buffering "no" always;
-            '';
-          };
-        };
-      }
-    else
-      { };
+  services.nginx.virtualHosts = lib.mkIf (url != null) {
+    "${url}" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://localhost:${toString port}";
+        proxyWebsockets = true;
+        # proxy_http_version 1.1;
+        extraConfig = /* nginx */ ''
+          proxy_buffering off;
+          proxy_cache off;
+          proxy_read_timeout 1800;
+          proxy_send_timeout 1800;
+          proxy_connect_timeout 1800;
+          add_header X-Accel-Buffering "no" always;
+        '';
+      };
+    };
+  };
 
 }
