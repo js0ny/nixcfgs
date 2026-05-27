@@ -25,6 +25,9 @@ lib.mkMerge [
     security.sudo.extraConfig = ''
       Defaults lecture = never
     '';
+    security.sudo-rs.extraConfig = ''
+      Defaults lecture = never
+    '';
   })
   (lib.mkIf (cfg.rootOn == "btrfs") {
     boot.initrd.supportedFilesystems = [ "btrfs" ];

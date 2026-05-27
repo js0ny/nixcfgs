@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  secrets,
+  ...
+}:
 let
   cloudflareIpv4 = [
     "173.245.48.0/20"
@@ -36,10 +41,12 @@ in
     js0nynet_cloudflare_origin_key = {
       owner = config.services.nginx.user;
       group = config.services.nginx.group;
+      sopsFile = secrets + /cloudflare.yaml;
     };
     js0nynet_ssl_cert = {
       owner = config.services.nginx.user;
       group = config.services.nginx.group;
+      sopsFile = secrets + /cloudflare.yaml;
     };
   };
   services.nginx.commonHttpConfig = ''

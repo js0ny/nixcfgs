@@ -20,6 +20,7 @@
     ./programs/productivity/obsidian
     ./programs/productivity/sdcv.nix
     ./programs/productivity/sioyek
+    ./programs/protonvpn.nix
     ./programs/rime
     ./programs/shell/bash.nix
     ./programs/shell/direnv.nix

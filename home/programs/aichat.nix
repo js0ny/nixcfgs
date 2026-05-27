@@ -1,5 +1,10 @@
-{ config, ... }:
+{ config, secrets, ... }:
 {
+  sops.secrets = {
+    llm_key_aichat = {
+      sopsFile = secrets + /llm-integrations.yaml;
+    };
+  };
   sops.templates."aichat.env" = {
     content = /* bash */ ''
       LITELLM_API_KEY=${config.sops.placeholder.llm_key_aichat}

@@ -1,12 +1,27 @@
 {
   pkgs,
   config,
+  secrets,
   ...
 }:
+let
+  sopsFile = secrets + /opencode.yaml;
+in
 {
   imports = [
     ./integrations.nix
   ];
+  sops.secrets = {
+    llm_key_opencode = {
+      sopsFile = sopsFile;
+    };
+    opencode_web_username = {
+      sopsFile = sopsFile;
+    };
+    opencode_web_password = {
+      sopsFile = sopsFile;
+    };
+  };
 
   nixdots.persist.home = {
     directories = [

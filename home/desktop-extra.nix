@@ -50,6 +50,7 @@
     ./programs/productivity/sioyek
     ./programs/productivity/zotero.nix
     ./programs/protonmail-bridge.nix
+    ./programs/protonvpn.nix
     ./programs/pwa
     ./programs/qalculate.nix
     ./programs/quickemu.nix

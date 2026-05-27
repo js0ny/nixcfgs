@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  secrets,
   ...
 }:
 let
@@ -11,6 +12,11 @@ let
   model = models.code-plan.model;
 in
 {
+  sops.secrets = {
+    llm_key_claude_code = {
+      sopsFile = secrets + /llm-integrations.yaml;
+    };
+  };
   nixdots.persist.home = {
     directories = [
       ".config/claude"

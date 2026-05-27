@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  secrets,
   ...
 }:
 let
@@ -20,6 +21,12 @@ let
   '';
 in
 {
+  sops.secrets = {
+    cider2_jwt = {
+      sopsFile = secrets + /hosts.yaml;
+      path = "${config.xdg.configHome}/sh.cider.genten/User.jwt";
+    };
+  };
   mergetools.cider-spa-config = {
     target = "${config.home.homeDirectory}/.config/sh.cider.genten/spa-config.yml";
     format = "yaml";
