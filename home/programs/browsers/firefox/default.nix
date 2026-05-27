@@ -9,6 +9,7 @@ in
     ./keymaps.nix
     ./search.nix
     ./styles.nix
+    ./containers.nix
   ];
   # Upstream: https://github.com/nix-community/stylix/issues/2071
   stylix.targets.firefox = {

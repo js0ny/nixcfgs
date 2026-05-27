@@ -17,7 +17,7 @@
         check_for_updates = true;
         file_save_warning = false;
         move_files = true;
-        move_files_to = "${config.home.homeDirectory}/Music";
+        move_files_to = config.xdg.userDirs.music;
         rename_files = true;
         show_new_user_dialog = false;
         cover_image_filename = "cover";

@@ -1,7 +1,10 @@
-{ ... }:
+{ lib, config, ... }:
 {
   programs.gh = {
     enable = true;
+    hosts."github.com" = {
+      user = lib.mkDefault config.home.username;
+    };
     settings = {
       git_protocol = "ssh";
 

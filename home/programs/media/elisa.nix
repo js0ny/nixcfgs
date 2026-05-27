@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  lib,
   ...
 }:
 {
@@ -10,7 +9,7 @@
     format = "ini";
     settings = {
       ElisaFileIndexer = {
-        "RootPath[$e]" = "$HOME/Music";
+        "RootPath[$e]" = config.xdg.userDirs.music;
       };
     };
   };

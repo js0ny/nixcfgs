@@ -1,16 +1,39 @@
-{ pkgs, ... }:
+{ config, ... }:
+let
+  dataDir = config.xdg.dataHome;
+in
 {
-  home.packages = with pkgs; [ beets ];
-  # TODO: Migrate config to nix.
   programs.beets = {
-    enable = false;
+    enable = true;
     settings = {
-      plugins = [ "rewrite" ];
+      library = "${dataDir}/beets/library.db";
+      directory = config.xdg.userDirs.music;
+      plugins = "musicbrainz rewrite fish zero fetchart";
+      rewrite =
+        let
+          artistMap = from: to: {
+            key = "artist ${from}";
+            vaule = to;
+          };
+        in
+        builtins.listToAttrs [
+          (artistMap "Пётр Ильич Чайковский" "Pyotr Ilyich Tchaikovsky")
+          (artistMap "Johann Strauss (Sohn)" "Johann Strauss II")
+        ];
+      zero = {
+        fields = "comments";
+        comments = [
+          "ripped by"
+          "EAC"
+          "LAME"
+          "from.+collection"
+          "[Dd]ownloaded from"
+        ];
+        update_database = true;
+      };
+      fetchart = {
+        cover_names = "cover front albumart folder";
+      };
     };
-  };
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/beets"
-    ];
   };
 }
