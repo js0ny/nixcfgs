@@ -1,14 +1,12 @@
 {
   pkgs,
-  inputs,
   config,
   ...
 }:
-let
-  llm = config.nixdefs.llm;
-in
 {
-  xdg.configFile."opencode/oh-my-opencode.json".text = builtins.toJSON (import ./oh-my-openagent.nix);
+  imports = [
+    ./integrations.nix
+  ];
 
   nixdots.persist.home = {
     directories = [

@@ -19,13 +19,7 @@ let
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram "$out/bin/opencode" \
-        --prefix PATH : ${
-          pkgs.lib.makeBinPath [
-            pkgs.bun
-            pkgs.git
-            pkgs.cacert
-          ]
-        } \
+        --prefix PATH : ${lib.makeBinPath [ pkgs.bun ]} \
         --set BUN_TELEMETRY_DISABLED 1 \
         --set CI 1
     '';
@@ -64,59 +58,51 @@ let
     models = mapOpenCodeModel providerCfg.models;
   }) enabledProviders;
 in
-lib.mkMerge [
-  {
-    programs.opencode = {
-      package = ocbun;
-      settings = {
-        autoupdate = false;
-        server = {
-          port = ep.opencode.port;
-          hostname = ep.opencode.bindAddress;
-        };
-        lsp = true;
+{
+  programs.opencode = {
+    package = ocbun;
+    settings = {
+      autoupdate = false;
+      server = {
+        port = ep.opencode.port;
+        hostname = ep.opencode.bindAddress;
       };
-      tui = {
-        keymap = {
-          sections = {
-            global = {
-              "command.palette.show" = [
-                "ctrl+p"
-                "alt+x"
-                "<leader>;"
-              ];
-            };
-            prompt = {
-              "prompt.editor" = [
-                "alt+e"
-                "<leader>e"
-              ];
-            };
-            autocomplete = {
-              "prompt.autocomplete.select" = [
-                "return"
-                "ctrl+y"
-              ];
-            };
+      lsp = true;
+      mcp = config.nixdefs.mcp.clientConfigs.opencode;
+      providers = mappedOpenCodeProviders // {
+        litellm.options.apiKey = "{file:${config.sops.secrets.llm_key_opencode.path}}";
+      };
+      model = "${llm.routing.code-plan.provider}/${llm.routing.code-plan.model}";
+    };
+    tui = {
+      keymap = {
+        sections = {
+          global = {
+            "command.palette.show" = [
+              "ctrl+p"
+              "alt+x"
+              "<leader>;"
+            ];
+          };
+          prompt = {
+            "prompt.editor" = [
+              "alt+e"
+              "<leader>e"
+            ];
+          };
+          autocomplete = {
+            "prompt.autocomplete.select" = [
+              "return"
+              "ctrl+y"
+            ];
           };
         };
       };
     };
-  }
-  (lib.mkIf config.nixdefs.acp.enable {
-    nixdefs.acp.servers.opencode = {
-      enable = config.programs.opencode.enable;
-      command = "opencode";
-      args = [ "acp" ];
-    };
-  })
-  (lib.mkIf config.nixdefs.mcp.enable {
-    programs.opencode.settings.mcp = config.nixdefs.mcp.clientConfigs.opencode;
-  })
-  (lib.mkIf config.nixdefs.llm.enable {
-    programs.opencode.settings = {
-      provider = mappedOpenCodeProviders;
-      model = "${llm.routing.code-plan.provider}/${llm.routing.code-plan.model}";
-    };
-  })
-]
+  };
+  nixdefs.acp.servers.opencode = {
+    enable = config.programs.opencode.enable;
+    command = "opencode";
+    args = [ "acp" ];
+  };
+}

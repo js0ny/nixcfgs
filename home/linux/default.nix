@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     ../.
@@ -34,5 +39,7 @@
   };
 
   home.packages = [ pkgs.kdePackages.qtstyleplugin-kvantum ];
-
+  home.sessionVariables = lib.mkIf (config.nixdots.linux.display == "wayland") {
+    NH_ELEVATION_STRATEGY = "run0";
+  };
 }

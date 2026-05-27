@@ -11,8 +11,8 @@
     "io/github/celluloid-player/celluloid" = {
       mpv-config-enable = true;
       mpv-input-config-enable = true;
-      mpv-config-file = "file:///home/${config.home.username}/.config/mpv/mpv.conf";
-      mpv-input-config-file = "file:///home/${config.home.username}/.config/mpv/input.conf";
+      mpv-config-file = "file://${config.xdg.configHome}/mpv/mpv.conf";
+      mpv-input-config-file = "file://${config.xdg.configHome}/mpv/input.conf";
     };
   };
 }

@@ -16,4 +16,8 @@ in
   misc.shellAliases = {
     zj = "zellij";
   };
+  xdg.configFile."zellij/layouts" = {
+    source = ./layouts;
+    recursive = true;
+  };
 }

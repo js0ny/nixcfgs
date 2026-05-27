@@ -1,19 +1,30 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
   dataDir = config.xdg.dataHome;
+  library =
+    if config.nixdots.persist.enable then
+      "${config.nixdots.persist.path}${dataDir}/beets/library.db"
+    else
+      "${dataDir}/beets/library.db";
 in
 {
   programs.beets = {
     enable = true;
     settings = {
-      library = "${dataDir}/beets/library.db";
-      directory = config.xdg.userDirs.music;
-      plugins = "musicbrainz rewrite fish zero fetchart";
+      library = lib.mkDefault library;
+      directory = lib.mkDefault config.xdg.userDirs.music;
+      plugins = builtins.concatStringsSep " " [
+        "musicbrainz"
+        "rewrite"
+        "fish"
+        "zero"
+        "fetchart"
+      ];
       rewrite =
         let
           artistMap = from: to: {
-            key = "artist ${from}";
-            vaule = to;
+            name = "artist ${from}";
+            value = to;
           };
         in
         builtins.listToAttrs [

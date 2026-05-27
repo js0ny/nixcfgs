@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   config,
   ...
 }:
@@ -14,7 +15,7 @@ let
     postBuild = ''
       wrapProgram "$out/bin/pi" \
         --prefix PATH : ${
-          pkgs.lib.makeBinPath [
+          lib.makeBinPath [
             pkgs.nodejs_24
             pkgs.uv
           ]

@@ -1,13 +1,10 @@
-{ lib, config, ... }:
-let
-  mylib = import ../../lib { inherit lib; };
-in
+{ config, ... }:
 {
-  _module.args.mylib = mylib;
   imports = [
     # keep-sorted start
     ../common
     ../common/nix-helper.nix
+    ../common/nix.nix
     ../common/sops.nix
     ../common/styles
     ../common/styles/nixos.nix
@@ -49,12 +46,4 @@ in
     ];
   };
 
-  nix.settings = {
-    substituters = config.nixdefs.misc.binary-cache.substituters;
-    trusted-public-keys = config.nixdefs.misc.binary-cache.trusted-public-keys;
-    trusted-users = [
-      "root"
-      config.nixdots.user.name
-    ];
-  };
 }

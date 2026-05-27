@@ -7,6 +7,7 @@ local parsers = {
   'go',
   'html',
   'ini',
+  'javascript',
   'json',
   'kdl',
   'lua',

@@ -1,14 +1,11 @@
-{ ... }:
+{ config, ... }:
 {
-  /*
-    Secret installation: (if you do not want to set environment globally)
-    sops.templates."aichat.env" = {
-      content =  ''
-        SPECIFICCLIENT_API_KEY=${config.sops.placeholder.specific_client_api}
-      '';
-      path = "${config.xdg.configHome}/aichat/.env";
-    };
-  */
+  sops.templates."aichat.env" = {
+    content = /* bash */ ''
+      LITELLM_API_KEY=${config.sops.placeholder.llm_key_aichat}
+    '';
+    path = "${config.xdg.configHome}/aichat/.env";
+  };
   misc.shellAliases = {
     aic = "aichat -s";
   };

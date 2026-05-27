@@ -11,7 +11,6 @@
     ./gocryptfs.nix
     ./obs-studio.nix
     ./onlyoffice.nix
-    ./opencode.nix
     ./pdf2zh.nix
     ./sdcv.nix
     ./thunderbird.nix
