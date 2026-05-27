@@ -1,22 +1,17 @@
 { config, lib, ... }:
 let
-  ollama = config.nixdefs.endpoints.ollama;
-  port = ollama.port;
-  addr = ollama.bindAddress;
+  epSelf = config.nixdefs.endpoints.ollama;
+  port = epSelf.port;
+  bind = epSelf.bindAddress;
   cfg = config.nixdots.services.ollama;
   # nvidia = config.nixdots.machine.nvidia.mode;
 in
 lib.mkIf (cfg.enable) {
   services.ollama = {
     enable = true;
-    host = addr;
+    host = bind;
     port = port;
     syncModels = lib.mkDefault true;
     loadModels = cfg.models;
-  };
-  nixdots.persist.system = {
-    directories = [
-      "/var/lib/private/ollama"
-    ];
   };
 }

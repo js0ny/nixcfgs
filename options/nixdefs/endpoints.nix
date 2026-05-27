@@ -10,6 +10,12 @@ let
           description = "Internal service port";
         };
 
+        portStr = mkOption {
+          type = lib.types.str;
+          readOnly = true;
+          default = toString config.port;
+        };
+
         bindAddress = mkOption {
           type = lib.types.str;
           default = "127.0.0.1";

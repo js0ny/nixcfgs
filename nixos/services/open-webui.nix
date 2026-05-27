@@ -6,11 +6,13 @@
 }:
 let
   ep = config.nixdefs.endpoints;
+  epSelf = ep.open-webui;
   llm = config.nixdefs.llm;
   models = llm.routing;
-  ip = ep.open-webui.bindAddress;
-  port = ep.open-webui.port;
-  url = ep.open-webui.domain;
+  ip = epSelf.bindAddress;
+  port = epSelf.port;
+  portStr = epSelf.portStr;
+  url = epSelf.domain;
   selfhosted = config.nixdefs.selfhosted;
 in
 {
@@ -92,7 +94,7 @@ in
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://localhost:${toString port}";
+        proxyPass = "http://localhost:${portStr}";
         proxyWebsockets = true;
         # proxy_http_version 1.1;
         extraConfig = /* nginx */ ''

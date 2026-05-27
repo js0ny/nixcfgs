@@ -5,9 +5,11 @@
   ...
 }:
 let
-  ep = config.nixdefs.endpoints.librechat;
-  url = ep.domain;
-  port = ep.port;
+  configVersion = "1.3.9";
+  ep = config.nixdefs.endpoints;
+  epSelf = ep.librechat;
+  url = epSelf.domain;
+  portStr = epSelf.portStr;
 in
 {
   imports = [ ./mongodb.nix ];
@@ -15,8 +17,8 @@ in
     # https://www.librechat.ai/docs/configuration/dotenv
     env = lib.mkMerge [
       {
-        PORT = ep.port;
-        HOST = ep.bindAddress;
+        PORT = epSelf.port;
+        HOST = epSelf.bindAddress;
         ALLOW_REGISTRATION = lib.mkDefault true;
         MONGO_URI = lib.mkDefault "mongodb://127.0.0.1:${toString config.nixdefs.endpoints.mongodb.port}/LibreChat";
         ENDPOINTS = lib.mkDefault "OpenRouter,openAI,anthropic";
@@ -28,8 +30,8 @@ in
         ALLOW_SHARED_LINKS_PUBLIC = lib.mkDefault "false";
       }
       (lib.mkIf (url != null) {
-        DOMAIN_CLIENT = ep.publicUrl;
-        DOMAIN_SERVER = ep.publicUrl;
+        DOMAIN_CLIENT = epSelf.publicUrl;
+        DOMAIN_SERVER = epSelf.publicUrl;
       })
     ];
     # like env = {} but passing file path
@@ -41,7 +43,7 @@ in
     credentials = { };
     # https://www.librechat.ai/docs/configuration/librechat_yaml
     settings = {
-      version = lib.mkDefault "1.3.9";
+      version = lib.mkDefault configVersion;
       cache = true;
 
       interface = {
@@ -69,7 +71,7 @@ in
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://localhost:${toString port}";
+        proxyPass = "http://localhost:${portStr}";
         proxyWebsockets = true;
         # proxy_http_version 1.1;
         extraConfig = /* nginx */ ''

@@ -15,11 +15,11 @@ let
   ep = config.nixdefs.endpoints;
   persist = config.nixdots.persist;
   # garage requires dirs to sit in the same fs
-  basedir = if persist.enable then "${persist.path}/var/lib/garage" else "/var/lib/garage";
+  stateDir = if persist.enable then "${persist.path}/var/lib/garage" else "/var/lib/garage";
   dirs = {
-    meta = "${basedir}/meta";
-    data = "${basedir}/data";
-    snapshots = "${basedir}/snapshots";
+    meta = "${stateDir}/meta";
+    data = "${stateDir}/data";
+    snapshots = "${stateDir}/snapshots";
   };
   serviceUser = config.systemd.services.garage.serviceConfig.User;
   serviceGroup = config.systemd.services.garage.serviceConfig.Group;
@@ -37,14 +37,14 @@ in
     package = pkg;
     # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/
     settings = {
-      rpc_bind_addr = "[::]:${toString ep.garage-rpc.port}";
+      rpc_bind_addr = "[::]:${ep.garage-rpc.portStr}";
       rpc_secret_file = config.sops.secrets.garage_rpc_secret.path;
       s3_api = {
         s3_region = "garage";
-        api_bind_addr = "[::]:${toString ep.garage-s3.port}";
+        api_bind_addr = "[::]:${ep.garage-s3.portStr}";
       };
       s3_web = {
-        bind_addr = "[::]:${toString ep.garage-web.port}";
+        bind_addr = "[::]:${ep.garage-web.portStr}";
         root_domain = mkDefault ".web.garage.localhost";
       };
       metadata_dir = dirs.meta;
@@ -68,12 +68,12 @@ in
     DynamicUser = mkForce false;
     User = "garage";
     Group = "garage";
-    StateDirectory = if persist.enable then basedir else "garage";
-    ReadWritePaths = [ basedir ];
+    StateDirectory = if persist.enable then stateDir else "garage";
+    ReadWritePaths = [ stateDir ];
   };
 
   systemd.tmpfiles.rules = [
-    "d ${basedir} 0755 ${serviceUser} ${serviceGroup} -"
+    "d ${stateDir} 0755 ${serviceUser} ${serviceGroup} -"
     "d ${dirs.meta} 0755 ${serviceUser} ${serviceGroup} -"
     "d ${dirs.data} 0755 ${serviceUser} ${serviceGroup} -"
     "d ${dirs.snapshots} 0755 ${serviceUser} ${serviceGroup} -"

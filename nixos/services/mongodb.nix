@@ -5,7 +5,7 @@
   ...
 }:
 let
-  ep = config.nixdefs.endpoints.mongodb;
+  epSelf = config.nixdefs.endpoints.mongodb;
 in
 lib.mkIf (config.services.librechat.enable) {
   services.mongodb = {
@@ -13,7 +13,6 @@ lib.mkIf (config.services.librechat.enable) {
     # The default mongodb package does not provide pre-compiled binaries
     package = lib.mkDefault pkgs.mongodb-ce;
     enableAuth = lib.mkDefault false;
-    bind_ip = ep.bindAddress;
+    bind_ip = epSelf.bindAddress;
   };
-  environment.systemPackages = with pkgs; [ mongosh ];
 }
