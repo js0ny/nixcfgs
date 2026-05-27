@@ -1,6 +1,5 @@
-{ ... }:
+{ config, ... }:
 {
-
   programs.urlDispatcher = {
     enable = true;
 
@@ -21,7 +20,8 @@
       "x\\.com"
       "weibo\\.com"
       "douban\\.com"
-    ];
+    ]
+    ++ config.secrets.plain.urlDispatcher.denyList;
 
     defaultBehaviour = "allow";
   };

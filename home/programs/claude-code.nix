@@ -51,9 +51,35 @@ in
               "ANTHROPIC_DEFAULT_SONNET_MODEL": "${model}",
               "ANTHROPIC_DEFAULT_OPUS_MODEL": "${model}",
               "ANTHROPIC_DEFAULT_HAIKU_MODEL": "${model}"
+          },
+          "statusline": {
+              "type": "command",
+              "command": "~/.config/claude/statusline.sh"
           }
       }
     '';
     path = "${config.xdg.configHome}/claude/settings.json";
   };
+  xdg.configFile."claude/statusline.sh" = {
+    text = /* bash */ ''
+      #!/usr/bin/env bash
+      # Statusline inspired by Starship prompt: os + dir + nix_shell, then prompt char
+      dir=$(pwd | sed "s|$HOME|~|" | sed 's|/\(.\)[^/]*|/\1|g')
+      nix_shell=""
+      if [ -n "$IN_NIX_SHELL" ] || [ -n "$IN_PROTECTED_SHELL" ]; then
+        nix_shell=" impure"
+      elif [ -n "$name" ]; then
+        nix_shell=" $name"
+      fi
+      # Check for nix develop / flake
+      if grep -q nixcfgs <<< "$(pwd)" 2>/dev/null; then
+        :
+      fi
+
+      printf '%s  %s' "$dir" "$nix_shell"
+    '';
+    executable = true;
+  };
+  makeMutable = [ ".config/claude/settings.json" ];
+
 }

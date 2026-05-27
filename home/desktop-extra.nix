@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  secrets,
+  ...
+}:
 {
   imports = [
     # keep-sorted start
@@ -99,4 +104,11 @@
     shiny_rate = 0.0078125
   '';
   catppuccin.thunderbird.profile = config.home.username;
+
+  nixdots.sops.secrets = {
+    nix_github_pat = {
+      env = [ "NIX_CONFIG" ];
+      sopsFile = secrets + /hosts.yaml;
+    };
+  };
 }

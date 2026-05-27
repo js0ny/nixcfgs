@@ -1,6 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   id = 2868840;
+  steamId = config.secrets.plain.steamId;
+  saveDir =
+    if pkgs.stdenv.isDarwin then
+      "${config.home.homeDirectory}/Library/Application Support/SlayTheSpire2/steam/${toString steamId}"
+    else
+      "${config.xdg.dataHome}/SlayTheSpire2/steam/${toString steamId}";
 in
 {
   # Fix: Slay the Spire 2 "SpeedX" mod initialization crash
@@ -21,5 +27,12 @@ in
     directories = [
       ".local/share/SlayTheSpire2"
     ];
+  };
+  mergetools.SlayTheSpire2Settings = {
+    target = "${saveDir}/settings.save";
+    format = "json";
+    settings = {
+      "skip_intro_logo" = true;
+    };
   };
 }

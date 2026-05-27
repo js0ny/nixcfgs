@@ -15,6 +15,8 @@
     ./programs
     ./programs/aichat.nix
     ./programs/browsers/firefox
+    # ./programs/walker.nix
+    ./programs/browsers/url-dispatcher.nix
     ./programs/dolphin
     ./programs/editors/nvim
     ./programs/editors/vscode
@@ -45,8 +47,6 @@
     ./programs/social/wechat.nix
     ./programs/terminals/kitty.nix
     ./programs/terminals/tmux.nix
-    # ./programs/walker.nix
-    ./programs/url-dispatcher.nix
     ./programs/vicinae.nix
     # keep-sorted end
   ];

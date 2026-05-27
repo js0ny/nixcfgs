@@ -1,0 +1,10 @@
+# vim:ft=gitignore
+# OS Generated
+.DS_Store
+desktop.ini
+# Python 
+__pycache__/
+
+.direnv/
+
+

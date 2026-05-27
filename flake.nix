@@ -133,6 +133,13 @@
       url = "github:NousResearch/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    secrets = {
+      url = "git+ssh://forgejo@git.js0ny.net/js0ny/nix-secrets.git";
+    };
+    bindeps = {
+      url = "git+ssh://forgejo@git.js0ny.net/js0ny/bindeps.git?lfs=1";
+      flake = false;
+    };
   };
 
   outputs =

@@ -42,4 +42,5 @@
   home.sessionVariables = lib.mkIf (config.nixdots.linux.display == "wayland") {
     NH_ELEVATION_STRATEGY = "run0";
   };
+  xdg.dataFile."Templates".source = ./dirs/Templates;
 }
