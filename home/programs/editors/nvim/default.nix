@@ -12,6 +12,7 @@ let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   dots = config.nixdots.core.dots;
   snippets = (import ../lsp-snippets { inherit pkgs config; }).out;
+  withImg = config.programs.kitty.enable || config.programs.ghostty.enable;
 in
 {
   imports = [ ../. ];
@@ -39,8 +40,6 @@ in
         vimPlugins.nvim-treesitter-parsers.nix
         # snacks.image
         pkg-config
-        imagemagick
-        tectonic
         vimPlugins.nvim-treesitter-parsers.latex
         ghostscript_headless
         markdown-oxide
@@ -52,8 +51,22 @@ in
         # cc
         clang
       ]
-      ++ (lib.optionals (!config.nixdots.linux.wsl) [ pkgs.mermaid-cli ]);
-    extraLuaPackages = ps: [ ps.magick ];
+      ++ (lib.optionals withImg) (
+        with pkgs;
+        [
+          mermaid-cli
+          imagemagick
+          tectonic
+        ]
+      );
+    extraLuaPackages =
+      ps:
+      [
+        ps.tree-sitter-cli
+      ]
+      ++ lib.optionals withImg [
+        ps.magick
+      ];
   };
 
   nixdots.devenvs.lua.enable = true;

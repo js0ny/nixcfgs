@@ -67,9 +67,7 @@ in
     path = lib.optionals (config.nixdefs.mcp.enable) [ pkgs.mcp-nixos ];
   };
   services.nginx.virtualHosts = lib.mkIf (url != null) {
-    "${url}" = {
-      forceSSL = true;
-      enableACME = true;
+    ${url} = {
       locations."/" = {
         proxyPass = "http://localhost:${portStr}";
         proxyWebsockets = true;
@@ -83,6 +81,7 @@ in
           add_header X-Accel-Buffering "no" always;
         '';
       };
-    };
+    }
+    // config.nixdefs.consts.nginxWithCF;
   };
 }

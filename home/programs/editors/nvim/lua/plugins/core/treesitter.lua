@@ -13,6 +13,7 @@ local parsers = {
   'lua',
   'markdown',
   'markdown_inline',
+  'nginx',
   'nix',
   'nu',
   'python',

@@ -90,7 +90,7 @@ in
   };
 
   services.nginx.virtualHosts = lib.mkIf (url != null) {
-    "${url}" = {
+    ${url} = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {

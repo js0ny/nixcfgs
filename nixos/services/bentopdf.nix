@@ -7,14 +7,15 @@ in
   services.bentopdf = {
     enable = true;
   }
-  // lib.optionAttrs (url != null) {
+  // lib.optionalAttrs (url != null) {
     domain = url;
     nginx = {
       enable = true;
       virtualHost = {
         forceSSL = lib.mkDefault true;
         enableACME = lib.mkDefault true;
-      };
+      }
+      // config.nixdefs.consts.nginxWithCF;
     };
   };
 }

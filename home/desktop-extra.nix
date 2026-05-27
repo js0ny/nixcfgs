@@ -61,7 +61,7 @@
     ./programs/shell/zsh.nix
     ./programs/terminals/ghostty.nix
     ./programs/terminals/kitty.nix
-    ./programs/terminals/zellij.nix
+    ./programs/terminals/zellij
     # ./programs/newsflash.nix
     ./programs/wine.nix
     # keep-sorted end

@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  version = "3.1.2";
+  tag = "3.1.2";
 
   ep = config.nixdefs.endpoints;
   epSelf = ep.fast-note-sync;
@@ -15,7 +15,7 @@ let
 in
 {
   virtualisation.oci-containers.containers."fast-note-sync-service" = {
-    image = "haierkeys/fast-note-sync-service:${version}";
+    image = "haierkeys/fast-note-sync-service:${tag}";
     ports = [
       "${ipAddr}:${portStr}:${iportStr}"
     ];
@@ -31,13 +31,14 @@ in
   ];
 
   services.nginx.virtualHosts = lib.mkIf (url != null) {
-    "${url}" = {
+    ${url} = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
         proxyPass = "http://localhost:${toString port}";
         proxyWebsockets = true;
       };
-    };
+    }
+    // config.nixdefs.consts.nginxWithCF;
   };
 }

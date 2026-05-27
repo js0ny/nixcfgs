@@ -31,7 +31,7 @@
     ./programs/terminals/ghostty.nix
     ./programs/terminals/kitty.nix
     ./programs/terminals/tmux.nix
-    ./programs/terminals/zellij.nix
+    ./programs/terminals/zellij
     # keep-sorted end
   ];
 
