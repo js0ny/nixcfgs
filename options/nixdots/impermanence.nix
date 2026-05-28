@@ -44,5 +44,37 @@
         default = [ ];
       };
     };
+    nosnap = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = config.nixdots.persist.enable;
+        description = "Enable nosnap persistence subvolume";
+      };
+      path = lib.mkOption {
+        type = lib.types.str;
+        default = "/persist/nosnap";
+        description = "Path to the nosnap subvolume";
+      };
+      system = {
+        directories = lib.mkOption {
+          type = with lib.types; listOf (either str attrs);
+          default = [ ];
+        };
+        files = lib.mkOption {
+          type = with lib.types; listOf (either str attrs);
+          default = [ ];
+        };
+      };
+      home = {
+        directories = lib.mkOption {
+          type = with lib.types; listOf (either str attrs);
+          default = [ ];
+        };
+        files = lib.mkOption {
+          type = with lib.types; listOf (either str attrs);
+          default = [ ];
+        };
+      };
+    };
   };
 }

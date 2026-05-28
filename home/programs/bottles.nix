@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  # Upstream: https://github.com/NixOS/nixpkgs/pull/511730
+  # Upstream: https://nixpk.gs/pr-tracker.html?pr=511730
   # home.packages = [
   #   (pkgs.bottles.override {
   #     removeWarningPopup = true;
@@ -18,7 +18,7 @@
     };
   };
 
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".local/share/bottles"
     ];

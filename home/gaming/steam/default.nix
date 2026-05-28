@@ -10,7 +10,7 @@
     # All-in-one Steam and Proton Tools
     steamtinkerlaunch
   ];
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".local/share/Steam"
       ".steam"

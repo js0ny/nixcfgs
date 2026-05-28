@@ -10,9 +10,11 @@ in
 lib.mkIf cfg.enable {
   nixpkgs.config.allowUnfree = true;
 
+  # Upstream: https://github.com/NixOS/nixpkgs/issues/523427
+  # https://github.com/NixOS/nixpkgs/pull/524488
   programs.gamescope = {
     enable = true;
-    capSysNice = true;
+    capSysNice = false;
   };
 
   programs.steam = {

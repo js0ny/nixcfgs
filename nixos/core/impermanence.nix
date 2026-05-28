@@ -29,6 +29,14 @@ lib.mkMerge [
       Defaults lecture = never
     '';
   })
+  (lib.mkIf cfg.nosnap.enable {
+    environment.persistence."${cfg.nosnap.path}" = {
+      hideMounts = true;
+      directories = cfg.nosnap.system.directories;
+      files = cfg.nosnap.system.files;
+    };
+    fileSystems."${cfg.nosnap.path}".neededForBoot = true;
+  })
   (lib.mkIf (cfg.rootOn == "btrfs") {
     boot.initrd.supportedFilesystems = [ "btrfs" ];
 

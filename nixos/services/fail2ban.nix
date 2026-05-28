@@ -1,8 +1,9 @@
-{ ... }:
+{ config, ... }:
 {
   services.fail2ban = {
     enable = true;
     # Sensible defaults for a server
+    ignoreIP = config.secrets.plain.fail2ban.ignoreIP;
     maxretry = 5;
     bantime = "1h";
     # Incrementally increase ban time for repeat offenders
