@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  secrets,
   ...
 }:
 let
@@ -9,7 +10,9 @@ let
 in
 {
   sops.secrets = {
-    mongodb_password = { };
+    mongodb_password = {
+      sopsFile = secrets + /mongodb.yaml;
+    };
   };
   services.mongodb = {
     enable = true;
@@ -19,4 +22,11 @@ in
     bind_ip = epSelf.bindAddress;
     initialRootPasswordFile = config.sops.secrets.mongodb_password.path;
   };
+  nixdots.persist.system.directories = [
+    {
+      directory = config.services.mongodb.dbpath;
+      user = "mongodb";
+      group = "mongodb";
+    }
+  ];
 }
