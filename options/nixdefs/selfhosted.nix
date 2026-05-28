@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   inherit (lib) mkOption mkEnableOption;
 in
@@ -58,6 +58,21 @@ in
       };
       discovery = mkOption {
         type = lib.types.str;
+      };
+    };
+    litellm = {
+      enable = mkEnableOption "Enable LiteLLM integration";
+      url = mkOption {
+        type = lib.types.str;
+        example = "https://litellm.example.com";
+      };
+      openai = mkOption {
+        type = lib.types.str;
+        default = "${config.selfhosted.litellm.url}/v1";
+      };
+      anthropic = mkOption {
+        type = lib.types.str;
+        default = "${config.selfhosted.litellm.url}";
       };
     };
   };

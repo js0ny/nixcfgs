@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  secrets,
   ...
 }:
 let
@@ -14,7 +15,9 @@ in
     WAKATIME_HOME = "${xdg-config}/wakatime"; # ~/.wakatime
   };
 
-  sops.secrets.wakatime_api_key = { };
+  sops.secrets.wakatime_api_key = {
+    sopsFile = secrets + /hosts.yaml;
+  };
   sops.templates."wakatime.cfg" = {
     content = /* ini */ ''
       [settings]

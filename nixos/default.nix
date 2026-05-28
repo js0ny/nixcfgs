@@ -3,12 +3,14 @@
   imports = [
     # keep-sorted start
     ../common
+    ../common/hm.nix
     ../common/nix-helper.nix
     ../common/nix.nix
     ../common/sops.nix
     ../common/styles
     ../common/styles/nixos.nix
     ../common/system.nix
+    ../definitions
     ../nixpaks
     ../options
     ./compat.nix

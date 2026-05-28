@@ -2,7 +2,9 @@
 {
   imports = [
     # keep-sorted start
+    ../common/hm.nix
     ../common/system.nix
+    ../definitions
     ../options
     ./brew.nix
     ./core.nix

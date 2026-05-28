@@ -79,45 +79,4 @@ in
       type = lib.types.attrsOf modelRoutingType;
     };
   };
-
-  config = lib.mkIf cfg.enable {
-    nixdefs.llm = {
-      providers = {
-        openrouter = {
-          baseUrl = "https://openrouter.ai/v1";
-          apiType = "openai";
-        };
-        minimax-cn = {
-          baseUrl = "https://api.minimaxi.com/anthropic";
-          apiType = "anthropic";
-        };
-        minimax-cn-openai = {
-          baseUrl = "https://api.minimaxi.com/v1";
-          apiType = "openai";
-        };
-      };
-      routing = {
-        translation = {
-          provider = "openrouter";
-          model = "google/gemini-3-flash-preview";
-        };
-        chat = {
-          provider = "openrouter";
-          model = "google/gemini-3-flash-preview";
-        };
-        code-plan = {
-          provider = "openrouter";
-          model = "openai/gpt-5.4";
-        };
-        code-build = {
-          provider = "openrouter";
-          model = "openai/gpt-5.4";
-        };
-        agent = {
-          provider = "openrouter";
-          model = "minimax/minimax-m2.7";
-        };
-      };
-    };
-  };
 }

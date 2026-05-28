@@ -62,6 +62,13 @@ in
           "sops -d*" = "deny";
           "sops --decrypt*" = "deny";
           "sops*" = "ask";
+          "rm*" = "ask";
+          "srm*" = "ask";
+          "rip*" = "ask";
+          ",*" = "ask";
+          "nix run*" = "ask";
+          "npx*" = "ask";
+          "uvx*" = "ask";
         };
         read = {
           "*" = "allow";
