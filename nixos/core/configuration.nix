@@ -43,8 +43,11 @@ in
   ];
 
   nixdots.persist.system.directories = [
-    "/var/log"
     "/var/lib/nixos"
+  ];
+
+  nixdots.persist.nosnap.system.directories = [
+    "/var/log"
     "/var/lib/systemd/coredump"
   ];
 

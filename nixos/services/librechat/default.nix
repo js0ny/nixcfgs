@@ -13,13 +13,13 @@ let
   portStr = epSelf.portStr;
   sec = config.sops.secrets;
   selfhosted = config.nixdefs.selfhosted;
-  m = { }; # TODO: modelSpecs
+  m = import ./librechat-helper.nix;
   sopsFile = secrets + /librechat.yaml;
 in
 {
   imports = [
-    ./mongodb.nix
-    ./meilisearch.nix
+    ../mongodb.nix
+    ../meilisearch.nix
   ];
   sops.secrets = {
     librechat_creds_key = {
@@ -190,6 +190,37 @@ in
         firecrawlApiKey = "\${FIRECRAWL_API_KEY}";
         jinaApiKey = "\${JINA_API_KEY}";
         safeSearch = 0;
+      };
+      endpoints = {
+        agents = { };
+        custom = [
+          {
+            name = "OpenRouter";
+            apiKey = "\${OPENROUTER_KEY}";
+            baseURL = "https://openrouter.ai/api/v1";
+            models = {
+              default = [ "deepseek/deepseek-v4-pro" ];
+              fetch = true;
+              titleConvo = true;
+              titleModel = "deepseek/deepseek-v4-flash";
+              dropParams = [ "stop" ];
+              modelDisplayLabel = "OpenRouter";
+            };
+          }
+          {
+            name = "LiteLLM";
+            apiKey = "\${LITELLM_KEY}";
+            baseURL = ep.litellm.publicUrl;
+            iconURL = "https://github.com/lobehub/lobe-icons/blob/master/packages/static-webp/light/rsshub-color.webp?raw=true";
+            models = {
+              default = [ "deepseek-v4-pro" ];
+              fetch = true;
+              titleConvo = true;
+              titleModel = "deepseek-v4-flash";
+              modelDisplayLabel = "LiteLLM";
+            };
+          }
+        ];
       };
     };
     # enableLocalDB = true;

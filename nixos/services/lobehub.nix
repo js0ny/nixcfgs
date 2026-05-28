@@ -23,33 +23,19 @@ let
   selfhosted = config.nixdefs.selfhosted;
   inherit (lib) mkDefault;
   dbname = "lobechat";
+  sopsFile = secrets + /lobechat.yaml;
 in
 {
   sops.secrets = {
-    lobechat_qstash_token = {
-      sopsFile = secrets + /lobechat.yaml;
-    };
-    lobechat_jwks_key = {
-      sopsFile = secrets + /lobechat.yaml;
-    };
-    lobechat_key_vaults = {
-      sopsFile = secrets + /lobechat.yaml;
-    };
-    lobechat_auth = {
-      sopsFile = secrets + /lobechat.yaml;
-    };
-    lobechat_db_password = {
-      sopsFile = secrets + /lobechat.yaml;
-    };
-    lobechat_s3_access_key = {
-      sopsFile = secrets + /lobechat.yaml;
-    };
-    lobechat_s3_secret_key = {
-      sopsFile = secrets + /lobechat.yaml;
-    };
-    lobechat_oidc_secret = {
-      sopsFile = secrets + /lobechat.yaml;
-    };
+    lobechat_qstash_token = { inherit sopsFile; };
+    lobechat_jwks_key = { inherit sopsFile; };
+    lobechat_key_vaults = { inherit sopsFile; };
+    lobechat_auth = { inherit sopsFile; };
+    lobechat_db_password = { inherit sopsFile; };
+    lobechat_s3_access_key = { inherit sopsFile; };
+    lobechat_s3_secret_key = { inherit sopsFile; };
+    lobechat_oidc_secret = { inherit sopsFile; };
+    lobechat_litellm_api_key = { inherit sopsFile; };
   };
 
   services.postgresql = {
@@ -164,10 +150,10 @@ in
     S3_ACCESS_KEY=${config.sops.placeholder.lobechat_s3_access_key}
     S3_ACCESS_KEY_ID=${config.sops.placeholder.lobechat_s3_access_key}
     S3_SECRET_ACCESS_KEY=${config.sops.placeholder.lobechat_s3_secret_key}
-    NEWAPI_API_KEY=${config.sops.placeholder.litellm_api}
+    NEWAPI_API_KEY=${config.sops.placeholder.lobechat_litellm_api_key}
     AUTH_AUTHELIA_SECRET=${config.sops.placeholder.lobechat_oidc_secret}
     JWKS_KEY=${config.sops.placeholder.lobechat_jwks_key}
-    QSTASH_TOKEN=${config.sops.placeholder.qstash_token}
+    QSTASH_TOKEN=${config.sops.placeholder.lobechat_qstash_token}
   '';
 
   services.redis.servers."lobechat" = {
