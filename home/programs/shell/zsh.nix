@@ -45,7 +45,7 @@ lib.mkIf cfg {
       ];
     };
 
-    initContent = ''
+    initContent = /* bash */ ''
       # Misc
       # ==========
       # Remove / from word characters, for easier path navigation (using backward-word, forward-word, etc)
@@ -120,6 +120,14 @@ lib.mkIf cfg {
 
       bindkey '^]' vi-find-next-char
       bindkey '^[^]' vi-find-prev-char
+
+      # TODO: Gated import
+      _paste-copy-using-wl-clipboard() {
+        LBUFFER+="$(${lib.getExe' pkgs.wl-clipboard "wl-paste"} -n)"
+      }
+
+      zle -N _paste-copy-using-wl-clipboard
+      bindkey '^V' _paste-copy-using-wl-clipboard
 
       # Misc
       # ========

@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  secrets,
   ...
 }:
 let
@@ -15,8 +16,26 @@ let
   dbname = "sub2api";
   dbuser = "sub2api";
   stateDir = "/var/lib/sub2api";
+  sopsFile = secrets + /sub2api.yaml;
 in
 {
+
+  # {{{ secrets
+  sops.secrets = {
+    sub2api_admin_password = {
+      inherit sopsFile;
+    };
+    sub2api_db_password = {
+      inherit sopsFile;
+    };
+    sub2api_jwt_secret = {
+      inherit sopsFile;
+    };
+    sub2api_totp_encryption_key = {
+      inherit sopsFile;
+    };
+  };
+  # }}}
 
   # {{{ deps
   services.postgresql = {

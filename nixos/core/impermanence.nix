@@ -7,6 +7,7 @@
 let
   cfg = config.nixdots.persist;
   path = cfg.path; # /persist
+  user = config.nixdots.user.name;
 in
 lib.mkMerge [
   (lib.mkIf cfg.enable {
@@ -30,6 +31,11 @@ lib.mkMerge [
     '';
   })
   (lib.mkIf cfg.nosnap.enable {
+    systemd.tmpfiles.rules = [
+      "d ${cfg.nosnap.path} 0755 root root -"
+      "d ${cfg.nosnap.path}/home 0755 root root -"
+      "d ${cfg.nosnap.path}/home/${user} 0755 ${user} users -"
+    ];
     environment.persistence."${cfg.nosnap.path}" = {
       hideMounts = true;
       directories = cfg.nosnap.system.directories;

@@ -9,6 +9,8 @@
       remap = {
         "M-j" = "C-down";
         "M-k" = "C-up";
+        "M-h" = "C-left";
+        "M-l" = "Enter";
       };
     }
   ];
