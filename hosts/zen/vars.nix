@@ -10,11 +10,12 @@
     darwin.enable = true;
     user = {
       name = "js0ny";
+      home = "/Users/js0ny";
       shell = pkgs.zsh;
     };
     core = {
       dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixdots";
+      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
       hostname = "zen";
       timezones = [
         "Europe/London"

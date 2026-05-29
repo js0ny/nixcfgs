@@ -121,17 +121,18 @@ lib.mkIf cfg {
       bindkey '^]' vi-find-next-char
       bindkey '^[^]' vi-find-prev-char
 
-      # TODO: Gated import
-      _paste-copy-using-wl-clipboard() {
-        LBUFFER+="$(${lib.getExe' pkgs.wl-clipboard "wl-paste"} -n)"
-      }
 
-      zle -N _paste-copy-using-wl-clipboard
-      bindkey '^V' _paste-copy-using-wl-clipboard
-
-      # Misc
+      # # Misc
       # ========
       # source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     '';
   };
 }
+
+# TODO: Gated import
+# _paste-copy-using-wl-clipboard() {
+#   LBUFFER+="$(${lib.getExe' pkgs.wl-clipboard "wl-paste"} -n)"
+# }
+
+# zle -N _paste-copy-using-wl-clipboard
+# bindkey '^V' _paste-copy-using-wl-clipboard

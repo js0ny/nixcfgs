@@ -6,10 +6,6 @@
 let
   cfg = config.nixdots.services.tailscale;
 in
-{
-  config = lib.mkIf cfg.enable {
-    services.tailscale = {
-      enable = true;
-    };
-  };
+lib.mkIf cfg.enable {
+  nixdots.darwin.homebrew.casks = [ "tailscale-app" ];
 }

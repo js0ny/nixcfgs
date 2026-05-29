@@ -4,10 +4,7 @@
   config.nixdefs.consts = {
     niri.extraConfig = lib.mkDefault "";
     firefox.profileDir =
-      if pkgs.stdenv.isDarwin then
-        "Library/Application Support/Firefox/Profiles"
-      else
-        ".config/mozilla/firefox";
+      if pkgs.stdenv.isDarwin then "Library/Application Support/Firefox" else ".config/mozilla/firefox";
     vicinae = {
       toggle = [
         "vicinae"

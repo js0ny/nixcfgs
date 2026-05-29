@@ -5,15 +5,17 @@
   ...
 }:
 let
-  brew = config.nixdots.darwin.homebrew;
+  darwin = config.nixdots.darwin;
+  brew = darwin.homebrew;
   customDirs = config.home.customDirs;
 in
 {
   imports = [
     ../.
-    ../common/nix-helper.nix
-    ./filetype/darwin.nix
+    ../../common/nix-helper.nix
+    ../filetype/darwin.nix
   ];
+
   home.sessionPath = [ "${brew.prefix}/bin" ];
 
   xdg.desktopEntries = lib.mkForce { };
@@ -43,6 +45,15 @@ in
           "System.iphoneApps"
         ];
       };
+      "io.tailscale.ipn.macsys" = lib.mkIf (config.nixdots.services.tailscale.enable) {
+        HideDockIcon = 1;
+        IPAddressCopiedAlertSuppressed = 1;
+        UnstableUpdatesEnabled = 0;
+        SUAutomaticallyUpdate = 0;
+        SUHasLaunchedBefore = 1;
+        TailscaleStartOnLogin = 1;
+        appIntroStep = 0;
+      };
     };
   };
   home.sessionVariables = {
@@ -62,4 +73,5 @@ in
     brewc = "brew cleanup";
     brewl = "brew list";
   };
+
 }

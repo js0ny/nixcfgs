@@ -74,11 +74,17 @@
     ]
     ++ (
       if pkgs.stdenv.isDarwin then
-        with pkgs; [ duti ]
+        with pkgs;
+        [
+          duti
+          mas
+        ]
       else
         with pkgs;
         [
           podman-compose
         ]
     );
+
+  nixdots.darwin.homebrew.formulae = [ "dark-mode" ];
 }

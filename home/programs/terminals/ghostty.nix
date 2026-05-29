@@ -10,6 +10,7 @@ in
 {
   programs.ghostty = {
     enable = true;
+    package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
     enableBashIntegration = true;
     enableZshIntegration = true;
     enableFishIntegration = true;

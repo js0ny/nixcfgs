@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 {
   imports = [
     # keep-sorted start
@@ -34,6 +34,7 @@
     ./programs/terminals/tmux.nix
     ./programs/terminals/zellij
     # keep-sorted end
+    inputs.secrets.darwinModules.default
   ];
 
   programs.pdf2zh.enable = true;
