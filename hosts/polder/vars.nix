@@ -5,6 +5,9 @@
   ...
 }:
 {
+  sops.secrets.tskey = {
+    sopsFile = secrets + /hosts/polder.yaml;
+  };
   nixdots = {
     user = {
       name = "js0ny";
@@ -25,7 +28,7 @@
         ip = "100.92.207.11";
         # ipv6 = "fd7a:115c:a1e0::e701:932";
         magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey_polder.path;
+        authKeyFile = config.sops.secrets.tskey.path;
       };
       sshd = true;
       ollama = {
@@ -77,12 +80,8 @@
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /secrets.yaml;
+      yamlFile = secrets + /hosts/polder.yaml;
       keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
-      secrets = {
-        tskey_polder = { };
-        restic_repo_password = { };
-      };
     };
     geo = {
       city = "Frankfurt";

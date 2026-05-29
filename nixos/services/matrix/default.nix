@@ -17,7 +17,6 @@ in
     ./coturn.nix
     ./hookshot.nix
     ./mautrix-telegram.nix
-    ./mautrix-discord.nix
   ];
   sops.secrets.matrix_reg_token = {
     sopsFile = secrets + /matrix.yaml;

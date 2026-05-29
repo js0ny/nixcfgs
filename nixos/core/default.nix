@@ -11,6 +11,7 @@
     ./sshd.nix
     ./tailscale.nix
     ./tuned.nix
+    ./wsl.nix
     # keep-sorted end
   ];
 }

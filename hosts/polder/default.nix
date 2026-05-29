@@ -67,7 +67,6 @@
   };
 
   sops.secrets = {
-    tskey_polder = { };
     rclone = {
       key = "data";
       sopsFile = secrets + /files/rclone.yaml;
