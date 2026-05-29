@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   secrets,
   ...
@@ -34,6 +35,10 @@ in
     OPENCODE_SERVER_PASSWORD=${config.sops.placeholder.opencode_web_password}
   '';
 
+  programs.zsh.initContent = /* bash */ ''
+    source <(opencode completion)
+  '';
+
   programs.opencode = {
     enable = true;
     web = {
@@ -41,6 +46,17 @@ in
       environmentFile = config.sops.templates."opencode-web.env".path;
     };
     settings = {
+      agent = {
+        "yolo" = {
+          mode = "primary";
+          model = "openai/gpt-5.5";
+          permission = {
+            bash = "allow";
+            edit = "allow";
+            read = "allow";
+          };
+        };
+      };
       plugin = [
         "@mohak34/opencode-notifier@latest"
         "opencode-btw"

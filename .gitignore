@@ -58,3 +58,4 @@ history.jsonl
 AGENTS.override.md
 __pycache__
 .claude/settings.local.json
+result*

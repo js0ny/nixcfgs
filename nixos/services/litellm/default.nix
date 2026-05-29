@@ -75,10 +75,10 @@ in
     volumes = [
       "${litellmConfig}:/app/config.yaml:ro"
     ];
+    entrypoint = "/bin/sh";
     cmd = [
-      "--config=/app/config.yaml"
-      "--host=0.0.0.0"
-      "--port=${portStr}"
+      "-c" # bash
+      "apk add --no-cache uv && exec litellm --config=/app/config.yaml --host=0.0.0.0 --port=${portStr}"
     ];
     log-driver = "journald";
   };

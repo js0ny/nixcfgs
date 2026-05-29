@@ -15,8 +15,10 @@
     ./restic.nix
     ./vars.nix
     # ./nixos-prebuild.nix
-    nixcfgs.nixosModules.desktop
+    ../../nixos/desktop
     ../../nixos/services/hermes-agent
+    ../../nixos/services/bifrost.nix
+    inputs.bifrost.nixosModules.bifrost
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
@@ -47,4 +49,7 @@
     "amdgpu.dcdebugmask=0x10"
   ];
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
+
+  programs.fish.enable = true;
+
 }

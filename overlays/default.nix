@@ -18,7 +18,15 @@ let
     let
       overlay = import (./. + "/${name}");
     in
-    if name == "hermes-agent.nix" then overlay { inherit inputs; } else overlay
+    if
+      builtins.elem name [
+        "bifrost.nix"
+        "hermes-agent.nix"
+      ]
+    then
+      overlay { inherit inputs; }
+    else
+      overlay
   ) overlayFiles;
 in
 # 4. 将所有散落的 overlay 安全地揉合成一个超级 overlay
