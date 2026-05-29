@@ -1,5 +1,13 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  cfg = config.nixdots.features.media.mpv;
+in
+lib.mkIf cfg.enable {
   programs.mpv = {
     enable = true;
     scripts =

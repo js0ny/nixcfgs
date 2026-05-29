@@ -10,6 +10,7 @@ let
   host = config.nixdots.core.hostname;
   nixosExpr = ''(builtins.getFlake ("git+file://${flake}")).nixosConfigurations.${host}.options'';
   homeExpr = "${nixosExpr}.home-manager.users.type.getSubOptions []";
+  flakePartsExpr = ''(builtins.getFlake ("git+file://${flake}")).debug.options'';
   # username = config.nixdots.user.name;
   # independentHomeExpr = ''(builtins.getFlake ("git+file://${flake}")).homeConfigurations.${username}.options'';
   lspServerType = lib.types.submodule {
@@ -80,6 +81,7 @@ in
           options = {
             nixos.expr = nixosExpr;
             home-manager.expr = homeExpr;
+            flake-parts.expr = flakePartsExpr;
           };
         };
       };

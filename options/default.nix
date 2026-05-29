@@ -1,7 +1,7 @@
-{ ... }:
+{ myLib, ... }:
 {
   imports = [
-    ./nixdots
     ./nixdefs
+    ./nixdots
   ];
 }

@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  typing = import ./types.nix { inherit lib; };
+  types = import ../types.nix { inherit lib; };
 in
 {
   options.nixdots.laptop = {
@@ -11,7 +11,7 @@ in
       description = "Enable ASUS-specifc configurations and asus-linux tools.";
     };
     display = lib.mkOption {
-      type = typing.laptopDisplay;
+      type = types.laptopDisplay;
       example = {
         connector = "eDP-1";
         makeModel = "Samsung Display Corp. ATNA40CU05-0  Unknown";
@@ -19,7 +19,7 @@ in
       };
     };
     keyboard = lib.mkOption {
-      type = typing.inputDevice;
+      type = types.inputDevice;
       example = {
         devicePath = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
         name = "AT Translated Set 2 keyboard";
@@ -28,7 +28,7 @@ in
       };
     };
     touchpad = lib.mkOption {
-      type = typing.inputDevice;
+      type = types.inputDevice;
       example = {
         devicePath = "/dev/input/by-path/platform-AMDI0010:00-event-mouse";
         name = "ASUP1208:00 093A:3011 Touchpad";
@@ -51,7 +51,7 @@ in
       };
     };
     microphone = lib.mkOption {
-      type = typing.audioDevice;
+      type = types.audioDevice;
       default = {
         name = "";
         description = "";

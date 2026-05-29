@@ -160,6 +160,16 @@ in
       thunderbird.enable = true;
       onlyoffice.enable = true;
     };
+    features = {
+      preferGtk = true;
+      media = {
+        obs-studio.enable = true;
+        mpv = {
+          enable = true;
+          enableNativeFrontend = false;
+        };
+      };
+    };
     linux = {
       enable = true;
       lanzaboote = true;

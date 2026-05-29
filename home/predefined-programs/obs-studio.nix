@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.programs.obs-studio;
+  cfg = config.nixdots.features.media.obs-studio;
 in
 lib.mkIf (cfg.enable && pkgs.stdenv.isLinux) {
   programs.obs-studio = {

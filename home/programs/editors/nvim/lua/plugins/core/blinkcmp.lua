@@ -48,7 +48,35 @@ return {
       },
     },
     completion = {
-      menu = { border = 'single' },
+      menu = {
+        border = 'single',
+        draw = {
+          columns = {
+            { 'kind_icon' },
+            { 'label', 'label_description', gap = 1 },
+            { 'source' },
+          },
+
+          components = {
+            source = {
+              width = { max = 20 },
+              text = function(ctx)
+                local source = ctx.source_name
+
+                if ctx.source_id == 'lsp' and ctx.item and ctx.item.client_id then
+                  local client = vim.lsp.get_client_by_id(ctx.item.client_id)
+                  if client then
+                    source = client.name
+                  end
+                end
+
+                return ' ' .. source
+              end,
+              highlight = 'BlinkCmpSource',
+            },
+          },
+        },
+      },
       documentation = { window = { border = 'single' } },
     },
     signature = { window = { border = 'single' } },

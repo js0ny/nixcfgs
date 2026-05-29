@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.programs.obs-studio;
+  cfg = config.nixdots.features.media.obs-studio;
 in
 lib.mkIf cfg.enable {
   boot.extraModulePackages = with config.boot.kernelPackages; [
@@ -23,7 +23,7 @@ lib.mkIf cfg.enable {
   '';
 
   # Manullay load v4l2loopback with modprobe, since the automatic loading will mess up /dev/video* devices.
-  security.polkit.extraConfig = ''
+  security.polkit.extraConfig = /* javascript */ ''
     polkit.addRule(function(action, subject) {
         if (action.id == "org.freedesktop.policykit.exec" &&
             action.lookup("program") == "${lib.getExe' pkgs.kmod "modprobe"}" &&

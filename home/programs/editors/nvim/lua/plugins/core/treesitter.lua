@@ -3,6 +3,7 @@ local parsers = {
   -- keep-sorted start
   'bash',
   'c',
+  'c_sharp',
   'cpp',
   'go',
   'html',

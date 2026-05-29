@@ -5,7 +5,7 @@
   ...
 }:
 let
-  types = import ./types.nix { inherit lib; };
+  types = import ../types.nix { inherit lib; };
   appType = types.appType;
 in
 {

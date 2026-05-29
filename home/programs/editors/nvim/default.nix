@@ -13,6 +13,7 @@ let
   dots = config.nixdots.core.dots;
   snippets = (import ../lsp-snippets { inherit pkgs config; }).out;
   withImg = config.programs.kitty.enable || config.programs.ghostty.enable;
+  appname = "nvim";
 in
 {
   imports = [ ../. ];
@@ -41,13 +42,10 @@ in
         # snacks.image
         pkg-config
         vimPlugins.nvim-treesitter-parsers.latex
-        ghostscript_headless
         markdown-oxide
-        # typst-preview.nvim
-        tinymist
-        websocat
         # cli deps
         ripgrep
+        ast-grep
         # cc
         clang
       ]
@@ -57,6 +55,7 @@ in
           mermaid-cli
           imagemagick
           tectonic
+          ghostscript_headless
         ]
       );
     extraLuaPackages =
@@ -74,7 +73,7 @@ in
   # home.packages = with pkgs; [lua-language-server];
   misc.shellAliases = nvimAlias;
 
-  xdg.configFile."nvim".source = mkSymlink "${dots}/home/programs/editors/nvim";
+  xdg.configFile."${appname}".source = mkSymlink "${dots}/home/programs/editors/nvim";
 
   xdg.configFile."lsp-snippets".source = snippets;
 
@@ -91,8 +90,8 @@ in
   nixdots.persist.home = {
     directories = [
       # nvim(lazy) will download plugins to this dir
-      ".local/share/nvim"
-      ".local/state/nvim"
+      ".local/share/${appname}"
+      ".local/state/${appname}"
     ];
   };
 }

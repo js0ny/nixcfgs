@@ -1,5 +1,13 @@
-{ ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  cfg = config.nixdots.features.media.mpv;
+in
+lib.mkIf (pkgs.stdenv.isDarwin && cfg.enable && cfg.enableNativeFrontend) {
   targets.darwin.defaults = {
     "com.colliderli.iina" = {
       ### General

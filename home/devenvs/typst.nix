@@ -21,5 +21,10 @@ lib.mkIf cfg.enable {
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     myriad-dreamin.tinymist
   ];
+  programs.neovim.extraPackages = with pkgs; [
+    # typst-preview.nvim
+    tinymist
+    websocat
+  ];
   programs.zed-editor.extensions = [ "typst" ];
 }

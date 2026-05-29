@@ -14,14 +14,14 @@ local function get_hostname()
 end
 
 local flake = os.getenv('NH_FLAKE') or vim.fn.getcwd()
-local base_expr = '(builtins.getFlake ("git+file://' .. flake .. '"))'
+local BASE_EXPR = '(builtins.getFlake ("git+file://' .. flake .. '"))'
 
 local is_darwin = vim.loop.os_uname().sysname == 'Darwin'
 local nixos_host = os.getenv('NIXD_NIXOS_HOST') or get_hostname()
 local darwin_host = os.getenv('NIXD_DARWIN_HOST') or get_hostname()
 
-local nixos_options_expr = base_expr .. '.nixosConfigurations.' .. nixos_host .. '.options'
-local darwin_options_expr = base_expr .. '.darwinConfigurations.' .. darwin_host .. '.options'
+local nixos_options_expr = BASE_EXPR .. '.nixosConfigurations.' .. nixos_host .. '.options'
+local darwin_options_expr = BASE_EXPR .. '.darwinConfigurations.' .. darwin_host .. '.options'
 local nixos_home_expr = nixos_options_expr .. '.home-manager.users.type.getSubOptions []'
 local darwin_home_expr = darwin_options_expr .. '.home-manager.users.type.getSubOptions []'
 
@@ -43,7 +43,7 @@ if os.getenv('NIXD_INDEPENDENT_HOME') then
   local user = os.getenv('USER') or 'default'
   local home_target = os.getenv('NIXD_HOME_TARGET') or (user .. '@' .. get_hostname())
 
-  local standalone_home_expr = base_expr .. '.homeConfigurations."' .. home_target .. '".options'
+  local standalone_home_expr = BASE_EXPR .. '.homeConfigurations."' .. home_target .. '".options'
   options['home-manager'] = { expr = standalone_home_expr }
 else
   if not is_darwin then
@@ -52,6 +52,8 @@ else
     options['home-manager'] = { expr = darwin_home_expr }
   end
 end
+
+options['flake-parts'] = { expr = BASE_EXPR .. '.debug.options' }
 
 if os.getenv('NIXD_NVIM_DEBUG') then
   print(nixos_home_expr)
