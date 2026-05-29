@@ -415,11 +415,11 @@ in
         icon = "https://github.com/lobehub/lobe-icons/blob/master/packages/static-webp/light/moonshot.webp?raw=true";
       };
     };
-  "claude-opus-4.7" =
+  "claude-opus-4.8" =
     let
-      ormodel = "anthropic/claude-opus-4.7";
+      ormodel = "anthropic/claude-opus-4.8";
       orbase = ormap."${ormodel}";
-      mdev = mdevs."anthropic".models."claude-opus-4-7";
+      mdev = mdevs."anthropic".models."claude-opus-4-8";
     in
     {
       id = mdev.id;
@@ -428,7 +428,7 @@ in
       upstream = [
         {
           provider = "aihubmix";
-          model = "claude-opus-4.7-think";
+          model = "claude-opus-4.8";
           order = 1;
         }
         {
