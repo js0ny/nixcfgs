@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   ports = config.nixdefs.endpoints;
 in
@@ -35,9 +40,12 @@ in
     };
 
   };
-  networking.firewall.allowedTCPPorts = [
-    ports.http.port
-    ports.https.port
-  ];
+  networking.firewall = {
+    allowedTCPPorts = lib.mkIf (config.nixdots.server.openHttp) [
+      ports.http.port
+      ports.https.port
+    ];
+    allowedUDPPorts = lib.mkIf (config.nixdots.server.openQuic) [ 443 ];
+  };
 
 }

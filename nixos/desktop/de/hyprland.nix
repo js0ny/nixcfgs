@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}:
+{ lib, config, ... }:
 let
   cfg = config.nixdots.desktop.de;
   # hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
@@ -26,6 +20,7 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "hyprland" cfg) {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
+    systemd.setPath.enable = true;
   };
 
   programs.uwsm = {

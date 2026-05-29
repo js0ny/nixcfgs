@@ -44,7 +44,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Niri - Wayland Window Manager
-    niri-flake.url = "github:sodiboo/niri-flake";
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    };
     # xremap - kay remapper like keyd
     xremap-flake = {
       url = "github:xremap/nix-flake";
@@ -140,6 +144,29 @@
       url = "git+ssh://forgejo@git.js0ny.net/js0ny/bindeps.git?lfs=1";
       flake = false;
     };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
+    srvos = {
+      url = "github:nix-community/srvos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs =
@@ -242,26 +269,125 @@
               }
             );
         };
-      flake = {
-        nixosModules = {
-          default = import ./nixos;
-          server = import ./nixos/server;
-          desktop = import ./nixos/desktop;
-        };
+      flake =
+        let
+          myLib = import ./lib { inherit (inputs.nixpkgs) lib; };
+          localOverlays = import ./overlays { inherit inputs; };
 
-        darwinModules = {
-          default = import ./darwin;
-        };
+          overlays = [
+            inputs.niri-flake.overlays.niri
+            inputs.nur.overlays.default
+            inputs.firefox-addons.overlays.default
+            inputs.nix-cachyos-kernel.overlays.pinned
+            localOverlays
+          ];
 
-        homeManagerModules = {
-          server-base = import ./home/server-base.nix;
-          darwin-base = import ./home/darwin-base.nix;
-          desktop-base = import ./home/desktop-base.nix;
-          desktop-extra = import ./home/desktop-extra.nix;
-          wsl = import ./home/wsl.nix;
-        };
+          specialArgs = {
+            inherit inputs overlays myLib;
+            nixcfgs = inputs.self;
+            bindeps = inputs.bindeps;
+            secrets = inputs.secrets;
+          };
 
-        overlays.default = import ./overlays { inherit inputs; };
-      };
+          nixosHosts = [
+            "crystal"
+            "polder"
+            "zwinger"
+            "wsl-crystal"
+          ];
+          darwinHosts = [ "zen" ];
+
+          mkNixosSystem =
+            hostname:
+            inputs.nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              inherit specialArgs;
+              modules = [
+                # keep-sorted start
+                inputs.catppuccin.nixosModules.catppuccin
+                inputs.disko.nixosModules.disko
+                inputs.home-manager.nixosModules.home-manager
+                inputs.impermanence.nixosModules.impermanence
+                inputs.lanzaboote.nixosModules.lanzaboote
+                inputs.nixos-wsl.nixosModules.default
+                inputs.secrets.nixosModules.default
+                inputs.sops-nix.nixosModules.sops
+                inputs.stylix.nixosModules.default
+                inputs.telegram-inline-llm-bot.nixosModules.default
+                # keep-sorted end
+                ./hosts/${hostname}
+                { nixpkgs.overlays = overlays; }
+              ];
+            };
+
+          mkDarwinSystem =
+            hostname:
+            inputs.nix-darwin.lib.darwinSystem {
+              system = "aarch64-darwin";
+              inherit specialArgs;
+              modules = [
+                ./hosts/${hostname}
+                { nixpkgs.overlays = overlays; }
+                inputs.mac-app-util.darwinModules.default
+                inputs.home-manager.darwinModules.default
+                inputs.stylix.darwinModules.stylix
+                inputs.secrets.darwinModules.default
+              ];
+            };
+
+          myNixosConfigs = inputs.nixpkgs.lib.genAttrs nixosHosts mkNixosSystem;
+          myDarwinConfigs = inputs.nixpkgs.lib.genAttrs darwinHosts mkDarwinSystem;
+        in
+        {
+          nixosModules = {
+            default = import ./nixos;
+            server = import ./nixos/server;
+            desktop = import ./nixos/desktop;
+          };
+
+          darwinModules = {
+            default = import ./darwin;
+          };
+
+          homeManagerModules = {
+            server-base = import ./home/server-base.nix;
+            darwin-base = import ./home/darwin-base.nix;
+            desktop-base = import ./home/desktop-base.nix;
+            desktop-extra = import ./home/desktop-extra.nix;
+            wsl = import ./home/wsl.nix;
+          };
+
+          overlays.default = localOverlays;
+
+          nixosConfigurations = myNixosConfigs;
+          darwinConfigurations = myDarwinConfigs;
+
+          deploy = {
+            sshOpts = [
+              "-p"
+              "2223"
+            ];
+            nodes = {
+              "polder" = {
+                hostname = "100.92.207.11";
+                profiles.system = {
+                  user = "root";
+                  sshUser = "js0ny";
+                  interactiveSudo = false;
+                  path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."polder";
+                };
+              };
+              "zwinger" = {
+                hostname = "100.71.26.71";
+                profiles.system = {
+                  user = "root";
+                  sshUser = "js0ny";
+                  interactiveSudo = false;
+                  path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."zwinger";
+                };
+              };
+            };
+          };
+        };
     };
 }

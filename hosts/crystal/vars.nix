@@ -41,7 +41,7 @@ in
     core = {
       hostname = "crystal";
       dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixdots";
+      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
       timezones = [
         "Europe/London"
         "Etc/UTC"

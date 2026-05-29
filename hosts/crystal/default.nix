@@ -1,11 +1,8 @@
 {
   pkgs,
-  config,
   inputs,
   lib,
-  myLib,
   nixcfgs,
-  secrets,
   ...
 }:
 {
@@ -34,7 +31,6 @@
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0489", ATTR{idProduct}=="e0f6", TEST=="power/control", ATTR{power/control}="on"
   '';
 
-  programs.hyprland.systemd.setPath.enable = true;
   services.libinput = {
     enable = true;
     touchpad = {

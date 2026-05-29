@@ -6,86 +6,86 @@
 }:
 {
   nixdots = {
-    persist.enable = false;
     user = {
       name = "js0ny";
       shell = pkgs.zsh;
     };
-    programs.firefox.enable = true;
     core = {
-      hostname = "crystal";
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixdots";
+      hostname = "polder";
       timezones = [
-        "Europe/London"
         "Etc/UTC"
+        "Europe/Berlin"
+        "Europe/London"
         "Asia/Shanghai"
       ];
-      locales = {
-        guiLocale = "zh-CN";
-      };
     };
     services = {
+      tailscale = {
+        enable = true;
+        ip = "100.92.207.11";
+        # ipv6 = "fd7a:115c:a1e0::e701:932";
+        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
+        authKeyFile = config.sops.secrets.tskey_polder.path;
+      };
       sshd = true;
-    };
-    networking.nftables.enable = false;
-    style = {
-      enable = false;
-      stylix = {
-        enable = false;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+      ollama = {
+        enable = true;
+        models = [ "bge-m3" ];
       };
     };
-    laptop.enable = false;
+    networking.nftables.enable = true;
+    style = {
+      enable = false;
+      stylix.enable = false;
+    };
     apps = {
       interactiveShell = {
         package = pkgs.fish;
         exe = "fish";
         desktop = "";
       };
+      fileManager = {
+        tui = {
+          package = pkgs.yazi;
+          exe = "yazi";
+        };
+      };
       editor = {
         tui = {
           package = pkgs.neovim;
           exe = "nvim";
-          desktop = "nvim.desktop";
         };
       };
     };
     linux = {
       enable = true;
-      wsl = true;
-      lanzaboote = false;
+      display = "none";
+      gpu = "none";
     };
     machine = {
-      role = "standalone";
+      role = "guest";
       compat = false;
       virtualisation = {
-        waydroid = false;
-        libvirt = {
-          enable = false;
-        };
-        oci-container.podman = false;
+        oci-container.podman = true;
       };
     };
-    desktop = {
-      enable = false;
-    };
-    keymaps = {
-      enable = false;
+    server = {
+      enable = true;
+      ip = config.secrets.plain.polder.ipv4;
+      openHttp = true;
+      openQuic = true;
     };
     sops = {
       enable = true;
       yamlFile = secrets + /secrets.yaml;
       keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
       secrets = {
-        tskey_crystal = { };
+        tskey_polder = { };
         restic_repo_password = { };
       };
     };
     geo = {
-      longitude = -3.2;
-      latitude = 55.95;
-      city = "Edinburgh";
+      city = "Frankfurt";
     };
   };
 }

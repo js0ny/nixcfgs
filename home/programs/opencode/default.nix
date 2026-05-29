@@ -69,6 +69,7 @@ in
           "nix run*" = "ask";
           "npx*" = "ask";
           "uvx*" = "ask";
+          "ssh*" = "ask";
         };
         read = {
           "*" = "allow";
