@@ -173,96 +173,11 @@
       ];
 
       imports = [
-        inputs.treefmt-nix.flakeModule
-        inputs.git-hooks.flakeModule
+        ./flakes/devshells.nix
+        ./flakes/treefmt.nix
+        ./flakes/packages.nix
       ];
 
-      perSystem =
-        { config, pkgs, ... }:
-        {
-          treefmt.config = {
-            projectRootFile = "flake.nix";
-            settings.excludes = [
-              "_sources/generated.json"
-            ];
-            programs.keep-sorted = {
-              enable = true;
-              excludes = [
-                "*.json"
-                "*.md"
-              ];
-            };
-            programs.prettier = {
-              enable = true;
-              excludes = [
-                "_sources/*.json"
-              ];
-            };
-            # keep-sorted start
-            programs.nixfmt.enable = true;
-            programs.shfmt.enable = true;
-            programs.stylua.enable = true;
-            # keep-sorted end
-          };
-
-          pre-commit = {
-            check.enable = true;
-            settings.hooks.treefmt.enable = true;
-          };
-
-          devShells =
-            let
-              ciDeps = with pkgs; [
-                stylua
-                prettier
-                ruff
-                shfmt
-                shellcheck
-                nixfmt
-                nvfetcher
-                nufmt
-              ];
-              devDeps = with pkgs; [
-                lua-language-server
-                pkgs.typescript-language-server
-                pkgs.bash-language-server
-                pyright
-                taplo
-                nixd
-                nushell
-              ];
-            in
-            {
-              default = pkgs.mkShell {
-                inputsFrom = [ config.pre-commit.devShell ];
-                buildInputs = ciDeps ++ devDeps;
-              };
-              ci = pkgs.mkShell { buildInputs = ciDeps; };
-            };
-          packages =
-            let
-              flattenPackages =
-                prefix: attrs:
-                pkgs.lib.concatMapAttrs (
-                  name: value:
-                  let
-                    packageName = if prefix == "" then name else "${prefix}-${name}";
-                  in
-                  if pkgs.lib.isDerivation value then
-                    { ${packageName} = value; }
-                  else if pkgs.lib.isAttrs value then
-                    flattenPackages packageName value
-                  else
-                    { }
-                ) attrs;
-            in
-            flattenPackages "" (
-              import ./pkgs {
-                inherit pkgs;
-                lib = pkgs.lib;
-              }
-            );
-        };
       flake =
         let
           myLib = import ./lib { inherit (inputs.nixpkgs) lib; };
