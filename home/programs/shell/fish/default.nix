@@ -59,6 +59,10 @@ in
     source = ./functions;
     recursive = true;
   };
+  xdg.configFile."fish/completions" = {
+    source = ./completions;
+    recursive = true;
+  };
   programs.zed-editor.extensions = [ "fish" ];
   nixdots.persist.home.files = [
     ".local/share/fish/fish_history"

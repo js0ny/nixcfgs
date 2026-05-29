@@ -12,15 +12,9 @@ in
     ./integrations.nix
   ];
   sops.secrets = {
-    llm_key_opencode = {
-      sopsFile = sopsFile;
-    };
-    opencode_web_username = {
-      sopsFile = sopsFile;
-    };
-    opencode_web_password = {
-      sopsFile = sopsFile;
-    };
+    llm_key_opencode = { inherit sopsFile; };
+    opencode_web_username = { inherit sopsFile; };
+    opencode_web_password = { inherit sopsFile; };
   };
 
   nixdots.persist.home = {

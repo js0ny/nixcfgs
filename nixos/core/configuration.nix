@@ -60,4 +60,11 @@ in
 
   # provides `/bin/bash` compatibility
   services.envfs.enable = true;
+
+  # minimal alias for root environment
+  environment.shellAliases = {
+    ls = "ls --color=auto";
+    ll = "ls -l";
+    la = "ls -a";
+  };
 }
