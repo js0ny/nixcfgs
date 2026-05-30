@@ -51,7 +51,7 @@ let
             pipewire = true;
           };
           env = {
-            PATH = "${pkgs.flatpak-xdg-utils}/bin:${pkgs.uv}/bin:${pkgs.nodejs_24}/bin";
+            PATH = "${pkgs.flatpak-xdg-utils}/bin:${pkgs.uv}/bin:${pkgs.nodejs_26}/bin";
           };
 
         };

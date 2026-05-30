@@ -17,7 +17,6 @@
     # ./nixos-prebuild.nix
     ../../nixos/desktop
     ../../nixos/services/hermes-agent
-    ../../nixos/services/bifrost.nix
     inputs.bifrost.nixosModules.bifrost
   ];
 

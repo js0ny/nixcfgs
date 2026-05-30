@@ -30,6 +30,7 @@ in
   };
   users.users.hermes = {
     group = "agents";
+    homeMode = "750";
     extraGroups = [ "hermes" ];
     packages = with pkgs; [
       # keep-sorted start

@@ -7,12 +7,7 @@ let
   patchedHermesAgent = final.applyPatches {
     name = "hermes-agent-patched-source";
     src = inputs.hermes-agent;
-    patches = [
-      (final.fetchpatch {
-        url = "https://github.com/NousResearch/hermes-agent/pull/27056.patch";
-        hash = "sha256-p5vVGVZrtAotpb6rI/kqopib3yUnlt8BYTkqt9sU39U=";
-      })
-    ];
+    patches = [ ./hermes-agent-patches/fix-include-messaging-deps-by-default.patch ];
   };
 in
 hermesOverlay

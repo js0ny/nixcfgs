@@ -16,7 +16,7 @@ let
       wrapProgram "$out/bin/pi" \
         --prefix PATH : ${
           lib.makeBinPath [
-            pkgs.nodejs_24
+            pkgs.nodejs_26
             pkgs.uv
           ]
         }
@@ -42,7 +42,7 @@ in
       npmCommand = [
         "nix"
         "shell"
-        "nixpkgs#nodejs_24"
+        "nixpkgs#nodejs_26"
         "--command"
         "npm"
       ];

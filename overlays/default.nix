@@ -20,7 +20,6 @@ let
     in
     if
       builtins.elem name [
-        "bifrost.nix"
         "hermes-agent.nix"
       ]
     then
