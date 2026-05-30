@@ -23,6 +23,7 @@ in
     ### Integrations
     # GitHub
     GITHUB_TOKEN=${sec.hermes_github_pat}
+    GH_TOKEN=${sec.hermes_github_pat}
     # Miniflux - RSS Reader
     MINIFLUX_BASE_URL=${ep.miniflux.publicUrl}
     MINIFLUX_API_TOKEN=${sec.hermes_miniflux_api_token}

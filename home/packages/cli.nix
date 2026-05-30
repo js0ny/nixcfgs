@@ -23,7 +23,15 @@
     };
   };
 
-  programs.jujutsu.enable = true;
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        name = config.nixdots.user.name;
+        email = config.nixdots.user.email;
+      };
+    };
+  };
 
   programs.zed-editor.extensions = [
     "make"
