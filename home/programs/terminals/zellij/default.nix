@@ -20,4 +20,8 @@ in
     source = ./layouts;
     recursive = true;
   };
+
+  programs.fish.interactiveShellInit = /* fish */ ''
+    zellij setup --generate-completion fish | source
+  '';
 }
