@@ -78,7 +78,7 @@ in
     entrypoint = "/bin/sh";
     cmd = [
       "-c" # bash
-      "apk add --no-cache uv && exec litellm --config=/app/config.yaml --host=0.0.0.0 --port=${portStr}"
+      "rm /app/.npmrc && apk add --no-cache uv && exec litellm --config=/app/config.yaml --host=0.0.0.0 --port=${portStr}"
     ];
     log-driver = "journald";
   };

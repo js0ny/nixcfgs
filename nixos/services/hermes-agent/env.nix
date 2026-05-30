@@ -65,4 +65,11 @@ in
     ];
     environment = { };
   };
+  sops.secrets.hermes_opencode_auth = {
+    sopsFile = secrets + /hermes/opencode-auth.yaml;
+    key = "data";
+    owner = "hermes";
+    group = "agents";
+    path = "${config.users.users.hermes.home}/.local/share/opencode/auth.json";
+  };
 }

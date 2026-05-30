@@ -59,6 +59,7 @@ in
     ZAICN_API_KEY=${sec.zai_cn_api_key}
     TAVILY_API_KEY=${sec.tavily_api_key}
     FIRECRAWL_API_KEY=${sec.firecrawl_api_key}
+    FIRECRAWL_MCP_URL=https://mcp.firecrawl.dev/${sec.firecrawl_api_key}/v2/mcp
     JINA_AI_API_KEY=${sec.jina_api_key}
     CONTEXT7_API_KEY=${sec.context7_api_key}
     AIHUBMIX_API_KEY=${sec.aihubmix_api_key}

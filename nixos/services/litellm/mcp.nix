@@ -27,15 +27,7 @@
       };
       "firecrawl" = {
         server_name = "firecrawl";
-        transport = "stdio";
-        command = "npx";
-        args = [
-          "-y"
-          "firecrawl-mcp"
-        ];
-        env = {
-          "FIRECRAWL_API_KEY" = "os.environ/FIRECRAWL_API_KEY";
-        };
+        url = "os.environ/FIRECRAWL_MCP_URL";
       };
       "tavily" = {
         transport = "stdio";

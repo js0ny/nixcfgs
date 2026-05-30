@@ -8,8 +8,12 @@
 let
   models = config.nixdefs.llm.routing;
   consts = config.nixdefs.consts;
+  litellm = config.nixdefs.endpoints.litellm.publicUrl;
 in
 {
+  environment.variables = {
+    HERMES_HOME = "/var/lib/hermes/.hermes";
+  };
   imports = [
     inputs.hermes-agent.nixosModules.default
     ./agent-user.nix
@@ -36,13 +40,35 @@ in
     # Available on system PATH for interactive use
     addToSystemPackages = true;
 
+    mcpServers = {
+      filesystem = {
+        command = "npx";
+        args = [
+          "-y"
+          "@modelcontextprotocol/server-filesystem"
+          "/home/user"
+        ];
+      };
+      tavily = {
+        url = "${litellm}/tavily/mcp";
+        headers = {
+          Authorization = "Bearer \${LITELLM_API_KEY}";
+        };
+      };
+      firecrawl = {
+        url = "${litellm}/firecrawl/mcp";
+        headers = {
+          Authorization = "Bearer \${LITELLM_API_KEY}";
+        };
+      };
+    };
     # ── Declarative settings (deep-merged into config.yaml) ──────────
     settings = {
       # Model — routed through litellm
       custom_providers = [
         {
           name = "litellm";
-          base_url = "https://lm.js0ny.net";
+          base_url = litellm;
           key_env = "LITELLM_API_KEY";
         }
       ];
