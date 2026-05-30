@@ -9,8 +9,10 @@ let
   models = config.nixdefs.llm.routing;
   consts = config.nixdefs.consts;
   litellm = config.nixdefs.endpoints.litellm.publicUrl;
+  obsidianDir = "/var/lib/lmwiki";
 in
 {
+  systemd.services.hermes-agent.serviceConfig.ReadWritePaths = [ obsidianDir ];
   environment.variables = {
     HERMES_HOME = "/var/lib/hermes/.hermes";
   };
