@@ -31,7 +31,6 @@ in
 
   services.hermes-agent = {
     enable = true;
-    package = pkgs.hermes-agent;
 
     group = "agents";
 

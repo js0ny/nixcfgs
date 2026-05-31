@@ -126,8 +126,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Use my fork of hermes-agent
     hermes-agent = {
-      url = "github:NousResearch/hermes-agent";
+      url = "github:js0ny/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
@@ -184,7 +185,7 @@
       flake =
         let
           myLib = import ./lib { inherit (inputs.nixpkgs) lib; };
-          localOverlays = import ./overlays { inherit inputs; };
+          localOverlays = import ./overlays;
 
           overlays = [
             inputs.niri-flake.overlays.niri
