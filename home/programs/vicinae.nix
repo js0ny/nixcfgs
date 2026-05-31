@@ -11,20 +11,23 @@ let
   selfhosted = config.nixdefs.selfhosted;
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkDefault;
+  cfg = config.nixdots.features.tools.vicinae;
+  pkg = pkgs.vicinae;
 in
-{
+lib.mkIf cfg.enable {
   # see block-desktop-entries.nix for disable desktop entries via vicinae
   programs.vicinae = {
     enable = true;
+    package = pkg;
     # https://github.com/vicinaehq/extensions/tree/main/extensions
     extensions = with vicinae-extensions; [
       # keep-sorted start
+      agent-skills-sh
       bluetooth
       firefox
       niri
       nix
       podman
-      protondb-search
       searxng
       wifi-commander
       # keep-sorted end
@@ -32,7 +35,6 @@ in
     ];
     systemd = {
       enable = true;
-      target = "waylandwm-session.target";
       autoStart = true;
     };
     # https://docs.vicinae.com/config
@@ -94,4 +96,18 @@ in
     ];
   };
   makeMutable = [ ".config/vicinae/settings.json" ];
+
+  programs.chromium.extensions = [
+    { id = "kcmipingpfbohfjckomimmahknoddnke"; } # Vicinae Integration
+  ];
+
+  xdg.configFile."chromium/NativeMessagingHosts/com.vicinae.vicinae.json".text = builtins.toJSON {
+    name = "com.vicinae.vicinae";
+    description = "IPC Native Messaging Host";
+    path = "${pkg}/libexec/vicinae/vicinae-browser-link";
+    type = "stdio";
+    allowed_origins = [
+      "chrome-extension://kcmipingpfbohfjckomimmahknoddnke/"
+    ];
+  };
 }

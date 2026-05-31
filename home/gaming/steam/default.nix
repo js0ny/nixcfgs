@@ -1,5 +1,8 @@
 # https://github.com/different-name/steam-config-nix
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   home.packages = with pkgs; [
     # Steam Achievement Manager
@@ -36,4 +39,5 @@
       };
     };
   };
+  programs.vicinae.extensions = with vicinae-extensions; [ protondb-search ];
 }

@@ -12,6 +12,7 @@ let
     "image/avif"
     "image/webp"
     "image/x-portable-pixmap"
+    "image/svg+xml"
   ];
   audio = [
     "audio/flac"

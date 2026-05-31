@@ -1,6 +1,8 @@
 {
+  pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 let
@@ -18,6 +20,7 @@ let
     "。。。。。。" = "z ../../../../..";
   };
   home = config.nixdots.user.home;
+  vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   programs.zoxide = {
@@ -40,4 +43,5 @@ in
       ".local/share/zoxide"
     ];
   };
+  programs.vicinae.extensions = with vicinae-extensions; [ zoxide-recent-directories ];
 }

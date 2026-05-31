@@ -169,6 +169,9 @@ in
           enableNativeFrontend = false;
         };
       };
+      tools = {
+        vicinae.enable = true;
+      };
     };
     linux = {
       enable = true;

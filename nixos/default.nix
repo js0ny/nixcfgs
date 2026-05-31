@@ -16,14 +16,7 @@
     ./compat.nix
     ./core
     ./hardware
-    ./programs/chromium.nix
-    ./programs/dolphin.nix
-    ./programs/firefox.nix
-    ./programs/obs-studio.nix
-    ./programs/rime.nix
-    ./programs/steam.nix
-    ./programs/thunderbird.nix
-    ./programs/zsh.nix
+    ./programs
     ./security/hardening.nix
     ./security/howdy.nix
     ./virtualisation
