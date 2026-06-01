@@ -32,4 +32,5 @@ lib.mkIf (cfg.enable) {
       };
     };
   };
+  nixdots.persist.nosnap.system.directories = [ "/var/lib/ollama" ];
 }

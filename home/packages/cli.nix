@@ -44,7 +44,6 @@
     [
       # keep-sorted start
 
-      # rar support requires unfree flag.
       (ouch.override { enableUnfree = true; })
       age
       aria2
@@ -62,14 +61,12 @@
       jq
       just
       localPkgs.rename-zero-pad
-      # Misc ta-lib ddgr protonvpn-cli
       miniserve
+      moor
       openssl
-      # Archiving
       p7zip
       pass
       procs
-      # rar: Unfree, the only way (afaik) to unarchive some very old partition rars
       rar
       rclone
       rip2

@@ -79,6 +79,13 @@ in
         provider = "custom:litellm";
       };
 
+      auxiliary = {
+        vision = {
+          provider = "custom:litellm";
+          model = "gemini-3.5-flash";
+        };
+      };
+
       toolsets = [ "hermes-cli" ];
 
       timezone = "Europe/London";

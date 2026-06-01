@@ -15,6 +15,7 @@ lib.mkIf cfg.enable {
       nix-output-monitor
       nvd
       nix-tree
+      deploy-rs
     ]
     ++ lib.optionals cfg.global (
       with pkgs;

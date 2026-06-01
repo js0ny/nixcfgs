@@ -1,3 +1,4 @@
+# vim:foldlevel=2
 # Data Sources
 # models.dev/api.json | openrouter.ai/v1/models
 let
