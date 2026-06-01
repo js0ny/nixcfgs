@@ -7,6 +7,8 @@
   ...
 }:
 let
+  tag = "main-stable";
+
   ep = config.nixdefs.endpoints;
   epSelf = ep.litellm;
   url = epSelf.domain;
@@ -70,7 +72,7 @@ in
   };
 
   virtualisation.oci-containers.containers.litellm = {
-    image = "docker.litellm.ai/berriai/litellm:main-stable";
+    image = "docker.litellm.ai/berriai/litellm:${tag}";
     extraOptions = [ "--network=host" ];
     volumes = [
       "${litellmConfig}:/app/config.yaml:ro"

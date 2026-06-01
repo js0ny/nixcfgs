@@ -5,6 +5,8 @@
   ...
 }:
 let
+  tag = "1.12";
+
   ep = config.nixdefs.endpoints;
   epSelf = ep.opengist;
   consts = config.nixdefs.consts;
@@ -29,7 +31,7 @@ in
   '';
 
   virtualisation.oci-containers.containers."opengist" = {
-    image = "ghcr.io/thomiceli/opengist:1.12";
+    image = "ghcr.io/thomiceli/opengist:${tag}";
     ports = [
       "${bindAddress}:${portStr}:${internalPort}"
       "${sshPort}:2222"

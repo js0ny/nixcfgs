@@ -24,7 +24,7 @@ let
       provider = "openai";
       litellm_params = {
         api_key = env "AIHUBMIX_API_KEY";
-        api_base = "https://aihubmix.com";
+        api_base = "https://aihubmix.com/v1";
       };
     };
 

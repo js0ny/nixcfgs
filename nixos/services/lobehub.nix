@@ -16,6 +16,8 @@
   ...
 }:
 let
+  tag = "latest";
+
   ep = config.nixdefs.endpoints;
   epSelf = ep.lobechat;
   url = epSelf.domain;
@@ -91,7 +93,7 @@ in
   };
 
   virtualisation.oci-containers.containers.lobechat = {
-    image = "lobehub/lobehub:latest";
+    image = "lobehub/lobehub:${tag}";
     extraOptions = [ "--network=host" ];
     environmentFiles = [ config.sops.templates."lobechat.env".path ];
     environment = lib.mkMerge [
