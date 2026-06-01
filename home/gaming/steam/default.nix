@@ -4,6 +4,9 @@ let
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
+  home.sessionVariables = {
+    SDL_JOYSTICK_HIDAPI = "0";
+  };
   home.packages = with pkgs; [
     # Steam Achievement Manager
     samira

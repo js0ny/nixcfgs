@@ -1,6 +1,25 @@
 {
   description = "Public flake for my personal NixOS and Home Manager configurations";
 
+  outputs =
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      debug = true;
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+
+      imports = [
+        ./flakes/devshells.nix
+        ./flakes/treefmt.nix
+        ./flakes/packages.nix
+        ./flakes/systems.nix
+      ];
+
+    };
+
   inputs = {
     nixpkgs-stable.url = "github:nixOS/nixpkgs/nixos-26.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -166,141 +185,4 @@
     };
   };
 
-  outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      debug = true;
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "aarch64-darwin"
-      ];
-
-      imports = [
-        ./flakes/devshells.nix
-        ./flakes/treefmt.nix
-        ./flakes/packages.nix
-      ];
-
-      flake =
-        let
-          myLib = import ./lib { inherit (inputs.nixpkgs) lib; };
-          localOverlays = import ./overlays;
-
-          overlays = [
-            inputs.niri-flake.overlays.niri
-            inputs.nur.overlays.default
-            inputs.firefox-addons.overlays.default
-            inputs.nix-cachyos-kernel.overlays.pinned
-            localOverlays
-          ];
-
-          specialArgs = {
-            inherit inputs overlays myLib;
-            nixcfgs = inputs.self;
-            bindeps = inputs.bindeps;
-            secrets = inputs.secrets;
-          };
-
-          nixosHosts = [
-            "crystal"
-            "polder"
-            "zwinger"
-            "wsl-crystal"
-          ];
-          darwinHosts = [ "zen" ];
-
-          mkNixosSystem =
-            hostname:
-            inputs.nixpkgs.lib.nixosSystem {
-              system = "x86_64-linux";
-              inherit specialArgs;
-              modules = [
-                # keep-sorted start
-                inputs.catppuccin.nixosModules.catppuccin
-                inputs.disko.nixosModules.disko
-                inputs.home-manager.nixosModules.home-manager
-                inputs.impermanence.nixosModules.impermanence
-                inputs.lanzaboote.nixosModules.lanzaboote
-                inputs.nixos-wsl.nixosModules.default
-                inputs.secrets.nixosModules.default
-                inputs.sops-nix.nixosModules.sops
-                inputs.stylix.nixosModules.default
-                inputs.telegram-inline-llm-bot.nixosModules.default
-                # keep-sorted end
-                ./hosts/${hostname}
-                { nixpkgs.overlays = overlays; }
-              ];
-            };
-
-          mkDarwinSystem =
-            hostname:
-            inputs.nix-darwin.lib.darwinSystem {
-              system = "aarch64-darwin";
-              inherit specialArgs;
-              modules = [
-                ./hosts/${hostname}
-                { nixpkgs.overlays = overlays; }
-                inputs.mac-app-util.darwinModules.default
-                inputs.home-manager.darwinModules.default
-                inputs.stylix.darwinModules.stylix
-                inputs.secrets.darwinModules.default
-              ];
-            };
-
-          myNixosConfigs = inputs.nixpkgs.lib.genAttrs nixosHosts mkNixosSystem;
-          myDarwinConfigs = inputs.nixpkgs.lib.genAttrs darwinHosts mkDarwinSystem;
-        in
-        {
-          nixosModules = {
-            default = import ./nixos;
-            server = import ./nixos/server;
-            desktop = import ./nixos/desktop;
-          };
-
-          darwinModules = {
-            default = import ./darwin;
-          };
-
-          homeManagerModules = {
-            server-base = import ./home/server-base.nix;
-            darwin-base = import ./home/darwin-base.nix;
-            desktop-base = import ./home/desktop-base.nix;
-            desktop-extra = import ./home/desktop-extra.nix;
-            wsl = import ./home/wsl.nix;
-          };
-
-          overlays.default = localOverlays;
-
-          nixosConfigurations = myNixosConfigs;
-          darwinConfigurations = myDarwinConfigs;
-
-          deploy = {
-            sshOpts = [
-              "-p"
-              "2223"
-            ];
-            nodes = {
-              "polder" = {
-                hostname = "100.92.207.11";
-                profiles.system = {
-                  user = "root";
-                  sshUser = "js0ny";
-                  interactiveSudo = false;
-                  path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."polder";
-                };
-              };
-              "zwinger" = {
-                hostname = "100.71.26.71";
-                profiles.system = {
-                  user = "root";
-                  sshUser = "js0ny";
-                  interactiveSudo = false;
-                  path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."zwinger";
-                };
-              };
-            };
-          };
-        };
-    };
 }
