@@ -6,8 +6,6 @@
   ...
 }:
 let
-  fx = config.nixdefs.consts.firefox.profileDir;
-  fxProfile = config.nixdots.programs.firefox.defaultProfile;
   selfhosted = config.nixdefs.selfhosted;
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
   inherit (lib) mkDefault;
@@ -48,7 +46,7 @@ lib.mkIf cfg.enable {
       providers = {
         "@knoopx/vicinae-extension-firefox-0" = {
           preferences = {
-            "profile_dir" = "${fx}/${fxProfile}";
+            "profile_dir" = config.nixdefs.consts.firefox.profileDir;
           };
         };
         clipboard.entrypoints = {
@@ -101,6 +99,9 @@ lib.mkIf cfg.enable {
     { id = "kcmipingpfbohfjckomimmahknoddnke"; } # Vicinae Integration
   ];
 
+  # located in:
+  # ${pkgs.vicinae}/share/vicinae/native-host/chromium/
+  # which is not a default path for nix packages, so we need to add it manually
   xdg.configFile."chromium/NativeMessagingHosts/com.vicinae.vicinae.json".text = builtins.toJSON {
     name = "com.vicinae.vicinae";
     description = "IPC Native Messaging Host";

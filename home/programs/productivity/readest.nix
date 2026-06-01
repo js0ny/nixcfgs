@@ -20,6 +20,8 @@
         uiLanguage = config.nixdots.core.locales.guiLocale;
       };
       telemetryEnabled = false;
+      openLastBooks = false;
+      openBookInNewWindow = false;
     };
   };
   nixdots.persist.home = {

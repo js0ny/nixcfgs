@@ -1,4 +1,5 @@
 {
+  openssl,
   stdenv,
   lib,
   unzip,
@@ -34,13 +35,34 @@ stdenv.mkDerivation {
     zlib
     icu
     stdenv.cc.cc.lib
+    openssl
   ];
 
   sourceRoot = ".";
 
   installPhase = ''
+    mkdir -p $out/bin $out/libexec
+    cp BBDown $out/libexec/BBDown
+    chmod +x $out/libexec/BBDown
+  ''
+  + lib.optionalString stdenv.isLinux ''
+    cat > $out/bin/BBDown <<EOF
+    #!${stdenv.shell}
+    export LD_LIBRARY_PATH="${
+      lib.makeLibraryPath [
+        openssl
+        icu
+        zlib
+        stdenv.cc.cc.lib
+      ]
+    }''${LD_LIBRARY_PATH:+:''$LD_LIBRARY_PATH}"
+    exec "$out/libexec/BBDown" "\$@"
+    EOF
+    chmod +x $out/bin/BBDown
+  ''
+  + lib.optionalString stdenv.isDarwin ''
     mkdir -p $out/bin
-    cp BBDown $out/bin/
+    cp BBDown $out/bin/BBDown
     chmod +x $out/bin/BBDown
   '';
 
@@ -49,5 +71,6 @@ stdenv.mkDerivation {
     homepage = "https://github.com/nilaoda/BBDown";
     license = licenses.mit;
     platforms = builtins.attrNames archMap;
+    mainProgram = "BBDown";
   };
 }

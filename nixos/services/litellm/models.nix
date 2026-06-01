@@ -9,6 +9,7 @@ let
       value = x;
     }) orlist.data
   );
+  mtokPrice = pricing: pricing / 1000000;
 in
 {
   "deepseek-v4-pro" =
@@ -640,11 +641,11 @@ in
       };
       pricing = {
         # cost.input | pricing.prompt
-        input = mdev.cost.input;
+        input = mtokPrice mdev.cost.input;
         # cost.output | pricing.completion
-        output = mdev.cost.output;
+        output = mtokPrice mdev.cost.output;
         # cost.cache_read | pricing.input_cache_read
-        cacheRead = mdev.cost.cache_read;
+        cacheRead = mtokPrice mdev.cost.cache_read;
       };
       limit = {
         # (*) limit.context | top_provider.context_length
@@ -691,11 +692,11 @@ in
       };
       pricing = {
         # cost.input | pricing.prompt
-        input = mdev.cost.input;
+        input = mtokPrice mdev.cost.input;
         # cost.output | pricing.completion
-        output = mdev.cost.output;
+        output = mtokPrice mdev.cost.output;
         # cost.cache_read | pricing.input_cache_read
-        cacheRead = mdev.cost.cache_read;
+        cacheRead = mtokPrice mdev.cost.cache_read;
       };
       limit = {
         # (*) limit.context | top_provider.context_length

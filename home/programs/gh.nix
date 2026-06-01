@@ -6,6 +6,7 @@
       user = lib.mkDefault config.home.username;
     };
     settings = {
+      version = 1;
       git_protocol = "ssh";
 
       prompt = "enabled";
@@ -15,6 +16,7 @@
         pv = "pr view";
         cl = "repo clone";
       };
+      telemetry = "disabled";
     };
   };
 }

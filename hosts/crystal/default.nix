@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   lib,
-  nixcfgs,
   ...
 }:
 {
@@ -17,7 +16,6 @@
     # ./nixos-prebuild.nix
     ../../nixos/desktop
     ../../nixos/services/hermes-agent
-    inputs.bifrost.nixosModules.bifrost
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

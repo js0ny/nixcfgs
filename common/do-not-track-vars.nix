@@ -1,6 +1,7 @@
 # Shared telemetry opt-out variables
 # See: https://consoledonottrack.com/
 {
+  DISABLE_TELEMETRY = "1";
   DO_NOT_TRACK = "1";
   GATSBY_TELEMETRY_DISABLED = "1";
   HOMEBREW_NO_ANALYTICS = "1";

@@ -13,5 +13,7 @@ lib.mkIf cfg.enable {
     powertop
     lm_sensors
   ];
+  services.fwupd.enable = true;
   services.upower.enable = true;
+  nixdots.persist.system.directories = [ "/var/lib/fwupd" ];
 }

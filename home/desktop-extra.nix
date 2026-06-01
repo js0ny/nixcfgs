@@ -34,6 +34,7 @@
     ./programs/editors/zed-editor
     ./programs/element.nix
     ./programs/eza.nix
+    ./programs/gh.nix
     ./programs/gwenview.nix
     ./programs/libvirt.nix
     ./programs/magick.nix
@@ -90,8 +91,6 @@
     kdePackages.qttools
     kicad
     krabby
-    localPkgs.BBDown
-    localPkgs.danmaku2ass
     newsflash
     nur.repos.Ev357.helium
     rustdesk

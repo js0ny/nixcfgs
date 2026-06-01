@@ -5,6 +5,7 @@ let
   cfg = features.tools.vicinae;
 in
 lib.mkIf cfg.enable {
+  # uinput is required for clipboard integration
   boot.kernelModules = [ "uinput" ];
   users.users."${username}".extraGroups = [
     "input"

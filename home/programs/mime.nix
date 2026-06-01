@@ -78,7 +78,9 @@ in
       // mkAssoc audioPlayers audio
       // mkAssoc browsers browser
       // mkAssoc archiveManager archive
-      // mkAssoc "mpv.desktop" video
+      # Only use umpv in video mode, only one presents
+      # and will fork current process
+      // mkAssoc "umpv.desktop" video
       // {
         "application/epub+zip" = "com.github.johnfactotum.Foliate.desktop";
         # Loupe does not support dds

@@ -43,5 +43,19 @@ in
       ".local/share/zoxide"
     ];
   };
-  programs.vicinae.extensions = with vicinae-extensions; [ zoxide-recent-directories ];
+  programs.vicinae = {
+    extensions = with vicinae-extensions; [ zoxide-recent-directories ];
+    settings = {
+      providers = {
+        "@c4n4m1/vicinae-extension-zoxide-recent-directories-0" = {
+          preferences = {
+            application = lib.getExe' pkgs.xdg-utils "xdg-open";
+            defaultFilter = "all";
+            alternativeApplication = lib.getExe pkgs.xdg-terminal-exec;
+          };
+          entrypoints.recent-directories.alias = "zo";
+        };
+      };
+    };
+  };
 }
