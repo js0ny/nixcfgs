@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs-stable.url = "github:nixOS/nixpkgs/nixos-26.05";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
