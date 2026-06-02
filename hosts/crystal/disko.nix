@@ -24,6 +24,12 @@
               end = "-250G";
               content = {
                 type = "btrfs";
+                mountpoint = "/btr_pool";
+                mountOptions = [
+                  "subvolid=5"
+                  "compress=zstd"
+                  "noatime"
+                ];
                 extraArgs = [
                   "-f"
                   "-L"
@@ -53,6 +59,13 @@
                   };
                   "/nosnap" = {
                     mountpoint = "/persist/nosnap";
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+                  "/snapshots" = {
+                    mountpoint = "/snapshots";
                     mountOptions = [
                       "compress=zstd"
                       "noatime"

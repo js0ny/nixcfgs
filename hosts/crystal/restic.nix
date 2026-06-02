@@ -1,28 +1,64 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  secrets,
+  ...
+}:
 let
-  homeDir = config.nixdots.user.home;
+  user = config.nixdots.user.name;
+  latestPersistSnapshot = "/run/latest-persist-snapshot";
 in
 {
   sops.secrets.restic_repo_password = { };
+  sops.secrets.rclone_conf = {
+    sopsFile = secrets + /files/rclone.yaml;
+    key = "data";
+  };
+
+  systemd.services.restic-backups-main = {
+    after = [ "btrbk-persist.service" ];
+    wants = [ "btrbk-persist.service" ];
+
+    preStart =
+      let
+        find = lib.getExe pkgs.findutils;
+        sort = lib.getExe' pkgs.coreutils "sort";
+        tail = lib.getExe' pkgs.coreutils "tail";
+        ln = lib.getExe' pkgs.coreutils "ln";
+      in
+      /* bash */ ''
+        set -euo pipefail
+
+        latest="$(${find} /snapshots -maxdepth 1 -type d -name 'persist.*' | ${sort} | ${tail} -n1)"
+
+        if [ -z "$latest" ]; then
+          echo "no btrbk snapshot found under /snapshots" >&2
+          exit 1
+        fi
+
+        ${ln} -sfn "$latest" ${latestPersistSnapshot}
+      '';
+  };
 
   services.restic.backups = {
     main = {
-      # Rclone remote path - using a non-top-level directory
-      repository = "rclone:pcloud:Distill/crystal";
-
-      # Use the user's rclone config file since the service runs as root
-      rcloneConfigFile = "${homeDir}/.config/rclone/rclone.conf";
-
-      # Password file from sops
+      repository = "rclone:distill/crystal";
+      rcloneConfigFile = config.sops.secrets.rclone_conf.path;
       passwordFile = config.sops.secrets.restic_repo_password.path;
+      initialize = true;
 
-      # Directories to back up
       paths = [
-        "${homeDir}/Obsidian"
-        "${homeDir}/Academia"
+        "${latestPersistSnapshot}/home/${user}/Obsidian"
+        "${latestPersistSnapshot}/home/${user}/Academia"
+        "${latestPersistSnapshot}/home/${user}/Atelier"
+
+        "${latestPersistSnapshot}/home/${user}/.ssh"
+        "${latestPersistSnapshot}/home/${user}/.local/share/gnupg"
+        "${latestPersistSnapshot}/home/${user}/.local/share/password-store"
+        "${latestPersistSnapshot}/home/${user}/.local/share/keyrings"
       ];
 
-      # Exclude patterns
       exclude = [
         "**/node_modules"
         "**/.venv"
@@ -31,38 +67,48 @@ in
         "**/build"
         "**/out"
         "**/.gradle"
-        "**/.Trash-1000"
-        "**/.Trash-0"
         "**/.pnpm-store"
 
         "**/.clangd"
         "**/.ccls-cache"
         "**/.ipynb_checkpoints"
 
-        ".cache"
-        ".local/share/Trash"
+        "**/.Trash-*"
+        "**/Trash"
+
+        "**/.cache"
+        "**/Cache"
+        "**/Code Cache"
+        "**/GPUCache"
+        "**/DawnCache"
+        "**/ShaderCache"
+        "**/GrShaderCache"
+        "**/Crashpad"
+        "**/logs"
+        "**/Service Worker/CacheStorage"
+
         ".direnv"
         "result"
+        "result-*"
       ];
 
-      # Backup schedule (default: daily at 3am)
+      extraBackupArgs = [
+        "--exclude-if-present=.nobackup"
+        "--exclude-caches"
+        "--one-file-system"
+      ];
+
       timerConfig = {
-        OnCalendar = "daily";
-        Persistent = true; # Run missed backups after sleep/shutdown
-        RandomizedDelaySec = "1h";
+        OnCalendar = "Wed,Sun *-*-* 04:30:00";
+        Persistent = true;
+        RandomizedDelaySec = "30m";
       };
 
-      # Automatic snapshot pruning
       pruneOpts = [
         "--keep-daily 7"
         "--keep-weekly 4"
         "--keep-monthly 6"
         "--keep-yearly 2"
-      ];
-
-      extraOptions = [
-        "--exclude-if-present=.nobackup"
-        "--exclude-caches"
       ];
     };
   };

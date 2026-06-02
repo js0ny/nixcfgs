@@ -10,6 +10,7 @@
   imports = [
     # Host-specific configs
     ./hardware-configuration.nix
+    ./btrbk.nix
     ./disko.nix
     ./restic.nix
     ./vars.nix
