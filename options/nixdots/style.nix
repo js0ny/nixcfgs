@@ -78,7 +78,7 @@ in
         type = lib.types.listOf fontType;
         default = [
           {
-            package = pkgs.sarasa-term-sc-nerd;
+            package = pkgs.nur.repos.definfo.sarasa-term-sc-nerd;
             name = "Sarasa Term SC Nerd Font";
           }
         ];

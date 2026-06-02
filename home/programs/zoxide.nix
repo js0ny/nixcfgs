@@ -43,6 +43,9 @@ in
       ".local/share/zoxide"
     ];
   };
+  systemd.user.tmpfiles.rules = [
+    "R ${config.xdg.dataHome}/zoxide/tmp_* - - - 1d"
+  ];
   programs.vicinae = {
     extensions = with vicinae-extensions; [ zoxide-recent-directories ];
     settings = {

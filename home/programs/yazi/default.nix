@@ -258,10 +258,10 @@ in
   home.packages = with pkgs; [
     (ouch.override { enableUnfree = true; })
   ];
-  nixdots.persist.home = {
-    files = [
-      # Persist bookmarks
-      ".local/state/yazi/.dds"
-    ];
-  };
+
+  nixdots.persist.nosnap.home.files = [
+    # Persist bookmarks
+    ".local/state/yazi/.dds"
+  ];
+
 }

@@ -26,8 +26,9 @@ let
       };
     }) electronApps
   );
+  cfg = config.nixdots.features.flatpak;
 in
-{
+lib.mkIf cfg.enable {
   services.flatpak.enable = true;
   services.flatpak.remotes = [
     {
@@ -35,10 +36,7 @@ in
       location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
     }
   ];
-  services.flatpak.packages = [
-    "com.baidu.NetDisk"
-    "com.wps.Office"
-  ];
+  services.flatpak.packages = [ ];
   services.flatpak.overrides = {
     global = {
       Context = {
@@ -77,4 +75,8 @@ in
       fi
     '') electronApps}
   '';
+  nixdots.persist.nosnap.home.directories = [
+    ".local/share/flatpak"
+    ".var"
+  ];
 }

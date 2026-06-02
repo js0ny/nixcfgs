@@ -7,25 +7,35 @@
 let
   xdg-data = config.xdg.dataHome;
   locales = config.nixdots.core.locales;
+  inherit (lib) mkDefault;
 in
 {
   xdg.configFile."user-dirs.locale" = {
-    enable = if pkgs.stdenv.isDarwin then false else true;
-    text = ''
-      ${locales.default}
-    '';
+    enable = !pkgs.stdenv.isDarwin;
+    text = "${locales.default}";
   };
   xdg.userDirs = {
     enable = true;
     createDirectories = false;
-    setSessionVariables = lib.mkDefault true;
-    desktop = lib.mkDefault "$HOME/Desktop";
-    documents = lib.mkDefault "$HOME/Documents";
-    download = lib.mkDefault "$HOME/Downloads";
-    music = lib.mkDefault "$HOME/Music";
-    pictures = lib.mkDefault "$HOME/Pictures";
-    publicShare = lib.mkDefault "/var/empty";
-    templates = lib.mkDefault "${xdg-data}/Templates";
-    videos = lib.mkDefault "$HOME/Videos";
+    setSessionVariables = mkDefault true;
+    desktop = mkDefault "$HOME/Desktop";
+    documents = mkDefault "$HOME/Documents";
+    download = mkDefault "$HOME/Downloads";
+    music = mkDefault "$HOME/Music";
+    pictures = mkDefault "$HOME/Pictures";
+    publicShare = mkDefault "/var/empty";
+    templates = mkDefault "$HOME/.local/share/Templates";
+    videos = mkDefault "$HOME/Videos";
   };
+  nixdots.persist.home.directories = [ ];
+  nixdots.persist.nosnap.home.directories =
+    let
+      toPersist = dir: lib.removePrefix "$HOME/" dir;
+      xdgDirs = config.xdg.userDirs;
+    in
+    [
+      (toPersist xdgDirs.music)
+      (toPersist xdgDirs.pictures)
+      (toPersist xdgDirs.videos)
+    ];
 }

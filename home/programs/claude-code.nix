@@ -1,13 +1,10 @@
 {
   config,
-  inputs,
   pkgs,
   secrets,
   ...
 }:
 let
-  system = pkgs.stdenv.system;
-  ccpkg = inputs.llm-agents.packages.${system}.claude-code;
   models = config.nixdefs.llm.routing;
   model = models.code-plan.model;
 in
@@ -27,7 +24,7 @@ in
   };
   programs.claude-code = {
     enable = true;
-    package = ccpkg;
+    package = pkgs.llm-agents.claude-code;
   };
   # Envs:
   # * CLAUDE_CODE_ATTRIBUTION_HEADER:

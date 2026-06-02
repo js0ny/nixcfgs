@@ -11,11 +11,6 @@
   home.packages = with pkgs; [
     localPkgs.wechat-bwrap
   ];
-  nixdots.persist.home = {
-    directories = [
-      ".sandbox/.per-app/wechat"
-    ];
-  };
   services.xremap.config.keymap = [
     {
       name = "IM Navigator - Alt-Up/Down";

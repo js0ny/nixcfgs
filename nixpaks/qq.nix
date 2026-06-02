@@ -36,7 +36,10 @@ let
           binPath = "bin/qq";
         };
         flatpak.appId = appId;
-        flatpakDataDir = true;
+        flatpakDataDir = false;
+        xdgBind = {
+          config = [ "QQ" ];
+        };
 
         imports = [
           ./modules/gui-base.nix

@@ -17,4 +17,6 @@
   home.packages = with pkgs; [
     nixpaks.qq
   ];
+
+  nixdots.persist.nosnap.home.directories = [ ".config/QQ" ];
 }

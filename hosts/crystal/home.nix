@@ -86,7 +86,6 @@
     };
     "Music" = {
       create = true;
-      persist = true;
       backup = false;
       sync = true;
       icon = "folder-music";
@@ -94,14 +93,12 @@
     };
     "Pictures" = {
       create = true;
-      persist = true;
       backup = false;
       sync = false;
       icon = "folder-pictures";
     };
     "Videos" = {
       create = true;
-      persist = true;
       backup = false;
       sync = false;
       icon = "folder-videos";
@@ -128,7 +125,7 @@
     ];
   };
   mergetools.ticktick-json = {
-    target = "${config.home.homeDirectory}/.var/app/com.ticktick.TickTick/config/ticktick/config.json";
+    target = "${config.xdg.configHome}/ticktick/config.json";
     format = "json";
     settings = {
       locale = "zh_CN";

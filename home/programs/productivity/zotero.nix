@@ -22,7 +22,7 @@ in
     else
       [ pkgs.zotero ];
   home.file = {
-    "${dotDir}/profiles.ini".text = ''
+    "${dotDir}/zotero/profiles.ini".text = ''
       [General]
       StartWithLastProfile=1
       Version=2
@@ -33,12 +33,12 @@ in
       Name=${profile}
       Path=${profile}
     '';
-    "${dotDir}/${profile}/user.js".text = /* javascript */ ''
+    "${dotDir}/zotero/${profile}/user.js".text = /* javascript */ ''
       user_pref("extensions.zotero.export.quickCopy.setting", "bibliography=http://www.zotero.org/styles/ieee");
       user_pref("intl.locale.requested", "${config.nixdots.core.locales.guiLocale}");
     '';
   };
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       dotDir
       libraryDir

@@ -3,9 +3,8 @@
   home.packages = with pkgs; [
     quickemu
   ];
-  nixdots.persist.home = {
-    directories = [
-      "VMs"
-    ];
-  };
+  nixdots.persist.nosnap.home.directories = [
+    "VMs"
+  ];
+
 }

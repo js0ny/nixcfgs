@@ -7,6 +7,7 @@
 }:
 let
   sopsFile = secrets + /opencode.yaml;
+  user = config.home.username;
 in
 {
   imports = [
@@ -18,12 +19,15 @@ in
     opencode_web_password = { inherit sopsFile; };
   };
 
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".local/share/opencode"
-      ".config/opencode"
     ];
   };
+  nixdots.persist.home.directories = [ ".config/opencode" ];
+  systemd.user.tmpfiles.rules = [
+    "f ${config.xdg.dataHome}/opencode/auth.json 0600 ${user} users -"
+  ];
 
   home.sessionVariables = {
     # Manage LSP by DevShell

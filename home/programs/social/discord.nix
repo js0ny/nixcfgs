@@ -43,7 +43,7 @@
       };
     };
   };
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".config/discord"
     ];

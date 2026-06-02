@@ -44,6 +44,8 @@ lib.mkMerge [
     fileSystems."${cfg.nosnap.path}".neededForBoot = true;
   })
   (lib.mkIf (cfg.rootOn == "btrfs") {
+    environment.systemPackages = [ pkgs.localPkgs.impermanence-clean-old-roots ];
+
     boot.initrd.supportedFilesystems = [ "btrfs" ];
 
     boot.initrd.systemd.storePaths = with pkgs; [

@@ -17,7 +17,7 @@
     index = true;
     pin = true;
   };
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".config/obsidian"
     ];

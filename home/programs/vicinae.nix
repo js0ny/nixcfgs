@@ -88,7 +88,7 @@ lib.mkIf cfg.enable {
     };
   };
 
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".local/share/vicinae"
     ];

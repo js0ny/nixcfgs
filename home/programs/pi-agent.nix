@@ -1,16 +1,13 @@
 {
-  inputs,
   pkgs,
   lib,
   config,
   ...
 }:
 let
-  system = pkgs.stdenv.system;
-  pipkg-base = inputs.llm-agents.packages.${system}.pi;
   pipkg = pkgs.symlinkJoin {
     name = "pi-with-mcp";
-    paths = [ pipkg-base ];
+    paths = [ pkgs.llm-agents.pi ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram "$out/bin/pi" \

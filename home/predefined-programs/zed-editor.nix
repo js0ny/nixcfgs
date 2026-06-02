@@ -1,6 +1,5 @@
 { lib, config, ... }:
 let
-  llm = config.nixdefs.llm;
   enabledAcps = lib.filterAttrs (name: server: server.enable) config.nixdefs.acp.servers;
   acpToZed =
     (builtins.mapAttrs (name: server: (removeAttrs server [ "enable" ]) // { type = "custom"; }))

@@ -25,10 +25,9 @@
       # recolor # Use stylix
     ];
   };
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/Anki2"
-    ];
-  };
+  nixdots.persist.nosnap.home.directories = [
+    ".local/share/Anki2"
+  ];
+
   nixdots.darwin.homebrew.casks = [ "anki" ];
 }

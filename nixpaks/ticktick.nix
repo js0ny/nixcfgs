@@ -20,7 +20,10 @@ let
       {
         app.package = package;
         flatpak.appId = appId;
-        flatpakDataDir = true;
+        flatpakDataDir = false;
+        xdgBind = {
+          config = [ "ticktick" ];
+        };
 
         imports = [
           ./modules/gui-base.nix

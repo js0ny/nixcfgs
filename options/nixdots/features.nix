@@ -21,5 +21,8 @@ in
     tools = {
       vicinae.enable = mkEnableOption "Enable Vicinae, a raycast clone / program launcher. (Linux only)";
     };
+    flatpak = {
+      enable = mkEnableOption "Enable Flatpak support.";
+    };
   };
 }

@@ -87,7 +87,7 @@ in
     };
   };
 
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       # nvim(lazy) will download plugins to this dir
       ".local/share/${appname}"

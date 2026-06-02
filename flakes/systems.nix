@@ -7,11 +7,14 @@
       localOverlays = import ../overlays;
 
       overlays = [
-        inputs.niri-flake.overlays.niri
-        inputs.nur.overlays.default
-        inputs.firefox-addons.overlays.default
-        inputs.nix-cachyos-kernel.overlays.pinned
         localOverlays
+        # keep-sorted start
+        inputs.firefox-addons.overlays.default
+        inputs.llm-agents.overlays.default
+        inputs.niri-flake.overlays.niri
+        inputs.nix-cachyos-kernel.overlays.pinned
+        inputs.nur.overlays.default
+        # keep-sorted end
       ];
 
       specialArgs = {

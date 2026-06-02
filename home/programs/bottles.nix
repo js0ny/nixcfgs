@@ -5,10 +5,6 @@
       removeWarningPopup = true;
     })
   ];
-  services.flatpak.packages = [
-    "org.freedesktop.Platform.VulkanLayer.MangoHud"
-    "org.freedesktop.Platform.VulkanLayer.vkBasalt"
-  ];
   dconf.settings = {
     "com/usebottles/bottles" = {
       update-date = true;

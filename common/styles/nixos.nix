@@ -18,6 +18,11 @@ in
 lib.mkIf cfg.enable {
   environment.systemPackages = fontPkgs;
 
+  catppuccin = {
+    enable = false;
+    autoEnable = false;
+  };
+
   fonts = {
     enableDefaultPackages = true;
     packages = fontPkgs;

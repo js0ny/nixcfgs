@@ -28,9 +28,8 @@
       };
     };
   };
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/PrismLauncher"
-    ];
-  };
+  nixdots.persist.nosnap.home.directories = [
+    ".local/share/PrismLauncher"
+  ];
+
 }

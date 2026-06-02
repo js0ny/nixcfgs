@@ -8,8 +8,7 @@
 }:
 let
   user = config.nixdots.user.name;
-  system = pkgs.stdenv.system;
-  ocbase = inputs.llm-agents.packages.${system}.opencode;
+  ocbase = pkgs.llm-agents.opencode;
   # Wrap bun to perform plugin installation
   ocpkg = pkgs.symlinkJoin {
     name = "opencode-with-bun";

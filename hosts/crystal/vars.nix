@@ -158,7 +158,6 @@ in
       firefox.enable = true;
       dolphin.enable = true;
       thunderbird.enable = true;
-      onlyoffice.enable = true;
     };
     features = {
       preferGtk = true;

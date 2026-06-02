@@ -4,7 +4,7 @@
     enable = true;
     enableAutoUpdates = true;
   };
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".cache/tealdeer"
     ];

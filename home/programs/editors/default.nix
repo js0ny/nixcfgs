@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [
     ./wakatime.nix
@@ -7,5 +7,10 @@
     lsp.enable = true;
     mcp.enable = true;
   };
-  nixdots.persist.home.directories = [ ".config/github-copilot" ];
+  nixdots.persist.home.directories = [
+    {
+      directory = ".config/github-copilot";
+      mode = "0700";
+    }
+  ];
 }

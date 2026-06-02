@@ -10,7 +10,7 @@ let
 in
 {
   programs.emacs = {
-    enable = false;
+    enable = true;
     package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else null;
     extraPackages =
       epkgs:
@@ -40,7 +40,6 @@ in
         elfeed-org
         olivetti
         org-modern
-        nix-ts-mode
         (epkgs.treesit-grammars.with-grammars (grammars: [
           grammars.tree-sitter-nix
         ]))

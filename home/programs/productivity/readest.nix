@@ -27,6 +27,10 @@
   nixdots.persist.home = {
     directories = [
       ".config/com.bilingify.readest"
+    ];
+  };
+  nixdots.persist.nosnap.home = {
+    directories = [
       ".local/share/com.bilingify.readest"
     ];
   };

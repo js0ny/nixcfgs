@@ -17,6 +17,12 @@
       outline_panel = {
         dock = "right";
       };
+      project_panel = {
+        dock = "left";
+      };
+      git_panel = {
+        dock = "left";
+      };
       edit_predictions = {
         provider = "zed";
         disabled_globs = [

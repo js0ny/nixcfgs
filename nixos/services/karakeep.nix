@@ -51,7 +51,8 @@ in
       locations."/" = {
         proxyPass = "http://localhost:${portStr}";
       };
-    };
+    }
+    // config.nixdefs.consts.nginxWithCF;
   };
 
 }

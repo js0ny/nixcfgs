@@ -2,13 +2,11 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 let
   ep = config.nixdefs.endpoints;
-  system = pkgs.stdenv.system;
-  ocpkg = inputs.llm-agents.packages.${system}.opencode;
+  ocpkg = pkgs.llm-agents.opencode;
   # Wrap bun to perform plugin installation
   ocbun = pkgs.symlinkJoin {
     name = "opencode-with-bun";

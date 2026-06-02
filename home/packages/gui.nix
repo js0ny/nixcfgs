@@ -33,6 +33,7 @@
       showmethekey
       signal-desktop
       siyuan
+      vlc
       # keep-sorted end
     ])
     ++ ((lib.optionals pkgs.stdenv.isDarwin) [ ]);
@@ -47,7 +48,6 @@
     casks = [
       "ticktick"
       "proton-drive"
-      "rustdesk"
       "localsend"
       "skim" # PDF Reader
       "keka" # GUI Unarchiver
@@ -62,4 +62,6 @@
   home.sessionVariables = lib.optionalAttrs (pkgs.stdenv.isLinux) {
     PROTON_PASS_LINUX_KEYRING = "dbus";
   };
+
+  nixdots.persist.nosnap.home.directories = [ ".config/ticktick" ];
 }

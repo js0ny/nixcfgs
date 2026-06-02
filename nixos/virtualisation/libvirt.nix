@@ -29,7 +29,7 @@ lib.mkIf cfg.enable {
   };
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   virtualisation.spiceUSBRedirection.enable = true;
-  nixdots.persist.system = {
+  nixdots.persist.nosnap.system = {
     directories = [
       "/var/lib/libvirt"
     ];

@@ -284,9 +284,8 @@ lib.mkIf pkgs.stdenv.isLinux {
     };
   };
 
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/fcitx5"
-    ];
-  };
+  nixdots.persist.home.directories = [
+    ".local/share/fcitx5"
+  ];
+
 }

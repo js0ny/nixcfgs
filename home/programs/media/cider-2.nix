@@ -115,7 +115,7 @@ in
       };
     };
   };
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".config/sh.cider.genten"
     ];

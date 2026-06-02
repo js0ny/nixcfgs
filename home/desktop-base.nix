@@ -20,7 +20,7 @@
     ./programs/dolphin
     ./programs/editors/nvim
     ./programs/editors/vscode
-    ./programs/fsearch.nix
+    # ./programs/fsearch.nix # use vicinae
     ./programs/loupe.nix
     ./programs/media/feishin.nix
     ./programs/media/mpv.nix
@@ -51,7 +51,7 @@
     # keep-sorted end
   ];
 
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".local/state/wireplumber"
     ];
@@ -69,5 +69,9 @@
     "PDX"
   ];
 
-  catppuccin.cache.enable = true;
+  catppuccin = {
+    enable = false;
+    autoEnable = false;
+    cache.enable = true;
+  };
 }

@@ -96,7 +96,7 @@ in
         pkgs.ayugram-desktop
         pkgs.materialgram
       ];
-  nixdots.persist.home = {
+  nixdots.persist.nosnap.home = {
     directories = [
       ".local/share/AyuGramDesktop"
       ".local/share/materialgram"

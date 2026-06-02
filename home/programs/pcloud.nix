@@ -44,9 +44,4 @@ in
     pcloudAntidotsDesktop
   ];
 
-  nixdots.persist.home = {
-    directories = [
-      ".sandbox/.per-app/pcloud"
-    ];
-  };
 }

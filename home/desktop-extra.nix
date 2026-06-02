@@ -93,7 +93,6 @@
     krabby
     newsflash
     nur.repos.Ev357.helium
-    rustdesk
     tea
     # keep-sorted end
   ];
