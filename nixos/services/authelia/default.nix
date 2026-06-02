@@ -1,8 +1,7 @@
 {
-  pkgs,
   config,
-  lib,
   secrets,
+  myLib,
   ...
 }:
 let
@@ -17,6 +16,8 @@ let
   domain = "js0ny.net";
 in
 {
+
+  imports = myLib.scanPaths ./.;
   sops.secrets = {
     authelia_jwt_secret = {
       sopsFile = secrets + /authelia.yaml;
@@ -56,8 +57,6 @@ in
       default_2fa_method = "webauthn";
       server.address = "tcp://${ip}:${portStr}/";
       log.level = "info";
-
-      access_control.default_policy = "two_factor";
 
       session.cookies = [
         {
@@ -206,6 +205,9 @@ in
             token_endpoint_auth_method = "client_secret_basic";
           }
         ];
+      };
+      access_control = {
+        default_policy = "two_factor";
       };
     };
   };

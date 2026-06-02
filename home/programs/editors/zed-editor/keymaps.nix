@@ -60,14 +60,6 @@
           l = "vim::Right";
           n = "search::SelectNextMatch";
           N = "search::SelectPreviousMatch";
-          J = [
-            "workspace::SendKeystrokes"
-            "j j j j j"
-          ];
-          K = [
-            "workspace::SendKeystrokes"
-            "k k k k k"
-          ];
         };
       }
       {

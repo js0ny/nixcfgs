@@ -8,7 +8,7 @@
 }:
 {
   imports = [
-    nixcfgs.homeManagerModules.server-base
+    ../../home/server-base.nix
     inputs.sops-nix.homeManagerModules.sops
     ./vars.nix
   ];

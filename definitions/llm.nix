@@ -36,6 +36,10 @@ in
         provider = "litellm";
         model = "deepseek-v4-flash";
       };
+      vision = {
+        provider = "litellm";
+        model = "gemini-3.5-flash";
+      };
     };
   };
 }

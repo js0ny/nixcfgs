@@ -10,7 +10,7 @@
 }:
 {
   imports = [
-    nixcfgs.nixosModules.server
+    ../../nixos/server
     # Host-specific configs
     ./hardware-configuration.nix
     ./vars.nix
@@ -49,6 +49,8 @@
     ../../nixos/services/forgejo.nix
     ../../nixos/services/gluetun.nix
     ../../nixos/services/rclone.nix
+    ../../nixos/services/prometheus
+    ../../nixos/services/grafana.nix
   ];
 
   home-manager = {

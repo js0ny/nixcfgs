@@ -16,7 +16,7 @@
     ./disko.nix
     ./vars.nix
 
-    nixcfgs.nixosModules.server
+    ../../nixos/server
     inputs.srvos.nixosModules.hardware-hetzner-cloud
     ../../nixos/services/cloudflare.nix
     ../../nixos/services/matrix

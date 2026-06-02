@@ -7,7 +7,6 @@
 }:
 let
   models = config.nixdefs.llm.routing;
-  consts = config.nixdefs.consts;
   litellm = config.nixdefs.endpoints.litellm.publicUrl;
   obsidianDir = "/var/lib/lmwiki";
 in
@@ -75,14 +74,14 @@ in
       ];
 
       model = {
-        default = "deepseek-v4-flash";
+        default = models.agent.model;
         provider = "custom:litellm";
       };
 
       auxiliary = {
         vision = {
           provider = "custom:litellm";
-          model = "gemini-3.5-flash";
+          model = models.vision.model;
         };
       };
 
@@ -157,9 +156,11 @@ in
       # ── Web ────────────────────────────────────────────────────────
       web = {
         backend = "tavily";
+        search_backend = "tavily";
+        extract_backend = "firecrawl";
       };
 
-      # ── TTS ────────────────────────────────────────────────────────
+      # https://hermes-agent.nousresearch.com/docs/user-guide/features/tts
       tts = {
         provider = "edge";
       };

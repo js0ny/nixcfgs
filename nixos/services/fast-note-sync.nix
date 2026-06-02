@@ -5,7 +5,6 @@ let
   ep = config.nixdefs.endpoints;
   epSelf = ep.fast-note-sync;
   url = epSelf.domain;
-  port = epSelf.port;
   portStr = epSelf.portStr;
   iportStr = "9000";
   ipAddr = epSelf.bindAddress;
@@ -35,7 +34,7 @@ in
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://localhost:${toString port}";
+        proxyPass = "http://localhost:${portStr}";
         proxyWebsockets = true;
       };
     }
