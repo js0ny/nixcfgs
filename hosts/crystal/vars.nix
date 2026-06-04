@@ -32,7 +32,11 @@ in
         global = true;
       };
     };
-    persist.enable = true;
+    persist = {
+      enable = true;
+      path = "/persist";
+      nosnap.path = "/nosnap";
+    };
     user = {
       name = "js0ny";
       shell = pkgs.zsh;

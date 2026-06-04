@@ -12,6 +12,7 @@ let
   service = config.systemd.services.grafana;
   url = epSelf.domain;
   openid = config.nixdefs.selfhosted.openid;
+  socketPath = "/run/grafana/grafana.sock";
 in
 {
   sops.secrets =
@@ -29,8 +30,10 @@ in
     enable = true;
     settings = {
       server = {
-        http_addr = epSelf.bindAddress;
-        http_port = epSelf.port;
+        protocol = "socket";
+        socket = socketPath;
+        socket_gid = config.users.groups.${config.services.nginx.group}.gid;
+        socket_mode = "0660";
         domain = url;
         root_url = epSelf.publicUrl;
       };
@@ -97,13 +100,14 @@ in
     };
   };
   nixdots.persist.system.directories = [ config.services.grafana.dataDir ];
+  systemd.services.grafana.serviceConfig.SupplementaryGroups = [ config.services.nginx.group ];
 
   services.nginx.virtualHosts = lib.mkIf (url != null) {
     ${url} = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://localhost:${epSelf.portStr}";
+        proxyPass = "http://unix:${socketPath}:/";
         proxyWebsockets = true;
       };
     }

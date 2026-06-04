@@ -2,15 +2,15 @@
 let
   ep = config.nixdefs.endpoints;
   url = ep.forgejo.domain;
-  port = ep.forgejo.port;
-  portStr = ep.forgejo.portStr;
+  socketPath = "/run/forgejo/forgejo.sock";
 in
 {
   services.forgejo = {
     enable = true;
     settings = {
       server = {
-        HTTP_PORT = port;
+        PROTOCOL = "http+unix";
+        HTTP_ADDR = socketPath;
       }
       // lib.optionalAttrs (url != null) {
         ROOT_URL = "https://${url}";
@@ -26,7 +26,7 @@ in
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://localhost:${portStr}";
+        proxyPass = "http://unix:${socketPath}:/";
       };
     };
   };

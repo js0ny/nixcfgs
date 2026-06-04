@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  secrets,
   ...
 }:
 let
@@ -23,6 +24,11 @@ let
   models = llm.routing;
 in
 {
+  sops.secrets = {
+    llm_key_pidev = {
+      sopsFile = secrets + /llm-integrations.yaml;
+    };
+  };
   home.packages = [ pipkg ];
   home.sessionVariables = {
     PI_CODING_AGENT_DIR = "${config.xdg.configHome}/pi/agent";

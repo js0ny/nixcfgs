@@ -19,6 +19,7 @@
     ./gaming/steam
     ./packages/flatpak.nix
     ./programs
+    ./programs/atuin.nix
     ./programs/bottles.nix
     ./programs/browsers/chromium.nix
     ./programs/browsers/firefox

@@ -7,11 +7,11 @@
     # Clients
     discord = {
       enable = true;
-      package =
-        if pkgs.stdenv.isLinux then
-          pkgs.nixpaks.discord
-        else
-          inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.discord;
+      # package =
+      #   if pkgs.stdenv.isLinux then
+      #     pkgs.nixpaks.discord
+      #   else
+      #     inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.discord;
       autoscroll.enable = true;
       vencord.enable = true;
     };

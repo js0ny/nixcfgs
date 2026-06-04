@@ -22,6 +22,7 @@ let
       "yaml"
       "lock"
       "atom"
+      "log"
     ];
     #     "${apps.browser.bundleIdentifier}" = ["html" "htm"];
   };

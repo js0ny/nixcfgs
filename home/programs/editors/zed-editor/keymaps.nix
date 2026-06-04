@@ -94,6 +94,7 @@
           "ctrl-w k" = "workspace::ActivatePaneUp";
           "ctrl-w l" = "workspace::ActivatePaneRight";
           "ctrl-w j" = "workspace::ActivatePaneDown";
+          "ctrl-v" = "terminal::Paste";
         };
       }
       {
@@ -107,6 +108,10 @@
         bindings = {
           "alt-x" = "command_palette::Toggle";
         };
+      }
+      {
+        context = "Terminal && selection";
+        bindings."ctrl-c" = "terminal::Copy";
       }
     ];
   };

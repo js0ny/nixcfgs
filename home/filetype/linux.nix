@@ -21,6 +21,7 @@ let
     "text/x-pdx-descriptor" # .mod
     "text/csv"
     "text/markdown"
+    "text/log" # .log
     "application/vnd.kde.kxmlguirc"
     "application/atom+xml" # .atom
     "text/vnd.trolltech.linguist" # .ts (Qt Translation Source File)

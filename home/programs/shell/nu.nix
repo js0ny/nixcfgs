@@ -25,6 +25,11 @@
         sync_on_enter: true
         isolation: true
       }
+      $env.config.highlight_resolved_externals = true
+      $env.config.color_config = {
+        shape_external: red_bold
+        shape_external_resolved: green
+      }
       $env.config.keybindings ++= [
         {
           name: insert_last_token

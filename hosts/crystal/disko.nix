@@ -58,7 +58,7 @@
                     ];
                   };
                   "/nosnap" = {
-                    mountpoint = "/persist/nosnap";
+                    mountpoint = "/nosnap";
                     mountOptions = [
                       "compress=zstd"
                       "noatime"

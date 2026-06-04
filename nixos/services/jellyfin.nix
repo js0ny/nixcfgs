@@ -1,13 +1,21 @@
 { lib, config, ... }:
 let
   ep = config.nixdefs.endpoints;
-  portStr = ep.jellyfin.portStr;
   url = ep.jellyfin.domain;
+  socketPath = "/run/jellyfin/jellyfin.sock";
 in
 {
   services.jellyfin = {
     enable = true;
     openFirewall = false;
+  };
+  systemd.services.jellyfin = {
+    environment = {
+      JELLYFIN_kestrel__socket = "true";
+      JELLYFIN_kestrel__socketPath = socketPath;
+      JELLYFIN_kestrel__socketPermissions = "666";
+    };
+    serviceConfig.RuntimeDirectory = "jellyfin";
   };
 
   services.nginx.virtualHosts = lib.mkIf (url != null) {
@@ -15,7 +23,7 @@ in
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://localhost:${portStr}";
+        proxyPass = "http://unix:${socketPath}:/";
         proxyWebsockets = true;
         extraConfig = /* nginx */ ''
           proxy_buffering off;

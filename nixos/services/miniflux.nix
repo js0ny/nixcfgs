@@ -7,8 +7,8 @@
 let
   ep = config.nixdefs.endpoints;
   epSelf = ep.miniflux;
-  portStr = epSelf.portStr;
   url = epSelf.domain;
+  socketPath = "/run/miniflux/miniflux.sock";
   dbname = "miniflux";
   dbuser = "miniflux";
   selfhosted = config.nixdefs.selfhosted;
@@ -42,9 +42,8 @@ in
     config = lib.mkMerge [
       {
         CLEANUP_FREQUENCY = mkDefault 48;
-        PORT = portStr;
         WEBAUTHN = mkDefault "1";
-        LISTEN_ADDR = "${epSelf.bindAddress}:${portStr}";
+        LISTEN_ADDR = socketPath;
         CREATE_ADMIN = mkDefault 1;
         FETCHER_ALLOW_PRIVATE_NETWORKS = mkDefault "1";
       }
@@ -69,7 +68,7 @@ in
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://localhost:${portStr}";
+        proxyPass = "http://unix:${socketPath}:/";
       };
     };
   };
