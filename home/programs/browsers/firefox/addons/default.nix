@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  lib,
+  myLib,
   ...
 }:
 let
@@ -9,13 +9,7 @@ let
   p = config.nixdots.programs.firefox.defaultProfile;
 in
 {
-  imports = [
-    ./surfingkeys
-    ./cookie-autodelete
-    ./global-speed
-    ./sidebery
-    ./gemini-voyager.nix
-  ];
+  imports = myLib.scanPaths ./.;
   catppuccin.firefox.enable = true;
   programs.firefox.profiles."${p}" = {
     extensionStorage."gemini-voyager@nagi-ovo".settings = {
@@ -45,7 +39,7 @@ in
       # Cookies
       cookie-quick-manager
       cookie-autodelete
-      consent-o-matic # istilldontcareaboutcookies alt
+      istilldontcareaboutcookies
 
       # Privacy
       google-container

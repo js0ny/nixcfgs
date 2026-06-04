@@ -11,6 +11,7 @@ in
       "https://docs-editor.proton.me"
       "https://www.shoutoutuk.org"
       "https://www.notion.so"
+      "https://console.hetzner.com"
     ];
     snippets = builtins.readFile ./surfingkeys.js;
   };

@@ -4,6 +4,7 @@
   pkgs,
   lib,
   config,
+  myLib,
   ...
 }:
 let
@@ -14,11 +15,7 @@ let
   policies = import ../../../common/firefox-policies.nix;
 in
 {
-  imports = [
-    ./cookie-autodelete.nix
-    ./surfingkeys.nix
-    ./userjs.nix
-  ];
+  imports = myLib.scanPaths ./.;
   programs.firefox.configPath = "${config.home.homeDirectory}/${profile}";
 
   programs.firefox = {

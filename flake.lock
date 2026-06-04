@@ -361,15 +361,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1780114044,
-        "narHash": "sha256-wa7jPT74epf10dHEgSaDfoR/NKlr757uRAw9HoIRFNA=",
-        "owner": "xddxdd",
+        "lastModified": 1780562143,
+        "narHash": "sha256-Tkxk+4DJyzghPVT/j7wt0CGybfgxC0Cf8hgRs88HHuM=",
+        "owner": "petrkozorezov",
         "repo": "firefox-addons-nix",
-        "rev": "782e8f3fe64eb9d9f59052470043d2c269529964",
+        "rev": "5d019e78efbd8877b9945f815a3154a8a891124b",
         "type": "github"
       },
       "original": {
-        "owner": "xddxdd",
+        "owner": "petrkozorezov",
         "repo": "firefox-addons-nix",
         "type": "github"
       }
@@ -1699,11 +1699,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1780478356,
-        "narHash": "sha256-bGY9xerWfyMikeQzF/yUWd/rGk/yT1TvRnAouWS8/YE=",
+        "lastModified": 1780614568,
+        "narHash": "sha256-Ql+gZ9lJKwWpNPPqO1BcHOp+kzTFhUf7L66qwJKHc/U=",
         "ref": "refs/heads/master",
-        "rev": "1fe2ad59a6fd9e0218ce239b51c0031ff0c0dab6",
-        "revCount": 15,
+        "rev": "e4ce5832c7a84c74ef3f61fafef483d990432926",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/js0ny/nix-secrets.git"
       },

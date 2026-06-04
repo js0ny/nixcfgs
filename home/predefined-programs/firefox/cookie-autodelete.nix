@@ -31,16 +31,31 @@ in
               description = "Enable Active Mode (Auto-clean on tab close).";
             };
 
-            allowList = lib.mkOption {
-              type = lib.types.listOf lib.types.str;
-              default = [ ];
-              description = "A list of expressions to keep cookies for (Whitelist).";
-            };
+            lists = lib.mkOption {
+              type =
+                with lib.types;
+                attrsOf (
+                  submodule (
+                    { ... }:
+                    {
+                      options = {
+                        allowList = lib.mkOption {
+                          type = lib.types.listOf lib.types.str;
+                          default = [ ];
+                          description = "A list of expressions to keep cookies for (Whitelist).";
+                        };
 
-            denyList = lib.mkOption {
-              type = lib.types.listOf lib.types.str;
-              default = [ ];
-              description = "A list of expressions to keep cookies until browser restart (Greylist).";
+                        denyList = lib.mkOption {
+                          type = lib.types.listOf lib.types.str;
+                          default = [ ];
+                          description = "A list of expressions to keep cookies until browser restart (Greylist).";
+                        };
+                      };
+                    }
+                  )
+                );
+              default = { };
+              example = { };
             };
 
             delayBeforeClean = lib.mkOption {
@@ -72,59 +87,57 @@ in
             extensions.packages = [ pkg ];
 
             extensionStorage."${id}".settings = {
-              state = builtins.toJSON {
-                lists = {
-                  # 使用 ++ 将白名单和灰名单的映射结果合并为一个列表
-                  default =
-                    (map (expr: {
+              state = builtins.toJSON (
+                let
+                  mkListEntries =
+                    storeId: listType: expressions:
+                    map (expr: {
                       expression = expr;
-                      listType = "WHITE";
-                      storeId = "default";
+                      inherit listType storeId;
                       cleanSiteData = [ ];
                       cookieNames = [ ];
-                      id = builtins.substring 0 9 (builtins.hashString "sha256" "WHITE-${expr}");
-                    }) config.cookie-autodelete.allowList)
-                    ++ (map (expr: {
-                      expression = expr;
-                      listType = "GREY";
-                      storeId = "default";
-                      cleanSiteData = [ ];
-                      cookieNames = [ ];
-                      id = builtins.substring 0 9 (builtins.hashString "sha256" "GREY-${expr}");
-                    }) config.cookie-autodelete.denyList);
-                };
-                settings = {
-                  activeMode = {
-                    name = "activeMode";
-                    value = config.cookie-autodelete.active;
-                  };
-                  delayBeforeClean = {
-                    name = "delayBeforeClean";
-                    value = config.cookie-autodelete.delayBeforeClean;
-                  };
-                  localStorageCleanup = {
-                    name = "localStorageCleanup";
-                    value = config.cookie-autodelete.cleanLocalStorage;
-                  };
-                  contextualIdentities = {
-                    name = "contextualIdentities";
-                    value = config.cookie-autodelete.enableContainers;
-                  };
-                  showNotificationAfterCleanup = {
-                    name = "showNotificationAfterCleanup";
-                    value = config.cookie-autodelete.showNotifications;
-                  };
+                      id = builtins.substring 0 9 (builtins.hashString "sha256" "${storeId}-${listType}-${expr}");
+                    }) expressions;
+                in
+                {
+                  lists = lib.mapAttrs (
+                    listName: listConfig:
+                    (mkListEntries listName "WHITE" listConfig.allowList)
+                    ++ (mkListEntries listName "GREY" listConfig.denyList)
+                  ) config.cookie-autodelete.lists;
+                  settings = {
+                    activeMode = {
+                      name = "activeMode";
+                      value = config.cookie-autodelete.active;
+                    };
+                    delayBeforeClean = {
+                      name = "delayBeforeClean";
+                      value = config.cookie-autodelete.delayBeforeClean;
+                    };
+                    localStorageCleanup = {
+                      name = "localStorageCleanup";
+                      value = config.cookie-autodelete.cleanLocalStorage;
+                    };
+                    contextualIdentities = {
+                      name = "contextualIdentities";
+                      value = config.cookie-autodelete.enableContainers;
+                    };
+                    showNotificationAfterCleanup = {
+                      name = "showNotificationAfterCleanup";
+                      value = config.cookie-autodelete.showNotifications;
+                    };
 
-                  enableNewVersionPopup = {
-                    name = "enableNewVersionPopup";
-                    value = false;
+                    enableNewVersionPopup = {
+                      name = "enableNewVersionPopup";
+                      value = false;
+                    };
+                    statLogging = {
+                      name = "statLogging";
+                      value = false;
+                    };
                   };
-                  statLogging = {
-                    name = "statLogging";
-                    value = false;
-                  };
-                };
-              };
+                }
+              );
             };
           };
         }
