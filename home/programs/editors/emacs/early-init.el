@@ -1,5 +1,10 @@
 (setq package-enable-at-startup nil)
 
+
+(defvar xdg-config-home
+  (or (getenv "XDG_CONFIG_HOME")
+      (expand-file-name "~/.config")))
+
 (defvar xdg-data-home
   (or (getenv "XDG_DATA_HOME")
       (expand-file-name "~/.local/share")))
@@ -12,6 +17,7 @@
   (or (getenv "XDG_STATE_HOME")
       (expand-file-name "~/.local/state/")))
 
+(setq user-emacs-directory (expand-file-name "emacs" xdg-config-home))
 (defvar user-emacs-data (expand-file-name "emacs" xdg-data-home))
 (defvar user-emacs-cache (expand-file-name "emacs" xdg-cache-home))
 (defvar user-emacs-state (expand-file-name "emacs" xdg-state-home))

@@ -70,6 +70,21 @@ in
       locations."/" = {
         proxyPass = "http://unix:${socketPath}:/";
       };
-    };
+    }
+    // config.nixdefs.consts.nginxWithCF;
   };
+
+  systemd.services.miniflux.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    RuntimeDirectoryMode = lib.mkForce "0770";
+    UMask = lib.mkForce "0007";
+    User = "miniflux";
+    Group = "miniflux";
+  };
+
+  users.users.miniflux = {
+    group = "miniflux";
+    isSystemUser = true;
+  };
+  users.groups.miniflux.members = [ "nginx" ];
 }
