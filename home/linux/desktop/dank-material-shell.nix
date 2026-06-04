@@ -33,6 +33,9 @@ lib.mkIf enable {
       weatherCoordinates = "${toString geo.latitude},${toString geo.longitude}";
       locale = mkDefault locale;
       timeLocale = mkDefault locale;
+      hiddenTrayIds = [
+        "chrome_status_icon_1::Feishin"
+      ];
     };
     settings = {
       # Theme
@@ -119,6 +122,7 @@ lib.mkIf enable {
             {
               id = "systemTray";
               enabled = true;
+              trayUseInlineExpansion = true;
             }
             {
               id = "battery";

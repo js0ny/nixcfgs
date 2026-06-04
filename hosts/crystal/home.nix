@@ -144,4 +144,7 @@
     };
   };
 
+  nixdots.persist.home.directories = [
+    ".config/sunshine"
+  ];
 }
