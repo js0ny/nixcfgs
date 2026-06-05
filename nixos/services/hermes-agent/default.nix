@@ -40,14 +40,6 @@ in
     addToSystemPackages = true;
 
     mcpServers = {
-      filesystem = {
-        command = "npx";
-        args = [
-          "-y"
-          "@modelcontextprotocol/server-filesystem"
-          "/home/user"
-        ];
-      };
       tavily = {
         url = "${litellm}/tavily/mcp";
         headers = {

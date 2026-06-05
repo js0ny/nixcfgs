@@ -36,7 +36,7 @@ stdenv.mkDerivation (finalAttrs: {
       ;
     pnpm = pnpm_10;
     fetcherVersion = 3;
-    hash = "sha256-dqhESUT0LhWvLRdr/IAbQygyxMjDZyNJjh1VqAgtsE8=";
+    hash = "sha256-H2vYuaMY2w7MbHf934t7lTAQXf7rb0xW3+2ZhK83zjg=";
   };
 
   pnpmInstallFlags = [ "--frozen-lockfile" ];

@@ -22,7 +22,7 @@ in
   home.sessionVariables = {
     CLAUDE_CONFIG_DIR = "${config.xdg.configHome}/claude";
   };
-  programs.vscode.extensions = with pkgs.vscode-extensions; [
+  programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     anthropic.claude-code
   ];
   programs.claude-code = {

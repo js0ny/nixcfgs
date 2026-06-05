@@ -162,7 +162,10 @@ in
   # }}}
 
   # {{{ persistence
-  nixdots.persist.system.directories = [ stateDir ];
+  nixdots.persist.system.directories = [
+    stateDir
+    "/var/lib/redis-sub2api"
+  ];
   # }}}
 
   # {{{ nginx

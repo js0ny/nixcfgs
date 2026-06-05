@@ -16,6 +16,11 @@
           { threshold = 20; }
         ];
       };
+      character = {
+        success_symbol = "[❯](bold green)";
+        error_symbol = "[❯](bold red)";
+        vimcmd_symbol = "[❯](bold yellow)";
+      };
       c = {
         format = "[ $symbol ($version) ]($style)";
         symbol = " ";
