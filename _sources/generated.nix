@@ -8,10 +8,10 @@
 {
   RIME-LMDG = {
     pname = "RIME-LMDG";
-    version = "dict-nightly";
+    version = "tool";
     src = fetchurl {
       url = "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram";
-      sha256 = "sha256-qh9bHHzD+RPCj4pPcJQTLtnItVcFG9sX+q95e7TnJm0=";
+      sha256 = "sha256-Pr3wgPM9TzYY8medb540opC9dZBvQrnXU/Yw5RAeVAc=";
     };
   };
   bbdown-linux-arm64 = {
@@ -38,53 +38,56 @@
       sha256 = "sha256-TfhAFNgYvW3/KzZbhHZFNA6JVcRFD+llaI9Br4mji6o=";
     };
   };
-  dwproton-linux-x64 = {
-    pname = "dwproton-linux-x64";
-    version = "dwproton-11.0-1";
-    src = fetchurl {
-      url = "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-11.0-1/dwproton-11.0-1-x86_64.tar.xz";
-      sha256 = "sha256-5RjicnGSmlXHL/eEdTY+1aTHpkt2PcLo7FFRYBHPx2s=";
+  go-fast-note-sync = {
+    pname = "go-fast-note-sync";
+    version = "v1.0.0";
+    src = fetchFromGitHub {
+      owner = "erichll";
+      repo = "go-fast-note-sync";
+      rev = "v1.0.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-wgtzH5NdkzjXfYUIk9xvugv+QUTWxvlkhor6kkBYZsc=";
     };
   };
   lobe-icons = {
     pname = "lobe-icons";
-    version = "0c66d0a318b2eeee1e04d005ba0f7df7121ecdf4";
+    version = "4b837f489c8fcff97c159917308a501632f92a25";
     src = fetchgit {
       url = "https://github.com/lobehub/lobe-icons.git";
-      rev = "0c66d0a318b2eeee1e04d005ba0f7df7121ecdf4";
+      rev = "4b837f489c8fcff97c159917308a501632f92a25";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-Af9suJv5jwdIVWqVyRfyTAUTqDe1EP9iiFQfNzdQQZw=";
+      sha256 = "sha256-sNc54FnpT2vytNPHWzFxwlhP/kTTpytDS+qVm0t+V3A=";
     };
-    date = "2026-05-07";
+    date = "2026-05-28";
   };
   noname = {
     pname = "noname";
-    version = "v1.11.3";
+    version = "v1.11.4";
     src = fetchFromGitHub {
       owner = "libnoname";
       repo = "noname";
-      rev = "v1.11.3";
+      rev = "v1.11.4";
       fetchSubmodules = false;
-      sha256 = "sha256-NXm9nFdTAvcKo9eiNDG1tgFwCfB7waFwEZebLv8ah3c=";
+      sha256 = "sha256-03ot2ENF8UqiUNbzQTf00rvNr11/wV2tjQobKlrwwE0=";
     };
   };
   rime_wanxiang_flypy = {
     pname = "rime_wanxiang_flypy";
-    version = "v15.10.4";
+    version = "v15.12.5";
     src = fetchurl {
-      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.10.4/rime-wanxiang-flypy-fuzhu.zip";
-      sha256 = "sha256-X2V/q3i6vxuo29lq4/QipjgfctcIubljE72yczPOvqs=";
+      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.12.5/rime-wanxiang-flypy-fuzhu.zip";
+      sha256 = "sha256-ZdQJeDE43S8abm5GInIMz9znnUDlkPjvx0GlzEyGmKA=";
     };
   };
   rime_wanxiang_zrm = {
     pname = "rime_wanxiang_zrm";
-    version = "v15.10.4";
+    version = "v15.12.5";
     src = fetchurl {
-      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.10.4/rime-wanxiang-zrm-fuzhu.zip";
-      sha256 = "sha256-TRmZvIdd4+9SOaeGq+Xy+LZLMUL6ItJ3LMhob1F2/O0=";
+      url = "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.12.5/rime-wanxiang-zrm-fuzhu.zip";
+      sha256 = "sha256-b+ASmDaIomcdtW25Rp21TB7zILp/R7m+TIpv0dB3EOk=";
     };
   };
 }

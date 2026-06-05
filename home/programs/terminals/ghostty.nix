@@ -22,8 +22,6 @@ in
         "TERM_PROGRAM=ghostty"
       ];
       command = lib.getExe shell;
-      font-size = 13;
-      font-family = (builtins.head config.nixdots.style.fonts.editorMono).name;
       # theme = light:Catppuccin Latte,dark:Catppuccin Mocha;
       # background-opacity = 0.8;
 
@@ -53,7 +51,9 @@ in
 
       ### Misc
 
-      app-notifications = "no-clipboard-copy";
+      # app-notifications = "no-clipboard-copy";
+      selection-clear-on-copy = true;
+      copy-on-select = "clipboard";
 
       ### Reference to:
       # https://github.com/folke/dot/blob/master/config/ghostty/config

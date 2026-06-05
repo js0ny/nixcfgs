@@ -64,6 +64,7 @@ in
       kiss-translator
       auto-tab-discard
       gesturefy
+      karakeep
 
       # Disabled
       # view-page-archive # Web Archives

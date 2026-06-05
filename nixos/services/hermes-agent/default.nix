@@ -8,10 +8,8 @@
 let
   models = config.nixdefs.llm.routing;
   litellm = config.nixdefs.endpoints.litellm.publicUrl;
-  obsidianDir = "/var/lib/lmwiki";
 in
 {
-  systemd.services.hermes-agent.serviceConfig.ReadWritePaths = [ obsidianDir ];
   environment.variables = {
     HERMES_HOME = "/var/lib/hermes/.hermes";
   };
@@ -19,6 +17,7 @@ in
     inputs.hermes-agent.nixosModules.default
     ./agent-user.nix
     ./env.nix
+    ./lmwiki.nix
   ];
   nixdots.persist.system = {
     directories = [

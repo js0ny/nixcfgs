@@ -16,7 +16,7 @@
     ./vars.nix
     # ./nixos-prebuild.nix
     ../../nixos/desktop
-    ../../nixos/services/hermes-agent
+    # ../../nixos/services/hermes-agent
     ../../nixos/services/sunshine.nix
   ];
 

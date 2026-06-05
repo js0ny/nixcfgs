@@ -8,11 +8,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-qh9bHHzD+RPCj4pPcJQTLtnItVcFG9sX+q95e7TnJm0=",
+            "sha256": "sha256-Pr3wgPM9TzYY8medb540opC9dZBvQrnXU/Yw5RAeVAc=",
             "type": "url",
             "url": "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram"
         },
-        "version": "dict-nightly"
+        "version": "tool"
     },
     "bbdown-linux-arm64": {
         "cargoLock": null,
@@ -59,24 +59,30 @@
         },
         "version": "1.6.3"
     },
-    "dwproton-linux-x64": {
+    "go-fast-note-sync": {
         "cargoLock": null,
         "date": null,
         "extract": null,
-        "name": "dwproton-linux-x64",
+        "name": "go-fast-note-sync",
         "passthru": null,
         "pinned": false,
         "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
             "name": null,
-            "sha256": "sha256-5RjicnGSmlXHL/eEdTY+1aTHpkt2PcLo7FFRYBHPx2s=",
-            "type": "url",
-            "url": "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-11.0-1/dwproton-11.0-1-x86_64.tar.xz"
+            "owner": "erichll",
+            "repo": "go-fast-note-sync",
+            "rev": "v1.0.0",
+            "sha256": "sha256-wgtzH5NdkzjXfYUIk9xvugv+QUTWxvlkhor6kkBYZsc=",
+            "sparseCheckout": [],
+            "type": "github"
         },
-        "version": "dwproton-11.0-1"
+        "version": "v1.0.0"
     },
     "lobe-icons": {
         "cargoLock": null,
-        "date": "2026-05-07",
+        "date": "2026-05-28",
         "extract": null,
         "name": "lobe-icons",
         "passthru": null,
@@ -86,13 +92,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "0c66d0a318b2eeee1e04d005ba0f7df7121ecdf4",
-            "sha256": "sha256-Af9suJv5jwdIVWqVyRfyTAUTqDe1EP9iiFQfNzdQQZw=",
+            "rev": "4b837f489c8fcff97c159917308a501632f92a25",
+            "sha256": "sha256-sNc54FnpT2vytNPHWzFxwlhP/kTTpytDS+qVm0t+V3A=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://github.com/lobehub/lobe-icons.git"
         },
-        "version": "0c66d0a318b2eeee1e04d005ba0f7df7121ecdf4"
+        "version": "4b837f489c8fcff97c159917308a501632f92a25"
     },
     "noname": {
         "cargoLock": null,
@@ -108,12 +114,12 @@
             "name": null,
             "owner": "libnoname",
             "repo": "noname",
-            "rev": "v1.11.3",
-            "sha256": "sha256-NXm9nFdTAvcKo9eiNDG1tgFwCfB7waFwEZebLv8ah3c=",
+            "rev": "v1.11.4",
+            "sha256": "sha256-03ot2ENF8UqiUNbzQTf00rvNr11/wV2tjQobKlrwwE0=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.11.3"
+        "version": "v1.11.4"
     },
     "rime_wanxiang_flypy": {
         "cargoLock": null,
@@ -124,11 +130,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-X2V/q3i6vxuo29lq4/QipjgfctcIubljE72yczPOvqs=",
+            "sha256": "sha256-ZdQJeDE43S8abm5GInIMz9znnUDlkPjvx0GlzEyGmKA=",
             "type": "url",
-            "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.10.4/rime-wanxiang-flypy-fuzhu.zip"
+            "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.12.5/rime-wanxiang-flypy-fuzhu.zip"
         },
-        "version": "v15.10.4"
+        "version": "v15.12.5"
     },
     "rime_wanxiang_zrm": {
         "cargoLock": null,
@@ -139,10 +145,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-TRmZvIdd4+9SOaeGq+Xy+LZLMUL6ItJ3LMhob1F2/O0=",
+            "sha256": "sha256-b+ASmDaIomcdtW25Rp21TB7zILp/R7m+TIpv0dB3EOk=",
             "type": "url",
-            "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.10.4/rime-wanxiang-zrm-fuzhu.zip"
+            "url": "https://github.com/amzxyz/rime_wanxiang/releases/download/v15.12.5/rime-wanxiang-zrm-fuzhu.zip"
         },
-        "version": "v15.10.4"
+        "version": "v15.12.5"
     }
 }

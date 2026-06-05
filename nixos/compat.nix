@@ -11,8 +11,15 @@ lib.mkIf m.compat {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc
-    ];
+    libraries =
+      with pkgs;
+      [
+        stdenv.cc.cc
+      ]
+      ++ (lib.optionals (config.hardware.graphics.enable) [
+        glib
+        libxcb
+        libGL
+      ]);
   };
 }

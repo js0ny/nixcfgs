@@ -17,7 +17,7 @@
 
     # ./services/actual.nix
     # keep-sorted start
-    # ../../nixos/services/hermes-agent
+    ../../nixos/services/hermes-agent
     ./static/flux.nix
     # keep-sorted end
     ../../nixos/services/fail2ban.nix

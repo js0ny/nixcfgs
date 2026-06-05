@@ -910,11 +910,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1780169106,
-        "narHash": "sha256-WTkz/bBOH+eN+Rs0aH1IegjMjAYc6kGx3qjE7ftcX4U=",
+        "lastModified": 1780609551,
+        "narHash": "sha256-/yWB1M+n3qGXDAQBjljdq/kdjVIthrYrcuQJ4IUDHHU=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "c2ef928cbadd60280699e828973b14e21557c7ff",
+        "rev": "7ddf15a44b60bd5708e76e2b4956978f8486d643",
         "type": "github"
       },
       "original": {
@@ -1699,11 +1699,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1780614568,
-        "narHash": "sha256-Ql+gZ9lJKwWpNPPqO1BcHOp+kzTFhUf7L66qwJKHc/U=",
+        "lastModified": 1780684435,
+        "narHash": "sha256-1KqZcl+CyAm35jw8YpQsHK+Ne/CDn+2BFbwVKxArojM=",
         "ref": "refs/heads/master",
-        "rev": "e4ce5832c7a84c74ef3f61fafef483d990432926",
-        "revCount": 17,
+        "rev": "55f1badf0c18bc497ebdf049ca825763cc2148d4",
+        "revCount": 18,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/js0ny/nix-secrets.git"
       },
@@ -2103,11 +2103,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775636079,
-        "narHash": "sha256-pc20NRoMdiar8oPQceQT47UUZMBTiMdUuWrYu2obUP0=",
+        "lastModified": 1780220602,
+        "narHash": "sha256-eynAfOmbmxJnkp7YewvCEbShNnnYJ9gLLqkzsYtBPeM=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "790751ff7fd3801feeaf96d7dc416a8d581265ba",
+        "rev": "db947814a175b7ca6ded66e21383d938df01c227",
         "type": "github"
       },
       "original": {

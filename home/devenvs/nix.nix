@@ -16,6 +16,7 @@ lib.mkIf cfg.enable {
       nvd
       nix-tree
       deploy-rs
+      nurl
     ]
     ++ lib.optionals cfg.global (
       with pkgs;

@@ -27,9 +27,6 @@ in
     # Miniflux - RSS Reader
     MINIFLUX_BASE_URL=${ep.miniflux.publicUrl}
     MINIFLUX_API_TOKEN=${sec.hermes_miniflux_api_token}
-    # Obsidian
-    OBSIDIAN_VAULT_PATH=${obsidianDir}
-    WIKI_PATH=${obsidianDir}
   '';
 
   sops.secrets = {
@@ -44,21 +41,6 @@ in
       sopsFile = secrets + /mcp.yaml;
     };
   };
-
-  systemd.tmpfiles.rules = [
-    "d ${obsidianDir} 2775 hermes agents - -"
-    "Z ${obsidianDir} 2775 hermes agents - -"
-    "A+ ${obsidianDir} - - - - g:agents:rwX,d:g:agents:rwX"
-  ];
-
-  nixdots.persist.system.directories = [
-    {
-      directory = obsidianDir;
-      mode = "2775";
-      user = "hermes";
-      group = "agents";
-    }
-  ];
 
   services.hermes-agent = {
     environmentFiles = [

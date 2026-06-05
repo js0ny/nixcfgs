@@ -29,3 +29,7 @@ fetch.github = "libnoname/noname"
 [lobe-icons]
 fetch.git = "https://github.com/lobehub/lobe-icons.git"
 src.git = "https://github.com/lobehub/lobe-icons.git"
+
+[go-fast-note-sync]
+src.github = "erichll/go-fast-note-sync"
+fetch.github = "erichll/go-fast-note-sync"
