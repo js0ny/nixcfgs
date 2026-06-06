@@ -46,6 +46,8 @@ in
       allow_remote_control = "socket-only";
       listen_on = "unix:/tmp/kitty.sock";
       confirm_os_window_close = 0;
+      # https://github.com/kovidgoyal/kitty/issues/10102
+      auto_reload_config = -1;
     };
     keybindings = {
       "cmd+c" = "copy_and_clear_or_interrupt";

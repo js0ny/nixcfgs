@@ -1,10 +1,16 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  myLib,
+  ...
+}:
 let
   ep = config.nixdefs.endpoints;
   url = ep.jellyfin.domain;
   socketPath = "/run/jellyfin/jellyfin.sock";
 in
 {
+  imports = myLib.scanPaths ./.;
   services.jellyfin = {
     enable = true;
     openFirewall = false;
@@ -35,5 +41,4 @@ in
     };
   };
   nixdots.persist.system.directories = [ config.services.jellyfin.dataDir ];
-
 }

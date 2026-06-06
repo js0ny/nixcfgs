@@ -51,6 +51,7 @@
     ../../nixos/services/rclone.nix
     ../../nixos/services/prometheus
     ../../nixos/services/grafana.nix
+    ../../nixos/services/vikunja.nix
   ];
 
   home-manager = {
