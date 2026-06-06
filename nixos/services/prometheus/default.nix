@@ -7,6 +7,7 @@
 let
   ep = config.nixdefs.endpoints;
   epSelf = ep.prometheus;
+  epAutheliaMetrics = ep.authelia-metrics;
 in
 {
   imports = myLib.scanPaths ./.;
@@ -16,6 +17,14 @@ in
     port = epSelf.port;
     listenAddress = epSelf.bindAddress;
     # webExternalUrl = epSelf.publicUrl;
+    scrapeConfigs = [
+      {
+        job_name = "authelia";
+        static_configs = [
+          { targets = [ "${epAutheliaMetrics.bindAddress}:${epAutheliaMetrics.portStr}" ]; }
+        ];
+      }
+    ];
   };
 
   nixdots.persist.system.directories = [ "/var/lib/${config.services.prometheus.stateDir}" ];

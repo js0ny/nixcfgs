@@ -132,5 +132,4 @@ in
     }
   ];
 
-  nixdots.persist.system.directories = [ "/var/lib/alertmanager" ];
 }

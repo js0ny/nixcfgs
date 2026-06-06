@@ -31,4 +31,9 @@
       };
     };
   };
+  nixdots.persist.system = {
+    directories = [
+      "/var/lib/fail2ban"
+    ];
+  };
 }

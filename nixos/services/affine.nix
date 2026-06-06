@@ -82,7 +82,10 @@ in
   # }}}
 
   # {{{ persistence
-  nixdots.persist.system.directories = [ stateDir ];
+  nixdots.persist.system.directories = [
+    stateDir
+    "/var/lib/redis-affine"
+  ];
   systemd.tmpfiles.rules = [
     "d ${storageDir} 0700 root root -"
     "d ${configDir} 0700 root root -"

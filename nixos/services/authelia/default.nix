@@ -8,6 +8,7 @@ let
   sec = config.sops.secrets;
   ep = config.nixdefs.endpoints;
   epSelf = ep.authelia;
+  epMetrics = ep.authelia-metrics;
   ip = epSelf.bindAddress;
   portStr = epSelf.portStr;
   url = epSelf.domain;
@@ -16,7 +17,6 @@ let
   domain = "js0ny.net";
 in
 {
-
   imports = myLib.scanPaths ./.;
   sops.secrets = {
     authelia_jwt_secret = {
@@ -56,6 +56,10 @@ in
       theme = "auto";
       default_2fa_method = "webauthn";
       server.address = "tcp://${ip}:${portStr}/";
+      telemetry.metrics = {
+        enabled = true;
+        address = "tcp://${epMetrics.bindAddress}:${epMetrics.portStr}/metrics";
+      };
       log.level = "info";
 
       session.cookies = [
@@ -227,4 +231,5 @@ in
     };
   }
   // config.nixdefs.consts.nginxWithCF;
+  nixdots.persist.system.directories = [ stateDir ];
 }

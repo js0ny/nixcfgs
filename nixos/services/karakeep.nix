@@ -54,5 +54,9 @@ in
     }
     // config.nixdefs.consts.nginxWithCF;
   };
-
+  nixdots.persist.system = {
+    directories = [
+      "/var/lib/karakeep"
+    ];
+  };
 }

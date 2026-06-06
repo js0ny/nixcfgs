@@ -247,4 +247,5 @@ in
     }
     // config.nixdefs.consts.nginxWithCF;
   };
+  nixdots.persist.system.directories = [ config.services.librechat.dataDir ];
 }

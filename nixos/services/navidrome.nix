@@ -42,6 +42,10 @@ in
     "d ${mntDir} 0755 root users -"
   ];
 
+  nixdots.persist.system.directories = [
+    "/var/lib/navidrome"
+  ];
+
   systemd.services.navidrome.after = [ "rclone-mount-music.service" ];
 
   systemd.services.rclone-mount-music = {

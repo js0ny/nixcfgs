@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   secrets,
   ...
@@ -13,6 +14,14 @@ let
   url = epSelf.domain;
   openid = config.nixdefs.selfhosted.openid;
   socketPath = "/run/grafana/grafana.sock";
+  autheliaDashboard = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/authelia/authelia/master/examples/grafana-dashboards/simple.json";
+    hash = "sha256-y+WbEev4ezdJyorjnnZi37CL1Pd9PxYAvl5N0hsFJnk=";
+  };
+  dashboardDir = pkgs.runCommand "grafana-dashboards" { } /* bash */ ''
+    mkdir -p $out
+    cp ${autheliaDashboard} $out/authelia.json
+  '';
 in
 {
   sops.secrets =
@@ -47,6 +56,7 @@ in
     }
     // lib.optionalAttrs (openid.enable) {
       auth = {
+        disable_login_form = "true";
         oauth_auto_login = "true";
         oauth_allow_insecure_email_lookup = "true";
       };
@@ -74,13 +84,23 @@ in
         name_attribute_path = "name";
         use_pkce = true;
         auth_style = "InHeader";
-        role_attribute_path = "contains(groups[*], 'admin') && 'GrafanaAdmin' || 'None'";
+        role_attribute_path = "contains(groups[*], 'admin') && 'GrafanaAdmin' || ''";
         role_attribute_strict = true;
         allow_assign_grafana_admin = true;
       };
     };
     provision = {
       enable = true;
+      dashboards.settings = {
+        apiVersion = 1;
+        providers = [
+          {
+            name = "Authelia";
+            type = "file";
+            options.path = dashboardDir;
+          }
+        ];
+      };
       datasources.settings.datasources = [
         {
           name = "Prometheus";

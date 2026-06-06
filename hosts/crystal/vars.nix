@@ -175,6 +175,7 @@ in
       tools = {
         vicinae.enable = true;
       };
+      flatpak.enable = true;
     };
     linux = {
       enable = true;

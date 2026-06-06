@@ -54,4 +54,11 @@ in
       enableACME = true;
     };
   };
+
+  nixdots.persist.system = {
+    directories = lib.unique [
+      config.services.nextcloud.home
+      config.services.nextcloud.datadir
+    ];
+  };
 }

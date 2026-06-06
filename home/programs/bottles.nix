@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../gaming/mangohud.nix
+  ];
   home.packages = [
     (pkgs.bottles.override {
       removeWarningPopup = true;
@@ -9,6 +12,7 @@
     "com/usebottles/bottles" = {
       update-date = true;
       startup-view = "page_library";
+      show-sandbox-warning = false;
     };
   };
 

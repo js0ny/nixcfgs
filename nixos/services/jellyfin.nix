@@ -34,4 +34,6 @@ in
       };
     };
   };
+  nixdots.persist.system.directories = [ config.services.jellyfin.dataDir ];
+
 }

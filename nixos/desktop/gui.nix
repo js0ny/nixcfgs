@@ -2,6 +2,7 @@
 let
   user = config.nixdots.user.name;
   avatar = config.nixdots.user.avatar;
+  flatpak = config.nixdots.features.flatpak;
 in
 {
   xdg.terminal-exec.enable = true;
@@ -15,5 +16,5 @@ in
     "L+ /var/lib/AccountsService/icons/${user} - - - - ${avatar}"
   ];
   nixdots.persist.system.directories = [ "/var/lib/AccountsService" ];
-  services.flatpak.enable = true;
+  services.flatpak.enable = flatpak.enable;
 }

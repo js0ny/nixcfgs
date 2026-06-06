@@ -59,6 +59,7 @@ in
     mongodb.port = mkDefault 27017;
     open-webui.port = mkDefault 8080;
     opencode.port = mkDefault 4096;
+    authelia-metrics.port = mkDefault 9959;
     prometheus-alertmanager.port = mkDefault 9093;
   };
 }
