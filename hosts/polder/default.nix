@@ -17,41 +17,41 @@
 
     # ./services/actual.nix
     # keep-sorted start
-    ../../nixos/services/hermes-agent
-    ./static/flux.nix
-    # keep-sorted end
-    ../../nixos/services/fail2ban.nix
-    ../../nixos/services/valkey.nix
     ../../nixos/services/affine.nix
     ../../nixos/services/authelia
+    ../../nixos/services/bentopdf.nix
+    ../../nixos/services/cloudflare.nix
+    ../../nixos/services/fail2ban.nix
+    ../../nixos/services/fast-note-sync.nix
+    ../../nixos/services/forgejo.nix
+    ../../nixos/services/garage.nix
+    ../../nixos/services/gluetun.nix
+    ../../nixos/services/grafana.nix
+    ../../nixos/services/hermes-agent
+    ../../nixos/services/jellyfin
+    ../../nixos/services/karakeep.nix
+    ../../nixos/services/librechat
+    ../../nixos/services/litellm
+    ../../nixos/services/lobehub.nix
+    ../../nixos/services/miniflux.nix
     ../../nixos/services/mongodb.nix
+    ../../nixos/services/navidrome.nix
     ../../nixos/services/nextcloud.nix
     ../../nixos/services/opengist.nix
     ../../nixos/services/paperless.nix
-    ../../nixos/services/librechat
-    ../../nixos/services/miniflux.nix
-    ../../nixos/services/bentopdf.nix
     ../../nixos/services/postgresql.nix
+    ../../nixos/services/prometheus
     ../../nixos/services/radicale.nix
+    ../../nixos/services/rclone.nix
     ../../nixos/services/rsshub.nix
     ../../nixos/services/searxng.nix
-    ../../nixos/services/fast-note-sync.nix
-    ../../nixos/services/karakeep.nix
-    ../../nixos/services/cloudflare.nix
-    ../../nixos/services/garage.nix
-    ../../nixos/services/litellm
-    ../../nixos/services/lobehub.nix
     ../../nixos/services/sub2api.nix
     ../../nixos/services/telegram-inline-llm-bot.nix
     ../../nixos/services/uptime-kuma.nix
-    ../../nixos/services/jellyfin
-    ../../nixos/services/navidrome.nix
-    ../../nixos/services/forgejo.nix
-    ../../nixos/services/gluetun.nix
-    ../../nixos/services/rclone.nix
-    ../../nixos/services/prometheus
-    ../../nixos/services/grafana.nix
+    ../../nixos/services/valkey.nix
     ../../nixos/services/vikunja.nix
+    ./static/flux.nix
+    # keep-sorted end
   ];
 
   home-manager = {

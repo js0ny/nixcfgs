@@ -20,6 +20,7 @@
     inputs.srvos.nixosModules.hardware-hetzner-cloud
     ../../nixos/services/cloudflare.nix
     ../../nixos/services/matrix
+    ../../nixos/services/fail2ban.nix
   ];
 
   home-manager = {

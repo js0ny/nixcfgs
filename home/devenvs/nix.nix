@@ -17,6 +17,7 @@ lib.mkIf cfg.enable {
       nix-tree
       deploy-rs
       nurl
+      nvfetcher
     ]
     ++ lib.optionals cfg.global (
       with pkgs;
