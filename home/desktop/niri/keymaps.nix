@@ -136,6 +136,7 @@ in
       Mod+Up { focus-window-up; }
       Mod+V { spawn ${genCmd vicinae.cliphist}; }
       Mod+W { spawn ${genCmd vicinae.windows}; }
+      Mod+Period { spawn ${genCmd vicinae.emoji}; }
       Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
       Mod+WheelScrollLeft { focus-column-left; }
       Mod+WheelScrollRight { focus-column-right; }

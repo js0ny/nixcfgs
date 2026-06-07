@@ -18,7 +18,6 @@ in
     extensions.force = true;
     extensions.packages = with addons; [
       # Keybindings & Gestures & User Scripts
-      foxy-gestures
       shortkeys
       surfingkeys_ff
       violentmonkey
@@ -65,6 +64,8 @@ in
       auto-tab-discard
       gesturefy
       karakeep
+      leechblock-ng
+      copy-latex
 
       # Disabled
       # view-page-archive # Web Archives

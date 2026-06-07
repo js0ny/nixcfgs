@@ -52,7 +52,7 @@
       };
       path = lib.mkOption {
         type = lib.types.str;
-        default = "/persist/nosnap";
+        default = "/nosnap";
         description = "Path to the nosnap subvolume";
       };
       system = {

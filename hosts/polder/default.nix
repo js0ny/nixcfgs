@@ -44,7 +44,7 @@
     ../../nixos/services/sub2api.nix
     ../../nixos/services/telegram-inline-llm-bot.nix
     ../../nixos/services/uptime-kuma.nix
-    ../../nixos/services/jellyfin.nix
+    ../../nixos/services/jellyfin
     ../../nixos/services/navidrome.nix
     ../../nixos/services/forgejo.nix
     ../../nixos/services/gluetun.nix

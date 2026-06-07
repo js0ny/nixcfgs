@@ -73,28 +73,10 @@ in
       model = "${llm.routing.code-plan.provider}/${llm.routing.code-plan.model}";
     };
     tui = {
-      keymap = {
-        sections = {
-          global = {
-            "command.palette.show" = [
-              "ctrl+p"
-              "alt+x"
-              "<leader>;"
-            ];
-          };
-          prompt = {
-            "prompt.editor" = [
-              "alt+e"
-              "<leader>e"
-            ];
-          };
-          autocomplete = {
-            "prompt.autocomplete.select" = [
-              "return"
-              "ctrl+y"
-            ];
-          };
-        };
+      keybinds = {
+        "command_list" = "ctrl+p,alt+x,<leader>;";
+        "editor_open" = "alt+e,<leader>e";
+        "prompt.autocomplete.select" = "return,ctrl+y";
       };
     };
   };

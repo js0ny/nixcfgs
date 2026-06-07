@@ -29,6 +29,11 @@
         "deeplink"
         "vicinae://launch/system/run"
       ];
+      emoji = [
+        "vicinae"
+        "deeplink"
+        "vicinae://launch/core/search-emojis"
+      ];
     };
     noctalia =
       let
