@@ -1,7 +1,3 @@
 { ... }:
 {
-  nixpkgs.config = {
-    permittedInsecurePackages = [
-    ];
-  };
 }

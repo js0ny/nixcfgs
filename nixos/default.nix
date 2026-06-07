@@ -7,8 +7,7 @@
     ../common/nix-helper.nix
     ../common/nix.nix
     ../common/sops.nix
-    ../common/styles
-    ../common/styles/nixos.nix
+    ../common/stylix.nix
     ../common/system.nix
     ../definitions
     ../nixpaks

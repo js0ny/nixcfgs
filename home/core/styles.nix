@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -28,5 +27,4 @@ lib.mkIf cfg.enable {
       };
     };
   };
-  gtk.gtk4.theme = config.gtk.theme;
 }

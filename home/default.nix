@@ -3,7 +3,6 @@
   imports = [
     # keep-sorted start
     ../common/sops.nix
-    ../common/styles/home.nix
     ../definitions
     ../options
     ./core
