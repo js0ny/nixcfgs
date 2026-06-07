@@ -15,13 +15,18 @@
               size = "100%";
               content = {
                 type = "btrfs";
+                mountpoint = "/btr_pool";
+                mountOptions = [
+                  "subvolid=5"
+                  "compress=zstd"
+                  "noatime"
+                ];
                 extraArgs = [
                   "-f"
                   "-L"
                   "zwinger"
                 ];
                 subvolumes = {
-                  # 被擦除的根目录
                   "/root" = {
                     mountpoint = "/";
                     mountOptions = [
@@ -51,7 +56,14 @@
                     ];
                   };
                   "/nosnap" = {
-                    mountpoint = "/persist/nosnap";
+                    mountpoint = "/nosnap";
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+                  "/snapshots" = {
+                    mountpoint = "/snapshots";
                     mountOptions = [
                       "compress=zstd"
                       "noatime"

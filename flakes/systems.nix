@@ -95,7 +95,7 @@
             };
           };
           "zwinger" = {
-            hostname = "100.71.26.71";
+            hostname = "100.97.155.65";
             profiles.system = {
               user = "root";
               sshUser = "js0ny";

@@ -8,18 +8,15 @@ let
   ep = config.nixdefs.endpoints;
   domain = "js0ny.net";
   matrixPortStr = ep.matrix.portStr;
-  url = ep.matrix.domain;
   portStr = ep.mautrix-telegram.portStr;
   user = "js0ny";
   dname = "js0ny";
   botID = "telegram";
   sopsFile = secrets + /matrix.yaml;
+  # [Human Intervention] Disabled until the mautrix-telegram package/module is updated and the server is rebuilt.
+  enableBridge = false;
 in
-{
-  nixpkgs.config.permittedInsecurePackages = [
-    "olm-3.2.16"
-  ];
-
+lib.mkIf enableBridge {
   sops.secrets = {
     tg_main_mtproto_id = {
       sopsFile = secrets + /telegram.yaml;
@@ -33,13 +30,12 @@ in
   };
 
   sops.templates."mautrix-telegram.env".content = /* bash */ ''
-    MAUTRIX_TELEGRAM_TELEGRAM_API_ID=${config.sops.placeholder.tg_main_mtproto_id}
-    MAUTRIX_TELEGRAM_TELEGRAM_API_HASH=${config.sops.placeholder.tg_main_mtproto_hash}
+    MAUTRIX_TELEGRAM_NETWORK_API_ID=${config.sops.placeholder.tg_main_mtproto_id}
+    MAUTRIX_TELEGRAM_NETWORK_API_HASH=${config.sops.placeholder.tg_main_mtproto_hash}
     MAUTRIX_TELEGRAM_APPSERVICE_AS_TOKEN=${config.sops.placeholder.mautrix_telegram_as}
     MAUTRIX_TELEGRAM_APPSERVICE_HS_TOKEN=${config.sops.placeholder.mautrix_telegram_hs}
   '';
 
-  # [Human Intervention] 需要手动发给 bot 以注册服务
   sops.templates."telegram-registration.yaml" = {
     content = /* yaml */ ''
       id: ${botID}
@@ -50,7 +46,7 @@ in
           - exclusive: true
             regex: '@${botID}_.*:${dname}\.net'
           - exclusive: true
-            regex: '@${botID}:${dname}\.net'
+            regex: '@${botID}bot:${dname}\.net'
           aliases:
           - exclusive: true
             regex: \#${botID}_.*:${dname}\.net
@@ -77,31 +73,63 @@ in
   services.mautrix-telegram = {
     enable = true;
     environmentFile = config.sops.templates."mautrix-telegram.env".path;
+    # https://docs.mau.fi/configs/mautrix-telegram/latest
     settings = {
+      network = {
+        api_id = "$MAUTRIX_TELEGRAM_NETWORK_API_ID";
+        api_hash = "$MAUTRIX_TELEGRAM_NETWORK_API_HASH";
+        sync = {
+          update_limit = 1;
+          create_limit = 1;
+          login_sync_limit = 1;
+          direct_chats = false;
+        };
+        takeout = {
+          dialog_sync = false;
+          forward_backfill = false;
+          backward_backfill = false;
+        };
+        connection.use_ipv6 = false;
+      };
       homeserver = {
         address = "http://localhost:${matrixPortStr}";
         domain = domain;
+        software = "standard";
       };
       appservice = {
         address = "http://localhost:${portStr}";
         hostname = "0.0.0.0";
         port = ep.mautrix-telegram.port;
-        database = "sqlite:////var/lib/mautrix-telegram/mautrix-telegram.db";
+        database = {
+          type = "sqlite3-fk-wal";
+          uri = "/var/lib/mautrix-telegram/mautrix-telegram.db";
+        };
         id = "telegram";
-        bot_username = "telegram";
+        bot.username = "telegrambot";
+        as_token = "$MAUTRIX_TELEGRAM_APPSERVICE_AS_TOKEN";
+        hs_token = "$MAUTRIX_TELEGRAM_APPSERVICE_HS_TOKEN";
       };
       bridge = {
-        relaybot.authless_portals = false;
+        relay.authless_portals = false;
+        backfill = {
+          enabled = false;
+          max_initial_messages = 0;
+          max_catchup_messages = 0;
+          queue.enabled = false;
+        };
         permissions = {
           "@${user}:${domain}" = "admin";
           "@admin:${domain}" = "admin";
         };
-        backfill = {
-          enable = false;
-          max_initial_messages = -1;
-        };
       };
-      telegram.connection.use_ipv6 = false;
+      matrix = {
+        federate_rooms = false;
+      };
+      encryption = {
+        allow = true;
+        default = false;
+        require = false;
+      };
     };
     serviceDependencies = [ "tuwunel.service" ];
   };

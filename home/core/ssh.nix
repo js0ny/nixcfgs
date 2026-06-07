@@ -31,7 +31,7 @@ in
         IdentityFile = [ "~/.ssh/id_ed25519" ];
       };
       "zwinger" = {
-        HostName = "100.91.145.103";
+        HostName = "100.97.155.65";
         User = "js0ny";
         Port = port;
         ForwardAgent = true;

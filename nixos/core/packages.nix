@@ -34,4 +34,7 @@
     withPython3 = false;
     withRuby = false;
   };
+  environment.shellAliases = {
+    grep = "grep --color=auto";
+  };
 }

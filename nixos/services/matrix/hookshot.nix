@@ -9,7 +9,7 @@ let
   domain = "js0ny.net";
   matrixPortStr = ep.matrix.portStr;
   port = ep.matrix-hookshot.port;
-  webhookPortStr = ep.hookshot-webhooks.portStr;
+  portStr = ep.hookshot-webhooks.portStr;
   botID = "webhook";
 in
 {
@@ -36,12 +36,12 @@ in
           aliases:
           - exclusive: true
             regex: \#${botID}_.*:${domain}
-      url: http://localhost:${toString port}
+      url: http://localhost:${portStr}
       sender_localpart: ${botID}
       rate_limited: false
     '';
     path = "/var/lib/tuwunel/appservices/hookshot-registration.yaml";
-    mode = "0700";
+    mode = "0600";
     owner = "tuwunel";
     group = "tuwunel";
   };
@@ -105,7 +105,7 @@ in
 
   services.nginx.virtualHosts."matrix.${domain}" = {
     locations."/webhook" = {
-      proxyPass = "http://localhost:${webhookPortStr}";
+      proxyPass = "http://localhost:${portStr}";
       proxyWebsockets = true;
       extraConfig = /* nginx */ ''
         proxy_buffering off;

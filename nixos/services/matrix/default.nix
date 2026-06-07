@@ -16,11 +16,11 @@ in
   imports = [
     ./coturn.nix
     ./hookshot.nix
-    ./mautrix-telegram.nix
   ];
   sops.secrets.matrix_reg_token = {
     sopsFile = secrets + /matrix.yaml;
     owner = config.services.matrix-tuwunel.user;
+    group = config.services.matrix-tuwunel.group;
   };
 
   services.matrix-tuwunel = {
@@ -33,11 +33,17 @@ in
       ];
       port = [ epSelf.port ];
       allow_registration = true;
-      registration_token_file = config.sops.secrets."matrix_reg_token".path;
+      registration_token_file = config.sops.secrets.matrix_reg_token.path;
       allow_federation = false;
       allow_encryption = true;
       max_request_size = 20000000;
       appservice_dir = asDir;
+    };
+  };
+
+  systemd.services.tuwunel = {
+    serviceConfig = {
+      DynamicUser = lib.mkForce false;
     };
   };
 
@@ -46,24 +52,35 @@ in
   ];
 
   services.nginx = {
-    virtualHosts."${domain}" = {
-      locations."= /.well-known/matrix/server".extraConfig = /* nginx */ ''
-        default_type application/json;
-        add_header Access-Control-Allow-Origin *;
-        return 200 '{"m.server": "${url}:443"}';
-      '';
-      locations."= /.well-known/matrix/client".extraConfig = /* nginx */ ''
-        default_type application/json;
-        add_header Access-Control-Allow-Origin *;
-        return 200 '{"m.homeserver": {"base_url": "https://${url}"}}';
-      '';
-    }
-    // config.nixdefs.consts.nginxWithCF;
+    virtualHosts."${domain}" = (
+      {
+        forceSSL = true;
+        locations."= /.well-known/matrix/server".extraConfig = /* nginx */ ''
+          default_type application/json;
+          add_header Access-Control-Allow-Origin *;
+          return 200 '{"m.server": "${url}:443"}';
+        '';
+        locations."= /.well-known/matrix/client".extraConfig = /* nginx */ ''
+          default_type application/json;
+          add_header Access-Control-Allow-Origin *;
+          return 200 '{"m.homeserver": {"base_url": "https://${url}"}}';
+        '';
+      }
+      // config.nixdefs.consts.nginxWithCF
+    );
 
-    virtualHosts."${url}" = {
-      locations."/_matrix".proxyPass = "http://127.0.0.1:${portStr}";
-      locations."/_synapse/client".proxyPass = "http://127.0.0.1:${portStr}";
-    }
-    // config.nixdefs.consts.nginxWithCF;
+    virtualHosts."${url}" = (
+      {
+        forceSSL = true;
+        locations."/_matrix".proxyPass = "http://127.0.0.1:${portStr}";
+        locations."/_synapse/client".proxyPass = "http://127.0.0.1:${portStr}";
+      }
+      // config.nixdefs.consts.nginxWithCF
+    );
   };
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+  ];
 }
+# Async Media
+# https://github.com/matrix-construct/tuwunel/issues/263

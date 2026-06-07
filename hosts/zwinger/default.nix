@@ -10,7 +10,7 @@
 {
   system.stateVersion = "26.05";
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = false;
 
   imports = [
     ./disko.nix
@@ -45,17 +45,18 @@
   boot.loader.grub.useOSProber = false;
   boot.loader.grub.efiSupport = false;
 
+  security.sudo.enable = false;
+  security.sudo-rs.enable = true;
+  security.sudo-rs.wheelNeedsPassword = false;
+
   networking = {
     firewall = {
       enable = true;
     };
   };
 
-  systemd.tmpfiles.rules = [
-    "z /var/lib/private 0700 root root -"
-  ];
   systemd.network.networks."10-wan" = {
-    matchConfig.Name = "enp1s0"; # 对应你 networkctl list 里的名称
+    matchConfig.Name = "enp1s0";
     networkConfig.DHCP = "ipv4";
   };
 }

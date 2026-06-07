@@ -1,24 +1,28 @@
 def nixos-anywhere-install [
     ip: string
     hostname: string
+    temp: string = ""
     --rsa
     --nix-args: list<string> = []
 ] {
-    if ((which ssh-keygen | length) == 0) {
+    if (which ssh-keygen | length) == 0 {
         error make {msg: "ssh-keygen not found in PATH"}
     }
-    if ((which nix | length) == 0) {
+    if (which nix | length) == 0 {
         error make {msg: "nix not found in PATH"}
     }
-    let temp = (mktemp -d | str trim)
-    let persist_dir = ($temp | path join "persist")
-    let etc_dir = ($persist_dir | path join "etc")
-    let key_dir = ($etc_dir | path join "ssh")
+    if $temp == "" {
+        mut temp = mktemp -d | str trim
+        print $temp
+    }
+    let persist_dir = $temp | path join "persist"
+    let etc_dir = $persist_dir | path join "etc"
+    let key_dir = $etc_dir | path join "ssh"
     let target = $"root@($ip)"
     let flake = $".#($hostname)"
     let comment = $"root@($hostname)"
-    let ed25519_key = ($temp | path join "ssh_host_ed25519_key")
-    let rsa_key = ($temp | path join "ssh_host_rsa_key")
+    let ed25519_key = $temp | path join "ssh_host_ed25519_key"
+    let rsa_key = $temp | path join "ssh_host_rsa_key"
     mkdir $key_dir
     chmod 755 $persist_dir
     chmod 755 $etc_dir
@@ -46,5 +50,11 @@ def nixos-anywhere-install [
         $temp
         $target
     ]
-    ^nix ...$nix_cmd
+    print "Press (x) to start installation"
+    let key = (input listen --types [key])
+    if $key.code == "x" {
+        ^nix ...$nix_cmd
+    } else {
+        print "Installation cancelled"
+    }
 }

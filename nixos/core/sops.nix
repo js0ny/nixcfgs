@@ -16,6 +16,9 @@ in
       (lib.mkIf (cfg.sopsEditor != null) {
         environment.sessionVariables.SOPS_EDITOR = cfg.sopsEditor;
       })
+      (lib.mkIf (cfg.keyFile != null && !lib.hasPrefix config.nixdots.user.home cfg.keyFile) {
+        nixdots.persist.system.files = [ cfg.keyFile ];
+      })
     ]
   );
 }
