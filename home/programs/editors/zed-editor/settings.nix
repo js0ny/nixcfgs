@@ -52,6 +52,7 @@
         show_parameter_hints = true;
       };
       terminal = {
+        copy_on_select = true;
         detect_venv = {
           on = {
             directories = [

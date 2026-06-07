@@ -67,7 +67,7 @@ return {
     },
     -- stylua: ignore end
     explorer = {
-      enabled = true,
+      enabled = false,
     },
     indent = { enabled = true },
     input = { enabled = true },
@@ -99,13 +99,6 @@ return {
         require('snacks').dashboard()
       end,
       desc = 'Toggle Dashboard',
-    },
-    {
-      '<leader>ft',
-      function()
-        require('snacks').explorer()
-      end,
-      desc = 'Toggle File Tree',
     },
     {
       '<leader>fc',
@@ -194,7 +187,7 @@ return {
         require('snacks').picker.buffers()
       end,
       desc = 'List Buffers',
-    }, -- 保持你原有的冗余映射
+    },
     {
       '<leader>fh',
       function()
@@ -229,13 +222,6 @@ return {
         require('snacks').picker.smart()
       end,
       desc = 'Smart Find Files',
-    },
-    {
-      '<leader>e',
-      function()
-        require('snacks').explorer()
-      end,
-      desc = 'File Explorer',
     },
     {
       '<leader>sd',
