@@ -208,6 +208,32 @@ in
             userinfo_signed_response_alg = "none";
             token_endpoint_auth_method = "client_secret_basic";
           }
+          {
+            client_id = "vikunja";
+            client_name = "Vikunja";
+            client_secret = "$pbkdf2-sha512$310000$zrpUeuzpQGR/j..jJWg/WA$A4CH/Hps1bROOlYN3rvJnNjPVb7Pl3pR6CBREUTjJU6R.Tymk7QAB37d1znWOOto.r3Hua/99.OqmjZA0oRh.g";
+            public = false;
+            authorization_policy = "two_factor";
+            require_pkce = false;
+            pkce_challenge_method = "";
+            redirect_uris = [
+              "${ep.vikunja.publicUrl}/auth/openid/authelia"
+            ];
+            scopes = [
+              "openid"
+              "profile"
+              "email"
+            ];
+            response_types = [
+              "code"
+            ];
+            grant_types = [
+              "authorization_code"
+            ];
+            access_token_signed_response_alg = "none";
+            userinfo_signed_response_alg = "none";
+            token_endpoint_auth_method = "client_secret_basic";
+          }
         ];
       };
       access_control = {
