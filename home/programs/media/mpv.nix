@@ -16,6 +16,7 @@ lib.mkIf cfg.enable {
         # keep-sorted start
         autocrop
         bdanmaku
+        memo
         quality-menu
         sponsorblock
         thumbfast

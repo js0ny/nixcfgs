@@ -30,7 +30,7 @@ in
       spawn-at-startup "systemctl" "--user" "start" "waylandwm-session.target"
       ${import ./keymaps.nix { inherit pkgs lib config; }}
       ${import ./interpolates.nix { inherit config; }}
-      ${import ./window-rules.nix}
+      include "${./window-rules.kdl}"
     ''
     + lib.optionalString (extraCfg != "") "\n${extraCfg}";
 }

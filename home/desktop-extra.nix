@@ -23,6 +23,7 @@
     ./programs/bottles.nix
     ./programs/browsers/chromium.nix
     ./programs/browsers/firefox
+    ./programs/browsers/qutebrowser.nix
     ./programs/cherry-studio.nix
     ./programs/claude-code.nix
     ./programs/codex.nix

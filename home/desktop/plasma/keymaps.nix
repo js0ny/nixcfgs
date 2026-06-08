@@ -32,11 +32,6 @@ in
           videoSaveLocation = "file://${customDirs.screencasts}";
         };
       };
-      kdeglobals.Shortcuts = {
-        Help = "";
-        Preferences = "Ctrl+,; Ctrl+Shift+,";
-        WhatsThis = "";
-      };
     };
     shortcuts = {
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = [ ];

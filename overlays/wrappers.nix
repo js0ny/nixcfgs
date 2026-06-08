@@ -46,7 +46,7 @@ let
       "--inherit-argv0"
       ''--add-flags "\$NIX_WAYLAND_FLAGS"''
     ];
-    runScript = ''
+    runScript = /* bash */ ''
       if [ -n "$NIXOS_OZONE_WL" ] && [ -n "$WAYLAND_DISPLAY" ]; then
         NIX_WAYLAND_FLAGS="--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true"
       fi
@@ -55,7 +55,7 @@ let
 
   mkLegacyJavaGUIApp = mkWrapperFor {
     extraNativeBuildInputs = [ pkgs.wmname ];
-    runScript = "wmname LG3D";
+    runScript = /* bash */ "wmname LG3D";
   };
 
   # TODO: Patch desktop file. + Extra Envs

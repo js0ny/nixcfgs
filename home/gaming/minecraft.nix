@@ -11,6 +11,7 @@
   mergetools.prism-launcher-config = {
     target = "${config.home.homeDirectory}/.local/share/PrismLauncher/prismlauncher.cfg";
     format = "ini";
+    force = true;
     settings = {
       General = {
         Language = "zh";

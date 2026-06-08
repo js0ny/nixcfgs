@@ -27,7 +27,6 @@ in
     workspace = {
       iconTheme = config.nixdots.style.icon.dark;
       lookAndFeel = "stylix";
-
     };
     fonts = {
       fixedWidth.family = "${config.stylix.fonts.monospace.name}";

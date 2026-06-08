@@ -175,7 +175,7 @@ in
       tools = {
         vicinae.enable = true;
       };
-      flatpak.enable = true;
+      flatpak.enable = false;
     };
     linux = {
       enable = true;
@@ -203,7 +203,7 @@ in
       dm = "sddm";
       de = [
         "niri"
-        "hyprland"
+        "kde"
       ];
       wm = {
         shell = "dank-material-shell";

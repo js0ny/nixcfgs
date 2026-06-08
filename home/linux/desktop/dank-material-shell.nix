@@ -18,6 +18,14 @@ lib.mkIf enable {
     DMS_DISABLE_POLKIT = "1";
   };
 
+  systemd.user.services.dms = {
+    Unit = {
+      PartOf = lib.mkForce [ "waylandwm-session.target" ];
+      After = lib.mkForce [ "waylandwm-session.target" ];
+    };
+    Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
+  };
+
   programs.dank-material-shell = {
     enable = true;
     systemd = {

@@ -339,9 +339,6 @@ in
       directories = [
         ".local/share/kxmlgui5/dolphin"
       ];
-      files = [
-        ".config/dolphinrc"
-      ];
     };
     home.packages = with pkgs.kdePackages; [
       dolphin

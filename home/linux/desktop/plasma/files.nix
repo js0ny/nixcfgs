@@ -13,19 +13,5 @@
         "only basic indexing" = false;
       };
     };
-    kiorc = {
-      Confirmations = {
-        ConfirmDelete = true;
-        ConfirmEmptyTrash = true;
-        ConfirmTrash = false;
-      };
-      "Executable scripts".behaviourOnLaunch = "alwaysAsk";
-    };
-    kdeglobals = {
-      General = {
-        TerminalApplication = lib.getExe config.nixdots.apps.terminal.package;
-        TerminalService = config.nixdots.apps.terminal.desktop;
-      };
-    };
   };
 }

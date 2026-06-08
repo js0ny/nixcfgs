@@ -9,7 +9,7 @@
   imports = [
     ./vars.nix
     ../../home/desktop-extra.nix
-    ../../home/desktop/hyprland
+    ../../home/desktop/plasma
     # keep-sorted start
 
     # keep-sorted end

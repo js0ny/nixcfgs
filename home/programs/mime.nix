@@ -81,6 +81,15 @@ in
       # Only use umpv in video mode, only one presents
       # and will fork current process
       // mkAssoc "umpv.desktop" video
+      // mkAssoc "com.usebottles.bottles.desktop" [
+        "x-scheme-handler/bottles"
+        "application/x-ms-dos-executable"
+        "application/x-msi"
+        "application/x-ms-shortcut"
+        "application/x-wine-extension-msp"
+        "application/x-bat"
+        "application/x-mswinurl"
+      ]
       // {
         "application/epub+zip" = "com.github.johnfactotum.Foliate.desktop";
         # Loupe does not support dds

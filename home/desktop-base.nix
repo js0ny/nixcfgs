@@ -11,6 +11,7 @@
     ./gaming/emulators/retroarch.nix
     ./linux-base.nix
     ./packages/devtools.nix
+    ./packages/flatpak.nix
     ./packages/gui.nix
     ./programs
     ./programs/aichat.nix

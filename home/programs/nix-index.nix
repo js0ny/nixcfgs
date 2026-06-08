@@ -5,4 +5,7 @@ _: {
   misc.shellAliases = {
     "，" = ","; # 全角逗号支持
   };
+  programs.fish.interactiveShellInit = /* fish */ ''
+    zellij setup --generate-completion fish | source
+  '';
 }

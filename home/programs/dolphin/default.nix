@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
@@ -11,6 +12,7 @@ in
   home.packages = with pkgs.kdePackages; [
     dolphin-plugins
     konsole
+    ffmpegthumbs
   ];
   programs.dolphin = {
     enable = true;
@@ -38,17 +40,35 @@ in
   xdg.dataFile."kxmlgui5/dolphin/dolphinui.rc".source =
     mkSymlink "${dots}/home/programs/dolphin/dolphinui.rc";
 
-  mergetools.dolphinrc = {
-    target = "${config.home.homeDirectory}/.config/dolphinrc";
-    format = "ini";
-    settings = {
-      General = {
-        ShowSelectionToggle = false;
-        UseTabForSwitchingSplitView = true;
-      };
-      VersionControl = {
-        EnabledPlugins = "Subversion,Git";
-      };
+  programs.plasma.configFile.dolphinrc = {
+    General = {
+      DynamicView = true;
+      GlobalViewProps = false;
+      ShowSelectionToggle = false;
+      ShowZoomSlider = true;
+      UseTabForSwitchingSplitView = true;
     };
+    InformationPanel.dateFormat = "ShortFormat";
+    VersionControl.enabledPlugins = "Git";
+    PreviewSettings.Plugins = lib.concatStringsSep "," [
+      "appimagethumbnail"
+      "audiothumbnail"
+      "comicbookthumbnail"
+      "cursorthumbnail"
+      "djvuthumbnail"
+      "ebookthumbnail"
+      "exrthumbnail"
+      "directorythumbnail"
+      "imagethumbnail"
+      "jpegthumbnail"
+      "kraorathumbnail"
+      "windowsexethumbnail"
+      "windowsimagethumbnail"
+      "mltpreview"
+      "opendocumentthumbnail"
+      "svgthumbnail"
+      "textthumbnail"
+      "ffmpegthumbs" # pkgs.kdePackages.ffmpegthumbs
+    ];
   };
 }

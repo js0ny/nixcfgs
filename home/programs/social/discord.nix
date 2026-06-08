@@ -12,8 +12,10 @@
       #     pkgs.nixpaks.discord
       #   else
       #     inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.discord;
-      autoscroll.enable = true;
       vencord.enable = true;
+      commandLineArgs = [
+        "--enable-blink-features=MiddleClickAutoscroll"
+      ];
     };
 
     # Plugins
