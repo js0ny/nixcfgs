@@ -1,6 +1,6 @@
 keybinds clear-defaults=true {
     shared {
-        bind "Ctrl Shift H" { EditScrollback; SwitchToMode "normal";}
+        bind "Ctrl Shift H" { EditScrollback { ansi true; }; SwitchToMode "normal";}
     }
     locked {
         bind "Ctrl m" { SwitchToMode "normal"; }

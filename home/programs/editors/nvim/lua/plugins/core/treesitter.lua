@@ -5,6 +5,7 @@ local parsers = {
   'c',
   'c_sharp',
   'cpp',
+  'fish',
   'go',
   'html',
   'ini',
