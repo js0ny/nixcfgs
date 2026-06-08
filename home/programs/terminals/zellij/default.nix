@@ -42,6 +42,13 @@ let
     	local chan = vim.api.nvim_open_term(buf, {})
     	vim.api.nvim_chan_send(chan, data)
 
+      vim.defer_fn(function()
+        if vim.api.nvim_buf_is_valid(buf) then
+          vim.api.nvim_set_current_buf(buf)
+          vim.cmd("normal! G") -- Move to the end of the buffer
+        end
+      end, 10)
+
     	vim.keymap.set("n", "q", "<cmd>qa!<CR>", { buffer = buf })
     end)
   '';
