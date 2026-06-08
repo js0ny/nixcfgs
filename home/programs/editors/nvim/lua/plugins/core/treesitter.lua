@@ -19,13 +19,13 @@ local parsers = {
   'nu',
   'python',
   'query',
+  'rust',
   'toml',
   'tsx',
   'typescript',
   'vim',
   'vimdoc',
   'yaml',
-  -- 'rust',
   -- keep-sorted end
 }
 

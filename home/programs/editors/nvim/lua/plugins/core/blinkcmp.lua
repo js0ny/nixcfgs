@@ -77,7 +77,7 @@ return {
           },
         },
       },
-      documentation = { window = { border = 'single' } },
+      documentation = { auto_show = true, window = { border = 'single' } },
     },
     signature = { window = { border = 'single' } },
 
@@ -96,7 +96,6 @@ return {
         preset = 'cmdline',
         ['<CR>'] = { 'fallback' },
         ['<C-f>'] = { 'select_and_accept', 'fallback' },
-        ['<C-a>'] = {},
       },
       completion = {
         menu = { auto_show = false },

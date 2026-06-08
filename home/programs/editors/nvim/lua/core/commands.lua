@@ -26,12 +26,6 @@ end, {
   bang = true,
 })
 
-vim.api.nvim_create_user_command('Reload', function()
-  vim.cmd('luafile ' .. vim.fn.fnameescape(vim.fn.stdpath('config') .. '/init.lua'))
-end, {
-  desc = 'Reload Neovim configuration',
-})
-
 vim.api.nvim_create_user_command('Rename', function()
   local old_name = vim.api.nvim_buf_get_name(0)
   if old_name == '' then

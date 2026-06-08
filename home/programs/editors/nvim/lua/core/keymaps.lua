@@ -1,10 +1,7 @@
+local utils = require('core.utils')
 --- Lsp related Keymaps
 vim.keymap.del({ 'n', 'x' }, 'gra')
 vim.keymap.del({ 'n' }, 'gri')
-
-local utils = require('core.utils')
-
-vim.keymap.set('n', 'q:', ':', { desc = 'Disable command-line window' })
 
 local maps = {
   {
@@ -13,6 +10,24 @@ local maps = {
     cmd = ':',
     opts = { desc = 'Disable cmd window' },
   },
+  {
+    mode = 'v',
+    keys = '<',
+    cmd = '<gv',
+    opts = { desc = 'Indent left and keep selection' },
+  },
+  {
+    mode = 'n',
+    keys = '<Tab>',
+    cmd = '%',
+    opts = { desc = 'Jump to matching pair' },
+  },
+  {
+    mode = 'v',
+    keys = '>',
+    cmd = '>gv',
+    opts = { desc = 'Indent right and keep selection' },
+  },
   -- https://github.com/LazyVim/LazyVim/blob/d1529f650fdd89cb620258bdeca5ed7b558420c7/lua/lazyvim/config/keymaps.lua#L60
   {
     keys = '<Esc>',
@@ -20,6 +35,16 @@ local maps = {
     opts = { desc = 'Clear Search Highlight' },
   },
 }
+
+local function smart_split(func, reverse)
+  local width = vim.api.nvim_win_get_width(0)
+  if width > 80 and not reverse then
+    vim.api.nvim_command('vsp')
+  else
+    vim.api.nvim_command('sp')
+  end
+  func()
+end
 
 
 -- stylua: ignore start
@@ -33,26 +58,10 @@ local lspkeys = {
   { keys = "gh",        cmd = vim.lsp.buf.hover,          opts = { desc = "Show hover" } },
   -- [c]hange [d]efinition
   { keys = "cd",        cmd = vim.lsp.buf.rename,         opts = { desc = "Rename symbol under cursor" } },
+  { keys = "<C-w>d", cmd = function() smart_split(vim.lsp.buf.definition) end, opts = { desc = "Goto Definition (Smart Split)" } },
+  { keys = "<C-w>D", cmd = function() smart_split(vim.lsp.buf.declaration, true) end, opts = { desc = "Goto Declaration (Smart Split)" } },
 }
 -- stylua: ignore end
-
-local function smart_split(func, reverse)
-  local width = vim.api.nvim_win_get_width(0)
-  if width > 80 and not reverse then
-    vim.api.nvim_command('vsp')
-  else
-    vim.api.nvim_command('sp')
-  end
-  func()
-end
-
-vim.keymap.set('n', '<C-w>d', function()
-  smart_split(vim.lsp.buf.definition)
-end, { desc = 'Go to Definition (Smart Split)' })
-
-vim.keymap.set('n', '<C-w>D', function()
-  smart_split(vim.lsp.buf.declaration, true)
-end, { desc = 'Go to Declaration (Smart Split)' })
 
 utils.set_keymaps(maps)
 utils.set_keymaps(lspkeys)

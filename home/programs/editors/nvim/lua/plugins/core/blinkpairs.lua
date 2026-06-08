@@ -16,11 +16,13 @@ return {
       -- https://github.com/Saghen/blink.pairs/blob/main/lua/blink/pairs/config/mappings.lua#24
       pairs = {
         ["'"] = {
-          "''",
-          when = function(ctx)
-            return ctx:text_before_cursor(1) == "'"
-          end,
-          languages = { 'nix' },
+          {
+            "''",
+            when = function(ctx)
+              return ctx:text_before_cursor(1) == "'"
+            end,
+            languages = { 'nix' },
+          },
         },
         ['`'] = {
           -- 使用 luasnip 接管 ``` 的行为

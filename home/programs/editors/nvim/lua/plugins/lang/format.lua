@@ -12,7 +12,6 @@ return {
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
       nix = { 'nixfmt' },
       nu = { 'nufmt' },
-      kdl = { 'kdlfmt' },
     },
 
     -- Set default options

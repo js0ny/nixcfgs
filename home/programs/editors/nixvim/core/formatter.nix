@@ -12,7 +12,6 @@
           nu = [ "nufmt" ];
           python = [ "ruff" ];
           javascript = [ "prettier" ];
-          kdl = [ "kdlfmt" ];
         };
         default_format_opts = {
           lsp_format = "fallback";

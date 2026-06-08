@@ -1,16 +1,16 @@
-local function close_grugfar_buf()
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.api.nvim_buf_delete(bufnr, { force = true })
-  vim.cmd('stopinsert')
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
-end
-
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('my-grug-far-custom-keybinds', { clear = true }),
   pattern = { 'grug-far' },
-  callback = function()
-    vim.keymap.set({ 'n', 'i' }, '<C-S-f>', close_grugfar_buf, { buffer = true })
-    vim.keymap.set({ 'n' }, 'qq', close_grugfar_buf, { buffer = true })
+  callback = function(args)
+    local bufnr = args.buf
+
+    local function close()
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
+
+    vim.keymap.set({ 'n', 'i' }, '<C-S-f>', close, {
+      buffer = bufnr,
+    })
   end,
 })
 
