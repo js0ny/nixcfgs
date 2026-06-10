@@ -144,9 +144,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Use my fork of hermes-agent
     hermes-agent = {
-      url = "github:js0ny/hermes-agent";
+      url = "github:NousResearch/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
@@ -179,9 +178,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    bifrost = {
-      url = "github:maximhq/bifrost";
-    };
   };
-
 }

@@ -34,7 +34,12 @@
     withPython3 = false;
     withRuby = false;
   };
+  # minimal alias for root environment
   environment.shellAliases = {
     grep = "grep --color=auto";
+    ls = "ls --color=auto";
+    ll = "ls -l";
+    la = "ls -a";
   };
+
 }

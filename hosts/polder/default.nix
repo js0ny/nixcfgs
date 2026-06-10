@@ -119,7 +119,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  security.sudo.wheelNeedsPassword = false;
+  security.sudo-rs.wheelNeedsPassword = false;
 
   system.stateVersion = "25.05";
 }

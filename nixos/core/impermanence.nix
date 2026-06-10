@@ -23,12 +23,6 @@ lib.mkMerge [
 
     fileSystems."${path}".neededForBoot = true;
 
-    security.sudo.extraConfig = ''
-      Defaults lecture = never
-    '';
-    security.sudo-rs.extraConfig = ''
-      Defaults lecture = never
-    '';
   })
   (lib.mkIf cfg.nosnap.enable {
     systemd.tmpfiles.rules = [

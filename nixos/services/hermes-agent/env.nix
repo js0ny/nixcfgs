@@ -27,6 +27,7 @@ in
     # Miniflux - RSS Reader
     MINIFLUX_BASE_URL=${ep.miniflux.publicUrl}
     MINIFLUX_API_TOKEN=${sec.hermes_miniflux_api_token}
+    HERMES_DASHBOARD_SESSION_TOKEN=${sec.hermes_session_token}
   '';
 
   sops.secrets = {
@@ -34,6 +35,7 @@ in
     hermes_litellm_api_key = { inherit sopsFile; };
     hermes_github_pat = { inherit sopsFile; };
     hermes_miniflux_api_token = { inherit sopsFile; };
+    hermes_session_token = { inherit sopsFile; };
     tg_main_chatid = {
       sopsFile = secrets + /telegram.yaml;
     };

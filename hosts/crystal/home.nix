@@ -10,6 +10,7 @@
     ./vars.nix
     ../../home/desktop-extra.nix
     ../../home/desktop/plasma
+    ../../home/gaming/steam/sts2.nix
     # keep-sorted start
 
     # keep-sorted end
@@ -20,7 +21,6 @@
     inputs.niri-flake.homeModules.niri
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.nix-index-database.homeModules.nix-index
-    inputs.plasma-manager.homeModules.plasma-manager
     inputs.secrets.homeManagerModules.default
     inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.spicetify
@@ -146,5 +146,9 @@
 
   nixdots.persist.home.directories = [
     ".config/sunshine"
+  ];
+
+  home.packages = with pkgs; [
+    hermes-agent.hermesDesktop
   ];
 }

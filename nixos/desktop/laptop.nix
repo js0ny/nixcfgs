@@ -12,8 +12,25 @@ lib.mkIf cfg.enable {
     acpi
     powertop
     lm_sensors
+    gnome-firmware
   ];
+
   services.fwupd.enable = true;
-  services.upower.enable = true;
+  systemd.timers.fwupd-refresh.enable = false;
   nixdots.persist.system.directories = [ "/var/lib/fwupd" ];
+
+  services.upower.enable = true;
+  powerManagement.powertop.enable = true;
+
+  security.sudo-rs.extraRules = [
+    {
+      groups = [ "wheel" ];
+      commands = [
+        {
+          command = lib.getExe pkgs.powertop;
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 }

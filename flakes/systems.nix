@@ -4,7 +4,7 @@
   flake =
     let
       myLib = import ../lib { inherit (inputs.nixpkgs) lib; };
-      localOverlays = import ../overlays;
+      localOverlays = import ../overlays { inherit inputs; };
 
       overlays = [
         localOverlays

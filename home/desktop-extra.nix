@@ -69,6 +69,7 @@
     ./programs/shell/fish
     ./programs/shell/nu.nix
     ./programs/shell/zsh.nix
+    ./programs/terminals/alacritty.nix
     ./programs/terminals/ghostty.nix
     ./programs/terminals/kitty.nix
     ./programs/terminals/zellij

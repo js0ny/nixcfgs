@@ -8,6 +8,7 @@
 let
   models = config.nixdefs.llm.routing;
   litellm = config.nixdefs.endpoints.litellm.publicUrl;
+  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   environment.variables = {
@@ -24,11 +25,10 @@ in
       "/var/lib/hermes"
     ];
   };
-  # Template for litellm API key (OpenAI-compatible)
-  # hermes-agent uses LITELLM_API_KEY to authenticate with litellm proxy
 
   services.hermes-agent = {
     enable = true;
+    package = inputs.hermes-agent.packages.${system}.full;
 
     group = "agents";
 
@@ -51,6 +51,10 @@ in
         headers = {
           Authorization = "Bearer \${LITELLM_API_KEY}";
         };
+      };
+      github = {
+        url = "https://api.githubcopilot.com/mcp/";
+        headers.Authorization = "Bearer \${GITHUB_TOKEN}";
       };
     };
     # ── Declarative settings (deep-merged into config.yaml) ──────────
@@ -80,10 +84,6 @@ in
 
       timezone = "Europe/London";
 
-      display = {
-        language = "zh";
-      };
-
       # ── Agent ──────────────────────────────────────────────────────
       agent = {
         max_turns = 90;
@@ -99,6 +99,7 @@ in
         backend = "local";
         cwd = "/var/lib/hermes";
         timeout = 180;
+        persistent_shell = true;
       };
 
       # ── Checkpoints ────────────────────────────────────────────────
@@ -127,7 +128,7 @@ in
       security = {
         redact_secrets = true;
         tirith_enabled = true;
-        tirith_path = "tirth";
+        tirith_path = lib.getExe pkgs.tirith;
         tirith_timeout = 5;
         tirith_fail_open = true;
       };
@@ -140,8 +141,20 @@ in
 
       # ── Display ────────────────────────────────────────────────────
       display = {
+        language = "zh";
         personality = "kawaii";
         skin = "charizard"; # 增火龙说是
+        streaming = true;
+        show_cost = true;
+      };
+
+      privacy = {
+        redact_pii = true;
+      };
+
+      streaming = {
+        enabled = true;
+        trnsfport = "edit";
       };
 
       # ── Web ────────────────────────────────────────────────────────

@@ -61,10 +61,12 @@ in
   # provides `/bin/bash` compatibility
   services.envfs.enable = true;
 
-  # minimal alias for root environment
-  environment.shellAliases = {
-    ls = "ls --color=auto";
-    ll = "ls -l";
-    la = "ls -a";
+  security.sudo.enable = false;
+  security.sudo-rs = {
+    enable = true;
+    extraConfig = ''
+      Defaults lecture = never
+    '';
+    execWheelOnly = true;
   };
 }
