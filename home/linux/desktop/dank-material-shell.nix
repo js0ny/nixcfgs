@@ -173,6 +173,13 @@ lib.mkIf enable {
           popupGapsManual = 4;
         }
       ];
+      appIdSubstitutions = [
+        {
+          pattern = "GameConqueror.py";
+          replacement = "GameConqueror";
+          type = "exact";
+        }
+      ];
     };
   };
   nixdots.desktop.niri.extraConfig = /* kdl */ ''

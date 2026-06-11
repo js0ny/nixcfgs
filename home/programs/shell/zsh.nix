@@ -2,12 +2,14 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 let
-  cfg = config.nixdots.programs.zsh.enable;
+  cfg = config.nixdots.programs.zsh;
+  zsh-patina = inputs.zsh-patina.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
-lib.mkIf cfg {
+lib.mkIf cfg.enable {
   home.packages = with pkgs; [
     zsh-fzf-tab
     zsh-nix-shell
@@ -25,18 +27,6 @@ lib.mkIf cfg {
     #   enable = true;
     #   abbreviations = aliases;
     # };
-    syntaxHighlighting = {
-      enable = true;
-      patterns = {
-        "rm -rf *" = "fg=blue,bold,bg=red";
-      };
-      highlighters = [
-        "main"
-        "pattern"
-        "brackets"
-        "root"
-      ];
-    };
 
     history = {
       ignorePatterns = [
@@ -121,11 +111,25 @@ lib.mkIf cfg {
       bindkey '^]' vi-find-next-char
       bindkey '^[^]' vi-find-prev-char
 
+      eval "$(${lib.getExe zsh-patina} activate)"
+
 
       # # Misc
       # ========
       # source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     '';
+    syntaxHighlighting = {
+      enable = false;
+      patterns = {
+        "rm -rf *" = "fg=blue,bold,bg=red";
+      };
+      highlighters = [
+        "main"
+        "pattern"
+        "brackets"
+        "root"
+      ];
+    };
   };
 }
 

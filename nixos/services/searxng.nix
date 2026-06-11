@@ -27,7 +27,7 @@ in
     environmentFile = config.sops.templates."searxng.env".path;
     settings = {
       use_default_settings.engines.keep_only = [
-        "google"
+        "startpage"
         "brave"
         "duckduckgo"
         "github"
@@ -43,10 +43,9 @@ in
       ];
       engines = [
         {
-          name = "google";
-          shortcut = "g";
-          timeout = 2.5;
-          weight = 2.0;
+          name = "startpage";
+          shortcut = "sp";
+          timeout = 2.0;
           disabled = false;
         }
         {
@@ -98,33 +97,33 @@ in
           name = "crates.io";
           disabled = false;
         }
-        {
-          name = "nixpkgs";
-          engine = "command";
-          shortcut = "np";
-          timeout = 1.0;
-          command = [
-            (lib.getExe pkgs.python3)
-            "-c"
-            /* python */ ''
-              import sys, urllib.parse
-
-              query = " ".join(sys.argv[1:])
-              url = "https://search.nixos.org/packages?channel=unstable&query=" + urllib.parse.quote_plus(query)
-              print(f"Nixpkgs packages\t{url}\tSearch NixOS packages for {query}")
-            ''
-            "{{QUERY}}"
-          ];
-          delimiter = {
-            chars = "\t";
-            keys = [
-              "title"
-              "url"
-              "content"
-            ];
-          };
-          disabled = false;
-        }
+        # {
+        #   name = "nixpkgs";
+        #   engine = "command";
+        #   shortcut = "np";
+        #   timeout = 1.0;
+        #   command = [
+        #     (lib.getExe pkgs.python3)
+        #     "-c"
+        #     /* python */ ''
+        #       import sys, urllib.parse
+        #
+        #       query = " ".join(sys.argv[1:])
+        #       url = "https://search.nixos.org/packages?channel=unstable&query=" + urllib.parse.quote_plus(query)
+        #       print(f"Nixpkgs packages\t{url}\tSearch NixOS packages for {query}")
+        #     ''
+        #     "{{QUERY}}"
+        #   ];
+        #   delimiter = {
+        #     chars = "\t";
+        #     keys = [
+        #       "title"
+        #       "url"
+        #       "content"
+        #     ];
+        #   };
+        #   disabled = false;
+        # }
       ];
       outgoing = {
         request_timeout = 2.0;

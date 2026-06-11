@@ -1638,7 +1638,8 @@
         "treefmt-nix": "treefmt-nix_5",
         "vicinae-extensions": "vicinae-extensions",
         "xremap-flake": "xremap-flake",
-        "zen-browser": "zen-browser"
+        "zen-browser": "zen-browser",
+        "zsh-patina": "zsh-patina"
       }
     },
     "rust-overlay": {
@@ -2366,6 +2367,26 @@
       "original": {
         "owner": "youwen5",
         "repo": "zen-browser-flake",
+        "type": "github"
+      }
+    },
+    "zsh-patina": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780735567,
+        "narHash": "sha256-hE7PFVE7CmLUALHwSfNWhwwXcy9ORiXYd4aP2Mg+c80=",
+        "owner": "michel-kraemer",
+        "repo": "zsh-patina",
+        "rev": "efe6e7593b9b21959996f0eee03b12db988b3e13",
+        "type": "github"
+      },
+      "original": {
+        "owner": "michel-kraemer",
+        "repo": "zsh-patina",
         "type": "github"
       }
     }
