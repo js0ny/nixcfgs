@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  myLib,
   ...
 }:
 let
@@ -19,6 +20,7 @@ in
     ./agent-user.nix
     ./env.nix
     ./lmwiki.nix
+    ./hermes-dashboard.nix
   ];
   nixdots.persist.system = {
     directories = [

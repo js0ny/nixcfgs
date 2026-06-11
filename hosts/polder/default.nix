@@ -23,6 +23,7 @@
     ../../nixos/services/cloudflare.nix
     ../../nixos/services/fail2ban.nix
     ../../nixos/services/fast-note-sync.nix
+    ../../nixos/services/forgejo-runner.nix
     ../../nixos/services/forgejo.nix
     ../../nixos/services/garage.nix
     ../../nixos/services/gluetun.nix

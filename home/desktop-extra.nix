@@ -38,6 +38,7 @@
     ./programs/eza.nix
     ./programs/gh.nix
     ./programs/gwenview.nix
+    ./programs/hermes-desktop.nix
     ./programs/libvirt.nix
     ./programs/magick.nix
     ./programs/media

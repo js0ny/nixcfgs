@@ -148,7 +148,4 @@
     ".config/sunshine"
   ];
 
-  home.packages = with pkgs; [
-    hermes-agent.hermesDesktop
-  ];
 }
