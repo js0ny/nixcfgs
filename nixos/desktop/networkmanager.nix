@@ -1,8 +1,17 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  secrets,
+  ...
+}:
 let
   username = config.nixdots.user.name;
 in
 {
+  imports = [
+    "${secrets}/nixos/nm.nix"
+    "${secrets}/nixos/wireguard.nix"
+  ];
   networking.networkmanager = {
     enable = true;
     plugins = with pkgs; [

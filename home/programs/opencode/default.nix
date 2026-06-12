@@ -92,6 +92,7 @@ in
         };
         external_directory = {
           "/nix/store/**" = "allow";
+          "/tmp/**" = "allow";
         };
       };
     };

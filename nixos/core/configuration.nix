@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  secrets,
   ...
 }:
 let
@@ -10,6 +11,7 @@ let
   sshKeys = config.nixdefs.misc.ssh.sshKeys;
 in
 {
+  imports = [ "${secrets}/nixos/passwd.nix" ];
   time.timeZone = builtins.head config.nixdots.core.timezones;
 
   # Select internationalisation properties.

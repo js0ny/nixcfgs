@@ -12,7 +12,7 @@ lib.mkIf cfg {
   services.supergfxd.enable = true;
 
   environment.etc."asusd/slash.ron" = {
-    text = ''
+    text = /* ron */ ''
       (
           enabled: true,
           brightness: 255,
@@ -29,4 +29,5 @@ lib.mkIf cfg {
     mode = "0644";
   };
 
+  nixdots.persist.system.directories = [ "/etc/asusd" ];
 }

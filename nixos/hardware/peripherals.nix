@@ -14,7 +14,12 @@ lib.mkIf cfg {
     # XBox Series Bluetooth Controller
     xpadneo.enable = true;
     steam-hardware.enable = true;
+    logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
   };
+  services.logiops.enable = true;
   # disable xpad to prevent conflicts with xpadneo
   boot.blacklistedKernelModules = [ "xpad" ];
 }

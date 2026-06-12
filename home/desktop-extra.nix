@@ -38,7 +38,7 @@
     ./programs/eza.nix
     ./programs/gh.nix
     ./programs/gwenview.nix
-    ./programs/hermes-desktop.nix
+    ./programs/hermes-desktop
     ./programs/libvirt.nix
     ./programs/magick.nix
     ./programs/media
@@ -87,8 +87,10 @@
     awscli2
     blender
     calibre
+    gdb
     gh
     gimp
+    icoutils
     kdePackages.elisa
     kdePackages.kdeconnect-kde
     kdePackages.kdenlive
@@ -96,6 +98,8 @@
     kdePackages.qttools
     kicad
     krabby
+    llm-agents.agentsview
+    llm-agents.ccusage
     newsflash
     nur.repos.Ev357.helium
     tea

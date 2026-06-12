@@ -74,9 +74,19 @@ in
     };
     tui = {
       keybinds = {
-        "command_list" = "ctrl+p,alt+x,<leader>;";
-        "editor_open" = "alt+e,<leader>e";
-        "prompt.autocomplete.select" = "return,ctrl+y";
+        "command_list" = lib.concatStringsSep "," [
+          "alt+x"
+          "ctrl+p"
+          "<leader>;"
+        ];
+        "editor_open" = lib.concatStringsSep "," [
+          "alt+e"
+          "<leader>e"
+        ];
+        "prompt.autocomplete.select" = lib.concatStringsSep "," [
+          "return"
+          "ctrl+y"
+        ];
       };
     };
   };

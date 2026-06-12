@@ -111,7 +111,7 @@ lib.mkIf cfg.enable {
       bindkey '^]' vi-find-next-char
       bindkey '^[^]' vi-find-prev-char
 
-      eval "$(${lib.getExe zsh-patina} activate)"
+      eval "$(${lib.getExe' zsh-patina "zsh-patina"} activate)"
 
 
       # # Misc

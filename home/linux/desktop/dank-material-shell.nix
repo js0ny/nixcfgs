@@ -43,6 +43,8 @@ lib.mkIf enable {
       timeLocale = mkDefault locale;
       hiddenTrayIds = [
         "chrome_status_icon_1::Feishin"
+        "ROG Control Center"
+        "indicator-solaar" # Logitech devices
       ];
     };
     settings = {

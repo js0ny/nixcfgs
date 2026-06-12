@@ -5,9 +5,11 @@
     bind
     curl
     dig
+    ethtool
     file
     ghostty.terminfo
     git
+    iw
     kitty.kitten
     kitty.terminfo
     lsof
@@ -18,6 +20,7 @@
     # keep-sorted end
   ];
   # keep-sorted start
+  networking.iproute2.enable = true;
   programs.iftop.enable = true;
   programs.iotop.enable = true;
   programs.less.enable = true;

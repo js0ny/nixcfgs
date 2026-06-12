@@ -8,9 +8,9 @@ return {
   },
   lazy = false,
   keys = {
-    { '<leader>E', ':Neotree toggle<CR>', desc = 'Toggle Neo-tree' },
-    { '<leader>ft', ':Neotree toggle<CR>', desc = 'Toggle Neo-tree' },
-    { '<C-S-e>', ':Neotree toggle<CR>', desc = 'Toggle Neo-tree' },
+    { '<leader>E', '<Cmd>Neotree toggle<CR>', desc = 'Toggle Neo-tree' },
+    { '<leader>ft', '<Cmd>Neotree toggle<CR>', desc = 'Toggle Neo-tree' },
+    { '<C-S-e>', '<Cmd>Neotree toggle<CR>', desc = 'Toggle Neo-tree' },
   },
   ---@type neotree.Config
   config = {

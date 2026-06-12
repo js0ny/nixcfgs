@@ -34,6 +34,12 @@ local maps = {
     cmd = '<Cmd>nohlsearch<Bar>diffupdate<CR>',
     opts = { desc = 'Clear Search Highlight' },
   },
+  {
+    mode = 't',
+    keys = '<C-w>',
+    cmd = '<C-\\><C-n><C-w>',
+    opts = { desc = 'Terminal: passthrough C-w directly' },
+  },
 }
 
 local function smart_split(func, reverse)

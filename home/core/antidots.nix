@@ -31,6 +31,7 @@ in
     PSQLRC = "${xdg-config}/pg/psqlrc";
     PGPASSFILE = "${xdg-config}/pg/pgpass";
     PGSERVICEFILE = "${xdg-config}/pg/pg_service.conf";
+    CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
     PSQL_HISTORY = "${xdg-state}/psql_history";
   };
 

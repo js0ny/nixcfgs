@@ -33,4 +33,9 @@ lib.mkIf cfg.enable {
       ];
     }
   ];
+  services.upower.ignoreLid = lib.mkDefault true;
+  services.logind.settings.Login = {
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitch = lib.mkDefault "ignore";
+  };
 }
