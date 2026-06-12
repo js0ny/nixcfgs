@@ -7,6 +7,9 @@ let
       postFixup = (old.postFixup or "") + /* bash */ ''
         wrapProgram $out/bin/hermes-desktop \
           --add-flags "--password-store=gnome-libsecret"
+        mkdir -p $out/share/icons/hicolor/256x256/apps
+        # extracted from windows binary (MIT)
+        ln -s ${./icon.png} $out/share/icons/hicolor/256x256/apps/hermes-agent.png
       '';
     })
   );
@@ -19,7 +22,7 @@ in
     genericName = "Generic LLM Agent";
     comment = "A desktop application for Hermes";
     exec = lib.getExe hermes-desktop;
-    icon = ./icon.png; # extracted from windows binary (MIT)
+    icon = "hermes-agent";
     terminal = false;
     categories = [ "Utility" ];
   };

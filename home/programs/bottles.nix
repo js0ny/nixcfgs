@@ -13,6 +13,8 @@
       update-date = true;
       startup-view = "page_library";
       show-sandbox-warning = false;
+      show-funding = false;
+      steam-proton-support = true;
     };
   };
 

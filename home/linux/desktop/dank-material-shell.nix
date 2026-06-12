@@ -181,6 +181,11 @@ lib.mkIf enable {
           replacement = "GameConqueror";
           type = "exact";
         }
+        {
+          pattern = "Hermes";
+          replacement = "hermes-agent";
+          type = "exact";
+        }
       ];
     };
   };

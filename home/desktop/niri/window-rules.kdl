@@ -10,7 +10,7 @@ window-rule {
     // File Preview
     match app-id="^org.gnome.NautilusPreviewer$"
     match app-id="^QQ$" title="^图片查看器$"
-    match app-id="^QQ$" title="^群聊的聊天记录$"
+    match app-id="^QQ$" title="^.*的聊天记录$"
     match app-id="^org.telegram.desktop$" title="^m|Media viewer$"
     match app-id="^com.ayugram.desktop$" title="^m|Media viewer$"
     match app-id="^io.github.kukuruzka165.materialgram$" title="^m|Media viewer$"

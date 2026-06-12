@@ -18,10 +18,10 @@ let
       done
 
       if [ "$has_config_file" -eq 1 ]; then
-        exec ${lib.getExe pkgs.localPkgs.BBDown} "$@"
+        exec ${lib.getExe pkgs.misc.apps.bbdown} "$@"
       fi
 
-      exec ${lib.getExe pkgs.localPkgs.BBDown} \
+      exec ${lib.getExe pkgs.misc.apps.bbdown} \
         --config-file ${config.sops.templates."BBDown.config".path} \
         "$@"
     '';
