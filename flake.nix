@@ -39,6 +39,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-misc-packages = {
+      url = "github:js0ny/nix-misc-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     # }}}
 
     # {{{ Application Supports

@@ -11,7 +11,6 @@ in
   # udisks2 is needed for disk management and mounting.
   # If you cannot see external drives in your file manager, enable this.
   services.udisks2.enable = true;
-  programs.gnome-disks.enable = true;
   systemd.tmpfiles.rules = lib.optionals (avatar != null) [
     "L+ /var/lib/AccountsService/icons/${user} - - - - ${avatar}"
   ];

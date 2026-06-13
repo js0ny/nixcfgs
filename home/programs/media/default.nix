@@ -47,7 +47,6 @@ in
       bbdown-wrapped
       exiftool
       flac
-      localPkgs.danmaku2ass
       localPkgs.mediatools.extract-audio
       localPkgs.mediatools.preview-by-orientation
       localPkgs.mediatools.remux-mp4
@@ -58,6 +57,7 @@ in
       localPkgs.mediatools.to-webp
       localPkgs.mediatools.video-gen-grid
       mediainfo
+      misc.apps.danmaku2ass
       yt-dlp
       # keep-sorted end
     ]

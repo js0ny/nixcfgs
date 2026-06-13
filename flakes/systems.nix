@@ -13,6 +13,7 @@
         inputs.llm-agents.overlays.default
         inputs.niri-flake.overlays.niri
         inputs.nix-cachyos-kernel.overlays.pinned
+        inputs.nix-misc-packages.overlays.default
         inputs.nur.overlays.default
         # keep-sorted end
       ];

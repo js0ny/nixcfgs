@@ -8,6 +8,7 @@
     libva-utils
     ltrace
     mesa-demos
+    nvme-cli
     openvpn
     pciutils
     sbctl
@@ -18,4 +19,5 @@
     vulkan-tools
     # keep-sorted end
   ];
+  programs.gnome-disks.enable = true;
 }

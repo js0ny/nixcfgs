@@ -1066,6 +1066,29 @@
         "type": "github"
       }
     },
+    "nix-misc-packages": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781258818,
+        "narHash": "sha256-SXR/N/tN4R+znyCmxUC2TyTjOljmmSr8EA3kWotn9LA=",
+        "owner": "js0ny",
+        "repo": "nix-misc-packages",
+        "rev": "c83ff4d8cfb732c76a862749a3a990f9999ec4b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "js0ny",
+        "repo": "nix-misc-packages",
+        "type": "github"
+      }
+    },
     "nixcord": {
       "inputs": {
         "flake-compat": "flake-compat_7",
@@ -1619,6 +1642,7 @@
         "nix-darwin": "nix-darwin",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
+        "nix-misc-packages": "nix-misc-packages",
         "nixcord": "nixcord",
         "nixos-wsl": "nixos-wsl",
         "nixpak": "nixpak",

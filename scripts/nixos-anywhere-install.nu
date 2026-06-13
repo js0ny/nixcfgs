@@ -1,6 +1,7 @@
 def nixos-anywhere-install [
     ip: string
     hostname: string
+    port: int = 22
     temp: string = ""
     --rsa
     --nix-args: list<string> = []
@@ -11,18 +12,21 @@ def nixos-anywhere-install [
     if (which nix | length) == 0 {
         error make {msg: "nix not found in PATH"}
     }
-    if $temp == "" {
-        mut temp = mktemp -d | str trim
-        print $temp
+    let temp_dir = if $temp == "" {
+        let dir = mktemp -d | str trim
+        print $dir
+        $dir
+    } else {
+        $temp
     }
-    let persist_dir = $temp | path join "persist"
+    let persist_dir = $temp_dir | path join "persist"
     let etc_dir = $persist_dir | path join "etc"
     let key_dir = $etc_dir | path join "ssh"
     let target = $"root@($ip)"
     let flake = $".#($hostname)"
     let comment = $"root@($hostname)"
-    let ed25519_key = $temp | path join "ssh_host_ed25519_key"
-    let rsa_key = $temp | path join "ssh_host_rsa_key"
+    let ed25519_key = $temp_dir | path join "ssh_host_ed25519_key"
+    let rsa_key = $temp_dir | path join "ssh_host_rsa_key"
     mkdir $key_dir
     chmod 755 $persist_dir
     chmod 755 $etc_dir
@@ -44,10 +48,14 @@ def nixos-anywhere-install [
         ...$nix_args
         github:nix-community/nixos-anywhere
         --
+        --ssh-port
+        ($port | into string)
+        --post-kexec-ssh-port
+        ($port | into string)
         --flake
         $flake
         --extra-files
-        $temp
+        $temp_dir
         $target
     ]
     print "Press (x) to start installation"

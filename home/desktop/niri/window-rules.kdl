@@ -10,16 +10,19 @@ window-rule {
     // File Preview
     match app-id="^org.gnome.NautilusPreviewer$"
     match app-id="^QQ$" title="^图片查看器$"
-    match app-id="^QQ$" title="^.*的聊天记录$"
     match app-id="^org.telegram.desktop$" title="^m|Media viewer$"
     match app-id="^com.ayugram.desktop$" title="^m|Media viewer$"
     match app-id="^io.github.kukuruzka165.materialgram$" title="^m|Media viewer$"
     match app-id="^wechat$" title="^图片和视频$"
 
+    // Popup Windows
+    match app-id="^dev.zed.Zed$" title="^Zed — Settings$"
+    match app-id="^QQ$" title="^.*的聊天记录$"
     match app-id="^org.gnome.Settings.GlobalShortcutsProvider$" title="^Add Keyboard Shortcuts$"
     match app-id="^anki$" title="^Add$"
     match app-id="^thunar$" title="^File Operation Progress$"
     match app-id="^CherryStudio$" title="^Cherry Studio Quick Assistant$"
+
     open-floating true
 }
 

@@ -18,7 +18,7 @@
 
       # Chinese <-> English
       # 简明英汉字典增强版 (MIT)
-      "ecdict" = pkgs.localPkgs.stardictDictionary.ECDICT;
+      "ecdict" = pkgs.misc.data.stardict.ecdict;
 
       # 朗道英汉字典 (GPL)
       "langdao-ec" = pkgs.fetchzip {

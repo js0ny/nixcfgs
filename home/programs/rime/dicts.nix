@@ -4,10 +4,10 @@
   ...
 }:
 let
-  rime-wanxiang = pkgs.localPkgs.rime-wanxiang-zrm;
-  rime-cantonese = pkgs.localPkgs.rime-cantonese;
-  rime-dieghv = pkgs.localPkgs.rime-dieghv;
-  rime-latex = pkgs.localPkgs.rime-latex;
+  rime-wanxiang = pkgs.misc.data.rime.rime-wanxiang.zrm;
+  rime-cantonese = pkgs.misc.data.rime.rime-cantonese;
+  rime-dieghv = pkgs.misc.data.rime.rime-dieghv;
+  rime-latex = pkgs.misc.data.rime.rime-latex;
 
   rimeConfigMerged = pkgs.runCommandLocal "rime-config-merged" { } ''
     mkdir -p $out
