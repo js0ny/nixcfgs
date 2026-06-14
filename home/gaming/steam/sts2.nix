@@ -7,6 +7,8 @@ let
       "${config.home.homeDirectory}/Library/Application Support/SlayTheSpire2/steam/${toString steamId}"
     else
       "${config.xdg.dataHome}/SlayTheSpire2/steam/${toString steamId}";
+  mods = pkgs.misc.mods.slay-the-spire-2;
+  modDir = ".local/share/Steam/steamapps/common/Slay the Spire 2/mods";
 in
 {
   # Fix: Slay the Spire 2 "SpeedX" mod initialization crash
@@ -34,5 +36,10 @@ in
     settings = {
       "skip_intro_logo" = true;
     };
+  };
+  home.file = {
+    "${modDir}/ModConfig".source = mods.modconfig;
+    "${modDir}/SpeedX".source = mods.speedx;
+    "${modDir}/DamageMeter".source = mods.damagemeter;
   };
 }

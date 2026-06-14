@@ -18,6 +18,7 @@ lib.mkIf cfg.enable {
       deploy-rs
       nurl
       nvfetcher
+      npins
     ]
     ++ lib.optionals cfg.global (
       with pkgs;
