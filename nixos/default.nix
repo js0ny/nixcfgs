@@ -10,7 +10,6 @@
     ../common/stylix.nix
     ../common/system.nix
     ../definitions
-    ../nixpaks
     ../options
     ./compat.nix
     ./core

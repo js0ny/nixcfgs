@@ -14,6 +14,7 @@
         inputs.niri-flake.overlays.niri
         inputs.nix-cachyos-kernel.overlays.pinned
         inputs.nix-misc-packages.overlays.default
+        inputs.nix-misc-packages.overlays.nixpaks
         inputs.nur.overlays.default
         # keep-sorted end
       ];
