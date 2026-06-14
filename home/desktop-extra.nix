@@ -100,6 +100,8 @@
     krabby
     llm-agents.agentsview
     llm-agents.ccusage
+    ltspice
+    misc.apps.proton-drive-cli
     newsflash
     ngspice
     nmap

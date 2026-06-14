@@ -20,6 +20,7 @@ lib.mkIf m.compat {
         glib
         libxcb
         libGL
+        libsecret
       ]);
   };
 }
