@@ -14,10 +14,12 @@ lib.mkIf cfg.enable {
       (jetbrains.clion.override {
         vmopts = "-Dawt.toolkit.name=WLToolkit";
       })
+      cgdb
     ]
     ++ lib.optionals cfg.global [
       gcc
       clang-tools
+      valgrind
     ];
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     llvm-vs-code-extensions.vscode-clangd

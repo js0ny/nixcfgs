@@ -101,8 +101,11 @@
     llm-agents.agentsview
     llm-agents.ccusage
     newsflash
+    ngspice
     nmap
     nur.repos.Ev357.helium
+    octaveFull
+    qucs-s
     tea
     # keep-sorted end
   ];
