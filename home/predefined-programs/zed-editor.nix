@@ -19,9 +19,6 @@ lib.mkMerge [
           env.EDITOR = "zeditor";
           shell.program = config.nixdots.apps.interactiveShell.exe;
         };
-        lsp.package-version-server = {
-          binary = lib.getExe pkgs.package-version-server;
-        };
         relative_line_numbers = "enabled";
       };
     };

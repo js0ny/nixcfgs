@@ -102,5 +102,21 @@
         description = "Whether to install config files devenv packages with PATH";
       };
     };
+    webdev = {
+      enable = lib.mkEnableOption "Whether to enable webdev devenv";
+      global = lib.mkOption {
+        type = lib.types.bool;
+        default = config.nixdots.devenvs.global;
+        description = "Whether to install webdev devenv packages with PATH";
+      };
+    };
+    dotnet = {
+      enable = lib.mkEnableOption "Whether to enable dotnet devenv";
+      global = lib.mkOption {
+        type = lib.types.bool;
+        default = config.nixdots.devenvs.global;
+        description = "Whether to install dotnet devenv packages with PATH";
+      };
+    };
   };
 }

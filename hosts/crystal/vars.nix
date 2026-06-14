@@ -10,28 +10,6 @@ let
 in
 {
   nixdots = {
-    devenvs = {
-      c = {
-        enable = false;
-        global = false;
-      };
-      nix = {
-        enable = true;
-        global = true;
-      };
-      lua = {
-        enable = true;
-        global = true;
-      };
-      typst = {
-        enable = true;
-        global = true;
-      };
-      configfiles = {
-        enable = true;
-        global = true;
-      };
-    };
     persist = {
       enable = true;
       path = "/persist";
@@ -223,6 +201,44 @@ in
       longitude = -3.2;
       latitude = 55.95;
       city = "Edinburgh";
+    };
+    devenvs = {
+      c = {
+        enable = true;
+        global = true;
+      };
+      nix = {
+        enable = true;
+        global = true;
+      };
+      lua = {
+        enable = true;
+        global = true;
+      };
+      typst = {
+        enable = true;
+        global = true;
+      };
+      configfiles = {
+        enable = true;
+        global = true;
+      };
+      webdev = {
+        enable = true;
+        global = true;
+      };
+      rust = {
+        enable = true;
+        global = true;
+      };
+      python = {
+        enable = true;
+        global = true;
+      };
+      dotnet = {
+        enable = true;
+        global = true;
+      };
     };
   };
   sops.secrets.tskey = { };

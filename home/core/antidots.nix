@@ -23,7 +23,6 @@ in
     W3M_DIR = "${xdg-state}/w3m";
     WAKATIME_HOME = "${xdg-config}/wakatime"; # ~/.wakatime
     WGETRC = "${xdg-config}/wget/wgetrc";
-    WINEPREFIX = "${xdg-data}/wineprefixes/default";
     SQLITE_HISTORY = "${xdg-state}/sqlite/history"; # ~/.sqlite/history
     AWS_SHARED_CREDENTIALS_FILE = "${xdg-config}/aws/credentials";
     AWS_CONFIG_FILE = "${xdg-config}/aws/config";

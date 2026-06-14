@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+let
+  prefix = "${config.xdg.dataHome}/wineprefixes/default";
+in
 {
   home.packages = with pkgs; [
     protontricks
@@ -6,9 +9,13 @@
     wineWow64Packages.waylandFull
     winetricks
   ];
-  dconf.settings = {
-    "com/usebottles/bottles" = {
-      steam-proton-support = true;
-    };
+  nixdots.persist.nosnap.home = {
+    directories = [
+      ".local/share/wineprefixes"
+      ".local/share/wine-apps"
+    ];
+  };
+  home.sessionVariables = {
+    WINEPREFIX = prefix;
   };
 }

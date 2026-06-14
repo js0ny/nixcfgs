@@ -39,5 +39,6 @@ lib.mkIf cfg.enable {
     "jsonl"
     "kdl"
     "toml"
+    "terraform"
   ];
 }

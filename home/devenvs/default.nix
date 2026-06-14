@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  myLib,
   ...
 }:
 let
@@ -13,22 +14,7 @@ let
   home = config.home.homeDirectory;
 in
 {
-  imports = [
-    # keep-sorted start
-    ./c.nix
-    ./configfiles.nix
-    ./go.nix
-    ./java.nix
-    ./latex.nix
-    ./lua.nix
-    ./markdown.nix
-    ./nix.nix
-    ./python.nix
-    ./rust.nix
-    ./typst.nix
-    ./verilog.nix
-    # keep-sorted end
-  ];
+  imports = myLib.scanPaths ./.;
   home.sessionVariables = {
     PYTHON_HISTORY = "${xdg-data}/python/history";
     GOPATH = "${xdg-data}/go";

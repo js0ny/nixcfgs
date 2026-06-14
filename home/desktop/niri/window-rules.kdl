@@ -25,6 +25,7 @@ window-rule {
     match app-id="^CherryStudio$" title="^Cherry Studio Quick Assistant$"
     match app-id="^wineboot.exe$" title="^Wine$"
     match app-id="^qalculate-gtk$" title="^Qalculate!$"
+    match app-id="^jetbrains-.*$" title=r#"^JetBrains \w+ User Agreement$"#
 
     open-floating true
 }
@@ -41,6 +42,7 @@ window-rule {
 // Float & Not-focused
 window-rule {
     match app-id="^control.exe$" title="^Wine Mono Installer$"
+    match app-id="^jetbrains-.*$" title=r#"splash"#
 
     open-floating true
     open-focused false

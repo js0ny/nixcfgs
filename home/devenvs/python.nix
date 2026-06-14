@@ -15,6 +15,7 @@ lib.mkIf cfg.enable {
     with pkgs;
     [
       ruff
+      ty
     ]
   );
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [

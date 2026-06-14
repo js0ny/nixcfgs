@@ -81,6 +81,7 @@ in
       # Only use umpv in video mode, only one presents
       # and will fork current process
       // mkAssoc "umpv.desktop" video
+      // mkAssoc "thunderbird.desktop" [ "x-scheme-handler/mailto" ]
       // mkAssoc "com.usebottles.bottles.desktop" [
         "x-scheme-handler/bottles"
         "application/x-ms-dos-executable"

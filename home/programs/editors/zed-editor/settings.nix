@@ -57,6 +57,7 @@
           on = {
             directories = [
               ".venv"
+              "venv"
             ];
           };
         };
@@ -104,6 +105,7 @@
         nixd.settings = config.nixdefs.lsp.servers.nixd.serverSettings;
         lua-language-server.settings = config.nixdefs.lsp.servers.lua-language-server.serverSettings;
       };
+      cli_default_open_behavior = "existing_window";
     };
   };
 }
