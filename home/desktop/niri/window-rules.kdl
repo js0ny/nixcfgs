@@ -18,10 +18,13 @@ window-rule {
     // Popup Windows
     match app-id="^dev.zed.Zed$" title="^Zed — Settings$"
     match app-id="^QQ$" title="^.*的聊天记录$"
+    match app-id="^QQ$" title="^.*视频播放器$"
     match app-id="^org.gnome.Settings.GlobalShortcutsProvider$" title="^Add Keyboard Shortcuts$"
     match app-id="^anki$" title="^Add$"
     match app-id="^thunar$" title="^File Operation Progress$"
     match app-id="^CherryStudio$" title="^Cherry Studio Quick Assistant$"
+    match app-id="^wineboot.exe$" title="^Wine$"
+    match app-id="^qalculate-gtk$" title="^Qalculate!$"
 
     open-floating true
 }
@@ -32,6 +35,14 @@ window-rule {
     match app-id="^wechat$" title="^wechat$"
     match app-id="^org.kde.dolphin$" title="^(Copying|Compressing|Deleting).*$"
     match app-id="^org.kde.dolphin$" title="^正在删除.*Dolphin$"
+    open-focused false
+}
+
+// Float & Not-focused
+window-rule {
+    match app-id="^control.exe$" title="^Wine Mono Installer$"
+
+    open-floating true
     open-focused false
 }
 

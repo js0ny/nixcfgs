@@ -1,18 +1,5 @@
 { pkgs, lib, ... }:
 let
-  materialgramAppId = "io.github.kukuruzka165.materialgram";
-  materialgramExternalMediaMimes = [
-    "image/gif"
-    "image/heic"
-    "image/jpeg"
-    "image/png"
-    "image/webp"
-    "video/mp4"
-    "video/quicktime"
-    "video/webm"
-    "video/x-matroska"
-    "video/x-msvideo"
-  ];
   mod = if pkgs.stdenv.isDarwin then "meta" else "alt";
   shortcuts = builtins.toJSON [
     {
@@ -127,15 +114,4 @@ in
   home.file = lib.mkIf pkgs.stdenv.isDarwin {
     "Library/Application Support/Telegram Desktop/tdata/shortcuts-custom.json".text = shortcuts;
   };
-  home.activation.materialgramPortalUsedApps = lib.mkIf pkgs.stdenv.isLinux (
-    lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
-      for mime in ${lib.escapeShellArgs materialgramExternalMediaMimes}; do
-        handler="$(${lib.getExe' pkgs.xdg-utils "xdg-mime"} query default "$mime" 2>/dev/null)"
-        handler="''${handler%.desktop}"
-        if [ -n "$handler" ]; then
-          $DRY_RUN_CMD ${lib.getExe' pkgs.flatpak "flatpak"} permission-set --data "{'always-ask':<false>}" desktop-used-apps "$mime" ${materialgramAppId} "$handler" 3 3 >/dev/null 2>&1 || true
-        fi
-      done
-    ''
-  );
 }

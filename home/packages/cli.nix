@@ -6,6 +6,9 @@
 {
   programs.btop = {
     enable = true;
+    settings = {
+      vim_keys = true;
+    };
     package = pkgs.btop.override {
       cudaSupport = config.nixdots.linux.gpu == "nvidia";
     };

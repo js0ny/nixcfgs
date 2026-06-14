@@ -38,10 +38,14 @@ in
   };
   xdg.configFile = {
     "pi/agent/settings.json".text = builtins.toJSON {
-      lastChangelogVersion = "0.72.1";
+      lastChangelogVersion = "0.78.1";
       defaultProvider = models.code-build.provider;
       defaultModel = models.code-build.model;
       defaultThinkingLevel = "high";
+      collapseChangelog = true;
+      enableInstallTelemetry = false;
+      enableAnalytics = false;
+      sessionDir = "${config.xdg.dataHome}/pi/agent/sessions";
       npmCommand = [
         "nix"
         "shell"
@@ -52,6 +56,7 @@ in
       packages = [
         "npm:pi-provider-litellm"
         "npm:pi-mcp-adapter"
+        "npm:pi-direnv"
       ];
     };
   };

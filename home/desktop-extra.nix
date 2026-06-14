@@ -101,6 +101,7 @@
     llm-agents.agentsview
     llm-agents.ccusage
     newsflash
+    nmap
     nur.repos.Ev357.helium
     tea
     # keep-sorted end

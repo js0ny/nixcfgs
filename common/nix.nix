@@ -25,5 +25,6 @@ in
       "nix-command"
       "flakes"
     ];
+    warn-dirty = false;
   };
 }
