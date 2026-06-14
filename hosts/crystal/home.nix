@@ -18,7 +18,8 @@
     # keep-sorted start
     inputs.betterfox-nix.modules.homeManager.betterfox
     inputs.catppuccin.homeModules.catppuccin
-    inputs.niri-flake.homeModules.niri
+    inputs.niri-nix.homeModules.default
+    inputs.niri-nix.homeModules.stylix
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.nix-index-database.homeModules.nix-index
     inputs.secrets.homeManagerModules.default

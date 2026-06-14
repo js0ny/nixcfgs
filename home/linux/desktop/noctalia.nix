@@ -274,7 +274,7 @@ lib.mkIf enable {
           };
     };
   };
-  nixdots.desktop.niri.extraConfig = /* kdl */ ''
+  wayland.windowManager.niri.extraConfig = /* kdl */ ''
     window-rule {
       geometry-corner-radius 20
 

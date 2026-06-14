@@ -189,7 +189,7 @@ lib.mkIf enable {
       ];
     };
   };
-  nixdots.desktop.niri.extraConfig = /* kdl */ ''
+  wayland.windowManager.niri.extraConfig = /* kdl */ ''
     include "${xdg-config}/niri/dms/alttab.kdl"
     include "${xdg-config}/niri/dms/binds.kdl"
     include "${xdg-config}/niri/dms/colors.kdl"

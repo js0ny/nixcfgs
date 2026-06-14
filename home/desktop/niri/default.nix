@@ -6,31 +6,30 @@
 }:
 let
   xdg-config = config.xdg.configHome;
-  desktop = config.nixdots.desktop;
-  extraCfg = desktop.niri.extraConfig;
 in
 {
   imports = [
     ../wm-components
   ];
 
-  programs.niri = {
+  wayland.windowManager.niri = {
     enable = true;
-    package = desktop.niri.package;
+    validation.enable = true;
+    settings = {
+      spawn-sh-at-startup = [
+        "systemctl --user start waylandwm-session.target"
+      ];
+    };
+    extraConfig = ''
+      include "${./base.kdl}"
+      ${import ./keymaps.nix { inherit pkgs lib config; }}
+      ${import ./interpolates.nix { inherit config; }}
+      include "${./window-rules.kdl}"
+      include "${xdg-config}/niri/local_test.kdl"
+    '';
   };
 
   systemd.user.tmpfiles.rules = [
     "f ${xdg-config}/niri/local_test.kdl 0644 ${config.home.username} users -"
   ];
-
-  xdg.configFile."niri/config.kdl".text =
-    /* kdl */ ''
-      include "${./base.kdl}"
-      include "${xdg-config}/niri/local_test.kdl"
-      spawn-at-startup "systemctl" "--user" "start" "waylandwm-session.target"
-      ${import ./keymaps.nix { inherit pkgs lib config; }}
-      ${import ./interpolates.nix { inherit config; }}
-      include "${./window-rules.kdl}"
-    ''
-    + lib.optionalString (extraCfg != "") "\n${extraCfg}";
 }

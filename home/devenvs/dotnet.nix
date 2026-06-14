@@ -24,7 +24,7 @@ lib.mkIf cfg.enable {
     userSettings = {
     };
   };
-  programs.vscode.extensions = with pkgs.vscode-extensions; [
+  programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     ms-dotnettools.csharp
     ms-dotnettools.csdevkit
   ];

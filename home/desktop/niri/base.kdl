@@ -26,14 +26,6 @@ layout {
         top 0
         bottom 0
     }
-    focus-ring {
-        width 4
-        active-color "#7fc8ff"
-        inactive-color "#505050"
-    }
-    border {
-        off
-    }
     default-column-width {
         proportion 0.5
     }

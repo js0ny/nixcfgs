@@ -2,7 +2,6 @@
 {
   imports = [
     # keep-sorted start
-    ../common
     ../common/hm.nix
     ../common/nix-helper.nix
     ../common/nix.nix

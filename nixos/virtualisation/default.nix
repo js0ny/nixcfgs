@@ -1,9 +1,4 @@
-{ ... }:
+{ myLib, ... }:
 {
-  imports = [
-    ./libvirt.nix
-    ./waydroid.nix
-    ./docker.nix
-    ./podman.nix
-  ];
+  imports = myLib.scanPaths ./.;
 }

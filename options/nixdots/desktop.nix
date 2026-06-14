@@ -67,17 +67,6 @@
         '';
       };
     };
-    niri = {
-      package = lib.mkOption {
-        type = lib.types.package;
-        example = pkgs.niri-unstable;
-        default = pkgs.niri;
-      };
-      extraConfig = lib.mkOption {
-        type = lib.types.lines;
-        default = "";
-      };
-    };
     hyprland = {
       package = lib.mkOption {
         type = lib.types.package;
