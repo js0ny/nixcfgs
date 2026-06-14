@@ -1,4 +1,16 @@
-{ config, secrets, ... }:
+{
+  pkgs,
+  config,
+  secrets,
+  ...
+}:
+let
+  configPath =
+    if pkgs.stdenv.isDarwin then
+      "${config.home.homeDirectory}/Library/Application Support/aichat/"
+    else
+      "${config.xdg.configHome}/aichat/";
+in
 {
   sops.secrets = {
     llm_key_aichat = {
@@ -9,7 +21,7 @@
     content = /* bash */ ''
       LITELLM_API_KEY=${config.sops.placeholder.llm_key_aichat}
     '';
-    path = "${config.xdg.configHome}/aichat/.env";
+    path = "${configPath}/.env";
     mode = "0400";
   };
   misc.shellAliases = {

@@ -84,6 +84,13 @@
       dolphin.enable = true;
       thunderbird.enable = true;
     };
+    features = {
+      enable = true;
+      media.mpv = {
+        enable = true;
+        enableNativeFrontend = true;
+      };
+    };
     machine = {
       role = "host";
     };

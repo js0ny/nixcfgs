@@ -1,8 +1,4 @@
-_: {
-  imports = [
-    ./alt-tab.nix
-    ./duti.nix
-    ./iina.nix
-    ./raycast.nix
-  ];
+{ myLib, ... }:
+{
+  imports = myLib.scanPaths ./.;
 }

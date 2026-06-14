@@ -13,6 +13,8 @@
       proton-pass-cli
       localPkgs.edit-clipboard
       localsend
+      moonlight-qt
+      pandoc
     ]
     ++ ((lib.optionals pkgs.stdenv.isLinux) [
       # keep-sorted start
@@ -23,7 +25,6 @@
       # Image Viewer
       loupe # SUPER FAST 有催人跑的感觉
       nixpaks.ticktick
-      pandoc
       # Theming
       papirus-icon-theme
       qbittorrent

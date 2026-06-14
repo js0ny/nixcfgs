@@ -11,6 +11,7 @@
     ./determinate.nix
     ./finder.nix
     ./pam.nix
+    ./stylix.nix
     ./tailscale.nix
     # keep-sorted end
   ];
