@@ -75,35 +75,9 @@ let
       ''${lib.getExe pkgs.yq-go} -i -oy -P ". *= load(\"${patchPath}\")" "$TARGET"''
     else
       ''${lib.getExe pkgs.crudini} --merge "$TARGET" < "${patchPath}"'';
-in
-{
-  options.mergetools = mkOption {
-    type = types.attrsOf mergeTargetType;
-    default = { };
-    description = "Declarative config merging (Home Manager Only)";
-  };
 
-  config = mkIf (activeTasks != { }) {
-    # 1. 生成参考文件 (home.file)
-    home.file =
-      let
-        tasksWithRef = filterAttrs (n: v: v.generateReference) activeTasks;
-      in
-      mapAttrs' (
-        name: task:
-        let
-          relTarget = stripHomePrefix task.target;
-          dir = dirOf relTarget;
-          base = baseNameOf relTarget;
-          refPath = if dir == "." then ".${base}.nix-managed" else "${dir}/.${base}.nix-managed";
-        in
-        nameValuePair refPath {
-          text = getContent task;
-        }
-      ) tasksWithRef;
-
-    # 2. 注入激活脚本 (home.activation)
-    home.activation = mapAttrs (
+  mergeScriptText = concatStringsSep "\n" (
+    mapAttrsToList (
       name: task:
       let
         relTarget = stripHomePrefix task.target;
@@ -115,7 +89,7 @@ in
           else
             "${pkgs.writeText "${name}-patch.${task.format}" (getContent task)}";
       in
-      hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
+      /* bash */ ''
         TARGET="${task.target}"
         PATCH="${patchPath}"
         FORCE="${if task.force then "true" else "false"}"
@@ -137,6 +111,73 @@ in
           echo "mergetools: Skipping merge for $TARGET (file missing & force=false)"
         fi
       ''
-    ) activeTasks;
+    ) activeTasks
+  );
+
+  mergeScript = pkgs.writeShellApplication {
+    name = "mergetools-merge";
+    runtimeInputs = [ pkgs.coreutils ];
+    text = mergeScriptText;
+  };
+in
+{
+  options.mergetools = mkOption {
+    type = types.attrsOf mergeTargetType;
+    default = { };
+    description = "Declarative config merging (Home Manager Only)";
+  };
+
+  options.misc.mergetoolsBackend = mkOption {
+    type = types.enum [
+      "activation"
+      "systemd"
+    ];
+    default = "activation";
+    description = "How to run mergetools merge tasks.";
+  };
+
+  config = mkIf (activeTasks != { }) {
+    assertions = [
+      {
+        assertion = config.misc.mergetoolsBackend != "systemd" || pkgs.stdenv.isLinux;
+        message = "misc.mergetoolsBackend = \"systemd\" is only supported on Linux.";
+      }
+    ];
+
+    # 1. 生成参考文件 (home.file)
+    home.file =
+      let
+        tasksWithRef = filterAttrs (n: v: v.generateReference) activeTasks;
+      in
+      mapAttrs' (
+        name: task:
+        let
+          relTarget = stripHomePrefix task.target;
+          dir = dirOf relTarget;
+          base = baseNameOf relTarget;
+          refPath = if dir == "." then ".${base}.nix-managed" else "${dir}/.${base}.nix-managed";
+        in
+        nameValuePair refPath {
+          text = getContent task;
+        }
+      ) tasksWithRef;
+
+    home.activation = mkIf (config.misc.mergetoolsBackend == "activation") {
+      mergetools = hm.dag.entryAfter [ "writeBoundary" ] mergeScriptText;
+    };
+
+    systemd.user.services.hm-mergetools = mkIf (config.misc.mergetoolsBackend == "systemd") {
+      Unit = {
+        Description = "Merge Nix managed config files";
+        After = [ "graphical-session-pre.target" ];
+      };
+
+      Service = {
+        Type = "oneshot";
+        ExecStart = lib.getExe mergeScript;
+      };
+
+      Install.WantedBy = [ "default.target" ];
+    };
   };
 }

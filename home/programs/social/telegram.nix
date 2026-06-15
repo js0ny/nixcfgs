@@ -96,7 +96,6 @@ in
       ]
     else
       [
-        pkgs.ayugram-desktop
         pkgs.materialgram
       ];
   nixdots.persist.nosnap.home = {

@@ -4,7 +4,6 @@
     # keep-sorted start
 
     # ./programs/media/mpv.nix
-
     ./darwin
     ./packages/devtools.nix
     ./packages/gui.nix
@@ -27,11 +26,8 @@
     ./programs/shell/fish
     ./programs/shell/nu.nix
     ./programs/shell/zsh.nix
-    ./programs/social/discord.nix
     ./programs/social/telegram.nix
     ./programs/terminals/ghostty.nix
-    ./programs/terminals/kitty.nix
-    ./programs/terminals/tmux.nix
     ./programs/terminals/zellij
     # keep-sorted end
     inputs.secrets.darwinModules.default

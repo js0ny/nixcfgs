@@ -9,12 +9,11 @@
     with pkgs;
     [
       ripgrep-all
-      trash-cli
       proton-pass-cli
       localPkgs.edit-clipboard
       localsend
-      moonlight-qt
       pandoc
+      trashy
     ]
     ++ ((lib.optionals pkgs.stdenv.isLinux) [
       # keep-sorted start

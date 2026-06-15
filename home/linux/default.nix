@@ -40,6 +40,7 @@
   };
 
   home.packages = [ pkgs.kdePackages.qtstyleplugin-kvantum ];
+  misc.mergetoolsBackend = "systemd";
   home.sessionVariables = lib.mkIf (config.nixdots.linux.display == "wayland") {
     NH_ELEVATION_STRATEGY = "run0";
   };
