@@ -26,8 +26,19 @@ in
       ${import ./interpolates.nix { inherit config; }}
       include "${./window-rules.kdl}"
       include "${xdg-config}/niri/local_test.kdl"
+
+      debug {
+          ignore-drm-device "/dev/dri/renderD128"
+      }
+
     '';
   };
+  # layout {
+  #   focus-ring {
+  #     width 0
+  #   }
+  # }
+  #
 
   systemd.user.tmpfiles.rules = [
     "f ${xdg-config}/niri/local_test.kdl 0644 ${config.home.username} users -"

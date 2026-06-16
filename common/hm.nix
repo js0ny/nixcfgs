@@ -11,7 +11,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupCommand = lib.getExe pkgs.trashy;
+    backupCommand = "rm";
     extraSpecialArgs = {
       inherit
         inputs

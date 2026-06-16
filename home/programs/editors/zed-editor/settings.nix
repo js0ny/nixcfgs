@@ -13,6 +13,7 @@
       vim = {
         use_system_clipboard = "on_yank";
         use_smartcase_find = true;
+        toggle_relative_line_numbers = true;
       };
       outline_panel = {
         dock = "right";

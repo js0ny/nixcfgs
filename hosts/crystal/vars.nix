@@ -181,7 +181,6 @@ in
       dm = "sddm";
       de = [
         "niri"
-        "kde"
       ];
       wm = {
         shell = "dank-material-shell";

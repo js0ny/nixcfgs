@@ -39,8 +39,4 @@ in
     slurp
     sway-contrib.grimshot
   ];
-
-  imports = [
-    ./.
-  ];
 }

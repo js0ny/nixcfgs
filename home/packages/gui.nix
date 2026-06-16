@@ -13,7 +13,6 @@
       localPkgs.edit-clipboard
       localsend
       pandoc
-      trashy
     ]
     ++ ((lib.optionals pkgs.stdenv.isLinux) [
       # keep-sorted start
@@ -21,6 +20,7 @@
       dex
       ffmpeg
       imagemagick
+      kdePackages.ark
       # Image Viewer
       loupe # SUPER FAST 有催人跑的感觉
       nixpaks.ticktick

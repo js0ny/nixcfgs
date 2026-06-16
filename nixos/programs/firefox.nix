@@ -13,7 +13,7 @@ in
 lib.mkIf (cfg && !wsl) {
   programs.firefox = {
     enable = true;
-    languagePacks = [ config.nixdots.core.locales.guiLocale ];
+    package = pkgs.nixpaks.firefox;
     preferences = baseprefs;
     policies = policies;
   };

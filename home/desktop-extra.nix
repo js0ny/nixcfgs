@@ -70,6 +70,7 @@
     ./programs/shell/fish
     ./programs/shell/nu.nix
     ./programs/shell/zsh.nix
+    ./programs/swayimg.nix
     ./programs/terminals/alacritty.nix
     ./programs/terminals/ghostty.nix
     ./programs/terminals/kitty.nix
@@ -92,6 +93,7 @@
     gimp
     icoutils
     kdePackages.elisa
+    kdePackages.isoimagewriter
     kdePackages.kdeconnect-kde
     kdePackages.kdenlive
     kdePackages.partitionmanager

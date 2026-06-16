@@ -20,7 +20,10 @@ lib.mkIf (cfg == "nvidia") (
       };
       hardware.nvidia = {
         modesetting.enable = true;
-        powerManagement.enable = true;
+        powerManagement = {
+          enable = lib.mkIf (!laptop || !hasOffloadBusIds) true;
+          finegrained = lib.mkIf (laptop && hasOffloadBusIds) true;
+        };
         open = true;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.production;

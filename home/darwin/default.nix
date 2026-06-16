@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -21,10 +20,6 @@ in
   xdg.desktopEntries = lib.mkForce { };
 
   i18n.inputMethod.enable = false;
-
-  programs.ghostty.systemd.enable = false;
-  programs.ghostty.package = lib.mkForce pkgs.ghostty-bin;
-  programs.firefox.package = lib.mkForce pkgs.firefox-bin;
 
   systemd.user.tmpfiles.rules = lib.mkForce [ ];
 

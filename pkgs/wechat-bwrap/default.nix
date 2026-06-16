@@ -44,7 +44,8 @@ appimageTools.wrapAppImage {
     mkdir -p $out/share/pixmaps
     cp ${appimageContents}/wechat.png $out/share/pixmaps/
 
-    substituteInPlace $out/share/applications/wechat.desktop --replace-fail AppRun wechat
+    substituteInPlace $out/share/applications/wechat.desktop \
+      --replace-fail AppRun "wechat --disable-gpu --disable-gpu-compositing"
   '';
 
   extraPreBwrapCmds = ''

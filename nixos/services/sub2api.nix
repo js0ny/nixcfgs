@@ -22,18 +22,10 @@ in
 
   # {{{ secrets
   sops.secrets = {
-    sub2api_admin_password = {
-      inherit sopsFile;
-    };
-    sub2api_db_password = {
-      inherit sopsFile;
-    };
-    sub2api_jwt_secret = {
-      inherit sopsFile;
-    };
-    sub2api_totp_encryption_key = {
-      inherit sopsFile;
-    };
+    sub2api_admin_password = { inherit sopsFile; };
+    sub2api_db_password = { inherit sopsFile; };
+    sub2api_jwt_secret = { inherit sopsFile; };
+    sub2api_totp_encryption_key = { inherit sopsFile; };
   };
   # }}}
 

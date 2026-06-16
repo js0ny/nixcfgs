@@ -120,10 +120,10 @@
   };
   xdg.autostart = {
     enable = true;
-    entries = [
-      "${pkgs.nixpaks.materialgram}/share/applications/io.github.kukuruzka165.materialgram.desktop"
-      "${pkgs.localPkgs.wechat-bwrap}/share/applications/wechat.desktop"
-    ];
+    # entries = [
+    #   "${pkgs.nixpaks.materialgram}/share/applications/io.github.kukuruzka165.materialgram.desktop"
+    #   "${pkgs.localPkgs.wechat-bwrap}/share/applications/wechat.desktop"
+    # ];
   };
   mergetools.ticktick-json = {
     target = "${config.xdg.configHome}/ticktick/config.json";

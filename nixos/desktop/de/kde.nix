@@ -39,5 +39,6 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "kde" cfg) {
     kwallet # provides helper service
     kwallet-pam # provides helper service
     kwalletmanager # provides KCMs and stuff
+    qrca
   ];
 }

@@ -1,12 +1,10 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
   apps = config.nixdots.apps;
-  platform = config.nixdots.core.platform;
   textMimes = [
     "text/plain"
     "text/x-csrc" # .c
@@ -31,14 +29,34 @@ let
     "x-scheme-handler/http"
     "x-scheme-handler/https"
   ];
+  archiveMimes = [
+    "application/zip"
+    "application/x-rar"
+    "application/x-7z-compressed"
+    "application/x-tar"
+    "application/x-zstd-compressed-tar" # .tar.zst
+  ];
+  imageMimes = [
+    "image/jpeg"
+    "image/jpg"
+    "image/png"
+    "image/gif"
+    "image/bmp"
+    "image/avif"
+    "image/webp"
+    "image/x-portable-pixmap"
+    "image/svg+xml"
+  ];
   mkAssoc =
-    app: mimes:
+    mimes: apps:
     builtins.listToAttrs (
       map (mime: {
         name = mime;
-        value = app;
+        value = toMimeAppList apps;
       }) mimes
     );
+  _appendDesktop = app: if !lib.hasSuffix ".desktop" app then "${app}.desktop" else app;
+  toMimeAppList = l: lib.concatStringsSep ";" (lib.unique (map (app: _appendDesktop app) l));
 in
 {
   home.sessionVariables.TERMINAL = "xdg-terminal-exec";
@@ -55,10 +73,47 @@ in
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "inode/directory" = apps.fileManager.gui.desktop;
+      "inode/directory" = toMimeAppList [
+        apps.fileManager.gui.desktop
+        apps.fileManager.tui.desktop
+        "org.gnome.Nautilus"
+        "org.kde.dolphin"
+        "nemo"
+        "yazi"
+        "kitty-open"
+        "dev.zed.Zed"
+        "org.kde.gwenview"
+        "org.kde.kid3"
+      ];
+      "application/pdf" = toMimeAppList [
+        "sioyek"
+        "org.kde.okular"
+        "org.gnome.Papers"
+        "calibre-gui"
+      ];
     }
-    // mkAssoc apps.editor.gui.desktop textMimes
-    // mkAssoc apps.browser.desktop webpageMimes;
+    // mkAssoc textMimes [ apps.editor.gui.desktop ]
+    // mkAssoc webpageMimes [
+      "url-dispatcher"
+      apps.browser.desktop
+      "chromium-browser"
+      "org.mozilla.firefox"
+      "firefox"
+      "helium"
+    ]
+    // mkAssoc archiveMimes [
+      "org.gnome.FileRoller"
+      "org.kde.ark"
+      "peazip"
+      "org.prismlauncher.PrismLauncher"
+    ]
+    // mkAssoc imageMimes [
+      "org.gnome.Loupe"
+      "org.kde.gwenview"
+      "swayimg"
+      "mpv"
+      "umpv"
+    ];
   };
 
 }

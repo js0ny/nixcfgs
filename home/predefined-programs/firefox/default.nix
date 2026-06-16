@@ -13,6 +13,7 @@ let
   cfg = config.nixdots.programs.firefox;
   p = config.nixdots.programs.firefox.defaultProfile;
   policies = import ../../../common/firefox-policies.nix;
+  isNixOS = config.nixdots.linux.nixos;
 in
 {
   imports = myLib.scanPaths ./.;
@@ -20,6 +21,13 @@ in
 
   programs.firefox = {
     enable = cfg.enable;
+    package =
+      if isNixOS then
+        pkgs.nixpaks.firefox
+      else if pkgs.stdenv.isDarwin then
+        pkgs.firefox-bin
+      else
+        pkgs.firefox;
   };
 
   nixdots.persist.home = lib.mkIf (cfg.enable) { directories = [ persistDir ]; };

@@ -10,6 +10,7 @@ in
 lib.mkIf cfg {
   programs.thunderbird = {
     enable = true;
+    package = pkgs.nixpaks.thunderbird;
     policies = {
       DisableTelemetry = true;
       ExtensionSettings =

@@ -46,7 +46,7 @@ in
   programs.opencode = {
     enable = true;
     web = {
-      enable = true;
+      enable = false;
       environmentFile = config.sops.templates."opencode-web.env".path;
     };
     settings = {
