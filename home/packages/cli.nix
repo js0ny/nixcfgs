@@ -3,6 +3,25 @@
   config,
   ...
 }:
+let
+  hmmkbak = pkgs.writeShellApplication {
+    name = "hmmkbak";
+    text = ''
+      if (($# != 1)); then
+        echo "Make a backup of a file from symlink (in /nix/store)"
+        echo "Usage: $0 <file>" >&2
+        exit 1
+      fi
+      if [[ ! -L "$1" ]]; then
+        echo "Error: $1 is not a symlink" >&2
+        exit 1
+      fi
+      mv "$1" "$1.bak"
+      cp --dereference "$1.bak" "$1"
+      chmod 777 "$1"
+    '';
+  };
+in
 {
   programs.btop = {
     enable = true;
@@ -60,6 +79,7 @@
       git
       glow
       gnumake
+      hmmkbak
       hyperfine
       jq
       just

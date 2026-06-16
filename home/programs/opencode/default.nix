@@ -63,7 +63,6 @@ in
       };
       plugin = [
         "@mohak34/opencode-notifier@latest"
-        "opencode-btw"
       ];
       permission = {
         bash = {

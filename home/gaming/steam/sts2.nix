@@ -41,5 +41,6 @@ in
     "${modDir}/ModConfig".source = mods.modconfig;
     "${modDir}/SpeedX".source = mods.speedx;
     "${modDir}/DamageMeter".source = mods.damagemeter;
+    "${modDir}/QuickRestart".source = mods.quick-restart;
   };
 }
