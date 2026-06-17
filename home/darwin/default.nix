@@ -40,15 +40,15 @@ in
           "System.iphoneApps"
         ];
       };
-      "io.tailscale.ipn.macsys" = lib.mkIf (config.nixdots.services.tailscale.enable) {
-        HideDockIcon = 1;
-        IPAddressCopiedAlertSuppressed = 1;
-        UnstableUpdatesEnabled = 0;
-        SUAutomaticallyUpdate = 0;
-        SUHasLaunchedBefore = 1;
-        TailscaleStartOnLogin = 1;
-        appIntroStep = 0;
-      };
+      # "io.tailscale.ipn.macsys" = lib.mkIf (config.nixdots.services.tailscale.enable) {
+      #   HideDockIcon = 1;
+      #   IPAddressCopiedAlertSuppressed = 1;
+      #   UnstableUpdatesEnabled = 0;
+      #   SUAutomaticallyUpdate = 0;
+      #   SUHasLaunchedBefore = 1;
+      #   TailscaleStartOnLogin = 1;
+      #   appIntroStep = 0;
+      # };
     };
   };
   home.sessionVariables = {

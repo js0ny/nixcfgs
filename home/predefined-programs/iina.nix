@@ -99,5 +99,5 @@ lib.mkIf (pkgs.stdenv.isDarwin && cfg.enable && cfg.enableNativeFrontend) {
     '';
   };
 
-  nixdots.darwin.homebrew.casks = [ "iina" ];
+  home.packages = with pkgs; [ iina ];
 }

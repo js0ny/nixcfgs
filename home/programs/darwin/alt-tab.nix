@@ -1,5 +1,5 @@
 # brew install alt-tab
-{ ... }:
+{ pkgs, ... }:
 let
   hideList = [
     "com.apple.finder"
@@ -76,5 +76,5 @@ in
     };
   };
 
-  nixdots.darwin.homebrew.casks = [ "alt-tab" ];
+  home.packages = with pkgs; [ alt-tab-macos ];
 }

@@ -13,4 +13,6 @@
   home-manager.users."js0ny" = import ./home.nix;
 
   system.stateVersion = 6;
+
+  programs.fish.enable = true;
 }

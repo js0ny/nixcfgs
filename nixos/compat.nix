@@ -8,7 +8,11 @@ let
   m = config.nixdots.machine;
 in
 lib.mkIf m.compat {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  # cannot emulate self.
+  boot.binfmt.emulatedSystems = lib.filter (platform: platform != pkgs.stdenv.hostPlatform.system) [
+    "x86_64-linux"
+    "aarch64-linux"
+  ];
   programs.nix-ld = {
     enable = true;
     libraries =

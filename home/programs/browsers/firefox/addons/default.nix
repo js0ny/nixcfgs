@@ -6,6 +6,7 @@
 }:
 let
   addons = pkgs.firefox-addons;
+  nur-addons = pkgs.nur.repos.rycee.firefox-addons;
   p = config.nixdots.programs.firefox.defaultProfile;
 in
 {

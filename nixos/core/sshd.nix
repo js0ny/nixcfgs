@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   cfg = config.nixdots.services.sshd;
   port = config.nixdefs.endpoints.ssh.port;

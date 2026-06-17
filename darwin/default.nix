@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, ... }:
 {
   imports = [
     # keep-sorted start
@@ -11,6 +11,7 @@
     ./determinate.nix
     ./finder.nix
     ./pam.nix
+    ./sshd.nix
     ./stylix.nix
     ./tailscale.nix
     # keep-sorted end

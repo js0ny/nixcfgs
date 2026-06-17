@@ -39,20 +39,18 @@
     ++ ((lib.optionals pkgs.stdenv.isDarwin) [
       # keep-sorted start
       betterdisplay
-      karabiner-elements
-      keka
+      macism # swift-native im-select alternative
       orbstack
-      scroll-reverser
-      skimpdf
       # keep-sorted end
     ]);
 
   nixdots.darwin.homebrew = {
     taps = [
-      "daipeihust/tap" # im-select
+      # "daipeihust/tap" # im-select
     ];
     formulae = [
-      "daipeihust/tap/im-select"
+      # "daipeihust/tap/im-select"
+      "folderify"
     ];
     casks = [
       "ticktick"

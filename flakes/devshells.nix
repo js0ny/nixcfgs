@@ -22,6 +22,7 @@
             pyright
             taplo
             nixd
+            nil
             nushell
           ];
         in

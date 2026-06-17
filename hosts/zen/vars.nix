@@ -7,7 +7,12 @@
 {
   nixdots = {
     persist.enable = false;
-    darwin.enable = true;
+    darwin = {
+      enable = true;
+      homebrew = {
+        enable = true;
+      };
+    };
     user = {
       name = "js0ny";
       home = "/Users/js0ny";

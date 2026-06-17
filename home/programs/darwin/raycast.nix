@@ -1,6 +1,14 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   user = config.home.username;
+  package = pkgs.raycast;
+  dark-mode = pkgs.writeShellApplication {
+    name = "dark-mode";
+    runtimeInputs = [ package ];
+    text = ''
+      /usr/bin/open raycast://extensions/raycast/system/toggle-system-appearance
+    '';
+  };
 in
 {
   targets.darwin.defaults."com.raycast.macos" = {
@@ -56,6 +64,8 @@ in
     faviconProvider = "raycast";
     "emojiPicker_skinTone" = "standard";
   };
-
-  nixdots.darwin.homebrew.casks = [ "raycast" ];
+  home.packages = [
+    package
+    dark-mode
+  ];
 }

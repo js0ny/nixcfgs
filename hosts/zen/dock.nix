@@ -18,7 +18,7 @@ in
     persistent-apps = [
       { app = "${pkgs.firefox-bin}/Applications/Firefox.app"; }
       { app = "${pkgs.ghostty-bin}/Applications/Ghostty.app"; }
-      { app = "/Applications/Obsidian.app"; }
+      { app = "${pkgs.obsidian}/Applications/Obsidian.app"; }
     ];
     persistent-others = [
       "/Users/${username}/Downloads"

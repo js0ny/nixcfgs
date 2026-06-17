@@ -5,6 +5,7 @@
   BlockAboutConfig = false;
   DisableFirefoxScreenshots = true;
   DontCheckDefaultBrowser = true;
+  DisableAppUpdate = true;
 
   ExtensionSettings =
     with builtins;

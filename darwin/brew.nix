@@ -1,29 +1,32 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
-  brew = config.nixdots.darwin.homebrew;
+  cfg = config.nixdots.darwin.homebrew;
   u = config.nixdots.user.name;
   hm = config.home-manager.users."${u}".nixdots.darwin.homebrew;
 in
-{
+lib.mkIf cfg.enable {
   homebrew = {
-    enable = brew.enable;
+    enable = cfg.enable;
     # Get it via `brew --prefix`
-    prefix = brew.prefix;
+    prefix = cfg.prefix;
     enableBashIntegration = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
-    brews = brew.formulae ++ hm.formulae;
-    casks = brew.casks ++ hm.casks;
+    brews = cfg.formulae ++ hm.formulae;
+    casks = cfg.casks ++ hm.casks;
   };
 
   nixdots.darwin.homebrew = {
-    enable = true;
-    taps = [
-      "js0ny/tap"
-    ];
-    formulae = [
-      "coreutils"
-      "folderify"
-    ];
+    taps = [ "js0ny/tap" ];
   };
+
+  programs.fish.interactiveShellInit = /* fish */ ''
+    if test -d "${cfg.prefix}/share/fish/completions"
+        set -p fish_complete_path ${cfg.prefix}/share/fish/completions
+    end
+
+    if test -d "${cfg.prefix}/share/fish/vendor_completions.d"
+        set -p fish_complete_path ${cfg.prefix}/share/fish/vendor_completions.d
+    end
+  '';
 }

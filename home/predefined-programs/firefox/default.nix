@@ -13,7 +13,7 @@ let
   cfg = config.nixdots.programs.firefox;
   p = config.nixdots.programs.firefox.defaultProfile;
   policies = import ../../../common/firefox-policies.nix;
-  isNixOS = config.nixdots.linux.nixos;
+  isNixOS = config.nixdots.linux.enable && config.nixdots.linux.nixos;
 in
 {
   imports = myLib.scanPaths ./.;
