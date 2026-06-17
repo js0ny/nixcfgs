@@ -31,7 +31,7 @@ in
       enable = lib.mkEnableOption "Enable stylix for theming and font management.";
       base16Scheme = lib.mkOption {
         type = lib.types.path;
-        default = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
+        default = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
         description = "Path to the Base16 color scheme YAML file.";
       };
     };

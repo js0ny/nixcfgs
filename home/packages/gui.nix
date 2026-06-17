@@ -36,26 +36,27 @@
       vlc
       # keep-sorted end
     ])
-    ++ ((lib.optionals pkgs.stdenv.isDarwin) [ ]);
+    ++ ((lib.optionals pkgs.stdenv.isDarwin) [
+      # keep-sorted start
+      betterdisplay
+      karabiner-elements
+      keka
+      orbstack
+      scroll-reverser
+      skimpdf
+      # keep-sorted end
+    ]);
 
   nixdots.darwin.homebrew = {
     taps = [
       "daipeihust/tap" # im-select
     ];
     formulae = [
-      "im-select"
+      "daipeihust/tap/im-select"
     ];
     casks = [
       "ticktick"
       "proton-drive"
-      "localsend"
-      "skim" # PDF Reader
-      "keka" # GUI Unarchiver
-      "orbstack" # Docker runtime
-      # System Enhancement
-      "karabiner-elements" # Keymapping
-      "betterdisplay"
-      "scroll-reverser" # Natural scrolling for trackpad only
     ];
   };
 

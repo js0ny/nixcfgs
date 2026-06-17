@@ -61,4 +61,10 @@ in
     };
   };
   programs.zed-editor.extensions = [ "ghostty" ];
+  targets.darwin.defaults."com.mitchellh.ghostty" = lib.mkIf pkgs.stdenv.isDarwin {
+    # Disable update check
+    SUEnableAutomaticChecks = 0;
+    SUHasLaunchedBefore = 1;
+    SUSendProfileInfo = 0;
+  };
 }

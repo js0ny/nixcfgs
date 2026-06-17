@@ -23,9 +23,9 @@
       plugins = {
         alwaysAnimate.enable = true;
         alwaysTrust.enable = true;
-        ClearURLs.enable = true;
+        clearUrls.enable = true;
         copyFileContents.enable = true;
-        CopyUserURLs.enable = true;
+        copyUserUrls.enable = true;
         disableCallIdle.enable = true;
         favoriteEmojiFirst.enable = true;
         forceOwnerCrown.enable = true;

@@ -32,10 +32,10 @@ require('core.lsp')
 
 require('core.fold')
 
-if
-  not Config.external_deps
-  and not package.loaded['mini.base16']
-  and not package.loaded['base16-colorscheme']
-then
-  vim.cmd.colorscheme('kanagawa-wave')
-end
+-- if
+--   not Config.external_deps
+--   and not package.loaded['mini.base16']
+--   and not package.loaded['base16-colorscheme']
+-- then
+vim.cmd.colorscheme('kanagawa-wave')
+-- end
