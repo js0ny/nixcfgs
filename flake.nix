@@ -59,7 +59,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-agent = {
-      url = "github:NousResearch/hermes-agent";
+      # Track: https://github.com/NousResearch/hermes-agent/issues/37692
+      url = "github:NousResearch/hermes-agent/b5f8996ccc2163ef06b4265d0882019fc24b0682";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
@@ -137,7 +138,8 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      # Track: https://github.com/nix-community/lanzaboote/issues/624 (wait for backport)
+      url = "github:nix-community/lanzaboote/001e560fffc8f0235e9db20ebeb4ccde0ade1caf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
