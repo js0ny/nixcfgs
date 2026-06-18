@@ -1,6 +1,4 @@
 {
-  pkgs,
-  lib,
   myLib,
   nixcfgs,
   inputs,
@@ -22,6 +20,7 @@
     };
     sharedModules = [
       #  inputs.dank-material-shell.homeModules.default
+      inputs.noctalia.homeModules.default
     ];
   };
 }

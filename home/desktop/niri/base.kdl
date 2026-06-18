@@ -19,6 +19,9 @@ input {
 }
 prefer-no-csd
 layout {
+    border {
+        width 0
+    }
     gaps 16
     struts {
         left 0

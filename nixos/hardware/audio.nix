@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -8,6 +9,14 @@ let
   cfg = config.nixdots.desktop.enable;
 in
 lib.mkIf cfg {
+  environment.systemPackages =
+    with pkgs;
+    [
+      pulseaudio
+    ]
+    ++ lib.optionals (config.hardware.graphics.enable) [
+      pwvucontrol
+    ];
   services.pipewire = {
     enable = true;
     pulse.enable = true;

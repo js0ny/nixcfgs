@@ -9,6 +9,7 @@
     ./dm
     ./gnome-keyring.nix
     ./gui.nix
+    ./i2c.nix
     ./input
     ./lanzaboote.nix
     ./laptop.nix

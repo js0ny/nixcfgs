@@ -75,6 +75,7 @@
         metrics = false;
       };
       languages = {
+        Scheme.tab_size = 2;
         YAML = {
           tab_size = 2;
         };

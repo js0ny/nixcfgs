@@ -13,7 +13,7 @@ in
     ./kanshi.nix
     ./polkit.nix
     ./systemd.nix
-    ../../linux/desktop/dank-material-shell.nix
+    ../../linux/desktop/noctalia-v5.nix
     inputs.dank-material-shell.homeModules.default
   ];
   home.packages = with pkgs; [

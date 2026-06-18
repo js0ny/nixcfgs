@@ -14,6 +14,7 @@
         "sddm"
         "tuigreet"
         "cosmic-greeter"
+        "plasma-login-manager"
         "none"
       ];
       default = if config.nixdots.linux.display == "none" then "none" else "gdm";

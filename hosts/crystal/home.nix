@@ -114,7 +114,7 @@
   };
 
   home.customDirs = {
-    wallpaper = "${config.home.homeDirectory}/Wallpaper";
+    wallpaper = "${config.home.homeDirectory}/Pictures/Wallpaper";
     screenshots = "${config.xdg.cacheHome}/Captures/Screenshots";
     screencasts = "${config.xdg.cacheHome}/Captures/Screencasts";
   };

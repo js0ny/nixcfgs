@@ -19,6 +19,11 @@ in
       spawn-sh-at-startup = [
         "systemctl --user start waylandwm-session.target"
       ];
+      debug._children = [
+        {
+          ignore-drm-device = "/dev/dri/renderD128";
+        }
+      ];
     };
     extraConfig = ''
       include "${./base.kdl}"
@@ -26,11 +31,6 @@ in
       ${import ./interpolates.nix { inherit config; }}
       include "${./window-rules.kdl}"
       include "${xdg-config}/niri/local_test.kdl"
-
-      debug {
-          ignore-drm-device "/dev/dri/renderD128"
-      }
-
     '';
   };
   # layout {
