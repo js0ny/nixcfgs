@@ -5,6 +5,9 @@
   # {{{ outputs
   outputs =
     inputs@{ flake-parts, ... }:
+    let
+      myLib = import ./lib { lib = inputs.nixpkgs.lib; };
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       systems = [
@@ -13,12 +16,7 @@
         "aarch64-darwin"
       ];
 
-      imports = [
-        ./flakes/devshells.nix
-        ./flakes/treefmt.nix
-        ./flakes/packages.nix
-        ./flakes/systems.nix
-      ];
+      imports = myLib.scanPaths ./flakes;
 
     };
   # }}}
@@ -26,8 +24,9 @@
   inputs = {
     # {{{ Core
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixOS/nixpkgs/nixos-26.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
 
     nur = {
       url = "github:nix-community/NUR";

@@ -5,9 +5,9 @@
 }:
 let
   vicinae = config.nixdefs.consts.vicinae;
-  shell = config.nixdefs.consts.dank-material-shell;
+  shell = config.nixdefs.consts.noctalia;
   nirictl = import ./scripts.nix { inherit pkgs; };
-  homeDir = config.home.homeDirectory;
+  # homeDir = config.home.homeDirectory;
   nirictl-focus = lib.getExe nirictl.focusOrLaunch;
   genCmd = cmd: builtins.concatStringsSep " " (map (x: ''"${x}"'') cmd);
   powerprofiles = lib.getExe pkgs.localPkgs.power-profiles-next;

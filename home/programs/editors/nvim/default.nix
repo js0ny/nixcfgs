@@ -36,7 +36,7 @@ in
         # tree-sitter
         tree-sitter
         # copilot-lua
-        nodejs-slim_24
+        nodejs-slim_26
         # snacks.image
         pkg-config
         markdown-oxide
@@ -63,7 +63,6 @@ in
       ++ lib.optionals withImg [
         ps.magick
       ];
-    plugins = pkgs.vimPlugins.nvim-treesitter.allGrammars;
   };
 
   nixdots.devenvs.lua.enable = true;

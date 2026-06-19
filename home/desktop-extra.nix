@@ -88,6 +88,7 @@
     awscli2
     blender
     calibre
+    freecad
     gdb
     gh
     gimp
@@ -109,6 +110,8 @@
     nmap
     nur.repos.Ev357.helium
     octaveFull
+    openscad
+    openscad-lsp
     qucs-s
     tea
     # keep-sorted end

@@ -38,6 +38,71 @@
     noctalia =
       let
         ipc = [
+          "noctalia"
+          "msg"
+        ];
+      in
+      {
+        toggle = ipc ++ [
+          "panel-toggle"
+          "launcher"
+        ];
+        cliphist = ipc ++ [
+          "panel-toggle"
+          "clipboard"
+        ];
+        lock = ipc ++ [
+          "session"
+          "lock"
+        ];
+        session = ipc ++ [
+          "panel-toggle"
+          "session"
+        ];
+        volume = {
+          up = ipc ++ [ "volume-up" ];
+          down = ipc ++ [ "volume-down" ];
+          mute = ipc ++ [ "volume-mute" ];
+        };
+        media = {
+          playpause = ipc ++ [
+            "media"
+            "toggle"
+          ];
+          next = ipc ++ [
+            "media"
+            "next"
+          ];
+          prev = ipc ++ [
+            "media"
+            "previous"
+          ];
+        };
+        brightness = {
+          up = ipc ++ [ "brightness-up" ];
+          down = ipc ++ [ "brightness-down" ];
+        };
+        powerProfile = ipc ++ [ "power-cycle" ];
+        notifications = {
+          toggle = ipc ++ [
+            # "notifications" "toggleHistory"
+          ];
+          dnd = ipc ++ [ "notification-dnd-toggle" ];
+          enableDND = ipc ++ [
+            "notification-dnd-set"
+            "on"
+          ];
+          disableDND = ipc ++ [
+            "notification-dnd-set"
+            "off"
+          ];
+          clear = ipc ++ [ "notification-clear-history" ];
+          dismiss = ipc ++ [ "notification-clear-active" ];
+        };
+      };
+    noctalia-v4 =
+      let
+        ipc = [
           "noctalia-shell"
           "ipc"
           "call"

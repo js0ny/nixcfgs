@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   programs.zed-editor = {
     userSettings = {
@@ -66,9 +71,10 @@
         option_as_meta = true;
       };
       file_types = {
-        JSON = [
+        JSONC = [
           "*.code-snippets"
         ];
+        Scheme = [ "*.kbd" ];
       };
       telemetry = {
         diagnostics = false;
@@ -83,7 +89,7 @@
           tab_size = 2;
           formatter = {
             external = {
-              command = "nixfmt";
+              command = lib.getExe pkgs.nixfmt;
               arguments = [
                 "--quiet"
                 "--"
@@ -108,6 +114,9 @@
         lua-language-server.settings = config.nixdefs.lsp.servers.lua-language-server.serverSettings;
       };
       cli_default_open_behavior = "existing_window";
+      agent = {
+        dock = "right";
+      };
     };
   };
 }

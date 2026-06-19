@@ -21,7 +21,7 @@ return {
     panel = { enabled = false },
     filetypes = {
       markdown = true,
-      help = true,
+      help = false,
       beancount = false,
       yaml = false,
       -- Disable for .env files

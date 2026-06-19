@@ -59,9 +59,16 @@ return {
       end,
 
       show_buffer_icons = true,
-      numbers = 'ordinal', -- 显示 buffer 序号
-      close_command = 'bdelete! %d', -- 关闭 buffer 的命令
-      right_mouse_command = 'bdelete! %d', -- 右键关闭
+      numbers = 'ordinal',
+      name_formatter = function(buf)
+        -- Nix: truncate default.nix -> folder name with slash
+        if buf.name:match('default.nix') then
+          return vim.fn.fnamemodify(buf.path, ':h:t') .. '/'
+        end
+      end,
+      close_command = 'bdelete! %d',
+      right_mouse_command = nil,
+      middle_mouse_command = 'bdelete! %d',
       offsets = {
         { filetype = 'NvimTree', text = '资源管理器', text_align = 'center' },
       },

@@ -55,6 +55,7 @@ lib.mkIf cfg.enable {
         "\\" = "no-osd set speed 1; script-binding uosc/flash-speed";
         ">" = next;
         "<" = prev;
+        "space" = "cycle pause; script-binding uosc/flash-timeline";
 
         # Vim keys
         "h" = seek "-5";

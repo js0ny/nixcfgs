@@ -1,5 +1,6 @@
 return {
   'yetone/avante.nvim',
+  enabled = false,
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   -- ⚠️ must add this setting! ! !
   build = vim.fn.has('win32') ~= 0
@@ -8,7 +9,6 @@ return {
   event = 'VeryLazy',
   version = false, -- Never set this value to "*"! Never!
   ---@module 'avante'
-  ---@type avante.Config
   opts = {
     -- add any opts here
     -- this file can contain specific instructions for your project
