@@ -3,6 +3,8 @@ window-rule {
     // File Selector
     match app-id="^org.gnome.Nautilus$" title="^Select Document$"
     match app-id="^sioyek$" title="^Select Document$"
+    match title="^File Properties$"
+    match app-id="^nemo$" title="^.* Properties$"
 
     // Misc Selector
     match app-id=r#"^com.usebottles.bottles$"# title="^Select Bottle$"

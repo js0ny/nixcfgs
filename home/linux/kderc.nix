@@ -1,5 +1,13 @@
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  home.packages = with pkgs; [
+    kdePackages.kconfig
+  ];
   programs.plasma = {
     enable = true;
     workspace = {

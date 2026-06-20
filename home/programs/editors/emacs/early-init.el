@@ -1,5 +1,7 @@
 (setq package-enable-at-startup nil)
 
+(setq initial-frame-alist '((name . "emacs")))
+(setq default-frame-alist '((name . "emacs")))
 
 (defvar xdg-config-home
   (or (getenv "XDG_CONFIG_HOME")

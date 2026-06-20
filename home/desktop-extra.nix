@@ -17,6 +17,7 @@
     ./gaming/emulators/ryujinx.nix
     ./gaming/minecraft.nix
     ./gaming/steam
+    ./packages/extra.nix
     ./packages/flatpak.nix
     ./programs
     ./programs/atuin.nix
@@ -80,42 +81,6 @@
     # keep-sorted end
   ];
   programs.pdf2zh.enable = true;
-  home.packages = with pkgs; [
-    (jetbrains.datagrip.override {
-      vmopts = "-Dawt.toolkit.name=WLToolkit";
-    })
-    # keep-sorted start
-    awscli2
-    blender
-    calibre
-    freecad
-    gdb
-    gh
-    gimp
-    icoutils
-    kdePackages.elisa
-    kdePackages.isoimagewriter
-    kdePackages.kdeconnect-kde
-    kdePackages.kdenlive
-    kdePackages.partitionmanager
-    kdePackages.qttools
-    kicad
-    krabby
-    llm-agents.agentsview
-    llm-agents.ccusage
-    ltspice
-    misc.apps.proton-drive-cli
-    newsflash
-    ngspice
-    nmap
-    nur.repos.Ev357.helium
-    octaveFull
-    openscad
-    openscad-lsp
-    qucs-s
-    tea
-    # keep-sorted end
-  ];
 
   xdg.configFile."krabby/config.toml".text = /* toml */ ''
     language = "en"

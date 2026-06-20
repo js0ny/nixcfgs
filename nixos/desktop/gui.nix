@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   user = config.nixdots.user.name;
   avatar = config.nixdots.user.avatar;
@@ -16,4 +21,23 @@ in
   ];
   nixdots.persist.system.directories = [ "/var/lib/AccountsService" ];
   services.flatpak.enable = flatpak.enable;
+  stylix.targets.qt.platform = lib.mkForce "kde";
+
+  # https://wiki.nixos.org/wiki/Thumbnails
+  environment.pathsToLink = [ "share/thumbnailers" ];
+  environment.systemPackages = with pkgs; [
+    # Video
+    ffmpeg-headless
+    ffmpegthumbnailer
+    # Image
+    gdk-pixbuf
+    libheif.bin
+    libheif.out
+    libavif
+    libjxl
+    webp-pixbuf-loader
+    # 3D Models
+    f3d
+  ];
+
 }

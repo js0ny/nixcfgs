@@ -10,6 +10,11 @@ let
   inherit (lib) mkDefault;
 in
 {
+  xdg.binHome = "${config.home.homeDirectory}/.local/bin";
+  xdg.localBinInPath = true;
+  nixdots.persist.home.directories = [
+    (lib.removePrefix config.home.homeDirectory config.xdg.binHome)
+  ];
   xdg.configFile."user-dirs.locale" = {
     enable = !pkgs.stdenv.isDarwin;
     text = "${locales.default}";
@@ -27,7 +32,6 @@ in
     templates = mkDefault "$HOME/.local/share/Templates";
     videos = mkDefault "$HOME/Videos";
   };
-  nixdots.persist.home.directories = [ ];
   nixdots.persist.nosnap.home.directories =
     let
       toPersist = dir: lib.removePrefix "$HOME/" dir;

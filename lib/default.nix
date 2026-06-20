@@ -14,4 +14,10 @@
         ) (builtins.readDir path)
       )
     );
+  toHanScript =
+    lang:
+    if lib.hasPrefix "zh-" lang then
+      builtins.replaceStrings [ "CN" "SG" "HK" "TW" ] [ "Hans" "Hans" "Hant" "Hant" ] lang
+    else
+      lang;
 }

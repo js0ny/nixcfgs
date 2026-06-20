@@ -21,6 +21,7 @@ local parsers = {
   'nu',
   'python',
   'query',
+  'ruby',
   'rust',
   'toml',
   'tsx',

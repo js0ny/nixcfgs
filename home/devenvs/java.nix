@@ -9,9 +9,7 @@ let
 in
 lib.mkIf cfg.enable {
   home.packages = [
-    (pkgs.jetbrains.idea.override {
-      vmopts = "-Dawt.toolkit.name=WLToolkit";
-    })
+    pkgs.jetbrains.idea
   ]
   ++ lib.optionals cfg.global (
     with pkgs;

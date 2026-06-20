@@ -19,3 +19,7 @@ eval-os args="" host=hostname extra="":
 [linux]
 eval-home args="" host=hostname extra="":
     {{ EVAL }} ".#nixosConfigurations.{{ host }}.config.home-manager.users.{{ env_var("USER") }}.{{ args }}" {{ extra }}
+
+[linux]
+journal-home username=env_var("USER"):
+    journalctl -xeu home-manager-{{ username }}.service

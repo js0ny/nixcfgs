@@ -1,8 +1,8 @@
-{ config, ... }:
+{ myLib, config, ... }:
 let
   d = config.nixdots;
   _locale = d.core.locales.guiLocale;
-  locale = if _locale == "zh-CN" then "zh-Hans" else _locale;
+  locale = myLib.toHanScript _locale;
   wallpaperDir = config.home.customDirs.wallpaper;
 in
 {

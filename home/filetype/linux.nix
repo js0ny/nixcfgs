@@ -22,6 +22,10 @@ let
     "text/log" # .log
     "application/vnd.kde.kxmlguirc"
     "application/atom+xml" # .atom
+    "application/xml"
+    "application/x-shellscript"
+    "text/rust"
+    "text/x-go"
     "text/vnd.trolltech.linguist" # .ts (Qt Translation Source File)
   ];
   webpageMimes = [

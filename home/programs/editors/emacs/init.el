@@ -1,56 +1,3 @@
-;;; init.el --- Entry point of GNU/Emacs configuration
-;;; First edit date 2025/01/27
-
-;;; Organised by such directory structure
-;;; init.el -- This file, entry point
-;;; lisp/
-;;;      init-*.el
-;;; custom.el -- Auto Generated
-;;; local.el -- Local variables
-
-(defvar elpaca-installer-version 0.12)
-(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-data))
-(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
-(defvar elpaca-sources-directory (expand-file-name "sources/" elpaca-directory))
-(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil :depth 1 :inherit ignore
-                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
-                              :build (:not elpaca-activate)))
-(let* ((repo  (expand-file-name "elpaca/" elpaca-sources-directory))
-       (build (expand-file-name "elpaca/" elpaca-builds-directory))
-       (order (cdr elpaca-order))
-       (default-directory repo))
-  (add-to-list 'load-path (if (file-exists-p build) build repo))
-  (unless (file-exists-p repo)
-    (make-directory repo t)
-    (when (<= emacs-major-version 28) (require 'subr-x))
-    (condition-case-unless-debug err
-        (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-                  ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
-                                                  ,@(when-let* ((depth (plist-get order :depth)))
-                                                      (list (format "--depth=%d" depth) "--no-single-branch"))
-                                                  ,(plist-get order :repo) ,repo))))
-                  ((zerop (call-process "git" nil buffer t "checkout"
-                                        (or (plist-get order :ref) "--"))))
-                  (emacs (concat invocation-directory invocation-name))
-                  ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-                                        "--eval" "(byte-recompile-directory \".\" 0 'force)")))
-                  ((require 'elpaca))
-                  ((elpaca-generate-autoloads "elpaca" repo)))
-            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
-          (error "%s" (with-current-buffer buffer (buffer-string))))
-      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
-  (unless (require 'elpaca-autoloads nil t)
-    (require 'elpaca)
-    (elpaca-generate-autoloads "elpaca" repo)
-    (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
-(add-hook 'after-init-hook #'elpaca-process-queues)
-(elpaca `(,@elpaca-order))
-
-(elpaca elpaca-use-package
-  (elpaca-use-package-mode))
-
-
 ;; All elisp files under emacs.d/lisp will be loaded
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -65,12 +12,37 @@
   (setq mac-option-modifier 'meta)
   (setq mac-command-modifier 'super))
 
+(when window-system
+  (setq initial-frame-alist '((name . "emacs"))))
+
+(setq use-default-font-for-symbols nil)
+(set-fontset-font t 'emoji "Noto Color Emoji-12")
+
+(dolist (charset '(kana han cjk-misc bopomofo))
+  (set-fontset-font (frame-parameter nil 'font) charset
+		    (font-spec :family "HarmonyOS Sans")))
+
+(use-package emacs
+  :config
+  (menu-bar-mode -1)
+  (tool-bar-mode -1))
+
+(use-package recentf
+  :custom
+  (recentf-save-file (expand-file-name "recentf" user-emacs-data))
+  (recentf-auto-cleanup 'never)
+  (recentf-exclude '("COMMIT_MSG" "COMMIT_EDITMSG"))
+  (recentf-max-saved-items 500))
+
+
+
 (use-package which-key
   :ensure t
   :init
   (which-key-mode)
   :custom
   (which-key-idle-delay 0.1))
+
 
 (use-package evil
   :ensure t
@@ -240,17 +212,45 @@
   :config
   (add-to-list 'eglot-server-programs
 	       '(nix-ts-mode . ("nixd"))))
-   (use-package nix-ts-mode
-     :mode "\\.nix\\'"
-     :hook (nix-ts-mode . eglot-ensure))
+(use-package nix-ts-mode
+    :mode "\\.nix\\'"
+    :hook (nix-ts-mode . eglot-ensure))
 
 
 (use-package telega
   :ensure t
+  :commands (telega)
+  :bind (:map telega-chat-mode-map
+	      ("C-S-v" . telega-chatbuf-attach-clipboard)
+	      ("S-<insert>" . telega-chatbuf-attach-clipboard))
   :custom
   (telega-directory (expand-file-name "telega" user-emacs-data))
   (telega-cache-dir (expand-file-name "telega" user-emacs-cache))
   (telega-temp-dir (expand-file-name "temp" telega-directory))
   (telega-server-logfile (expand-file-name "server.log" telega-directory))
   (telega-voip-logfile (expand-file-name "voip.log" telega-directory))
-  (telega-database-dir (expand-file-name "telega" user-emacs-data)))
+  (telega-database-dir (expand-file-name "telega" user-emacs-data))
+  (telega-msg-save-dir (expand-file-name "~/Downloads"))
+  (telega-emoji-font-family "Noto Color Emoji")
+  (telega-emoji-use-images nil)
+  (telega-chat-input-markups '("markdown2" "org"))
+  (telega-accounts (list
+		        (list "main"
+			       'telega-database-dir (expand-file-name "main" telega-database-dir))
+			 (list "site"
+			       'telega-database-dir (expand-file-name "site" telega-database-dir))))
+  :config
+  (add-to-list 'evil-emacs-state-modes 'telega-image-mode)
+  (add-hook 'telega-load-hook #'telega-notifications-mode)
+  (evil-define-key 'normal telega-chat-mode-map
+    (kbd "@") 'telega-chatbuf-attach-inline-bot-query
+    (kbd "P") 'telega-chatbuf-attach-clipboard
+    (kbd "#") 'telega-chatbuf-attach-sticker)
+  (evil-leader/set-key-for-mode 'telega-chat-mode
+    "P" 'telega-chatbuf-attach-clipboard))
+
+(use-package ghostel
+  :bind ("C-x m" . ghostel))
+
+(use-package dashboard :ensure t)
+

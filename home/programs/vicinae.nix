@@ -49,8 +49,16 @@ lib.mkIf cfg.enable {
             "profile_dir" = config.nixdefs.consts.firefox.profileDir;
           };
         };
-        clipboard.entrypoints = {
-          "history".alias = mkDefault "clip";
+        clipboard = {
+          preferences = {
+            encryption = true;
+            eraseOnStartup = false;
+            ignorePasswords = true;
+            monitoring = true;
+          };
+          entrypoints = {
+            "history".alias = mkDefault "clip";
+          };
         };
         system.entrypoints.run = {
           alias = mkDefault ">";

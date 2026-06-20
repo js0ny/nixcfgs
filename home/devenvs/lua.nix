@@ -13,6 +13,7 @@ lib.mkIf cfg.enable {
     [
       lua-language-server
       stylua
+      selene
     ]
   );
   programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [

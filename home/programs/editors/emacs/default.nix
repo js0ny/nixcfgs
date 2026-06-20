@@ -25,7 +25,9 @@ in
         evil-surround
         evil-mc
         evil-goggles
-        telega
+        ement
+        melpaPackages.telega
+        melpaPackages.ghostel
         beancount
         counsel
         company
@@ -40,17 +42,13 @@ in
         elfeed-org
         olivetti
         org-modern
+        doom-modeline
         (epkgs.treesit-grammars.with-grammars (grammars: [
           grammars.tree-sitter-nix
         ]))
       ]
       ++ (lib.optionals pkgs.stdenv.isLinux [ epkgs.xclip ]);
   };
-  # TODO: tdlib version is too high
-  # See: https://github.com/zevlg/telega.el/issues/374
-  # home.packages = with pkgs; [
-  #   tdlib
-  # ];
 
   nixdots.darwin.homebrew = {
     taps = [ "railwaycat/emacsmacport" ];
