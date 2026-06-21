@@ -124,13 +124,18 @@ in
         REDIS_PREFIX = "lobechat";
         REDIS_TLS = "0";
 
-        FEATURE_FLAGS = "-check_updates";
+        FEATURE_FLAGS = "-check_updates,-welcome_suggest";
         ENABLE_LANGFUSE = "0";
 
         API_KEY_SELECT_MODE = "turn";
 
         NEWAPI_PROXY_URL = config.nixdefs.consts.litellm.base;
         ENABLE_OIDC = "1";
+
+        ENABLE_AGENT_GATEWAY = "1";
+
+        VISUAL_UNDERSTANDING_PROVIDER = "newapi";
+        VISUAL_UNDERSTANDING_MODEL = "gemini-3.5-flash";
       }
       (lib.mkIf (selfhosted.searxng.enable) {
         SEARXNG_URL = ep.searxng.publicUrl;

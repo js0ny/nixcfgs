@@ -26,6 +26,7 @@
       };
 
       nixosHosts = [
+        "bauhaus"
         "crystal"
         "polder"
         "zwinger"

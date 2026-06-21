@@ -785,17 +785,16 @@
         "uv2nix": "uv2nix_2"
       },
       "locked": {
-        "lastModified": 1780959208,
-        "narHash": "sha256-giH6MsPS0hfhujr3TKFae/GHHMeTZb+Oq+U95EZ/CfY=",
+        "lastModified": 1782040304,
+        "narHash": "sha256-7Ty9XAgC2i8Gihycxy1WEc7i3PJ3JUJw9AhfgDKVEwc=",
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "b5f8996ccc2163ef06b4265d0882019fc24b0682",
+        "rev": "44d552ea5af345b438ee3f5f7a4be3957d4ff47e",
         "type": "github"
       },
       "original": {
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "b5f8996ccc2163ef06b4265d0882019fc24b0682",
         "type": "github"
       }
     },
@@ -1682,11 +1681,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1781049943,
-        "narHash": "sha256-YTrp3cLUUHly+0wgB5TRCUkR721h3sPtweI3Gp+vr3M=",
+        "lastModified": 1782073888,
+        "narHash": "sha256-ksGVRJ0Xlr1f3+S1hbZSTTPviI5y+WwogBJXQSuwJiQ=",
         "ref": "refs/heads/master",
-        "rev": "2f63ef57563b68c126d262db84fc9339f5c22a65",
-        "revCount": 28,
+        "rev": "b9d3242ab95aad1a139a8293b13627b3e873fa36",
+        "revCount": 31,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/js0ny/nix-secrets.git"
       },

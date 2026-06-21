@@ -9,7 +9,8 @@ let
           --add-flags "--password-store=gnome-libsecret"
         mkdir -p $out/share/icons/hicolor/256x256/apps
         # extracted from windows binary (MIT)
-        ln -s ${./icon.png} $out/share/icons/hicolor/256x256/apps/hermes-agent.png
+        ln -s ${./icon.png} $out/share/icons/hicolor/256x256/apps/hermes.png
+        ln -s ${./icon.png} $out/share/icons/hicolor/256x256/apps/Hermes.png
       '';
     })
   );
@@ -22,7 +23,7 @@ in
     genericName = "Generic LLM Agent";
     comment = "A desktop application for Hermes";
     exec = lib.getExe hermes-desktop;
-    icon = "hermes-agent";
+    icon = "hermes";
     terminal = false;
     categories = [ "Utility" ];
   };

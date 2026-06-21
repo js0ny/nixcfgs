@@ -22,7 +22,7 @@ in
       avatar = avatar;
     };
     core = {
-      hostname = "crystal";
+      hostname = "bauhaus";
       dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
       flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
       timezones = [
@@ -37,15 +37,15 @@ in
     services = {
       tailscale = {
         enable = true;
-        ip = "100.105.9.50";
-        ipv6 = "fd7a:115c:a1e0::e701:932";
+        ip = "100.65.81.67";
+        ipv6 = "fd7a:115c:a1e0::f735:5144";
         magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
       };
       syncthing.enable = false;
       sshd = true;
       ollama = {
-        enable = false;
+        enable = true;
         models = [ "bge-m3" ];
       };
     };
@@ -55,38 +55,6 @@ in
       stylix = {
         enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
-      };
-    };
-    laptop = {
-      enable = true;
-      asus = true;
-      display = {
-        connector = "eDP-1";
-        makeModel = "Samsung Display Corp. ATNA40CU05-0  Unknown";
-        VRR = true;
-      };
-      keyboard = {
-        devicePath = "/dev/input/by-path/pci-0000:65:00.3-usb-0:4:1.0-event-mouse";
-        name = "Asus Keyboard";
-        idVendor = "0b05";
-        idProduct = "19b6";
-      };
-      backlight = {
-        screen = if config.nixdots.linux.gpu == "none" then "amdgpu_bl1" else "amdgpu_bl2";
-        keyboard = "asus::kbd_backlight";
-      };
-      microphone = {
-        name = "alsa_input.pci-0000_65_00.6.analog-stereo";
-        description = "内置麦克风";
-      };
-      cameraIR = {
-        devicePath = "/dev/video2";
-      };
-      touchpad = {
-        devicePath = "/dev/input/by-path/platform-AMDI0010:00-event-mouse";
-        name = "ASUP1208:00 093A:3011 Touchpad";
-        vendorId = "093A";
-        productId = "3011";
       };
     };
     apps = {
@@ -130,10 +98,9 @@ in
         };
       };
     };
-    pam.howdy = {
-      enable = true;
-      setup = true;
-    };
+
+    pam.howdy.enable = false;
+
     programs = {
       steam.enable = true;
       obs-studio.enable = true;
@@ -158,13 +125,9 @@ in
     };
     linux = {
       enable = true;
-      lanzaboote = true;
+      lanzaboote = false;
       display = "wayland";
       gpu = "nvidia";
-      gpuBusIds = {
-        nvidia = "PCI:1:0:0";
-        amdgpu = "PCI:101:0:0";
-      };
     };
     machine = {
       role = "host";
@@ -195,8 +158,8 @@ in
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /hosts/crystal.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
+      yamlFile = secrets + /hosts/bauhaus.yaml;
+      keyFile = "/etc/ssh/agekey.txt";
     };
     geo = {
       longitude = -3.2;

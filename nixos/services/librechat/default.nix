@@ -169,13 +169,19 @@ in
           '';
         };
       };
+      summarization = {
+        provider = "LiteLLM";
+        model = "deepseek-v4-flash"; # 1M
+      };
       webSearch = {
         tavilyApiKey = "\${TAVILY_API_KEY}";
-        searchProvider = "searxng";
         searxngInstanceUrl = "\${SEARXNG_URL}";
         firecrawlApiKey = "\${FIRECRAWL_API_KEY}";
         jinaApiKey = "\${JINA_API_KEY}";
         safeSearch = 0;
+        searchProvider = "tavily";
+        scraperProvider = "firecrawl";
+        rerankerType = "jina";
       };
       endpoints = {
         agents = { };

@@ -58,8 +58,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-agent = {
-      # Track: https://github.com/NousResearch/hermes-agent/issues/37692
-      url = "github:NousResearch/hermes-agent/b5f8996ccc2163ef06b4265d0882019fc24b0682";
+      url = "github:NousResearch/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {

@@ -38,6 +38,7 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
     gnome-connections
     gnome-font-viewer
     gnome-maps
+    gnome-text-editor
   ];
   programs.nautilus-open-any-terminal = {
     enable = true;

@@ -8,6 +8,7 @@ in
   imports = [
     ./extra-persist.nix
     ./extra-dconf.nix
+    ../programs/dconf-editor.nix
   ];
 
   home.packages = with pkgs; [

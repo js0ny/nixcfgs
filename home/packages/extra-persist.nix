@@ -2,9 +2,14 @@
   nixdots.persist.nosnap.home = {
     directories = [
       # keep-sorted start
+      ".local/share/agentsview"
       ".local/share/com.motrix.next"
       # keep-sorted end
     ];
+  };
+
+  home.sessionVariables = {
+    AGENTSVIEW_DATA_DIR = "${config.xdg.dataHome}/agentsview";
   };
 
   mergetools = {

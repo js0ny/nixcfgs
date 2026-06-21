@@ -28,6 +28,7 @@ lib.mkIf cfg.enable {
       podman
       searxng
       wifi-commander
+      zed-recents
       # keep-sorted end
       # systemd # https://github.com/vicinaehq/extensions/blob/20d6a13d2a389e61619b8540b8af746705409322/flake.nix#L67
     ];
@@ -119,4 +120,5 @@ lib.mkIf cfg.enable {
       "chrome-extension://kcmipingpfbohfjckomimmahknoddnke/"
     ];
   };
+  home.packages = with pkgs; [ sqlite-interactive ];
 }

@@ -37,6 +37,13 @@ in
         ForwardAgent = true;
         IdentityFile = [ "~/.ssh/id_ed25519" ];
       };
+      "bauhaus" = {
+        HostName = "100.65.81.67";
+        User = "js0ny";
+        Port = port;
+        ForwardAgent = true;
+        IdentityFile = [ "~/.ssh/id_ed25519" ];
+      };
       "*" = {
         ForwardAgent = false;
         AddKeysToAgent = "yes";

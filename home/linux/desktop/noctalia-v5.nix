@@ -10,7 +10,8 @@ in
     enable = true;
     systemd.enable = true;
     settings = {
-      backdrop = true;
+      backdrop.enabled = true;
+      brightness.enable_ddcutil = true;
       shell = {
         lang = locale;
         settings_show_advanced = true;
