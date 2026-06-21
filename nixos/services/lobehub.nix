@@ -16,7 +16,7 @@
   ...
 }:
 let
-  tag = "2.2.1";
+  tag = "2.2.7";
 
   ep = config.nixdefs.endpoints;
   epSelf = ep.lobechat;

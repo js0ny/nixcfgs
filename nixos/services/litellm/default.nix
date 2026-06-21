@@ -7,7 +7,7 @@
   ...
 }:
 let
-  tag = "main-stable";
+  tag = "1.89.3";
 
   ep = config.nixdefs.endpoints;
   epSelf = ep.litellm;

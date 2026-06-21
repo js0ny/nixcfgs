@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  tag = "3.1.2";
+  tag = "3.3.6";
 
   ep = config.nixdefs.endpoints;
   epSelf = ep.fast-note-sync;

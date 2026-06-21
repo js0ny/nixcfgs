@@ -86,7 +86,7 @@
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
     "ft" #'treemacs
-    "bb" #'buffer-menu))
+    "bb" #'switch-to-buffer))
 
 ;; Evil Commentary: Use gc<action> to toggle comments
 (use-package evil-commentary
@@ -249,8 +249,15 @@
   (evil-leader/set-key-for-mode 'telega-chat-mode
     "P" 'telega-chatbuf-attach-clipboard))
 
+(use-package ement :ensure t)
+
 (use-package ghostel
   :bind ("C-x m" . ghostel))
 
 (use-package dashboard :ensure t)
 
+
+(use-package org-supertag
+  :custom
+  (supertag-data-directory (expand-file-name "org-supertag" user-emacs-data))
+  (org-supertag-sync-directories '("~/org/")))

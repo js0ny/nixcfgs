@@ -2,9 +2,12 @@ return {
   'saghen/blink.pairs',
   version = '*', -- use prebuilt version
   event = 'BufEnter',
+  build = function()
+    require('blink.pairs').download()
+  end,
 
   -- download binary
-  dependencies = 'saghen/blink.download',
+  dependencies = 'saghen/blink.lib',
 
   --- @module 'blink.pairs'
   --- @type blink.pairs.Config

@@ -16,8 +16,8 @@
     ./vars.nix
 
     # ./services/actual.nix
+    # ../../nixos/services/affine.nix
     # keep-sorted start
-    ../../nixos/services/affine.nix
     ../../nixos/services/authelia
     ../../nixos/services/bentopdf.nix
     ../../nixos/services/cloudflare.nix
@@ -56,9 +56,6 @@
   ];
 
   home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    backupCommand = lib.getExe pkgs.trash-cli;
     extraSpecialArgs = {
       inherit
         inputs

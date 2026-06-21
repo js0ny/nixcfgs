@@ -9,6 +9,7 @@ let
   avatar = inputs.bindeps + "/avatar/git.jpg";
 in
 {
+  imports = [ ../../common/extra-fonts.nix ];
   nixdots = {
     persist = {
       enable = true;
@@ -90,9 +91,9 @@ in
     };
     apps = {
       terminal = {
-        package = pkgs.ghostty;
-        exe = "ghostty";
-        desktop = "com.mitchellh.ghostty.desktop";
+        package = pkgs.kitty;
+        exe = "kitty";
+        desktop = "kitty.desktop";
       };
       interactiveShell = {
         package = pkgs.fish;

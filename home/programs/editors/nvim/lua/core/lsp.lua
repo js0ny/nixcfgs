@@ -13,6 +13,7 @@ local enabled_lsps = {
   'lua_ls',
   'nil_ls',
   'nixd',
+  'nushell',
   'pyright',
   'rust_analyzer',
   'ts_ls',

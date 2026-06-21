@@ -57,4 +57,5 @@
     ];
   };
   programs.zed-editor.extensions = [ "nu" ];
+  home.packages = with pkgs; [ nufmt ];
 }

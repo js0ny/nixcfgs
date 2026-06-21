@@ -112,14 +112,6 @@ in
             package = pkgs.noto-fonts;
             name = "Noto Sans";
           }
-          {
-            package = pkgs.vollkorn;
-            name = "Vollkorn";
-          }
-          {
-            package = pkgs.font-awesome;
-            name = "Font Awesome 6 Free";
-          }
         ];
         description = "Additional fonts to install and make available for applications. These fonts won't be set as the default for any specific category, but will be available for users to select in application settings or font pickers.";
       };

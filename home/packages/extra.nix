@@ -1,20 +1,29 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  font-viewer = pkgs.writeShellScriptBin "font-viewer" ''
+    exec ${pkgs.font-manager}/libexec/font-manager/font-viewer "$@"
+  '';
+in
+{
   imports = [
     ./extra-persist.nix
     ./extra-dconf.nix
   ];
 
   home.packages = with pkgs; [
-    jetbrains.datagrip
     # keep-sorted start
     awscli2
     blender
     calibre
+    font-manager
+    font-viewer
+    fontforge
     freecad
     gdb
     gh
     gimp
     icoutils
+    jetbrains.datagrip
     kdePackages.elisa
     kdePackages.isoimagewriter
     kdePackages.kdeconnect-kde

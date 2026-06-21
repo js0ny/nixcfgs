@@ -62,7 +62,7 @@ let
   _appendDesktop = app: if !lib.hasSuffix ".desktop" app then "${app}.desktop" else app;
   toMimeAppList = l: lib.concatStringsSep ";" (lib.unique (map (app: _appendDesktop app) l));
 in
-{
+lib.mkIf config.nixdots.desktop.enable {
   home.sessionVariables.TERMINAL = "xdg-terminal-exec";
   xdg.terminal-exec = {
     enable = true;
@@ -94,6 +94,12 @@ in
         "org.kde.okular"
         "org.gnome.Papers"
         "calibre-gui"
+      ];
+      "application/x-bittorrent" = toMimeAppList [
+        "qbittorrent"
+        "transmission-gtk"
+        "transmission-qt"
+        "MotrixNext"
       ];
     }
     // mkAssoc textMimes [ apps.editor.gui.desktop ]

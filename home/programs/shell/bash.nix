@@ -6,6 +6,7 @@
 }:
 {
   programs.bash = {
-    enable = true;
+    # only use system bash, prevent from .bashrc generation
+    enable = false;
   };
 }

@@ -6,7 +6,7 @@
   ...
 }:
 let
-  tag = "latest";
+  tag = "0.1.137";
 
   ep = config.nixdefs.endpoints;
   url = ep.sub2api.domain or null;
