@@ -30,6 +30,8 @@ in
         pkgs.firefox;
   };
 
+  home.file.".mozilla/native-messaging-hosts/.keep".enable = lib.mkForce false;
+
   nixdots.persist.home = lib.mkIf (cfg.enable) { directories = [ persistDir ]; };
   programs.firefox.policies = lib.mkIf pkgs.stdenv.isDarwin policies;
 }

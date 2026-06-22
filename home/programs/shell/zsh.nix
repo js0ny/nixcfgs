@@ -113,10 +113,6 @@ lib.mkIf cfg.enable {
 
       eval "$(${lib.getExe' zsh-patina "zsh-patina"} activate)"
 
-
-      # # Misc
-      # ========
-      # source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     '';
     syntaxHighlighting = {
       enable = false;
