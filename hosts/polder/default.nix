@@ -116,7 +116,6 @@
     llm.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
   security.sudo-rs.wheelNeedsPassword = false;
 
   system.stateVersion = "25.05";

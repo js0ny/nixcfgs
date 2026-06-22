@@ -36,7 +36,7 @@
         magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
       };
       syncthing.enable = true;
-      sshd = false;
+      sshd.enable = false;
     };
     style = {
       enable = true;

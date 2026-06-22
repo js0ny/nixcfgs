@@ -18,6 +18,8 @@
     usbutils
     v4l-utils
     vulkan-tools
+    lm_sensors
+    gnome-firmware
     # keep-sorted end
   ];
   programs.gnome-disks.enable = true;

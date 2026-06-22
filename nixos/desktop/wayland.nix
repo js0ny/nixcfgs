@@ -10,6 +10,7 @@ in
 lib.mkIf (cfg == "wayland") {
   environment.systemPackages = with pkgs; [
     wl-clipboard
+    wayland-utils
   ];
   programs.gpu-screen-recorder.enable = true;
   environment.sessionVariables = {

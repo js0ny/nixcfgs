@@ -10,12 +10,9 @@
     ../common/system.nix
     ../definitions
     ../options
-    ./compat.nix
     ./core
     ./hardware
     ./programs
-    ./security/hardening.nix
-    ./security/howdy.nix
     ./virtualisation
     # keep-sorted end
   ];

@@ -48,6 +48,7 @@ in
     openscad-lsp
     qucs-s
     tea
+    logisim-evolution
     # keep-sorted end
   ];
 }

@@ -1,4 +1,9 @@
-{ myLib, config, ... }:
+{
+  lib,
+  myLib,
+  config,
+  ...
+}:
 let
   d = config.nixdots;
   _locale = d.core.locales.guiLocale;
@@ -105,4 +110,5 @@ in
     "f ${config.xdg.configHome}/niri/noctalia.kdl 0644 ${config.home.username} users -"
     "f ${config.xdg.stateHome}/noctalia/.setup-complete 0644 ${config.home.username} users -"
   ];
+  services.hyprpaper.enable = lib.mkForce false;
 }

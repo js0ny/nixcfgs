@@ -103,7 +103,7 @@
       syncthing = {
         enable = lib.mkEnableOption "Enable Syncthing file synchronization service.";
       };
-      sshd = lib.mkOption {
+      sshd.enable = lib.mkOption {
         type = lib.types.bool;
         default = config.nixdots.server.enable;
         description = "Whether to enable the SSH daemon for remote access. This is typically enabled for headless or server machines.";

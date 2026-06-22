@@ -30,7 +30,7 @@
         magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
       };
-      sshd = true;
+      sshd.enable = true;
       ollama = {
         enable = true;
         models = [ "bge-m3" ];

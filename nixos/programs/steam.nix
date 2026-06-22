@@ -8,7 +8,6 @@ let
   cfg = config.nixdots.programs.steam;
 in
 lib.mkIf cfg.enable {
-  nixpkgs.config.allowUnfree = true;
 
   programs.gamescope = {
     enable = true;

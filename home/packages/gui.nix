@@ -13,9 +13,11 @@
       localPkgs.edit-clipboard
       localsend
       pandoc
+      mat2
     ]
     ++ ((lib.optionals pkgs.stdenv.isLinux) [
       # keep-sorted start
+      metadata-cleaner
       bluetui
       dex
       ffmpeg
@@ -33,7 +35,6 @@
       showmethekey
       signal-desktop
       siyuan
-      vlc
       # keep-sorted end
     ])
     ++ ((lib.optionals pkgs.stdenv.isDarwin) [

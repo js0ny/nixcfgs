@@ -26,7 +26,7 @@
       };
     };
     services = {
-      sshd = true;
+      sshd.enable = true;
     };
     networking.nftables.enable = false;
     style = {

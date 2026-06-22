@@ -43,7 +43,7 @@ in
         authKeyFile = config.sops.secrets.tskey.path;
       };
       syncthing.enable = false;
-      sshd = true;
+      sshd.enable = true;
       ollama = {
         enable = true;
         models = [ "bge-m3" ];
@@ -134,9 +134,7 @@ in
       compat = true;
       virtualisation = {
         waydroid = false;
-        libvirt = {
-          enable = false;
-        };
+        libvirt.enable = true;
         oci-container.podman = true;
       };
     };
@@ -146,6 +144,8 @@ in
       de = [
         "niri"
         "kde"
+        "hyprland"
+        "gnome"
       ];
       wm = {
         shell = "dank-material-shell";

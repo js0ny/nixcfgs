@@ -5,7 +5,7 @@ in
 {
   options.nixdots.laptop = {
     enable = lib.mkEnableOption "Enable laptop-specific configurations and optimizations.";
-    asus = lib.mkOption {
+    asus.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = "Enable ASUS-specifc configurations and asus-linux tools.";

@@ -35,6 +35,7 @@ lib.mkIf (cfg == "nvidia") (
       };
       services.ollama.package = pkgs.ollama-cuda;
       environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
+      hardware.nvidia-container-toolkit.enable = true;
     }
 
     (lib.mkIf laptop {

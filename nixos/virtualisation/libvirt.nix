@@ -10,8 +10,16 @@ let
 in
 lib.mkIf cfg.enable {
   environment.systemPackages = with pkgs; [
+    # libvirt & qemu related
     dnsmasq
     virtiofsd
+    virt-top
+    qemu-utils
+
+    # misc
+    samba4Full
+    sshfs
+    spice-gtk
   ];
   programs.virt-manager.enable = true;
   virtualisation.libvirtd = {

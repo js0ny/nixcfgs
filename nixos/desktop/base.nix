@@ -13,9 +13,6 @@ lib.mkIf cfg {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use unfree software
-  nixpkgs.config.allowUnfree = true;
-
   # Disable modem
   networking.modemmanager.enable = false;
   zramSwap = {

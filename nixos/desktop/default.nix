@@ -16,6 +16,7 @@
     ./networkmanager.nix
     ./packages.nix
     ./wayland.nix
+    ./firmware.nix
     # keep-sorted end
   ];
   nixdefs.hardware.enable = true;

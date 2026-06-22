@@ -32,7 +32,7 @@
         authKeyFile = config.sops.secrets.tskey.path;
       };
       # syncthing.enable = true;
-      sshd = true;
+      sshd.enable = true;
     };
     networking.nftables.enable = true;
     style = {

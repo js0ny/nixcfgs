@@ -2,6 +2,7 @@
 local parsers = {
   -- keep-sorted start
   'bash',
+  'xml',
   'c',
   'c_sharp',
   'cpp',

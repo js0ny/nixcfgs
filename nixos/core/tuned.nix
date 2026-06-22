@@ -67,10 +67,4 @@
     };
   };
 
-  nixdots.persist.system = {
-    directories = [
-      "/etc/tuned"
-    ];
-  };
-
 }

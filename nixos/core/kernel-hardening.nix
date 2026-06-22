@@ -1,13 +1,16 @@
 { lib, pkgs, ... }:
+let
+  F = lib.getExe' pkgs.coreutils "false";
+in
 {
   boot.extraModprobeConfig = lib.concatStringsSep "\n" [
     # https://copy.fail
     "blacklist algif_aead"
-    "install algif_aead ${lib.getExe' pkgs.coreutils "false"}"
+    "install algif_aead ${F}"
     # https://github.com/V4bel/dirtyfrag
-    "install esp4 ${lib.getExe' pkgs.coreutils "false"}"
-    "install esp6 ${lib.getExe' pkgs.coreutils "false"}"
-    "install rxrpc ${lib.getExe' pkgs.coreutils "false"}"
+    "install esp4 ${F}"
+    "install esp6 ${F}"
+    "install rxrpc ${F}"
   ];
 
   # https://github.com/V4bel/dirtyfrag

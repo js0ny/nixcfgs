@@ -12,7 +12,9 @@
     ./vars.nix
     ../../home/desktop-extra.nix
     ../../home/desktop/plasma
+    ../../home/desktop/hyprland
     ../../home/gaming/steam/sts2.nix
+    ../../home/programs/media/celluloid.nix
     # keep-sorted start
 
     # keep-sorted end
@@ -146,4 +148,7 @@
     ".config/sunshine"
   ];
 
+  home.packages = with pkgs; [
+    proton-pass
+  ];
 }

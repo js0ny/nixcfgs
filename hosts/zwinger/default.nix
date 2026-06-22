@@ -10,8 +10,6 @@
 {
   system.stateVersion = "26.05";
 
-  nixpkgs.config.allowUnfree = true;
-
   imports = [
     ./disko.nix
     ./vars.nix

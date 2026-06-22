@@ -85,4 +85,6 @@ in
 
   imports = [ ../. ];
   xdg.configFile."emacs".source = mkSymlink "${dots}/home/programs/editors/emacs";
+
+  nixdots.persist.nosnap.home.directories = [ ".local/share/emacs" ];
 }

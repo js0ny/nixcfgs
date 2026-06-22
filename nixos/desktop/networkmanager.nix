@@ -16,6 +16,7 @@ in
     enable = true;
     plugins = with pkgs; [
       networkmanager-openvpn
+      networkmanager-fortisslvpn
     ];
   };
   nixdots.persist.system = {

@@ -6,7 +6,7 @@
 let
   cfg = config.nixdots.laptop.asus;
 in
-lib.mkIf cfg {
+lib.mkIf cfg.enable {
 
   services.asusd.enable = true;
   services.supergfxd.enable = true;

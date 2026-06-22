@@ -89,6 +89,17 @@ return {
     picker = {
       enabled = true,
       ui_select = true,
+      ---@class snacks.picker.recent.Config
+      recent = {
+        finder = 'recent_files',
+        format = 'file',
+        filter = {
+          paths = {
+            ['*.png'] = false,
+            ['*.jpg'] = false,
+          },
+        },
+      },
     },
   },
 

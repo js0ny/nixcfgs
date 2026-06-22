@@ -4,8 +4,17 @@
     ./keyd.nix
     ./xremap.nix
   ];
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+  services.libinput = {
+    enable = true;
+    mouse = {
+      accelProfile = "flat";
+      naturalScrolling = false;
+    };
+    touchpad = {
+      disableWhileTyping = true;
+      naturalScrolling = true;
+    };
+  };
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";

@@ -29,6 +29,7 @@ window-rule {
     match app-id="^qalculate-gtk$" title="^Qalculate!$"
     match app-id="^jetbrains-.*$" title=r#"^JetBrains \w+ User Agreement$"#
     match app-id="^org.kde.isoimagewriter$" title="^ISO Image Writer$"
+    match app-id="^proton-pass$" title="^Proton Pass$"
 
     open-floating true
 }

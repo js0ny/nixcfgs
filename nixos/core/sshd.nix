@@ -3,7 +3,7 @@ let
   cfg = config.nixdots.services.sshd;
   port = config.nixdefs.endpoints.ssh.port;
 in
-lib.mkIf cfg {
+lib.mkIf cfg.enable {
   services.openssh = {
     enable = true;
     ports = [ port ];

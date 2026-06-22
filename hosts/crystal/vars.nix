@@ -43,7 +43,7 @@ in
         authKeyFile = config.sops.secrets.tskey.path;
       };
       syncthing.enable = false;
-      sshd = true;
+      sshd.enable = true;
       ollama = {
         enable = false;
         models = [ "bge-m3" ];
@@ -59,7 +59,7 @@ in
     };
     laptop = {
       enable = true;
-      asus = true;
+      asus.enable = true;
       display = {
         connector = "eDP-1";
         makeModel = "Samsung Display Corp. ATNA40CU05-0  Unknown";

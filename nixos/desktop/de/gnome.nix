@@ -24,7 +24,7 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
     gobject-introspection
   ];
   environment.gnome.excludePackages = with pkgs; [
-    # LibAdwaita sucks
+    # keep-sorted start
     evince # Document Viewer (Legacy)
     totem # GNOME Videos (legacy)
     papers # Document Viewer
@@ -33,15 +33,24 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
     epiphany # GNOME Web
     gnome-system-monitor # use mission-center
     gnome-terminal
+    gnome-console
     showtime # Media player
     gnome-music
     gnome-connections
     gnome-font-viewer
     gnome-maps
     gnome-text-editor
+    simple-scan # Document Scanner
+    snapshot # Camera
+    gnome-characters
+    decibels # Audio Player
+    yelp # Help
+    # keep-sorted end
   ];
   programs.nautilus-open-any-terminal = {
     enable = true;
     terminal = "kitty";
   };
+  services.gnome.sushi.enable = true;
+  programs.gnome-terminal.enable = false;
 }
