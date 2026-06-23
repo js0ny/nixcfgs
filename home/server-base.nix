@@ -6,5 +6,4 @@
   ];
 
   dconf.enable = false;
-
 }

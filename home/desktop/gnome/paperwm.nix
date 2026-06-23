@@ -1,8 +1,13 @@
-{ pkgs, ... }:
 {
-  home.packages = with pkgs.gnomeExtensions; [
-    paperwm
-  ];
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  cfg = config.nixdots.desktop.de;
+in
+lib.mkIf (false && config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
   programs.gnome-shell.extensions = [
     { package = pkgs.gnomeExtensions.paperwm; }
   ];

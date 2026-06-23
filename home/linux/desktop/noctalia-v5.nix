@@ -27,7 +27,10 @@ in
       };
       theme = {
         templates = {
-          builtin_ids = [ "niri" ];
+          builtin_ids = [
+            "hyprland"
+            "niri"
+          ];
         };
       };
       bar.default = {

@@ -27,12 +27,14 @@ let
     #     "${apps.browser.bundleIdentifier}" = ["html" "htm"];
   };
 in
-{
+lib.mkIf pkgs.stdenv.isDarwin {
   home.sessionVariables.TERMINAL = apps.terminal.exe;
-  home.packages = [
-    pkgs.duti
+  home.packages = with pkgs; [
+    duti
+    defaultbrowser
   ];
   home.activation.setOSXCommonDefaultApps = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     ${lib.concatStringsSep "\n" (lib.flatten (lib.mapAttrsToList mkDutiCommands dutiMaps))}
+    ${lib.getExe pkgs.defaultbrowser} firefox # TODO: Changme
   '';
 }

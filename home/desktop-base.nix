@@ -53,9 +53,7 @@
   ];
 
   nixdots.persist.nosnap.home = {
-    directories = [
-      ".local/state/wireplumber"
-    ];
+    directories = [ ".local/state/wireplumber" ];
   };
 
   nixdefs = {
@@ -70,9 +68,4 @@
     "PDX"
   ];
 
-  catppuccin = {
-    enable = false;
-    autoEnable = false;
-    cache.enable = true;
-  };
 }

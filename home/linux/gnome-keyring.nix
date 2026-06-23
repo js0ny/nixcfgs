@@ -7,9 +7,7 @@
 lib.mkMerge [
   {
     nixdots.persist.home = {
-      directories = [
-        ".local/share/keyrings"
-      ];
+      directories = [ ".local/share/keyrings" ];
     };
     # Disable KDE Wallet
     xdg.configFile."kwalletrc".text = lib.generators.toINI { } {

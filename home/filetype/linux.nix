@@ -96,6 +96,7 @@ lib.mkIf config.nixdots.desktop.enable {
         "calibre-gui"
       ];
       "application/x-bittorrent" = toMimeAppList [
+        "org.qbittorrent.qBittorrent"
         "qbittorrent"
         "transmission-gtk"
         "transmission-qt"

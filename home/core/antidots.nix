@@ -1,12 +1,11 @@
 #  https://wiki.archlinux.org/title/XDG_Base_Directory
 { config, ... }:
 let
-  xdg-data = "${config.xdg.dataHome}";
-  xdg-config = "${config.xdg.configHome}";
-  xdg-cache = "${config.xdg.cacheHome}";
-  xdg-state = "${config.xdg.stateHome}";
-  home = "${config.home.homeDirectory}";
-  user = "${config.home.username}";
+  xdg-data = config.xdg.dataHome;
+  xdg-config = config.xdg.configHome;
+  xdg-cache = config.xdg.cacheHome;
+  xdg-state = config.xdg.stateHome;
+  user = config.home.username;
 in
 {
   gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";

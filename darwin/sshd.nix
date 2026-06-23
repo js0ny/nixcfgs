@@ -6,7 +6,7 @@ in
 lib.mkIf cfg {
   services.openssh = {
     enable = true;
-    extraConfig = /* sshdconfig */ ''
+    extraConfig = /* ssh_config */ ''
       Port ${portStr}
       PasswordAuthentication no
       PubkeyAuthentication yes

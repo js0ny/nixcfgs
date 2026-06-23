@@ -51,7 +51,7 @@ lib.mkIf enable {
       # Theme
       currentThemeName = "custom";
       currentThemeCategory = "generic";
-      syncModeWithPPortal = true;
+      syncModeWithPortal = true;
       iconTheme = "System Default";
       cursorSettings = {
         theme = "System Default";

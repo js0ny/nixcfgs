@@ -1,9 +1,14 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
 let
+  highlightJs = pkgs.fetchurl {
+    url = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/es/highlight.min.js";
+    sha256 = "sha256-eGWDmUnwdk2eCiHjEaTixCYz7q7oyl7BJ7hkOFZXMf4=";
+  };
   extensions = with pkgs.gnomeExtensions; [
     dash-to-dock
     caffeine
@@ -16,19 +21,13 @@ let
     arcmenu
     run-or-raise
   ];
+  cfg = config.nixdots.desktop.de;
 in
-{
-  imports = [
-    ./copyous.nix
-    ../../programs/dconf-editor.nix
+lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
+  home.packages = with pkgs; [
+    gnome-tweaks
+    sushi
   ];
-  home.packages =
-    with pkgs;
-    [
-      gnome-tweaks
-      sushi
-    ]
-    ++ extensions;
   programs.gnome-shell.enable = true;
   programs.gnome-shell.extensions =
     let
@@ -219,6 +218,13 @@ in
       # 3: Show Centered
       switcher-popup-tooltip-title = 3;
     };
+    "org/gnome/shell/extensions/copyous" = {
+      open-clipboard-dialog-shortcut = [ "<Super>v" ];
+      show-at-pointer = true;
+    };
+    "org/gnome/shell" = {
+      enabled-extensions = [ "copyous@boerdereinar.dev" ];
+    };
   };
   xdg.configFile."run-or-raise/shortcuts.conf".text = ''
     <Super>b,firefox,,
@@ -229,4 +235,5 @@ in
     <Alt><Super>Return,neovide,,
     <Shift><Super>v,kitty -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal
   '';
+  xdg.dataFile."copyous@boerdereinar.dev/highlight.min.js".source = highlightJs;
 }

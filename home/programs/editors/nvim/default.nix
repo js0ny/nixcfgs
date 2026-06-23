@@ -10,7 +10,6 @@ let
     "g" = "nvim +Neogit";
   };
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  dots = config.nixdots.core.dots;
   snippets = (import ../lsp-snippets { inherit pkgs config; }).out;
   withImg = config.programs.kitty.enable || config.programs.ghostty.enable;
   appname = "nvim";
@@ -70,7 +69,7 @@ in
   # home.packages = with pkgs; [lua-language-server];
   misc.shellAliases = nvimAlias;
 
-  xdg.configFile."${appname}".source = mkSymlink "${dots}/home/programs/editors/nvim";
+  xdg.configFile."${appname}".source = mkSymlink "${config.home.homeDirectory}/Atelier/dot/nvimdots";
 
   xdg.configFile."lsp-snippets".source = snippets;
 

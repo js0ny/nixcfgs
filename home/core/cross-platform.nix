@@ -10,6 +10,9 @@ lib.mkMerge [
     xdg.desktopEntries = lib.mkForce { };
     i18n.inputMethod.enable = false;
     systemd.user.tmpfiles.rules = lib.mkForce [ ];
+    targets.darwin = {
+      linkApps.enable = true;
+    };
   })
   ((lib.mkIf (pkgs.stdenv.isLinux && config.nixdots.linux.nixos)) {
     targets.darwin = lib.mkForce { };

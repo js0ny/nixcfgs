@@ -241,7 +241,7 @@
 			       'telega-database-dir (expand-file-name "site" telega-database-dir))))
   :config
   (add-to-list 'evil-emacs-state-modes 'telega-image-mode)
-  (add-hook 'telega-load-hook #'telega-notifications-mode)
+  (add-hook 'telega-root-mode-hook #'telega-notifications-mode)
   (evil-define-key 'normal telega-chat-mode-map
     (kbd "@") 'telega-chatbuf-attach-inline-bot-query
     (kbd "P") 'telega-chatbuf-attach-clipboard

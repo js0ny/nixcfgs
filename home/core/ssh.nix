@@ -9,6 +9,9 @@ let
   port = config.nixdefs.endpoints.ssh.port;
 in
 {
+  nixdots.persist.home = {
+    directories = [ ".ssh" ];
+  };
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
