@@ -17,12 +17,6 @@ in
 
   home.sessionPath = [ "${brew.prefix}/bin" ];
 
-  xdg.desktopEntries = lib.mkForce { };
-
-  i18n.inputMethod.enable = false;
-
-  systemd.user.tmpfiles.rules = lib.mkForce [ ];
-
   targets.darwin = {
     linkApps.enable = true;
     defaults = {

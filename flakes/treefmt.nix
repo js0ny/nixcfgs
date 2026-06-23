@@ -1,9 +1,4 @@
-{ inputs, ... }:
-{
-  imports = [
-    inputs.treefmt-nix.flakeModule
-    inputs.git-hooks.flakeModule
-  ];
+_: {
   perSystem =
     { ... }:
     {

@@ -59,6 +59,8 @@ in
     SYSTEMD_LESS = "FRXMK";
   };
 
+  environment.variables = import ./do-not-track-vars.nix;
+
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   # provides `/bin/bash` compatibility

@@ -7,7 +7,6 @@
     ../common/nix.nix
     ../common/sops.nix
     ../common/stylix.nix
-    ../common/system.nix
     ../definitions
     ../options
     ./core
