@@ -13,14 +13,14 @@
   (setq mac-command-modifier 'super))
 
 (when window-system
-  (setq initial-frame-alist '((name . "emacs"))))
+  (setq initial-frame-alist '((name . "emacs")))
+  (setq use-default-font-for-symbols nil)
+  (set-fontset-font t 'emoji "Noto Color Emoji-12")
+  (dolist (charset '(kana han cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font) charset
+			(font-spec :family "HarmonyOS Sans"))))
 
-(setq use-default-font-for-symbols nil)
-(set-fontset-font t 'emoji "Noto Color Emoji-12")
 
-(dolist (charset '(kana han cjk-misc bopomofo))
-  (set-fontset-font (frame-parameter nil 'font) charset
-		    (font-spec :family "HarmonyOS Sans")))
 
 (use-package emacs
   :config

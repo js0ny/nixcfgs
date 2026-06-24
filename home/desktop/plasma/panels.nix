@@ -9,6 +9,7 @@
     plasmusic-toolbar
   ];
   programs.plasma = {
+    immutableByDefault = true;
     panels = [
       # Windows-like panel at the bottom
       {
@@ -30,7 +31,7 @@
               General = {
                 launchers = [
                   # "applications:org.kde.dolphin.desktop"
-                  "applications:firefox.desktop"
+                  "applications:org.mozilla.firefox.desktop"
                   # "applications:kitty.desktop"
                 ];
               };
@@ -45,6 +46,7 @@
                 dateFormat = "isoDate";
                 enabledCalendarPlugins = "alternatecalendar,holidaysevents";
                 firstDayOfWeek = 1;
+                lastSelectedTimezone = builtins.head config.nixdots.core.timezones;
                 selectedTimeZones = "Local,${lib.concatStringsSep "," config.nixdots.core.timezones}";
                 showSeconds = "Always";
                 showWeekNumbers = true;

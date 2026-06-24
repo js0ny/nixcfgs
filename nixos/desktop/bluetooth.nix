@@ -1,8 +1,4 @@
-{ lib, config, ... }:
-let
-  cfg = config.nixdots.desktop.enable;
-in
-lib.mkIf cfg {
+_: {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;

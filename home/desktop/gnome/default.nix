@@ -12,6 +12,7 @@ let
   extensions = with pkgs.gnomeExtensions; [
     dash-to-dock
     caffeine
+    copyous
     kimpanel
     appindicator
     gsconnect
@@ -21,7 +22,7 @@ let
     arcmenu
     run-or-raise
   ];
-  cfg = config.nixdots.desktop.de;
+  cfg = config.nixdots.desktop.session;
 in
 lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
   home.packages = with pkgs; [
@@ -38,7 +39,11 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
     map extensionHelper extensions;
 
   dconf.settings = {
+    "org/gnome/tweaks" = {
+      show-extensions-notice = false;
+    };
     "org/gnome/desktop/interface" = {
+
       clock-show-seconds = true;
       clock-show-weekday = true;
       accent-color = "pink";
@@ -235,5 +240,5 @@ lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
     <Alt><Super>Return,neovide,,
     <Shift><Super>v,kitty -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal
   '';
-  xdg.dataFile."copyous@boerdereinar.dev/highlight.min.js".source = highlightJs;
+  # xdg.dataFile."copyous@boerdereinar.dev/highlight.min.js".source = highlightJs;
 }

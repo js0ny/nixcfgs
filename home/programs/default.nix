@@ -5,6 +5,7 @@
 
     ../packages/cli.nix
     ./bat.nix
+    ./thunderbird.nix
     ./editors/vim
     ./fastfetch.nix
     ./fzf.nix

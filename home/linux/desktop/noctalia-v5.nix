@@ -11,6 +11,13 @@ let
   wallpaperDir = config.home.customDirs.wallpaper;
 in
 {
+  systemd.user.services.noctalia = {
+    Unit = {
+      PartOf = lib.mkForce [ "waylandwm-session.target" ];
+      After = lib.mkForce [ "waylandwm-session.target" ];
+    };
+    Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
+  };
   programs.noctalia = {
     enable = true;
     systemd.enable = true;

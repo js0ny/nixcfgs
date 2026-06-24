@@ -7,6 +7,13 @@
 {
   programs.zed-editor = {
     userSettings = {
+      load_direnv = if config.programs.direnv.enable then "direct" else "disabled";
+      context_servers = config.nixdefs.mcp.clientConfigs.zed-editor;
+      terminal = {
+        env.EDITOR = "zeditor";
+        shell.program = config.nixdots.apps.interactiveShell.exe;
+      };
+      relative_line_numbers = "enabled";
       icon_theme = "Material Icon Theme";
       tabs = {
         show_diagnostics = "errors";

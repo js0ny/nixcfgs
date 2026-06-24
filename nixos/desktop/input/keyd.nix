@@ -5,12 +5,12 @@
   ...
 }:
 let
-  cfg = config.nixdots.keymaps.keyd.enable;
+  cfg = config.nixdots.keymaps.keyd;
   key = config.nixdots.laptop.keyboard;
 in
-lib.mkIf cfg {
+lib.mkIf cfg.enable {
   services.keyd = {
-    enable = false;
+    enable = true;
     keyboards = {
       externalKeyboard = {
         ids = [ "${key.idVendor}:${key.idProduct}" ];

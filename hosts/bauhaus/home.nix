@@ -12,6 +12,7 @@
     ./vars.nix
     ../../home/desktop-extra.nix
     ../../home/desktop/plasma
+    ../../home/desktop/gnome
     ../../home/desktop/hyprland
     ../../home/gaming/steam/sts2.nix
     ../../home/programs/media/celluloid.nix

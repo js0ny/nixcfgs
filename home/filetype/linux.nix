@@ -26,6 +26,7 @@ let
     "application/x-shellscript"
     "text/rust"
     "text/x-go"
+    "application/x-zerosize" # empty file
     "text/vnd.trolltech.linguist" # .ts (Qt Translation Source File)
   ];
   webpageMimes = [

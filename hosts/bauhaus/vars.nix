@@ -141,10 +141,10 @@ in
     desktop = {
       enable = true;
       dm = "sddm";
-      de = [
+      autoLogin = true;
+      session = [
         "niri"
         "kde"
-        "hyprland"
         "gnome"
       ];
       wm = {

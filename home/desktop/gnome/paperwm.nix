@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.desktop.de;
+  cfg = config.nixdots.desktop.session;
 in
 lib.mkIf (false && config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
   programs.gnome-shell.extensions = [

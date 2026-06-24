@@ -180,7 +180,7 @@ in
     desktop = {
       enable = true;
       dm = "sddm";
-      de = [
+      session = [
         "niri"
         "kde"
       ];

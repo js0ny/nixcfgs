@@ -1,12 +1,13 @@
-{ pkgs, ... }:
-{
+_: {
   imports = [
     # keep-sorted start
     ../.
-    ../hardware/audio.nix
     ./base.nix
-    ./de
-    ./dm
+    ./desktop-sessions.nix
+    ./display-manager.nix
+    ./audio.nix
+    ./peripherals.nix
+    ./bluetooth.nix
     ./gnome-keyring.nix
     ./gui.nix
     ./i2c.nix

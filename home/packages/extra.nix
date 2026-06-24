@@ -13,7 +13,11 @@ in
 
   home.packages = with pkgs; [
     # keep-sorted start
+    clapper
+    showtime
     awscli2
+    dmg2img
+    libguestfs
     blender
     calibre
     font-manager

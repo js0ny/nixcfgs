@@ -12,23 +12,16 @@
         "ly"
         "gdm"
         "sddm"
-        "tuigreet"
         "cosmic-greeter"
         "plasma-login-manager"
+        "dms-greeter"
         "none"
       ];
       default = if config.nixdots.linux.display == "none" then "none" else "gdm";
-      description = ''
-        The desktop manager to use. Options include:
-        - 'ly': A lightweight TUI-based display manager.
-        - 'gdm': GNOME Display Manager, suitable for GNOME desktops.
-        - 'sddm': Simple Desktop Display Manager, often used with KDE Plasma.
-        - 'tuigreet': A modern TUI greeter with theming support.
-        - 'cosmic-greeter': The display manager used by Pop!_OS's Cosmic desktop.
-        - 'none': Disable the display manager, useful for headless setups or when using a custom DM.
-      '';
+      description = "The desktop manager to use.";
     };
-    de = lib.mkOption {
+    autoLogin = lib.mkEnableOption "Whether to login automatically"; # TODO:
+    session = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
           "niri"
@@ -43,7 +36,7 @@
       );
       default = if config.nixdots.linux.display == "none" then [ "none" ] else [ "niri" ];
       description = ''
-        The window manager(s) or desktop environment(s) to use.
+        The window manager(s) or desktop environment(s) to use, the first one will be the primary session.
       '';
     };
     wm = {

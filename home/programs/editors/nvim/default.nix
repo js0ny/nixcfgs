@@ -13,6 +13,7 @@ let
   snippets = (import ../lsp-snippets { inherit pkgs config; }).out;
   withImg = config.programs.kitty.enable || config.programs.ghostty.enable;
   appname = "nvim";
+  dots = config.nixdots.core.dots;
 in
 {
   imports = [ ../. ];
@@ -69,7 +70,7 @@ in
   # home.packages = with pkgs; [lua-language-server];
   misc.shellAliases = nvimAlias;
 
-  xdg.configFile."${appname}".source = mkSymlink "${config.home.homeDirectory}/Atelier/dot/nvimdots";
+  xdg.configFile."${appname}".source = mkSymlink "${dots}/home/programs/editors/nvim";
 
   xdg.configFile."lsp-snippets".source = snippets;
 

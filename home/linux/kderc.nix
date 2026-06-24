@@ -28,7 +28,10 @@
           TerminalApplication = lib.getExe config.nixdots.apps.terminal.package;
           TerminalService = config.nixdots.apps.terminal.desktop;
         };
-        KDE.ShowDeleteCommand = false;
+        KDE = {
+          ShowDeleteCommand = false;
+          widgetStyle = config.nixdots.style.icon.dark;
+        };
         PreviewSettings = {
           EnableRemoteFolderThumbnail = false;
           MaximumRemoteSize = 0;
@@ -38,6 +41,16 @@
           Help = "";
           Preferences = "Ctrl+,; Ctrl+Shift+,";
           WhatsThis = "";
+        };
+        KScreen = {
+          XwaylandClientsScale = false;
+        };
+      };
+      kwinrc = {
+        ".org.kde.kdecoration2" = {
+          ButtonsOnLeft = "MSF";
+          library = "org.kde.breeze";
+          theme = "Breeze";
         };
       };
     };

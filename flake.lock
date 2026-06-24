@@ -96,12 +96,12 @@
     "bindeps": {
       "flake": false,
       "locked": {
-        "lastModified": 1776751465,
+        "lastModified": 1782289544,
         "lfs": true,
-        "narHash": "sha256-C1lwMUbMveJAfinbYfS/BMn0V9zBd9nGM2185nOXvaw=",
+        "narHash": "sha256-jIbQAK6KdvER2EBQuu3lgyeaSdvyuZCPR67bkmNa2Cg=",
         "ref": "refs/heads/master",
-        "rev": "ad54528565466e5310bf48ff9a999e80ac76e54d",
-        "revCount": 3,
+        "rev": "ce157e83fb5d924b72886183f5c9830da7402e6c",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/js0ny/bindeps.git"
       },
