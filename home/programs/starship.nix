@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   programs.starship = {
     enable = true;
     enableBashIntegration = false;
@@ -222,5 +221,4 @@
       };
     };
   };
-
 }

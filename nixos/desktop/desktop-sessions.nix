@@ -46,25 +46,25 @@ in
   environment = {
     gnome.excludePackages = with pkgs; [
       # keep-sorted start
-      evince # Document Viewer (Legacy)
-      totem # GNOME Videos (legacy)
-      papers # Document Viewer
-      gnome-tour
       baobab # Disk Usage Analyzer, use dust instead
+      decibels # Audio Player
       epiphany # GNOME Web
-      gnome-system-monitor # use mission-center
-      gnome-terminal
-      gnome-console
-      showtime # Media player
-      gnome-music
+      evince # Document Viewer (Legacy)
+      gnome-characters
       gnome-connections
+      gnome-console
       gnome-font-viewer
       gnome-maps
+      gnome-music
+      gnome-system-monitor # use mission-center
+      gnome-terminal
       gnome-text-editor
+      gnome-tour
+      papers # Document Viewer
+      showtime # Media player
       simple-scan # Document Scanner
       snapshot # Camera
-      gnome-characters
-      decibels # Audio Player
+      totem # GNOME Videos (legacy)
       yelp # Help
       # keep-sorted end
     ];

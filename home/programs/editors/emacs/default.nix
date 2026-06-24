@@ -50,7 +50,7 @@ in
         evil-surround
         evil-mc
         evil-goggles
-	evil-org
+        evil-org
         ement
         melpaPackages.telega
         melpaPackages.ghostel

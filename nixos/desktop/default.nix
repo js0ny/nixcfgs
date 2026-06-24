@@ -2,12 +2,12 @@ _: {
   imports = [
     # keep-sorted start
     ../.
+    ./audio.nix
     ./base.nix
+    ./bluetooth.nix
     ./desktop-sessions.nix
     ./display-manager.nix
-    ./audio.nix
-    ./peripherals.nix
-    ./bluetooth.nix
+    ./firmware.nix
     ./gnome-keyring.nix
     ./gui.nix
     ./i2c.nix
@@ -16,8 +16,8 @@ _: {
     ./laptop.nix
     ./networkmanager.nix
     ./packages.nix
+    ./peripherals.nix
     ./wayland.nix
-    ./firmware.nix
     # keep-sorted end
   ];
   nixdefs.hardware.enable = true;

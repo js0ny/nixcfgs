@@ -13,13 +13,11 @@ in
 
   home.packages = with pkgs; [
     # keep-sorted start
-    clapper
-    showtime
     awscli2
-    dmg2img
-    libguestfs
     blender
     calibre
+    clapper
+    dmg2img
     font-manager
     font-viewer
     fontforge
@@ -27,7 +25,9 @@ in
     gdb
     gh
     gimp
+    gtkwave
     icoutils
+    inkscape
     jetbrains.datagrip
     kdePackages.elisa
     kdePackages.isoimagewriter
@@ -37,8 +37,10 @@ in
     kdePackages.qttools
     kicad
     krabby
+    libguestfs
     llm-agents.agentsview
     llm-agents.ccusage
+    logisim-evolution
     ltspice
     misc.apps.proton-drive-cli
     motrix-next
@@ -50,9 +52,14 @@ in
     octaveFull
     openscad
     openscad-lsp
+    picocom
+    prusa-slicer
+    pulseview
     qucs-s
+    showtime
     tea
-    logisim-evolution
+    texmacs
+    xournalpp
     # keep-sorted end
   ];
 }

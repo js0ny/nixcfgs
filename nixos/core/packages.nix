@@ -2,7 +2,6 @@
 {
   environment.systemPackages = with pkgs; [
     # keep-sorted start
-    lnav
     bind
     curl
     dig
@@ -13,6 +12,7 @@
     iw
     kitty.kitten
     kitty.terminfo
+    lnav
     lsof
     moreutils
     psmisc

@@ -74,4 +74,6 @@ in
     '';
     execWheelOnly = true;
   };
+
+  users.users.root.shell = lib.getExe pkgs.zsh;
 }

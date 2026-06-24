@@ -5,8 +5,10 @@
     ddcutil # requires i2c enabled
     efibootmgr
     f2fs-tools
+    gnome-firmware
     libnotify
     libva-utils
+    lm_sensors
     ltrace
     mesa-demos
     nvme-cli
@@ -18,8 +20,6 @@
     usbutils
     v4l-utils
     vulkan-tools
-    lm_sensors
-    gnome-firmware
     # keep-sorted end
   ];
   programs.gnome-disks.enable = true;

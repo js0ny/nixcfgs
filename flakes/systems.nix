@@ -41,7 +41,6 @@
           inherit specialArgs;
           modules = [
             # keep-sorted start
-            inputs.thyx.nixosModules.default
             inputs.catppuccin.nixosModules.catppuccin
             inputs.disko.nixosModules.disko
             inputs.home-manager.nixosModules.home-manager
@@ -52,6 +51,7 @@
             inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.default
             inputs.telegram-inline-llm-bot.nixosModules.default
+            inputs.thyx.nixosModules.default
             # keep-sorted end
             ../hosts/${hostname}
             { nixpkgs.overlays = overlays; }

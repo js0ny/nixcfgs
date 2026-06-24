@@ -5,7 +5,6 @@
 
     ../packages/cli.nix
     ./bat.nix
-    ./thunderbird.nix
     ./editors/vim
     ./fastfetch.nix
     ./fzf.nix
@@ -19,6 +18,7 @@
     ./shell/fish
     ./starship.nix
     ./terminals/tmux.nix
+    ./thunderbird.nix
     ./tldr.nix
     ./yazi
     ./zoxide.nix

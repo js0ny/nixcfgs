@@ -17,7 +17,6 @@
     ]
     ++ ((lib.optionals pkgs.stdenv.isLinux) [
       # keep-sorted start
-      metadata-cleaner
       bluetui
       dex
       ffmpeg
@@ -25,6 +24,7 @@
       kdePackages.ark
       # Image Viewer
       loupe # SUPER FAST 有催人跑的感觉
+      metadata-cleaner
       nixpaks.ticktick
       # Theming
       papirus-icon-theme
