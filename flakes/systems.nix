@@ -41,6 +41,7 @@
           inherit specialArgs;
           modules = [
             # keep-sorted start
+            inputs.thyx.nixosModules.default
             inputs.catppuccin.nixosModules.catppuccin
             inputs.disko.nixosModules.disko
             inputs.home-manager.nixosModules.home-manager

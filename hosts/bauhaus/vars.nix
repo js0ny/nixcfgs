@@ -98,9 +98,7 @@ in
         };
       };
     };
-
     pam.howdy.enable = false;
-
     programs = {
       steam.enable = true;
       obs-studio.enable = true;
@@ -121,7 +119,7 @@ in
       tools = {
         vicinae.enable = true;
       };
-      flatpak.enable = false;
+      flatpak.enable = true;
     };
     linux = {
       enable = true;

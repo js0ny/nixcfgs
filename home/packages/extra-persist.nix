@@ -1,10 +1,16 @@
 { config, ... }: {
   nixdots.persist.nosnap.home = {
     directories = [
-      # keep-sorted start
       ".local/share/agentsview"
       ".local/share/com.motrix.next"
-      # keep-sorted end
+
+      ".config/blender"
+
+      ".config/FreeCAD"
+      ".local/share/FreeCAD"
+
+      ".config/kicad"
+      ".local/share/kicad"
     ];
   };
 
@@ -22,4 +28,9 @@
       };
     };
   };
+
+  xdg.configFile."krabby/config.toml".text = /* toml */ ''
+    language = "en"
+    shiny_rate = 0.0078125
+  '';
 }

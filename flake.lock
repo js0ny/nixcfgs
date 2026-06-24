@@ -1651,6 +1651,7 @@
         "steam-config-nix": "steam-config-nix",
         "stylix": "stylix",
         "telegram-inline-llm-bot": "telegram-inline-llm-bot",
+        "thyx": "thyx",
         "treefmt-nix": "treefmt-nix_4",
         "vicinae-extensions": "vicinae-extensions",
         "xremap-flake": "xremap-flake",
@@ -1995,6 +1996,26 @@
       "original": {
         "owner": "js0ny",
         "repo": "telegram-inline-llm-bot",
+        "type": "github"
+      }
+    },
+    "thyx": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782069885,
+        "narHash": "sha256-wnCqRe8b8l6VyFr5lV/1cMZTpuPuCnoMzQ8BS9AFiFw=",
+        "owner": "rccyx",
+        "repo": "thyx",
+        "rev": "64bd8096d2bf2b4c952bbedf0f300db0c8e64364",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rccyx",
+        "repo": "thyx",
         "type": "github"
       }
     },

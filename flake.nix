@@ -121,6 +121,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    thyx = {
+      url = "github:rccyx/thyx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # }}}
 
     # {{{ NixOS

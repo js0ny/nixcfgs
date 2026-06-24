@@ -16,7 +16,6 @@ lib.mkIf cfg.enable {
   ];
   programs.zsh = {
     enable = true;
-    autocd = true;
     # oh-my-zsh.enable = true;
     autosuggestion.enable = true;
     historySubstringSearch.enable = true;

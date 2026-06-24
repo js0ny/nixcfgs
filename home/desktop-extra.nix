@@ -82,10 +82,6 @@
   ];
   programs.pdf2zh.enable = true;
 
-  xdg.configFile."krabby/config.toml".text = /* toml */ ''
-    language = "en"
-    shiny_rate = 0.0078125
-  '';
   catppuccin.thunderbird.profile = config.home.username;
 
   nixdots.sops.secrets = {
