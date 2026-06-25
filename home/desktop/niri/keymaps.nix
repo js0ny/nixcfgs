@@ -144,7 +144,7 @@ in
       Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
       Print { screenshot show-pointer=false; }
       XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-      XF86AudioMute allow-when-locked=true { spawn "volume-notify" "mute"; }
+      XF86AudioMute allow-when-locked=true { spawn ${genCmd shell.volume.mute}; }
       XF86AudioNext { spawn ${genCmd shell.media.next}; }
       XF86AudioPlay { spawn ${genCmd shell.media.playpause}; }
       XF86AudioPrev { spawn ${genCmd shell.media.prev}; }

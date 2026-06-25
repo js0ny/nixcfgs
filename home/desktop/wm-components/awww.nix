@@ -7,7 +7,6 @@
 }:
 let
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
-  inherit (lib) mkDefault;
   wallpaperDir = config.home.customDirs.wallpaper;
 in
 {
@@ -27,14 +26,14 @@ in
       "@sovereign/vicinae-extension-awww-switcher-0" = {
         preferences = {
           toggleVicinaeSetting = true;
-          colorGenTool = mkDefault "none";
-          gridRows = mkDefault "4";
-          postProduction = mkDefault "no";
-          showImageDetails = mkDefault true;
-          transitionDuration = mkDefault "3";
-          transitionFPS = mkDefault "60";
-          transitionStep = mkDefault "90";
-          transitionType = mkDefault "random";
+          colorGenTool = "none";
+          gridRows = "4";
+          postProduction = "no";
+          showImageDetails = true;
+          transitionDuration = "3";
+          transitionFPS = "60";
+          transitionStep = "90";
+          transitionType = "random";
         }
         // (lib.optionalAttrs (wallpaperDir != null) {
           wallpaperPath = wallpaperDir;
