@@ -20,9 +20,9 @@
     usbutils
     v4l-utils
     vulkan-tools
-    wl-clipboard
     wayland-utils
     wf-recorder
+    wl-clipboard
     # keep-sorted end
   ];
   programs.gnome-disks.enable = true;

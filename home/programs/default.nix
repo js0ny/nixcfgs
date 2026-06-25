@@ -4,13 +4,14 @@
     # keep-sorted start
 
     ../packages/cli.nix
-    ./bat.nix
     ./editors/vim
     ./fastfetch.nix
-    ./fzf.nix
     ./git.nix
+    ./iina.nix
     ./libvirt.nix
-    ./lsd.nix
+    ./modern-unix
+    ./obs-studio.nix
+    ./onlyoffice.nix
     ./rtorrent.nix
     # Shell
     ./shell/bash.nix
@@ -19,12 +20,7 @@
     ./starship.nix
     ./terminals/tmux.nix
     ./thunderbird.nix
-    ./tldr.nix
     ./yazi
-    ./zoxide.nix
-    ./iina.nix
-    ./obs-studio.nix
-    ./onlyoffice.nix
 
     # keep-sorted end
   ];

@@ -28,7 +28,6 @@
     ./programs/mime.nix
     ./programs/miniserve.nix
     ./programs/nix-index.nix
-    ./programs/opencode
     ./programs/pcloud.nix
     ./programs/pim.nix
     ./programs/productivity/anki.nix

@@ -15,7 +15,6 @@
     ./programs/editors/nvim
     ./programs/karabiner.nix
     ./programs/nix-index.nix
-    ./programs/opencode
     ./programs/productivity/anki.nix
     ./programs/productivity/obsidian
     ./programs/productivity/sdcv.nix

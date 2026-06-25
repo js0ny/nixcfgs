@@ -20,14 +20,11 @@
     ./packages/extra.nix
     ./packages/flatpak.nix
     ./programs
-    ./programs/atuin.nix
     ./programs/bottles.nix
     ./programs/browsers/chromium.nix
     ./programs/browsers/firefox
     ./programs/browsers/qutebrowser.nix
     ./programs/cherry-studio.nix
-    ./programs/claude-code.nix
-    ./programs/codex.nix
     ./programs/easyeffects
     ./programs/editors/emacs
     ./programs/editors/helix.nix
@@ -36,7 +33,6 @@
     ./programs/editors/vscode
     ./programs/editors/zed-editor
     ./programs/element.nix
-    ./programs/eza.nix
     ./programs/gh.nix
     ./programs/gwenview.nix
     ./programs/hermes-desktop
@@ -49,7 +45,6 @@
     ./programs/media/gallery-dl.nix
     ./programs/media/picard.nix
     ./programs/mime.nix
-    ./programs/oh-my-pi.nix
     ./programs/productivity/anki.nix
     ./programs/productivity/goldendict.nix
     ./programs/productivity/libreoffice.nix
@@ -75,6 +70,8 @@
     ./programs/terminals/ghostty.nix
     ./programs/terminals/kitty.nix
     ./programs/terminals/zellij
+    ./programs/vcs
+    ./programs/vibe-coding
     # ./programs/newsflash.nix
     ./programs/wine.nix
     # keep-sorted end

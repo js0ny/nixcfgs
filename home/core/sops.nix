@@ -12,16 +12,16 @@ let
       secret = lib.getAttr secretName cfg.secrets;
       path = (lib.getAttr secretName config.sops.secrets).path;
     in
-    builtins.map (name: {
+    map (name: {
       inherit name path;
     }) secret.env
   ) (builtins.attrNames cfg.secrets);
 
-  envNames = builtins.map (binding: binding.name) envBindings;
+  envNames = map (binding: binding.name) envBindings;
   hasEnvVars = builtins.length envNames > 0;
 
   posixInit = builtins.concatStringsSep "\n" (
-    builtins.map (binding: /* bash */ ''
+    map (binding: /* bash */ ''
       if [ -r "${binding.path}" ]; then
         export ${binding.name}="$(< "${binding.path}")"
       fi
@@ -29,7 +29,7 @@ let
   );
 
   fishInit = builtins.concatStringsSep "\n" (
-    builtins.map (binding: /* fish */ ''
+    map (binding: /* fish */ ''
       if test -r "${binding.path}"
         set -gx "${binding.name}" (cat "${binding.path}")
       end
@@ -37,7 +37,7 @@ let
   );
 
   nuInit = builtins.concatStringsSep "\n" (
-    builtins.map (binding: /* nu */ ''
+    map (binding: /* nu */ ''
       if ( "${binding.path}" | path exists ) {
         $env.${binding.name} = ^cat "${binding.path}"
       }

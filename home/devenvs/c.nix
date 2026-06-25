@@ -11,9 +11,7 @@ lib.mkIf cfg.enable {
   home.packages =
     with pkgs;
     [
-      (jetbrains.clion.override {
-        vmopts = "-Dawt.toolkit.name=WLToolkit";
-      })
+      jetbrains.clion
       cgdb
     ]
     ++ lib.optionals cfg.global [

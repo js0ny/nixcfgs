@@ -7,10 +7,6 @@
     enable = pkgs.stdenv.isLinux;
     # install nushell via brew in darwin.
     shellAliases = {
-      "la" = "ls -a";
-      "lt" = "lsd --tree";
-      "l" = "ls -la";
-      "ll" = "ls -l";
       "fg" = "job unfreeze";
       "cls" = "clear";
     };

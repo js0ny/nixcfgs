@@ -2,7 +2,6 @@
 local parsers = {
   -- keep-sorted start
   'bash',
-  'udev',
   'c',
   'c_sharp',
   'cpp',
@@ -29,6 +28,7 @@ local parsers = {
   'toml',
   'tsx',
   'typescript',
+  'udev',
   'vim',
   'vimdoc',
   'xml',
