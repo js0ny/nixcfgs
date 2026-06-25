@@ -48,6 +48,11 @@ in
       gsound
     ];
   };
+
+  services.gnome = {
+    sushi.enable = enableSession "gnome";
+  };
+
   environment = {
     gnome.excludePackages = with pkgs; [
       # keep-sorted start

@@ -5,9 +5,6 @@
   ...
 }:
 {
-  home.packages = with pkgs; [
-    plasmusic-toolbar
-  ];
   programs.plasma = {
     immutableByDefault = true;
     panels = [

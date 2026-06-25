@@ -6,12 +6,9 @@
 }:
 let
   xdg-config = config.xdg.configHome;
+  cfg = config.nixdots.desktop.session;
 in
-{
-  imports = [
-    ../wm-components
-  ];
-
+lib.mkIf (config.nixdots.desktop.enable && builtins.elem "niri" cfg) {
   wayland.windowManager.niri = {
     enable = true;
     validation.enable = true;

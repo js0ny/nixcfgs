@@ -19,19 +19,24 @@ lib.mkIf cfg.enable {
       "--enable-features=TouchpadOverscrollHistoryNavigation"
       "--enable-features=MiddleClickAutoscroll"
     ];
-    extensions = [
-      { id = "bggfcpfjbdkhfhfmkjpbhnkhnpjjeomc"; } # Material Icons for GitHub
-      { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # uBlock Origin Lite
-      { id = "ghmbeldphafepmbegfdlkpapadhbakde"; } # proton pass
-      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
-      { id = "gfbliohnnapiefjpjlpjnehglfpaknnc"; } # surfingkeys
-      { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # tampermonkey
-      { id = "jlgkpaicikihijadgifklkbpdajbkhjo"; } # CrxMouse: Mouse Gestures
-      { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # SponsorBlock for Youtube
-      { id = "clngdbkpkpeebahjckkjfobafhncgmne"; } # Stylus
-      { id = "jpbjcnkcffbooppibceonlgknpkniiff"; } # Global Speed
-      { id = "bdiifdefkgmcblbcghdlonllpjhhjgof"; } # Kiss Translator
-      { id = "gebbhagfogifgggkldgodflihgfeippi"; } # Return YouTube Dislike
+    extensions = map (x: { id = x; }) [
+      "bggfcpfjbdkhfhfmkjpbhnkhnpjjeomc" # Material Icons for GitHub
+      "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
+      "ghmbeldphafepmbegfdlkpapadhbakde" # proton pass
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
+      "gfbliohnnapiefjpjlpjnehglfpaknnc" # surfingkeys
+      "dhdgffkkebhmkfjojejmpbldmpobfkfo" # tampermonkey
+      "jlgkpaicikihijadgifklkbpdajbkhjo" # CrxMouse: Mouse Gestures
+      "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock for Youtube
+      "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
+      "jpbjcnkcffbooppibceonlgknpkniiff" # Global Speed
+      "bdiifdefkgmcblbcghdlonllpjhhjgof" # Kiss Translator
+      "gebbhagfogifgggkldgodflihgfeippi" # Return YouTube Dislike
+      "edibdbjcniadpccecjdfdjjppcpchdlm" # I still don't care about cookies
+      "kdbmhfkmnlmbkgbabkdealhhbfhlmmon" # SteamDB
+      "ngonfifpkpeefnhelnfdkficaiihklid" # ProtonDB for Steam
+      "eaoelafamejbnggahofapllmfhlhajdd" # 小电视空降助手 Bili sponsorblock
+      "kkmfljfnlmppiaoijkfaejgkhccokpdn" # WHEELY: Wheel scroll for Linux
     ];
   };
   nixdots.persist.home = {

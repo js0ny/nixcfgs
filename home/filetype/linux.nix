@@ -86,6 +86,7 @@ lib.mkIf config.nixdots.desktop.enable {
         "nemo"
         "yazi"
         "kitty-open"
+        "neovide"
         "dev.zed.Zed"
         "org.kde.gwenview"
         "org.kde.kid3"

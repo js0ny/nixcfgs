@@ -20,9 +20,6 @@ let
   };
 in
 {
-  imports = [
-    ./files.nix
-  ];
   programs.plasma = {
     workspace = {
       iconTheme = config.nixdots.style.icon.dark;

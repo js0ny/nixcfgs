@@ -267,3 +267,6 @@
 
 (use-package elfeed
   :ensure t)
+
+(use-package magit
+  :ensure t)

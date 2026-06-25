@@ -12,7 +12,7 @@ in
   imports = [
     ./kanshi.nix
     ./polkit.nix
-    ../../linux/desktop/noctalia-v5.nix
+    ./noctalia-v5.nix
     inputs.dank-material-shell.homeModules.default
   ];
   home.packages = with pkgs; [

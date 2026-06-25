@@ -7,13 +7,11 @@
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   dots = config.nixdots.core.dots;
+  cfg = config.nixdots.desktop.session;
 in
-{
+lib.mkIf (config.nixdots.desktop.enable && builtins.elem "hyprland" cfg) {
   home.packages = with pkgs; [
     grimblast
-  ];
-  imports = [
-    ../wm-components
   ];
   # {"diagnostics":{"globals":["hl"]},"workspace":{"library":["/nix/store/rv2dda5jgqr8vxd4ljp7vxmklmficxcm-hyprland-0.55.4/share/hypr/stubs"]}}
   xdg.configFile."hypr/hyprland_debug.lua".source =

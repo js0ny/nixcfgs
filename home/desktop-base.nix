@@ -7,7 +7,7 @@
   imports = [
     # keep-sorted start
 
-    ./desktop/niri
+    ./desktop
     ./gaming/emulators/retroarch.nix
     ./linux-base.nix
     ./packages/devtools.nix
