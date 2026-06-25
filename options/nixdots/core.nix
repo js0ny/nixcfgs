@@ -6,7 +6,6 @@
 }:
 {
   options.nixdots = {
-
     core = {
       dots = lib.mkOption {
         type = lib.types.str;

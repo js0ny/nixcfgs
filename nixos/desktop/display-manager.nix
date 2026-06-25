@@ -1,6 +1,4 @@
 {
-  pkgs,
-  lib,
   config,
   inputs,
   ...
@@ -9,23 +7,6 @@ let
   loginBg = inputs.bindeps + "/wallpaper/login.jpg";
   cfg = config.nixdots.desktop.dm;
   enableDM = displayManagerName: displayManagerName == cfg;
-  # custom-sddm-astronaut =
-  #   (pkgs.sddm-astronaut.override {
-  #     embeddedTheme = "hyprland_kath";
-  #     themeConfig = {
-  #       HeaderTextColor = "#d5c4a1";
-  #       Background = "Backgrounds/custom.png";
-  #       Font = "HarmonyOS Sans";
-  #       FontSize = "12";
-  #     };
-  #   }).overrideAttrs
-  #     (oldAttrs: {
-  #       installPhase = oldAttrs.installPhase + ''
-  #         chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/
-  #         cp ${loginBg} \
-  #           $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/custom.png
-  #       '';
-  #     });
 in
 {
   services.displayManager = {
@@ -49,10 +30,12 @@ in
       wayland.enable = true;
       enableHidpi = true;
       thyx.enable = true;
-      # extraPackages = [ custom-sddm-astronaut ];
+      settings = {
+        Theme = {
+          CursorSize = config.stylix.cursor.size;
+          CursorTheme = config.stylix.cursor.name;
+        };
+      };
     };
   };
-  # environment.systemPackages = lib.optionals (enableDM "sddm") [
-  #   custom-sddm-astronaut
-  # ];
 }

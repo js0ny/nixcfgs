@@ -189,10 +189,6 @@ in
         clipboard = "vicinae";
       };
     };
-    keymaps = {
-      enable = true;
-      xremap.enable = true;
-    };
     sops = {
       enable = true;
       yamlFile = secrets + /hosts/crystal.yaml;

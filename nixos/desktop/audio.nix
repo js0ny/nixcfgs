@@ -11,6 +11,7 @@ in
   environment.systemPackages = with pkgs; [
     pulseaudio
     pwvucontrol
+    playerctl
   ];
   services.pipewire = {
     enable = true;
@@ -34,4 +35,5 @@ in
       };
     };
   };
+  services.playerctld.enable = true;
 }

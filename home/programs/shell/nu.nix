@@ -19,6 +19,7 @@
     # ];
     extraConfig = /* nu */ ''
       $env.config.show_banner = false
+      $env.config.table.mode = "frameless"
       $env.config.history = {
         file_format: sqlite
         max_size: 1_000_000

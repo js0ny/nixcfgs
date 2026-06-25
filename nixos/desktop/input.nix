@@ -1,14 +1,19 @@
 # This file only contains logic that give previledges to xremap user
 # See home-manager configs for detailed options
-{
-  config,
-  lib,
-  ...
-}:
-let
-  cfg = config.nixdots.keymaps.xremap;
-in
-lib.mkIf cfg.enable {
+_: {
+  services.libinput = {
+    enable = true;
+    mouse = {
+      accelProfile = "flat";
+      naturalScrolling = false;
+    };
+    touchpad = {
+      disableWhileTyping = true;
+      naturalScrolling = true;
+    };
+  };
+
+  services.xserver.xkb.layout = "us";
 
   # treat the virtual keyboard as internal,
   # since most "Disable Trackpad While Typing"

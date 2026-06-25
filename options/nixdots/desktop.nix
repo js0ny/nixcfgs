@@ -20,7 +20,7 @@
       default = if config.nixdots.linux.display == "none" then "none" else "gdm";
       description = "The desktop manager to use.";
     };
-    autoLogin = lib.mkEnableOption "Whether to login automatically"; # TODO:
+    autoLogin = lib.mkEnableOption "Whether to login automatically";
     session = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [

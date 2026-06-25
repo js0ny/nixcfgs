@@ -20,7 +20,14 @@
     usbutils
     v4l-utils
     vulkan-tools
+    wl-clipboard
+    wayland-utils
+    wf-recorder
     # keep-sorted end
   ];
   programs.gnome-disks.enable = true;
+  programs.gpu-screen-recorder.enable = true;
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = 1;
+  };
 }

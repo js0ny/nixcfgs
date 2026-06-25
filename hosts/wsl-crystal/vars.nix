@@ -70,9 +70,6 @@
     desktop = {
       enable = false;
     };
-    keymaps = {
-      enable = false;
-    };
     sops = {
       enable = true;
       yamlFile = secrets + /secrets.yaml;

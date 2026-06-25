@@ -26,7 +26,6 @@ in
   ];
   home.packages = with pkgs; [
     brightnessctl
-    playerctl
     localPkgs.power-profiles-next
   ];
   services.network-manager-applet.enable = true;

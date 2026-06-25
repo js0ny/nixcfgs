@@ -9,7 +9,7 @@ let
   # * group: dialout
   serial = config.nixdefs.hardware.serial;
   username = config.nixdots.user.name;
-  serialRules = lib.mapAttrsToList (_: device: ''
+  serialRules = lib.mapAttrsToList (_: device: /* udev */ ''
     ATTRS{idVendor}=="${device.dev.vendorId}", ATTRS{idProduct}=="${device.dev.productId}", MODE="0660", GROUP="${serial.group}", SYMLINK+="${device.symlink}"
   '') serial.device;
 in

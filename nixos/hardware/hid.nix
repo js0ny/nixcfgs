@@ -7,7 +7,7 @@ let
   keyboard = peripheral.keyboard;
   username = config.nixdots.user.name;
   viaKeyboards = lib.filterAttrs (_: kbd: kbd.via) keyboard;
-  keyboardRules = lib.mapAttrsToList (_: device: ''
+  keyboardRules = lib.mapAttrsToList (_: device: /* udev */ ''
     KERNEL=="hidraw*", ATTRS{idVendor}=="${device.dev.vendorId}", ATTRS{idProduct}=="${device.dev.productId}", SUBSYSTEM=="hidraw", GROUP="${peripheral.group}", MODE="0660"
   '') viaKeyboards;
 in

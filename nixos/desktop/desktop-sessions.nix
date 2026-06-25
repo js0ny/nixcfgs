@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 let
@@ -19,12 +20,14 @@ in
     sway = {
       xwayland.enable = true;
       extraOptions = [ "--unsupported-gpu" ];
+      extraPackages = lib.mkForce [ ];
     };
     hyprland = {
       withUWSM = true;
       xwayland.enable = true;
       systemd.setPath.enable = true;
     };
+
   };
 
   services.desktopManager = {
@@ -32,6 +35,8 @@ in
     gnome.enable = enableSession "gnome";
     plasma6.enable = enableSession "kde";
   };
+
+  environment.systemPackages = lib.optionals (enableSession "niri") [ pkgs.xwayland-satellite ];
 
   services.desktopManager.gnome = {
     sessionPath = with pkgs; [

@@ -12,6 +12,7 @@
     ./hardware-configuration.nix
     ./disko.nix
     ./vars.nix
+    ./btrbk.nix
     # ./nixos-prebuild.nix
     ../../nixos/desktop
     # ../../nixos/services/hermes-agent

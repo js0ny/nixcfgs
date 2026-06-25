@@ -18,9 +18,11 @@ in
   ];
   home.packages = with pkgs; [
     brightnessctl
-    playerctl
     localPkgs.power-profiles-next
     trash-cli
+    grim
+    slurp
+    satty
   ];
   home.sessionVariables = {
     ELECTRON_TRASH = "trash-cli";

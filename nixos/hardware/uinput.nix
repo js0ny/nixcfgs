@@ -10,7 +10,7 @@ in
 lib.mkIf cfg {
   hardware.uinput.enable = true;
   boot.kernelModules = [ "uinput" ];
-  services.udev.extraRules = ''
+  services.udev.extraRules = /* udev */ ''
     KERNEL=="uinput", GROUP="input", TAG+="uaccess"
   '';
   users.users."${username}".extraGroups = [

@@ -19,6 +19,8 @@ in
     enable = true;
     apiBase = "https://${ep.litellm.domain}/v1";
     model = "deepseek-v4-flash";
+    collapseAnswer = true;
+    collapseLineThreshold = -1;
     envFile = config.sops.templates."tg-inline-llm-bot.env".path;
   };
 }

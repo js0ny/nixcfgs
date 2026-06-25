@@ -1986,11 +1986,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1781083698,
-        "narHash": "sha256-yZVxXyERwhDy5cAYKj7pgsMl7S01QOwFudamr5yuNUs=",
+        "lastModified": 1782321843,
+        "narHash": "sha256-k6NytRl8DhFPr81Np0mRWfcZKhJjfjwHOcjcjvCiWgs=",
         "owner": "js0ny",
         "repo": "telegram-inline-llm-bot",
-        "rev": "3e7175ba9c6808df401ceacd4bd1847c869c4c34",
+        "rev": "4288de09d700683a94641ea1255902b1487dccc1",
         "type": "github"
       },
       "original": {

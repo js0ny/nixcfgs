@@ -144,15 +144,14 @@ in
         "niri"
         "kde"
         "gnome"
+        "mangowc"
+        "hyprland"
+        "sway"
       ];
       wm = {
         shell = "dank-material-shell";
         clipboard = "vicinae";
       };
-    };
-    keymaps = {
-      enable = true;
-      xremap.enable = true;
     };
     sops = {
       enable = true;

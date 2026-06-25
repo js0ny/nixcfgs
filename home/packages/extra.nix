@@ -13,6 +13,7 @@ in
 
   home.packages = with pkgs; [
     # keep-sorted start
+
     awscli2
     blender
     calibre
@@ -53,6 +54,7 @@ in
     openscad
     openscad-lsp
     picocom
+    proton-pass
     prusa-slicer
     pulseview
     qucs-s

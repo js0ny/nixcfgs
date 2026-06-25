@@ -2,9 +2,11 @@
 local parsers = {
   -- keep-sorted start
   'bash',
+  'udev',
   'c',
   'c_sharp',
   'cpp',
+  'css',
   'fish',
   'go',
   'hcl',
@@ -13,6 +15,7 @@ local parsers = {
   'javascript',
   'json',
   'kdl',
+  'latex',
   'lua',
   'markdown',
   'markdown_inline',

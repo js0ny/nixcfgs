@@ -31,6 +31,7 @@ in
       Mod+7 { focus-workspace 7; }
       Mod+8 { focus-workspace 8; }
       Mod+9 { focus-workspace 9; }
+      Mod+0 { focus-workspace 10; }
       Mod+A { spawn-sh "${term} --class=terminal-popup -e aichat --session"; }
       Mod+Alt+Down { focus-monitor-down; }
       Mod+Alt+E { spawn "${term}" "yazi"; }

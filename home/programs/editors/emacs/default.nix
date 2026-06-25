@@ -42,6 +42,7 @@ in
       with epkgs;
       [
         avy
+        elfeed-protocol
         dashboard
         evil
         counsel

@@ -21,10 +21,12 @@ in
       {
         name = "SpaceLayer";
         remap = {
-          F24-h = "Left";
-          F24-j = "Down";
-          F24-k = "Up";
-          F24-l = "Right";
+          "F24-h" = "Left";
+          "F24-j" = "Down";
+          "F24-k" = "Up";
+          "F24-l" = "Right";
+          "F24-n" = "Home";
+          "F24-;" = "End";
         };
       }
     ];

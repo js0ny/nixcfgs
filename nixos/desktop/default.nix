@@ -11,13 +11,12 @@ _: {
     ./gnome-keyring.nix
     ./gui.nix
     ./i2c.nix
-    ./input
+    ./input.nix
     ./lanzaboote.nix
     ./laptop.nix
     ./networkmanager.nix
     ./packages.nix
     ./peripherals.nix
-    ./wayland.nix
     # keep-sorted end
   ];
   nixdefs.hardware.enable = true;

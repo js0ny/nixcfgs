@@ -93,6 +93,7 @@ in
       [
         pkgs.nixpaks.ayugram-desktop
         pkgs.nixpaks.materialgram
+        pkgs.telegram-desktop
       ]
     else
       [

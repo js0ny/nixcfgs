@@ -239,6 +239,9 @@
 			       'telega-database-dir (expand-file-name "main" telega-database-dir))
 			 (list "site"
 			       'telega-database-dir (expand-file-name "site" telega-database-dir))))
+  ;(telega-video-player-command (concat "mpv --keep-open=no --idle=no"
+  ;      (when telega-ffplay-media-timestamp
+  ;        (format " --start=%f" telega-ffplay-media-timestamp))))
   :config
   (add-to-list 'evil-emacs-state-modes 'telega-image-mode)
   (add-hook 'telega-root-mode-hook #'telega-notifications-mode)
@@ -261,3 +264,6 @@
   :custom
   (supertag-data-directory (expand-file-name "org-supertag" user-emacs-data))
   (org-supertag-sync-directories '("~/org/")))
+
+(use-package elfeed
+  :ensure t)

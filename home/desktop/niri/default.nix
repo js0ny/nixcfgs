@@ -33,12 +33,6 @@ in
       include "${xdg-config}/niri/local_test.kdl"
     '';
   };
-  # layout {
-  #   focus-ring {
-  #     width 0
-  #   }
-  # }
-  #
 
   systemd.user.tmpfiles.rules = [
     "f ${xdg-config}/niri/local_test.kdl 0644 ${config.home.username} users -"

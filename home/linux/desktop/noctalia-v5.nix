@@ -37,6 +37,13 @@ in
           builtin_ids = [
             "hyprland"
             "niri"
+            "labwc"
+            "mango"
+            "scroll"
+            "sway"
+          ];
+          community_ids = [
+            "vicinae"
           ];
         };
       };
@@ -121,4 +128,7 @@ in
     "f ${config.xdg.stateHome}/noctalia/.setup-complete 0644 ${config.home.username} users -"
   ];
   services.hyprpaper.enable = lib.mkForce false;
+  stylix.targets = {
+    vicinae.enable = false;
+  };
 }

@@ -113,25 +113,5 @@ lib.mkIf cfg.enable {
       eval "$(${lib.getExe' zsh-patina "zsh-patina"} activate)"
 
     '';
-    syntaxHighlighting = {
-      enable = false;
-      patterns = {
-        "rm -rf *" = "fg=blue,bold,bg=red";
-      };
-      highlighters = [
-        "main"
-        "pattern"
-        "brackets"
-        "root"
-      ];
-    };
   };
 }
-
-# TODO: Gated import
-# _paste-copy-using-wl-clipboard() {
-#   LBUFFER+="$(${lib.getExe' pkgs.wl-clipboard "wl-paste"} -n)"
-# }
-
-# zle -N _paste-copy-using-wl-clipboard
-# bindkey '^V' _paste-copy-using-wl-clipboard
