@@ -1,13 +1,9 @@
 # Reference: https://github.com/xremap/nix-flake/blob/master/docs/HOWTO.md
 {
   lib,
-  config,
   inputs,
   ...
 }:
-let
-  cfg = config.nixdots.keymaps.xremap;
-in
 {
   imports = [
     inputs.xremap-flake.homeManagerModules.default
@@ -19,7 +15,7 @@ in
   #     ALT-, M-
   #     WIN-, SUPER-, WINDOWS-
   services.xremap = {
-    enable = cfg.enable;
+    enable = true;
     withNiri = true;
   };
 

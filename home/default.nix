@@ -9,7 +9,6 @@
     ./devenvs
     ./filetype
     ./options
-    ./predefined-programs
     # keep-sorted end
   ];
 

@@ -5,9 +5,7 @@ in
 {
   nix = {
     settings = {
-      trusted-users = [
-        "${username}"
-      ];
+      trusted-users = [ username ];
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"

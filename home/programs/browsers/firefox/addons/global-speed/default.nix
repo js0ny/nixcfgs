@@ -1,4 +1,3 @@
-# TODO: Add options.nix and use it here.
 { config, ... }:
 let
   id = "{f4961478-ac79-4a18-87e9-d2fb8c0442c4}";

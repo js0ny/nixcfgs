@@ -105,10 +105,7 @@ in
         # 147: Keep playing videos in Picture-in-Picture when switching tabs
         "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = false;
       }
-      // (lib.optionalAttrs (pkgs.stdenv.isDarwin) baseprefs)
-      // (lib.optionalAttrs (open-webui.enable && open-webui.integrations.firefox) {
-        browser.ml.chat.provider = open-webui.url;
-      });
+      // (lib.optionalAttrs (pkgs.stdenv.isDarwin) baseprefs);
     };
   };
 }

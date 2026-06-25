@@ -50,7 +50,6 @@
     ./programs/media/picard.nix
     ./programs/mime.nix
     ./programs/oh-my-pi.nix
-    ./programs/pi-agent.nix
     ./programs/productivity/anki.nix
     ./programs/productivity/goldendict.nix
     ./programs/productivity/libreoffice.nix

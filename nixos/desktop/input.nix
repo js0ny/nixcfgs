@@ -1,6 +1,9 @@
-# This file only contains logic that give previledges to xremap user
-# See home-manager configs for detailed options
-_: {
+{ config, ... }:
+let
+
+  username = config.nixdots.user.name;
+in
+{
   services.libinput = {
     enable = true;
     mouse = {
@@ -25,4 +28,14 @@ _: {
     MatchUdevType=keyboard
     AttrKeyboardIntegration=internal
   '';
+
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
+  services.udev.extraRules = /* udev */ ''
+    KERNEL=="uinput", GROUP="input", TAG+="uaccess"
+  '';
+  users.users."${username}".extraGroups = [
+    "input"
+    "uinput"
+  ];
 }

@@ -22,6 +22,9 @@
     ./tldr.nix
     ./yazi
     ./zoxide.nix
+    ./iina.nix
+    ./obs-studio.nix
+    ./onlyoffice.nix
 
     # keep-sorted end
   ];
