@@ -11,7 +11,6 @@
     ../options
     ./core
     ./hardware
-    ./programs
     ./virtualisation
     # keep-sorted end
   ];

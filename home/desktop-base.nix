@@ -15,11 +15,8 @@
     ./packages/gui.nix
     ./programs
     ./programs/aichat.nix
-    ./programs/browsers/firefox
     # ./programs/walker.nix
     ./programs/browsers/url-dispatcher.nix
-    ./programs/dolphin
-    ./programs/editors/nvim
     ./programs/editors/vscode
     # ./programs/fsearch.nix # use vicinae
     ./programs/loupe.nix
@@ -36,18 +33,13 @@
     ./programs/productivity/sdcv.nix
     ./programs/productivity/sioyek
     ./programs/sandboxed.nix
-    ./programs/shell/bash.nix
     ./programs/shell/direnv.nix
-    ./programs/shell/fish
-    ./programs/shell/nu.nix
-    ./programs/shell/zsh.nix
     ./programs/social/discord.nix
     ./programs/social/qq.nix
     ./programs/social/telegram.nix
     ./programs/social/wechat.nix
     ./programs/terminals/kitty.nix
     ./programs/terminals/tmux.nix
-    ./programs/vicinae.nix
     # keep-sorted end
   ];
 

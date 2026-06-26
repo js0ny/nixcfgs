@@ -13,7 +13,6 @@ in
 
   home.packages = with pkgs; [
     # keep-sorted start
-
     awscli2
     blender
     calibre
@@ -22,11 +21,9 @@ in
     font-manager
     font-viewer
     fontforge
-    freecad
     gdb
     gh
     gimp
-    gtkwave
     icoutils
     inkscape
     jetbrains.datagrip
@@ -36,28 +33,17 @@ in
     kdePackages.kdenlive
     kdePackages.partitionmanager
     kdePackages.qttools
-    kicad
     krabby
     libguestfs
     llm-agents.agentsview
     llm-agents.ccusage
-    logisim-evolution
-    ltspice
     misc.apps.proton-drive-cli
     motrix-next
     nautilus
     newsflash
-    ngspice
     nmap
-    nur.repos.Ev357.helium
     octaveFull
-    openscad
-    openscad-lsp
-    picocom
     proton-pass
-    prusa-slicer
-    pulseview
-    qucs-s
     showtime
     tea
     texmacs

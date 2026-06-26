@@ -19,6 +19,19 @@
     # keep-sorted start
 
     # keep-sorted end
+    inputs.self.homeModules.obs-studio
+    inputs.self.homeModules.chromium
+    inputs.self.homeModules.firefox
+    inputs.self.homeModules.vicinae
+    inputs.self.homeModules.zsh
+    inputs.self.homeModules.fish
+    inputs.self.homeModules.nushell
+    inputs.self.homeModules.engineering
+    inputs.self.homeModules.electronics
+    inputs.self.homeModules.rime
+    inputs.self.homeModules.steam
+    inputs.self.homeModules.thunderbird
+    inputs.self.homeModules.dolphin
 
     # keep-sorted start
     inputs.betterfox-nix.modules.homeManager.betterfox
@@ -146,8 +159,5 @@
 
   nixdots.persist.home.directories = [
     ".config/sunshine"
-  ];
-
-  home.packages = with pkgs; [
   ];
 }

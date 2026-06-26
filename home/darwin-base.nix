@@ -9,7 +9,6 @@
     ./packages/gui.nix
     ./programs
     ./programs/aichat.nix
-    ./programs/browsers/firefox
     ./programs/cherry-studio.nix
     ./programs/darwin
     ./programs/editors/nvim
@@ -20,12 +19,7 @@
     ./programs/productivity/sdcv.nix
     ./programs/productivity/sioyek
     ./programs/protonvpn.nix
-    ./programs/rime
-    ./programs/shell/bash.nix
     ./programs/shell/direnv.nix
-    ./programs/shell/fish
-    ./programs/shell/nu.nix
-    ./programs/shell/zsh.nix
     ./programs/social/telegram.nix
     ./programs/terminals/ghostty.nix
     ./programs/terminals/zellij

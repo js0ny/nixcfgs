@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
+{ config, ... }:
 let
   name = config.nixdots.user.name;
 in
@@ -54,14 +49,6 @@ in
       fish_add_path /nix/var/nix/profiles/default/bin
     '';
     # preferAbbrs = true;
-  };
-  xdg.configFile."fish/functions" = {
-    source = ./functions;
-    recursive = true;
-  };
-  xdg.configFile."fish/completions" = {
-    source = ./completions;
-    recursive = true;
   };
   programs.zed-editor.extensions = [ "fish" ];
   nixdots.persist.home.files = [

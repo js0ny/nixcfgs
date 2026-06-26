@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 let
 
   username = config.nixdots.user.name;
@@ -38,4 +38,6 @@ in
     "input"
     "uinput"
   ];
+
+  environment.systemPackages = [ pkgs.libinput ];
 }

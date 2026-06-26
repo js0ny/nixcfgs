@@ -8,7 +8,6 @@
   imports = [
     # keep-sorted start
     ../../linux/desktop/plasma
-    ../../programs/dolphin
     ./calendar.nix
     ./input.nix
     ./keymaps.nix

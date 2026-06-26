@@ -1,5 +1,5 @@
 { lib, ... }:
-{
+rec {
   scanPaths =
     path:
     map (f: (path + "/${f}")) (
@@ -14,6 +14,20 @@
         ) (builtins.readDir path)
       )
     );
+  scanDefaultsRec =
+    path:
+    let
+      dirs = map (f: path + "/${f}") (
+        builtins.attrNames (
+          lib.attrsets.filterAttrs (_path: _type: _type == "directory") (builtins.readDir path)
+        )
+      );
+    in
+    lib.lists.concatMap (
+      dir:
+      (lib.lists.optionals (builtins.pathExists (dir + "/default.nix")) [ (dir + "/default.nix") ])
+      ++ (scanDefaultsRec dir)
+    ) dirs;
   toHanScript =
     lang:
     if lib.hasPrefix "zh-" lang then

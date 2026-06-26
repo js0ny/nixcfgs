@@ -21,8 +21,6 @@
     ./packages/flatpak.nix
     ./programs
     ./programs/bottles.nix
-    ./programs/browsers/chromium.nix
-    ./programs/browsers/firefox
     ./programs/browsers/qutebrowser.nix
     ./programs/cherry-studio.nix
     ./programs/easyeffects
@@ -59,12 +57,7 @@
     ./programs/pwa
     ./programs/qalculate.nix
     ./programs/quickemu.nix
-    ./programs/rime
-    ./programs/shell/bash.nix
     ./programs/shell/carapace.nix
-    ./programs/shell/fish
-    ./programs/shell/nu.nix
-    ./programs/shell/zsh.nix
     ./programs/swayimg.nix
     ./programs/terminals/alacritty.nix
     ./programs/terminals/ghostty.nix

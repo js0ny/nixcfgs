@@ -7,11 +7,6 @@
       ".config/blender"
       ".config/Proton Pass"
 
-      ".config/FreeCAD"
-      ".local/share/FreeCAD"
-
-      ".config/kicad"
-      ".local/share/kicad"
     ];
   };
 

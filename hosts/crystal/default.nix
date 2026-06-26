@@ -49,8 +49,6 @@
   ];
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
 
-  programs.fish.enable = true;
-
   services.scx = {
     enable = true;
     scheduler = "scx_lavd";

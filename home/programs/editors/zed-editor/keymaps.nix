@@ -41,6 +41,7 @@
           "space f c" = "zed::OpenSettings";
           "space f e c" = "zed::OpenSettings";
           "space f t" = "project_panel::ToggleFocus";
+          "space E" = "project_panel::ToggleFocus";
           "space c f" = "editor::Format";
           "space b D" = "workspace::CloseInactiveTabsAndPanes";
           "ctrl-w alt-h" = "workspace::ToggleLeftDock";

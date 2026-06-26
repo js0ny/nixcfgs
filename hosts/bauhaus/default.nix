@@ -15,6 +15,16 @@
     ./btrbk.nix
     # ./nixos-prebuild.nix
     ../../nixos/desktop
+    inputs.self.nixosModules.obs-studio
+    inputs.self.nixosModules.chromium
+    inputs.self.nixosModules.zsh
+    inputs.self.nixosModules.fish
+    inputs.self.nixosModules.rime
+    inputs.self.nixosModules.steam
+    inputs.self.nixosModules.firefox
+    inputs.self.nixosModules.vicinae
+    inputs.self.nixosModules.thunderbird
+    inputs.self.nixosModules.dolphin
     # ../../nixos/services/hermes-agent
     ../../nixos/services/sunshine.nix
   ];
@@ -26,8 +36,6 @@
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
 
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
-
-  programs.fish.enable = true;
 
   services.scx = {
     enable = true;
