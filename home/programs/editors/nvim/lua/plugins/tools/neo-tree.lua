@@ -15,7 +15,7 @@ return {
   ---@type neotree.Config
   config = {
     use_popups_for_input = false, -- Use `vim.ui.input()`
-    close_if_last_window = true,
+    close_if_last_window = false,
     popup_border_style = 'rounded',
     enable_git_status = true,
     enable_diagnostics = true,

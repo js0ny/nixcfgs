@@ -5,6 +5,7 @@ Environment Variable Configurations:
 * NIXD_DARWIN_HOST:      Overrides the default nix-darwin target hostname (defaults to the current system's hostname).
 * NIXD_INDEPENDENT_HOME: Flag (e.g. set to 1). When enabled, it evaluates home-manager options using the standalone mode rather than the host system's integrated module mode.
 * NIXD_HOME_TARGET:      Specifies the target configuration name in standalone mode (e.g. "user" or "user@hostname"). Only takes effect if NIXD_INDEPENDENT_HOME is enabled. Defaults to "$USER@<hostname>".
+* NIXD_ENABLE_NIXVIM:   Flag (e.g. set to 1). When enabled, it evaluates the nixvim configuration options from the Flake.
 --]]
 local function get_hostname()
   local hostname = vim.fn.hostname()
@@ -54,6 +55,14 @@ else
 end
 
 options['flake-parts'] = { expr = BASE_EXPR .. '.debug.options' }
+
+if os.getenv('NIXD_ENABLE_NIXVIM') then
+  options['nixvim'] =
+    { expr = BASE_EXPR .. '.inputs.nixvim.nixvimConfigurations.aarch64-linux.default.options' }
+  if os.getenv('NIXD_NVIM_DEBUG') then
+    print(options['nixvim'].expr)
+  end
+end
 
 if os.getenv('NIXD_NVIM_DEBUG') then
   print(nixos_home_expr)
