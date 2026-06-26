@@ -209,6 +209,7 @@
       url = "git+ssh://forgejo@git.js0ny.net/js0ny/bindeps.git?lfs=1";
       flake = false;
     };
+    nvimdots.url = "github:js0ny/nvimdots";
     # }}}
   };
 }

@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  lib,
+  inputs,
   ...
 }:
 let
@@ -9,68 +9,19 @@ let
     "v" = "nvim";
     "g" = "nvim +Neogit";
   };
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   snippets = (import ../lsp-snippets { inherit pkgs config; }).out;
-  withImg = config.programs.kitty.enable || config.programs.ghostty.enable;
   appname = "nvim";
-  dots = config.nixdots.core.dots;
 in
 {
-  imports = [ ../. ];
-  programs.neovim = {
-    enable = true;
-    sideloadInitLua = true;
-    defaultEditor = true;
-    withNodeJs = false;
-    withPerl = false;
-    withRuby = false;
-    withPython3 = false;
-    extraPackages =
-      with pkgs;
-      [
-        # lua devenvs (luajit)
-        lua5_1
-        lua51Packages.luarocks
-        lua-language-server
-        stylua
-        # tree-sitter
-        tree-sitter
-        # copilot-lua
-        nodejs-slim_26
-        # snacks.image
-        pkg-config
-        markdown-oxide
-        # cli deps
-        ripgrep
-        ast-grep
-        # cc
-        clang
-      ]
-      ++ (lib.optionals withImg) (
-        with pkgs;
-        [
-          mermaid-cli
-          imagemagick
-          tectonic
-          ghostscript_headless
-        ]
-      );
-    extraLuaPackages =
-      ps:
-      [
-        ps.tree-sitter-cli
-      ]
-      ++ lib.optionals withImg [
-        ps.magick
-      ];
-  };
+  imports = [
+    ../.
+    inputs.nvimdots.homeModules.default
+  ];
 
   nixdots.devenvs.lua.enable = true;
 
   # home.packages = with pkgs; [lua-language-server];
   misc.shellAliases = nvimAlias;
-
-  xdg.configFile."${appname}".source = mkSymlink "${dots}/home/programs/editors/nvim";
 
   xdg.configFile."lsp-snippets".source = snippets;
 
