@@ -14,7 +14,8 @@
     ./vars.nix
     ./btrbk.nix
     # ./nixos-prebuild.nix
-    ../../nixos/desktop
+    ../../nixos
+    inputs.self.nixosModules.desktop
     inputs.self.nixosModules.obs-studio
     inputs.self.nixosModules.chromium
     inputs.self.nixosModules.zsh
@@ -30,7 +31,7 @@
     inputs.self.nixosModules.libvirt
     inputs.self.nixosModules.sshd
     # ../../nixos/services/hermes-agent
-    ../../nixos/services/sunshine.nix
+    inputs.self.nixosModules.sunshine
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

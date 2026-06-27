@@ -7,7 +7,7 @@
 }:
 {
   imports = [
-    ../../home/darwin-base.nix
+    inputs.self.homeModules.darwin
 
     # keep-sorted start
     ./vars.nix

@@ -15,9 +15,10 @@
     ./restic.nix
     ./vars.nix
     # ./nixos-prebuild.nix
-    ../../nixos/desktop
+    ../../nixos
+    inputs.self.nixosModules.desktop
     # ../../nixos/services/hermes-agent
-    ../../nixos/services/sunshine.nix
+    inputs.self.nixosModules.sunshine
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

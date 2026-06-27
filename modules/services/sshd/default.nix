@@ -24,7 +24,7 @@
       cfg = config.nixdots.services.sshd;
       portStr = config.nixdefs.endpoints.ssh.portStr;
     in
-    lib.mkIf cfg {
+    lib.mkIf cfg.enable {
       services.openssh = {
         enable = true;
         extraConfig = /* ssh_config */ ''

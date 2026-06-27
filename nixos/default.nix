@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 {
   imports = [
     # keep-sorted start
@@ -7,7 +7,7 @@
     ../common/stylix.nix
     ../definitions
     ../options
-    ./hardware
+    inputs.self.nixosModules.hardware
     # keep-sorted end
   ];
 

@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 {
   imports = [
-    ../../home/wsl.nix
+    inputs.self.homeModules.wsl
     # keep-sorted start
 
     ./vars.nix

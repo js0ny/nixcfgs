@@ -10,7 +10,8 @@
 }:
 {
   imports = [
-    ../../nixos/server
+    ../../nixos
+    inputs.self.nixosModules.server
     # Host-specific configs
     ./hardware-configuration.nix
     ./vars.nix
@@ -19,9 +20,6 @@
     # ../../nixos/services/affine.nix
     # keep-sorted start
     ../../nixos/services/authelia
-    ../../nixos/services/bentopdf.nix
-    ../../nixos/services/cloudflare.nix
-    ../../nixos/services/fail2ban.nix
     ../../nixos/services/fast-note-sync.nix
     ../../nixos/services/forgejo-runner.nix
     ../../nixos/services/forgejo.nix
@@ -52,6 +50,9 @@
     ../../nixos/services/valkey.nix
     ../../nixos/services/vikunja.nix
     ./static/flux.nix
+    inputs.self.nixosModules.bentopdf
+    inputs.self.nixosModules.cloudflare
+    inputs.self.nixosModules.fail2ban
     # keep-sorted end
   ];
 

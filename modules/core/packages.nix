@@ -1,5 +1,4 @@
 {
-
   flake.nixosModules.core =
     { pkgs, ... }:
     {
@@ -9,9 +8,9 @@
         curl
         dig
         ethtool
-        git
         file
         ghostty.terminfo
+        git
         iw
         kitty.kitten
         kitty.terminfo
@@ -23,6 +22,7 @@
         wget
         # keep-sorted end
       ];
+
       # keep-sorted start
       networking.iproute2.enable = true;
       programs.iftop.enable = true;
@@ -42,7 +42,7 @@
         withPython3 = false;
         withRuby = false;
       };
-      # minimal alias for root environment
+
       environment.shellAliases = {
         grep = "grep --color=auto";
         ls = "ls --color=auto";
@@ -50,6 +50,7 @@
         la = "ls -a";
       };
     };
+
   flake.darwinModules.core = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       iproute2mac

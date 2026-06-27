@@ -14,11 +14,12 @@
     ./disko.nix
     ./vars.nix
 
-    ../../nixos/server
+    ../../nixos
+    inputs.self.nixosModules.server
     inputs.srvos.nixosModules.hardware-hetzner-cloud
-    ../../nixos/services/cloudflare.nix
+    inputs.self.nixosModules.cloudflare
     ../../nixos/services/matrix
-    ../../nixos/services/fail2ban.nix
+    inputs.self.nixosModules.fail2ban
   ];
 
   home-manager = {
