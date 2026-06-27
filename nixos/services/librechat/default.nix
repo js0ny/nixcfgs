@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   secrets,
   ...
 }:
@@ -18,8 +19,8 @@ let
 in
 {
   imports = [
-    ../mongodb.nix
-    ../meilisearch.nix
+    inputs.self.nixosModules.mongodb
+    inputs.self.nixosModules.meilisearch
   ];
   sops.secrets = {
     librechat_creds_key = { inherit sopsFile; };
