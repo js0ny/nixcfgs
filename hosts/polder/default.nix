@@ -32,27 +32,27 @@
     ../../nixos/services/librechat
     ../../nixos/services/litellm
     ../../nixos/services/lobehub.nix
-    ../../nixos/services/miniflux.nix
     ../../nixos/services/mongodb.nix
     ../../nixos/services/navidrome.nix
     ../../nixos/services/nextcloud.nix
-    ../../nixos/services/opengist.nix
     ../../nixos/services/paperless.nix
-    ../../nixos/services/postgresql.nix
     ../../nixos/services/prometheus
-    ../../nixos/services/radicale.nix
-    ../../nixos/services/rclone.nix
     ../../nixos/services/rsshub.nix
     ../../nixos/services/searxng.nix
     ../../nixos/services/sub2api.nix
     ../../nixos/services/telegram-inline-llm-bot.nix
-    ../../nixos/services/uptime-kuma.nix
-    ../../nixos/services/valkey.nix
     ../../nixos/services/vikunja.nix
     ./static/flux.nix
     inputs.self.nixosModules.bentopdf
     inputs.self.nixosModules.cloudflare
     inputs.self.nixosModules.fail2ban
+    inputs.self.nixosModules.miniflux
+    inputs.self.nixosModules.opengist
+    inputs.self.nixosModules.postgresql
+    inputs.self.nixosModules.radicale
+    inputs.self.nixosModules.rclone
+    inputs.self.nixosModules.uptime-kuma
+    inputs.self.nixosModules.valkey
     # keep-sorted end
   ];
 
