@@ -19,12 +19,8 @@
     # ./services/actual.nix
     # ../../nixos/services/affine.nix
     # keep-sorted start
-    ../../nixos/services/authelia
-    ../../nixos/services/hermes-agent
-    ../../nixos/services/jellyfin
-    ../../nixos/services/librechat
-    ../../nixos/services/litellm
     ./static/flux.nix
+    inputs.self.nixosModules.authelia
     inputs.self.nixosModules.bentopdf
     inputs.self.nixosModules.cloudflare
     inputs.self.nixosModules.fail2ban
@@ -34,7 +30,11 @@
     inputs.self.nixosModules.garage
     inputs.self.nixosModules.gluetun
     inputs.self.nixosModules.grafana
+    inputs.self.nixosModules.hermes-agent
+    inputs.self.nixosModules.jellyfin
     inputs.self.nixosModules.karakeep
+    inputs.self.nixosModules.librechat
+    inputs.self.nixosModules.litellm
     inputs.self.nixosModules.lobehub
     inputs.self.nixosModules.miniflux
     inputs.self.nixosModules.mongodb
@@ -43,6 +43,7 @@
     inputs.self.nixosModules.opengist
     inputs.self.nixosModules.paperless
     inputs.self.nixosModules.postgresql
+    inputs.self.nixosModules.prometheus
     inputs.self.nixosModules.radicale
     inputs.self.nixosModules.rclone
     inputs.self.nixosModules.rsshub

@@ -18,7 +18,7 @@
     inputs.self.nixosModules.server
     inputs.srvos.nixosModules.hardware-hetzner-cloud
     inputs.self.nixosModules.cloudflare
-    ../../nixos/services/matrix
+    inputs.self.nixosModules.matrix
     inputs.self.nixosModules.fail2ban
   ];
 
