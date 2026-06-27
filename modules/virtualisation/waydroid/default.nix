@@ -1,0 +1,32 @@
+{
+  flake.nixosModules.waydroid =
+    {
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      virtualisation.waydroid.enable = true;
+      # waydroid-script: Tool to install libhoudini (arm support), magisk, ...
+      # usage: sudo waydroid-script
+      environment.systemPackages = [
+        pkgs.nur.repos.ataraxiasjel.waydroid-script
+        pkgs.waydroid-helper
+      ];
+
+      networking = {
+        firewall.trustedInterfaces = [ "waydroid0" ];
+        nat.enable = true;
+      };
+
+      systemd = {
+        packages = [ pkgs.waydroid-helper ];
+        services.waydroid-mount = {
+          wantedBy = [ "multi-user.target" ];
+          serviceConfig = {
+            ExecStart = "${lib.getExe pkgs.waydroid-helper} --start-mount";
+          };
+        };
+      };
+    };
+}

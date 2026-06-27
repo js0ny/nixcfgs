@@ -67,14 +67,10 @@ in
       # keep-sorted start
 
       (ouch.override { enableUnfree = true; })
-      age
       aria2
       chezmoi
       curlie
       ddgr
-      deploy-rs
-      duf
-      dust
       fd
       git
       glow
@@ -86,15 +82,12 @@ in
       localPkgs.rename-zero-pad
       miniserve
       moor
-      openssl
       p7zip
       pass
       procs
       rar
       rclone
       rip2
-      ripgrep
-      srm
       unar # For Non UTF-8 archives like gbk or sjis
       wget
       zoxide

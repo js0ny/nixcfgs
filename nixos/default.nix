@@ -3,15 +3,11 @@
   imports = [
     # keep-sorted start
     ../common/hm.nix
-    ../common/nix-helper.nix
-    ../common/nix.nix
     ../common/sops.nix
     ../common/stylix.nix
     ../definitions
     ../options
-    ./core
     ./hardware
-    ./virtualisation
     # keep-sorted end
   ];
 

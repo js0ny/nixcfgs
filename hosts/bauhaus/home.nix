@@ -32,6 +32,7 @@
     inputs.self.homeModules.steam
     inputs.self.homeModules.thunderbird
     inputs.self.homeModules.dolphin
+    inputs.self.homeModules.core
 
     # keep-sorted start
     inputs.betterfox-nix.modules.homeManager.betterfox

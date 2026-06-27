@@ -1,7 +1,7 @@
 {
-  config,
   pkgs,
   lib,
+  config,
   secrets,
   ...
 }:
@@ -11,7 +11,18 @@ let
   sshKeys = config.nixdefs.misc.ssh.sshKeys;
 in
 {
-  imports = [ "${secrets}/nixos/passwd.nix" ];
+  # TODO: Use scanPaths
+  imports = [
+    "${secrets}/nixos/passwd.nix"
+    ./nix-helper.nix
+    ./nix.nix
+    ./nixos/compat-tools.nix
+    ./nixos/impermanence.nix
+    ./nixos/kernel-hardening.nix
+    ./nixos/sops.nix
+    ./nixos/styles.nix
+    ./nixos/tuned.nix
+  ];
   time.timeZone = builtins.head config.nixdots.core.timezones;
 
   # Select internationalisation properties.
@@ -54,19 +65,20 @@ in
     "/var/lib/systemd/coredump"
   ];
 
+  # provides `/bin/bash` compatibility
+  services.envfs.enable = true;
+
+  users.users.root.shell = lib.getExe pkgs.zsh;
+
+  environment.variables = import ./do-not-track-vars.nix;
   environment.sessionVariables = {
     # Default value: FRSXMK, where S indicates "Chops long lines"
     SYSTEMD_LESS = "FRXMK";
   };
 
-  environment.variables = import ../../common/do-not-track-vars.nix;
-
   environment.localBinInPath = true;
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-
-  # provides `/bin/bash` compatibility
-  services.envfs.enable = true;
 
   security.sudo.enable = false;
   security.sudo-rs = {
@@ -77,5 +89,12 @@ in
     execWheelOnly = true;
   };
 
-  users.users.root.shell = lib.getExe pkgs.zsh;
+  networking.nftables = {
+    enable = true;
+  };
+  networking.firewall.backend = "nftables";
+
+  environment.systemPackages = with pkgs; [
+    iptables-nftables-compat
+  ];
 }

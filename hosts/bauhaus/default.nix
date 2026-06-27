@@ -25,6 +25,10 @@
     inputs.self.nixosModules.vicinae
     inputs.self.nixosModules.thunderbird
     inputs.self.nixosModules.dolphin
+    inputs.self.nixosModules.core
+    inputs.self.nixosModules.podman
+    inputs.self.nixosModules.libvirt
+    inputs.self.nixosModules.sshd
     # ../../nixos/services/hermes-agent
     ../../nixos/services/sunshine.nix
   ];
