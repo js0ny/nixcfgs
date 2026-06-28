@@ -1,0 +1,88 @@
+{
+  flake.nixosModules.flatpak = _: {
+    services.flatpak.enable = true;
+  };
+  flake.homeModules.flatpak =
+    # https://github.com/gmodena/nix-flatpak
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      electronApps = [
+        "com.getpostman.Postman"
+        # "com.ticktick.TickTick"
+      ];
+
+      waylandFlags = "\${NIXOS_OZONE_WL:+\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}";
+
+      appWrappers = lib.listToAttrs (
+        map (appid: {
+          name = "flatpak/exports/bin/${appid}";
+          value = {
+            text = /* bash */ ''
+              #!/bin/sh
+              exec flatpak run ${appid} ${waylandFlags} "$@"
+            '';
+            executable = true;
+            force = true;
+          };
+        }) electronApps
+      );
+      cfg = config.nixdots.features.flatpak;
+    in
+    lib.mkIf cfg.enable {
+      services.flatpak.enable = true;
+      services.flatpak.remotes = [
+        {
+          name = "flathub";
+          location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+        }
+      ];
+      services.flatpak.packages = [ ];
+      services.flatpak.overrides = {
+        global = {
+          Context = {
+            filesystems = [
+              "/run/current-system/sw/share/fonts:ro"
+              "xdg-config/fontconfig:ro"
+              # If user font is set, it is required to access /nix/store
+              # since flatpak apps cannot read ~/.config/fontconfig/conf.d/*
+              # TODO: This is a bad practice, trying to look for a better solution
+              "/nix/store:ro"
+              "xdg-data/fonts:ro"
+            ];
+          };
+        };
+        "com.qq.QQ".Context.sockets = [ "x11" ];
+        "com.tencent.WeChat" = {
+          Context.sockets = [ "x11" ];
+          Environment = {
+            # WeChat does not support wayland & wayland-ime
+            QT_IM_MODULE = "fcitx";
+          };
+        };
+        "md.obsidian.Obsidian".Context.sockets = [ "wayland" ];
+        "com.ticktick.Ticktick".Context.sockets = [ "wayland" ];
+        "com.getpostman.Postman".Context = {
+          persistent = [ "Postman" ]; # Don't create `~/Postman` folder under home
+          sockets = [ "wayland" ];
+        };
+      };
+      xdg.dataFile = appWrappers;
+      home.activation.patchFlatpakDesktopFiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        ${lib.concatMapStringsSep "\n" (appid: /* bash */ ''
+          DESKTOP_FILE="${config.xdg.dataHome}/flatpak/exports/share/applications/${appid}.desktop"
+          if [ -f "$DESKTOP_FILE" ]; then
+            $DRY_RUN_CMD ${lib.getExe pkgs.gnused} -i "s|^\(Exec=.*${appid}\)|\\1 ${waylandFlags}|g" "$DESKTOP_FILE"
+          fi
+        '') electronApps}
+      '';
+      nixdots.persist.nosnap.home.directories = [
+        ".local/share/flatpak"
+        ".var"
+      ];
+    };
+}

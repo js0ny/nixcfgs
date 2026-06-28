@@ -2,18 +2,18 @@
   lib,
   config,
   myLib,
+  inputs,
   ...
 }:
 {
   imports = [
     # keep-sorted start
 
-    ./linux-base.nix
     ../../modules/desktop/home/niri/module.nix
     ../../modules/packages/devtools.nix
-    ../../modules/packages/flatpak.nix
     ../../modules/packages/gui.nix
     ../../modules/programs/gaming/emulators/retroarch.nix
+    ./linux-base.nix
     # keep-sorted end
   ];
 

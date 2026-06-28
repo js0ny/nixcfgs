@@ -15,7 +15,7 @@
   flake.nixosModules.desktop-packages = import ./packages.nix;
   flake.nixosModules.peripherals = import ./peripherals.nix;
 
-  flake.nixosModules.desktop = _: {
+  flake.nixosModules.desktop = { inputs, ... }: {
     imports = [
       ./audio.nix
       ./base.nix
@@ -32,13 +32,18 @@
       ./networkmanager.nix
       ./packages.nix
       ./peripherals.nix
+      inputs.self.nixosModules.cosmic
+      inputs.self.nixosModules.hyprland
+      inputs.self.nixosModules.mangowc
+      inputs.self.nixosModules.niri
+      inputs.self.nixosModules.plasma
+      inputs.self.nixosModules.sway
     ];
     nixdefs.hardware.enable = true;
     programs.appimage.enable = true;
   };
 
   flake.homeModules.plasma = import ./home/plasma/module.nix;
-  flake.homeModules.gnome = import ./home/gnome/module.nix;
   flake.homeModules.hyprland = import ./home/hyprland/module.nix;
   flake.homeModules.niri = import ./home/niri/module.nix;
 }
