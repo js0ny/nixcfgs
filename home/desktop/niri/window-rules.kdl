@@ -17,6 +17,8 @@ window-rule {
     match app-id="^com.ayugram.desktop$" title="^m|Media viewer$"
     match app-id="^io.github.kukuruzka165.materialgram$" title="^m|Media viewer$"
     match app-id="^wechat$" title="^图片和视频$"
+    match app-id="^steam$" title="^录像及截图$"
+    match app-id="^steam$" title="^Recordings & Screenshots$"
 
     // Popup Windows
     match app-id="^dev.zed.Zed$" title="^Zed — Settings$"
@@ -69,7 +71,6 @@ window-rule {
 window-rule {
     match app-id="^firefox$" title="^Picture-in-Picture$"
     match title="^Picture in picture$"
-    match app-id="^steam$" title="^Recordings & Screenshots$"
     match app-id="^steam$" title="^(Friends List)|(好友列表)$"
     open-floating true
     opacity 0.800000

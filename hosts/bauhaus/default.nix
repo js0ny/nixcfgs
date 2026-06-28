@@ -15,6 +15,7 @@
     ./btrbk.nix
     # ./nixos-prebuild.nix
     ../../nixos
+    ../../nixos/services/ollama.nix
     inputs.self.nixosModules.desktop
     inputs.self.nixosModules.obs-studio
     inputs.self.nixosModules.chromium
@@ -30,6 +31,7 @@
     inputs.self.nixosModules.podman
     inputs.self.nixosModules.libvirt
     inputs.self.nixosModules.sshd
+    inputs.self.nixosModules.tailscale
     # ../../nixos/services/hermes-agent
     inputs.self.nixosModules.sunshine
   ];

@@ -46,7 +46,10 @@ in
       sshd.enable = true;
       ollama = {
         enable = true;
-        models = [ "bge-m3" ];
+        models = [
+          "bge-m3"
+          "qwen3.6:27b"
+        ];
       };
     };
     networking.nftables.enable = true;

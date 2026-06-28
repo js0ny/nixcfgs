@@ -1,6 +1,9 @@
-{ ... }:
 {
-  services.livekit = {
-    enable = true;
-  };
+  flake.nixosModules.livekit =
+    { ... }:
+    {
+      services.livekit = {
+        enable = true;
+      };
+    };
 }

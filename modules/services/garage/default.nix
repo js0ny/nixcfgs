@@ -1,85 +1,88 @@
-# NOTE: Human Intervention required on first setup
-/*
-  sudo garage layout status
-  sudo garage layout assign <ID> -z dc1 -c 50G
-  sudo garage layout show
-  sudo garage layout apply --version 1
-*/
 {
-  pkgs,
-  lib,
-  config,
-  secrets,
-  ...
-}:
-let
-  ep = config.nixdefs.endpoints;
-  persist = config.nixdots.persist;
-  # garage requires dirs to sit in the same fs
-  stateDir = if persist.enable then "${persist.path}/var/lib/garage" else "/var/lib/garage";
-  dirs = {
-    meta = "${stateDir}/meta";
-    data = "${stateDir}/data";
-    snapshots = "${stateDir}/snapshots";
-  };
-  serviceUser = config.systemd.services.garage.serviceConfig.User;
-  serviceGroup = config.systemd.services.garage.serviceConfig.Group;
-  pkg = pkgs.garage_2;
-  inherit (lib) mkDefault mkForce;
-in
-{
-  sops.secrets = {
-    # openssl rand -hex 32
-    garage_rpc_secret = {
-      owner = serviceUser;
-      sopsFile = secrets + /garage.yaml;
-    };
-  };
-  services.garage = {
-    package = pkg;
-    # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/
-    settings = {
-      rpc_bind_addr = "[::]:${ep.garage-rpc.portStr}";
-      rpc_secret_file = config.sops.secrets.garage_rpc_secret.path;
-      s3_api = {
-        s3_region = "garage";
-        api_bind_addr = "[::]:${ep.garage-s3.portStr}";
+  flake.nixosModules.garage =
+    # NOTE: Human Intervention required on first setup
+    /*
+      sudo garage layout status
+      sudo garage layout assign <ID> -z dc1 -c 50G
+      sudo garage layout show
+      sudo garage layout apply --version 1
+    */
+    {
+      pkgs,
+      lib,
+      config,
+      secrets,
+      ...
+    }:
+    let
+      ep = config.nixdefs.endpoints;
+      persist = config.nixdots.persist;
+      # garage requires dirs to sit in the same fs
+      stateDir = if persist.enable then "${persist.path}/var/lib/garage" else "/var/lib/garage";
+      dirs = {
+        meta = "${stateDir}/meta";
+        data = "${stateDir}/data";
+        snapshots = "${stateDir}/snapshots";
       };
-      s3_web = {
-        bind_addr = "[::]:${ep.garage-web.portStr}";
-        root_domain = mkDefault ".web.garage.localhost";
+      serviceUser = config.systemd.services.garage.serviceConfig.User;
+      serviceGroup = config.systemd.services.garage.serviceConfig.Group;
+      pkg = pkgs.garage_2;
+      inherit (lib) mkDefault mkForce;
+    in
+    {
+      sops.secrets = {
+        # openssl rand -hex 32
+        garage_rpc_secret = {
+          owner = serviceUser;
+          sopsFile = secrets + /garage.yaml;
+        };
       };
-      metadata_dir = dirs.meta;
-      data_dir = dirs.data;
-      metadata_snapshots_dir = dirs.snapshots;
-      replication_factor = mkDefault 1;
-      db_engine = mkDefault "lmdb";
+      services.garage = {
+        package = pkg;
+        # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/
+        settings = {
+          rpc_bind_addr = "[::]:${ep.garage-rpc.portStr}";
+          rpc_secret_file = config.sops.secrets.garage_rpc_secret.path;
+          s3_api = {
+            s3_region = "garage";
+            api_bind_addr = "[::]:${ep.garage-s3.portStr}";
+          };
+          s3_web = {
+            bind_addr = "[::]:${ep.garage-web.portStr}";
+            root_domain = mkDefault ".web.garage.localhost";
+          };
+          metadata_dir = dirs.meta;
+          data_dir = dirs.data;
+          metadata_snapshots_dir = dirs.snapshots;
+          replication_factor = mkDefault 1;
+          db_engine = mkDefault "lmdb";
+        };
+        extraEnvironment = {
+          GARAGE_LOG_TO_JOURNALD = "true";
+        };
+      };
+      users.users.garage = {
+        isSystemUser = true;
+        group = "garage";
+        description = "Garage S3 storage user";
+      };
+      users.groups.garage = { };
+
+      systemd.services.garage.serviceConfig = {
+        DynamicUser = mkForce false;
+        User = "garage";
+        Group = "garage";
+        StateDirectory = if persist.enable then stateDir else "garage";
+        ReadWritePaths = [ stateDir ];
+      };
+
+      systemd.tmpfiles.rules = [
+        "d ${stateDir} 0755 ${serviceUser} ${serviceGroup} -"
+        "d ${dirs.meta} 0755 ${serviceUser} ${serviceGroup} -"
+        "d ${dirs.data} 0755 ${serviceUser} ${serviceGroup} -"
+        "d ${dirs.snapshots} 0755 ${serviceUser} ${serviceGroup} -"
+      ];
+
+      environment.systemPackages = [ pkg ];
     };
-    extraEnvironment = {
-      GARAGE_LOG_TO_JOURNALD = "true";
-    };
-  };
-  users.users.garage = {
-    isSystemUser = true;
-    group = "garage";
-    description = "Garage S3 storage user";
-  };
-  users.groups.garage = { };
-
-  systemd.services.garage.serviceConfig = {
-    DynamicUser = mkForce false;
-    User = "garage";
-    Group = "garage";
-    StateDirectory = if persist.enable then stateDir else "garage";
-    ReadWritePaths = [ stateDir ];
-  };
-
-  systemd.tmpfiles.rules = [
-    "d ${stateDir} 0755 ${serviceUser} ${serviceGroup} -"
-    "d ${dirs.meta} 0755 ${serviceUser} ${serviceGroup} -"
-    "d ${dirs.data} 0755 ${serviceUser} ${serviceGroup} -"
-    "d ${dirs.snapshots} 0755 ${serviceUser} ${serviceGroup} -"
-  ];
-
-  environment.systemPackages = [ pkg ];
 }

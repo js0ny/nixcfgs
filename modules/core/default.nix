@@ -15,7 +15,16 @@
     home.sessionVariables = import ./do-not-track-vars.nix;
     imports = [
       ./nix.nix
+      ./home/antidots.nix
+      ./home/configuration.nix
+      ./home/cross-platform.nix
+      ./home/gpg.nix
+      ./home/homebrew.nix
       ./home/sops.nix
+      ./home/styles.nix
+      ./home/system-alias.nix
+      ./home/system-plist.nix
+      ./home/xdg-dirs.nix
     ];
   };
 

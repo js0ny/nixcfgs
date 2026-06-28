@@ -5,7 +5,6 @@
     ../common/sops.nix
     ../definitions
     ../options
-    ./core
     ./devenvs
     ./filetype
     ./options

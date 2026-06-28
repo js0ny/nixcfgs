@@ -1,11 +1,14 @@
 {
-  config,
-  lib,
-  ...
-}:
-let
-  cfg = config.nixdots.services.syncthing;
-in
-lib.mkIf cfg.enable {
-  services.syncthing.enable = true;
+  flake.nixosModules.syncthing =
+    {
+      config,
+      lib,
+      ...
+    }:
+    let
+      cfg = config.nixdots.services.syncthing;
+    in
+    lib.mkIf cfg.enable {
+      services.syncthing.enable = true;
+    };
 }
