@@ -8,4 +8,7 @@
     };
     programs.uwsm.enable = true;
   };
+  flake.homeModules.hyprland = {
+    imports = [ ./module.nix ];
+  };
 }

@@ -10,4 +10,7 @@
       kde-gtk-config
     ];
   };
+  flake.homeModules.plasma = {
+    imports = [ ./module.nix ];
+  };
 }

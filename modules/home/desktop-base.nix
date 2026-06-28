@@ -9,11 +9,11 @@
   imports = [
     # keep-sorted start
 
-    ../../modules/desktop/home/niri/module.nix
     ../../modules/packages/devtools.nix
     ../../modules/packages/gui.nix
     ../../modules/programs/gaming/emulators/retroarch.nix
     ./linux-base.nix
+    inputs.self.homeModules.niri
     # keep-sorted end
   ];
 
