@@ -1,7 +1,16 @@
 {
   flake.homeModules.vibe-coding =
-    { myLib, ... }:
+    { inputs, pkgs, ... }:
     {
-      imports = myLib.scanPaths ./.;
+      imports = [
+        ./claude-code.nix
+        ./codex.nix
+        ./oh-my-pi.nix
+        inputs.self.homeModules.opencode
+      ];
+      home.packages = with pkgs.llm-agents; [
+        agentsview
+        ccusage
+      ];
     };
 }

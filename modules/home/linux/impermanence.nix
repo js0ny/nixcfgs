@@ -11,16 +11,16 @@ lib.mkMerge [
     home.persistence."/persist" = {
       hideMounts = true;
       allowTrash = true;
-      directories = cfg.home.directories;
-      files = cfg.home.files;
+      directories = lib.unique cfg.home.directories;
+      files = lib.unique cfg.home.files;
     };
   })
   (lib.mkIf cfg.nosnap.enable {
     home.persistence."${cfg.nosnap.path}" = {
       hideMounts = true;
       allowTrash = true;
-      directories = cfg.nosnap.home.directories;
-      files = cfg.nosnap.home.files;
+      directories = lib.unique cfg.nosnap.home.directories;
+      files = lib.unique cfg.nosnap.home.files;
     };
   })
 ]

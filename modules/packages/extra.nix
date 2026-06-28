@@ -35,8 +35,6 @@ in
     kdePackages.qttools
     krabby
     libguestfs
-    llm-agents.agentsview
-    llm-agents.ccusage
     misc.apps.proton-drive-cli
     motrix-next
     nautilus

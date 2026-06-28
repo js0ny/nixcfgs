@@ -18,6 +18,15 @@
     ../../modules/programs/gaming/minecraft.nix
     ./desktop-base.nix
     inputs.self.homeModules.flatpak
+    inputs.self.homeModules.modern-unix
+    inputs.self.homeModules.vcs-extra
+    inputs.self.homeModules.vibe-coding
+    inputs.self.homeModules.neovide
+    inputs.self.homeModules.neovim
+    inputs.self.homeModules.emacs
+    inputs.self.homeModules.vscode
+    inputs.self.homeModules.zed-editor
+    inputs.self.homeModules.editors
     # keep-sorted end
   ];
 

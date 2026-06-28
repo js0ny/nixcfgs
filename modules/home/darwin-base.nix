@@ -12,7 +12,6 @@
     (myLib.scanPathsRec ../../modules/home/programs)
     ../../modules/home/programs/aichat.nix
     ../../modules/home/programs/cherry-studio.nix
-    ../../modules/home/programs/editors/nvim/module.nix
     ../../modules/home/programs/karabiner.nix
     ../../modules/home/programs/nix-index.nix
     ../../modules/home/programs/productivity/anki.nix
