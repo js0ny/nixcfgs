@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, inputs, myLib, ... }:
 {
   imports = [
     # keep-sorted start
@@ -6,7 +6,7 @@
     (myLib.scanPathsRec ../../modules/home/programs)
     ../../modules/home/programs/aichat.nix
     ../../modules/home/programs/cherry-studio.nix
-    ../../modules/home/programs/darwin/module.nix
+    (myLib.scanPathsRec ../../modules/home/darwin)
     ../../modules/home/programs/editors/nvim/module.nix
     ../../modules/home/programs/karabiner.nix
     ../../modules/home/programs/nix-index.nix
@@ -22,7 +22,6 @@
     ../modules/packages/devtools.nix
     ../modules/packages/gui.nix
     # ../../modules/home/programs/media/mpv.nix
-    ./darwin
     # keep-sorted end
     inputs.secrets.darwinModules.default
   ];

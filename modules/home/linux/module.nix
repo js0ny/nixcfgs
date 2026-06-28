@@ -6,8 +6,8 @@
 }:
 {
   imports = [
-    ../.
-    ../../modules/filetype/linux.nix
+    ../../home
+    ../../filetype/linux.nix
     ./gnome-keyring.nix
     ./impermanence.nix
     ./xremap/spcl.nix
