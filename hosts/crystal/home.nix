@@ -10,7 +10,7 @@
     ./vars.nix
     ../../home/desktop-extra.nix
     ../../home/desktop/plasma
-    ../../home/gaming/steam/sts2.nix
+    ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 
     # keep-sorted end

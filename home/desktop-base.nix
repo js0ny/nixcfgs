@@ -7,11 +7,11 @@
   imports = [
     # keep-sorted start
 
+    ../../modules/programs/gaming/emulators/retroarch.nix
     ../modules/packages/devtools.nix
     ../modules/packages/flatpak.nix
     ../modules/packages/gui.nix
     ./desktop/niri
-    ./gaming/emulators/retroarch.nix
     ./linux-base.nix
     ./programs
     ./programs/aichat.nix

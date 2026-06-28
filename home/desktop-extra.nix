@@ -2,23 +2,22 @@
   pkgs,
   config,
   secrets,
+  myLib,
   ...
 }:
 {
   imports = [
     # keep-sorted start
 
+    ../../modules/programs/gaming/celeste/module.nix
+    ../../modules/programs/gaming/emulators/cemu.nix
+    ../../modules/programs/gaming/emulators/retroarch.nix
+    ../../modules/programs/gaming/emulators/ryujinx.nix
+    ../../modules/programs/gaming/minecraft.nix
     ../modules/packages/extra.nix
     ../modules/packages/flatpak.nix
     ./desktop-base.nix
     ./desktop/niri
-    ./gaming
-    ./gaming/celeste
-    ./gaming/emulators/cemu.nix
-    ./gaming/emulators/retroarch.nix
-    ./gaming/emulators/ryujinx.nix
-    ./gaming/minecraft.nix
-    ./gaming/steam
     ./programs
     ./programs/bottles.nix
     ./programs/browsers/qutebrowser.nix

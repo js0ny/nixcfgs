@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ../gaming/mangohud.nix
+    ../../../modules/programs/gaming/mangohud.nix
     ./wine.nix
   ];
   home.packages = [
