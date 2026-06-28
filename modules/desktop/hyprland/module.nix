@@ -1,6 +1,6 @@
 {
   pkgs,
-  lib,
+  inputs,
   config,
   ...
 }:
@@ -13,9 +13,8 @@ in
     grimblast
   ];
   imports = [
-    ../home/wm-components/module.nix
+    inputs.self.homeModules.noctalia
   ];
-  # {"diagnostics":{"globals":["hl"]},"workspace":{"library":["/nix/store/rv2dda5jgqr8vxd4ljp7vxmklmficxcm-hyprland-0.55.4/share/hypr/stubs"]}}
   xdg.configFile."hypr/hyprland_debug.lua".source =
     mkSymlink "${dots}/modules/desktop/hyprland/hyprland.lua";
   wayland.windowManager.hyprland = {

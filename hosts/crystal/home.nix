@@ -21,7 +21,6 @@
     inputs.niri-nix.homeModules.default
     inputs.niri-nix.homeModules.stylix
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    inputs.nix-index-database.homeModules.nix-index
     inputs.secrets.homeManagerModules.default
     inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.spicetify

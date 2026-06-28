@@ -14,6 +14,7 @@
       pkgs,
       lib,
       config,
+      inputs,
       ...
     }:
     let
@@ -21,10 +22,13 @@
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
     in
     {
-      imports = [ ./hm-options.nix ];
+      imports = [
+        ./hm-options.nix
+        inputs.plasma-manager.homeModules.plasma-manager
+        inputs.self.homeModules.konsole
+      ];
       home.packages = with pkgs.kdePackages; [
         dolphin-plugins
-        konsole
         ffmpegthumbs
       ];
       programs.dolphin = {

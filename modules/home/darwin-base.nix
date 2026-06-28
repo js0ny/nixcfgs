@@ -28,6 +28,8 @@
     # ../../modules/home/programs/media/mpv.nix
     # keep-sorted end
     inputs.secrets.darwinModules.default
+
+    inputs.self.homeModules.nix-index-database
   ];
 
   programs.pdf2zh.enable = true;

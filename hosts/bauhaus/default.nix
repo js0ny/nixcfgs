@@ -34,6 +34,12 @@
     # ../../nixos/services/hermes-agent
     inputs.self.nixosModules.sunshine
     inputs.self.nixosModules.ollama
+
+    inputs.self.nixosModules.gnome
+    inputs.self.nixosModules.plasma
+    inputs.self.nixosModules.hyprland
+    inputs.self.nixosModules.niri
+    inputs.self.nixosModules.yazi
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

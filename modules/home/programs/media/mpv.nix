@@ -22,6 +22,7 @@ lib.mkIf cfg.enable {
         sponsorblock
         thumbfast
         uosc
+        eisa01.simplebookmark
         # keep-sorted end
         pkgs.misc.data.mpvScripts.bilibili-sponsorblock
       ]
@@ -56,6 +57,11 @@ lib.mkIf cfg.enable {
         ">" = next;
         "<" = prev;
         "space" = "cycle pause; script-binding uosc/flash-timeline";
+        # swap q and Q
+        "q" = "quit-watch-later";
+        "Q" = "quit";
+        "WHEEL_DOWN" = volume "-2";
+        "WHEEL_UP" = volume "2";
 
         # Vim keys
         "h" = seek "-5";
@@ -88,6 +94,12 @@ lib.mkIf cfg.enable {
         "${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl"
         "${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl"
       ];
+    };
+    scriptOpts = {
+      uosc = {
+        # swap scrolling direction on progress bar
+        timeline_step = "-5";
+      };
     };
   };
 }

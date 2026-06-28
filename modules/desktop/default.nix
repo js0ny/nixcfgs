@@ -5,7 +5,6 @@
   flake.nixosModules.desktop-sessions = import ./desktop-sessions.nix;
   flake.nixosModules.display-manager = import ./display-manager.nix;
   flake.nixosModules.firmware = import ./firmware.nix;
-  flake.nixosModules.gnome-keyring = import ./gnome-keyring.nix;
   flake.nixosModules.gui = import ./gui.nix;
   flake.nixosModules.i2c = import ./i2c.nix;
   flake.nixosModules.input = import ./input.nix;
@@ -23,7 +22,6 @@
       ./desktop-sessions.nix
       ./display-manager.nix
       ./firmware.nix
-      ./gnome-keyring.nix
       ./gui.nix
       ./i2c.nix
       ./input.nix
@@ -32,12 +30,8 @@
       ./networkmanager.nix
       ./packages.nix
       ./peripherals.nix
-      inputs.self.nixosModules.cosmic
-      inputs.self.nixosModules.hyprland
-      inputs.self.nixosModules.mangowc
-      inputs.self.nixosModules.niri
-      inputs.self.nixosModules.plasma
-      inputs.self.nixosModules.sway
+      inputs.self.nixosModules.gnome-keyring
+      inputs.self.nixosModules.nix-index-database
     ];
     nixdefs.hardware.enable = true;
     programs.appimage.enable = true;

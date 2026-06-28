@@ -11,7 +11,7 @@
     ];
   };
 
-  flake.homeModules.core = _: {
+  flake.homeModules.core = { inputs, ... }: {
     home.sessionVariables = import ./do-not-track-vars.nix;
     imports = [
       ./nix.nix
@@ -25,6 +25,8 @@
       ./home/system-alias.nix
       ./home/system-plist.nix
       ./home/xdg-dirs.nix
+
+      inputs.self.homeModules.fastfetch
     ];
   };
 

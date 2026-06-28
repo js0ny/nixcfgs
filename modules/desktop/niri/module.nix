@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 let
@@ -9,7 +10,7 @@ let
 in
 {
   imports = [
-    ../wm-components/module.nix
+    inputs.self.homeModules.noctalia
   ];
 
   wayland.windowManager.niri = {
@@ -22,6 +23,7 @@ in
       debug._children = [
         {
           ignore-drm-device = "/dev/dri/renderD128";
+          honor-xdg-activation-with-invalid-serial = true;
         }
       ];
     };

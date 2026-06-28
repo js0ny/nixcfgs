@@ -16,7 +16,6 @@
     # keep-sorted start
     inputs.betterfox-nix.modules.homeManager.betterfox
     inputs.catppuccin.homeModules.catppuccin
-    inputs.nix-index-database.homeModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
     # keep-sorted end
   ];

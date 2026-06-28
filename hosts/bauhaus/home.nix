@@ -30,7 +30,6 @@
     inputs.self.homeModules.electronics
     inputs.self.homeModules.rime
     inputs.self.homeModules.steam
-    inputs.self.homeModules.thunderbird
     inputs.self.homeModules.dolphin
     inputs.self.homeModules.core
 
@@ -39,7 +38,6 @@
     inputs.niri-nix.homeModules.default
     inputs.niri-nix.homeModules.stylix
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    inputs.nix-index-database.homeModules.nix-index
     inputs.secrets.homeManagerModules.default
     inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.spicetify
@@ -103,7 +101,6 @@
       backup = false;
       sync = true;
       icon = "folder-music";
-      # remote = "pcloud:Library/Music";
     };
     "Pictures" = {
       create = true;
