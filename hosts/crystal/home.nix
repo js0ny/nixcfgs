@@ -9,7 +9,7 @@
   imports = [
     ./vars.nix
     ../../home/desktop-extra.nix
-    ../../home/desktop/plasma
+    ../../modules/desktop/home/plasma
     ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 

@@ -7,7 +7,7 @@
 {
   imports = [
     # keep-sorted start
-    ../../linux/desktop/plasma
+    ../../linux/plasma
     ./calendar.nix
     ./input.nix
     ./keymaps.nix

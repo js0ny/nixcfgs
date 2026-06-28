@@ -10,6 +10,7 @@
     # keep-sorted start
 
     (myLib.scanPathsRec ../../modules/home/programs)
+    ../../modules/desktop/home/niri
     ../../modules/home/programs/bottles.nix
     ../../modules/home/programs/browsers/qutebrowser.nix
     ../../modules/home/programs/cherry-studio.nix
@@ -65,7 +66,6 @@
     ../modules/packages/extra.nix
     ../modules/packages/flatpak.nix
     ./desktop-base.nix
-    ./desktop/niri
     # keep-sorted end
   ];
   programs.pdf2zh.enable = true;

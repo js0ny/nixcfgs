@@ -11,9 +11,9 @@
   imports = [
     ./vars.nix
     ../../home/desktop-extra.nix
-    ../../home/desktop/plasma
-    ../../home/desktop/gnome
-    ../../home/desktop/hyprland
+    ../../modules/desktop/home/plasma
+    ../../modules/desktop/home/gnome
+    ../../modules/desktop/home/hyprland
     ../../modules/programs/gaming/steam/sts2.nix
     ../../modules/home/programs/media/celluloid.nix
     # keep-sorted start

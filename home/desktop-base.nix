@@ -8,6 +8,7 @@
     # keep-sorted start
 
     (myLib.scanPathsRec ../../modules/home/programs)
+    ../../modules/desktop/home/niri
     ../../modules/home/programs/aichat.nix
     # ../../modules/home/programs/walker.nix
     ../../modules/home/programs/browsers/url-dispatcher.nix
@@ -38,7 +39,6 @@
     ../modules/packages/devtools.nix
     ../modules/packages/flatpak.nix
     ../modules/packages/gui.nix
-    ./desktop/niri
     ./linux-base.nix
     # keep-sorted end
   ];
