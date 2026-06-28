@@ -5,9 +5,10 @@
     ./tailscale.nix
   ];
 
-  flake.nixosModules.core = _: {
+  flake.nixosModules.core = { inputs, ... }: {
     imports = [
       ./nixos.nix
+      inputs.self.nixosModules.git
     ];
   };
 
@@ -27,6 +28,7 @@
       ./home/xdg-dirs.nix
 
       inputs.self.homeModules.fastfetch
+      inputs.self.homeModules.git
     ];
   };
 

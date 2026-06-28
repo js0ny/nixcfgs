@@ -36,9 +36,11 @@
     inputs.self.homeModules.ghostty
     inputs.self.homeModules.zellij
 
-    inputs.self.homeModules.gnome-keyring
+    inputs.self.homeModules.qutebrowser
+
     inputs.self.homeModules.discord
     inputs.self.homeModules.telegram
+    inputs.self.homeModules.matrix-element
     inputs.self.homeModules.social-tencent
     inputs.self.homeModules.yazi
 
@@ -54,12 +56,8 @@
     inputs.self.homeModules.cider-2
     inputs.self.homeModules.feishin
 
-    ../../modules/home/programs/element.nix
-    ../../modules/home/programs/pcloud.nix
-    ../../modules/home/programs/productivity/sdcv.nix
-    ../../modules/home/programs/productivity/goldendict.nix
-    ../../modules/home/programs/bottles.nix
-    ../../modules/home/programs/wine.nix
+    inputs.self.homeModules.wine
+    inputs.self.homeModules.gaming
 
   ];
 

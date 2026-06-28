@@ -16,11 +16,19 @@
         virt-top
         qemu-utils
 
-        # misc
-        samba4Full
-        sshfs
+        # viewer
         spice-gtk
         virt-viewer
+        localPkgs.fzfScripts.virt-manager-view-fzf
+        remmina
+
+        # misc. fs
+        samba4Full
+        sshfs
+        guestfs-tools
+
+        # misc
+        quickemu
       ];
       programs.virt-manager.enable = true;
       virtualisation.libvirtd = {

@@ -12,9 +12,6 @@ in
   home.packages = with pkgs; [
     grimblast
   ];
-  imports = [
-    inputs.self.homeModules.noctalia
-  ];
   xdg.configFile."hypr/hyprland_debug.lua".source =
     mkSymlink "${dots}/modules/desktop/hyprland/hyprland.lua";
   wayland.windowManager.hyprland = {

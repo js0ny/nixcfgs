@@ -9,9 +9,6 @@ let
   xdg-config = config.xdg.configHome;
 in
 {
-  imports = [
-    inputs.self.homeModules.noctalia
-  ];
 
   wayland.windowManager.niri = {
     enable = true;

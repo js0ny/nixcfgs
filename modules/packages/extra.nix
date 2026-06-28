@@ -8,7 +8,6 @@ in
   imports = [
     ./extra-persist.nix
     ./extra-dconf.nix
-    ../home/programs/dconf-editor.nix
   ];
 
   home.packages = with pkgs; [
@@ -43,9 +42,12 @@ in
     octaveFull
     proton-pass
     showtime
-    tea
     texmacs
     xournalpp
+    goldendict-ng
     # keep-sorted end
   ];
+  home.sessionVariables = {
+    GOLDENDICT_FORCE_WAYLAND = 1;
+  };
 }
