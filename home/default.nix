@@ -6,9 +6,9 @@
     ../definitions
     ../modules/filetype/home.nix
     ../options
-    ./devenvs
     # keep-sorted end
   ]
+  ++ myLib.scanPathsRec ../modules/devenvs
   ++ myLib.scanPathsRec ../modules/options/home;
 
 }
