@@ -4,9 +4,9 @@
     # keep-sorted start
     ../common/sops.nix
     ../definitions
+    ../modules/filetype/home
     ../options
     ./devenvs
-    ./filetype
     ./options
     # keep-sorted end
   ];
