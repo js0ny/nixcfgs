@@ -15,7 +15,7 @@ let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
 in
 {
-  imports = [ ../. ];
+  imports = [ ../module.nix ];
   programs.vscode = {
     enable = true;
     package = (

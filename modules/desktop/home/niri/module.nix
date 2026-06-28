@@ -9,7 +9,7 @@ let
 in
 {
   imports = [
-    ../wm-components
+    ../wm-components/module.nix
   ];
 
   wayland.windowManager.niri = {

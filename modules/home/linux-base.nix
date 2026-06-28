@@ -7,10 +7,7 @@
     ../../definitions
     ../../modules/filetype/home.nix
     ../../options
+    ./linux/module.nix
     # keep-sorted end
   ]
-  ++ myLib.scanPathsRec ../../modules/devenvs
-  ++ myLib.scanPathsRec ../../modules/options/home
-  ++ myLib.scanPathsRec ./programs
-  ++ myLib.scanPathsRec ./linux;
 }

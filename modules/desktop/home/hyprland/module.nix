@@ -13,7 +13,7 @@ in
     grimblast
   ];
   imports = [
-    ../wm-components
+    ../wm-components/module.nix
   ];
   # {"diagnostics":{"globals":["hl"]},"workspace":{"library":["/nix/store/rv2dda5jgqr8vxd4ljp7vxmklmficxcm-hyprland-0.55.4/share/hypr/stubs"]}}
   xdg.configFile."hypr/hyprland_debug.lua".source =

@@ -12,7 +12,7 @@
     ./xremap/spcl.nix
     ./kderc.nix
     ./xremap/caps-esc-ctrl.nix
-    ./xremap
+    ./xremap/module.nix
   ];
 
   misc.block-desktop-entries = {

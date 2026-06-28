@@ -9,8 +9,7 @@
   imports = [
     # keep-sorted start
 
-    (myLib.scanPathsRec ../../modules/home/programs)
-    ../../modules/desktop/home/niri
+    ../../modules/desktop/home/niri/module.nix
     ../../modules/home/programs/bottles.nix
     ../../modules/home/programs/browsers/qutebrowser.nix
     ../../modules/home/programs/cherry-studio.nix
@@ -58,13 +57,13 @@
     ../../modules/home/programs/vibe-coding/module.nix
     # ../../modules/home/programs/newsflash.nix
     ../../modules/home/programs/wine.nix
+    ../../modules/packages/extra.nix
+    ../../modules/packages/flatpak.nix
     ../../modules/programs/gaming/celeste/module.nix
     ../../modules/programs/gaming/emulators/cemu.nix
     ../../modules/programs/gaming/emulators/retroarch.nix
     ../../modules/programs/gaming/emulators/ryujinx.nix
     ../../modules/programs/gaming/minecraft.nix
-    ../modules/packages/extra.nix
-    ../modules/packages/flatpak.nix
     ./desktop-base.nix
     # keep-sorted end
   ];

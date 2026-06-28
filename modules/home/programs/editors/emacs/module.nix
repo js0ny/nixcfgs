@@ -85,7 +85,7 @@ in
     taps = [ "railwaycat/emacsmacport" ];
   };
 
-  imports = [ ../. ];
+  imports = [ ../module.nix ];
   xdg.configFile."emacs".source = mkSymlink "${dots}/modules/home/programs/editors/emacs";
 
   nixdots.persist.nosnap.home.directories = [ ".local/share/emacs" ];

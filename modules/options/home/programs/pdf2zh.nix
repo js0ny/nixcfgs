@@ -115,7 +115,7 @@ in
           };
         };
       }
-      (mkIf config.programs.dolphin.enable {
+      (mkIf (config.programs.dolphin or { }).enable or false {
         programs.dolphin.services.pdf2zh = {
           mimeType = "application/pdf;";
           icon = "translate";

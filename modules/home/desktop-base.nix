@@ -7,8 +7,7 @@
   imports = [
     # keep-sorted start
 
-    (myLib.scanPathsRec ../../modules/home/programs)
-    ../../modules/desktop/home/niri
+    ../../modules/desktop/home/niri/module.nix
     ../../modules/home/programs/aichat.nix
     # ../../modules/home/programs/walker.nix
     ../../modules/home/programs/browsers/url-dispatcher.nix

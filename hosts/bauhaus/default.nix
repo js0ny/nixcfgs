@@ -15,7 +15,6 @@
     ./btrbk.nix
     # ./nixos-prebuild.nix
     ../../nixos
-    ../../nixos/services/ollama.nix
     inputs.self.nixosModules.desktop
     inputs.self.nixosModules.obs-studio
     inputs.self.nixosModules.chromium
@@ -34,6 +33,7 @@
     inputs.self.nixosModules.tailscale
     # ../../nixos/services/hermes-agent
     inputs.self.nixosModules.sunshine
+    inputs.self.nixosModules.ollama
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
