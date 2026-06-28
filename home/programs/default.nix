@@ -3,7 +3,7 @@
   imports = [
     # keep-sorted start
 
-    ../packages/cli.nix
+    ../modules/packages/cli.nix
     ./editors/vim
     ./fastfetch.nix
     ./git.nix

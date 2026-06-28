@@ -7,12 +7,12 @@
   imports = [
     # keep-sorted start
 
+    ../modules/packages/devtools.nix
+    ../modules/packages/flatpak.nix
+    ../modules/packages/gui.nix
     ./desktop/niri
     ./gaming/emulators/retroarch.nix
     ./linux-base.nix
-    ./packages/devtools.nix
-    ./packages/flatpak.nix
-    ./packages/gui.nix
     ./programs
     ./programs/aichat.nix
     # ./programs/walker.nix

@@ -8,6 +8,8 @@
   imports = [
     # keep-sorted start
 
+    ../modules/packages/extra.nix
+    ../modules/packages/flatpak.nix
     ./desktop-base.nix
     ./desktop/niri
     ./gaming
@@ -17,8 +19,6 @@
     ./gaming/emulators/ryujinx.nix
     ./gaming/minecraft.nix
     ./gaming/steam
-    ./packages/extra.nix
-    ./packages/flatpak.nix
     ./programs
     ./programs/bottles.nix
     ./programs/browsers/qutebrowser.nix

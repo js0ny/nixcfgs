@@ -3,10 +3,10 @@
   imports = [
     # keep-sorted start
 
+    ../modules/packages/devtools.nix
+    ../modules/packages/gui.nix
     # ./programs/media/mpv.nix
     ./darwin
-    ./packages/devtools.nix
-    ./packages/gui.nix
     ./programs
     ./programs/aichat.nix
     ./programs/cherry-studio.nix
