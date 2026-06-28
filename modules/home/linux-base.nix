@@ -10,4 +10,5 @@
     ./linux/module.nix
     # keep-sorted end
   ]
+  ++ myLib.scanPathsRec ../../modules/options/home;
 }

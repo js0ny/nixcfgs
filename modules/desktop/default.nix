@@ -36,4 +36,9 @@
     nixdefs.hardware.enable = true;
     programs.appimage.enable = true;
   };
+
+  flake.homeModules.plasma = import ./home/plasma/module.nix;
+  flake.homeModules.gnome = import ./home/gnome/module.nix;
+  flake.homeModules.hyprland = import ./home/hyprland/module.nix;
+  flake.homeModules.niri = import ./home/niri/module.nix;
 }
