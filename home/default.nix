@@ -1,14 +1,14 @@
-{ ... }:
+{ myLib, ... }:
 {
   imports = [
     # keep-sorted start
     ../common/sops.nix
     ../definitions
-    ../modules/filetype/home
+    ../modules/filetype/home.nix
     ../options
     ./devenvs
-    ./options
     # keep-sorted end
-  ];
+  ]
+  ++ myLib.scanPathsRec ../modules/options/home;
 
 }

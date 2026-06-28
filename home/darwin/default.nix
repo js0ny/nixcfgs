@@ -1,7 +1,7 @@
 _: {
   imports = [
     ../.
-    ../filetype/darwin.nix
+    ../../modules/filetype/darwin.nix
   ];
 
 }
