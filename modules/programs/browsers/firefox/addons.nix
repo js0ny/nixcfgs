@@ -70,7 +70,7 @@ in
       # single-file
       # downthemall
 
-      # Install globally by policies: see modules/nixos/programs/firefox.nix
+      # Install globally by policies: see nixosModules.firefox
       # clearurls
       # multi-account-container
     ];
