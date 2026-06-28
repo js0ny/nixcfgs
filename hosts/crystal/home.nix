@@ -8,7 +8,7 @@
 {
   imports = [
     ./vars.nix
-    ../../home/desktop-extra.nix
+    inputs.self.homeModules.desktop
     ../../modules/desktop/home/plasma
     ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start

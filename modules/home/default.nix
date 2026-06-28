@@ -1,6 +1,8 @@
 {
-  flake.homeModules.linux-common = import ../../home/linux-base.nix;
-  flake.homeModules.server = import ../../home/server-base.nix;
-  flake.homeModules.wsl = import ../../home/wsl.nix;
-  flake.homeModules.darwin = import ../../home/darwin-base.nix;
+  flake.homeModules.linux-common = import ./linux-base.nix;
+  flake.homeModules.server = import ./server-base.nix;
+  flake.homeModules.wsl = import ./wsl.nix;
+  flake.homeModules.darwin = import ./darwin-base.nix;
+  flake.homeModules.desktop-base = import ./desktop-base.nix;
+  flake.homeModules.desktop = import ./desktop-extra.nix;
 }

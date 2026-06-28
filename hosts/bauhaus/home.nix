@@ -10,7 +10,7 @@
 
   imports = [
     ./vars.nix
-    ../../home/desktop-extra.nix
+    inputs.self.homeModules.desktop
     ../../modules/desktop/home/plasma
     ../../modules/desktop/home/gnome
     ../../modules/desktop/home/hyprland

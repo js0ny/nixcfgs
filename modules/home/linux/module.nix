@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ../../home
     ../../filetype/linux.nix
     ./gnome-keyring.nix
     ./impermanence.nix
