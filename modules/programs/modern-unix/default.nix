@@ -1,0 +1,69 @@
+{
+  flake.homeModules.modern-unix =
+    { pkgs, config, ... }:
+    {
+      imports = [ ./zoxide.nix ];
+      misc.shellAliases = {
+        ls = "lsd";
+        ll = "lsd -l";
+        la = "lsd -a";
+        lt = "lsd --tree";
+      };
+      nixdots.persist = {
+        home.directories = [
+          ".local/share/atuin"
+        ];
+        nosnap.home.directories = [ ".cache/tealdeer" ];
+
+      };
+      home.sessionVariables = {
+        MANPAGER = ''sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman' '';
+        NIX_PAGER = "bat --style grid,numbers --wrap auto";
+      };
+      home.packages = with pkgs.localPkgs.fzfScripts; [
+        edit-fzf
+        ii-fzf
+      ];
+      misc.shellAliases = {
+        "ef" = "edit-fzf";
+      };
+      programs = {
+
+        bat.enable = true;
+        atuin = {
+          enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          enableFishIntegration = true;
+          enableNushellIntegration = true;
+        };
+        lsd = {
+          enable = true;
+          icons = "always";
+          enableBashIntegration = false;
+          enableZshIntegration = false;
+          enableFishIntegration = false;
+        };
+        eza = {
+          enable = true;
+          colors = "always";
+          icons = "always";
+          enableBashIntegration = false;
+          enableZshIntegration = false;
+          enableFishIntegration = false;
+        };
+
+        fzf = {
+          enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          enableFishIntegration = true;
+        };
+
+        tealdeer = {
+          enable = true;
+          enableAutoUpdates = true;
+        };
+      };
+    };
+}
