@@ -15,7 +15,7 @@
     ../../home/desktop/gnome
     ../../home/desktop/hyprland
     ../../modules/programs/gaming/steam/sts2.nix
-    ../../home/programs/media/celluloid.nix
+    ../../modules/home/programs/media/celluloid.nix
     # keep-sorted start
 
     # keep-sorted end

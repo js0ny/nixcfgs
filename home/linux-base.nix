@@ -3,8 +3,8 @@
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
     # keep-sorted start
+    (myLib.scanPathsRec ../../modules/home/programs)
     ./linux
-    ./programs
     # keep-sorted end
   ];
 }

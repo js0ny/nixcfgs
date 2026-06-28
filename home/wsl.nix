@@ -2,7 +2,7 @@
 {
   imports = [
     ./linux-base.nix
-    ./programs/editors/nvim
+    ../../modules/home/programs/editors/nvim/module.nix
   ];
 
   dconf.enable = false;

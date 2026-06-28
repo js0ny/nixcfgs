@@ -3,26 +3,26 @@
   imports = [
     # keep-sorted start
 
+    (myLib.scanPathsRec ../../modules/home/programs)
+    ../../modules/home/programs/aichat.nix
+    ../../modules/home/programs/cherry-studio.nix
+    ../../modules/home/programs/darwin/module.nix
+    ../../modules/home/programs/editors/nvim/module.nix
+    ../../modules/home/programs/karabiner.nix
+    ../../modules/home/programs/nix-index.nix
+    ../../modules/home/programs/productivity/anki.nix
+    ../../modules/home/programs/productivity/obsidian/module.nix
+    ../../modules/home/programs/productivity/sdcv.nix
+    ../../modules/home/programs/productivity/sioyek/module.nix
+    ../../modules/home/programs/protonvpn.nix
+    ../../modules/home/programs/shell/direnv.nix
+    ../../modules/home/programs/social/telegram.nix
+    ../../modules/home/programs/terminals/ghostty.nix
+    ../../modules/home/programs/terminals/zellij/module.nix
     ../modules/packages/devtools.nix
     ../modules/packages/gui.nix
-    # ./programs/media/mpv.nix
+    # ../../modules/home/programs/media/mpv.nix
     ./darwin
-    ./programs
-    ./programs/aichat.nix
-    ./programs/cherry-studio.nix
-    ./programs/darwin
-    ./programs/editors/nvim
-    ./programs/karabiner.nix
-    ./programs/nix-index.nix
-    ./programs/productivity/anki.nix
-    ./programs/productivity/obsidian
-    ./programs/productivity/sdcv.nix
-    ./programs/productivity/sioyek
-    ./programs/protonvpn.nix
-    ./programs/shell/direnv.nix
-    ./programs/social/telegram.nix
-    ./programs/terminals/ghostty.nix
-    ./programs/terminals/zellij
     # keep-sorted end
     inputs.secrets.darwinModules.default
   ];
