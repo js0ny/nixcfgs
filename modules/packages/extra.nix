@@ -14,6 +14,8 @@ in
     # keep-sorted start
     awscli2
     blender
+    bruno
+    bruno-cli
     calibre
     clapper
     dmg2img
@@ -23,6 +25,7 @@ in
     gdb
     gh
     gimp
+    goldendict-ng
     icoutils
     inkscape
     jetbrains.datagrip
@@ -44,7 +47,6 @@ in
     showtime
     texmacs
     xournalpp
-    goldendict-ng
     # keep-sorted end
   ];
   home.sessionVariables = {

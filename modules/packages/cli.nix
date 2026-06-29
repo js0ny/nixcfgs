@@ -67,7 +67,7 @@ in
       # keep-sorted start
 
       (ouch.override { enableUnfree = true; })
-      aria2
+      # aria2
       chezmoi
       curlie
       ddgr

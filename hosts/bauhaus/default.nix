@@ -14,9 +14,7 @@
     ./vars.nix
     ./btrbk.nix
     # ./nixos-prebuild.nix
-    ../../nixos
     inputs.self.nixosModules.desktop
-    inputs.self.nixosModules.obs-studio
     inputs.self.nixosModules.chromium
     inputs.self.nixosModules.zsh
     inputs.self.nixosModules.fish

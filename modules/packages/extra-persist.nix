@@ -6,6 +6,7 @@
 
       ".config/blender"
       ".config/Proton Pass"
+      ".config/bruno"
 
     ];
   };

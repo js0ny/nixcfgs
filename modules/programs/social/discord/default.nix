@@ -31,7 +31,6 @@
             disableCallIdle.enable = true;
             favoriteEmojiFirst.enable = true;
             forceOwnerCrown.enable = true;
-            friendsSince.enable = true;
             noDevtoolsWarning.enable = true;
             readAllNotificationsButton.enable = true;
             serverInfo.enable = true;

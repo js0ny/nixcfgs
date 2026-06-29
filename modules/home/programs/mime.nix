@@ -1,4 +1,4 @@
-{ lib, ... }:
+_:
 let
   # Why using nvim gui:
   #   * when `rga-fzf`: nvim wrapper failed to launch

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   secrets,
   ...
 }:
@@ -22,8 +23,39 @@ in
     ./nixos/sops.nix
     ./nixos/styles.nix
     ./nixos/tuned.nix
+    ./hm.nix
+    ./sops.nix
+    ./stylix.nix
+    ../../definitions
+    ../options
+    inputs.self.nixosModules.git
+    inputs.self.nixosModules.hardware
   ];
   time.timeZone = builtins.head config.nixdots.core.timezones;
+  networking.hostName = config.nixdots.core.hostname;
+
+  nixpkgs.config = {
+    jetbrains.vmopts = "-Dawt.toolkit.name=WLToolkit";
+    allowUnfree = true;
+  };
+
+  systemd.tmpfiles.rules = [
+    "L /var/lib/dbus/machine-id - - - - /etc/machine-id"
+    "z /var/lib/private 0700 root root -"
+  ];
+
+  nixdots.persist.system = {
+    directories = [
+      {
+        directory = "/var/lib/private";
+        mode = "0700";
+      }
+      "/var/lib/nixos"
+    ];
+  };
+
+  # https://github.com/nix-community/stylix/issues/2334
+  stylix.targets.kmscon.enable = false;
 
   # Select internationalisation properties.
   i18n =
@@ -54,10 +86,6 @@ in
 
   nixdots.persist.system.files = [
     "/etc/machine-id"
-  ];
-
-  nixdots.persist.system.directories = [
-    "/var/lib/nixos"
   ];
 
   nixdots.persist.nosnap.system.directories = [

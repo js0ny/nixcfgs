@@ -30,5 +30,6 @@
           };
         };
       };
+      xdg.dataFile."konsole/catppuccin-mocha.colorscheme".source = ./catppuccin-mocha.colorscheme;
     };
 }

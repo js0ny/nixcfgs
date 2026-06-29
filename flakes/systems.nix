@@ -10,6 +10,7 @@
         localOverlays
         # keep-sorted start
         inputs.firefox-addons.overlays.default
+        inputs.hermes-agent.overlays.default
         inputs.llm-agents.overlays.default
         inputs.nix-cachyos-kernel.overlays.pinned
         inputs.nix-misc-packages.overlays.default

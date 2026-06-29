@@ -1,6 +1,8 @@
 { lib, ... }:
 let
   myLib = import ../lib { inherit lib; };
+  modulesPath = ../modules;
+  optionsPath = toString (modulesPath + "/options/");
 in
 {
   options.flake.darwinModules = lib.mkOption {
@@ -8,5 +10,7 @@ in
     default = { };
   };
 
-  imports = myLib.scanDefaultsRec ../modules;
+  imports = lib.filter (path: !(lib.hasPrefix optionsPath (toString path))) (
+    myLib.scanDefaultsRec modulesPath
+  );
 }
