@@ -1,4 +1,9 @@
 {
+  imports = [
+    ./noctalia.nix
+    ./dms.nix
+    ./wm-polkit.nix
+  ];
   flake.homeModules.wm-components =
     { pkgs, config, ... }:
     let
@@ -7,7 +12,6 @@
     {
       imports = [
         ./kanshi.nix
-        ./polkit.nix
       ];
       home.packages = with pkgs; [
         brightnessctl

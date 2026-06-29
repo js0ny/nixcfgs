@@ -1,9 +1,9 @@
 { pkgs, ... }:
 let
-  rime-wanxiang = pkgs.misc.data.rime.rime-wanxiang.zrm;
-  rime-cantonese = pkgs.misc.data.rime.rime-cantonese;
-  rime-dieghv = pkgs.misc.data.rime.rime-dieghv;
-  rime-latex = pkgs.misc.data.rime.rime-latex;
+  rime-wanxiang = pkgs.misc.data.rime.rime-wanxiang.zrm.raw;
+  rime-cantonese = pkgs.misc.data.rime.rime-cantonese.raw;
+  rime-dieghv = pkgs.misc.data.rime.rime-dieghv.raw;
+  rime-latex = pkgs.misc.data.rime.rime-latex.raw;
 
   rimeConfigMerged = pkgs.runCommandLocal "rime-config-merged" { } ''
     mkdir -p $out

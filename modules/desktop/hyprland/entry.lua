@@ -288,9 +288,8 @@ hl.config({
 })
 
 require("keymaps")
-require("shell-keymaps")
+require("shell_keymaps")
 require("window-rules")
-require("wsp-4-social")
 require("animations")
 
 hl.config({

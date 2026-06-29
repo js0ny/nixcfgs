@@ -22,6 +22,7 @@ lib.mkIf pkgs.stdenv.isLinux {
       agent-skills-sh
       bluetooth
       firefox
+      gnome-extensions
       niri
       nix
       podman

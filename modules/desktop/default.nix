@@ -1,8 +1,8 @@
 {
+  imports = [ ./xdg-portal.nix ];
   flake.nixosModules.audio = import ./audio.nix;
   flake.nixosModules.bluetooth = import ./bluetooth.nix;
   flake.nixosModules.desktop-base = import ./base.nix;
-  flake.nixosModules.desktop-sessions = import ./desktop-sessions.nix;
   flake.nixosModules.display-manager = import ./display-manager.nix;
   flake.nixosModules.firmware = import ./firmware.nix;
   flake.nixosModules.gui = import ./gui.nix;
@@ -19,7 +19,6 @@
       ./audio.nix
       ./base.nix
       ./bluetooth.nix
-      ./desktop-sessions.nix
       ./display-manager.nix
       ./firmware.nix
       ./gui.nix

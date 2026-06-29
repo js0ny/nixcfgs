@@ -1,6 +1,5 @@
 {
   flake.nixosModules.gnome = { pkgs, ... }: {
-
     services.desktopManager.gnome = {
       enable = true;
       sessionPath = with pkgs; [
@@ -62,6 +61,7 @@
         lunar-calendar
         arcmenu
         run-or-raise
+        vicinae
       ];
       cfg = config.nixdots.desktop.session;
     in

@@ -1,7 +1,8 @@
 {
   flake.homeModules.modern-unix =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
+      xdg.configFile."bat/syntaxes/nushell.sublime-syntax".source = ./nushell.sublime-syntax;
       imports = [ ./zoxide.nix ];
       misc.shellAliases = {
         ls = "lsd";

@@ -15,6 +15,7 @@
       wallpaperDir = config.home.customDirs.wallpaper;
     in
     {
+      xdg.stateFile."noctalia/.setup-complete".text = "";
       imports = [
         inputs.self.homeModules.wm-components
       ];

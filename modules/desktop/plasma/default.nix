@@ -8,6 +8,7 @@
       kwalletmanager
       qrca
       kde-gtk-config
+      drkonqi # causing crash on sessions other than KDE plasma
     ];
   };
   flake.homeModules.plasma = {
