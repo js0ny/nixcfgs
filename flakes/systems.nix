@@ -49,7 +49,6 @@
             inputs.lanzaboote.nixosModules.lanzaboote
             inputs.nixos-wsl.nixosModules.default
             inputs.secrets.nixosModules.default
-            inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.default
             inputs.telegram-inline-llm-bot.nixosModules.default
             inputs.thyx.nixosModules.default

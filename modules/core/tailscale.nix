@@ -35,4 +35,5 @@
     lib.mkIf cfg.enable {
       services.tailscale.enable = true;
     };
+
 }

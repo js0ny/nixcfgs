@@ -9,6 +9,9 @@ hl.config({
   ecosystem = {
     no_update_news = true,
   },
+  input = { touchpad = {
+    natural_scroll = true,
+  } },
 })
 
 hl.monitor({
@@ -244,10 +247,6 @@ hl.config({
     follow_mouse = 1,
 
     sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
-
-    touchpad = {
-      natural_scroll = false,
-    },
   },
 })
 

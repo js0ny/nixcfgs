@@ -16,7 +16,9 @@
   #     WIN-, SUPER-, WINDOWS-
   services.xremap = {
     enable = true;
-    withNiri = true;
+    # withNiri = true;
+    withHypr = true;
+
   };
 
   systemd.user.services.xremap = {

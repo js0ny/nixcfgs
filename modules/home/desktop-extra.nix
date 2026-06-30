@@ -55,6 +55,8 @@
     inputs.self.homeModules.wine
     inputs.self.homeModules.gaming
 
+    inputs.self.homeModules.core
+
   ];
 
   catppuccin.thunderbird.profile = config.home.username;

@@ -31,6 +31,7 @@
       ./laptop.nix
       ./networkmanager.nix
       ./peripherals.nix
+      inputs.self.nixosModules.core
       inputs.self.nixosModules.gnome-keyring
       inputs.self.nixosModules.nix-index-database
     ];

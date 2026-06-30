@@ -8,6 +8,7 @@
   flake.nixosModules.core = { inputs, config, ... }: {
     imports = [
       ./nixos.nix
+      inputs.sops-nix.nixosModules.sops
     ];
   };
 
@@ -31,6 +32,7 @@
 
       inputs.self.homeModules.fastfetch
       inputs.self.homeModules.git
+      inputs.sops-nix.homeManagerModules.sops
     ];
   };
 

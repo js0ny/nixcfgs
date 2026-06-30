@@ -15,16 +15,6 @@
     ./btrbk.nix
     # ./nixos-prebuild.nix
     inputs.self.nixosModules.desktop
-    inputs.self.nixosModules.chromium
-    inputs.self.nixosModules.zsh
-    inputs.self.nixosModules.fish
-    inputs.self.nixosModules.rime
-    inputs.self.nixosModules.steam
-    inputs.self.nixosModules.firefox
-    inputs.self.nixosModules.vicinae
-    inputs.self.nixosModules.thunderbird
-    inputs.self.nixosModules.dolphin
-    inputs.self.nixosModules.core
     inputs.self.nixosModules.podman
     inputs.self.nixosModules.libvirt
     inputs.self.nixosModules.sshd
@@ -37,7 +27,6 @@
     inputs.self.nixosModules.plasma
     inputs.self.nixosModules.hyprland
     inputs.self.nixosModules.niri
-    inputs.self.nixosModules.yazi
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

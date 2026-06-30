@@ -9,6 +9,10 @@ let
   xdg-config = config.xdg.configHome;
 in
 {
+  imports = [
+    inputs.niri-nix.homeModules.default
+    inputs.niri-nix.homeModules.stylix
+  ];
 
   wayland.windowManager.niri = {
     enable = true;

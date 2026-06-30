@@ -61,4 +61,11 @@
       };
       home.packages = lib.optionals (pkgs.stdenv.isLinux) [ pkgs.birdtray ];
     };
+
+  flake.nixosModules.desktop = { inputs, ... }: {
+    imports = [ inputs.self.nixosModules.thunderbird ];
+  };
+  flake.homeModules.desktop = { inputs, ... }: {
+    imports = [ inputs.self.homeModules.thunderbird ];
+  };
 }

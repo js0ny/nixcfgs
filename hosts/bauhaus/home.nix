@@ -12,35 +12,20 @@
     ./vars.nix
     inputs.self.homeModules.desktop
     inputs.self.homeModules.plasma
+    inputs.self.homeModules.niri
     inputs.self.homeModules.gnome
     inputs.self.homeModules.hyprland
+    inputs.self.homeModules.noctalia
     ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 
     # keep-sorted end
-    inputs.self.homeModules.obs-studio
-    inputs.self.homeModules.chromium
-    inputs.self.homeModules.firefox
-    inputs.self.homeModules.vicinae
-    inputs.self.homeModules.zsh
-    inputs.self.homeModules.fish
-    inputs.self.homeModules.nushell
     inputs.self.homeModules.engineering
     inputs.self.homeModules.electronics
-    inputs.self.homeModules.rime
-    inputs.self.homeModules.steam
-    inputs.self.homeModules.dolphin
-    inputs.self.homeModules.core
-    inputs.self.homeModules.noctalia
 
-    # keep-sorted start
-    inputs.betterfox-nix.modules.homeManager.betterfox
-    inputs.niri-nix.homeModules.default
-    inputs.niri-nix.homeModules.stylix
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.secrets.homeManagerModules.default
-    inputs.sops-nix.homeManagerModules.sops
-    inputs.spicetify-nix.homeManagerModules.spicetify
+    # keep-sorted start
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.steam-config-nix.homeModules.default
     # keep-sorted end
   ];
@@ -144,16 +129,6 @@
       "undefined/layoutStyle" = "card";
     };
   };
-
-  # programs.gocryptfs = {
-  #   enable = true;
-  #   encryptedDir = ".local/share/Vault.enc";
-  #   mountPoint = ".local/mnt/Vault";
-  #   autoMount = {
-  #     enable = true;
-  #     passwordFile = config.sops.secrets.gocryptfs_password.path;
-  #   };
-  # };
 
   nixdots.persist.home.directories = [
     ".config/sunshine"

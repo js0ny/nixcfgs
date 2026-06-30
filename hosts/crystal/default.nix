@@ -14,11 +14,15 @@
     ./disko.nix
     ./restic.nix
     ./vars.nix
-    # ./nixos-prebuild.nix
-    ../../nixos
     inputs.self.nixosModules.desktop
-    # ../../nixos/services/hermes-agent
-    inputs.self.nixosModules.sunshine
+    inputs.self.nixosModules.podman
+    inputs.self.nixosModules.libvirt
+    inputs.self.nixosModules.sshd
+    inputs.self.nixosModules.tailscale
+
+    inputs.self.nixosModules.plasma
+    inputs.self.nixosModules.hyprland
+    inputs.self.nixosModules.niri
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

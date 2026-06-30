@@ -13,4 +13,10 @@
       ];
     };
   flake.homeModules.vicinae = import ./home.nix;
+  flake.nixosModules.desktop = { inputs, ... }: {
+    imports = [ inputs.self.nixosModules.vicinae ];
+  };
+  flake.homeModules.desktop = { inputs, ... }: {
+    imports = [ inputs.self.homeModules.vicinae ];
+  };
 }

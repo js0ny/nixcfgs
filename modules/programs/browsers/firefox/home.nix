@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 let
@@ -22,6 +23,8 @@ in
     ./global-speed.nix
     ./cookie-autodelete.nix
     ./sidebery.nix
+
+    inputs.betterfox-nix.modules.homeManager.betterfox
   ]
   ++ scanPaths ./hm-options;
   # Upstream: https://github.com/nix-community/stylix/issues/2071

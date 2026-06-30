@@ -56,14 +56,6 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = {
-      inherit
-        inputs
-        nixcfgs
-        myLib
-        secrets
-        ;
-    };
     users."js0ny" = import ./home.nix;
   };
 
