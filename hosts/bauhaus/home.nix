@@ -15,7 +15,6 @@
     inputs.self.homeModules.gnome
     inputs.self.homeModules.hyprland
     ../../modules/programs/gaming/steam/sts2.nix
-    ../../modules/home/programs/media/celluloid.nix
     # keep-sorted start
 
     # keep-sorted end

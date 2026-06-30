@@ -23,8 +23,6 @@
     ../../modules/home/programs/social/telegram.nix
     ../../modules/home/programs/terminals/ghostty.nix
     ../../modules/home/programs/terminals/zellij/module.nix
-    ../modules/packages/devtools.nix
-    ../modules/packages/gui.nix
     # ../../modules/home/programs/media/mpv.nix
     # keep-sorted end
     inputs.secrets.darwinModules.default

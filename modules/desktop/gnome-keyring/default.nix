@@ -16,7 +16,7 @@
           security.pam.services.login.enableGnomeKeyring = true;
         };
       desktop = { inputs, ... }: {
-        imports = [ inputs.self.nixosModules.dconf-editor ];
+        imports = [ inputs.self.nixosModules.gnome-keyring ];
       };
     };
     homeModules = {
@@ -54,7 +54,7 @@
           })
         ];
       desktop = { inputs, ... }: {
-        imports = [ inputs.self.homeModules.dconf-editor ];
+        imports = [ inputs.self.homeModules.gnome-keyring ];
       };
     };
 

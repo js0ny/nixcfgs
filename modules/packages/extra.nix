@@ -17,7 +17,6 @@ in
     bruno
     bruno-cli
     calibre
-    clapper
     dmg2img
     font-manager
     font-viewer
@@ -44,8 +43,7 @@ in
     nmap
     octaveFull
     proton-pass
-    showtime
-    texmacs
+    rustscan
     xournalpp
     # keep-sorted end
 

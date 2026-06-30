@@ -9,13 +9,9 @@
   imports = [
     # keep-sorted start
 
-    ../../modules/packages/cli.nix
-    ../../modules/packages/devtools.nix
-    ../../modules/packages/gui.nix
     ../../modules/programs/gaming/emulators/retroarch.nix
     ./linux-base.nix
     inputs.self.homeModules.easyeffects
-    inputs.self.homeModules.mpv
     inputs.self.homeModules.niri
     inputs.self.homeModules.nix-index-database
     inputs.self.homeModules.pim

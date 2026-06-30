@@ -2,6 +2,7 @@
   imports = [
     ./xdg-portal.nix
     ./coredump-notify.nix
+    ./packages.nix
   ];
   flake.nixosModules.audio = import ./audio.nix;
   flake.nixosModules.bluetooth = import ./bluetooth.nix;
@@ -14,7 +15,6 @@
   flake.nixosModules.lanzaboote = import ./lanzaboote.nix;
   flake.nixosModules.laptop = import ./laptop.nix;
   flake.nixosModules.networkmanager = import ./networkmanager.nix;
-  flake.nixosModules.desktop-packages = import ./packages.nix;
   flake.nixosModules.peripherals = import ./peripherals.nix;
 
   flake.nixosModules.desktop = { inputs, ... }: {
@@ -30,7 +30,6 @@
       ./lanzaboote.nix
       ./laptop.nix
       ./networkmanager.nix
-      ./packages.nix
       ./peripherals.nix
       inputs.self.nixosModules.gnome-keyring
       inputs.self.nixosModules.nix-index-database

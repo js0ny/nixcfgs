@@ -19,6 +19,8 @@
     ./desktop-base.nix
     # keep-sorted end
 
+    inputs.self.homeModules.linux
+
     inputs.self.homeModules.editors
     inputs.self.homeModules.emacs
     inputs.self.homeModules.flatpak
@@ -41,7 +43,6 @@
     inputs.self.homeModules.telegram
     inputs.self.homeModules.matrix-element
     inputs.self.homeModules.social-tencent
-    inputs.self.homeModules.yazi
 
     inputs.self.homeModules.hermes-desktop
     inputs.self.homeModules.aichat
@@ -50,10 +51,6 @@
     inputs.self.homeModules.anki
     inputs.self.homeModules.obsidian
     inputs.self.homeModules.zotero
-
-    inputs.self.homeModules.mediatools
-    inputs.self.homeModules.cider-2
-    inputs.self.homeModules.feishin
 
     inputs.self.homeModules.wine
     inputs.self.homeModules.gaming

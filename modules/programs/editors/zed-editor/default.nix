@@ -17,7 +17,14 @@
       programs.zed-editor = {
         enable = true;
         extensions = [
+          # keep-sorted start
+          "git-firefly"
+          "json5"
+          "jsonl"
+          "just"
+          "make"
           "material-icon-theme"
+          # keep-sorted end
         ];
       };
       nixdots.persist.nosnap.home = {

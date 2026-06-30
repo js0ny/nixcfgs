@@ -1555,11 +1555,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1782671695,
-        "narHash": "sha256-7yRAQhjWSnWUoiJqIy18GW+eUZlmQU9kk4+ekAfTCdQ=",
+        "lastModified": 1782780637,
+        "narHash": "sha256-G/cvWE60pVnlC+m8Bjo3ankL/zrEDTolWwvVMSAZ9GM=",
         "owner": "js0ny",
         "repo": "nvimdots",
-        "rev": "6a6b7ecd8dd40a9cc5c500439a93c65ca1d1ada4",
+        "rev": "59ab9cab7efc627799607a7fcd92cd3dd84ca2ab",
         "type": "github"
       },
       "original": {

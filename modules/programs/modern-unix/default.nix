@@ -4,6 +4,10 @@
       duf
       dust
       ripgrep
+      fd
+      curlie
+      rip2
+      procs
     ];
   };
   flake.nixosModules.desktop = { inputs, ... }: {
@@ -13,7 +17,7 @@
     imports = [ inputs.self.homeModules.modern-unix ];
   };
   flake.homeModules.modern-unix =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       xdg.configFile."bat/syntaxes/nushell.sublime-syntax".source = ./nushell.sublime-syntax;
       imports = [ ./zoxide.nix ];
@@ -42,7 +46,6 @@
         "ef" = "edit-fzf";
       };
       programs = {
-
         bat.enable = true;
         atuin = {
           enable = true;
@@ -77,6 +80,15 @@
         tealdeer = {
           enable = true;
           enableAutoUpdates = true;
+        };
+        btop = {
+          enable = true;
+          settings = {
+            vim_keys = true;
+          };
+          package = pkgs.btop.override {
+            cudaSupport = config.nixdots.linux.gpu == "nvidia";
+          };
         };
       };
     };

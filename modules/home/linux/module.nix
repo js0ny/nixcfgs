@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ../../filetype/linux.nix
     ./impermanence.nix
     ./xremap/spcl.nix
     ./kderc.nix
