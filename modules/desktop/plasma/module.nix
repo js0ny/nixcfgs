@@ -20,7 +20,6 @@
   home.packages = with pkgs; [
     # kdePackages.yakuake
     plasmusic-toolbar
-    kdePackages.krohnkite
     plasma-plugin-blurredwallpaper
   ];
   programs.plasma = {

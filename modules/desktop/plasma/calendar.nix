@@ -9,7 +9,12 @@
     };
     "plasma_calendar_holiday_regions".text = lib.generators.toINI { } {
       General = {
-        selectedRegions = "cn_zh-cn,gb-sct_en-gb,hk_zh-cn,gb-eaw_en-gb";
+        selectedRegions = builtins.concatStringsSep "," [
+          "cn_zh-cn"
+          "gb-sct_en-gb"
+          "hk_zh-cn"
+          "gb-eaw_en-gb"
+        ];
       };
     };
   };

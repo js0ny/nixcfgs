@@ -17,12 +17,12 @@ lib.mkIf cfg.enable {
         # keep-sorted start
         autocrop
         bdanmaku
+        eisa01.simplebookmark
         memo
         quality-menu
         sponsorblock
         thumbfast
         uosc
-        eisa01.simplebookmark
         # keep-sorted end
         pkgs.misc.data.mpvScripts.bilibili-sponsorblock
       ]

@@ -1,4 +1,17 @@
 {
+  flake.nixosModules.modern-unix = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [
+      duf
+      dust
+      ripgrep
+    ];
+  };
+  flake.nixosModules.desktop = { inputs, ... }: {
+    imports = [ inputs.self.nixosModules.modern-unix ];
+  };
+  flake.homeModules.desktop = { inputs, ... }: {
+    imports = [ inputs.self.homeModules.modern-unix ];
+  };
   flake.homeModules.modern-unix =
     { pkgs, ... }:
     {

@@ -22,7 +22,6 @@
     inputs.self.homeModules.editors
     inputs.self.homeModules.emacs
     inputs.self.homeModules.flatpak
-    inputs.self.homeModules.modern-unix
     inputs.self.homeModules.neovide
     inputs.self.homeModules.neovim
     inputs.self.homeModules.vcs-extra

@@ -1,5 +1,8 @@
 {
-  imports = [ ./xdg-portal.nix ];
+  imports = [
+    ./xdg-portal.nix
+    ./coredump-notify.nix
+  ];
   flake.nixosModules.audio = import ./audio.nix;
   flake.nixosModules.bluetooth = import ./bluetooth.nix;
   flake.nixosModules.desktop-base = import ./base.nix;

@@ -7,6 +7,8 @@ _: {
         settings.excludes = [
           "_sources/*.json"
         ];
+
+        # keep-sorted start block=yes
         programs.keep-sorted = {
           enable = true;
           excludes = [
@@ -14,12 +16,12 @@ _: {
             "*.md"
           ];
         };
-
-        # keep-sorted start
         programs.nixfmt.enable = true;
         programs.prettier.enable = true;
         programs.shfmt.enable = true;
-        programs.stylua.enable = true;
+        programs.stylua = {
+          enable = true;
+        };
         # keep-sorted end
       };
 

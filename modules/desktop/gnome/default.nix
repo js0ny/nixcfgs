@@ -52,7 +52,7 @@
       extensions = with pkgs.gnomeExtensions; [
         dash-to-dock
         caffeine
-        copyous
+        # copyous
         kimpanel
         appindicator
         gsconnect
@@ -62,6 +62,7 @@
         arcmenu
         run-or-raise
         vicinae
+        clipboard-indicator
       ];
       cfg = config.nixdots.desktop.session;
     in
@@ -229,7 +230,7 @@
           show-date = false;
           show-time = false;
         };
-        "com/github/Ory0n/Resource_Monitor" = {
+        "org/gnome/shell/extensions/resource-monitor" = {
           extensionposition = "left";
           iconsposition = "left";
           cpustatus = true;
@@ -268,9 +269,6 @@
           open-clipboard-dialog-shortcut = [ "<Super>v" ];
           show-at-pointer = true;
         };
-        "org/gnome/shell" = {
-          enabled-extensions = [ "copyous@boerdereinar.dev" ];
-        };
       };
       xdg.configFile."run-or-raise/shortcuts.conf".text = ''
         <Super>b,firefox,,
@@ -281,79 +279,5 @@
         <Alt><Super>Return,neovide,,
         <Shift><Super>v,kitty -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal
       '';
-      # xdg.dataFile."copyous@boerdereinar.dev/highlight.min.js".source = highlightJs;
-    };
-  flake.homeModules.paperwm =
-    {
-      pkgs,
-      lib,
-      config,
-      ...
-    }:
-    let
-      cfg = config.nixdots.desktop.session;
-    in
-    lib.mkIf (false && config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
-      programs.gnome-shell.extensions = [
-        { package = pkgs.gnomeExtensions.paperwm; }
-      ];
-      dconf.settings = {
-        # Inspect window class with <Alt>F2 -> `lg`
-        # scratch_layer: true makes the window float above others
-        "org/gnome/shell/extensions/paperwm" = {
-          winprops = [
-            ''{"wm_class":"dev.benz.walker","scratch_layer":true}''
-            ''{"wm_class":"org.pulseaudio.pavucontrol","scratch_layer":true}''
-            ''{"wm_class":"mpv","scratch_layer":true}''
-            ''{"wm_class":"org.gnome.NautilusPreviewer","scratch_layer":true}''
-            ''{"wm_class":"terminal-popup","scratch_layer":true}''
-            ''{"wm_class":"fsearch","scratch_layer":true}''
-            ''{"wm_class":"QQ","title":"资料卡","scratch_layer":true}''
-            ''{"wm_class":"","title":"Floating Window - Show Me The Key","scratch_layer":true}''
-          ];
-        };
-        "org/gnome/settings-daemon/plugins/media-keys" = {
-          screensaver = [ "<Alt><Super>i" ];
-        };
-        "org/gnome/shell/extensions/paperwm/keybindings" = {
-          close-window = [ "<Super>q" ];
-          new-window = [ ];
-          switch-next = [ ];
-          switch-previous = [ ];
-          switch-left = [
-            "<Super>Left"
-            "<Super>h"
-          ];
-          switch-right = [
-            "<Super>Right"
-            "<Super>l"
-          ];
-          switch-down = [
-            "<Super>Down"
-            "<Super>j"
-          ];
-          switch-up = [
-            "<Super>Up"
-            "<Super>k"
-          ];
-          move-left = [ "<Shift><Super>h" ];
-          move-right = [ "<Shift><Super>l" ];
-          move-up = [ "" ];
-          move-down = [ "" ];
-          switch-down-or-else-workspace = [ "<Super><Shift>j" ];
-          switch-up-or-else-workspace = [ "<Super><Shift>k" ];
-          center-vertically = [ "" ];
-          drift-left = [ "" ];
-          drift-right = [ "" ];
-          move-up-workspace = [ "<Control><Super>k" ];
-          move-down-workspace = [ "<Control><Super>j" ];
-          slurp-in = [ "<Super>bracketleft" ];
-          barf-out = [ "<Super>bracketright" ];
-          barf-out-active = [ ];
-          # Use AATWS
-          live-alt-tab = [ ];
-          live-alt-tab-backward = [ ];
-        };
-      };
     };
 }

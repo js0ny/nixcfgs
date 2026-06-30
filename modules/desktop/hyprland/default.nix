@@ -25,7 +25,7 @@
     };
   };
   flake.homeModules.hyprland =
-    { config, ... }:
+    { pkgs, config, ... }:
     let
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
       dots = config.nixdots.core.dots;
@@ -34,6 +34,7 @@
       xdg.configFile =
         let
           files = [
+            ".stylua.toml"
             "animations.lua"
             "entry.lua"
             "keymaps.lua"

@@ -48,6 +48,19 @@ in
     texmacs
     xournalpp
     # keep-sorted end
+
+    # nix
+    nix-diff
+    nix-output-monitor
+    nvd
+    nix-tree
+    deploy-rs
+    nurl
+    nvfetcher
+    npins
+    nil
+    nixd
+    cachix
   ];
   home.sessionVariables = {
     GOLDENDICT_FORCE_WAYLAND = 1;
