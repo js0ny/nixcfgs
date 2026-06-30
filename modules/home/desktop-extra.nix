@@ -57,8 +57,6 @@
 
   ];
 
-  programs.pdf2zh.enable = true;
-
   catppuccin.thunderbird.profile = config.home.username;
 
   nixdots.sops.secrets = {

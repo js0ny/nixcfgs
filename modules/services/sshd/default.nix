@@ -1,11 +1,10 @@
 {
   flake.nixosModules.sshd =
-    { lib, config, ... }:
+    { config, ... }:
     let
-      cfg = config.nixdots.services.sshd;
       port = config.nixdefs.endpoints.ssh.port;
     in
-    lib.mkIf cfg.enable {
+    {
       services.openssh = {
         enable = true;
         ports = [ port ];
@@ -35,4 +34,10 @@
         '';
       };
     };
+
+  flake.nixosModules.server = { inputs, ... }: {
+    imports = [
+      inputs.self.nixosModules.sshd
+    ];
+  };
 }

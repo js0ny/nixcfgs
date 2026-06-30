@@ -21,9 +21,9 @@
     in
     {
       imports = [
-        inputs.self.nixosModules.mongodb
         inputs.self.nixosModules.meilisearch
       ];
+      services.mongodb.enable = true;
       sops.secrets = {
         librechat_creds_key = { inherit sopsFile; };
         librechat_creds_iv = { inherit sopsFile; };

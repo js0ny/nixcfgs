@@ -32,7 +32,7 @@
 
       services.hermes-agent = {
         enable = true;
-        package = inputs.hermes-agent.packages.${system}.full;
+        package = inputs.hermes-agent.packages.${system}.messaging;
 
         group = "agents";
 

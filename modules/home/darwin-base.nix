@@ -30,8 +30,6 @@
     inputs.self.homeModules.nix-index-database
   ];
 
-  programs.pdf2zh.enable = true;
-
   nixdefs = {
     acp.enable = true;
     llm.enable = true;

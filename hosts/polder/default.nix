@@ -10,7 +10,6 @@
 }:
 {
   imports = [
-    ../../nixos
     inputs.self.nixosModules.server
     # Host-specific configs
     ./hardware-configuration.nix
