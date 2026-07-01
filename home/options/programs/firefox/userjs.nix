@@ -6,7 +6,7 @@
 }:
 let
   p = config.nixdots.programs.firefox.defaultProfile;
-  baseprefs = import ../../../common/firefox-baseprefs.nix;
+  baseprefs = import ../../../../common/firefox-baseprefs.nix;
   selfhosted = config.nixdefs.selfhosted;
   open-webui = selfhosted.open-webui;
 in

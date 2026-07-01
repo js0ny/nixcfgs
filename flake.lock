@@ -103,12 +103,12 @@
         "rev": "ce157e83fb5d924b72886183f5c9830da7402e6c",
         "revCount": 4,
         "type": "git",
-        "url": "ssh://forgejo@git.js0ny.net/js0ny/bindeps.git"
+        "url": "ssh://forgejo@git.js0ny.net/infra/bindeps.git"
       },
       "original": {
         "lfs": true,
         "type": "git",
-        "url": "ssh://forgejo@git.js0ny.net/js0ny/bindeps.git"
+        "url": "ssh://forgejo@git.js0ny.net/infra/bindeps.git"
       }
     },
     "blueprint": {
@@ -1773,17 +1773,17 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1782073888,
-        "narHash": "sha256-ksGVRJ0Xlr1f3+S1hbZSTTPviI5y+WwogBJXQSuwJiQ=",
+        "lastModified": 1782922841,
+        "narHash": "sha256-HgAJYOuER2w/mhbSjHzzq5vmzRUdHN9qNbKDOnNyaZw=",
         "ref": "refs/heads/master",
-        "rev": "b9d3242ab95aad1a139a8293b13627b3e873fa36",
-        "revCount": 31,
+        "rev": "c4e038f7a189d0134595ced8f7b45f08f5054200",
+        "revCount": 32,
         "type": "git",
-        "url": "ssh://forgejo@git.js0ny.net/js0ny/nix-secrets.git"
+        "url": "ssh://forgejo@git.js0ny.net/infra/nix-secrets.git"
       },
       "original": {
         "type": "git",
-        "url": "ssh://forgejo@git.js0ny.net/js0ny/nix-secrets.git"
+        "url": "ssh://forgejo@git.js0ny.net/infra/nix-secrets.git"
       }
     },
     "sops-nix": {

@@ -29,9 +29,9 @@ let
 in
 lib.mkIf pkgs.stdenv.isDarwin {
   home.sessionVariables.TERMINAL = apps.terminal.exe;
-  home.packages = with pkgs; [
-    duti
-    defaultbrowser
+  home.packages = [
+    pkgs.duti
+    pkgs.defaultbrowser
   ];
   home.activation.setOSXCommonDefaultApps = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     ${lib.concatStringsSep "\n" (lib.flatten (lib.mapAttrsToList mkDutiCommands dutiMaps))}
