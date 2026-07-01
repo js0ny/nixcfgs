@@ -1,10 +1,5 @@
 {
-  pkgs,
-  lib,
-  config,
   inputs,
-  nixcfgs,
-  myLib,
   secrets,
   ...
 }:
@@ -18,6 +13,7 @@
     # ./services/actual.nix
     # ../../nixos/services/affine.nix
     # keep-sorted start
+
     ./static/flux.nix
     inputs.self.nixosModules.authelia
     inputs.self.nixosModules.bentopdf
@@ -47,7 +43,10 @@
     inputs.self.nixosModules.rclone
     inputs.self.nixosModules.rsshub
     inputs.self.nixosModules.searxng
+    # inputs.self.nixosModules.core
+    inputs.self.nixosModules.starship
     inputs.self.nixosModules.sub2api
+    inputs.self.nixosModules.tailscale
     inputs.self.nixosModules.telegram-inline-llm-bot
     inputs.self.nixosModules.uptime-kuma
     inputs.self.nixosModules.valkey

@@ -6,6 +6,7 @@
       inputs.self.nixosModules.nginx
       inputs.self.nixosModules.core
       inputs.self.nixosModules.sshd
+      inputs.self.nixosModules.tailscale
     ];
     # TODO: Split to `guest`
     services.spice-vdagentd.enable = true;

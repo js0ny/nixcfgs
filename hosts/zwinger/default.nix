@@ -14,7 +14,6 @@
     ./disko.nix
     ./vars.nix
 
-    ../../nixos
     inputs.self.nixosModules.server
     inputs.srvos.nixosModules.hardware-hetzner-cloud
     inputs.self.nixosModules.cloudflare

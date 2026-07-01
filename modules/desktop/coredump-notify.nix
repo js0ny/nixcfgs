@@ -1,5 +1,10 @@
 {
   flake.nixosModules.desktop = { pkgs, lib, ... }: {
+    # Force disable drkonqi
+    systemd.services."drkonqi-coredump-processor@" = {
+      wantedBy = lib.mkForce [ ];
+      enable = lib.mkForce false;
+    };
     systemd.user.services.coredump-notify = {
       wantedBy = [ "graphical-session.target" ];
 

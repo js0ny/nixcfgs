@@ -85,8 +85,7 @@
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-    "ft" #'treemacs
-    "bb" #'switch-to-buffer))
+    "b" #'switch-to-buffer))
 
 ;; Evil Commentary: Use gc<action> to toggle comments
 (use-package evil-commentary
@@ -268,8 +267,11 @@
 (use-package elfeed
   :ensure t
   :custom
-  (elfedd-search-filter "@1-month-ago +unread")
-  (elfeed-db-directory (expand-file-name "elfeed" user-emacs-data)))
+  (elfeed-search-filter "@1-month-ago +unread")
+  (elfeed-db-directory (expand-file-name "elfeed" user-emacs-data))
+  :config
+  (add-to-list 'evil-emacs-state-modes 'elfeed-search-mode)
+  (add-to-list 'evil-emacs-state-modes 'elfeed-show-mode))
 
 (use-package elfeed-protocol
   :after elfeed

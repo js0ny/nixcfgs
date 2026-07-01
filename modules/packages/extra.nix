@@ -48,6 +48,7 @@ in
     # keep-sorted end
 
     # nix
+    nixfmt
     nix-diff
     nix-output-monitor
     nvd

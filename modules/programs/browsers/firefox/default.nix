@@ -1,7 +1,6 @@
 {
   flake.nixosModules.firefox =
     {
-      pkgs,
       lib,
       config,
       ...
@@ -14,7 +13,7 @@
     lib.mkIf (!wsl) {
       programs.firefox = {
         enable = true;
-        package = pkgs.nixpaks.firefox;
+        # package = pkgs.nixpaks.firefox;
         preferences = baseprefs;
         policies = policies;
       };

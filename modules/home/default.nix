@@ -5,4 +5,5 @@
   flake.homeModules.darwin = import ./darwin-base.nix;
   flake.homeModules.desktop-base = import ./desktop-base.nix;
   flake.homeModules.desktop = import ./desktop-extra.nix;
+  flake.homeModules.dev = import ./dev.nix;
 }

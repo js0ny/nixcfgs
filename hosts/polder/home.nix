@@ -7,6 +7,8 @@
   imports = [
     inputs.self.homeModules.server
     inputs.sops-nix.homeManagerModules.sops
+
+    inputs.self.homeModules.starship
     ./vars.nix
   ];
 

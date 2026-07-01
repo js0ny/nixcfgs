@@ -37,13 +37,13 @@ in
 
   programs.firefox = {
     enable = cfg.enable;
-    package =
-      if isNixOS then
-        pkgs.nixpaks.firefox
-      else if pkgs.stdenv.isDarwin then
-        pkgs.firefox-bin
-      else
-        pkgs.firefox;
+    # package =
+    #   if isNixOS then
+    #     pkgs.nixpaks.firefox
+    #   else if pkgs.stdenv.isDarwin then
+    #     pkgs.firefox-bin
+    #   else
+    #     pkgs.firefox;
   };
 
   # antidots
