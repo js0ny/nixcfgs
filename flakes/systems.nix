@@ -31,7 +31,7 @@
         "crystal"
         "polder"
         "zwinger"
-        "wsl-crystal"
+        # "wsl-crystal"
       ];
       darwinHosts = [ "zen" ];
 

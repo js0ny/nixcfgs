@@ -5,7 +5,7 @@
     ./tailscale.nix
   ];
 
-  flake.nixosModules.core = { inputs, config, ... }: {
+  flake.nixosModules.core = { inputs, ... }: {
     imports = [
       ./nixos.nix
       inputs.sops-nix.nixosModules.sops
@@ -30,7 +30,6 @@
 
       ../options
 
-      inputs.self.homeModules.fastfetch
       inputs.self.homeModules.git
       inputs.sops-nix.homeManagerModules.sops
     ];
@@ -46,4 +45,13 @@
       ../options
     ];
   };
+
+  flake.homeModules.linux = { inputs, ... }: {
+    imports = [
+      inputs.self.homeModules.core
+      inputs.plasma-manager.homeModules.plasma-manager
+    ];
+
+  };
+
 }

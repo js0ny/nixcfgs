@@ -28,6 +28,11 @@ in
     MINIFLUX_BASE_URL=${ep.miniflux.publicUrl}
     MINIFLUX_API_TOKEN=${sec.hermes_miniflux_api_token}
     HERMES_DASHBOARD_SESSION_TOKEN=${sec.hermes_session_token}
+
+    # Dashboard Basic Auth
+    HERMES_DASHBOARD_BASIC_AUTH_USERNAME=${sec.hermes_dashboard_basic_auth_username}
+    HERMES_DASHBOARD_BASIC_AUTH_PASSWORD_HASH=${sec.hermes_dashboard_basic_auth_password_hash}
+    HERMES_DASHBOARD_BASIC_AUTH_SECRET=${sec.hermes_dashboard_basic_auth_secret}
   '';
 
   sops.secrets = {
@@ -36,6 +41,9 @@ in
     hermes_github_pat = { inherit sopsFile; };
     hermes_miniflux_api_token = { inherit sopsFile; };
     hermes_session_token = { inherit sopsFile; };
+    hermes_dashboard_basic_auth_secret = { inherit sopsFile; };
+    hermes_dashboard_basic_auth_username = { inherit sopsFile; };
+    hermes_dashboard_basic_auth_password_hash = { inherit sopsFile; };
     tg_main_chatid = {
       sopsFile = secrets + /telegram.yaml;
     };

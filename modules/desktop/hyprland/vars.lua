@@ -1,5 +1,5 @@
 local M = {}
 
-M.mod = "SUPER"
+M.mod = 'SUPER'
 
 return M

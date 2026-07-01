@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   insecure = true;
   bindAdress = "0.0.0.0";

@@ -1,6 +1,11 @@
 {
   flake.homeModules.fastfetch =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
       isHeadless = config.nixdots.linux.display == "none";
       customFastfetch = pkgs.fastfetch.override {
@@ -24,7 +29,7 @@
     {
       programs.fastfetch = {
         enable = true;
-        package = customFastfetch;
+        package = lib.mkForce customFastfetch;
         # Stolen from: https://codeberg.org/JellyCat/JellyDotFiles/src/branch/main/items/fastfetch/src/config.jsonc
         # https://gitlab.com/CarterLi/fastfetch/-/wikis/Json-Schema
         settings = {
@@ -117,4 +122,5 @@
         };
       };
     };
+  flake.homeModules.core = { inputs, ... }: { imports = [ inputs.self.homeModules.fastfetch ]; };
 }

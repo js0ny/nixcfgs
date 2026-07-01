@@ -14,4 +14,5 @@
   ];
 
   home.stateVersion = "26.05";
+  sops.age.keyFile = "/etc/ssh/agekey.txt";
 }

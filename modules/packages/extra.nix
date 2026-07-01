@@ -34,6 +34,7 @@ in
     kdePackages.kdenlive
     kdePackages.partitionmanager
     kdePackages.qttools
+    keepassxc
     krabby
     libguestfs
     misc.apps.proton-drive-cli

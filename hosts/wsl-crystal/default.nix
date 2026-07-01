@@ -3,7 +3,6 @@ _: {
 
   imports = [
     # Host-specific configs
-    ../../nixos
     ./vars.nix
   ];
 

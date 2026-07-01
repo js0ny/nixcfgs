@@ -21,6 +21,7 @@
     sharedModules = [
       #  inputs.dank-material-shell.homeModules.default
       inputs.catppuccin.homeModules.catppuccin
+      inputs.plasma-manager.homeModules.plasma-manager
     ];
   };
 }

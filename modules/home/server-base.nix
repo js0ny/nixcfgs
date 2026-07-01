@@ -1,8 +1,5 @@
-{ pkgs, ... }:
-{
+_: {
   imports = [
     ./linux-base.nix
   ];
-
-  dconf.enable = false;
 }

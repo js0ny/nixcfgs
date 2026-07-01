@@ -36,4 +36,9 @@
       ];
     };
   };
+
+  flake.homeModules.server = { lib, ... }: {
+    programs.plasma.enable = lib.mkForce false;
+    dconf.enable = false;
+  };
 }
