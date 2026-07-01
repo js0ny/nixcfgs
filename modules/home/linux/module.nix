@@ -8,7 +8,6 @@
   imports = [
     ./impermanence.nix
     ./xremap/spcl.nix
-    ./kderc.nix
     ./xremap/caps-esc-ctrl.nix
     ./xremap/module.nix
   ];

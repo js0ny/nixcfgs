@@ -1,6 +1,6 @@
 {
   flake.nixosModules.core =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       environment.systemPackages = with pkgs; [
         # keep-sorted start
@@ -21,6 +21,14 @@
         socat
         wget
         # keep-sorted end
+        (pkgs.neovim.override {
+          waylandSupport = config.hardware.graphics.enable;
+          withNodeJs = false;
+          withPython3 = false;
+          withRuby = false;
+          viAlias = true;
+          vimAlias = true;
+        })
       ];
 
       # keep-sorted start
@@ -33,15 +41,6 @@
       programs.neovim.enable = true;
       programs.tcpdump.enable = true;
       # keep-sorted end
-
-      programs.neovim = {
-        defaultEditor = true;
-        viAlias = true;
-        vimAlias = true;
-        withNodeJs = false;
-        withPython3 = false;
-        withRuby = false;
-      };
 
       environment.shellAliases = {
         grep = "grep --color=auto";

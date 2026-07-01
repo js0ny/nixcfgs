@@ -55,6 +55,7 @@
         "image/webp"
         "image/x-portable-pixmap"
         "image/svg+xml"
+        "image/tiff"
       ];
       mkAssoc =
         mimes: apps:
