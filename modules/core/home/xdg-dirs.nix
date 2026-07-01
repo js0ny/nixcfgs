@@ -13,7 +13,7 @@ in
   xdg.binHome = "${config.home.homeDirectory}/.local/bin";
   xdg.localBinInPath = true;
   nixdots.persist.home.directories = [
-    (lib.removePrefix config.home.homeDirectory config.xdg.binHome)
+    (lib.removePrefix "${config.home.homeDirectory}/" config.xdg.binHome)
   ];
   xdg.configFile."user-dirs.locale" = {
     enable = !pkgs.stdenv.isDarwin;
