@@ -162,6 +162,7 @@
   (counsel-mode 1)
   (global-set-key (kbd "C-x C-f") #'counsel-find-file)
   (global-set-key (kbd "M-x") #'counsel-M-x)
+  (global-set-key (kbd "C-x d") #'counsel-dired)
   (evil-leader/set-key
     "SPC" #'counsel-file-jump
     "/" #'counsel-rg
@@ -332,4 +333,3 @@
 		  (delete-overlay o)))
 	      (org--make-preview-overlay start end movefile imagetype)
 	      (goto-char end))))))))
-

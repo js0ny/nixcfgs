@@ -20,7 +20,7 @@ lib.mkIf pkgs.stdenv.isLinux {
     extensions = with vicinae-extensions; [
       # keep-sorted start
       agent-skills-sh
-      bluetooth
+      # bluetooth
       firefox
       gnome-extensions
       niri
