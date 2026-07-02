@@ -45,6 +45,8 @@
           listen_on = "unix:/tmp/kitty.sock";
           confirm_os_window_close = 0;
           auto_reload_config = -1;
+          show_hyperlink_targets = "always";
+          underline_hyperlinks = "always";
         };
         keybindings = {
           "cmd+c" = "copy_and_clear_or_interrupt";

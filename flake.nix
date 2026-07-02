@@ -115,7 +115,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -123,6 +122,11 @@
     };
     thyx = {
       url = "github:rccyx/thyx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
+    oroot = {
+      url = "github:js0ny/oroot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # }}}

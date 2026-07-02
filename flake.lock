@@ -1555,16 +1555,36 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1782780637,
-        "narHash": "sha256-G/cvWE60pVnlC+m8Bjo3ankL/zrEDTolWwvVMSAZ9GM=",
+        "lastModified": 1782955130,
+        "narHash": "sha256-qCSTNbxFn3rGpefzXqUnw6Ot7vM2uYPWrP66M3grXD4=",
         "owner": "js0ny",
         "repo": "nvimdots",
-        "rev": "59ab9cab7efc627799607a7fcd92cd3dd84ca2ab",
+        "rev": "39b2d70d3d1e6554bdce3e189cda31ea8be33bde",
         "type": "github"
       },
       "original": {
         "owner": "js0ny",
         "repo": "nvimdots",
+        "type": "github"
+      }
+    },
+    "oroot": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782941803,
+        "narHash": "sha256-HlcijI1bzz7d7qEo2loAeDsnAQIiNCwdvUR0wpZFwUM=",
+        "owner": "js0ny",
+        "repo": "oroot",
+        "rev": "2f2784bb620ef2b9440a127d4804668572a9ea92",
+        "type": "github"
+      },
+      "original": {
+        "owner": "js0ny",
+        "repo": "oroot",
         "type": "github"
       }
     },
@@ -1734,6 +1754,7 @@
         "noctalia": "noctalia",
         "nur": "nur",
         "nvimdots": "nvimdots",
+        "oroot": "oroot",
         "plasma-manager": "plasma-manager",
         "secrets": "secrets",
         "sops-nix": "sops-nix",

@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -22,6 +23,8 @@ lib.mkMerge [
     users.mutableUsers = lib.mkForce false;
 
     fileSystems."${path}".neededForBoot = true;
+
+    environment.systemPackages = [ inputs.oroot.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
   })
   (lib.mkIf cfg.nosnap.enable {
