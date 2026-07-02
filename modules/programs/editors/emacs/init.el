@@ -265,7 +265,6 @@
   (org-supertag-sync-directories '("~/org/")))
 
 (use-package elfeed
-  :ensure t
   :custom
   (elfeed-search-filter "@1-month-ago +unread")
   (elfeed-db-directory (expand-file-name "elfeed" user-emacs-data))
@@ -283,6 +282,11 @@
 (use-package doom-modeline
   :config
   (doom-modeline-mode))
+
+(use-package hnview
+  :custom
+  (hnview-translate-target-language "zh-CN")
+  (hnview-database-file (expand-file-name "hnview.sqlite" user-emacs-data)))
 
 (defun org-typst-preview ()
   (interactive)

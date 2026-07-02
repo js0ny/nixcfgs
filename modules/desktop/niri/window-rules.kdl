@@ -89,6 +89,17 @@ window-rule {
     open-focused false
     default-floating-position relative-to="top-right" x=50 y=50
 }
+
+window-rule {
+    match app-id="hermes"
+    opacity 0.850000
+    background-effect {
+        blur true
+    }
+    default-floating-position relative-to="top-right" x=50 y=50
+}
+
+
 window-rule {
     match app-id="^firefox$"
     open-on-workspace "1-master"
@@ -122,3 +133,4 @@ window-rule {
     match app-id="^Cider$"
     open-on-workspace "5-bg"
 }
+

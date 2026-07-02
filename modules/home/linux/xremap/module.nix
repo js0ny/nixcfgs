@@ -16,8 +16,8 @@
   #     WIN-, SUPER-, WINDOWS-
   services.xremap = {
     enable = true;
-    # withNiri = true;
-    withHypr = true;
+    withNiri = true;
+    # withHypr = true;
 
   };
 

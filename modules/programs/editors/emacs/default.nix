@@ -39,9 +39,35 @@
                 posframe
               ];
             };
+            hnview = epkgs.trivialBuild {
+              pname = "hnview";
+              version = "0.1.0";
+
+              src = pkgs.fetchFromGitHub {
+                owner = "LuciusChen";
+                repo = "hnview";
+                rev = "1876200ad573c41e8b14bcb66a236182d13ced35";
+                hash = "sha256-JK9sS12D/BIhds15rCdswJD2B8vD7B8NHMZJFVyi6k8=";
+              };
+
+              packageRequires = with epkgs; [
+                llm
+                plz
+              ];
+
+              meta = with lib; {
+                description = "Modern Emacs-native Hacker News reader with LLM-assisted translation";
+                homepage = "https://github.com/LuciusChen/hnview";
+                license = licenses.gpl3Plus;
+              };
+            };
           in
           with epkgs;
           [
+
+            org-supertag
+            hnview
+
             avy
             elfeed-protocol
             dashboard
@@ -74,7 +100,6 @@
             gptel
             posframe
             ht
-            org-supertag
             (epkgs.treesit-grammars.with-grammars (grammars: [
               grammars.tree-sitter-nix
             ]))

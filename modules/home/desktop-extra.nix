@@ -64,4 +64,5 @@
       sopsFile = secrets + /hosts.yaml;
     };
   };
+  xdg.configFile."face.png".source = config.nixdots.user.avatar;
 }

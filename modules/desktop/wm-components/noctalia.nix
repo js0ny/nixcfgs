@@ -31,12 +31,12 @@
         enable = true;
         systemd.enable = true;
         settings = {
-          backdrop.enabled = true;
+          backdrop.enabled = false;
           brightness.enable_ddcutil = true;
           shell = {
             lang = locale;
             settings_show_advanced = true;
-            avatar_path = "/var/lib/AccountService/icons/${config.home.username}";
+            avatar_path = "${config.xdg.configHome}/face.png";
             clipboard_enabled = false;
             time_format = "{:%H:%M:%S}";
             screenshot.directory = config.home.customDirs.screenshots;
