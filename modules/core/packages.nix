@@ -19,6 +19,7 @@
         moreutils
         psmisc
         socat
+        sysstat # iostat
         wget
         # keep-sorted end
         (pkgs.neovim.override {

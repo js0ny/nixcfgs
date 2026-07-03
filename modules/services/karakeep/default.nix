@@ -16,6 +16,7 @@
       browserPort = epSelf.port + 1;
     in
     {
+      nixpkgs.config.permittedInsecurePackages = [ "pnpm-9.15.9" ];
       services.karakeep = {
         enable = true;
         browser = {

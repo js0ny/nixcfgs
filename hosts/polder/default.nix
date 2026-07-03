@@ -51,7 +51,6 @@
     inputs.self.nixosModules.telegram-inline-llm-bot
     inputs.self.nixosModules.uptime-kuma
     inputs.self.nixosModules.valkey
-    inputs.self.nixosModules.vikunja
     # keep-sorted end
   ];
 
