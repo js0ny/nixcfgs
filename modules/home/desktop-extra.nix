@@ -65,4 +65,13 @@
     };
   };
   xdg.configFile."face.png".source = config.nixdots.user.avatar;
+
+  programs.swayimg.enable = true;
+
+  home.packages = [
+    # TODO: impl for other shell
+    (pkgs.writeShellScriptBin "setwall" ''
+      noctalia msg wallpaper-set "$@"
+    '')
+  ];
 }

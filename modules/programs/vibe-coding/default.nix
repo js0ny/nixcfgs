@@ -8,9 +8,10 @@
         ./oh-my-pi.nix
         inputs.self.homeModules.opencode
       ];
-      home.packages = with pkgs.llm-agents; [
-        agentsview
-        ccusage
+      home.packages = with pkgs; [
+        llm-agents.agentsview
+        llm-agents.ccusage
+        herdr
       ];
     };
 }

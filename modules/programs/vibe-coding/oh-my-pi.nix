@@ -6,4 +6,8 @@
     };
   };
   home.packages = [ pkgs.llm-agents.omp ];
+
+  nixdots.persist.home.directories = [
+    ".config/pi"
+  ];
 }

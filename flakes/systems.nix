@@ -106,6 +106,15 @@
               path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."zwinger";
             };
           };
+          "crystal" = {
+            hostname = "100.101.8.90";
+            profiles.system = {
+              user = "root";
+              sshUser = "js0ny";
+              interactiveSudo = true;
+              path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."crystal";
+            };
+          };
         };
       };
     };

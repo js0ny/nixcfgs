@@ -12,7 +12,7 @@
     {
       programs.qutebrowser = {
         enable = config.nixdots.linux.display != "none";
-        package = if (config.nixdots.linux.gpu == "nvidia") then qb else pkgs.qutebrowser;
+        # package = if (config.nixdots.linux.gpu == "nvidia") then qb else pkgs.qutebrowser;
         searchEngines = {
           g = "https://www.google.com/search?hl=en&q={}";
         };

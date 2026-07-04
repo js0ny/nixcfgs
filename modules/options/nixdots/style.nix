@@ -41,7 +41,7 @@ in
         default = [
           {
             package = pkgs.nur.repos.guanran928.harmonyos-sans;
-            name = "HarmonyOS Sans";
+            name = "HarmonyOS Sans SC";
           }
           {
             package = pkgs.lxgw-neoxihei;

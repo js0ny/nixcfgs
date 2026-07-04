@@ -1,6 +1,3 @@
-hl.workspace_rule({ workspace = '1', layout = 'dwindle' })
-hl.workspace_rule({ workspace = '2', layout = 'scrolling' })
-
 hl.config({
   scrolling = {
     direction = 'left',
@@ -328,6 +325,7 @@ hl.config({
 require('keymaps')
 require('shell_keymaps')
 require('window-rules')
+require('workspace-rules')
 require('animations')
 
 hl.config({

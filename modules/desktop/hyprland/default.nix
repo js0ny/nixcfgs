@@ -42,6 +42,7 @@
             "utils.lua"
             "vars.lua"
             "window-rules.lua"
+            "workspace-rules.lua"
           ];
         in
         builtins.listToAttrs (
