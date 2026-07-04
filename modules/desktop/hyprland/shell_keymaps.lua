@@ -6,6 +6,7 @@ local mod = vars.mod
 if utils.executable_in_path('noctalia') then
   hl.bind('CTRL + ALT + DELETE', hl.dsp.exec_cmd('noctalia msg panel-open session'))
   hl.bind(mod .. ' + ALT + i', hl.dsp.exec_cmd('noctalia msg session lock'))
+  hl.bind(mod .. ' + comma', hl.dsp.exec_cmd('noctalia msg panel-toggle control-center'))
   hl.bind('XF86AudioNext', hl.dsp.exec_cmd('noctalia msg media next'), { locked = true })
   hl.bind('XF86AudioPause', hl.dsp.exec_cmd('noctalia msg media toggle'), { locked = true })
   hl.bind('XF86AudioPlay', hl.dsp.exec_cmd('noctalia msg media toggle'), { locked = true })
@@ -40,7 +41,7 @@ if utils.executable_in_path('noctalia') then
     hl.dsp.exec_cmd('noctalia msg brightness-down current 5'),
     { locked = true, repeating = true }
   )
-  hl.bind(mod .. '+ TAB', function()
+  hl.bind(mod .. ' + TAB', function()
     hl.dsp.exec_cmd('noctalia msg window-switcher')
   end)
 elseif utils.executable_in_path('dms') then

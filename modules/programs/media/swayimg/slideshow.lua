@@ -27,7 +27,7 @@ end
 ---@return string
 local function imgpath()
   local img = swayimg.viewer.get_image()
-  local escaped_path = "'" .. img.path:gsub("'", "'\\''") .. "'"
+  local escaped_path = utils.shell_quote(img.path)
   return escaped_path
 end
 
@@ -57,6 +57,9 @@ local slideshow_map = {
   end,
   ["Return"] = function()
     swayimg.set_mode("viewer")
+  end,
+  ["Alt-Return"] = function()
+    utils.show_properties(swayimg.slideshow.get_image())
   end,
   ["t"] = function()
     swayimg.set_mode("gallery")

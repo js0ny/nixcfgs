@@ -71,7 +71,13 @@
   home.packages = [
     # TODO: impl for other shell
     (pkgs.writeShellScriptBin "setwall" ''
-      noctalia msg wallpaper-set "$@"
+      if [[ $XDG_CURRENT_DESKTOP == "Hyprland" || $XDG_CURRENT_DESKTOP == "niri" ]]; then
+        noctalia msg wallpaper-set "$@"
+      elif [[ $XDG_CURRENT_DESKTOP == "KDE" ]]; then
+        plasma-apply-wallpaperimage "$@"
+      elif [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
+        dconf write /org/gnome/desktop/background/picture-uri "file:///$@"
+      fi
     '')
   ];
 }

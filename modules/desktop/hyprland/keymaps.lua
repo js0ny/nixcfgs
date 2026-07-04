@@ -1,3 +1,4 @@
+local utils = require('utils')
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -23,7 +24,7 @@ hl.bind(
 ):set_enabled(false)
 hl.bind(mod .. ' + E', hl.dsp.exec_cmd('xdg-open ~'))
 -- hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mod .. ' + V', hl.dsp.exec_cmd('vicinae vicinae://launch/clipboard/history'))
+hl.bind(mod .. ' + V', hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/clipboard/history'))
 hl.bind('ALT + Space', hl.dsp.exec_cmd(menu))
 hl.bind(mod .. ' + P', hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
@@ -45,26 +46,21 @@ hl.bind(mod .. ' + SHIFT + L', hl.dsp.window.swap({ direction = 'right' }))
 hl.bind(mod .. ' + SHIFT + K', hl.dsp.window.swap({ direction = 'up' }))
 hl.bind(mod .. ' + SHIFT + J', hl.dsp.window.swap({ direction = 'down' }))
 
-hl.bind(mod .. ' + g', hl.dsp.group.toggle())
+hl.bind(mod .. ' + G', hl.dsp.group.toggle())
 
-hl.bind(mod .. ' + M', hl.dsp.window.fullscreen())
+hl.bind(mod .. ' + R', hl.dsp.layout('colresize +conf'))
+hl.bind(mod .. ' + SHIFT + R', hl.dsp.layout('colresize -conf'))
 
-hl.bind(mod .. ' + C', hl.dsp.window.center())
+hl.bind(mod .. ' + EQUAL', hl.dsp.layout('colresize +0.1'))
+hl.bind(mod .. ' + MINUS', hl.dsp.layout('colresize -0.1'))
+hl.bind(mod .. ' + BRACKETLEFT', hl.dsp.window.move({ direction = 'left', group_aware = true }))
+hl.bind(mod .. ' + BRACKETRIGHT', hl.dsp.window.move({ direction = 'right', group_aware = true }))
+hl.bind(mod .. ' + M', utils.toggle_maximised)
+hl.bind(mod .. ' + SHIFT + M', hl.dsp.window.fullscreen({ mode = 'fullscreen', action = 'toggle' }))
 
-local function toggle_focus_float()
-  local win = hl.get_active_window()
-  if not win then
-    return
-  end
+hl.bind(mod .. ' + C', hl.dsp.layout('fit'))
 
-  if win.floating then
-    hl.dispatch(hl.dsp.window.cycle_next({ tiled = true }))
-  else
-    hl.dispatch(hl.dsp.window.cycle_next({ floating = true }))
-  end
-end
-
-hl.bind(mod .. ' + F', toggle_focus_float)
+hl.bind(mod .. ' + F', utils.toggle_focus_float)
 hl.bind(mod .. ' + SHIFT + F', hl.dsp.window.float({ action = 'toggle' }))
 
 -- Switch workspaces with mainMod + [0-9]
@@ -83,16 +79,20 @@ end
 -- hl.unbind(mod .. "+ SHIFT + S")
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mod .. ' + mouse_down', hl.dsp.focus({ workspace = 'e+1' }))
-hl.bind(mod .. ' + mouse_up', hl.dsp.focus({ workspace = 'e-1' }))
+hl.bind(mod .. ' + mouse_down', hl.dsp.focus({ workspace = 'e-1' }))
+hl.bind(mod .. ' + mouse_up', hl.dsp.focus({ workspace = 'e+1' }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mod .. ' + mouse:272', hl.dsp.window.drag(), { mouse = true })
 hl.bind(mod .. ' + mouse:273', hl.dsp.window.resize(), { mouse = true })
 
--- Laptop multimedia keys for volume and LCD brightness
-
--- Requires playerctl
-
+-- Screenshot
 hl.bind(mod .. ' + SHIFT + S', hl.dsp.exec_cmd('grimblast --notify copysave area'))
 hl.bind(mod .. ' + S', hl.dsp.exec_cmd('grimblast --notify copysave active'))
+
+hl.bind(mod .. ' + BACKSLASH', utils.layout_cycle)
+
+hl.bind(
+  mod .. ' + W',
+  hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/@nino-mau/store.vicinae.hypr/windows')
+)

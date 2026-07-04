@@ -38,6 +38,9 @@ in
     "TelemetryUsageData${account}" = false;
     "TelemetryCrashReports${account}" = false;
   };
-  home.packages = lib.optionals (config.nixdots.linux.enable) [ pkgs.proton-vpn-cli ];
+  home.packages = lib.optionals (config.nixdots.linux.enable) [
+    pkgs.proton-vpn-cli
+    pkgs.protonvpn-gui
+  ];
   nixdots.darwin.homebrew.casks = [ "protonvpn" ];
 }

@@ -18,7 +18,7 @@
     {
       imports = [
         inputs.dank-material-shell.homeModules.default
-        inputs.self.homeModules.hm-components
+        inputs.self.homeModules.wm-components
       ];
       home.sessionVariables = {
         DMS_DISABLE_POLKIT = "1";

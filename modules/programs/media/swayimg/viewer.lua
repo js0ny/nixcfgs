@@ -27,7 +27,7 @@ end
 ---@return string
 local function imgpath()
   local img = swayimg.viewer.get_image()
-  local escaped_path = "'" .. img.path:gsub("'", "'\\''") .. "'"
+  local escaped_path = utils.shell_quote(img.path)
   return escaped_path
 end
 
@@ -81,6 +81,9 @@ local viewer_map = {
   ["Return"] = function()
     swayimg.set_mode("gallery")
   end,
+  ["Alt-Return"] = function()
+    utils.show_properties(swayimg.viewer.get_image())
+  end,
   -- thumbnail mode | gallery
   ["t"] = function()
     swayimg.set_mode("gallery")
@@ -93,8 +96,22 @@ local viewer_map = {
     os.execute("setwall " .. escaped_path)
     os.execute(string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'wallpaper set'"))
   end,
+  ["o"] = function()
+    local out, err = utils.cmd_stdout("zenity --file-selection")
+    if err then
+      return
+    end
+    swayimg.viewer.open(utils.chomp(out))
+  end,
 }
 
 for key, value in pairs(viewer_map) do
   swayimg.viewer.on_key(key, value)
 end
+swayimg.viewer.on_mouse("MouseExtra", function()
+  swayimg.viewer.switch_image("next")
+end)
+
+swayimg.viewer.on_mouse("MouseSide", function()
+  swayimg.viewer.switch_image("prev")
+end)

@@ -8,6 +8,7 @@
     }:
     lib.mkIf pkgs.stdenv.isLinux {
       programs.swayimg.enable = true;
+      # https://github.com/artemsen/swayimg/blob/master/CONFIG.md
       xdg.configFile =
         let
           mkSymlink = config.lib.file.mkOutOfStoreSymlink;

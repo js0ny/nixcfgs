@@ -14,6 +14,7 @@
             nixfmt
             nvfetcher
             nufmt
+            lua
           ];
           devDeps = with pkgs; [
             lua-language-server

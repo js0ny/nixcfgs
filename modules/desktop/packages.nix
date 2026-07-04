@@ -31,6 +31,8 @@
       loupe # SUPER FAST 有催人跑的感觉
       mpv
       sioyek
+
+      zenity
     ];
     programs.gnome-disks.enable = true;
     programs.gpu-screen-recorder.enable = true;

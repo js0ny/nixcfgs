@@ -9,6 +9,7 @@ let
   cfg = config.nixdots.persist;
   path = cfg.path; # /persist
   user = config.nixdots.user.name;
+  oroot = inputs.oroot.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 lib.mkMerge [
   (lib.mkIf cfg.enable {
@@ -24,7 +25,13 @@ lib.mkMerge [
 
     fileSystems."${path}".neededForBoot = true;
 
-    environment.systemPackages = [ inputs.oroot.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    environment.systemPackages = [ oroot ];
+    programs.fish.interactiveShellInit = /* fish */ ''
+      oroot completion fish | source
+    '';
+    programs.zsh.interactiveShellInit = /* zsh */ ''
+      source <(oroot completion zsh)
+    '';
 
   })
   (lib.mkIf cfg.nosnap.enable {

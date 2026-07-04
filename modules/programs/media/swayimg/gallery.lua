@@ -1,7 +1,9 @@
+local utils = require("utils")
+
 ---@return string
 local function imgpath()
   local img = swayimg.gallery.get_image()
-  local escaped_path = "'" .. img.path:gsub("'", "'\\''") .. "'"
+  local escaped_path = utils.shell_quote(img.path)
   return escaped_path
 end
 
@@ -31,6 +33,9 @@ local gallery_map = {
   end,
   ["Return"] = function()
     swayimg.set_mode("viewer")
+  end,
+  ["Alt-Return"] = function()
+    utils.show_properties(swayimg.gallery.get_image())
   end,
   ["t"] = function()
     swayimg.set_mode("viewer")

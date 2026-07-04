@@ -74,7 +74,7 @@ hl.config({
     -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
     allow_tearing = false,
 
-    layout = 'dwindle',
+    layout = 'scrolling',
   },
 
   decoration = {
@@ -108,9 +108,14 @@ hl.config({
 hl.config({
   group = {
     groupbar = {
+      enabled = true,
       font_size = 12,
       height = 20,
       blur = true,
+      stacked = true,
+      col = {
+        active = 0xffffffff,
+      },
     },
   },
 })
@@ -333,4 +338,19 @@ hl.config({
     border_size = 4,
   },
   xwayland = { force_zero_scaling = true },
+})
+
+hl.layout.register('grid', {
+  recalculate = function(ctx)
+    local n = #ctx.targets
+    if n == 0 then
+      return
+    end
+
+    local cols = math.ceil(math.sqrt(n))
+
+    for i, target in ipairs(ctx.targets) do
+      target:place(ctx:grid_cell(i, cols))
+    end
+  end,
 })
