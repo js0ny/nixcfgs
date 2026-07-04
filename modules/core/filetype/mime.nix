@@ -132,9 +132,9 @@
           "org.prismlauncher.PrismLauncher"
         ]
         // mkAssoc imageMimes [
+          "swayimg"
           "org.gnome.Loupe"
           "org.kde.gwenview"
-          "swayimg"
           "mpv"
           "umpv"
         ];
