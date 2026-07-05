@@ -333,3 +333,6 @@
 		  (delete-overlay o)))
 	      (org--make-preview-overlay start end movefile imagetype)
 	      (goto-char end))))))))
+
+(use-package magit
+  :ensure t)
