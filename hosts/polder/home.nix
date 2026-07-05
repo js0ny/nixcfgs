@@ -9,6 +9,7 @@
     inputs.sops-nix.homeManagerModules.sops
 
     inputs.self.homeModules.starship
+    inputs.self.homeModules.neovim
     ./vars.nix
   ];
 

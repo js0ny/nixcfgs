@@ -124,6 +124,10 @@
       url = "github:rccyx/thyx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nh = {
+      url = "github:nix-community/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
     oroot = {
       url = "github:js0ny/oroot";

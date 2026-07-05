@@ -46,6 +46,13 @@ in
         ForwardAgent = true;
         IdentityFile = [ "~/.ssh/id_ed25519" ];
       };
+      "crystal" = {
+        HostName = "100.105.9.50";
+        User = "js0ny";
+        Port = port;
+        ForwardAgent = true;
+        IdentityFile = [ "~/.ssh/id_ed25519" ];
+      };
       "*" = {
         ForwardAgent = false;
         AddKeysToAgent = "yes";
