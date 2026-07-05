@@ -10,6 +10,7 @@
         localOverlays
         # keep-sorted start
         inputs.firefox-addons.overlays.default
+        inputs.hermes-agent.overlays.default
         inputs.llm-agents.overlays.default
         inputs.nix-cachyos-kernel.overlays.pinned
         inputs.nix-misc-packages.overlays.default
@@ -30,7 +31,7 @@
         "crystal"
         "polder"
         "zwinger"
-        "wsl-crystal"
+        # "wsl-crystal"
       ];
       darwinHosts = [ "zen" ];
 
@@ -48,7 +49,6 @@
             inputs.lanzaboote.nixosModules.lanzaboote
             inputs.nixos-wsl.nixosModules.default
             inputs.secrets.nixosModules.default
-            inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.default
             inputs.telegram-inline-llm-bot.nixosModules.default
             inputs.thyx.nixosModules.default
@@ -104,6 +104,15 @@
               sshUser = "js0ny";
               interactiveSudo = false;
               path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."zwinger";
+            };
+          };
+          "crystal" = {
+            hostname = "100.101.8.90";
+            profiles.system = {
+              user = "root";
+              sshUser = "js0ny";
+              interactiveSudo = true;
+              path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."crystal";
             };
           };
         };

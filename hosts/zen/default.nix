@@ -1,7 +1,10 @@
-{ ... }:
+{ inputs, ... }:
 {
   imports = [
-    ../../darwin
+    ../../common/hm.nix
+    ../../definitions
+    ../../options
+    inputs.self.darwinModules.darwin
 
     ./packages.nix
     ./dock.nix

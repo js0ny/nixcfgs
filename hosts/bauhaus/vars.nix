@@ -46,7 +46,10 @@ in
       sshd.enable = true;
       ollama = {
         enable = true;
-        models = [ "bge-m3" ];
+        models = [
+          "bge-m3"
+          "qwen3.6:27b"
+        ];
       };
     };
     networking.nftables.enable = true;
@@ -101,8 +104,9 @@ in
     pam.howdy.enable = false;
     programs = {
       steam.enable = true;
+      zsh.enable = false;
       obs-studio.enable = true;
-      chromium.enable = true;
+      chromium.enable = false;
       firefox.enable = true;
       dolphin.enable = true;
       thunderbird.enable = true;
@@ -110,7 +114,7 @@ in
     features = {
       preferGtk = true;
       media = {
-        obs-studio.enable = true;
+        obs-studio.enable = false;
         mpv = {
           enable = true;
           enableNativeFrontend = false;

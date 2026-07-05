@@ -1,7 +1,7 @@
 { lib, config, ... }:
 let
   ep = config.nixdefs.endpoints;
-  litellm-models = import ../nixos/services/litellm/litellm-models.nix;
+  litellm-models = import ../modules/services/litellm/litellm-models.nix;
   litellm-flat = map (i: i.model_name) litellm-models;
 in
 {

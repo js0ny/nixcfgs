@@ -8,23 +8,20 @@
 {
   imports = [
     ./vars.nix
-    ../../home/desktop-extra.nix
-    ../../home/desktop/plasma
-    ../../home/gaming/steam/sts2.nix
+    inputs.self.homeModules.desktop
+    inputs.self.homeModules.plasma
+    inputs.self.homeModules.hyprland
+    inputs.self.homeModules.noctalia
+    inputs.self.homeModules.niri
+    ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 
     # keep-sorted end
 
     # keep-sorted start
-    inputs.betterfox-nix.modules.homeManager.betterfox
     inputs.catppuccin.homeModules.catppuccin
-    inputs.niri-nix.homeModules.default
-    inputs.niri-nix.homeModules.stylix
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    inputs.nix-index-database.homeModules.nix-index
     inputs.secrets.homeManagerModules.default
-    inputs.sops-nix.homeManagerModules.sops
-    inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.steam-config-nix.homeModules.default
     # keep-sorted end
   ];

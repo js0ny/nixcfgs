@@ -1,6 +1,0 @@
-{ ... }:
-{
-  services.livekit = {
-    enable = true;
-  };
-}

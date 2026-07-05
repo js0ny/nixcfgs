@@ -1,0 +1,36 @@
+    escape ^Aa
+    bind a command -c screen
+    termcapinfo xterm* ti@:te@
+    term screen-256color
+    attrcolor b ".I"
+    defbce "on"
+    autodetach on
+    shelltitle "$ |bash"
+    startup_message off
+    altscreen on
+    defscrollback 4096
+    hardstatus alwayslastline
+    hardstatus string '%{= kG}[%{G}%H%{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c%{g}]'
+    bind c screen 1
+    bind 0 select 10
+    bind ^c screen 1
+    screen 1
+    vbell on
+    vbell_msg "   Bell  "
+    bind | split
+    bind - split -v
+    defutf8 on
+    defescape ^Aa
+    markkeys h=^B:l=^F:$=^E:^U=^Z:^D=^V
+    bind x kill
+    bind h focus left
+    bind j focus down
+    bind k focus up
+    bind l focus right
+    bind H resize -h -5
+    bind J resize -v +5
+    bind K resize -v -5
+    bind L resize -h +5
+    bind ^h prev
+    bind ^l next
+

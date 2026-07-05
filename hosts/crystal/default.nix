@@ -14,10 +14,15 @@
     ./disko.nix
     ./restic.nix
     ./vars.nix
-    # ./nixos-prebuild.nix
-    ../../nixos/desktop
-    # ../../nixos/services/hermes-agent
-    ../../nixos/services/sunshine.nix
+    inputs.self.nixosModules.desktop
+    inputs.self.nixosModules.podman
+    inputs.self.nixosModules.libvirt
+    inputs.self.nixosModules.sshd
+    inputs.self.nixosModules.tailscale
+
+    inputs.self.nixosModules.plasma
+    inputs.self.nixosModules.hyprland
+    inputs.self.nixosModules.niri
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
@@ -26,7 +31,7 @@
 
   # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
   # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
+  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
 
   # # Keep the internal MediaTek Bluetooth USB device awake; it can disappear from BlueZ after USB-C monitor hotplug/resume.
   # services.udev.extraRules = ''
@@ -49,10 +54,10 @@
   ];
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
 
-  programs.fish.enable = true;
-
   services.scx = {
     enable = true;
     scheduler = "scx_lavd";
   };
+
+  boot.plymouth.enable = true;
 }

@@ -14,9 +14,19 @@
     ./vars.nix
     ./btrbk.nix
     # ./nixos-prebuild.nix
-    ../../nixos/desktop
+    inputs.self.nixosModules.desktop
+    inputs.self.nixosModules.podman
+    inputs.self.nixosModules.libvirt
+    inputs.self.nixosModules.sshd
+    inputs.self.nixosModules.tailscale
     # ../../nixos/services/hermes-agent
-    ../../nixos/services/sunshine.nix
+    inputs.self.nixosModules.sunshine
+    inputs.self.nixosModules.ollama
+
+    inputs.self.nixosModules.gnome
+    inputs.self.nixosModules.plasma
+    inputs.self.nixosModules.hyprland
+    inputs.self.nixosModules.niri
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
@@ -26,8 +36,6 @@
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
 
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
-
-  programs.fish.enable = true;
 
   services.scx = {
     enable = true;

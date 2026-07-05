@@ -1,0 +1,136 @@
+// Float
+window-rule {
+    // File Selector
+    match app-id="^org.gnome.Nautilus$" title="^Select Document$"
+    match app-id="^sioyek$" title="^Select Document$"
+    match title="^File Properties$"
+    match app-id="^nemo$" title="^.* Properties$"
+    match app-id="^motrix-next$" title="^Open File$"
+
+    // Misc Selector
+    match app-id=r#"^com.usebottles.bottles$"# title="^Select Bottle$"
+
+    // File Preview
+    match app-id="^org.gnome.NautilusPreviewer$"
+    match app-id="^QQ$" title="^图片查看器$"
+    match app-id="^org.telegram.desktop$" title="^m|Media viewer$"
+    match app-id="^com.ayugram.desktop$" title="^m|Media viewer$"
+    match app-id="^io.github.kukuruzka165.materialgram$" title="^m|Media viewer$"
+    match app-id="^wechat$" title="^图片和视频$"
+    match app-id="^steam$" title="^录像及截图$"
+    match app-id="^steam$" title="^Recordings & Screenshots$"
+
+    // Popup Windows
+    match app-id="^dev.zed.Zed$" title="^Zed — Settings$"
+    match app-id="^QQ$" title="^.*的聊天记录$"
+    match app-id="^QQ$" title="^.*视频播放器$"
+    match app-id="^org.gnome.Settings.GlobalShortcutsProvider$" title="^Add Keyboard Shortcuts$"
+    match app-id="^anki$" title="^Add$"
+    match app-id="^thunar$" title="^File Operation Progress$"
+    match app-id="^CherryStudio$" title="^Cherry Studio Quick Assistant$"
+    match app-id="^wineboot.exe$" title="^Wine$"
+    match app-id="^qalculate-gtk$" title="^Qalculate!$"
+    match app-id="^jetbrains-.*$" title=r#"^JetBrains \w+ User Agreement$"#
+    match app-id="^org.kde.isoimagewriter$" title="^ISO Image Writer$"
+    match app-id="^proton-pass$" title="^Proton Pass$"
+
+    open-floating true
+}
+
+// Not-focus
+window-rule {
+    match app-id="^gimp$" title="^GIMP Startup$"
+    match app-id="^wechat$" title="^wechat$"
+    match app-id="^org.kde.dolphin$" title="^(Copying|Compressing|Deleting).*$"
+    match app-id="^org.kde.dolphin$" title="^正在删除.*Dolphin$"
+    open-focused false
+}
+
+// Float & Not-focused
+window-rule {
+    match app-id="^control.exe$" title="^Wine Mono Installer$"
+    match app-id="^jetbrains-.*$" title=r#"splash"#
+
+    open-floating true
+    open-focused false
+}
+
+window-rule {
+    match app-id="^.*terminal-popup$"
+    match app-id="^fsearch$"
+    open-floating true
+    opacity 0.800000
+}
+
+window-rule {
+    match app-id="^org.pulseaudio.pavucontrol$" title="^Volume Control$"
+    open-floating true
+    opacity 0.800000
+    default-floating-position relative-to="top-right" x=50 y=50
+}
+window-rule {
+    match app-id="^firefox$" title="^Picture-in-Picture$"
+    match title="^Picture in picture$"
+    match app-id="^steam$" title="^(Friends List)|(好友列表)$"
+    open-floating true
+    opacity 0.800000
+    default-floating-position relative-to="bottom-right" x=50 y=50
+}
+window-rule {
+    match app-id="^mpv$"
+    match app-id="^org.gnome.Loupe$"
+    open-floating true
+    default-floating-position relative-to="bottom-right" x=50 y=50
+}
+
+window-rule {
+    match app-id="^org.kde.(ark|dolphin)$" title="^Extracting"
+    match app-id="^steam$"
+    open-focused false
+    default-floating-position relative-to="top-right" x=50 y=50
+}
+
+window-rule {
+    match app-id="hermes"
+    opacity 0.850000
+    background-effect {
+        blur true
+    }
+    default-floating-position relative-to="top-right" x=50 y=50
+}
+
+
+window-rule {
+    match app-id="^firefox$"
+    open-on-workspace "1-master"
+}
+window-rule {
+    match app-id="^code$"
+    match app-id="^dev.zed.Zed$"
+    match app-id="^Vitis IDE$"
+    match app-id="^Vivado$"
+    open-on-workspace "2-project"
+}
+window-rule {
+    match app-id="^org.kde.krdc$"
+    match app-id="^org.remmina.Remmina$"
+    match app-id="^.virt-manager-wrapped$"
+    match title="^🌐 ssh.*"
+    open-on-workspace "3-alt"
+}
+window-rule {
+    match app-id="^org.telegram.desktop$"
+    match app-id="^io.github.kukuruzka165.materialgram$"
+    match app-id="^com.ayugram.desktop$"
+    match app-id="^wechat$"
+    match app-id="^QQ$"
+    match app-id="^discord$"
+    match app-id="^thunderbird$"
+    open-on-workspace "4-info"
+}
+window-rule {
+    match app-id="^feishin$"
+    match app-id="^Cider$"
+    open-on-workspace "5-bg"
+}
+

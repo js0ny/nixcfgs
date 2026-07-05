@@ -13,17 +13,3 @@ text = /* bash */ ''
 ## Flake Inputs
 
 - When adding a new input to `flake.nix`, run `nix flake metadata` and remove duplicated inputs using `inputs.MODULE.follows = "MODULE";` (e.g. `inputs.nixpkgs.follows = "nixpkgs";`, `inputs.flake-parts.follows = "flake-parts";`).
-
-## Neovim Documentation
-
-- To query Neovim help docs from the terminal, use this headless command:
-
-```bash
-nvim --headless \
-  '+help vim.lsp.Config' \
-  '+execute ".,.+50w! /dev/stdout"' \
-  '+qa'
-```
-
-- To change the number of output lines, edit `+50` in `'+execute ".,.+50w! /dev/stdout"'` (for example, use `+100` to print 100 lines after the current help line).
-- To query a different help topic, replace `vim.lsp.Config` in `'+help vim.lsp.Config'` with the target tag (for example, `:help lua-guide`).

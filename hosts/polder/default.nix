@@ -1,16 +1,11 @@
 {
-  pkgs,
-  lib,
-  config,
   inputs,
-  nixcfgs,
-  myLib,
   secrets,
   ...
 }:
 {
   imports = [
-    ../../nixos/server
+    inputs.self.nixosModules.server
     # Host-specific configs
     ./hardware-configuration.nix
     ./vars.nix
@@ -18,52 +13,48 @@
     # ./services/actual.nix
     # ../../nixos/services/affine.nix
     # keep-sorted start
-    ../../nixos/services/authelia
-    ../../nixos/services/bentopdf.nix
-    ../../nixos/services/cloudflare.nix
-    ../../nixos/services/fail2ban.nix
-    ../../nixos/services/fast-note-sync.nix
-    ../../nixos/services/forgejo-runner.nix
-    ../../nixos/services/forgejo.nix
-    ../../nixos/services/garage.nix
-    ../../nixos/services/gluetun.nix
-    ../../nixos/services/grafana.nix
-    ../../nixos/services/hermes-agent
-    ../../nixos/services/jellyfin
-    ../../nixos/services/karakeep.nix
-    ../../nixos/services/librechat
-    ../../nixos/services/litellm
-    ../../nixos/services/lobehub.nix
-    ../../nixos/services/miniflux.nix
-    ../../nixos/services/mongodb.nix
-    ../../nixos/services/navidrome.nix
-    ../../nixos/services/nextcloud.nix
-    ../../nixos/services/opengist.nix
-    ../../nixos/services/paperless.nix
-    ../../nixos/services/postgresql.nix
-    ../../nixos/services/prometheus
-    ../../nixos/services/radicale.nix
-    ../../nixos/services/rclone.nix
-    ../../nixos/services/rsshub.nix
-    ../../nixos/services/searxng.nix
-    ../../nixos/services/sub2api.nix
-    ../../nixos/services/telegram-inline-llm-bot.nix
-    ../../nixos/services/uptime-kuma.nix
-    ../../nixos/services/valkey.nix
-    ../../nixos/services/vikunja.nix
+
     ./static/flux.nix
+    inputs.self.nixosModules.authelia
+    inputs.self.nixosModules.bentopdf
+    inputs.self.nixosModules.cloudflare
+    inputs.self.nixosModules.code-server
+    inputs.self.nixosModules.fail2ban
+    inputs.self.nixosModules.fast-note-sync
+    inputs.self.nixosModules.forgejo
+    inputs.self.nixosModules.forgejo-runner
+    inputs.self.nixosModules.garage
+    inputs.self.nixosModules.gluetun
+    inputs.self.nixosModules.grafana
+    inputs.self.nixosModules.hermes-agent
+    inputs.self.nixosModules.jellyfin
+    inputs.self.nixosModules.karakeep
+    inputs.self.nixosModules.librechat
+    inputs.self.nixosModules.litellm
+    inputs.self.nixosModules.lobehub
+    inputs.self.nixosModules.miniflux
+    inputs.self.nixosModules.mongodb
+    inputs.self.nixosModules.navidrome
+    inputs.self.nixosModules.nextcloud
+    inputs.self.nixosModules.opengist
+    inputs.self.nixosModules.paperless
+    inputs.self.nixosModules.postgresql
+    inputs.self.nixosModules.prometheus
+    inputs.self.nixosModules.radicale
+    inputs.self.nixosModules.rclone
+    inputs.self.nixosModules.rsshub
+    inputs.self.nixosModules.searxng
+    # inputs.self.nixosModules.core
+    inputs.self.nixosModules.starship
+    inputs.self.nixosModules.sub2api
+    inputs.self.nixosModules.tailscale
+    inputs.self.nixosModules.telegram-inline-llm-bot
+    inputs.self.nixosModules.uptime-kuma
+    inputs.self.nixosModules.valkey
     # keep-sorted end
   ];
 
   home-manager = {
-    extraSpecialArgs = {
-      inherit
-        inputs
-        nixcfgs
-        myLib
-        secrets
-        ;
-    };
     users."js0ny" = import ./home.nix;
   };
 

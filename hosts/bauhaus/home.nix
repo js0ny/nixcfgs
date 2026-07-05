@@ -10,25 +10,22 @@
 
   imports = [
     ./vars.nix
-    ../../home/desktop-extra.nix
-    ../../home/desktop/plasma
-    ../../home/desktop/gnome
-    ../../home/desktop/hyprland
-    ../../home/gaming/steam/sts2.nix
-    ../../home/programs/media/celluloid.nix
+    inputs.self.homeModules.desktop
+    inputs.self.homeModules.plasma
+    inputs.self.homeModules.niri
+    inputs.self.homeModules.gnome
+    inputs.self.homeModules.hyprland
+    inputs.self.homeModules.noctalia
+    ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 
     # keep-sorted end
+    inputs.self.homeModules.engineering
+    inputs.self.homeModules.electronics
 
-    # keep-sorted start
-    inputs.betterfox-nix.modules.homeManager.betterfox
-    inputs.niri-nix.homeModules.default
-    inputs.niri-nix.homeModules.stylix
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    inputs.nix-index-database.homeModules.nix-index
     inputs.secrets.homeManagerModules.default
-    inputs.sops-nix.homeManagerModules.sops
-    inputs.spicetify-nix.homeManagerModules.spicetify
+    # keep-sorted start
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.steam-config-nix.homeModules.default
     # keep-sorted end
   ];
@@ -89,7 +86,6 @@
       backup = false;
       sync = true;
       icon = "folder-music";
-      # remote = "pcloud:Library/Music";
     };
     "Pictures" = {
       create = true;
@@ -134,20 +130,7 @@
     };
   };
 
-  # programs.gocryptfs = {
-  #   enable = true;
-  #   encryptedDir = ".local/share/Vault.enc";
-  #   mountPoint = ".local/mnt/Vault";
-  #   autoMount = {
-  #     enable = true;
-  #     passwordFile = config.sops.secrets.gocryptfs_password.path;
-  #   };
-  # };
-
   nixdots.persist.home.directories = [
     ".config/sunshine"
-  ];
-
-  home.packages = with pkgs; [
   ];
 }
