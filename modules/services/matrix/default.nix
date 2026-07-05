@@ -18,7 +18,6 @@
       imports = [
         ./coturn.nix
         ./hookshot.nix
-        ./mautrix-telegram.nix
       ];
       sops.secrets.matrix_reg_token = {
         sopsFile = secrets + /matrix.yaml;
@@ -48,6 +47,17 @@
         serviceConfig = {
           DynamicUser = lib.mkForce false;
         };
+      };
+
+      nixdots.persist.system = {
+        directories = [
+          {
+            directory = "/var/lib/tuwunel";
+            user = "tuwunel";
+            group = "tuwunel";
+            mode = "0750";
+          }
+        ];
       };
 
       systemd.tmpfiles.rules = [

@@ -9,7 +9,7 @@ let
   domain = "js0ny.net";
   matrixPortStr = ep.matrix.portStr;
   port = ep.matrix-hookshot.port;
-  portStr = ep.hookshot-webhooks.portStr;
+  portStr = ep.matrix-hookshot.portStr;
   botID = "webhook";
 in
 {

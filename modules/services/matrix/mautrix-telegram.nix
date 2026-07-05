@@ -18,6 +18,30 @@ let
   package = pkgs.nur.repos.moraxyc.mautrix-telegram;
   sopsFile = secrets + /matrix.yaml;
   settingsFormat = pkgs.formats.yaml { };
+  registerBot = pkgs.writeShellScript "register-mautrix-telegram-bot" /* bash */ ''
+    set -euo pipefail
+
+    response="$(${lib.getExe pkgs.curl} -sS -w '\n%{http_code}' \
+      -H "Authorization: Bearer $MAUTRIX_TELEGRAM_APPSERVICE__AS_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{"type":"m.login.application_service","username":"${botID}bot","inhibit_login":true}' \
+      -X POST 'http://localhost:${matrixPortStr}/_matrix/client/v3/register?kind=user')"
+
+    status="''${response##*$'\n'}"
+    body="''${response%$'\n'*}"
+
+    case "$status" in
+      2*) exit 0 ;;
+    esac
+
+    if [[ "$body" == *'M_USER_IN_USE'* ]]; then
+      exit 0
+    fi
+
+    printf '%s\n' "$body" >&2
+    exit 1
+  '';
+  # https://docs.mau.fi/configs/mautrix-telegram/latest
   configFile = settingsFormat.generate "mautrix-telegram.yaml" {
     env_config_prefix = "MAUTRIX_TELEGRAM_";
     network = {
@@ -40,10 +64,13 @@ let
     };
     appservice = {
       address = "http://localhost:${portStr}";
-      hostname = "0.0.0.0";
+      hostname = "127.0.0.1";
       port = ep.mautrix-telegram.port;
       id = botID;
-      bot.username = "${botID}bot";
+      bot = {
+        username = "${botID}bot";
+        displayname = "Telegram Bridge Bot";
+      };
       ephemeral_events = true;
     };
     database = {
@@ -55,6 +82,15 @@ let
       permissions = {
         "@${user}:${domain}" = "admin";
         "@admin:${domain}" = "admin";
+      };
+      portal_create_filter = {
+        mode = "allow";
+        list = lib.uniqueStrings (
+          [
+            "-1001750732656" # nvim_zh
+          ]
+          ++ config.secrets.plain.mautrix-telegram.allowList
+        );
       };
     };
     backfill = {
@@ -115,7 +151,7 @@ in
           - exclusive: true
             regex: '^@${botID}_.*:${dname}\.net$'
       url: http://localhost:${portStr}
-      sender_localpart: ${botID}appservice
+      sender_localpart: ${botID}bot
       rate_limited: false
       de.sorunome.msc2409.push_ephemeral: true
       receive_ephemeral: true
@@ -157,6 +193,7 @@ in
       WorkingDirectory = stateDir;
       StateDirectory = stateDirName;
       EnvironmentFile = config.sops.templates."mautrix-telegram.env".path;
+      ExecStartPre = registerBot;
       ExecStart = "${lib.getExe package} -n -c ${configFile}";
       Restart = "on-failure";
       RestartSec = "30s";

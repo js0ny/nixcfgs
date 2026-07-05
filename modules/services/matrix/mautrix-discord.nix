@@ -1,15 +1,44 @@
-{ config, secrets, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  secrets,
+  ...
+}:
 let
   ep = config.nixdefs.endpoints;
   epSelf = ep.mautrix-discord;
   domain = "js0ny.net";
-  url = ep.matrix.url;
+  matrixPortStr = ep.matrix.portStr;
   port = epSelf.port;
   portStr = epSelf.portStr;
   user = "js0ny";
   botID = "discord";
   dname = "js0ny";
   sopsFile = secrets + /matrix.yaml;
+  registerBot = pkgs.writeShellScript "register-mautrix-discord-bot" /* bash */ ''
+    set -euo pipefail
+
+    response="$(${lib.getExe pkgs.curl} -sS -w '\n%{http_code}' \
+      -H "Authorization: Bearer $MAUTRIX_DISCORD_APPSERVICE_AS_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{"type":"m.login.application_service","username":"${botID}bot","inhibit_login":true}' \
+      -X POST 'http://localhost:${matrixPortStr}/_matrix/client/v3/register?kind=user')"
+
+    status="''${response##*$'\n'}"
+    body="''${response%$'\n'*}"
+
+    case "$status" in
+      2*) exit 0 ;;
+    esac
+
+    if [[ "$body" == *'M_USER_IN_USE'* ]]; then
+      exit 0
+    fi
+
+    printf '%s\n' "$body" >&2
+    exit 1
+  '';
 in
 {
   sops.secrets = {
@@ -28,12 +57,12 @@ in
       namespaces:
           users:
           - exclusive: true
-            regex: '@${botID}_.*:${dname}\.net'
+            regex: '^@${botID}bot:${dname}\.net$'
           - exclusive: true
-            regex: '@${botID}:${dname}\.net'
+            regex: '^@${botID}_.*:${dname}\.net$'
           aliases:
           - exclusive: true
-            regex: \#${botID}_.*:${dname}\.net
+            regex: '^#${botID}_.*:${dname}\.net$'
       url: http://localhost:${portStr}
       sender_localpart: ${botID}bot
       rate_limited: false
@@ -47,10 +76,11 @@ in
   };
   services.mautrix-discord = {
     enable = true;
-    # NOTE: I don't know why this will not generate a config.yaml
+    environmentFile = config.sops.templates."mautrix-discord.env".path;
+    # https://github.com/mautrix/discord/blob/main/example-config.yaml
     settings = {
       homeserver = {
-        address = url;
+        address = "http://localhost:${matrixPortStr}";
         domain = domain;
       };
       appservice = {
@@ -62,6 +92,8 @@ in
           uri = "file:${config.services.mautrix-discord.dataDir}/mautrix-discord.db?_txlock=immediate";
         };
         id = botID;
+        as_token = "$MAUTRIX_DISCORD_APPSERVICE_AS_TOKEN";
+        hs_token = "$MAUTRIX_DISCORD_APPSERVICE_HS_TOKEN";
         bot = {
           username = "${botID}bot";
           displayname = "Discord bridge bot";
@@ -69,13 +101,35 @@ in
         };
         ephemeral_events = true;
       };
-      bridge.permissions = {
-        "${domain}" = "user";
-        "@${user}:${domain}" = "admin";
-        "@admin:${domain}" = "admin";
+      bridge = {
+        permissions = {
+          "${domain}" = "user";
+          "@${user}:${domain}" = "admin";
+          "@admin:${domain}" = "admin";
+        };
+        backfill = {
+          forward_limits = {
+            initial = {
+              dm = 0;
+              channel = 0;
+              thread = 0;
+            };
+            missed = {
+              dm = 0;
+              channel = 0;
+              thread = 0;
+            };
+          };
+        };
       };
     };
-    serviceDependencies = [ "tuwunel.service" ];
+  };
+  systemd.services = {
+    mautrix-discord = {
+      wants = [ "tuwunel.service" ];
+      after = [ "tuwunel.service" ];
+      serviceConfig.ExecStartPre = registerBot;
+    };
   };
 
   nixdots.persist.system = {

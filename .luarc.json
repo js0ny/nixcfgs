@@ -1,0 +1,11 @@
+{
+  "diagnostics": {
+    "globals": ["swayimg", "hl"]
+  },
+  "workspace": {
+    "library": [
+      "/etc/profiles/per-user/js0ny/share/swayimg",
+      "/run/current-system/sw/share/hypr/stubs"
+    ]
+  }
+}

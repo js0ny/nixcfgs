@@ -40,7 +40,7 @@ in
   };
   home.packages = lib.optionals (config.nixdots.linux.enable) [
     pkgs.proton-vpn-cli
-    pkgs.protonvpn-gui
+    pkgs.proton-vpn
   ];
   nixdots.darwin.homebrew.casks = [ "protonvpn" ];
 }
