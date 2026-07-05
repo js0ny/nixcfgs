@@ -29,6 +29,11 @@
           };
         };
       };
+
+      programs.jjui = {
+        enable = true;
+      };
+
       programs.gh = {
         enable = true;
         hosts."github.com" = {

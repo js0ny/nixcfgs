@@ -43,5 +43,14 @@
           ".local/state/${appname}"
         ];
       };
+
+      programs.git = {
+        settings = {
+          merge.tool = "codediff";
+          mergetool.codediff = {
+            cmd = ''nvim "$MERGED" -c "CodeDiff merge \"$MERGED\""'';
+          };
+        };
+      };
     };
 }
