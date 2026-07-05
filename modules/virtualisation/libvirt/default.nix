@@ -51,6 +51,21 @@
           "/var/lib/libvirt"
         ];
       };
+      # https://github.com/NixOS/nixpkgs/issues/501336#issuecomment-4092515359
+      # /var/lib/libvirt/secrets/secrets-encryption-key will cause libvirt to fail to start.
+      fileSystems = {
+        "/var/lib/libvirt/secrets" = {
+          device = "tmpfs";
+          fsType = "tmpfs";
+          options = [
+            "size=1M"
+            "mode=0700"
+            "uid=0"
+            "gid=0"
+            "x-systemd.requires-mounts-for=/var/lib/libvirt"
+          ];
+        };
+      };
     };
   flake.homeModules.libvirt = _: {
     xdg.configFile."libvirt/libvirt.conf".text = /* ini */ ''uri_default = "qemu:///system"'';

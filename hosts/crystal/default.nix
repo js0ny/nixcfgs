@@ -58,4 +58,6 @@
     enable = true;
     scheduler = "scx_lavd";
   };
+
+  boot.plymouth.enable = true;
 }
