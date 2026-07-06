@@ -8,6 +8,7 @@ hl.config({
   },
   input = { touchpad = {
     natural_scroll = true,
+    flip_x = false,
   } },
 })
 
@@ -253,11 +254,18 @@ hl.config({
 })
 
 hl.gesture({
-  fingers = 3,
-  direction = 'horizontal',
+  fingers = 4,
+  direction = 'vertical',
   action = 'workspace',
+  scale = 2,
 })
 
+hl.gesture({
+  fingers = 3,
+  direction = 'horizontal',
+  action = 'scroll_move',
+  scale = 2,
+})
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
