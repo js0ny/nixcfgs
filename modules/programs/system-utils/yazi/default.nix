@@ -178,6 +178,14 @@
             {
               on = [
                 "g"
+                "-" # mimic cd -
+              ];
+              run = "back";
+              desc = "Go to previous directory";
+            }
+            {
+              on = [
+                "g"
                 "c"
               ];
               run = "cd ${dots}";

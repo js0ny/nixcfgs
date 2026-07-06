@@ -84,4 +84,7 @@ in
 
   zle -N copy-osc52
   bindkey '^X' copy-osc52
+
+  ${builtins.readFile ./zsh_clipboard_paste.zsh}
+  bindkey '^V' zsh_clipboard_paste
 ''

@@ -204,3 +204,15 @@ hl.bind('SUPER + F2', function()
     },
   })
 end)
+
+hl.on('window.active', function(w)
+  -- Type password with english
+  if w.class == 'org.kde.polkit-kde-authentication-agent-1' then
+    hl.notification.create({ text = 'Window focused: ' .. w.title, timeout = 5000, icon = 'ok' })
+    hl.timer(function()
+      hl.exec_cmd(
+        'busctl --user call org.fcitx.Fcitx5 /rime org.fcitx.Fcitx.Rime1 SetAsciiMode b true'
+      )
+    end, { timeout = 150, type = 'oneshot' })
+  end
+end)

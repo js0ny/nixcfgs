@@ -57,6 +57,17 @@
         "image/svg+xml"
         "image/tiff"
       ];
+      videoMimes = [
+        "video/mp4"
+        "video/quicktime" # .mov
+        "video/x-matroska" # .mkv
+        "video/mp2t" # .ts .mts .m2ts
+      ];
+      audioMimes = [
+        "audio/flac"
+        "audio/vnd.wave" # .wav
+        "audio/x-vorbis+ogg" # .ogg
+      ];
       mkAssoc =
         mimes: apps:
         builtins.listToAttrs (
@@ -115,6 +126,9 @@
             "transmission-qt"
             "MotrixNext"
           ];
+          # Loupe does not support dds
+          # .dds Microsoft DirectDraw Surface
+          "image/x-dds" = "mpv.desktop";
         }
         // mkAssoc textMimes [ apps.editor.gui.desktop ]
         // mkAssoc webpageMimes [
@@ -137,6 +151,20 @@
           "org.kde.gwenview"
           "mpv"
           "umpv"
+        ]
+        # Only use umpv in video mode, only one presents
+        # and will fork current process
+        // mkAssoc videoMimes [
+          "umpv"
+          "io.github.diegopvlk.Cine" # gstreamer fallback
+        ]
+        # Audio:
+        #     music: elisa: fully featured, good cjk support
+        #     audio: mpv: simple and fast
+        // mkAssoc audioMimes [
+          "mpv"
+          "org.kde.elisa"
+          "io.bassi.Amberol"
         ];
       };
     };
