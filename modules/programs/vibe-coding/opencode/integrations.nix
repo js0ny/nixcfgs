@@ -70,7 +70,6 @@ in
       provider = mappedOpenCodeProviders // {
         litellm.options.apiKey = "{file:${config.sops.secrets.llm_key_opencode.path}}";
       };
-      model = "${llm.routing.code-plan.provider}/${llm.routing.code-plan.model}";
     };
     tui = {
       keybinds = {

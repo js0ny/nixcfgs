@@ -35,6 +35,14 @@ let
         api_base = "http://127.0.0.1:11070/v1";
       };
     };
+
+    siliconflow = {
+      provider = "openai";
+      litellm_params = {
+        api_key = env "SILICONFLOW_API_KEY";
+        api_base = "https://api.siliconflow.com/v1";
+      };
+    };
   };
 
   mkLiteLLMModels =

@@ -104,6 +104,7 @@
               drawer = true;
               pinned = [ "Fcitx" ];
             };
+            clock.format = "{:%H:%M:%S}";
           };
         };
       };

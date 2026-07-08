@@ -129,10 +129,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
-    oroot = {
-      url = "github:js0ny/oroot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # }}}
 
     # {{{ NixOS

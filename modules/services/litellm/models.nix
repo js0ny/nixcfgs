@@ -621,11 +621,11 @@ in
         icon = "https://github.com/lobehub/lobe-icons/blob/master/packages/static-webp/light/gemini-color.webp?raw=true";
       };
     };
-  "glm-5.1" =
+  "glm-5.2" =
     let
-      ormodel = "z-ai/glm-5.1";
+      ormodel = "z-ai/glm-5.2";
       orbase = ormap."${ormodel}";
-      mdev = mdevs."zai".models."glm-5.1";
+      mdev = mdevs."zai".models."glm-5.2";
     in
     {
       id = mdev.id;
@@ -633,8 +633,8 @@ in
       kind = "chat";
       upstream = [
         {
-          provider = "openrouter";
-          model = ormodel;
+          provider = "siliconflow";
+          model = "zai-org/GLM-5.2";
         }
       ];
       info = {

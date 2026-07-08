@@ -11,11 +11,17 @@
         enable = true;
         settings = {
           server = {
+            DISABLE_SSH = false;
             PROTOCOL = "http+unix";
             HTTP_ADDR = socketPath;
+            SSH_PORT = 2220;
+            SSH_LISTEN_PORT = 2220;
+            START_SSH_SERVER = true;
           }
           // lib.optionalAttrs (url != null) {
-            ROOT_URL = "https://${url}";
+            ROOT_URL = "https://${url}/";
+            DOMAIN = url;
+            SSH_DOMAIN = url;
           };
           service = {
             DISABLE_REGISTRATION = true;
@@ -38,5 +44,6 @@
         flavor = "mocha";
       };
 
+      networking.firewall.allowedTCPPorts = [ 2220 ];
     };
 }

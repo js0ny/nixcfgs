@@ -46,6 +46,7 @@ in
     proton-pass
     rustscan
     xournalpp
+    misc.apps.limes
     # keep-sorted end
 
     # nix
