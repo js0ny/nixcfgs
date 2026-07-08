@@ -47,6 +47,9 @@ in
     sub2api_litellm_openai_api_key = {
       sopsFile = secrets + /litellm.yaml;
     };
+    siliconflow_api_key = {
+      sopsFile = secrets + /llm.yaml;
+    };
   };
 
   sops.templates."litellm.env".content = /* bash */ ''
@@ -64,6 +67,7 @@ in
     CONTEXT7_API_KEY=${sec.context7_api_key}
     AIHUBMIX_API_KEY=${sec.aihubmix_api_key}
     SUB2API_OPENAI_API_KEY=${sec.sub2api_litellm_openai_api_key}
+    SILICONFLOW_API_KEY=${sec.siliconflow_api_key}
   '';
 
   virtualisation.oci-containers.containers.litellm = {
@@ -73,6 +77,7 @@ in
       AIHUBMIX_API_BASE = "https://aihubmix.com/v1";
       YUNWU_API_BASE = "https://yunwu.ai/v1";
       MINIMAXCN_API_BASE = "https://api.minimaxi.com/anthropic";
+      SILICONFLOW_API_BASE = "https://api.siliconflow.com/v1";
 
       # Config
       NO_DOCS = "True";

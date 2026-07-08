@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require('utils')
 
 ---@return { width: integer, height: integer }
 ---@return { x: integer, y: integer }
@@ -32,72 +32,74 @@ local function imgpath()
 end
 
 local viewer_map = {
-  ["Left"] = move_horizontal(utils.add),
-  ["h"] = move_horizontal(utils.add),
-  ["Down"] = move_vertical(utils.sub),
-  ["j"] = move_vertical(utils.sub),
-  ["Up"] = move_vertical(utils.add),
-  ["k"] = move_vertical(utils.add),
-  ["Right"] = move_horizontal(utils.sub),
-  ["l"] = move_horizontal(utils.sub),
-  ["n"] = function()
-    swayimg.viewer.switch_image("next")
+  ['Left'] = move_horizontal(utils.add),
+  ['h'] = move_horizontal(utils.add),
+  ['Down'] = move_vertical(utils.sub),
+  ['j'] = move_vertical(utils.sub),
+  ['Up'] = move_vertical(utils.add),
+  ['k'] = move_vertical(utils.add),
+  ['Right'] = move_horizontal(utils.sub),
+  ['l'] = move_horizontal(utils.sub),
+  ['n'] = function()
+    swayimg.viewer.switch_image('next')
   end,
-  ["p"] = function()
-    swayimg.viewer.switch_image("prev")
+  ['p'] = function()
+    swayimg.viewer.switch_image('prev')
   end,
-  ["z"] = function()
+  ['z'] = function()
     swayimg.viewer.reset()
   end,
-  ["q"] = function()
+  ['q'] = function()
     swayimg.exit(0)
   end,
-  ["Ctrl-C"] = function()
+  ['Ctrl-C'] = function()
     local escaped_path = imgpath()
-    local cmd = string.format("cat %s | wl-copy", escaped_path)
+    local cmd = string.format('cat %s | wl-copy', escaped_path)
     os.execute(cmd)
-    os.execute(string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'Image copied to clipboard'"))
+    os.execute(
+      string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'Image copied to clipboard'")
+    )
   end,
   -- Copy path
-  ["Ctrl-Shift-C"] = function()
+  ['Ctrl-Shift-C'] = function()
     local escaped_path = imgpath()
-    local cmd = string.format("echo %s | wl-copy", escaped_path)
+    local cmd = string.format('echo %s | wl-copy', escaped_path)
     os.execute(cmd)
   end,
-  ["r"] = function()
+  ['r'] = function()
     swayimg.viewer.rotate(90)
   end,
-  ["Shift-r"] = function()
+  ['Shift-r'] = function()
     swayimg.viewer.rotate(270)
   end,
   -- Edit with satty
-  ["e"] = function()
+  ['e'] = function()
     local path = imgpath()
-    os.execute("satty --filename " .. path)
+    os.execute('satty --filename ' .. path)
   end,
-  ["f"] = function()
+  ['f'] = function()
     swayimg.set_fullscreen()
   end,
-  ["Return"] = function()
-    swayimg.set_mode("gallery")
+  ['Return'] = function()
+    swayimg.set_mode('gallery')
   end,
-  ["Alt-Return"] = function()
+  ['Alt-Return'] = function()
     utils.show_properties(swayimg.viewer.get_image())
   end,
   -- thumbnail mode | gallery
-  ["t"] = function()
-    swayimg.set_mode("gallery")
+  ['t'] = function()
+    swayimg.set_mode('gallery')
   end,
-  ["s"] = function()
-    swayimg.set_mode("slideshow")
+  ['s'] = function()
+    swayimg.set_mode('slideshow')
   end,
-  ["Shift-w"] = function()
+  ['Shift-w'] = function()
     local escaped_path = imgpath()
-    os.execute("setwall " .. escaped_path)
+    os.execute('setwall ' .. escaped_path)
     os.execute(string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'wallpaper set'"))
   end,
-  ["o"] = function()
-    local out, err = utils.cmd_stdout("zenity --file-selection")
+  ['o'] = function()
+    local out, err = utils.cmd_stdout('zenity --file-selection')
     if err then
       return
     end
@@ -108,10 +110,10 @@ local viewer_map = {
 for key, value in pairs(viewer_map) do
   swayimg.viewer.on_key(key, value)
 end
-swayimg.viewer.on_mouse("MouseExtra", function()
-  swayimg.viewer.switch_image("next")
+swayimg.viewer.on_mouse('MouseExtra', function()
+  swayimg.viewer.switch_image('next')
 end)
 
-swayimg.viewer.on_mouse("MouseSide", function()
-  swayimg.viewer.switch_image("prev")
+swayimg.viewer.on_mouse('MouseSide', function()
+  swayimg.viewer.switch_image('prev')
 end)

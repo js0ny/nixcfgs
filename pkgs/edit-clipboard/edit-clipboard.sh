@@ -72,7 +72,7 @@ edit-clipboard() {
   }
 
   # Write back to clipboard
-  $COPY_CMD <"$TMPFILE" || {
+  $COPY_CMD <"$TMPFILE" >/dev/null 2>&1 || {
     echo "Error: Failed to write to clipboard" >&2
     rm -f "$TMPFILE"
     return 1

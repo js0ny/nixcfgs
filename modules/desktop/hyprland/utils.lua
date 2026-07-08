@@ -70,36 +70,6 @@ M.toggle_focus_float = function()
   end
 end
 
-M.layout_cycle = function()
-  local layouts = { 'scrolling', 'dwindle', 'master', 'monocle' }
-  local workspace = hl.get_active_workspace()
-  if hl.get_active_special_workspace() then
-    workspace = hl.get_active_special_workspace()
-  end
-
-  local next_layout = 'dwindle'
-
-  if not workspace then
-    return
-  end
-
-  for i = 1, #layouts do
-    if layouts[i] == workspace.tiled_layout then
-      local next_layout_idx = (i % #layouts) + 1
-      next_layout = layouts[next_layout_idx]
-      break
-    end
-  end
-
-  M.notify('Layout ' .. next_layout)
-
-  if workspace.special then
-    hl.workspace_rule({ workspace = tostring(workspace.name), layout = next_layout })
-  else
-    hl.workspace_rule({ workspace = tostring(workspace.id), layout = next_layout })
-  end
-end
-
 M.layout_bind = function(bind_table)
   return function()
     local workspace = hl.get_active_special_workspace() or hl.get_active_workspace()
@@ -114,6 +84,34 @@ M.layout_bind = function(bind_table)
       hl.dispatch(bind_table[layout])
     end
   end
+end
+
+---@alias Size {[1]: integer, [2]: integer}
+
+---@param ratio number # width / height
+---@param height number
+---@return Size
+M.size_from_h = function(ratio, height)
+  return { math.floor(height * ratio + 0.5), height }
+end
+
+---@param ratio number # width / height
+---@param width number
+---@return Size
+M.size_from_w = function(ratio, width)
+  return { width, math.floor(width / ratio + 0.5) }
+end
+
+M.uwsm_exec = function(cmd)
+  return hl.dsp.exec_cmd('uwsm app -- ' .. cmd)
+end
+
+M.term_exec = function(cmd)
+  return hl.dsp.exec_cmd('xdg-terminal-exec ' .. cmd)
+end
+
+M.term_exec_float = function(cmd)
+  return hl.dsp.exec_cmd('xdg-terminal-exec --app-id=floaterm ' .. cmd)
 end
 
 return M

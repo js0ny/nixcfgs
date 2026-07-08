@@ -37,6 +37,7 @@ in
     keepassxc
     krabby
     libguestfs
+    misc.apps.limes
     misc.apps.proton-drive-cli
     motrix-next
     nautilus
@@ -46,7 +47,6 @@ in
     proton-pass
     rustscan
     xournalpp
-    misc.apps.limes
     # keep-sorted end
 
     # nix

@@ -25,7 +25,12 @@
     };
   };
   flake.homeModules.hyprland =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      inputs,
+      ...
+    }:
     let
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
       dots = config.nixdots.core.dots;
@@ -34,7 +39,6 @@
       xdg.configFile =
         let
           files = [
-            ".stylua.toml"
             "animations.lua"
             "entry.lua"
             "keymaps.lua"
@@ -50,7 +54,10 @@
             name = "hypr/${e}";
             value.source = mkSymlink "${dots}/modules/desktop/hyprland/${e}";
           }) files
-        );
+        )
+        // {
+          "hypr/.stylua.toml".source = "${inputs.self.outPath}/.stylua.toml";
+        };
 
       wayland.windowManager.hyprland = {
         enable = true;

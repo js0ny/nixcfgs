@@ -9,8 +9,6 @@ pkgs.writeShellApplication {
     ++ lib.optionals stdenv.isLinux [
       wl-clipboard
       libnotify
-      xclip
-      xsel
     ];
   text = builtins.readFile ./edit-clipboard.sh;
 }

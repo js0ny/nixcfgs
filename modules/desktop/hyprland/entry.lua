@@ -246,7 +246,8 @@ hl.config({
     kb_options = '',
     kb_rules = '',
 
-    follow_mouse = 1,
+    -- Default behaviour works bad under scrolling layout
+    follow_mouse = 2,
 
     sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
   },
@@ -338,19 +339,4 @@ hl.config({
     border_size = 4,
   },
   xwayland = { force_zero_scaling = true },
-})
-
-hl.layout.register('grid', {
-  recalculate = function(ctx)
-    local n = #ctx.targets
-    if n == 0 then
-      return
-    end
-
-    local cols = math.ceil(math.sqrt(n))
-
-    for i, target in ipairs(ctx.targets) do
-      target:place(ctx:grid_cell(i, cols))
-    end
-  end,
 })
