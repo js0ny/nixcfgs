@@ -9,7 +9,6 @@ let
   avatar = inputs.bindeps + "/avatar/git.jpg";
 in
 {
-  imports = [ ../../common/extra-fonts.nix ];
   nixdots = {
     persist = {
       enable = true;
@@ -59,6 +58,32 @@ in
         enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
       };
+      fonts.extraFonts = [
+        {
+          package = pkgs.vollkorn;
+          name = "Vollkorn";
+        }
+        {
+          package = pkgs.font-awesome;
+          name = "Font Awesome 6 Free";
+        }
+        {
+          package = pkgs.ubuntu-sans;
+          name = "Ubuntu Sans";
+        }
+        {
+          package = pkgs.nerd-fonts.fira-code;
+          name = "Fira Code Nerd Font";
+        }
+        {
+          package = pkgs.cinzel;
+          name = "Cinzel";
+        }
+        {
+          package = pkgs.jigmo;
+          name = "Jigmo";
+        }
+      ];
     };
     apps = {
       terminal = {
