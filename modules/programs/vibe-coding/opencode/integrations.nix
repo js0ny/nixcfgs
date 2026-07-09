@@ -65,7 +65,6 @@ in
         port = ep.opencode.port;
         hostname = ep.opencode.bindAddress;
       };
-      lsp = true;
       mcp = config.nixdefs.mcp.clientConfigs.opencode;
       provider = mappedOpenCodeProviders // {
         litellm.options.apiKey = "{file:${config.sops.secrets.llm_key_opencode.path}}";

@@ -27,12 +27,13 @@
       };
 
       programs.vscode.profiles.default = {
-        extensions = with pkgs.vscode-extensions; [
+        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
           pkief.material-icon-theme
           vscodevim.vim
           vspacecode.vspacecode
           vspacecode.whichkey
           christian-kohler.path-intellisense
+          orangex4.hsnips
         ];
         userSettings = {
           "workbench.iconTheme" = "material-icon-theme";
@@ -64,7 +65,7 @@
         )
         // {
           "Code/User/keybindings.json".source =
-            mkSymlink "${dots}/modules/home/programs/editors/vscode/keybindings-linux-win.jsonc";
+            mkSymlink "${dots}/modules/programs/editors/vscode/keybindings-linux-win.jsonc";
         };
 
       catppuccin.vscode.profiles.default.enable = false;

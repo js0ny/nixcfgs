@@ -156,6 +156,8 @@ hl.window_rule({
   float = true,
   pin = true,
   border_color = 'rgba(00000000)',
+  opacity = '0.9 0.7',
+  no_blur = false,
   move = { '(monitor_w-950)', '(monitor_h-200)' },
   size = utils.size_from_h(16 / 9, 500),
 })

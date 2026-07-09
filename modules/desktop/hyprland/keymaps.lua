@@ -100,3 +100,36 @@ hl.bind(
   mod .. ' + W',
   hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/@nino-mau/store.vicinae.hypr/windows')
 )
+
+local last_ws, current_ws = nil, nil
+
+hl.on(
+  'workspace.active',
+  ---@param ws HL.Workspace
+  function(ws)
+    if current_ws ~= ws then
+      last_ws = current_ws
+      current_ws = ws
+    end
+  end
+)
+
+hl.bind(mod .. ' + GRAVE', function()
+  if last_ws ~= nil then
+    hl.dispatch(hl.dsp.focus({ workspace = last_ws.id }))
+  end
+end)
+
+-- hl.bind('ALT + TAB', function()
+--   local win = hl.get_active_window()
+--   if not win then
+--     return
+--   end
+--
+--   hl.notification.create({
+--     text = 'Youre using: ' .. tostring(hl.get_cursor_pos().x) .. ' y ' .. tostring(
+--       hl.get_cursor_pos().y
+--     ),
+--     timeout = 10000,
+--   })
+-- end)

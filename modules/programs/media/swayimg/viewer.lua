@@ -56,9 +56,7 @@ local viewer_map = {
     local escaped_path = imgpath()
     local cmd = string.format('cat %s | wl-copy', escaped_path)
     os.execute(cmd)
-    os.execute(
-      string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'Image copied to clipboard'")
-    )
+    utils.notify('Image copied to clipboard')
   end,
   -- Copy path
   ['Ctrl-Shift-C'] = function()
@@ -96,7 +94,7 @@ local viewer_map = {
   ['Shift-w'] = function()
     local escaped_path = imgpath()
     os.execute('setwall ' .. escaped_path)
-    os.execute(string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'wallpaper set'"))
+    utils.notify('Wallpaper set')
   end,
   ['o'] = function()
     local out, err = utils.cmd_stdout('zenity --file-selection')
@@ -104,6 +102,12 @@ local viewer_map = {
       return
     end
     swayimg.viewer.open(utils.chomp(out))
+  end,
+  ['g'] = function()
+    swayimg.viewer.switch_image('first')
+  end,
+  ['Shift+g'] = function()
+    swayimg.viewer.switch_image('last')
   end,
 }
 

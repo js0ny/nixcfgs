@@ -15,9 +15,7 @@ local gallery_map = {
     local escaped_path = imgpath()
     local cmd = string.format('cat %s | wl-copy', escaped_path)
     os.execute(cmd)
-    os.execute(
-      string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'Image copied to clipboard'")
-    )
+    utils.notify('Image copied to clipboard')
   end,
   -- Copy path
   ['Ctrl-Shift-C'] = function()
@@ -78,7 +76,7 @@ local gallery_map = {
   ['g'] = function()
     swayimg.gallery.switch_image('first')
   end,
-  ['G'] = function()
+  ['Shift+g'] = function()
     swayimg.gallery.switch_image('last')
   end,
 }

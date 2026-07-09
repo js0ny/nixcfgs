@@ -266,6 +266,12 @@
               on = "<C-n>";
               run = "shell -- ripdrag %s -x 2>/dev/null &";
             }
+            {
+              on = "<C-y>";
+              run = "shell -- wl-copy file://$@ -t text/uri-list";
+              desc = "Copy file to clipboard";
+              for = "linux";
+            }
           ];
         };
         initLua = builtins.readFile ./init.lua;

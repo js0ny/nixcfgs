@@ -133,4 +133,10 @@
   nixdots.persist.home.directories = [
     ".config/sunshine"
   ];
+  home.packages = with pkgs; [
+    librewolf
+    digikam
+    clapper
+    showtime
+  ];
 }

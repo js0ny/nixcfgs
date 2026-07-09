@@ -11,6 +11,25 @@ local function noctalia_ipc(cmd)
   return hl.dsp.exec_cmd('noctalia msg ' .. cmd)
 end
 
+-- local window_switcher_state = false
+-- hl.bind('ALT + TAB', function()
+--   if not window_switcher_state then
+--     window_switcher_state = true
+--     hl.dispatch(noctalia_ipc('window-switcher'))
+--   else
+--     hl.dispatch(hl.dsp.pass({ window = '^noctalia-window-switcher$' }))
+--   end
+-- end, { non_consuming = true })
+-- hl.on(
+--   'layer.closed',
+--   ---@param layer HL.LayerSurface
+--   function(layer)
+--     if layer.namespace == 'noctalia-window-switcher' then
+--       window_switcher_state = false
+--     end
+--   end
+-- )
+
 if utils.executable_in_path('noctalia') then
   hl.bind('CTRL + ALT + DELETE', noctalia_ipc('panel-open session'))
   hl.bind(mod .. ' + ALT + i', noctalia_ipc('session lock'))
@@ -33,7 +52,6 @@ if utils.executable_in_path('noctalia') then
     noctalia_ipc('brightness-down current 5'),
     { locked = true, repeating = true }
   )
-  hl.bind(mod .. ' + TAB', noctalia_ipc('window-switcher'))
 elseif utils.executable_in_path('dms') then
   hl.bind('CTRL + ALT + DELETE', dms_ipc('powermenu toggle'))
   hl.bind(mod .. ' + ALT + i', dms_ipc('lock lock'))
@@ -92,3 +110,13 @@ else
     { locked = true, repeating = true }
   )
 end
+-- TODO:
+local qs = '/nix/store/nm6wrf4gprrxlri8nr16kcmixpkk8hrf-quickshell-0.3.0/bin/qs'
+hl.bind(
+  'ALT + TAB',
+  hl.dsp.exec_cmd(qs .. ' ipc -p /home/js0ny/Atelier/prj/qswitcher call switcher next')
+)
+hl.bind(
+  'ALT + SHIFT + TAB',
+  hl.dsp.exec_cmd(qs .. ' ipc -p /home/js0ny/Atelier/prj/qswitcher call switcher prev')
+)

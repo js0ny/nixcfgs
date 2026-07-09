@@ -98,6 +98,12 @@
               "/tmp/**" = "allow";
             };
           };
+          lsp = {
+            qml = {
+              command = [ "qmlls" ];
+              extensions = [ "qml" ];
+            };
+          };
         };
       };
 

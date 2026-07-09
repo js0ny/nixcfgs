@@ -127,4 +127,10 @@ M.cmd_stdout = function(cmd)
   return output
 end
 
+M.notify = function(text)
+  os.execute(
+    string.format("notify-send --icon swayimg -t 1100 -u low -r 3301 'swayimg' '%s'", text)
+  )
+end
+
 return M
