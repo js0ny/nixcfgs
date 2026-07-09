@@ -23,9 +23,6 @@ xnoremap L $
 onoremap L $
 
 
-noremap J 5j
-noremap K 5k
-
 " Similar position to i
 " The `noremap` implements text-object-like behavior in VSCodeVim
 

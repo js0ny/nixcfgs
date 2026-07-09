@@ -1,14 +1,13 @@
 {
+  # This setup only focus on web / frontend and python (propietary python lsp)
   flake.homeModules.vscode =
     {
       pkgs,
+      lib,
       config,
       ...
     }:
     let
-      codeAlias = {
-        "c" = "code";
-      };
       codeReleasesConfigDir = [
         "Code"
       ];
@@ -34,19 +33,73 @@
           vspacecode.whichkey
           christian-kohler.path-intellisense
           orangex4.hsnips
+          # language support
+          jnoortheen.nix-ide
+          svelte.svelte-vscode
+          bradlc.vscode-tailwindcss
+          esbenp.prettier-vscode
+          dbaeumer.vscode-eslint
+          christian-kohler.npm-intellisense
+          tamasfe.even-better-toml
+          atomicspirit.nix-embedded-highlighter
+          mohsen1.prettify-json
+          redhat.vscode-yaml
+          redhat.vscode-xml
+          ## python
+          ms-python.python
+          ms-python.debugpy
+          ms-python.vscode-python-envs
+          njpwerner.autodocstring
+          charliermarsh.ruff
+          astral-sh.ty
+
+          # misc
+          openai.chatgpt # coex
         ];
         userSettings = {
           "workbench.iconTheme" = "material-icon-theme";
+          "workbench.colorTheme" = "Stylix";
+
+          # telemetry
+          "telemetry.telemetryLevel" = "off";
+          "telemetry.feedback.enabled" = false;
+          "telemetry.editStats.enabled" = false;
+
+          # vim
           "editor.lineNumbers" = "relative";
-          "nix.serverSettings".nixd = config.nixdefs.lsp.servers.nixd.serverSettings;
           "vim.vimrc.enable" = true;
           "vim.vimrc.path" = ./vscode.vim;
           "vim.hlsearch" = true;
           "vim.useSystemClipboard" = true;
           "vim.smartRelativeLine" = true;
           "vim.useCtrlKeys" = false;
+          "vim.camelCaseMotion.enable" = true;
+
+          # hsnips
           "hsnips.linux" = ./hsnips;
           "hsnips.mac" = ./hsnips;
+
+          # nix
+          "nix.enableLanguageServer" = true;
+          "nix.serverPath" = lib.getExe pkgs.nixd;
+          "nix.serverSettings".nixd = config.nixdefs.lsp.servers.nixd.serverSettings;
+
+          # svelte
+          "svelte.enable-ts-plugin" = true;
+
+          # misc
+          "redhat.telemetry.enabled" = false;
+          "editor.formatOnSave" = true;
+          "update.showReleaseNotes" = false;
+        }
+        // lib.optionalAttrs (pkgs.stdenv.isLinux) {
+          "window.menuBarVisibility" = "hidden"; # hidden: disable when hit <Alt>
+          "window.titleBarStyle" = "native"; # works better on bare WMs
+          "vim.autoSwitchInputMethod.defaultIM" = "true";
+          "vim.autoSwitchInputMethod.obtainIMCmd" =
+            "${lib.getExe pkgs.misc.apps.limes} --backend fcitx5-rime --mode ascii";
+          "vim.autoSwitchInputMethod.switchIMCmd" =
+            "${lib.getExe pkgs.misc.apps.limes} --backend fcitx5-rime --mode ascii set {im}";
         };
       };
 
@@ -69,7 +122,6 @@
         };
 
       catppuccin.vscode.profiles.default.enable = false;
-      misc.shellAliases = codeAlias;
       makeMutable = [ ".config/Code/User/settings.json" ];
     };
 }

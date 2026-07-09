@@ -6,11 +6,7 @@
 }:
 let
   cfg = config.nixdefs.lsp;
-  flake = config.nixdots.core.flakeDir;
-  host = config.nixdots.core.hostname;
-  nixosExpr = ''(builtins.getFlake ("git+file://${flake}")).nixosConfigurations.${host}.options'';
-  homeExpr = "${nixosExpr}.home-manager.users.type.getSubOptions []";
-  flakePartsExpr = ''(builtins.getFlake ("git+file://${flake}")).debug.options'';
+  sysFlake = ''(builtins.getFlake ("github:js0ny/nixcfgs"))'';
   # username = config.nixdots.user.name;
   # independentHomeExpr = ''(builtins.getFlake ("git+file://${flake}")).homeConfigurations.${username}.options'';
   lspServerType = lib.types.submodule {
@@ -76,12 +72,13 @@ in
           ];
         };
         serverSettings = {
-          nixpkgs.expr = "import <nixpkgs> {}";
-          formatting.command = [ "nixfmt" ];
-          options = {
-            nixos.expr = nixosExpr;
-            home-manager.expr = homeExpr;
-            flake-parts.expr = flakePartsExpr;
+          # The expressions are simply nix expression, explore them via `nix repl`
+          nixpkgs.expr = /* nix */ "import ${sysFlake}.inputs.nixpkgs { overlays = ${sysFlake}.outputs.allOverlays; }";
+          formatting.command = [ (lib.getExe pkgs.nixfmt) ];
+          options = rec {
+            nixos.expr = /* nix */ "${sysFlake}.nixosConfigurations.bauhaus.options";
+            home-manager.expr = /* nix */ "${nixos.expr}.home-manager.users.type.getSubOptions []";
+            flake-parts.expr = /* nix */ "${sysFlake}.debug.options";
           };
         };
       };
