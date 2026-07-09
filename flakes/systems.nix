@@ -16,6 +16,7 @@
         inputs.nix-misc-packages.overlays.default
         inputs.nix-misc-packages.overlays.nixpaks
         inputs.nur.overlays.default
+        inputs.vscode-extensions.overlays.default
         # keep-sorted end
       ];
 
@@ -78,6 +79,8 @@
     in
     {
       overlays.default = localOverlays;
+      # expose allOverlays for nixd to eval
+      allOverlays = overlays;
 
       nixosConfigurations = myNixosConfigs;
       darwinConfigurations = myDarwinConfigs;
