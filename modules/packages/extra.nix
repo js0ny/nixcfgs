@@ -37,6 +37,7 @@ in
     keepassxc
     krabby
     libguestfs
+    misc.apps.limes
     misc.apps.proton-drive-cli
     motrix-next
     nautilus

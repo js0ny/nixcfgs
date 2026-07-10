@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require('utils')
 
 ---@return { width: integer, height: integer }
 ---@return { x: integer, y: integer }
@@ -32,46 +32,48 @@ local function imgpath()
 end
 
 local slideshow_map = {
-  ["q"] = function()
+  ['q'] = function()
     swayimg.exit(0)
   end,
-  ["Ctrl-C"] = function()
+  ['Ctrl-C'] = function()
     local escaped_path = imgpath()
-    local cmd = string.format("cat %s | wl-copy", escaped_path)
+    local cmd = string.format('cat %s | wl-copy', escaped_path)
     os.execute(cmd)
-    os.execute(string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'Image copied to clipboard'"))
+    os.execute(
+      string.format("notify-send -t 1100 -u low -r 3301 'swayimg' 'Image copied to clipboard'")
+    )
   end,
   -- Copy path
-  ["Ctrl-Shift-C"] = function()
+  ['Ctrl-Shift-C'] = function()
     local escaped_path = imgpath()
-    local cmd = string.format("echo %s | wl-copy", escaped_path)
+    local cmd = string.format('echo %s | wl-copy', escaped_path)
     os.execute(cmd)
   end,
   -- Edit with satty
-  ["e"] = function()
+  ['e'] = function()
     local path = imgpath()
-    os.execute("satty --filename " .. path)
+    os.execute('satty --filename ' .. path)
   end,
-  ["f"] = function()
+  ['f'] = function()
     swayimg.set_fullscreen()
   end,
-  ["Return"] = function()
-    swayimg.set_mode("viewer")
+  ['Return'] = function()
+    swayimg.set_mode('viewer')
   end,
-  ["Alt-Return"] = function()
+  ['Alt-Return'] = function()
     utils.show_properties(swayimg.slideshow.get_image())
   end,
-  ["t"] = function()
-    swayimg.set_mode("gallery")
+  ['t'] = function()
+    swayimg.set_mode('gallery')
   end,
-  ["s"] = function()
-    swayimg.set_mode("viewer")
+  ['s'] = function()
+    swayimg.set_mode('viewer')
   end,
-  ["n"] = function()
-    swayimg.slideshow.switch_image("next")
+  ['n'] = function()
+    swayimg.slideshow.switch_image('next')
   end,
-  ["p"] = function()
-    swayimg.slideshow.switch_image("prev")
+  ['p'] = function()
+    swayimg.slideshow.switch_image('prev')
   end,
 }
 

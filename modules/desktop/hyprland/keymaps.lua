@@ -1,4 +1,9 @@
 local utils = require('utils')
+
+local uwsm_exec = utils.uwsm_exec
+local term_exec = utils.term_exec
+local term_exec_float = utils.term_exec_float
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -15,20 +20,21 @@ local mod = 'SUPER' -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mod .. ' + Return', hl.dsp.exec_cmd(terminal))
-hl.bind(mod .. ' + C', hl.dsp.window.close()):set_enabled(false)
 hl.bind(
   mod .. ' + M',
   hl.dsp.exec_cmd(
     "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
   )
 ):set_enabled(false)
-hl.bind(mod .. ' + E', hl.dsp.exec_cmd('xdg-open ~'))
+-- hl.bind(mod .. ' + E', uwsm_exec('dolphin'))
+hl.bind(mod .. ' + E', uwsm_exec('dolphin'))
 -- hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. ' + V', hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/clipboard/history'))
+hl.bind(mod .. ' + SHIFT + V', term_exec_float('edit-clipboard'))
 hl.bind('ALT + Space', hl.dsp.exec_cmd(menu))
-hl.bind(mod .. ' + P', hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
-hl.bind(mod .. ' + B', hl.dsp.exec_cmd('chromium'))
+hl.bind(mod .. ' + B', uwsm_exec('firefox'))
+hl.bind(mod .. ' + SHIFT + B', uwsm_exec('firefox --private-window'))
 hl.bind(mod .. ' + Q', hl.dsp.window.close())
 hl.bind(mod .. ' + SHIFT + Q', hl.dsp.window.kill())
 
@@ -90,9 +96,40 @@ hl.bind(mod .. ' + mouse:273', hl.dsp.window.resize(), { mouse = true })
 hl.bind(mod .. ' + SHIFT + S', hl.dsp.exec_cmd('grimblast --notify copysave area'))
 hl.bind(mod .. ' + S', hl.dsp.exec_cmd('grimblast --notify copysave active'))
 
-hl.bind(mod .. ' + BACKSLASH', utils.layout_cycle)
-
 hl.bind(
   mod .. ' + W',
   hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/@nino-mau/store.vicinae.hypr/windows')
 )
+
+local last_ws, current_ws = nil, nil
+
+hl.on(
+  'workspace.active',
+  ---@param ws HL.Workspace
+  function(ws)
+    if current_ws ~= ws then
+      last_ws = current_ws
+      current_ws = ws
+    end
+  end
+)
+
+hl.bind(mod .. ' + GRAVE', function()
+  if last_ws ~= nil then
+    hl.dispatch(hl.dsp.focus({ workspace = last_ws.id }))
+  end
+end)
+
+-- hl.bind('ALT + TAB', function()
+--   local win = hl.get_active_window()
+--   if not win then
+--     return
+--   end
+--
+--   hl.notification.create({
+--     text = 'Youre using: ' .. tostring(hl.get_cursor_pos().x) .. ' y ' .. tostring(
+--       hl.get_cursor_pos().y
+--     ),
+--     timeout = 10000,
+--   })
+-- end)

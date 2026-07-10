@@ -90,6 +90,13 @@
             cudaSupport = config.nixdots.linux.gpu == "nvidia";
           };
         };
+        ripgrep = {
+          enable = true;
+          # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+          arguments = [
+            "--follow" # follow symlinks
+          ];
+        };
       };
     };
 }

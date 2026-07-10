@@ -33,6 +33,7 @@
         litellm_settings = {
           drop_params = true;
         };
+        callbacks = [ "prometheus" ];
         general_settings = {
           master_key = "os.environ/LITELLM_MASTER_KEY";
           # Required for Claude Code

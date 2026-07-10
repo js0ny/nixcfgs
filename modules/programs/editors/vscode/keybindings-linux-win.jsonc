@@ -689,7 +689,12 @@
         "command": "workbench.action.navigateUp"
     },
     { // original ^w
-        "key": "ctrl+w ctrl+w",
+        "key": "ctrl+w ctrl+q",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "editorFocus || inSettingsEditor || inKeybindings || inWelcome"
+    },
+    { // original ^w
+        "key": "ctrl+w q",
         "command": "workbench.action.closeActiveEditor",
         "when": "editorFocus || inSettingsEditor || inKeybindings || inWelcome"
     },
@@ -797,11 +802,6 @@
     {
         "key": "r",
         "command": "toggleSearchRegex",
-        "when": "searchViewletFocus && !inputBoxFocus"
-    },
-    {
-        "key": "w",
-        "command": "toggleSearchWholeWord",
         "when": "searchViewletFocus && !inputBoxFocus"
     },
     {

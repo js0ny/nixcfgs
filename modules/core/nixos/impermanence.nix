@@ -2,14 +2,12 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }:
 let
   cfg = config.nixdots.persist;
   path = cfg.path; # /persist
   user = config.nixdots.user.name;
-  oroot = inputs.oroot.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 lib.mkMerge [
   (lib.mkIf cfg.enable {
@@ -25,7 +23,7 @@ lib.mkMerge [
 
     fileSystems."${path}".neededForBoot = true;
 
-    environment.systemPackages = [ oroot ];
+    environment.systemPackages = [ pkgs.misc.apps.oroot ];
     programs.fish.interactiveShellInit = /* fish */ ''
       oroot completion fish | source
     '';

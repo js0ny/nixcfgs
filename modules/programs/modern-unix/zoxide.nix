@@ -37,6 +37,7 @@ in
     "/tmp/*"
     "/proc/*"
     "${home}/.cache/*"
+    "${home}/.pi/agent/sessions"
   ];
   nixdots.persist.home = {
     directories = [

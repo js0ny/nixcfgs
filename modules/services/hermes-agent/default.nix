@@ -14,6 +14,7 @@
       system = pkgs.stdenv.hostPlatform.system;
     in
     {
+      # https://hermes-agent.nousresearch.com/docs/developer-guide/prompt-assembly
       environment.variables = {
         HERMES_HOME = "/var/lib/hermes/.hermes";
       };
@@ -67,13 +68,13 @@
           custom_providers = [
             {
               name = "litellm";
-              base_url = litellm;
+              base_url = "${litellm}/v1";
               key_env = "LITELLM_API_KEY";
             }
           ];
 
           model = {
-            default = models.agent.model;
+            default = "glm-5.2";
             provider = "custom:litellm";
           };
 

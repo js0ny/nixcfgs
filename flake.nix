@@ -48,11 +48,10 @@
 
     # {{{ Application Supports
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+    vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     zsh-patina = {
       url = "github:michel-kraemer/zsh-patina";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -129,10 +128,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
-    oroot = {
-      url = "github:js0ny/oroot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # }}}
 
     # {{{ NixOS

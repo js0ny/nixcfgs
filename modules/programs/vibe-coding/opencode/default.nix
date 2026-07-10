@@ -53,6 +53,7 @@
           environmentFile = config.sops.templates."opencode-web.env".path;
         };
         settings = {
+          model = "openai/gpt-5.5";
           agent = {
             "yolo" = {
               mode = "primary";
@@ -95,6 +96,12 @@
             external_directory = {
               "/nix/store/**" = "allow";
               "/tmp/**" = "allow";
+            };
+          };
+          lsp = {
+            qml = {
+              command = [ "qmlls" ];
+              extensions = [ "qml" ];
             };
           };
         };

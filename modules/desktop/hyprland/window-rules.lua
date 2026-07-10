@@ -1,3 +1,5 @@
+local utils = require('utils')
+
 hl.layer_rule({ match = { namespace = 'waybar' }, blur = true })
 hl.layer_rule({
   name = 'noctalia',
@@ -145,6 +147,95 @@ hl.window_rule({
   no_blur = false,
 })
 
+hl.window_rule({
+  name = 'pip',
+  match = {
+    class = 'firefox',
+    title = 'Picture-in-Picture',
+  },
+  float = true,
+  pin = true,
+  border_color = 'rgba(00000000)',
+  opacity = '0.9 0.7',
+  no_blur = false,
+  move = { '(monitor_w-950)', '(monitor_h-200)' },
+  size = utils.size_from_h(16 / 9, 500),
+})
+
+hl.window_rule({
+  name = 'floaterm',
+  match = {
+    class = 'floaterm',
+  },
+  float = true,
+})
+
+hl.window_rule({
+  name = 'media-viewer',
+  match = {
+    class = '(org.telegram.desktop)|(com.ayugram.desktop)|(io.github.kukuruzka165.materialgram)',
+    title = '(Media viewer)|(媒体查看器)',
+  },
+  float = true,
+  fullscreen_state = '0 0',
+  size = utils.size_from_h(16 / 9, 900),
+  center = true,
+})
+
+hl.window_rule({
+  name = 'telegraph',
+  match = {
+    class = '(org.telegram.desktop)|(com.ayugram.desktop)|(io.github.kukuruzka165.materialgram)',
+    title = '(Instant View — Telegraph)|(Telegraph)',
+  },
+  float = true,
+  size = { 900, '(monitor_h*0.9)' },
+  center = true,
+  move = { '(monitor_w-950)', 100 },
+})
+
+hl.window_rule({
+  name = 'ark-mainwindow',
+  match = { class = 'org.kde.ark' },
+  float = true,
+})
+
+hl.window_rule({
+  name = 'ark-status',
+  match = { class = 'org.kde.(ark|dolphin)', title = 'Extracting.* — (Ark|Dolphin)' },
+  float = true,
+  no_initial_focus = true,
+  move = { '(monitor_w-500)', 100 },
+})
+
+hl.window_rule({
+  name = 'ark-password',
+  match = { class = 'org.kde.(ark|dolphin)', title = 'Password — (Ark|Dolphin)' },
+  float = true,
+  center = true,
+})
+
+hl.window_rule({
+  name = 'sushi',
+  match = { class = 'org.gnome.NautilusPreviewer' },
+  float = true,
+  center = true,
+})
+
+hl.window_rule({
+  name = 'digikam-popup',
+  match = { class = 'org.kde.digikam', title = '(Edit Album|Slideshow Settings) — digiKam' },
+  float = true,
+  center = true,
+})
+
+hl.window_rule({
+  name = 'kde-init',
+  match = { class = 'org.kde.(digikam|kdenlive)', title = '(digiKam)|(Kdenlive)' },
+  float = true,
+  center = true,
+})
+
 hl.bind('SUPER + F1', function()
   local game_mode = (hl.get_config('animations.enabled') == false)
 
@@ -203,4 +294,26 @@ hl.bind('SUPER + F2', function()
       },
     },
   })
+end)
+
+hl.on('window.active', function(w)
+  local match = { 'org.kde.polkit-kde-authentication-agent-1' }
+  for i = 1, #match do
+    if w.class == match[i] then
+      hl.timer(function()
+        hl.exec_cmd('limes --backend fcitx5-rime --mode ascii true')
+      end, { timeout = 150, type = 'oneshot' })
+    end
+  end
+end)
+
+hl.on('window.active', function(w)
+  local match = { 'Password — Ark', 'Password — Dolphin' }
+  for i = 1, #match do
+    if w.title == match[i] then
+      hl.timer(function()
+        hl.exec_cmd('limes --backend fcitx5-rime --mode ascii true')
+      end, { timeout = 150, type = 'oneshot' })
+    end
+  end
 end)

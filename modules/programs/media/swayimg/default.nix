@@ -4,6 +4,7 @@
       pkgs,
       lib,
       config,
+      inputs,
       ...
     }:
     lib.mkIf pkgs.stdenv.isLinux {
@@ -27,6 +28,7 @@
             diagnostics.globals = [ "swayimg" ];
             workspace.library = [ "${config.programs.swayimg.package}/share/swayimg" ];
           };
+          "swayimg/.stylua.toml".source = "${inputs.self.outPath}/.stylua.toml";
         }
         // builtins.listToAttrs (
           map (e: {

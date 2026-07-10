@@ -3,6 +3,7 @@
     ./noctalia.nix
     ./dms.nix
     ./wm-polkit.nix
+    ./kanshi.nix
   ];
   flake.homeModules.wm-components =
     { pkgs, config, ... }:
@@ -10,9 +11,6 @@
       wm = config.nixdots.desktop.wm;
     in
     {
-      imports = [
-        ./kanshi.nix
-      ];
       home.packages = with pkgs; [
         brightnessctl
         localPkgs.power-profiles-next

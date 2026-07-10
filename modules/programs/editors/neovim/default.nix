@@ -4,6 +4,7 @@
       pkgs,
       config,
       inputs,
+      lib,
       ...
     }:
     let
@@ -13,6 +14,7 @@
       };
       snippets = (import ../lsp-snippets/lib.nix { inherit pkgs config; }).out;
       appname = "nvim";
+      mkSymlink = config.lib.file.mkOutOfStoreSymlink;
     in
     {
       imports = [
@@ -25,6 +27,9 @@
       misc.shellAliases = nvimAlias;
 
       xdg.configFile."lsp-snippets".source = snippets;
+      xdg.configFile."nvim".source = lib.mkForce (
+        mkSymlink "${config.home.homeDirectory}/Atelier/dot/nvimdots"
+      );
 
       stylix.targets.neovim = {
         enable = true;

@@ -33,6 +33,8 @@
       sioyek
 
       zenity
+
+      d-spy # dbus viewer
     ];
     programs.gnome-disks.enable = true;
     programs.gpu-screen-recorder.enable = true;

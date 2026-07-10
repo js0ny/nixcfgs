@@ -66,6 +66,9 @@
           ];
         };
       };
+      environment.sessionVariables = {
+        LIBVIRT_DEFAULT_URI = "qemu:///system";
+      };
     };
   flake.homeModules.libvirt = _: {
     xdg.configFile."libvirt/libvirt.conf".text = /* ini */ ''uri_default = "qemu:///system"'';

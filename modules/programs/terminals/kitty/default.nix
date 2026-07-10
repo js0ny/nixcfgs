@@ -84,7 +84,7 @@
       };
       programs = {
         bash.bashrcExtra = /* bash */ ''
-          if [ "$TERM" = "xterm-kitty" ]; then
+          if [ "$TERM" = "xterm-kitty" ] && [ -z "$ZELLIJ" ]; then
               alias ssh="kitty +kitten ssh"
               alias icat="kitty +kitten icat"
           fi
@@ -93,7 +93,7 @@
           fi
         '';
         zsh.initContent = /* bash */ ''
-          if [ "$TERM" = "xterm-kitty" ]; then
+          if [ "$TERM" = "xterm-kitty" ] && [ -z "$ZELLIJ" ]; then
               alias ssh="kitty +kitten ssh"
               alias icat="kitty +kitten icat"
           fi
@@ -102,7 +102,7 @@
           fi
         '';
         fish.interactiveShellInit = /* fish */ ''
-          if test "$TERM" = "xterm-kitty"
+          if test "$TERM" = "xterm-kitty" -a -z "$ZELLIJ"
               abbr --add ssh "kitty +kitten ssh"
               abbr --add icat "kitty +kitten icat"
           end;
