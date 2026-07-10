@@ -174,7 +174,7 @@ hl.window_rule({
   name = 'media-viewer',
   match = {
     class = '(org.telegram.desktop)|(com.ayugram.desktop)|(io.github.kukuruzka165.materialgram)',
-    title = '(Media viewer)',
+    title = '(Media viewer)|(媒体查看器)',
   },
   float = true,
   fullscreen_state = '0 0',
@@ -186,7 +186,7 @@ hl.window_rule({
   name = 'telegraph',
   match = {
     class = '(org.telegram.desktop)|(com.ayugram.desktop)|(io.github.kukuruzka165.materialgram)',
-    title = '(Instant View — Telegraph)',
+    title = '(Instant View — Telegraph)|(Telegraph)',
   },
   float = true,
   size = { 900, '(monitor_h*0.9)' },

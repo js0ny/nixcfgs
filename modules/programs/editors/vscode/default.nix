@@ -100,6 +100,10 @@
             "${lib.getExe pkgs.misc.apps.limes} --backend fcitx5-rime --mode ascii";
           "vim.autoSwitchInputMethod.switchIMCmd" =
             "${lib.getExe pkgs.misc.apps.limes} --backend fcitx5-rime --mode ascii set {im}";
+          "workbench.browser.showInTitleBar" = false;
+          "window.commandCenter" = false;
+          "chat.titleBar.signIn.enabled" = false;
+          "workbench.layoutControl.enabled" = false;
         };
       };
 

@@ -84,7 +84,7 @@
       };
       programs = {
         bash.bashrcExtra = /* bash */ ''
-          if [ "$TERM" = "xterm-kitty" && -z "$ZELLIJ"]; then
+          if [ "$TERM" = "xterm-kitty" ] && [ -z "$ZELLIJ" ]; then
               alias ssh="kitty +kitten ssh"
               alias icat="kitty +kitten icat"
           fi
@@ -93,7 +93,7 @@
           fi
         '';
         zsh.initContent = /* bash */ ''
-          if [ "$TERM" = "xterm-kitty" && -z "$ZELLIJ" ]; then
+          if [ "$TERM" = "xterm-kitty" ] && [ -z "$ZELLIJ" ]; then
               alias ssh="kitty +kitten ssh"
               alias icat="kitty +kitten icat"
           fi
