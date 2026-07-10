@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, lib, ... }:
 let
   ctrlBI = [
     # Terminal
@@ -29,7 +29,7 @@ let
     "^com\.raycast\.macos$"
   ];
 in
-{
+lib.mkIf pkgs.stdenv.isDarwin {
   xdg.configFile."karabiner/assets/complex_modifications/0.json".text = builtins.toJSON {
     description = "Caps Lock: Ctrl in when coding, Cmd elsewhere, Esc when alone";
     manipulators = [

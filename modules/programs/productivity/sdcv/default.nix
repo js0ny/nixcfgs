@@ -76,4 +76,5 @@
       );
     };
   flake.homeModules.desktop = { inputs, ... }: { imports = [ inputs.self.homeModules.sdcv ]; };
+  flake.homeModules.darwin = { inputs, ... }: { imports = [ inputs.self.homeModules.sdcv ]; };
 }

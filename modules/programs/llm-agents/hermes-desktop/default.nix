@@ -18,7 +18,11 @@
       );
     in
     {
-      home.packages = [ hermes-desktop ];
+      home.packages =
+        (lib.optionals pkgs.stdenv.isLinux [ hermes-desktop ])
+        ++ (lib.optionals pkgs.stdenv.isDarwin [
+          pkgs.hermes-agent.hermesDesktop
+        ]);
 
       xdg.desktopEntries."com.NousResearch.hermes-agent.hermes-desktop" = {
         name = "Hermes Desktop";

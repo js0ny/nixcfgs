@@ -9,11 +9,18 @@
     let
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
       dots = config.nixdots.core.dots;
+      isDesktop = config.nixdots.desktop.enable;
     in
     {
       programs.emacs = {
         enable = true;
-        package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else null;
+        package =
+          if pkgs.stdenv.isDarwin then
+            pkgs.emacs-macport
+          else if (pkgs.stdenv.isLinux && !isDesktop) then
+            pkgs.emacs-nox
+          else
+            pkgs.emacs-pgtk;
         extraPackages =
           epkgs:
           let

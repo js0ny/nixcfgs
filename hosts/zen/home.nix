@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.self.homeModules.darwin
+    inputs.self.homeModules.darwin-system-enhancement
 
     # keep-sorted start
     ./vars.nix
@@ -18,6 +19,7 @@
     inputs.catppuccin.homeModules.catppuccin
     inputs.sops-nix.homeManagerModules.sops
     # keep-sorted end
+
   ];
 
   targets.darwin.defaults = {
@@ -36,7 +38,8 @@
   home.sessionVariables = {
     SOPS_AGE_KEY_FILE = "${config.xdg.configHome}/sops/age/keys.txt";
   };
-  # programs.direnv.enable = lib.mkForce false;
 
   home.homeDirectory = lib.mkForce "/Users/js0ny";
+
+  sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 }

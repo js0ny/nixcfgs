@@ -51,7 +51,11 @@
       inputs.self.homeModules.core
       inputs.plasma-manager.homeModules.plasma-manager
     ];
-
   };
 
+  flake.homeModules.darwin = { inputs, ... }: {
+    imports = [
+      inputs.self.homeModules.core
+    ];
+  };
 }

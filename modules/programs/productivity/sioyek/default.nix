@@ -55,5 +55,8 @@
     desktop = { inputs, ... }: {
       imports = [ inputs.self.homeModules.sioyek ];
     };
+    darwin = { inputs, ... }: {
+      imports = [ inputs.self.homeModules.sioyek ];
+    };
   };
 }

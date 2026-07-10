@@ -1,9 +1,15 @@
-{ config, inputs, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 let
   username = config.nixdots.user.name;
 in
 {
   nix = {
+    package = pkgs.nix;
     settings = {
       trusted-users = [ username ];
       substituters = [

@@ -1,34 +1,42 @@
 {
-  config,
   inputs,
   myLib,
   ...
 }:
 {
   imports = [
-    # keep-sorted start
-
-    (myLib.scanPathsRec ../../modules/home/darwin)
-    (myLib.scanPathsRec ../../modules/home/programs)
-    ../../modules/home/programs/aichat.nix
-    ../../modules/home/programs/cherry-studio.nix
-    ../../modules/home/programs/karabiner.nix
-    ../../modules/home/programs/nix-index.nix
-    ../../modules/home/programs/productivity/anki.nix
-    ../../modules/home/programs/productivity/obsidian/module.nix
-    ../../modules/home/programs/productivity/sdcv.nix
-    ../../modules/home/programs/productivity/sioyek/module.nix
-    ../../modules/home/programs/protonvpn.nix
-    ../../modules/home/programs/shell/direnv.nix
-    ../../modules/home/programs/social/telegram.nix
-    ../../modules/home/programs/terminals/ghostty.nix
-    ../../modules/home/programs/terminals/zellij/module.nix
-    # ../../modules/home/programs/media/mpv.nix
-    # keep-sorted end
     inputs.secrets.darwinModules.default
 
     inputs.self.homeModules.nix-index-database
-  ];
+    inputs.self.homeModules.ghostty
+    inputs.self.homeModules.kitty
+
+    inputs.self.homeModules.telegram
+    inputs.self.homeModules.matrix-element
+
+    inputs.self.homeModules.zellij
+
+    inputs.self.homeModules.editors
+    inputs.self.homeModules.emacs
+    inputs.self.homeModules.neovide
+    inputs.self.homeModules.neovim
+    inputs.self.homeModules.vcs-extra
+    inputs.self.homeModules.vibe-coding
+
+    inputs.self.homeModules.zed-editor
+    inputs.self.homeModules.wakatime
+
+    inputs.self.homeModules.hermes-desktop
+    inputs.self.homeModules.aichat
+    inputs.self.homeModules.cherry-studio
+
+    inputs.self.homeModules.anki
+    inputs.self.homeModules.obsidian
+
+    ../../definitions
+    ../options
+  ]
+  ++ myLib.scanPathsRec ../../modules/options/home;
 
   nixdefs = {
     acp.enable = true;
