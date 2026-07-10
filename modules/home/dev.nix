@@ -20,6 +20,7 @@ in
     CARGO_HOME = "${xdg-data}/cargo";
     NPM_CONFIG_USERCONFIG = "${xdg-config}/npm/npmrc";
     NODE_REPL_HISTORY = "${xdg-data}/npm/node_repl_history";
+    TS_NODE_HISTORY = "${xdg-data}/npm/ts_node_repl_history";
   }
   // (lib.optionalAttrs (pkgs.stdenv.isLinux) {
     MPLBACKEND = "webagg"; # matplotlib

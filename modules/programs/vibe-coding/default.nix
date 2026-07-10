@@ -3,9 +3,10 @@
     { inputs, pkgs, ... }:
     {
       imports = [
-        ./claude-code.nix
+        # ./claude-code.nix
         ./codex.nix
-        ./oh-my-pi.nix
+        ./pi-agent.nix
+        # ./oh-my-pi.nix
         inputs.self.homeModules.opencode
       ];
       home.packages = with pkgs; [

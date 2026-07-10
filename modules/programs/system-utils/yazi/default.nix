@@ -8,6 +8,7 @@
     {
       pkgs,
       config,
+      lib,
       ...
     }:
     let
@@ -28,6 +29,8 @@
           mediainfo = pkgs.yaziPlugins.mediainfo;
           ouch = pkgs.yaziPlugins.ouch;
           bookmarks = pkgs.yaziPlugins.bookmarks;
+          clipboard = pkgs.yaziPlugins.clipboard;
+          dump-tabs = pkgs.misc.data.yaziPlugins.dump-tabs;
         };
         settings = {
           preview.wrap = "yes";
@@ -146,6 +149,7 @@
             ];
           };
         };
+
         keymap = {
           mgr.prepend_keymap = [
             {
@@ -267,13 +271,36 @@
               run = "shell -- ripdrag %s -x 2>/dev/null &";
             }
             {
-              on = "<C-y>";
-              run = "shell -- wl-copy file://$@ -t text/uri-list";
+              on = "<C-x>";
+              run = [
+                "yank"
+                "plugin clipboard -- --action=copy"
+              ];
               desc = "Copy file to clipboard";
               for = "linux";
             }
+            {
+              on = "<C-v>";
+              run = [ "plugin clipboard -- --action=paste" ];
+              desc = "Copy file to clipboard";
+              for = "linux";
+            }
+            {
+              on = [
+                "t"
+                "q"
+              ];
+              run = "tab_close";
+              desc = "Close current tab";
+            }
+            {
+              on = "<C-s>";
+              run = "plugin dump-tabs -- --format=cmd";
+              desc = "Dump tabs as yazi command";
+            }
           ];
         };
+
         initLua = builtins.readFile ./init.lua;
       };
       home.packages = with pkgs; [
