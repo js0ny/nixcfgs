@@ -9,7 +9,6 @@ let
   avatar = inputs.bindeps + "/avatar/git.jpg";
 in
 {
-  imports = [ ../../common/extra-fonts.nix ];
   nixdots = {
     persist = {
       enable = true;

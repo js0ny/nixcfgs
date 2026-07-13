@@ -47,13 +47,6 @@
       };
       programs = {
         bat.enable = true;
-        atuin = {
-          enable = true;
-          enableBashIntegration = true;
-          enableZshIntegration = true;
-          enableFishIntegration = true;
-          enableNushellIntegration = true;
-        };
         lsd = {
           enable = true;
           icons = "always";

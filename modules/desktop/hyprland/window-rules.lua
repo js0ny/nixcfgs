@@ -155,7 +155,7 @@ hl.window_rule({
   },
   float = true,
   pin = true,
-  border_color = 'rgba(00000000)',
+  border_size = 3,
   opacity = '0.9 0.7',
   no_blur = false,
   move = { '(monitor_w-950)', '(monitor_h-200)' },
@@ -192,6 +192,28 @@ hl.window_rule({
   size = { 900, '(monitor_h*0.9)' },
   center = true,
   move = { '(monitor_w-950)', 100 },
+})
+
+hl.window_rule({
+  name = 'wechat-viewer',
+  match = {
+    class = 'wechat',
+    title = '图片和视频',
+  },
+  float = true,
+  size = utils.size_from_h(16 / 9, 900),
+  center = true,
+})
+
+hl.window_rule({
+  name = 'qq-viewer',
+  match = {
+    class = 'QQ',
+    title = '(图片查看器)|(设置)',
+  },
+  float = true,
+  size = utils.size_from_h(16 / 9, 900),
+  center = true,
 })
 
 hl.window_rule({
@@ -232,6 +254,13 @@ hl.window_rule({
 hl.window_rule({
   name = 'kde-init',
   match = { class = 'org.kde.(digikam|kdenlive)', title = '(digiKam)|(Kdenlive)' },
+  float = true,
+  center = true,
+})
+
+hl.window_rule({
+  name = 'portal',
+  match = { title = 'Select what to share' },
   float = true,
   center = true,
 })
@@ -317,3 +346,7 @@ hl.on('window.active', function(w)
     end
   end
 end)
+
+-- hl.on('window.urgent', function(w)
+--   hl.dispatch(hl.dsp.focus({ window = w }))
+-- end)

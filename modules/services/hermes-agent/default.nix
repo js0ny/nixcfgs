@@ -5,7 +5,6 @@
       config,
       pkgs,
       lib,
-      myLib,
       ...
     }:
     let
@@ -62,7 +61,7 @@
             headers.Authorization = "Bearer \${GITHUB_TOKEN}";
           };
         };
-        # ── Declarative settings (deep-merged into config.yaml) ──────────
+        # https://github.com/NousResearch/hermes-agent/blob/main/cli-config.yaml.example
         settings = {
           # Model — routed through litellm
           custom_providers = [

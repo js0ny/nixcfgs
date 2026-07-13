@@ -23,7 +23,7 @@
         remmina
 
         # misc. fs
-        samba4Full
+        # samba4Full
         sshfs
         guestfs-tools
 

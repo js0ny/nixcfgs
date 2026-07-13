@@ -27,6 +27,12 @@ lib.mkIf cfg.enable {
       };
     };
   };
+  home.pointerCursor = {
+    enable = true;
+    dotIcons.enable = false;
+    hyprcursor.enable = config.wayland.windowManager.hyprland.enable;
+    sway.enable = config.wayland.windowManager.sway.enable;
+  };
   xdg.configFile = {
     "gtk-3.0/gtk.css".force = true;
     "gtk-4.0/gtk.css".force = true;

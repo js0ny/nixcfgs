@@ -16,6 +16,7 @@
       with pkgs;
       [
         stdenv.cc.cc
+        dbus
       ]
       ++ (lib.optionals (config.hardware.graphics.enable) [
         glib

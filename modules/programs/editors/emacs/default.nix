@@ -81,7 +81,7 @@
             evil-org
             ement
             melpaPackages.telega
-            ghostel
+            # ghostel
             beancount
             counsel
             company

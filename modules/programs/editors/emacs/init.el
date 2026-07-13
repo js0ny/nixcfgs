@@ -254,7 +254,7 @@
 
 (use-package ement :ensure t)
 
-(use-package ghostel
+(use-package ghostel :ensure nil
   :bind ("C-x m" . ghostel))
 
 (use-package dashboard :ensure t)

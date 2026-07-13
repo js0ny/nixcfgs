@@ -8,6 +8,7 @@ in
   # It fails to resolve '_Unwind_RaiseException' due to missing libgcc_s.so.1.
   programs.steam.config.apps.sts2 = {
     id = id;
+    betaBranch = "public-beta";
     launchOptions = {
       env = {
         LD_PRELOAD = "${pkgs.stdenv.cc.cc.lib}/lib/libgcc_s.so.1";

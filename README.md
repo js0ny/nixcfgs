@@ -13,17 +13,17 @@ My [NixOS](https://github.com/nixos/nixpkgs) and [nix-darwin](https://github.com
 - `zen` - MacBook Air M1, running macOS
 - `zwinger` - Alt. VPS ([Zwinger](https://en.wikipedia.org/wiki/Zwinger))
 
-## Software I used 
+## Software I used
 
-- Desktop Sessions: 
-  * [Hyprland](https://hypr.land/) - feature-rich
-  * [Niri](https://github.com/niri-wm/niri) - simplicity and low power consumption
-  * [KDE Plasma](https://kde.org/plasma-desktop/) - Fallback environment
+- Desktop Sessions:
+  - [Hyprland](https://hypr.land/) - feature-rich
+  - [Niri](https://github.com/niri-wm/niri) - simplicity and low power consumption
+  - [KDE Plasma](https://kde.org/plasma-desktop/) - Fallback environment
 - GUI Shell: [Noctalia V5](https://github.com/noctalia-dev/noctalia)
 - Display Manager: [SDDM](https://github.com/sddm/sddm) with [thyx](https://github.com/rccyx/thyx)
 - Browser: [Firefox](https://www.firefox.com/en-GB/)
-- Terminal Emulator: [Kitty](https://sw.kovidgoyal.net/kitty/) 
-  * macOS: [Ghostty](https://ghostty.org/) which has better integration with the look of macOS
+- Terminal Emulator: [Kitty](https://sw.kovidgoyal.net/kitty/)
+  - macOS: [Ghostty](https://ghostty.org/) which has better integration with the look of macOS
 - Shell: [fish](https://fishshell.com)
 - Editor: [Neovim](https://neovim.io/)
 - Terminal Multiplexer: [Kitty](https://sw.kovidgoyal.net/kitty/) and [zellij](https://zellij.dev/)

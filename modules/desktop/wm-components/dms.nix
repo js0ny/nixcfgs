@@ -142,7 +142,7 @@
                 }
                 {
                   id = "battery";
-                  enabled = true;
+                  enabled = config.nixdots.laptop.enable;
                 }
                 {
                   id = "controlCenterButton";

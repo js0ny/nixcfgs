@@ -62,9 +62,10 @@
           ".steam"
         ];
       };
+      # https://github.com/different-name/steam-config-nix/blob/master/options.md
       programs.steam.config = {
         enable = true;
-        closeSteam = true;
+        onSteamRunning = "close";
       };
       # Lost & Found
       xdg.desktopEntries = {

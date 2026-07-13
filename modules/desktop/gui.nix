@@ -37,7 +37,7 @@ in
     libjxl
     webp-pixbuf-loader
     # 3D Models
-    f3d
+    # f3d
   ];
 
 }

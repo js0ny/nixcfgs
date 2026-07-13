@@ -41,6 +41,7 @@
             clipboard_enabled = false;
             time_format = "{:%H:%M:%S}";
             screenshot.directory = config.home.customDirs.screenshots;
+            screen_time_enabled = true;
           };
           theme = {
             templates = {
@@ -56,6 +57,7 @@
           };
           bar.default = {
             start = [
+              "osicon"
               "taskbar"
               "media"
             ];
@@ -67,7 +69,6 @@
               "volume"
               "brightness"
               "battery"
-              "session"
               "privacy"
             ];
             margin_edge = 0;
@@ -96,7 +97,8 @@
             ];
             transition_on_startup = true;
             directory = "${wallpaperDir}/";
-            default.path = "${wallpaperDir}/default.jpg";
+            # stylix
+            # default.path = "${wallpaperDir}/default.jpg";
           };
           widget = {
             privacy.hide_inactive = true;
@@ -106,6 +108,14 @@
               pinned = [ "Fcitx" ];
             };
             clock.format = "{:%H:%M:%S}";
+            osicon = {
+              capsule = true;
+              color = "primary";
+              command = "vicinae toggle";
+              glyph = "";
+              label = " ";
+              type = "custom_button";
+            };
           };
         };
       };

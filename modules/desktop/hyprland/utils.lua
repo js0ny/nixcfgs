@@ -57,16 +57,43 @@ M.toggle_maximised = function()
   }))
 end
 
+local function overlap_area(a, b)
+  local left = math.max(a.at.x, b.at.x)
+  local top = math.max(a.at.y, b.at.y)
+  local right = math.min(a.at.x + a.size.x, b.at.x + b.size.x)
+  local bottom = math.min(a.at.y + a.size.y, b.at.y + b.size.y)
+
+  return math.max(0, right - left) * math.max(0, bottom - top)
+end
+
 M.toggle_focus_float = function()
   local win = hl.get_active_window()
   if not win then
     return
   end
 
-  if win.floating then
-    hl.dispatch(hl.dsp.window.cycle_next({ tiled = true }))
-  else
+  if not win.floating then
     hl.dispatch(hl.dsp.window.cycle_next({ floating = true }))
+    return
+  end
+
+  local target
+  local largest_overlap = 0
+
+  for _, candidate in ipairs(hl.get_workspace_windows(win.workspace)) do
+    if not candidate.floating and candidate.visible then
+      local overlap = overlap_area(win, candidate)
+      if overlap > largest_overlap then
+        target = candidate
+        largest_overlap = overlap
+      end
+    end
+  end
+
+  if target then
+    hl.dispatch(hl.dsp.focus({ window = target }))
+  else
+    hl.dispatch(hl.dsp.window.cycle_next({ tiled = true }))
   end
 end
 

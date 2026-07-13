@@ -4,7 +4,7 @@
     lib.mkMerge [
       (lib.mkIf (pkgs.stdenv.isLinux) {
         home.packages = with pkgs; [
-          freecad
+          # freecad
           openscad
           openscad-lsp
           prusa-slicer

@@ -56,10 +56,7 @@
       url = "github:michel-kraemer/zsh-patina";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hermes-agent = {
-      url = "github:NousResearch/hermes-agent";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hermes-agent.url = "github:NousResearch/hermes-agent";
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
