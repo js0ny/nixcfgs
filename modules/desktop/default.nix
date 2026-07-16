@@ -17,7 +17,7 @@
   flake.nixosModules.networkmanager = import ./networkmanager.nix;
   flake.nixosModules.peripherals = import ./peripherals.nix;
 
-  flake.nixosModules.desktop = { inputs, ... }: {
+  flake.nixosModules.desktop = { pkgs, inputs, ... }: {
     imports = [
       ./audio.nix
       ./base.nix
@@ -36,6 +36,13 @@
       inputs.self.nixosModules.nix-index-database
     ];
     nixdefs.hardware.enable = true;
-    programs.appimage.enable = true;
+    programs.appimage = {
+      enable = true;
+      package = pkgs.appimage-run.override {
+        extraPkgs = pkgs: [
+          pkgs.zstd
+        ];
+      };
+    };
   };
 }

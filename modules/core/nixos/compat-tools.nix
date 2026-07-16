@@ -17,6 +17,7 @@
       [
         stdenv.cc.cc
         dbus
+        zstd
       ]
       ++ (lib.optionals (config.hardware.graphics.enable) [
         glib

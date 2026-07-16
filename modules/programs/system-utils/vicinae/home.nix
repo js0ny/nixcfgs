@@ -22,7 +22,8 @@ lib.mkIf pkgs.stdenv.isLinux {
       agent-skills-sh
       # bluetooth
       firefox
-      gnome-extensions
+      flathub-search
+      nerdfont-search
       niri
       nix
       podman

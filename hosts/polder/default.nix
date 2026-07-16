@@ -38,6 +38,7 @@
     inputs.self.nixosModules.nextcloud
     inputs.self.nixosModules.opengist
     inputs.self.nixosModules.paperless
+    inputs.self.nixosModules.pdf2zh
     inputs.self.nixosModules.postgresql
     inputs.self.nixosModules.prometheus
     inputs.self.nixosModules.radicale

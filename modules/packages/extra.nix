@@ -3,6 +3,16 @@ let
   font-viewer = pkgs.writeShellScriptBin "font-viewer" ''
     exec ${pkgs.font-manager}/libexec/font-manager/font-viewer "$@"
   '';
+  pdf2zh = pkgs.writeShellApplication {
+    name = "pdf2zh";
+    runtimeInputs = with pkgs; [
+      uv
+      stdenv.cc
+    ];
+    text = ''
+      uvx --python=cp312 --from pdf2zh-next pdf2zh2 "$@"
+    '';
+  };
 in
 {
   imports = [
@@ -39,11 +49,13 @@ in
     libguestfs
     misc.apps.limes
     misc.apps.proton-drive-cli
+    misc.apps.ratune
     motrix-next
     nautilus
     newsflash
     nmap
     octaveFull
+    pdf2zh
     proton-pass
     rustscan
     xournalpp
@@ -66,4 +78,5 @@ in
   home.sessionVariables = {
     GOLDENDICT_FORCE_WAYLAND = 1;
   };
+
 }

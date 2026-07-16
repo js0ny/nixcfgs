@@ -37,7 +37,9 @@ in
   nixpkgs.config = {
     jetbrains.vmopts = "-Dawt.toolkit.name=WLToolkit";
     allowUnfree = true;
-    permittedInsecurePackages = [ "pnpm-10.29.2" ]; # Cherry Studio
+    permittedInsecurePackages = [
+      "pnpm-10.29.2" # Cherry Studio
+    ];
   };
 
   systemd.tmpfiles.rules = [

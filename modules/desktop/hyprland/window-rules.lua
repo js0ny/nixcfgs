@@ -206,6 +206,18 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = 'wechat-moment',
+  match = {
+    class = 'wechat',
+    title = '朋友圈',
+  },
+  float = true,
+  size = { 900, '(monitor_h*0.9)' },
+  center = true,
+  move = { '(monitor_w-950)', 100 },
+})
+
+hl.window_rule({
   name = 'qq-viewer',
   match = {
     class = 'QQ',

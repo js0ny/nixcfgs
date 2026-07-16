@@ -18,7 +18,7 @@
         ALLOWED_USER_IDS=${config.sops.placeholder.tg_il_bot_allowedusers}
       '';
       services.tg-inline-llm-bot = {
-        enable = true;
+        enable = false;
         apiBase = "https://${ep.litellm.domain}/v1";
         model = "deepseek-v4-flash";
         collapseAnswer = true;

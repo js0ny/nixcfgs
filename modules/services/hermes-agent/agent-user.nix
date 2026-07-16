@@ -1,11 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  secrets,
-  ...
-}:
+{ pkgs, config, ... }:
 let
   user = config.nixdots.user.name;
   ocbase = pkgs.llm-agents.opencode;
@@ -33,14 +26,20 @@ in
     extraGroups = [ "hermes" ];
     packages = with pkgs; [
       # keep-sorted start
+      agent-browser
       ffmpeg-headless
       gh
       jq
       nodejs_26
       ocpkg
-      python315
+      pyright
+      python314
+      python314Packages.ddgs
+      python314Packages.mdformat
+      python314Packages.mdformat-gfm
       ripgrep
       ripgrep-all
+      shellcheck
       sqlite-interactive
       tea
       uv

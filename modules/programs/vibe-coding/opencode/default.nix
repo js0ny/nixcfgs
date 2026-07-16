@@ -53,7 +53,7 @@
           environmentFile = config.sops.templates."opencode-web.env".path;
         };
         settings = {
-          model = "openai/gpt-5.5";
+          model = "openai/gpt-5.6-sol";
           agent = {
             "yolo" = {
               mode = "primary";

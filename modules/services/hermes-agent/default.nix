@@ -2,14 +2,11 @@
   flake.nixosModules.hermes-agent =
     {
       inputs,
-      config,
       pkgs,
       lib,
       ...
     }:
     let
-      models = config.nixdefs.llm.routing;
-      litellm = config.nixdefs.endpoints.litellm.publicUrl;
       system = pkgs.stdenv.hostPlatform.system;
     in
     {
@@ -23,6 +20,8 @@
         ./env.nix
         ./lmwiki.nix
         ./hermes-dashboard.nix
+        ./models.nix
+        ./mcp-skills.nix
       ];
       nixdots.persist.system = {
         directories = [
@@ -33,58 +32,15 @@
       services.hermes-agent = {
         enable = true;
         package = inputs.hermes-agent.packages.${system}.messaging;
-
         group = "agents";
-
-        # ── Service behavior ─────────────────────────────────────────────
         restart = "always";
         restartSec = 5;
-
-        # Available on system PATH for interactive use
         addToSystemPackages = true;
 
-        mcpServers = {
-          tavily = {
-            url = "${litellm}/tavily/mcp";
-            headers = {
-              Authorization = "Bearer \${LITELLM_API_KEY}";
-            };
-          };
-          firecrawl = {
-            url = "${litellm}/firecrawl/mcp";
-            headers = {
-              Authorization = "Bearer \${LITELLM_API_KEY}";
-            };
-          };
-          github = {
-            url = "https://api.githubcopilot.com/mcp/";
-            headers.Authorization = "Bearer \${GITHUB_TOKEN}";
-          };
-        };
         # https://github.com/NousResearch/hermes-agent/blob/main/cli-config.yaml.example
         settings = {
+          _config_version = 33;
           # Model — routed through litellm
-          custom_providers = [
-            {
-              name = "litellm";
-              base_url = "${litellm}/v1";
-              key_env = "LITELLM_API_KEY";
-            }
-          ];
-
-          model = {
-            default = "glm-5.2";
-            provider = "custom:litellm";
-          };
-
-          auxiliary = {
-            vision = {
-              provider = "custom:litellm";
-              model = models.vision.model;
-            };
-          };
-
-          toolsets = [ "hermes-cli" ];
 
           timezone = "Europe/London";
 
@@ -96,11 +52,27 @@
             tool_use_enforcement = "auto";
             gateway_timeout_warning = 900;
             gateway_notify_interval = 600;
+            image_input_mode = "auto";
+            # https://hermes-agent.nousresearch.com/docs/reference/toolsets-reference
+            disabled_toolsets = [
+              # keep-sorted start
+              "computer_use"
+              "discord"
+              "discord_admin"
+              "feishu_doc"
+              "feishu_drive"
+              "homeassistant"
+              "spotify"
+              "x_search"
+              "yuanbao"
+              # keep-sorted end
+            ];
           };
 
           # ── Terminal ───────────────────────────────────────────────────
           terminal = {
             backend = "local";
+            home_mode = "real";
             cwd = "/var/lib/hermes";
             timeout = 180;
             persistent_shell = true;
@@ -126,6 +98,7 @@
             user_profile_enabled = true;
             memory_char_limit = 2200;
             user_char_limit = 1375;
+            write_approval = true;
           };
 
           # ── Security ───────────────────────────────────────────────────
@@ -139,26 +112,38 @@
 
           # ── Approvals ──────────────────────────────────────────────────
           approvals = {
-            mode = "manual";
+            mode = "smart";
             timeout = 60;
           };
 
           # ── Display ────────────────────────────────────────────────────
           display = {
+            compact = true;
+            tool_progress = "all";
+            tool_progress_command = true;
             language = "zh";
+            resume_display = "full";
+            runtime_footer = {
+              enabled = true;
+            };
+            file_mutation_verifier = true;
+            show_reasoning = false;
             personality = "kawaii";
             skin = "charizard"; # 增火龙说是
             streaming = true;
             show_cost = true;
+            platforms.telegram = {
+              tool_progress = "off";
+              tool_progress_command = false;
+              runtime_footer.enabled = false;
+            };
           };
 
-          privacy = {
-            redact_pii = true;
-          };
+          privacy.redact_pii = true;
 
           streaming = {
             enabled = true;
-            trnsfport = "edit";
+            transport = "edit";
           };
 
           # ── Web ────────────────────────────────────────────────────────
@@ -176,10 +161,15 @@
           # ── Session Reset ──────────────────────────────────────────────
           session_reset = {
             mode = "both";
-            idle_minutes = 1440;
+            idle_minutes = 1440; # 24h
             at_hour = 4;
+          };
+          lsp = {
+            enabled = true;
+            install_strategy = "manual";
           };
         };
       };
+
     };
 }
