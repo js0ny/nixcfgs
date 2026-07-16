@@ -52,6 +52,7 @@
           enable = false;
           environmentFile = config.sops.templates."opencode-web.env".path;
         };
+        # https://opencode.ai/docs/config/
         settings = {
           model = "openai/gpt-5.6-sol";
           agent = {

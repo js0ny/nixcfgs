@@ -54,6 +54,7 @@
           oidcIssuerPrivateKeyFile = sec.authelia_oidc_rsa_private_key.path;
         };
 
+        # https://www.authelia.com/configuration/
         settings = {
           theme = "auto";
           default_2fa_method = "webauthn";
@@ -91,7 +92,37 @@
               id_token = "1h";
               refresh_token = "90m";
             };
+            claims_policies.matrix.id_token = [
+              "email"
+              "name"
+              "groups"
+              "preferred_username"
+            ];
             clients = [
+              {
+                client_id = "matrix";
+                client_name = "Tuwunel";
+                client_secret = "$pbkdf2-sha512$310000$xFP0FMQ.XJmdxBkhCk8x4w$6Pbt4U56PrcFnba2cc.OXZ6WP8M7AQIOXGph/onfjTmam8c7bnBmdWMByv1xDlHe6u/pIl2MpCguHesbVoOUzw";
+                claims_policy = "matrix";
+                public = false;
+                authorization_policy = "two_factor";
+                redirect_uris = [
+                  "${ep.matrix.publicUrl}/_matrix/client/unstable/login/sso/callback/matrix"
+                ];
+                scopes = [
+                  "openid"
+                  "groups"
+                  "email"
+                  "profile"
+                ];
+                grant_types = [
+                  "refresh_token"
+                  "authorization_code"
+                ];
+                response_types = [ "code" ];
+                response_modes = [ "form_post" ];
+                token_endpoint_auth_method = "client_secret_post";
+              }
               {
                 client_id = "lobechat";
                 client_name = "LobeHub";
