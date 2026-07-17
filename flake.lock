@@ -1092,11 +1092,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783967814,
-        "narHash": "sha256-aUkzSvVmrf07RtB87GJpyrJecefAsMsUj4/9nPp+d88=",
+        "lastModified": 1784241089,
+        "narHash": "sha256-fpuy+/ouvbO0buGgH+erSExQESy6eiOCfa/ThSlGsUM=",
         "owner": "js0ny",
         "repo": "nix-misc-packages",
-        "rev": "3e72b8bc2ea9addb76278d6e70f95bb0516a6492",
+        "rev": "47382bc2343d7271c3e79e3f1c7c44eb7d77e815",
         "type": "github"
       },
       "original": {
@@ -1734,11 +1734,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1784243962,
-        "narHash": "sha256-E3L3f/KYnDbDnUserqBEt3A9nkUXplYRaHg+2CAhGFU=",
+        "lastModified": 1784245634,
+        "narHash": "sha256-GQuT3oJIcauAbkpWehJ0EjrfEfPLfh36opFbFeeI/6Y=",
         "ref": "refs/heads/master",
-        "rev": "40260c45b23854fa43c80159af02a17ce4357e68",
-        "revCount": 35,
+        "rev": "667cd78b3997781f70e78820584cafefb2cf4b18",
+        "revCount": 36,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/infra/nix-secrets.git"
       },

@@ -31,6 +31,7 @@
     inputs.self.nixosModules.karakeep
     inputs.self.nixosModules.librechat
     inputs.self.nixosModules.litellm
+    inputs.self.nixosModules.lldap
     inputs.self.nixosModules.lobehub
     inputs.self.nixosModules.miniflux
     inputs.self.nixosModules.mongodb

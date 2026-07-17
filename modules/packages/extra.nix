@@ -50,6 +50,7 @@ in
     misc.apps.limes
     misc.apps.proton-drive-cli
     misc.apps.ratune
+    misc.apps.wdotool
     motrix-next
     nautilus
     newsflash

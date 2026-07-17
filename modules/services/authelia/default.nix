@@ -41,6 +41,10 @@
           sopsFile = secrets + /authelia.yaml;
           owner = "authelia-main";
         };
+        lldap_authelia_password = {
+          sopsFile = secrets + /authelia.yaml;
+          owner = "authelia-main";
+        };
       };
 
       services.authelia.instances."main" = {
@@ -53,6 +57,8 @@
           oidcHmacSecretFile = sec.authelia_oidc_hmac_secret.path;
           oidcIssuerPrivateKeyFile = sec.authelia_oidc_rsa_private_key.path;
         };
+        environmentVariables.AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE =
+          sec.lldap_authelia_password.path;
 
         # https://www.authelia.com/configuration/
         settings = {
@@ -80,9 +86,17 @@
 
           storage.local.path = "${stateDir}/db.sqlite3";
 
-          authentication_backend.file = {
-            path = secrets + /authelia-users.yml;
-            watch = true;
+          # https://www.authelia.com/configuration/first-factor/ldap/
+          authentication_backend = {
+            refresh_interval = "1m";
+            password_reset.disable = true;
+            password_change.disable = true;
+            ldap = {
+              implementation = "lldap";
+              address = "ldap://${ep.lldap-ldap.listenStr}";
+              base_dn = "dc=js0ny,dc=net";
+              user = "uid=authelia,ou=people,dc=js0ny,dc=net";
+            };
           };
 
           identity_providers.oidc = {
@@ -273,6 +287,11 @@
             default_policy = "two_factor";
           };
         };
+      };
+
+      systemd.services.authelia-main = {
+        after = [ "lldap.service" ];
+        wants = [ "lldap.service" ];
       };
 
       services.nginx.virtualHosts."${url}" = {

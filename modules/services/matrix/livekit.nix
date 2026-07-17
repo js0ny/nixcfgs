@@ -1,3 +1,4 @@
+# Tuwunel does not yet implement MSC4140, so MatrixRTC remains experimental.
 {
   config,
   lib,
@@ -18,11 +19,6 @@ let
   };
 in
 {
-  # Tuwunel does not yet implement MSC4140, so MatrixRTC remains experimental.
-  nixdefs.endpoints = {
-    livekit.port = 16017;
-    livekit-jwt.port = 16018;
-  };
 
   # Reuse the existing random media secret to avoid a separate secret migration for this experiment.
   sops.templates."livekit-keys".content = /* yaml */ ''
