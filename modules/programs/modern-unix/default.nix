@@ -20,6 +20,7 @@
     { pkgs, config, ... }:
     {
       xdg.configFile."bat/syntaxes/nushell.sublime-syntax".source = ./nushell.sublime-syntax;
+      xdg.configFile."bat/syntaxes/fennel.sublime-syntax".source = ./fennel.sublime-syntax;
       imports = [ ./zoxide.nix ];
       misc.shellAliases = {
         ls = "lsd";

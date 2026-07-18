@@ -107,10 +107,6 @@
           ++ (lib.optionals pkgs.stdenv.isLinux [ epkgs.xclip ]);
       };
 
-      nixdots.darwin.homebrew = {
-        taps = [ "railwaycat/emacsmacport" ];
-      };
-
       xdg.configFile."emacs".source = mkSymlink "${dots}/modules/programs/editors/emacs";
 
       nixdots.persist.nosnap.home.directories = [ ".local/share/emacs" ];

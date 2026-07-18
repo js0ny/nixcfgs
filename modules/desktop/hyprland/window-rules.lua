@@ -195,6 +195,18 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = 'firefox-library',
+  match = {
+    class = 'firefox',
+    title = 'Library',
+  },
+  float = true,
+  size = { 1200, '(monitor_h*0.9)' },
+  center = true,
+  move = { '(monitor_w-950)', 100 },
+})
+
+hl.window_rule({
   name = 'wechat-viewer',
   match = {
     class = 'wechat',
