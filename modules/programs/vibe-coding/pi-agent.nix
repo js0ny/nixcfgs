@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     llm-agents.pi
   ];
-  home.file.".pi/agents/keybindings.json".text = builtins.toJSON {
+  home.file.".pi/agent/keybindings.json".text = builtins.toJSON {
     "tui.editor.cursorUp" = [
       "up"
       "ctrl+p"

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   font-viewer = pkgs.writeShellScriptBin "font-viewer" ''
     exec ${pkgs.font-manager}/libexec/font-manager/font-viewer "$@"
@@ -34,6 +34,8 @@ in
     gdb
     gh
     gimp
+    godot
+    godotpcktool
     goldendict-ng
     icoutils
     inkscape
@@ -54,6 +56,7 @@ in
     motrix-next
     nautilus
     newsflash
+    nextcloud-client
     nmap
     octaveFull
     pdf2zh
@@ -80,4 +83,10 @@ in
     GOLDENDICT_FORCE_WAYLAND = 1;
   };
 
+  programs.yazi.settings.plugin.prepend_previewers = [
+    {
+      url = "*.pck";
+      run = "piper -- ${lib.getExe pkgs.godotpcktool} $1";
+    }
+  ];
 }

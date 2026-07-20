@@ -43,6 +43,9 @@ lib.mkIf pkgs.stdenv.isLinux {
       telemetry = {
         system_info = false;
       };
+      keybinds = {
+        "toggle-action-panel" = "control+B";
+      };
       consider_preedit = false;
       close_on_focus_loss = true;
       providers = {

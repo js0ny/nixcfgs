@@ -26,7 +26,7 @@ in
           "F24-k" = "Up";
           "F24-l" = "Right";
           "F24-n" = "Home";
-          "F24-;" = "End";
+          "F24-SEMICOLON" = "End";
         };
       }
     ];

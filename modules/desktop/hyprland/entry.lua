@@ -338,7 +338,7 @@ hl.config({
 
 require('keymaps')
 require('shell_keymaps')
-require('window-rules')
+require('windowrules')
 require('workspace-rules')
 require('animations')
 
