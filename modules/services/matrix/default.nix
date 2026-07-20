@@ -27,6 +27,7 @@
     in
     {
       imports = [
+        ./backup.nix
         ./coturn.nix
         ./hookshot.nix
         ./livekit.nix
@@ -50,10 +51,36 @@
           port = [ epSelf.port ];
           allow_registration = true;
           registration_token_file = config.sops.secrets.matrix_reg_token.path;
-          allow_federation = false;
+          allow_federation = true;
           allow_encryption = true;
           max_request_size = 20000000;
           appservice_dir = asDir;
+
+          # 公共房间目录
+          allow_public_room_directory_over_federation = false;
+          allow_public_room_directory_without_auth = false;
+          lockdown_public_room_directory = true;
+
+          # 防止通过 room ID 搜索到未列入目录的可加入房间
+          allow_unlisted_room_search_by_id = false;
+
+          # 用户目录和 profile 隐私
+          show_all_local_users_in_user_directory = false;
+          require_auth_for_profile_requests = true;
+          allow_device_name_federation = false;
+
+          # 远端邀请本地用户时通常需要 profile lookup，建议保留
+          allow_inbound_profile_lookup_federation_requests = true;
+
+          # Guest 只明确控制 TURN 凭据
+          turn_allow_guests = false;
+
+          # 普通用户仍可创建房间
+          allow_room_creation = true;
+
+          # 不启用不稳定/实验性房间版本
+          allow_unstable_room_versions = false;
+          allow_experimental_room_versions = false;
         };
       };
 

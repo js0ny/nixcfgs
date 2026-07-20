@@ -13,5 +13,6 @@
         "only basic indexing" = false;
       };
     };
+    arkrc.General.defaultOpenAction = "Open";
   };
 }

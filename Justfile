@@ -23,3 +23,6 @@ eval-home args="" host=hostname extra="":
 [linux]
 journal-home username=env_var("USER"):
     journalctl -xeu home-manager-{{ username }}.service
+
+update-nixpkgs:
+    nix flake update nixpkgs nixpkgs-unfree nixpkgs-stable

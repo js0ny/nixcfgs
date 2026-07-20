@@ -106,15 +106,6 @@ in
           "repology"
         ];
       };
-      claude = {
-        name = "Claude";
-        urls = [ { template = "https://claude.ai/?q={searchTerms}"; } ];
-        icon = "https://claude.ai/favicon.ico";
-        definedAliases = [
-          "@cl"
-          "claude"
-        ];
-      };
       grok = {
         name = "Grok";
         urls = [ { template = "https://grok.com/?q={searchTerms}"; } ];
@@ -174,10 +165,28 @@ in
       noogle = {
         name = "noogλe";
         urls = [ { template = "https://noogle.dev/q/?term={searchTerms}"; } ];
+        icon = "https://noogle.dev/favicon.ico";
         definedAliases = [
           "noogle"
           "@nixl"
         ];
+      };
+      pcgamingwiki = {
+        name = "PCGamingWiki";
+        urls = [ { template = "https://www.pcgamingwiki.com/w/index.php?search={searchTerms}"; } ];
+        definedAliases = [ "@pcgw" ];
+      };
+      searchix = {
+        name = "Searchix";
+        urls = [ { template = "https://searchix.ovh/?query={searchTerms}"; } ];
+        icon = "https://searchix.ovh/favicon.ico";
+        definedAliases = [ "searchix" ];
+      };
+      codeberg = {
+        name = "Codeberg";
+        urls = [ { template = "https://codeberg.org/explore/repos?q={searchTerms}"; } ];
+        icon = "https://codeberg.org/favicon.ico";
+        definedAliases = [ "@codeberg" ];
       };
     }
     // (lib.optionalAttrs (searxng.enable) {
