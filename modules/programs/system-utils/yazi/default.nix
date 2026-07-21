@@ -33,7 +33,7 @@
           ouch = pkgs.yaziPlugins.ouch;
           bookmarks = pkgs.yaziPlugins.bookmarks;
           clipboard = pkgs.yaziPlugins.clipboard;
-          dump-tabs = pkgs.misc.data.yaziPlugins.dump-tabs;
+          dump-tabs = pkgs.js0ny.yaziPlugins.dump-tabs;
           piper = pkgs.yaziPlugins.piper;
         };
         settings = {

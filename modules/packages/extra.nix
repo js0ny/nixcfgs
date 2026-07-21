@@ -40,6 +40,10 @@ in
     icoutils
     inkscape
     jetbrains.datagrip
+    js0ny.limes
+    js0ny.proton-drive-cli
+    js0ny.ratune
+    js0ny.wdotool
     kdePackages.elisa
     kdePackages.isoimagewriter
     kdePackages.kdeconnect-kde
@@ -50,10 +54,6 @@ in
     keepassxc
     krabby
     libguestfs
-    misc.apps.limes
-    misc.apps.proton-drive-cli
-    misc.apps.ratune
-    misc.apps.wdotool
     motrix-next
     nautilus
     newsflash

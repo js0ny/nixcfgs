@@ -78,8 +78,8 @@ in
   programs.firefox.profiles."${profile}" = {
     userChrome = builtins.readFile ./userChrome.css;
     userContent = ''
-      @import "${pkgs.misc.data.firefox-csshacks}/content/multi_column_addons.css"
-      @import "${pkgs.misc.data.firefox-csshacks}/content/compact_about_config.css"
+      @import "${pkgs.js0ny.firefox-csshacks}/content/multi_column_addons.css"
+      @import "${pkgs.js0ny.firefox-csshacks}/content/compact_about_config.css"
     '';
   };
 }

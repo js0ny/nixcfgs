@@ -8,7 +8,7 @@ let
 in
 {
   xdg.dataFile."Steam/steamapps/common/Expedition 33/Sandfall/Binaries/Win64" = {
-    source = pkgs.misc.mods.clair-obscur-fix;
+    source = pkgs.js0ny.clair-obscur-fix;
     recursive = true;
   };
   programs.steam.config.apps.expedition33 = {

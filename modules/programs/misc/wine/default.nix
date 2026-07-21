@@ -3,7 +3,7 @@
     { pkgs, config, ... }:
     let
       prefix = "${config.xdg.dataHome}/wineprefixes/default";
-      dwproton = pkgs.misc.data.proton.dwproton-pin;
+      dwproton = pkgs.js0ny.dwproton-11;
     in
     {
       home.packages = with pkgs; [

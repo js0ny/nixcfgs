@@ -18,10 +18,10 @@ let
       done
 
       if [ "$has_config_file" -eq 1 ]; then
-        exec ${lib.getExe pkgs.misc.apps.bbdown} "$@"
+        exec ${lib.getExe pkgs.js0ny.bbdown} "$@"
       fi
 
-      exec ${lib.getExe pkgs.misc.apps.bbdown} \
+      exec ${lib.getExe pkgs.js0ny.bbdown} \
         --config-file ${config.sops.templates."BBDown.config".path} \
         "$@"
     '';
@@ -47,6 +47,7 @@ in
       bbdown-wrapped
       exiftool
       flac
+      js0ny.danmaku2ass
       localPkgs.mediatools.extract-audio
       localPkgs.mediatools.preview-by-orientation
       localPkgs.mediatools.remux-mp4
@@ -57,7 +58,6 @@ in
       localPkgs.mediatools.to-webp
       localPkgs.mediatools.video-gen-grid
       mediainfo
-      misc.apps.danmaku2ass
       yt-dlp
       # keep-sorted end
     ]

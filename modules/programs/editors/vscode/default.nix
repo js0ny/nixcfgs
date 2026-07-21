@@ -97,9 +97,9 @@
           "window.titleBarStyle" = "native"; # works better on bare WMs
           "vim.autoSwitchInputMethod.defaultIM" = "true";
           "vim.autoSwitchInputMethod.obtainIMCmd" =
-            "${lib.getExe pkgs.misc.apps.limes} --backend fcitx5-rime --mode ascii";
+            "${lib.getExe pkgs.js0ny.limes} --backend fcitx5-rime --mode ascii";
           "vim.autoSwitchInputMethod.switchIMCmd" =
-            "${lib.getExe pkgs.misc.apps.limes} --backend fcitx5-rime --mode ascii set {im}";
+            "${lib.getExe pkgs.js0ny.limes} --backend fcitx5-rime --mode ascii set {im}";
           "workbench.browser.showInTitleBar" = false;
           "window.commandCenter" = false;
           "chat.titleBar.signIn.enabled" = false;

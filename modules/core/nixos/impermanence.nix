@@ -23,7 +23,7 @@ lib.mkMerge [
 
     fileSystems."${path}".neededForBoot = true;
 
-    environment.systemPackages = [ pkgs.misc.apps.oroot ];
+    environment.systemPackages = [ pkgs.js0ny.oroot ];
     programs.fish.interactiveShellInit = /* fish */ ''
       oroot completion fish | source
     '';

@@ -24,7 +24,7 @@ lib.mkIf cfg.enable {
         thumbfast
         uosc
         # keep-sorted end
-        pkgs.misc.data.mpvScripts.bilibili-sponsorblock
+        pkgs.js0ny.mpvScripts.bilibili-sponsorblock
       ]
       ++ (lib.optionals pkgs.stdenv.isLinux [ mpris ]);
     config = {

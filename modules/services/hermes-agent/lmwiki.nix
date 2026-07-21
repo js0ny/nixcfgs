@@ -45,7 +45,7 @@ in
       FAST_NOTE_URL = config.nixdefs.endpoints.fast-note-sync.publicUrl;
     };
     serviceConfig = {
-      ExecStart = "${lib.getExe pkgs.misc.apps.go-fast-note-sync-src} start --config ${pkgs.writers.writeYAML "go-fast-note-sync.yaml" fastNoteSyncConfig}";
+      ExecStart = "${lib.getExe pkgs.js0ny.go-fast-note-sync} start --config ${pkgs.writers.writeYAML "go-fast-note-sync.yaml" fastNoteSyncConfig}";
       User = "hermes";
       Group = "hermes";
       Restart = "always";
