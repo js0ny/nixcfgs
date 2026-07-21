@@ -30,7 +30,6 @@
           "kde"
           "gnome"
           "cosmic"
-          "mangowc"
           "none"
         ]
       );

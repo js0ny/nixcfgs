@@ -25,7 +25,7 @@
 
     inputs.secrets.homeManagerModules.default
     # keep-sorted start
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
+    inputs.flatpak-nix.homeManagerModules.nix-flatpak
     inputs.steam-config-nix.homeModules.default
     # keep-sorted end
   ];

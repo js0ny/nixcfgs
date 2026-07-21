@@ -20,7 +20,7 @@
 
     # keep-sorted start
     inputs.catppuccin.homeModules.catppuccin
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
+    inputs.flatpak-nix.homeManagerModules.nix-flatpak
     inputs.secrets.homeManagerModules.default
     inputs.steam-config-nix.homeModules.default
     # keep-sorted end

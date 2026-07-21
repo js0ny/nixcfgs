@@ -27,10 +27,11 @@ in
       ];
       warn-dirty = false;
     };
-    registry = {
+    registry = rec {
       nixpkgs.flake = inputs.nixpkgs;
+      p.flake = nixpkgs.flake;
       nur.flake = inputs.nur;
-      js0ny.flake = inputs.nix-misc-packages;
+      js0ny.flake = inputs.js0ny-packages;
       unfree.flake = inputs.nixpkgs-unfree;
     };
   };

@@ -39,7 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-misc-packages = {
+    js0ny-packages = {
       url = "github:js0ny/nix-misc-packages";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
@@ -47,7 +47,7 @@
     # }}}
 
     # {{{ Application Supports
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    flatpak-nix.url = "github:gmodena/nix-flatpak";
     vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -143,8 +143,8 @@
       url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    cachyos-kernel-nix.url = "github:xddxdd/nix-cachyos-kernel";
+    wsl-nixos.url = "github:nix-community/NixOS-WSL/main";
     # }}}
 
     # {{{ Utilites

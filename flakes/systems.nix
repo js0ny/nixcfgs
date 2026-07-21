@@ -9,12 +9,12 @@
       overlays = [
         localOverlays
         # keep-sorted start
+        inputs.cachyos-kernel-nix.overlays.pinned
         inputs.firefox-addons.overlays.default
         inputs.hermes-agent.overlays.default
+        inputs.js0ny-packages.overlays.default
+        inputs.js0ny-packages.overlays.nixpaks
         inputs.llm-agents.overlays.default
-        inputs.nix-cachyos-kernel.overlays.pinned
-        inputs.nix-misc-packages.overlays.default
-        inputs.nix-misc-packages.overlays.nixpaks
         inputs.nur.overlays.default
         inputs.vscode-extensions.overlays.default
         # keep-sorted end
@@ -49,11 +49,11 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
             inputs.lanzaboote.nixosModules.lanzaboote
-            inputs.nixos-wsl.nixosModules.default
             inputs.secrets.nixosModules.default
             inputs.stylix.nixosModules.default
             inputs.telegram-inline-llm-bot.nixosModules.default
             inputs.thyx.nixosModules.default
+            inputs.wsl-nixos.nixosModules.default
             # keep-sorted end
             ../hosts/${hostname}
             { nixpkgs.overlays = overlays; }

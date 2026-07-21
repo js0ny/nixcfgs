@@ -170,11 +170,10 @@ in
       dm = "sddm";
       autoLogin = true;
       session = [
+        "hyprland"
         "niri"
         "kde"
         "gnome"
-        "mangowc"
-        "hyprland"
         "sway"
       ];
       wm = {
