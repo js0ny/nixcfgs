@@ -13,6 +13,7 @@
         llm-agents.agentsview
         llm-agents.ccusage
         herdr
+        abtop
       ];
     };
 }

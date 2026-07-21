@@ -1,0 +1,30 @@
+diff --git a/sticker/stickerimport.py b/sticker/stickerimport.py
+index 2b9ff12..aaf5c47 100644
+--- a/sticker/stickerimport.py
++++ b/sticker/stickerimport.py
+@@ -74,6 +74,7 @@ async def reupload_pack(client: TelegramClient, pack: StickerSetFull, output_dir
+     stickers_data: Dict[str, bytes] = {}
+     reuploaded_documents: Dict[int, matrix.StickerInfo] = {}
+     for document in pack.documents:
++        data = None
+         try:
+             reuploaded_documents[document.id] = already_uploaded[document.id]
+             print(f"Skipped reuploading {document.id}")
+@@ -81,7 +82,8 @@ async def reupload_pack(client: TelegramClient, pack: StickerSetFull, output_dir
+             reuploaded_documents[document.id], data = await reupload_document(client, document)
+         # Always ensure the body and telegram metadata is correct
+         add_meta(document, reuploaded_documents[document.id], pack)
+-        stickers_data[reuploaded_documents[document.id]["url"]] = data
++        if data is not None:
++            stickers_data[reuploaded_documents[document.id]["url"]] = data
+ 
+     for sticker in pack.packs:
+         if not sticker.emoticon:
+diff --git a/sticker/lib/util.py b/sticker/lib/util.py
+index 1d2b84c..cbf2a2f 100644
+--- a/sticker/lib/util.py
++++ b/sticker/lib/util.py
+@@ -90 +90,3 @@ def add_thumbnails(stickers: List[matrix.StickerInfo], stickers_data: Dict[str,
++        if sticker["url"] not in stickers_data:
++            continue
+         image_data, _, _ = convert_image(stickers_data[sticker["url"]], 128, 128)

@@ -44,6 +44,7 @@ in
     kdePackages.isoimagewriter
     kdePackages.kdeconnect-kde
     kdePackages.kdenlive
+    kdePackages.kleopatra
     kdePackages.partitionmanager
     kdePackages.qttools
     keepassxc
@@ -62,6 +63,7 @@ in
     pdf2zh
     proton-pass
     rustscan
+    sequoia-sq
     xournalpp
     # keep-sorted end
 

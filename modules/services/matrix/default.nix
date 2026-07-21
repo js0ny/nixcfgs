@@ -32,6 +32,7 @@
         ./hookshot.nix
         ./livekit.nix
         ./oidc.nix
+        ./stickerpicker.nix
       ];
       sops.secrets.matrix_reg_token = {
         sopsFile = secrets + /matrix.yaml;
