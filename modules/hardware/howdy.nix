@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgsStable,
   ...
 }:
 let
@@ -11,6 +12,8 @@ in
 lib.mkIf cfg.enable {
   services.howdy = {
     enable = cfg.setup;
+    # Keep the authentication stack insulated from Python upgrades in nixpkgs-unstable.
+    package = pkgsStable.howdy;
     # control: "required" - the user must pass the howdy check to log in
     # control: "sufficient" - the user can log in if they pass the how
     control = "sufficient";

@@ -124,6 +124,7 @@
       url = "github:nix-community/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
     telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
     # }}}
 

@@ -79,9 +79,6 @@ hl.bind('SUPER' .. ' + SHIFT + E', function()
   hl.exec_cmd('hyprctl reload')
 end)
 
--- 关键：waybar 也 blur
-hl.layer_rule({ match = { namespace = 'waybar' }, blur = true })
-
 hl.window_rule({
   name = 'polkit',
   match = {
@@ -356,30 +353,22 @@ hl.bind('SUPER + F2', function()
   })
 end)
 
-hl.on('window.active', function(w)
-  local match = { 'org.kde.polkit-kde-authentication-agent-1' }
-  for i = 1, #match do
-    if w.class == match[i] then
-      hl.timer(function()
-        hl.exec_cmd('limes --backend fcitx5-rime --mode ascii true')
-      end, { timeout = 150, type = 'oneshot' })
-    end
-  end
-end)
+local ascii_classes = {
+  ['org.kde.polkit-kde-authentication-agent-1'] = true,
+}
+local ascii_titles = {
+  ['Password — Ark'] = true,
+  ['Password — Dolphin'] = true,
+}
 
-hl.on('window.active', function(w)
-  local match = { 'Password — Ark', 'Password — Dolphin' }
-  for i = 1, #match do
-    if w.title == match[i] then
-      hl.timer(function()
-        hl.exec_cmd('limes --backend fcitx5-rime --mode ascii true')
-      end, { timeout = 150, type = 'oneshot' })
-    end
+hl.on('window.active', function(window)
+  if ascii_classes[window.class] or ascii_titles[window.title] then
+    hl.timer(function()
+      hl.exec_cmd('limes --backend fcitx5-rime --mode ascii true')
+    end, { timeout = 150, type = 'oneshot' })
   end
 end)
 
 -- hl.on('window.urgent', function(w)
 --   hl.dispatch(hl.dsp.focus({ window = w }))
 -- end)
---
-require('windowrules.gaming')

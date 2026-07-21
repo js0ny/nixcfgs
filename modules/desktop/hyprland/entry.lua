@@ -1,6 +1,5 @@
 hl.config({
   scrolling = {
-    direction = 'left',
     wrap_focus = false,
   },
   ecosystem = {
@@ -10,13 +9,6 @@ hl.config({
     natural_scroll = true,
     flip_x = false,
   } },
-})
-
-hl.monitor({
-  output = '',
-  mode = 'preferred',
-  position = 'auto',
-  scale = 'auto',
 })
 
 -------------------
@@ -61,8 +53,6 @@ hl.config({
   general = {
     gaps_in = 5,
     gaps_out = 20,
-
-    border_size = 2,
 
     col = {
       active_border = { colors = { 'rgba(33ccffee)', 'rgba(00ff99ee)' }, angle = 45 },
@@ -217,13 +207,6 @@ hl.config({
   },
 })
 
--- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
-hl.config({
-  scrolling = {
-    fullscreen_on_one_column = true,
-  },
-})
-
 ----------------
 ----  MISC  ----
 ----------------
@@ -330,9 +313,6 @@ hl.config({
   scrolling = {
     fullscreen_on_one_column = true,
     direction = 'right',
-  },
-  xwayland = {
-    force_zero_scaling = false,
   },
 })
 

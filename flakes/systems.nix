@@ -21,11 +21,12 @@
         (import ../overlays/hermes-agent.nix { inherit inputs; })
       ];
 
-      specialArgs = {
+      mkSpecialArgs = system: {
         inherit inputs overlays myLib;
         nixcfgs = inputs.self;
         bindeps = inputs.bindeps;
         secrets = inputs.secrets;
+        pkgsStable = inputs.nixpkgs-stable.legacyPackages.${system};
       };
 
       nixosHosts = [
@@ -41,7 +42,7 @@
         hostname:
         inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          inherit specialArgs;
+          specialArgs = mkSpecialArgs "x86_64-linux";
           modules = [
             # keep-sorted start
             inputs.catppuccin.nixosModules.catppuccin
@@ -64,7 +65,7 @@
         hostname:
         inputs.nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          inherit specialArgs;
+          specialArgs = mkSpecialArgs "aarch64-darwin";
           modules = [
             ../hosts/${hostname}
             { nixpkgs.overlays = overlays; }

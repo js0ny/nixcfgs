@@ -1,32 +1,51 @@
 {
-  flake.nixosModules.hyprland = { pkgs, ... }: {
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
-      xwayland.enable = true;
-      systemd.setPath.enable = true;
-    };
-    environment.systemPackages = with pkgs; [ grimblast ];
-    programs.uwsm.enable = true;
-    xdg.portal = {
-      config.hyprland = {
-        default = [
-          "hyprland"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
-        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-        "org.freedesktop.impl.portal.OpenURI" = [ "gtk" ];
-      };
-
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-      ];
-    };
-  };
-  flake.homeModules.hyprland =
+  flake.nixosModules.hyprland =
     {
       pkgs,
+      inputs,
+      config,
+      ...
+    }:
+    let
+      hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      xdg-desktop-portal-hyprland =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    in
+    {
+      programs.hyprland = {
+        enable = true;
+        withUWSM = true;
+        xwayland.enable = true;
+        systemd.setPath.enable = true;
+        package = hyprland;
+        portalPackage = xdg-desktop-portal-hyprland;
+      };
+      environment.systemPackages = with pkgs; [ grimblast ];
+      programs.uwsm.enable = true;
+      xdg.portal = {
+        config.hyprland = {
+          default = [
+            "hyprland"
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
+          "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+          "org.freedesktop.impl.portal.OpenURI" = [ "gtk" ];
+        };
+
+        extraPortals = [ config.programs.hyprland.portalPackage ];
+      };
+      home-manager.sharedModules = [
+        {
+          wayland.windowManager.hyprland = {
+            package = hyprland;
+            portalPackage = xdg-desktop-portal-hyprland;
+          };
+        }
+      ];
+    };
+  flake.homeModules.hyprland =
+    {
       config,
       inputs,
       ...
@@ -45,7 +64,6 @@
             "shell_keymaps.lua"
             "utils.lua"
             "vars.lua"
-            "window-rules.lua"
             "workspace-rules.lua"
             "windowrules"
           ];

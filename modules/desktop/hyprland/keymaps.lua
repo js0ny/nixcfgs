@@ -1,7 +1,7 @@
 local utils = require('utils')
+local vars = require('vars')
 
 local uwsm_exec = utils.uwsm_exec
-local term_exec = utils.term_exec
 local term_exec_float = utils.term_exec_float
 
 ---------------------
@@ -16,7 +16,7 @@ local menu = 'vicinae toggle'
 ---- KEYBINDINGS ----
 ---------------------
 
-local mod = 'SUPER' -- Sets "Windows" key as main modifier
+local mod = vars.mod -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mod .. ' + Return', hl.dsp.exec_cmd(terminal))
@@ -61,10 +61,10 @@ hl.bind(mod .. ' + EQUAL', hl.dsp.layout('colresize +0.1'))
 hl.bind(mod .. ' + MINUS', hl.dsp.layout('colresize -0.1'))
 hl.bind(mod .. ' + BRACKETLEFT', hl.dsp.window.move({ direction = 'left', group_aware = true }))
 hl.bind(mod .. ' + BRACKETRIGHT', hl.dsp.window.move({ direction = 'right', group_aware = true }))
-hl.bind(mod .. ' + M', utils.toggle_maximised)
+hl.bind(mod .. ' + M', hl.dsp.window.fullscreen({ mode = 'maximized', action = 'toggle' }))
 hl.bind(mod .. ' + SHIFT + M', hl.dsp.window.fullscreen({ mode = 'fullscreen', action = 'toggle' }))
 
-hl.bind(mod .. ' + C', hl.dsp.layout('fit'))
+hl.bind(mod .. ' + C', hl.dsp.layout('fit expand'))
 
 hl.bind(mod .. ' + F', utils.toggle_focus_float)
 hl.bind(mod .. ' + SHIFT + F', hl.dsp.window.float({ action = 'toggle' }))
@@ -102,22 +102,10 @@ hl.bind(
   hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/@nino-mau/store.vicinae.hypr/windows')
 )
 
-local last_ws, current_ws = nil, nil
-
-hl.on(
-  'workspace.active',
-  ---@param ws HL.Workspace
-  function(ws)
-    if current_ws ~= ws then
-      last_ws = current_ws
-      current_ws = ws
-    end
-  end
-)
-
 hl.bind(mod .. ' + GRAVE', function()
-  if last_ws ~= nil then
-    hl.dispatch(hl.dsp.focus({ workspace = last_ws.id }))
+  local last_workspace = hl.get_last_workspace()
+  if last_workspace then
+    hl.dispatch(hl.dsp.focus({ workspace = last_workspace.id }))
   end
 end)
 
