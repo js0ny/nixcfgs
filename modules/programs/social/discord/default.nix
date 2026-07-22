@@ -1,7 +1,8 @@
 {
   flake.homeModules.discord =
-    { inputs, ... }:
+    { pkgs, inputs, ... }:
     {
+      home.packages = with pkgs; [ concord-tui ];
       imports = [ inputs.nixcord.homeModules.nixcord ];
       programs.nixcord = {
         enable = true;

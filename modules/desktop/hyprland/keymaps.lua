@@ -38,15 +38,28 @@ hl.bind(mod .. ' + SHIFT + B', uwsm_exec('firefox --private-window'))
 hl.bind(mod .. ' + Q', hl.dsp.window.close())
 hl.bind(mod .. ' + SHIFT + Q', hl.dsp.window.kill())
 
+local function focus_direction(direction, scrolling_direction)
+  local default_dispatcher = hl.dsp.focus({ direction = direction })
+  local scrolling_dispatcher = hl.dsp.layout('focus ' .. scrolling_direction)
+
+  return function()
+    local workspace = hl.get_active_special_workspace() or hl.get_active_workspace()
+    local dispatcher = workspace and workspace.tiled_layout == 'scrolling' and scrolling_dispatcher
+      or default_dispatcher
+
+    hl.dispatch(dispatcher)
+  end
+end
+
 -- Move focus with mainMod + arrow keys
-hl.bind(mod .. ' + left', hl.dsp.focus({ direction = 'left' }))
-hl.bind(mod .. ' + right', hl.dsp.focus({ direction = 'right' }))
-hl.bind(mod .. ' + up', hl.dsp.focus({ direction = 'up' }))
-hl.bind(mod .. ' + down', hl.dsp.focus({ direction = 'down' }))
-hl.bind(mod .. ' + H', hl.dsp.focus({ direction = 'left' }))
-hl.bind(mod .. ' + L', hl.dsp.focus({ direction = 'right' }))
-hl.bind(mod .. ' + K', hl.dsp.focus({ direction = 'up' }))
-hl.bind(mod .. ' + J', hl.dsp.focus({ direction = 'down' }))
+hl.bind(mod .. ' + left', focus_direction('left', 'l'))
+hl.bind(mod .. ' + right', focus_direction('right', 'r'))
+hl.bind(mod .. ' + up', focus_direction('up', 'u'))
+hl.bind(mod .. ' + down', focus_direction('down', 'd'))
+hl.bind(mod .. ' + H', focus_direction('left', 'l'))
+hl.bind(mod .. ' + L', focus_direction('right', 'r'))
+hl.bind(mod .. ' + K', focus_direction('up', 'u'))
+hl.bind(mod .. ' + J', focus_direction('down', 'd'))
 hl.bind(mod .. ' + SHIFT + H', hl.dsp.window.swap({ direction = 'left' }))
 hl.bind(mod .. ' + SHIFT + L', hl.dsp.window.swap({ direction = 'right' }))
 hl.bind(mod .. ' + SHIFT + K', hl.dsp.window.swap({ direction = 'up' }))

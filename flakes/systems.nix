@@ -18,7 +18,7 @@
         inputs.nur.overlays.default
         inputs.vscode-extensions.overlays.default
         # keep-sorted end
-        (import ../overlays/hermes-agent.nix { inherit inputs; })
+        # (import ../overlays/hermes-agent.nix { inherit inputs; })
       ];
 
       mkSpecialArgs = system: {
