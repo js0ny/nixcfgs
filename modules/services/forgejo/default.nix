@@ -1,15 +1,30 @@
 {
   flake.nixosModules.forgejo =
-    { lib, config, ... }:
+    {
+      lib,
+      config,
+      secrets,
+      ...
+    }:
     let
       ep = config.nixdefs.endpoints;
       url = ep.forgejo.domain;
       socketPath = "/run/forgejo/forgejo.sock";
+      sopsFile = secrets + /forgejo.yaml;
     in
     {
+      sops.secrets = {
+        forgejo_metrics_token = {
+          inherit sopsFile;
+          owner = "prometheus";
+          group = "prometheus";
+        };
+      };
       environment.systemPackages = [ config.services.forgejo.package ];
       services.forgejo = {
         enable = true;
+        # Default: https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini
+        # Doc: https://forgejo.org/docs/v15.0/admin/config-cheat-sheet
         settings = {
           server = {
             DISABLE_SSH = false;
@@ -26,10 +41,23 @@
             ROOT_URL = "https://${url}/";
             DOMAIN = url;
             SSH_DOMAIN = url;
+            COOKIE_SECURE = true;
+            SESSION_LIFE_TIME = 604800; # hours (7d)
           };
           service = {
             DISABLE_REGISTRATION = true;
           };
+          log = {
+            MODE = "console, file";
+            LEVEL = "Info";
+            LOGGER_SSH_MODE = "console, file";
+          };
+          metrics = {
+            ENABLED = true;
+          };
+        };
+        secrets = {
+          metrics.TOKEN = config.sops.secrets.forgejo_metrics_token.path;
         };
         lfs.enable = true;
       };

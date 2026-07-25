@@ -42,17 +42,13 @@
           --token-url 'file:$CREDENTIALS_DIRECTORY/token' \
           ${labelArgs}
       '';
+      sopsFile = secrets + /forgejo.yaml;
     in
     lib.mkIf (ep.forgejo.publicUrl != null) {
       virtualisation.podman.dockerSocket.enable = lib.mkIf wantsPodman (lib.mkDefault true);
 
-      sops.secrets.forgejo_runner_uuid = {
-        sopsFile = secrets + /forgejo.yaml;
-      };
-
-      sops.secrets.forgejo_runner_token = {
-        sopsFile = secrets + /forgejo.yaml;
-      };
+      sops.secrets.forgejo_runner_uuid = { inherit sopsFile; };
+      sops.secrets.forgejo_runner_token = { inherit sopsFile; };
 
       systemd.services.forgejo-runner-main = {
         description = "Forgejo Actions Runner";

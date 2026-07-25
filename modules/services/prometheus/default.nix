@@ -18,6 +18,7 @@
         enableReload = true; # aka. watch config file change
         port = epSelf.port;
         listenAddress = epSelf.bindAddress;
+        checkConfig = "syntax-only";
         # webExternalUrl = epSelf.publicUrl;
         scrapeConfigs = [
           {
@@ -25,6 +26,17 @@
             static_configs = [
               { targets = [ "${epAutheliaMetrics.bindAddress}:${epAutheliaMetrics.portStr}" ]; }
             ];
+          }
+          {
+            job_name = "forgejo";
+            scheme = "https";
+            static_configs = [
+              { targets = [ ep.forgejo.domain ]; }
+            ];
+            authorization = {
+              type = "Bearer";
+              credentials_file = config.sops.secrets.forgejo_metrics_token.path;
+            };
           }
         ];
       };

@@ -91,6 +91,7 @@
       (ouch.override { enableUnfree = true; })
       # aria2
       ddgr
+      gopass
       hyperfine
       jq
       just
@@ -98,7 +99,6 @@
       miniserve
       moor
       p7zip
-      pass
       rar
       rclone
       unar # For Non UTF-8 archives like gbk or sjis

@@ -16,7 +16,7 @@ in
     enableDefaultConfig = false;
     settings = lib.mkForce {
       "git.js0ny.net" = {
-        Port = port;
+        Port = 2220; # see forgejo/default.nix
         IdentityFile = [ "~/.ssh/id_ed25519" ];
       };
       "polder" = {
