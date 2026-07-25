@@ -67,8 +67,26 @@ hl.bind(mod .. ' + SHIFT + J', hl.dsp.window.swap({ direction = 'down' }))
 
 hl.bind(mod .. ' + G', hl.dsp.group.toggle())
 
-hl.bind(mod .. ' + R', hl.dsp.layout('colresize +conf'))
-hl.bind(mod .. ' + SHIFT + R', hl.dsp.layout('colresize -conf'))
+local function resize_scrolling_column(message)
+  local resize_dispatcher = hl.dsp.layout(message)
+
+  return function()
+    local window = hl.get_active_window()
+    if
+      window
+      and window.workspace
+      and window.fullscreen ~= 0
+      and window.workspace.tiled_layout == 'scrolling'
+    then
+      hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 0 }))
+    end
+
+    hl.dispatch(resize_dispatcher)
+  end
+end
+
+hl.bind(mod .. ' + R', resize_scrolling_column('colresize +conf'), { dont_inhibit = true })
+hl.bind(mod .. ' + SHIFT + R', resize_scrolling_column('colresize -conf'), { dont_inhibit = true })
 
 hl.bind(mod .. ' + EQUAL', hl.dsp.layout('colresize +0.1'))
 hl.bind(mod .. ' + MINUS', hl.dsp.layout('colresize -0.1'))
@@ -114,6 +132,8 @@ hl.bind(
   mod .. ' + W',
   hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/@nino-mau/store.vicinae.hypr/windows')
 )
+
+hl.bind('F5', hl.dsp.exec_cmd('~/.local/bin/press-w'))
 
 hl.bind(mod .. ' + GRAVE', function()
   local last_workspace = hl.get_last_workspace()

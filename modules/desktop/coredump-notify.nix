@@ -31,7 +31,7 @@
 
             echo "[$(date)] coredump: exe=$exe sig=$sig pid=$pid"
 
-            ${lib.getExe' pkgs.libnotify "coredump"} \
+            ${lib.getExe' pkgs.libnotify "notify-send"} \
               " Coredump: $(basename "$exe")" \
               "$sig · PID $pid · $exe"
           done

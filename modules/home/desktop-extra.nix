@@ -2,7 +2,7 @@
   pkgs,
   config,
   secrets,
-  myLib,
+  lib,
   inputs,
   ...
 }:
@@ -82,4 +82,8 @@
       fi
     '')
   ];
+
+  home.activation.remove-other-autostart-entries = /* bash */ ''
+    find "$HOME/.config/autostart" -maxdepth 1 -type f -name '*.desktop' -delete
+  '';
 }

@@ -26,3 +26,6 @@ journal-home username=env_var("USER"):
 
 update-nixpkgs:
     nix flake update nixpkgs nixpkgs-unfree nixpkgs-stable
+
+depends-system host=hostname:
+    {{EVAL}} ".#nixosConfigurations.{{ host }}.options.environment.systemPackages.definitionsWithLocations" --json | jless

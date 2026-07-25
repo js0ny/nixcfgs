@@ -293,6 +293,13 @@ hl.window_rule({
   center = true,
 })
 
+hl.window_rule({
+  name = 'openlogi',
+  match = { class = 'openlogi' },
+  float = true,
+  center = true,
+})
+
 hl.bind('SUPER + F1', function()
   local game_mode = (hl.get_config('animations.enabled') == false)
 

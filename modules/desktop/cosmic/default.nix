@@ -7,6 +7,7 @@
       cosmic-wallpapers
       cosmic-reader
       cosmic-player
+      networkmanagerapplet
     ];
   };
 }

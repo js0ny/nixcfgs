@@ -27,6 +27,7 @@
     inputs.self.nixosModules.plasma
     inputs.self.nixosModules.hyprland
     inputs.self.nixosModules.niri
+    inputs.self.nixosModules.cosmic
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
