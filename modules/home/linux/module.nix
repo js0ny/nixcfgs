@@ -19,6 +19,7 @@
       "howdy"
       "khal"
       "org.fcitx.fcitx5-migrator"
+      "org.kde.kdeconnect.nonplasma" # KDE Connect Indicator
       "org.kde.kwalletmanager"
       "org.kde.qrca"
       "qt6ct"

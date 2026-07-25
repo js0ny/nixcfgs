@@ -8,7 +8,6 @@
 let
   selfhosted = config.nixdefs.selfhosted;
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
-  inherit (lib) mkDefault;
   pkg = pkgs.vicinae;
 in
 lib.mkIf pkgs.stdenv.isLinux {
@@ -19,8 +18,6 @@ lib.mkIf pkgs.stdenv.isLinux {
     # https://github.com/vicinaehq/extensions/tree/main/extensions
     extensions = with vicinae-extensions; [
       # keep-sorted start
-      agent-skills-sh
-      # bluetooth
       firefox
       flathub-search
       nerdfont-search
@@ -49,10 +46,8 @@ lib.mkIf pkgs.stdenv.isLinux {
       consider_preedit = false;
       close_on_focus_loss = true;
       providers = {
-        "@knoopx/vicinae-extension-firefox-0" = {
-          preferences = {
-            "profile_dir" = config.nixdefs.consts.firefox.profileDir;
-          };
+        core.entrypoints = {
+          sponsor.enabled = false;
         };
         clipboard = {
           preferences = {
@@ -62,23 +57,28 @@ lib.mkIf pkgs.stdenv.isLinux {
             monitoring = true;
           };
           entrypoints = {
-            "history".alias = mkDefault "clip";
+            "history".alias = "clip";
           };
         };
         system.entrypoints.run = {
-          alias = mkDefault ">";
+          alias = ">";
           # run directly without open a terminal window
           # accompanied with nix-index comma
           preferences."default-action" = "run";
         };
+        "@knoopx/vicinae-extension-firefox-0" = {
+          preferences = {
+            "profile_dir" = config.nixdefs.consts.firefox.profileDir;
+          };
+        };
         "@knoopx/vicinae-extension-nix-0".entrypoints = {
-          "home-manager-options".alias = mkDefault "hm";
-          "options".alias = mkDefault "no";
-          "packages".alias = mkDefault "np";
+          "home-manager-options".alias = "hm";
+          "options".alias = "no";
+          "packages".alias = "np";
         };
         "@dagimg-dot/vicinae-extension-wifi-commander-0" = {
           preferences = {
-            "network-cli-tool" = mkDefault "iwctl";
+            "network-cli-tool" = "nmcli";
           };
         };
       }
@@ -86,10 +86,10 @@ lib.mkIf pkgs.stdenv.isLinux {
         "@Ninetonine/vicinae-extension-searxng-0" = {
           preferences = {
             "instance_domain" = selfhosted.searxng.url;
-            "default_category" = mkDefault "general";
-            "details_start_open" = mkDefault false;
-            "keep_previous_search" = mkDefault true;
-            "languages" = mkDefault config.nixdots.core.locales.guiLocale;
+            "default_category" = "general";
+            "details_start_open" = false;
+            "keep_previous_search" = true;
+            "languages" = config.nixdots.core.locales.guiLocale;
           };
           entrypoints = {
             search-with-searxng = {

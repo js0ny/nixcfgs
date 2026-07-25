@@ -13,6 +13,7 @@ let
       uvx --python=cp312 --from pdf2zh-next pdf2zh2 "$@"
     '';
   };
+  kdeconnect = pkgs.kdePackages.kdeconnect-kde;
 in
 {
   imports = [
@@ -40,17 +41,18 @@ in
     icoutils
     inkscape
     jetbrains.datagrip
+    js0ny.dirstat-rs
     js0ny.limes
     js0ny.proton-drive-cli
     js0ny.ratune
     js0ny.wdotool
     kdePackages.elisa
     kdePackages.isoimagewriter
-    kdePackages.kdeconnect-kde
     kdePackages.kdenlive
     kdePackages.kleopatra
     kdePackages.partitionmanager
     kdePackages.qttools
+    kdeconnect
     keepassxc
     krabby
     libguestfs
@@ -64,6 +66,7 @@ in
     proton-pass
     rustscan
     sequoia-sq
+    tradingview
     xournalpp
     # keep-sorted end
 
@@ -90,5 +93,9 @@ in
       url = "*.pck";
       run = "piper -- ${lib.getExe pkgs.godotpcktool} $1";
     }
+  ];
+  xdg.autostart.entries = [
+    # KDE Connect Tray Icon
+    "${kdeconnect}/share/applications/org.kde.kdeconnect.nonplasma.desktop"
   ];
 }
