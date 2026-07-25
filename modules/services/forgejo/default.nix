@@ -7,6 +7,7 @@
       socketPath = "/run/forgejo/forgejo.sock";
     in
     {
+      environment.systemPackages = [ config.services.forgejo.package ];
       services.forgejo = {
         enable = true;
         settings = {
@@ -17,6 +18,9 @@
             SSH_PORT = 2220;
             SSH_LISTEN_PORT = 2220;
             START_SSH_SERVER = true;
+            # Hardcoded template for cross-generation binary stability
+            # Use together with forgejo's internal ssh server
+            SSH_AUTHORIZED_KEYS_COMMAND_TEMPLATE = /* bash */ "/run/current-system/sw/bin/forgejo --config={{.CustomConf}}  serv key-{{.Key.ID}}";
           }
           // lib.optionalAttrs (url != null) {
             ROOT_URL = "https://${url}/";
