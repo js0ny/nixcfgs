@@ -23,6 +23,7 @@ in
 
   home.packages = with pkgs; [
     # keep-sorted start
+    ashpd-demo # for portal debug
     awscli2
     blender
     bruno

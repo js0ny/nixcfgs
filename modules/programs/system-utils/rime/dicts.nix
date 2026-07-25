@@ -33,5 +33,6 @@ in
     "${rimePath}/wanxiang_pro.custom.yaml".source = ./wanxiang_pro.custom.yaml;
     "${rimePath}/wanxiang_english.custom.yaml".source = ./wanxiang_english.custom.yaml;
     "${rimePath}/squirrel.custom.yaml".source = ./squirrel.custom.yaml;
+    "${rimePath}/wanxiang.gram".source = pkgs.js0ny.rime-lmdg-zh-hans.raw;
   };
 }
