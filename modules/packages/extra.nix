@@ -98,4 +98,7 @@ in
     # KDE Connect Tray Icon
     "${kdeconnect}/share/applications/org.kde.kdeconnect.nonplasma.desktop"
   ];
+  xdg.configFile."gdb/gdbinit".text = ''
+    add-auto-load-safe-path /nix/store
+  '';
 }

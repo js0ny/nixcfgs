@@ -31,5 +31,11 @@
         VISUAL = apps.editor.tui.exe;
         BROWSER = apps.browser.exe;
       };
+      xdg.configFile = builtins.listToAttrs (
+        map (x: {
+          name = "bat/${x}";
+          value.source = ./sublime-syntax/${x};
+        }) (builtins.attrNames (builtins.readDir ./sublime-syntax))
+      );
     };
 }

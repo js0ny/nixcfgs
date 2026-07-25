@@ -37,12 +37,8 @@
     {
       pkgs,
       lib,
-      inputs,
       ...
     }:
-    let
-      vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
-    in
     {
       home.sessionVariables = lib.optionalAttrs (pkgs.stdenv.isLinux) {
         SDL_JOYSTICK_HIDAPI = "0";
@@ -83,7 +79,6 @@
           };
         };
       };
-      programs.vicinae.extensions = with vicinae-extensions; [ protondb-search ];
     };
 
   flake.nixosModules.desktop = { inputs, ... }: {

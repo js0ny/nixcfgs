@@ -20,7 +20,6 @@ let
     "。。。。。。" = "z ../../../../..";
   };
   home = config.nixdots.user.home;
-  vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   programs.zoxide = {
@@ -47,19 +46,4 @@ in
   systemd.user.tmpfiles.rules = [
     "R ${config.xdg.dataHome}/zoxide/tmp_* - - - 1d"
   ];
-  programs.vicinae = {
-    extensions = with vicinae-extensions; [ zoxide-recent-directories ];
-    settings = {
-      providers = {
-        "@c4n4m1/vicinae-extension-zoxide-recent-directories-0" = {
-          preferences = {
-            application = lib.getExe' pkgs.xdg-utils "xdg-open";
-            defaultFilter = "all";
-            alternativeApplication = lib.getExe pkgs.xdg-terminal-exec;
-          };
-          entrypoints.recent-directories.alias = "zo";
-        };
-      };
-    };
-  };
 }

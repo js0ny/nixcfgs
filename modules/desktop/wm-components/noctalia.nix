@@ -101,7 +101,12 @@
             # default.path = "${wallpaperDir}/default.jpg";
           };
           widget = {
-            privacy.hide_inactive = true;
+            privacy = {
+              hide_inactive = true;
+              active_color = "secondary";
+              capsule = true;
+              capsule_border = "secondary";
+            };
             taskbar.group_by_workspace = true;
             tray = {
               drawer = true;
