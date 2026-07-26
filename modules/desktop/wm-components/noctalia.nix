@@ -13,6 +13,13 @@
       _locale = d.core.locales.guiLocale;
       locale = myLib.toHanScript _locale;
       wallpaperDir = config.home.customDirs.wallpaper;
+      reloadConfig = pkgs.writeShellScriptBin "reload-compositor-config" ''
+        if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+          hyprctl reload
+        elif [[ $XDG_CURRENT_DESKTOP == "niri" ]]; then
+          niri msg action load-config-file
+        fi
+      '';
     in
     {
       xdg.stateFile."noctalia/.setup-complete".text = "";
@@ -84,6 +91,7 @@
           location = {
             latitude = d.geo.latitude;
             longitude = d.geo.longitude;
+            address = d.geo.city;
           };
           calendar.enabled = true;
           wallpaper = {
@@ -121,6 +129,9 @@
               label = " ";
               type = "custom_button";
             };
+          };
+          hooks = {
+            started = lib.getExe reloadConfig;
           };
         };
       };
