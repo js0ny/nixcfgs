@@ -33,7 +33,7 @@
       };
       xdg.configFile = builtins.listToAttrs (
         map (x: {
-          name = "bat/${x}";
+          name = "bat/syntaxes/${x}";
           value.source = ./sublime-syntax/${x};
         }) (builtins.attrNames (builtins.readDir ./sublime-syntax))
       );

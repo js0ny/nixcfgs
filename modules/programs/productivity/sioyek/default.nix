@@ -42,7 +42,7 @@
         '';
         xdg.configFile."sioyek/keys_user.config".source = ./keys_user.config;
         programs.sioyek = {
-          enable = true;
+          enable = false; # use flatpak
           config.startup_commands = lib.mkForce [ "toggle_custom_color" ];
         };
         nixdots.persist.home = {

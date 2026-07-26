@@ -62,6 +62,8 @@
         "video/quicktime" # .mov
         "video/x-matroska" # .mkv
         "video/mp2t" # .ts .mts .m2ts
+        "video/x-flv"
+        "video/vnd.avi"
       ];
       audioMimes = [
         "audio/flac"

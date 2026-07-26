@@ -70,6 +70,9 @@
           nixos.command = lib.getExe pkgs.mcp-nixos;
           tavily.command = lib.getExe tavily-mcp;
         };
+        settings = {
+          showStatusIcon = false;
+        };
       };
     };
 
