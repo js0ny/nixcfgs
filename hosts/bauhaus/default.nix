@@ -13,6 +13,7 @@
     ./disko.nix
     ./vars.nix
     ./btrbk.nix
+    ./dae-wireguard.nix
     # ./nixos-prebuild.nix
     inputs.self.nixosModules.desktop
     inputs.self.nixosModules.podman
@@ -22,6 +23,8 @@
     # ../../nixos/services/hermes-agent
     inputs.self.nixosModules.sunshine
     inputs.self.nixosModules.ollama
+
+    inputs.self.nixosModules.wireguard
 
     inputs.self.nixosModules.gnome
     inputs.self.nixosModules.plasma

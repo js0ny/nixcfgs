@@ -1,0 +1,26 @@
+global {
+  wan_interface: auto
+  auto_config_kernel_parameter: true
+  dial_mode: domain
+}
+
+routing {
+  pname(NetworkManager) -> direct
+  dip(224.0.0.0/3, 'ff00::/8') -> direct
+  dip(geoip:private) -> direct
+
+  pname(Telegram, AyuGram, materialgram, Discord, discord) -> direct(mark: 0x800)
+  domain(
+    suffix: discord.com,
+    suffix: discord.gg,
+    suffix: discordapp.com,
+    suffix: discordapp.net,
+    suffix: discordcdn.com,
+    suffix: discord.media,
+    suffix: repo.or.cz,
+    suffix: civitai.com,
+    suffix: imgur.com
+  ) -> direct(mark: 0x800)
+
+  fallback: direct
+}
