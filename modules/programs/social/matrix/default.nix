@@ -12,5 +12,6 @@
           commandLineArgs = if pkgs.stdenv.isLinux then "--password-store=gnome-libsecret" else "";
         })
       ];
+
     };
 }

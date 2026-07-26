@@ -56,6 +56,8 @@
     inputs.self.homeModules.gaming
 
     inputs.self.homeModules.dev
+
+    inputs.self.homeModules.protonmail-bridge
   ];
 
   catppuccin.thunderbird.profile = config.home.username;

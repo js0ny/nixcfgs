@@ -125,6 +125,10 @@ hl.bind(mod .. ' + mouse:273', hl.dsp.window.resize(), { mouse = true })
 
 -- Screenshot
 hl.bind(mod .. ' + SHIFT + S', hl.dsp.exec_cmd('grimblast --notify copysave area'))
+hl.bind(
+  mod .. ' + SHIFT + C',
+  hl.dsp.exec_cmd('nix run nixpkgs#hyprpicker -- --autocopy --format=rgb')
+)
 hl.bind(mod .. ' + S', hl.dsp.exec_cmd('grimblast --notify copysave active'))
 hl.bind('Print', hl.dsp.exec_cmd('grimblast --notify copysave output'))
 

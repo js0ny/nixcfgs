@@ -12,7 +12,7 @@ text = /* bash */ ''
 
 ## Comments
 
-- If a module requires manual setup outside Nix evaluation or activation, mark it with a comment in this format: `# [Human Intervention] xxxxxx`.
+- If a module requires manual setup outside Nix evaluation or activation (not declarative), mark it with a comment in this format: `# [Human Intervention] xxxxxx`.
 - When a freeform `settings` attribute maps directly to an upstream configuration schema (for example, `services.some-service.settings`), place a comment containing the upstream configuration documentation URL immediately above `settings = { ... };`.
 
 ```nix

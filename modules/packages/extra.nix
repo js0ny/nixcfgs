@@ -39,6 +39,7 @@ in
     godot
     godotpcktool
     goldendict-ng
+    himalaya
     icoutils
     inkscape
     jetbrains.datagrip
@@ -65,6 +66,7 @@ in
     octaveFull
     pdf2zh
     proton-pass
+    rustdesk
     rustscan
     sequoia-sq
     tradingview

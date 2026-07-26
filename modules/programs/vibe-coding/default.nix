@@ -3,7 +3,7 @@
     { inputs, pkgs, ... }:
     {
       imports = [
-        # ./claude-code.nix
+        ./claude-code.nix
         ./codex.nix
         ./pi-agent.nix
         # ./oh-my-pi.nix
