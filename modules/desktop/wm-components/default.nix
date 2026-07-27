@@ -6,14 +6,10 @@
     ./kanshi.nix
   ];
   flake.homeModules.wm-components =
-    { pkgs, config, ... }:
-    let
-      wm = config.nixdots.desktop.wm;
-    in
+    { pkgs, ... }:
     {
       home.packages = with pkgs; [
         brightnessctl
-        localPkgs.power-profiles-next
         trash-cli
         grim
         slurp
@@ -23,8 +19,6 @@
         ELECTRON_TRASH = "trash-cli";
         XAUTHORITY = "$XDG_RUNTIME_DIR/.XAuthority";
       };
-      services.cliphist.enable = (wm.clipboard == "cliphist");
-
       # Bind all wm-only services to waylandwm-session
       systemd.user.targets.waylandwm-session = {
         Unit = {

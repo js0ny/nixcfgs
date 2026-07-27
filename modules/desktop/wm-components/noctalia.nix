@@ -124,10 +124,12 @@
             osicon = {
               capsule = true;
               color = "primary";
-              command = "vicinae toggle";
               glyph = "";
               label = " ";
               type = "custom_button";
+              actions = {
+                left = "exec vicinae toggle";
+              };
             };
           };
           hooks = {

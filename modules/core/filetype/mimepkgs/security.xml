@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+
+  <mime-type type="application/pgp-keys">
+    <comment>PGP Keys</comment>
+    <comment xml:lang="zh_CN">PGP 密钥</comment>
+    <acronym>PGP</acronym>
+    <expanded-acronym>Pretty Good Privacy</expanded-acronym>
+    <glob pattern="*.asc" weight="10"/>
+    <magic priority="80">
+      <match type="string" value="-----BEGIN PGP PUBLIC KEY BLOCK-----" offset="0"/>
+      <match type="string" value="-----BEGIN PGP PRIVATE KEY BLOCK-----" offset="0"/>
+    </magic>
+  </mime-type>
+
+</mime-info>

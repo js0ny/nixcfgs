@@ -13,6 +13,7 @@
     cider-2 = import ./cider-2.nix;
     celluloid = import ./celluloid.nix;
     mpv = import ./mpv.nix;
+    # ratune = import ./ratune.nix; # TODO:
     desktop = { inputs, ... }: {
       imports = [
         inputs.self.homeModules.mediatools

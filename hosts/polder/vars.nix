@@ -84,7 +84,7 @@
       keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
     };
     geo = {
-      city = "Frankfurt";
+      city = "Strasbourg";
     };
   };
 }

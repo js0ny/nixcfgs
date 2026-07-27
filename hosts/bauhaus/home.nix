@@ -14,6 +14,7 @@
     inputs.self.homeModules.plasma
     inputs.self.homeModules.niri
     inputs.self.homeModules.gnome
+    inputs.self.homeModules.cosmic
     inputs.self.homeModules.hyprland
     inputs.self.homeModules.noctalia
     ../../modules/programs/gaming/steam/sts2.nix

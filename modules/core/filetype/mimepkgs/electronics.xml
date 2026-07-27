@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+
+  <mime-type type="application/x-ltspice-schematic">
+    <comment>LTspice Electronic Schematic</comment>
+    <comment xml:lang="zh_CN">LTspice 电子原理图</comment>
+    <acronym>LTspice</acronym>
+    <sub-class-of type="text/plain"/>
+    <generic-icon name="x-office-document"/>
+    <glob pattern="*.asc" weight="10"/>
+    <magic priority="80">
+      <match type="string" value="Version 4\nSHEET " offset="0"/>
+      <match type="string" value="Version 4\r\nSHEET " offset="0"/>
+      <match type="string" value="Version 4.1\nSHEET " offset="0"/>
+      <match type="string" value="Version 4.1\r\nSHEET " offset="0"/>
+    </magic>
+  </mime-type>
+
+</mime-info>

@@ -35,6 +35,13 @@
         "/var/lib/systemd/rfkill"
       ];
     };
+    security.sudo-rs.wheelNeedsPassword = false;
+    systemd = {
+      sleep.settings.Sleep = {
+        AllowSuspend = "no";
+        AllowHibernation = "no";
+      };
+    };
   };
 
   flake.homeModules.server = { inputs, lib, ... }: {

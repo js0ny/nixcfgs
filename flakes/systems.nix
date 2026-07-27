@@ -14,7 +14,7 @@
         inputs.hermes-agent.overlays.default
         inputs.js0ny-packages.overlays.default
         inputs.js0ny-packages.overlays.nixpaks
-        inputs.llm-agents.overlays.default
+        inputs.llm-agents.overlays.shared-nixpkgs
         inputs.nur.overlays.default
         inputs.vscode-extensions.overlays.default
         # keep-sorted end

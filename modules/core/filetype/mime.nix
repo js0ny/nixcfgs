@@ -131,6 +131,13 @@
           # Loupe does not support dds
           # .dds Microsoft DirectDraw Surface
           "image/x-dds" = "mpv.desktop";
+          # *.asc mimepkgs/electronics.xml
+          # aim to remove ambiguity with openpgp
+          "application/x-ltspice-schematic" = "ltspice.desktop";
+          "application/pgp-keys" = toMimeAppList [
+            "org.kde.kleopatra.desktop"
+            apps.editor.gui.desktop
+          ];
         }
         // mkAssoc textMimes [ apps.editor.gui.desktop ]
         // mkAssoc webpageMimes [

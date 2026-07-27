@@ -1,11 +1,4 @@
-{
-  pkgs,
-  config,
-  inputs,
-  nixcfgs,
-  secrets,
-  ...
-}:
+{ inputs, ... }:
 {
   imports = [
     inputs.self.homeModules.server

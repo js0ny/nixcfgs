@@ -103,9 +103,9 @@ in
       };
       fileManager = {
         gui = {
-          package = pkgs.kdePackages.dolphin;
-          exe = "dolphin";
-          desktop = "org.kde.dolphin.desktop";
+          package = pkgs.nautilus;
+          exe = "nautilus";
+          desktop = "org.gnome.Nautilus.desktop";
         };
         tui = {
           package = pkgs.yazi;
