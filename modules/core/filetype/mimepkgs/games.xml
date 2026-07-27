@@ -43,6 +43,7 @@
     <comment>Nintendo 3DS CTR Importable Archive</comment>
     <comment xml:lang="zh_CN">任天堂3DS CTR可导入档案 (CIA)</comment>
     <acronym>CIA</acronym>
+    <icon name="application-x-nintendo-3ds-rom"/>
     <glob pattern="*.cia"/>
     <magic priority="50">
       <match type="string" offset="0" value="\x20\x20\x00\x00\x00\x00\x00\x00"/>

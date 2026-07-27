@@ -5,6 +5,7 @@
     <comment>Nix Source Code</comment>
     <comment xml:lang="zh_CN">Nix 源代码</comment>
     <acronym>NIX</acronym>
+    <icon name="distributor-logo-nixos"/>
     <sub-class-of type="text/plain"/>
     <generic-icon name="text-x-script"/>
     <glob pattern="*.nix"/>
@@ -13,6 +14,7 @@
   <mime-type type="text/typescript">
     <comment>TypeScript Source Code</comment>
     <comment xml:lang="zh_CN">TypeScript 源代码</comment>
+    <icon name="text-javascript"/>
     <acronym>TS</acronym>
     <sub-class-of type="text/javascript"/>
     <generic-icon name="text-javascript"/>

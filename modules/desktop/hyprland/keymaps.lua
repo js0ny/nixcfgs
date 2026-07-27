@@ -27,7 +27,7 @@ hl.bind(
   )
 ):set_enabled(false)
 -- hl.bind(mod .. ' + E', uwsm_exec('dolphin'))
-hl.bind(mod .. ' + E', uwsm_exec('dolphin'))
+hl.bind(mod .. ' + E', uwsm_exec('xdg-open ~'))
 -- hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. ' + V', hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/clipboard/history'))
 hl.bind(mod .. ' + SHIFT + V', term_exec_float('edit-clipboard'))

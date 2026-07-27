@@ -6,6 +6,7 @@
     <comment xml:lang="zh_CN">LTspice 电子原理图</comment>
     <acronym>LTspice</acronym>
     <sub-class-of type="text/plain"/>
+    <icon name="application-x-kicad-schematic"/>
     <generic-icon name="x-office-document"/>
     <glob pattern="*.asc" weight="10"/>
     <magic priority="80">

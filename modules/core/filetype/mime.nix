@@ -106,9 +106,11 @@
         enable = true;
         defaultApplications = {
           "inode/directory" = toMimeAppList [
+            apps.fileManager.gui.desktop
             "org.kde.dolphin"
-            "yazi"
             "org.gnome.Nautilus"
+            apps.fileManager.tui.desktop
+            "yazi"
             "nemo"
             "kitty-open"
             "dev.zed.Zed"
