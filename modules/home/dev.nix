@@ -45,4 +45,10 @@ in
     [source.tuna]
     registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
   '';
+  programs.devenv = {
+    enable = true;
+    enableFishIntegration = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+  };
 }

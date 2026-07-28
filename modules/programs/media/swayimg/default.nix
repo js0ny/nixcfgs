@@ -8,16 +8,15 @@
       ...
     }:
     lib.mkIf pkgs.stdenv.isLinux {
-      programs.swayimg.enable = true;
+      programs.swayimg = {
+        enable = true;
+        initLua = builtins.readFile ./init.lua;
+      };
       # https://github.com/artemsen/swayimg/blob/master/CONFIG.md
       xdg.configFile =
         let
-          mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-          dots = config.nixdots.core.dots;
           files = [
-            "init.lua"
             "utils.lua"
-
             "gallery.lua"
             "slideshow.lua"
             "viewer.lua"
@@ -33,7 +32,7 @@
         // builtins.listToAttrs (
           map (e: {
             name = "swayimg/${e}";
-            value.source = mkSymlink "${dots}/modules/programs/media/swayimg/${e}";
+            value.source = ./${e};
           }) files
         );
     };

@@ -12,8 +12,8 @@
       home.packages = with pkgs; [
         llm-agents.agentsview
         llm-agents.ccusage
-        herdr
         abtop
       ];
+      programs.herdr.enable = true;
     };
 }

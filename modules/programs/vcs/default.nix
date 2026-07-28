@@ -53,6 +53,9 @@
           telemetry = "disabled";
         };
       };
-      home.packages = [ pkgs.tea ];
+      home.packages = with pkgs; [
+        tea
+        lazyjj
+      ];
     };
 }
