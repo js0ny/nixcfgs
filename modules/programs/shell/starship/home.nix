@@ -8,7 +8,7 @@ _: {
     enableIonIntegration = true;
     settings = {
       "$schema" = "https://starship.rs/config-schema.json";
-      format = "$os $directory$nix_shell\${env_var.IN_YAZI}\n$cmd_duration$hostname$localip$shlvl$shell$jobs$sudo$username$character";
+      format = "$os $directory$username$hostname$nix_shell\${env_var.IN_YAZI}\n$cmd_duration$localip$shlvl$shell$jobs$sudo$character";
       right_format = "$singularity$kubernetes$vcsh$fossil_branch$git_branch$git_commit$git_state$git_status$hg_branch$pijul_channel$docker_context$package$c$cpp$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$fortran$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$maven$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$xmake$zig$buf$conda$pixi$meson$spack$memory_usage$aws$gcloud$openstack$azure$crystal$custom$status$battery$time";
       battery = {
         display = [

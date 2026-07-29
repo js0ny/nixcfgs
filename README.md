@@ -8,6 +8,7 @@ My [NixOS](https://github.com/nixos/nixpkgs) and [nix-darwin](https://github.com
 ## Hosts
 
 - `bauhaus` - Main Desktop, ITX (i5-13600KF + RTX4070Ti Super) ([Bauhaus](https://en.wikipedia.org/wiki/Bauhaus))
+- `belvedere` - VPS ([Belvedere](https://en.wikipedia.org/wiki/Belvedere,_Vienna))
 - `crystal` - Laptop, ASUS Zephyrus G14 2025 ([The Crystal Palace](https://en.wikipedia.org/wiki/The_Crystal_Palace))
 - `polder` - VPS for self-hosting ([Polder](https://en.wikipedia.org/wiki/Polder))
 - `zen` - MacBook Air M1, running macOS

@@ -8,6 +8,7 @@
 ## 主机
 
 - `bauhaus` - ITX(i5-13600KF + RTX4070Ti Super) ([包豪斯](https://en.wikipedia.org/wiki/Bauhaus))
+- `belvedere` - VPS ([美景宫](https://en.wikipedia.org/wiki/Belvedere,_Vienna))
 - `crystal` - 幻14 Air 2025 ([水晶宫](https://en.wikipedia.org/wiki/The_Crystal_Palace))
 - `polder` - 自托管 VPS ([圩田](https://en.wikipedia.org/wiki/Polder))
 - `zen` - 运行 macOS 的 MacBook Air M1

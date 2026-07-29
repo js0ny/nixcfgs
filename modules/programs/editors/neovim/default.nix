@@ -14,32 +14,16 @@
       };
       snippets = (import ../lsp-snippets/lib.nix { inherit pkgs config; }).out;
       appname = "nvim";
-      mkSymlink = config.lib.file.mkOutOfStoreSymlink;
     in
     {
-      imports = [
-        inputs.nvimdots.homeModules.default
-      ];
+      programs.neovim.enable = lib.mkForce false;
 
-      nixdots.devenvs.lua.enable = true;
+      home.packages = [ inputs.nvimdots.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
       # home.packages = with pkgs; [lua-language-server];
       misc.shellAliases = nvimAlias;
 
       xdg.configFile."lsp-snippets".source = snippets;
-      xdg.configFile."nvim".source = lib.mkForce (
-        mkSymlink "${config.home.homeDirectory}/Atelier/dot/nvimdots"
-      );
-
-      stylix.targets.neovim = {
-        enable = true;
-        plugin = "mini.base16";
-        transparentBackground = {
-          main = false;
-          signColumn = false;
-          numberLine = false;
-        };
-      };
 
       nixdots.persist.nosnap.home = {
         directories = [

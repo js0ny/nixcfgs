@@ -2,6 +2,9 @@
   inputs,
   ...
 }:
+let
+  mod = inputs.self.nixosModules;
+in
 {
   system.stateVersion = "26.11";
 
@@ -10,9 +13,11 @@
     ./vars.nix
     ./hardware-configuration.nix
 
-    inputs.self.nixosModules.server
-    inputs.self.nixosModules.cloudflare
-    inputs.self.nixosModules.fail2ban
+    mod.server
+    mod.cloudflare
+    mod.fail2ban
+    mod.starship
+    mod.fish
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

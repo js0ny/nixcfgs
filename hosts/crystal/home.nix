@@ -1,11 +1,11 @@
 {
-  pkgs,
   config,
   inputs,
   secrets,
   ...
 }:
 {
+
   imports = [
     ./vars.nix
     inputs.self.homeModules.desktop

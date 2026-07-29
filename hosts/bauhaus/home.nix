@@ -3,9 +3,14 @@
   config,
   inputs,
   secrets,
+  lib,
   ...
 }:
+let
+  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
+in
 {
+
   home.stateVersion = "26.11";
 
   imports = [
