@@ -1,9 +1,10 @@
 def nixos-anywhere-install [
     ip: string
     hostname: string
-    port: int = 22
     temp: string = ""
     --rsa
+    --port: int = 22
+    --kexec-port: int = 22
     --nix-args: list<string> = []
 ] {
     if (which ssh-keygen | length) == 0 {
@@ -59,8 +60,8 @@ def nixos-anywhere-install [
         $target
     ]
     print "Press (x) to start installation"
-    let key = (input listen --types [key])
-    if $key.code == "x" {
+    let key = (input --numchar 1)
+    if $key == "x" {
         ^nix ...$nix_cmd
     } else {
         print "Installation cancelled"

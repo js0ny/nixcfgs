@@ -11,6 +11,9 @@
     ];
   };
   flake.homeModules.cosmic = { config, ... }: {
+    # This is a minimal config for testing environment for cosmic desktop
+    # Aim to not break configs like icon themes,
+    # since cosmic will override the global icon theme once log in to cosmic session
     xdg.configFile."cosmic-initial-setup-done".text = "";
     xdg.configFile = {
       "cosmic/com.system76.CosmicTk/v1/icon_theme".text = config.nixdots.style.icon.dark;

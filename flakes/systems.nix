@@ -34,6 +34,7 @@
         "crystal"
         "polder"
         "zwinger"
+        "belvedere"
         # "wsl-crystal"
       ];
       darwinHosts = [ "zen" ];
@@ -118,6 +119,16 @@
               sshUser = "js0ny";
               interactiveSudo = true;
               path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."crystal";
+            };
+          };
+          "belvedere" = {
+            hostname = "100.98.217.124";
+            profiles.system = {
+              user = "root";
+              sshUser = "js0ny";
+              interactiveSudo = false;
+              path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos myNixosConfigs."belvedere";
+
             };
           };
         };

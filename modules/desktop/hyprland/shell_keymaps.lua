@@ -52,6 +52,7 @@ if utils.executable_in_path('noctalia') then
     noctalia_ipc('brightness-down current 5'),
     { locked = true, repeating = true }
   )
+  hl.bind('ALT + TAB', noctalia_ipc('window-switcher'))
 elseif utils.executable_in_path('dms') then
   hl.bind('CTRL + ALT + DELETE', dms_ipc('powermenu toggle'))
   hl.bind(mod .. ' + ALT + i', dms_ipc('lock lock'))
@@ -110,13 +111,14 @@ else
     { locked = true, repeating = true }
   )
 end
--- TODO:
-local qs = '/nix/store/nm6wrf4gprrxlri8nr16kcmixpkk8hrf-quickshell-0.3.0/bin/qs'
-hl.bind(
-  'ALT + TAB',
-  hl.dsp.exec_cmd(qs .. ' ipc -p /home/js0ny/Atelier/prj/qswitcher call switcher next')
-)
-hl.bind(
-  'ALT + SHIFT + TAB',
-  hl.dsp.exec_cmd(qs .. ' ipc -p /home/js0ny/Atelier/prj/qswitcher call switcher prev')
-)
+-- -- TODO:
+-- local qs = '/nix/store/nm6wrf4gprrxlri8nr16kcmixpkk8hrf-quickshell-0.3.0/bin/qs'
+-- hl.bind(
+--   'ALT + TAB',
+--   hl.dsp.exec_cmd(qs .. ' ipc -p /home/js0ny/Atelier/prj/qswitcher call switcher next')
+-- )
+-- hl.bind(
+--   'ALT + SHIFT + TAB',
+--   hl.dsp.exec_cmd(qs .. ' ipc -p /home/js0ny/Atelier/prj/qswitcher call switcher prev')
+-- )
+-- hl.bind(mod .. ' + backslash', hl.dsp.exec_cmd('notify-send "$(hyprctl activewindow)"'))

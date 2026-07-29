@@ -6,7 +6,7 @@
 }:
 {
   sops.secrets.tskey = {
-    sopsFile = secrets + /hosts/polder.yaml;
+    sopsFile = secrets + /hosts/belvedere.yaml;
   };
   nixdots = {
     user = {
@@ -14,10 +14,10 @@
       shell = pkgs.zsh;
     };
     core = {
-      hostname = "polder";
+      hostname = "belvedere";
       timezones = [
         "Etc/UTC"
-        "Europe/Berlin"
+        "Europe/Vienna"
         "Europe/London"
         "Asia/Shanghai"
       ];
@@ -32,8 +32,7 @@
       };
       sshd.enable = true;
       ollama = {
-        enable = true;
-        models = [ "bge-m3" ];
+        enable = false;
       };
     };
     networking.nftables.enable = true;
@@ -68,17 +67,17 @@
     };
     server = {
       enable = true;
-      ip = config.secrets.plain.polder.ipv4;
+      ip = config.secrets.plain.belvedere.ipv4;
       openHttp = true;
       openQuic = true;
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /hosts/polder.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
+      yamlFile = secrets + /hosts/belvedere.yaml;
+      keyFile = "/persist/etc/ssh/agekey.txt";
     };
     geo = {
-      city = "Strasbourg";
+      city = "Vienna";
     };
   };
 }

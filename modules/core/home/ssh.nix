@@ -53,6 +53,13 @@ in
         ForwardAgent = true;
         IdentityFile = [ "~/.ssh/id_ed25519" ];
       };
+      "belvedere" = {
+        HostName = "100.98.217.124";
+        User = "js0ny";
+        Port = port;
+        ForwardAgent = true;
+        IdentityFile = [ "~/.ssh/id_ed25519" ];
+      };
       "*" = {
         ForwardAgent = false;
         AddKeysToAgent = "yes";

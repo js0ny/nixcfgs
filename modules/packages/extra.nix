@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  pkgsStable,
+  ...
+}:
 let
   font-viewer = pkgs.writeShellScriptBin "font-viewer" ''
     exec ${pkgs.font-manager}/libexec/font-manager/font-viewer "$@"
@@ -104,4 +109,9 @@ in
   xdg.configFile."gdb/gdbinit".text = ''
     add-auto-load-safe-path /nix/store
   '';
+
+  programs.posting = {
+    enable = true;
+    package = pkgsStable.posting;
+  };
 }
