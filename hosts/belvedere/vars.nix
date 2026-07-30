@@ -29,6 +29,7 @@
         # ipv6 = "fd7a:115c:a1e0::e701:932";
         magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
+        exitNode = true;
       };
       sshd.enable = true;
       ollama = {

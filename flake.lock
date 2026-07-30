@@ -1922,11 +1922,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1785344632,
-        "narHash": "sha256-wQLeoBlYoqH39JKNiRPxUIE8PrD/bdjjlBnGDNWnacY=",
+        "lastModified": 1785361689,
+        "narHash": "sha256-WN1omeqX725ITMN/gD18nq1LRetQdJswv3DzpxVxHVI=",
         "owner": "js0ny",
         "repo": "nvimdots",
-        "rev": "512085ff95e4ef07f86c5c86f7325cd011c0675c",
+        "rev": "fcfac51771d91e16b59dcda5d2e26c3df1bf779f",
         "type": "github"
       },
       "original": {

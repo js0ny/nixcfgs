@@ -98,6 +98,7 @@
           type = lib.types.str;
           default = null;
         };
+        exitNode = lib.mkEnableOption "Use as exit node";
       };
       syncthing = {
         enable = lib.mkEnableOption "Enable Syncthing file synchronization service.";

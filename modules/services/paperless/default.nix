@@ -15,15 +15,12 @@
       portStr = epSelf.portStr;
       bindAddress = epSelf.bindAddress;
       tailscale = config.nixdots.services.tailscale.ip;
+      sopsFile = secrets + /paperless.yaml;
     in
     {
       sops.secrets = {
-        paperless_secret_key = {
-          sopsFile = secrets + /paperless.yaml;
-        };
-        paperless_oidc_secret = {
-          sopsFile = secrets + /paperless.yaml;
-        };
+        paperless_secret_key = { inherit sopsFile; };
+        paperless_oidc_secret = { inherit sopsFile; };
       };
 
       sops.templates."paperless.env".content =

@@ -18,6 +18,8 @@ in
     mod.fail2ban
     mod.starship
     mod.fish
+    mod.nix-index-database
+    mod.code-server
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
