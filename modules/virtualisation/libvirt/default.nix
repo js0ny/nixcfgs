@@ -19,7 +19,6 @@
         # viewer
         spice-gtk
         virt-viewer
-        localPkgs.fzfScripts.virt-manager-view-fzf
         remmina
 
         # misc. fs
@@ -81,5 +80,8 @@
         "grab-keys" = "65513,65507";
       };
     };
+    programs.television.channels.libvirt = fromTOML (
+      builtins.readFile ./tv-channel-libvirt-running.toml
+    );
   };
 }

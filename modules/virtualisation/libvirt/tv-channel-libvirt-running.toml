@@ -1,0 +1,61 @@
+[metadata]
+name = "libvirt"
+description = "Open a running virtual machine"
+requirements = ["virsh", "virt-manager"]
+
+[source]
+command = """
+virsh --connect qemu:///system \
+  list --name --state-running |
+sed '/^$/d'
+"""
+
+[ui]
+layout = "portrait"
+
+[keybindings]
+enter = "actions:virt-manager"
+shift-enter = "actions:virt-viewer"
+ctrl-s = "actions:shutdown"
+ctrl-e = "actions:edit-xml"
+
+
+[actions.virt-manager]
+description = "Open graphical console"
+command = """
+virt-manager \
+  --connect qemu:///system \
+  --show-domain-console '{}'
+"""
+mode = "execute"
+
+[actions.virt-viewer]
+description = "Open with virt-viewer"
+command = """
+virt-viewer --connect qemu:///system '{}'
+"""
+mode = "execute"
+
+[actions.edit-xml]
+description = "Edit XML"
+command = """
+virsh --connect qemu:///system edit '{}'
+"""
+mode = "execute"
+
+
+[actions.shutdown]
+description = "Gracefully shut down VM"
+command = """
+virsh --connect qemu:///system shutdown '{}'
+"""
+mode = "fork"
+
+[preview]
+command = """
+printf 'VM: %s\n\n' '{}'
+virsh --connect qemu:///system dominfo '{}'
+printf '\nInterfaces:\n'
+virsh --connect qemu:///system domiflist '{}'
+"""
+

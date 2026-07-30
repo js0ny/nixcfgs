@@ -38,13 +38,6 @@
         MANPAGER = ''sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman' '';
         NIX_PAGER = "bat --style grid,numbers --wrap auto";
       };
-      home.packages = with pkgs.localPkgs.fzfScripts; [
-        edit-fzf
-        ii-fzf
-      ];
-      misc.shellAliases = {
-        "ef" = "edit-fzf";
-      };
       programs = {
         bat.enable = true;
         lsd = {
@@ -111,6 +104,9 @@
             enable_mouse = true;
             tree_view = true;
           };
+        };
+        television = {
+          enable = true;
         };
       };
     };
