@@ -10,7 +10,6 @@ let
   # homeDir = config.home.homeDirectory;
   nirictl-focus = lib.getExe nirictl.focusOrLaunch;
   genCmd = cmd: builtins.concatStringsSep " " (map (x: ''"${x}"'') cmd);
-  powerprofiles = lib.getExe pkgs.localPkgs.power-profiles-next;
   term = lib.getExe pkgs.xdg-terminal-exec;
   screenDevice = config.nixdots.laptop.backlight.screen;
   kbdDevice = config.nixdots.laptop.backlight.keyboard;
@@ -154,7 +153,7 @@ in
       XF86KbdBrightnessDown { spawn "brightnessctl" "--device" "${kbdDevice}" "set" "${kbdStep}-"; }
       XF86KbdBrightnessUp { spawn "brightnessctl" "--device" "${kbdDevice}" "set" "${kbdStep}+"; }
       XF86Launch1 { spawn ${genCmd vicinae.toggle}; }
-      XF86Launch4 { spawn "${powerprofiles}"; }
+      XF86Launch4 { spawn ${genCmd shell.powerProfile}; }
       XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "10%-" "--device" "${screenDevice}"; }
       XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "10%+" "--device" "${screenDevice}"; }
       XF86TouchpadToggle { spawn ""; }
