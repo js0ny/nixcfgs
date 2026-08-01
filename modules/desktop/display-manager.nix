@@ -9,7 +9,7 @@ let
   enableDM = displayManagerName: displayManagerName == cfg;
 in
 {
-  services.displayManager = {
+  services.displayManager = rec {
     defaultSession = builtins.head config.nixdots.desktop.session;
     autoLogin = {
       enable = config.nixdots.desktop.autoLogin;
@@ -20,7 +20,7 @@ in
     plasma-login-manager = {
       enable = enableDM "plasma-login-manager";
       settings = {
-        Greeter.PreselectedSession = "niri.desktop";
+        Greeter.PreselectedSession = "${defaultSession}.desktop";
         Autologin.User = config.nixdots.user.name;
       };
     };
@@ -29,7 +29,9 @@ in
       enable = enableDM "sddm";
       wayland.enable = true;
       enableHidpi = true;
-      thyx.enable = true;
+      thyx = {
+        enable = true;
+      };
       settings = {
         Theme = {
           CursorSize = config.stylix.cursor.size;

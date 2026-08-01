@@ -14,11 +14,33 @@
       };
       snippets = (import ../lsp-snippets/lib.nix { inherit pkgs config; }).out;
       appname = "nvim";
+      flakeRoot = config.nixdots.core.flakeDir;
     in
     {
       programs.neovim.enable = lib.mkForce false;
 
-      home.packages = [ inputs.nvimdots.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      imports = [ inputs.nvimdots.homeModules.default ];
+
+      programs.nixvim = {
+        enable = true;
+        plugins.lsp.servers = {
+          rust-analyzer.enable = true;
+          gopls.enable = true;
+          ts-ls.enable = true;
+          svelte.enable = true;
+        };
+        keymaps = [
+          {
+            key = "<leader>fc";
+            action.__raw = /* lua */ ''
+              function() require('snacks').picker.files({ cwd = "${flakeRoot}" }) end
+            '';
+            options.desc = "Edit config";
+          }
+        ];
+      };
+
+      stylix.targets.nixvim.enable = false;
 
       # home.packages = with pkgs; [lua-language-server];
       misc.shellAliases = nvimAlias;

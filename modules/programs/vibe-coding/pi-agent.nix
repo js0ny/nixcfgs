@@ -42,4 +42,8 @@
     "app.editor.external" = [ "alt+e" ];
     "app.model.cycleForward" = [ ];
   };
+  home.sessionVariables = {
+    PI_CODING_AGENT_SESSION_DIR = "/persist/home/js0ny/.local/share/pi/agent/session";
+    PI_CODING_AGENT_DIR = "/persist/home/js0ny/.config/pi/agent";
+  };
 }

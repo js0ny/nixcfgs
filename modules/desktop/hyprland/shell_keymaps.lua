@@ -53,6 +53,8 @@ if utils.executable_in_path('noctalia') then
     { locked = true, repeating = true }
   )
   hl.bind('ALT + TAB', noctalia_ipc('window-switcher'))
+  -- Screenshot
+  hl.bind(mod .. ' + SHIFT + S', noctalia_ipc('screenshot-region'))
 elseif utils.executable_in_path('dms') then
   hl.bind('CTRL + ALT + DELETE', dms_ipc('powermenu toggle'))
   hl.bind(mod .. ' + ALT + i', dms_ipc('lock lock'))
