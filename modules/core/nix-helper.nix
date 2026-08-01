@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}:
+{ config, ... }:
 let
   flake = config.nixdots.core.flakeDir;
 in
@@ -11,7 +6,6 @@ in
   programs.nh = {
     enable = true;
     flake = flake;
-    package = inputs.nh.packages.${pkgs.stdenv.hostPlatform.system}.nh;
     clean = {
       enable = true;
       dates = "weekly";

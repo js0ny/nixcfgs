@@ -1,19 +1,15 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }:
-let
-  zsh-patina = inputs.zsh-patina.packages.${pkgs.stdenv.hostPlatform.system}.default;
-in
 /* zsh */ ''
   bindkey -e # Emacs
 
   setopt AUTOCD
   setopt EXTENDED_GLOB
 
-  eval "$(${lib.getExe' zsh-patina "zsh-patina"} activate)"
+  eval "$(${lib.getExe pkgs.zsh-patina} activate)"
 
   ### completion
   ### =================

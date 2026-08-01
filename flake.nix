@@ -48,13 +48,9 @@
 
     # {{{ Application Supports
     flatpak-nix.url = "github:gmodena/nix-flatpak";
-    gaze.url = "github:GunduLabs/gaze/nixos";
+    gaze.url = "github:GunduLabs/gaze";
     vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    zsh-patina = {
-      url = "github:michel-kraemer/zsh-patina";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-agent.url = "github:NousResearch/hermes-agent";
@@ -84,10 +80,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     betterfox-nix = {
       url = "github:HeitorAugustoLN/betterfox-nix";
       inputs.flake-parts.follows = "flake-parts";
@@ -97,7 +89,6 @@
       url = "github:petrkozorezov/firefox-addons-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -119,10 +110,6 @@
     };
     thyx = {
       url = "github:rccyx/thyx";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nh = {
-      url = "github:nix-community/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
@@ -204,9 +191,7 @@
     # }}}
 
     # {{{ Personal
-    secrets = {
-      url = "git+ssh://forgejo@git.js0ny.net/infra/nix-secrets.git";
-    };
+    secrets.url = "git+ssh://forgejo@git.js0ny.net/infra/nix-secrets.git";
     bindeps = {
       url = "git+ssh://forgejo@git.js0ny.net/infra/bindeps.git?lfs=1";
       flake = false;
