@@ -20,6 +20,7 @@ in
     mod.fish
     mod.nix-index-database
     mod.code-server
+    mod.jellyfin
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

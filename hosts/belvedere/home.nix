@@ -10,6 +10,7 @@ in
     mod.vibe-coding
     mod.modern-unix
     mod.fish
+    mod.zellij
     mod.nix-index-database
     inputs.sops-nix.homeManagerModules.sops
     ./vars.nix

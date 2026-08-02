@@ -22,6 +22,7 @@ in
       maxretry = 3;
       bantime = 86400;
       findtime = 43200;
+      skip_if_nologs = true;
       logpath = "${cfg.logDir}/log_*.log";
     };
   };

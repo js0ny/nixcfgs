@@ -1,6 +1,15 @@
-{ secrets, config, ... }:
+{
+  secrets,
+  config,
+  pkgs,
+  ...
+}:
 let
   ep = config.nixdefs.endpoints;
+  baseDir = config.services.jellyfin.dataDir;
+  p = pkgs.js0ny.jellyfin-plugin-sso-bin;
+  owner = config.services.jellyfin.user;
+  group = config.services.jellyfin.group;
 in
 {
 
@@ -58,8 +67,22 @@ in
         </OidConfigs>
       </PluginConfiguration>
     '';
-    path = "/var/lib/jellyfin/plugins/configurations/.nix-managed.SSO-Auth.xml";
-    owner = config.services.jellyfin.user;
-    group = config.services.jellyfin.group;
+    path = "${baseDir}/plugins/configurations/.nix-managed.SSO-Auth.xml";
+    inherit owner group;
   };
+  system.activationScripts.jellyfin-sso-setup = {
+    deps = [ "setupSecrets" ];
+    text =
+      let
+        d = "${baseDir}/plugins/configurations";
+      in
+      # bash
+      ''
+        if [ ! -f ${d}/SSO-Auth.xml ]; then
+          cp ${d}/.nix-managed.SSO-Auth.xml ${d}/SSO-Auth.xml
+          chmod 600 ${d}/SSO-Auth.xml
+        fi
+      '';
+  };
+
 }

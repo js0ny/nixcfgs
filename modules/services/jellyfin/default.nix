@@ -10,6 +10,8 @@
       ep = config.nixdefs.endpoints;
       url = ep.jellyfin.domain;
       socketPath = "/run/jellyfin/jellyfin.sock";
+      user = config.services.jellyfin.user;
+      group = config.services.jellyfin.group;
     in
     {
       imports = myLib.scanPaths ./.;
@@ -25,6 +27,9 @@
         };
         serviceConfig.RuntimeDirectory = "jellyfin";
       };
+      systemd.tmpfiles.rules = [
+        "Z ${config.services.jellyfin.dataDir} 0775 ${user} ${group} - -"
+      ];
 
       services.nginx.virtualHosts = lib.mkIf (url != null) {
         ${url} = {
@@ -43,5 +48,6 @@
         };
       };
       nixdots.persist.system.directories = [ config.services.jellyfin.dataDir ];
+
     };
 }
