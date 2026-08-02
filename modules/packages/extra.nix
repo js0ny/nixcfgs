@@ -63,6 +63,7 @@ in
     keepassxc
     krabby
     libguestfs
+    mission-center
     motrix-next
     nautilus
     newsflash
@@ -107,7 +108,7 @@ in
     "${kdeconnect}/share/applications/org.kde.kdeconnect.nonplasma.desktop"
   ];
   xdg.configFile."gdb/gdbinit".text = ''
-    add-auto-load-safe-path /nix/store
+    add-auto-load-safe-path /nix/store/*/lib
   '';
 
   programs.posting = {

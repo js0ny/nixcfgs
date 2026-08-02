@@ -67,10 +67,14 @@
               "osicon"
               "taskbar"
               "media"
+              "cpu"
+              "ram"
             ];
             end = [
               "tray"
               "notifications"
+              "network_tx"
+              "network_rx"
               "network"
               "bluetooth"
               "volume"

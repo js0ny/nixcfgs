@@ -63,7 +63,7 @@ in
         "services.sync.engine.prefs" = false;
         "services.sync.engine.prefs.modified" = false;
         "services.sync.engine.tabs" = true;
-        "services.sync.engins.tabs.filteredSchemes" = lib.concatStringsSep "|" [
+        "services.sync.engine.tabs.filteredSchemes" = lib.concatStringsSep "|" [
           "about"
           "resource"
           "chrome"

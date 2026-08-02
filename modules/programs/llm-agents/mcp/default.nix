@@ -62,7 +62,7 @@
         tavily_api_key = { inherit sopsFile; };
       };
 
-      home.file.".pi/agent/mcp.json".text = builtins.toJSON {
+      xdg.configFile."pi/agent/mcp.json".text = builtins.toJSON {
         mcpServers = {
           context7.command = lib.getExe context7-mcp;
           deepwiki.url = "https://mcp.deepwiki.com/mcp";

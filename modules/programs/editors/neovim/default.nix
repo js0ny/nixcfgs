@@ -24,9 +24,13 @@
       programs.nixvim = {
         enable = true;
         plugins.lsp.servers = {
-          rust-analyzer.enable = true;
+          rust_analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
           gopls.enable = true;
-          ts-ls.enable = true;
+          ts_ls.enable = true;
           svelte.enable = true;
         };
         keymaps = [

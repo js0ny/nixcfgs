@@ -10,6 +10,7 @@
     let
       apps = config.nixdots.apps;
       textMimes = [
+        "text/*"
         "text/plain"
         "text/x-csrc" # .c
         "text/x-chdr" # .h
@@ -32,6 +33,7 @@
         "text/x-go"
         "application/x-zerosize" # empty file
         "text/vnd.trolltech.linguist" # .ts (Qt Translation Source File)
+        "text/x-typst"
       ];
       webpageMimes = [
         "text/html"
@@ -46,6 +48,7 @@
         "application/x-zstd-compressed-tar" # .tar.zst
       ];
       imageMimes = [
+        "image/*"
         "image/jpeg"
         "image/jpg"
         "image/png"
@@ -58,6 +61,7 @@
         "image/tiff"
       ];
       videoMimes = [
+        "video/*"
         "video/mp4"
         "video/quicktime" # .mov
         "video/x-matroska" # .mkv
@@ -66,6 +70,7 @@
         "video/vnd.avi"
       ];
       audioMimes = [
+        "audio/*"
         "audio/flac"
         "audio/vnd.wave" # .wav
         "audio/x-vorbis+ogg" # .ogg
