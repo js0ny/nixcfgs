@@ -4,6 +4,9 @@
   lib,
   ...
 }:
+let
+  mod = inputs.self.nixosModules;
+in
 {
   system.stateVersion = "26.11";
 
@@ -15,22 +18,22 @@
     ./btrbk.nix
     ./dae-wireguard.nix
     # ./nixos-prebuild.nix
-    inputs.self.nixosModules.desktop
-    inputs.self.nixosModules.podman
-    inputs.self.nixosModules.libvirt
-    inputs.self.nixosModules.sshd
-    inputs.self.nixosModules.tailscale
+    mod.desktop
+    mod.podman
+    mod.libvirt
+    mod.sshd
+    mod.tailscale
     # ../../nixos/services/hermes-agent
-    inputs.self.nixosModules.sunshine
-    inputs.self.nixosModules.ollama
+    mod.sunshine
+    mod.ollama
 
-    inputs.self.nixosModules.wireguard
+    mod.wireguard
 
-    inputs.self.nixosModules.gnome
-    inputs.self.nixosModules.plasma
-    inputs.self.nixosModules.hyprland
-    inputs.self.nixosModules.niri
-    inputs.self.nixosModules.cosmic
+    mod.gnome
+    mod.plasma
+    mod.hyprland
+    mod.niri
+    mod.cosmic
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

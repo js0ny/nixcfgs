@@ -1829,11 +1829,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1785832034,
-        "narHash": "sha256-PTm4nPcrwtU85tKfROoXAj1u9IO/lQrKumnFyQPUYhQ=",
+        "lastModified": 1785847781,
+        "narHash": "sha256-SCOJMRuvPE9zxODzlUvGl0emxGb8IQ7iv1vzJ9mSUHo=",
         "owner": "js0ny",
         "repo": "nvimdots",
-        "rev": "d8cca0d67742691a769a28e61d559bb63be425ce",
+        "rev": "7d405924b502ce8f45413d43330809007904423f",
         "type": "github"
       },
       "original": {

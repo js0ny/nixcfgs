@@ -6,6 +6,7 @@
         ./claude-code.nix
         ./codex.nix
         ./pi-agent.nix
+        ./herdr.nix
         # ./oh-my-pi.nix
         inputs.self.homeModules.opencode
       ];
@@ -14,6 +15,5 @@
         llm-agents.ccusage
         abtop
       ];
-      programs.herdr.enable = true;
     };
 }

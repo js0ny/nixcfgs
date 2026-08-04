@@ -16,7 +16,7 @@
         # "com.ticktick.TickTick"
       ];
 
-      waylandFlags = "\${NIXOS_OZONE_WL:+\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}";
+      waylandFlags = "\${NIXOS_OZONE_WL:+\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer --enable-wayland-ime=true}}";
 
       appWrappers = lib.listToAttrs (
         map (appid: {

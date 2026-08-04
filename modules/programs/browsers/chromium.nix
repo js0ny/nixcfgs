@@ -66,6 +66,7 @@
           "ngonfifpkpeefnhelnfdkficaiihklid" # ProtonDB for Steam
           "eaoelafamejbnggahofapllmfhlhajdd" # 小电视空降助手 Bili sponsorblock
           "kkmfljfnlmppiaoijkfaejgkhccokpdn" # WHEELY: Wheel scroll for Linux
+          "jplgfhpmjnbigmhklmmbgecoobifkmpa" # Proton VPN
         ];
       };
       nixdots.persist.home = {

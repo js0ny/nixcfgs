@@ -34,7 +34,10 @@ lib.mkIf (cfg == "nvidia") (
         enable32Bit = true;
       };
       services.ollama.package = pkgs.ollama-cuda;
-      environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
+      environment.systemPackages = [
+        pkgs.nvtopPackages.nvidia
+        config.hardware.nvidia-container-toolkit.package
+      ];
       hardware.nvidia-container-toolkit.enable = true;
     }
 

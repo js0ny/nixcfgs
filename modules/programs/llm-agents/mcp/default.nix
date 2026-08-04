@@ -74,6 +74,15 @@
           showStatusIcon = false;
         };
       };
+      programs.codex.settings = {
+        mcp_servers = {
+          context7.command = lib.getExe context7-mcp;
+          deepwiki.url = "https://mcp.deepwiki.com/mcp";
+          ghgrep.url = "https://mcp.grep.app";
+          nixos.command = lib.getExe pkgs.mcp-nixos;
+          tavily.command = lib.getExe tavily-mcp;
+        };
+      };
     };
 
   flake.homeModules.desktop = { inputs, ... }: {

@@ -5,6 +5,11 @@
   ...
 }:
 let
+  path = lib.makeBinPath [
+    pkgs.nodejs_26
+    (pkgs.python314.withPackages (p: [ p.pyyaml ]))
+    pkgs.uv
+  ];
   # https://github.com/openai/codex/issues/14599#issuecomment-4098754431
   codexWrapper = pkgs.writers.writePython3Bin "codex" { } /* python */ ''
     import json
@@ -19,6 +24,7 @@ let
     def main() -> None:
         project = json.dumps(str(Path.cwd()))
         config = f'projects={{{project}={{trust_level="trusted"}}}}'
+        os.environ["PATH"] = "${path}" + os.pathsep + os.environ.get("PATH", "")
         os.execvp(CODEX, [CODEX, "-c", config, *sys.argv[1:]])
 
 
@@ -37,27 +43,30 @@ in
   programs.codex = {
     enable = true;
     package = pkgs.llm-agents.codex;
-  };
-  # https://learn.chatgpt.com/docs/config-file/config-basic
-  xdg.configFile."codex/config.toml".source = pkgs.writers.writeTOML "codex-config.toml" {
-    analytics.enabled = false;
-    check_for_update_on_startup = false;
-    default_permissions = ":workspace";
-    model = "gpt-5.6-sol";
-    features.hooks = true;
-    tui = {
-      status_line = [
-        "model-with-reasoning"
-        "current-dir"
-        "git-branch"
-        "permissions"
-        "approval-mode"
-        "context-remaining"
-        "five-hour-limit"
-        "weekly-limit"
-      ];
-      status_line_use_colors = true;
+    # https://learn.chatgpt.com/docs/config-file/config-basic
+    settings = {
+      analytics.enabled = false;
+      check_for_update_on_startup = false;
+      default_permissions = ":workspace";
+      sandbox_mode = "danger-full-access";
+      model = "gpt-5.6-sol";
+      features.hooks = true;
+      tui = {
+        status_line = [
+          "model-with-reasoning"
+          "current-dir"
+          "git-branch"
+          "permissions"
+          "approval-mode"
+          "context-remaining"
+          "five-hour-limit"
+          "weekly-limit"
+        ];
+        status_line_use_colors = true;
+        vim_mode_default = true;
+      };
     };
   };
   home.packages = [ (lib.hiPrio codexWrapper) ];
+  makeMutable = [ "${config.xdg.configHome}/codex/config.toml" ];
 }

@@ -7,7 +7,6 @@ let
   profile = config.nixdots.programs.firefox.defaultProfile;
   selfhosted = config.nixdefs.selfhosted;
   searxng = selfhosted.searxng;
-  open-webui = selfhosted.open-webui;
 in
 {
   programs.firefox.profiles."${profile}".search = {
@@ -188,6 +187,18 @@ in
         icon = "https://codeberg.org/favicon.ico";
         definedAliases = [ "@codeberg" ];
       };
+      nuget = {
+        name = "NuGet";
+        urls = [ { template = "https://www.nuget.org/packages?q={searchTerms}"; } ];
+        icon = "https://www.nuget.org/favicon.ico";
+        definedAliases = [ "@nuget" ];
+      };
+      crates = {
+        name = "crates";
+        urls = [ { template = "https://crates.io/search?q={searchTerms}"; } ];
+        icon = "https://www.nuget.org/favicon.ico";
+        definedAliases = [ "@cr" ];
+      };
     }
     // (lib.optionalAttrs (searxng.enable) {
       searxng = {
@@ -199,14 +210,7 @@ in
           "searxng"
         ];
       };
-    })
-    // (lib.optionalAttrs (open-webui.enable && open-webui.integrations.searchEngine) {
-      open-webui = {
-        name = "Open-WebUI";
-        urls = [ { template = "${open-webui.url}/${open-webui.integrations.searchParams}{searchTerms}"; } ];
-        icon = "${open-webui.url}/favicon.ico";
-        definedAliases = open-webui.integrations.searchAlias;
-      };
     });
   };
+
 }
