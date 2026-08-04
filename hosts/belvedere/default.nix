@@ -14,13 +14,16 @@ in
     ./hardware-configuration.nix
 
     mod.server
+    # keep-sorted start
     mod.cloudflare
-    mod.fail2ban
-    mod.starship
-    mod.fish
-    mod.nix-index-database
     mod.code-server
+    mod.fail2ban
+    mod.fish
     mod.jellyfin
+    mod.nix-index-database
+    mod.rclone
+    mod.starship
+    # keep-sorted end
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

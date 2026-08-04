@@ -45,4 +45,5 @@
     enable = true;
     scheduler = "scx_lavd";
   };
+  programs.labwc.enable = true;
 }

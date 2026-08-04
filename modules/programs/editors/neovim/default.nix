@@ -24,6 +24,7 @@
       programs.nixvim = {
         enable = true;
         plugins.lsp.servers = {
+          clangd.enable = true;
           rust_analyzer = {
             enable = true;
             installCargo = false;
@@ -31,7 +32,14 @@
           };
           gopls.enable = true;
           ts_ls.enable = true;
+          jsonls.enable = true;
+          taplo.enable = true;
+          bashls.enable = true;
+          fish_lsp.enable = true;
           svelte.enable = true;
+          roslyn_ls.enable = true;
+          vtsls.enable = true;
+          basedpyright.enable = true;
         };
         keymaps = [
           {

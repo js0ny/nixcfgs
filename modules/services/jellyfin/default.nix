@@ -1,6 +1,7 @@
 {
   flake.nixosModules.jellyfin =
     {
+      pkgs,
       lib,
       config,
       myLib,
@@ -10,6 +11,9 @@
       ep = config.nixdefs.endpoints;
       url = ep.jellyfin.domain;
       socketPath = "/run/jellyfin/jellyfin.sock";
+      branding = pkgs.replaceVars ./branding.xml {
+        jellyfinUrl = ep.jellyfin.publicUrl;
+      };
       user = config.services.jellyfin.user;
       group = config.services.jellyfin.group;
     in
@@ -29,6 +33,7 @@
       };
       systemd.tmpfiles.rules = [
         "Z ${config.services.jellyfin.dataDir} 0775 ${user} ${group} - -"
+        "L+ ${config.services.jellyfin.configDir}/branding.xml - - - - ${branding}"
       ];
 
       services.nginx.virtualHosts = lib.mkIf (url != null) {

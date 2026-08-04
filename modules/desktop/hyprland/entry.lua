@@ -307,7 +307,7 @@ hl.window_rule({
 -- settings.config
 -- startup
 -- For Noctalia Color templates
-require('noctalia').apply_theme()
+-- require('noctalia').apply_theme()
 
 hl.config({
   scrolling = {
@@ -326,5 +326,7 @@ hl.config({
   general = {
     border_size = 4,
   },
-  xwayland = { force_zero_scaling = true },
+  xwayland = {
+    force_zero_scaling = true,
+  },
 })

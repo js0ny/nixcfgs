@@ -2,14 +2,16 @@
   flake.nixosModules.hyprland =
     {
       pkgs,
-      inputs,
+      # inputs,
       config,
       ...
     }:
     let
-      hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      xdg-desktop-portal-hyprland =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # xdg-desktop-portal-hyprland =
+      # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      hyprland = pkgs.hyprland;
+      xdg-desktop-portal-hyprland = pkgs.xdg-desktop-portal-hyprland;
     in
     {
       programs.hyprland = {
@@ -43,6 +45,16 @@
           };
         }
       ];
+      # Hide non-uwsm ssession
+      environment.etc."wayland-sessions/hyprland.desktop".text = /* ini */ ''
+        [Desktop Entry]
+        Name=Hyprland
+        Comment=Hidden non-UWSM Hyprland session
+        Exec=false
+        Type=Application
+        Hidden=true
+        NoDisplay=true
+      '';
     };
   flake.homeModules.hyprland =
     {
@@ -81,7 +93,10 @@
       wayland.windowManager.hyprland = {
         enable = true;
         configType = "lua";
-        systemd.enableXdgAutostart = true;
+        systemd = {
+          enableXdgAutostart = false;
+          enable = false;
+        };
         xwayland.enable = true;
         extraConfig = /* lua */ ''
           require("entry")

@@ -23,6 +23,8 @@
 
 
 (use-package emacs
+  :custom
+  (inhibit-startup-message t)
   :config
   (menu-bar-mode -1)
   (tool-bar-mode -1))
@@ -106,7 +108,7 @@
 
 ;; Evil-goggles: Highlight-yank (and more)
 (use-package evil-goggles
-  :ensure t
+  :after evil
   :config
   (evil-goggles-mode)
 
@@ -122,7 +124,6 @@
 
 (when (getenv "WAYLAND_DISPLAY")
   (use-package xclip
-    :ensure t
     :config
     (setq xclip-program "wl-copy")
     (setq xclip-select-enable-clipboard t)
@@ -171,11 +172,6 @@
     "fh" #'counsel-recentf))
 
 
-
-(use-package emacs
-  :config
-  (setq inhibit-startup-message t))
-
 (defvar user-backup-directory (expand-file-name "backups" user-emacs-data))
 (defvar user-autosaves-directory (expand-file-name "autosaves" user-emacs-cache))
 
@@ -203,9 +199,11 @@
       kept-old-versions 2      ; 保留的旧版本数量
       version-control t)       ; 使用版本号
 
-(setq transient-history-file (expand-file-name "transient/history.el" user-emacs-data))
-(setq transient-values-file (expand-file-name "transient/values.el" user-emacs-data))
-(setq transient-levels-file (expand-file-name "transient/levels.el" user-emacs-data))
+(use-package transient
+  :custom
+  (transient-history-file (expand-file-name "transient/history.el" user-emacs-data))
+  (transient-values-file (expand-file-name "transient/values.el" user-emacs-data))
+  (transient-levels-file (expand-file-name "transient/levels.el" user-emacs-data)))
 
 
 (use-package eglot
@@ -218,11 +216,7 @@
 
 
 (use-package telega
-  :ensure t
   :commands (telega)
-  :bind (:map telega-chat-mode-map
-	      ("C-S-v" . telega-chatbuf-attach-clipboard)
-	      ("S-<insert>" . telega-chatbuf-attach-clipboard))
   :custom
   (telega-directory (expand-file-name "telega" user-emacs-data))
   (telega-cache-dir (expand-file-name "telega" user-emacs-cache))
@@ -266,19 +260,24 @@
   (org-supertag-sync-directories '("~/org/")))
 
 (use-package elfeed
+  :commands (elfeed)
   :custom
   (elfeed-search-filter "@1-month-ago +unread")
   (elfeed-db-directory (expand-file-name "elfeed" user-emacs-data))
   :config
-  (add-to-list 'evil-emacs-state-modes 'elfeed-search-mode)
-  (add-to-list 'evil-emacs-state-modes 'elfeed-show-mode))
+  (add-to-list 'evil-emacs-state-modes '(elfeed-search-mode
+					 elfeed-show-mode)))
 
 (use-package elfeed-protocol
   :after elfeed
   :custom
   (elfeed-use-curl t)
   (elfeed-protocol-enabled-protocols '(fever))
-  (elfeed-protocol-fever-update-unread-only t))
+  (elfeed-protocol-fever-update-unread-only t)
+  (elfeed-feeds
+    '(("fever+https://js0ny@forge.js0ny.net"
+         :api-url "https://forge.js0ny.net/plugins/fever/"
+         :use-authinfo t))))
 
 (use-package doom-modeline
   :config
@@ -335,4 +334,17 @@
 	      (goto-char end))))))))
 
 (use-package magit
-  :ensure t)
+  :commands (magit))
+
+(use-package highlight-indent-guides
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-method 'character))
+  
+(use-package auth-source
+  :ensure nil
+  :custom
+  (auth-sources
+   (list (expand-file-name "authinfo.gpg"
+                           user-emacs-directory))))

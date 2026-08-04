@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   inputs,
   ...
@@ -28,7 +29,7 @@ in
     };
     cosmic-greeter.enable = enableDM "cosmic-greeter";
     sddm = {
-      enable = enableDM "sddm";
+      enable = lib.mkForce (enableDM "sddm");
       wayland.enable = true;
       enableHidpi = true;
       thyx = {
@@ -41,5 +42,6 @@ in
         };
       };
     };
+    regreet.enable = enableDM "regreet";
   };
 }

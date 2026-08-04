@@ -167,7 +167,7 @@ in
     };
     desktop = {
       enable = true;
-      dm = "sddm";
+      dm = "regreet";
       autoLogin = true;
       session = [
         "hyprland"

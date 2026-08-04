@@ -71,8 +71,8 @@ in
     nmap
     octaveFull
     pdf2zh
+    pkgsStable.python314Packages.huggingface-hub
     proton-pass
-    rustdesk
     rustscan
     sequoia-sq
     tradingview
@@ -92,6 +92,7 @@ in
     nil
     nixd
     cachix
+    alejandra
   ];
   home.sessionVariables = {
     GOLDENDICT_FORCE_WAYLAND = 1;
@@ -115,4 +116,7 @@ in
     enable = true;
     package = pkgsStable.posting;
   };
+  services.flatpak.packages = [
+    "com.rustdesk.RustDesk"
+  ];
 }

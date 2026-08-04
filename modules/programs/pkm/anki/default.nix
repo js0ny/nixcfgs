@@ -14,7 +14,7 @@
         };
       };
       programs.anki = {
-        enable = pkgs.stdenv.isLinux;
+        enable = false;
         profiles."User 1".sync = {
           username = "ankiweb.unusable450@passmail.net";
           keyFile = config.sops.secrets.anki_sync_key.path;
@@ -32,5 +32,6 @@
       ];
 
       nixdots.darwin.homebrew.casks = [ "anki" ];
+      services.flatpak.packages = [ "net.ankiweb.Anki" ];
     };
 }

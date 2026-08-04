@@ -60,7 +60,10 @@ lib.mkMerge [
               monitoring = true;
             };
             entrypoints = {
-              "history".alias = "clip";
+              "history" = {
+                alias = "clip";
+                preferences.defaultAction = "copy";
+              };
             };
           };
           system.entrypoints.run = {

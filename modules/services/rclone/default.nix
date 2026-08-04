@@ -1,6 +1,6 @@
 {
   flake.nixosModules.rclone =
-    { ... }:
+    { secrets, ... }:
     {
       programs.fuse = {
         enable = true;
@@ -15,8 +15,14 @@
         description = "Rclone service user";
       };
       users.groups.rclone = { };
-      systemd.tmpfiles.rules = [
-        "d /var/lib/rclone 0755 rclone rclone - -"
-      ];
+
+      sops.secrets = {
+        rclone = {
+          key = "data";
+          sopsFile = secrets + /files/rclone.yaml;
+          path = "/var/lib/rclone/rclone.conf";
+          owner = "root";
+        };
+      };
     };
 }

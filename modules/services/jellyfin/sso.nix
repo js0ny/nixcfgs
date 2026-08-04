@@ -79,7 +79,7 @@ in
       # bash
       ''
         if [ ! -f ${d}/SSO-Auth.xml ]; then
-          cp ${d}/.nix-managed.SSO-Auth.xml ${d}/SSO-Auth.xml
+          cp --dereference ${d}/.nix-managed.SSO-Auth.xml ${d}/SSO-Auth.xml
           chmod 600 ${d}/SSO-Auth.xml
         fi
       '';
