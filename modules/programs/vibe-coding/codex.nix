@@ -5,11 +5,11 @@
   ...
 }:
 let
-  path = lib.makeBinPath [
-    pkgs.nodejs_26
-    (pkgs.python314.withPackages (p: [ p.pyyaml ]))
-    pkgs.uv
-  ];
+  # path = lib.makeBinPath [
+  #   pkgs.nodejs_26
+  #   (pkgs.python314.withPackages (p: [ p.pyyaml ]))
+  #   pkgs.uv
+  # ];
   # https://github.com/openai/codex/issues/14599#issuecomment-4098754431
   codexWrapper = pkgs.writers.writePython3Bin "codex" { } /* python */ ''
     import json
@@ -24,7 +24,6 @@ let
     def main() -> None:
         project = json.dumps(str(Path.cwd()))
         config = f'projects={{{project}={{trust_level="trusted"}}}}'
-        os.environ["PATH"] = "${path}" + os.pathsep + os.environ.get("PATH", "")
         os.execvp(CODEX, [CODEX, "-c", config, *sys.argv[1:]])
 
 

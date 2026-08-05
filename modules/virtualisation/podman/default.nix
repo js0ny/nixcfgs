@@ -8,14 +8,12 @@
     }:
     let
       dockerEnabled = config.virtualisation.docker.enable;
-      nvidiaEnabled = config.hardware.nvidia.enabled;
     in
     {
       virtualisation.podman = {
         enable = true;
         dockerCompat = lib.mkDefault (!dockerEnabled);
         dockerSocket.enable = lib.mkDefault (!dockerEnabled);
-        enableNvidia = nvidiaEnabled;
       };
       environment.systemPackages = [ pkgs.podman-compose ];
     };

@@ -369,6 +369,7 @@ end)
 
 local ascii_classes = {
   ['org.kde.polkit-kde-authentication-agent-1'] = true,
+  ['gcr-prompter'] = true,
 }
 local ascii_titles = {
   ['Password — Ark'] = true,

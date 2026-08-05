@@ -46,6 +46,10 @@
               insteadOf = "https://codeberg.org";
             };
           };
+          gpg.format = "ssh";
+          user.signingKey = "~/.ssh/id_ed25519_git_signing.pub";
+          commit.gpgSign = true;
+          tag.gpgSign = true;
         };
         lfs.enable = true;
         ignores = [
