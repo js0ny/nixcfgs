@@ -14,6 +14,7 @@
         grim
         slurp
         satty
+        mpvpaper
       ];
       home.sessionVariables = {
         ELECTRON_TRASH = "trash-cli";

@@ -1,0 +1,7 @@
+{
+  "case": {
+    "prefix": "case",
+    "body": ["case $1:", "    $2;", "    break;"],
+    "description": "switch: case"
+  }
+}

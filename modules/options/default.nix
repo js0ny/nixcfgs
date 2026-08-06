@@ -3,5 +3,6 @@
   imports = [
     ./nixdefs
     ./nixdots
+    ./hardware.nix
   ];
 }

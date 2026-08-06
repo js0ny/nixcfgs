@@ -72,10 +72,10 @@ in
     octaveFull
     pdf2zh
     pkgsStable.python314Packages.huggingface-hub
-    proton-pass
     rustscan
     sequoia-sq
     tradingview
+    tsukimi
     xournalpp
     # keep-sorted end
 

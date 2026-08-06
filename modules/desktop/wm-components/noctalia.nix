@@ -139,6 +139,7 @@
           hooks = {
             started = lib.getExe reloadConfig;
           };
+          plugins.enabled = [ "noctalia/world_clock" ];
         };
       };
       services.hyprpaper.enable = lib.mkForce false;

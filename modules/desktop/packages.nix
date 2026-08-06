@@ -62,7 +62,6 @@
       with pkgs;
       [
         ripgrep-all
-        proton-pass-cli
         localPkgs.edit-clipboard
         localsend
         pandoc

@@ -43,7 +43,7 @@
           "csharp",
           "cs"
         ],
-        "path": "./snippets/csharp/csharp.json"
+        "path": "./snippets/csharp.json"
       },
       {
         "language": "csharpdoc",

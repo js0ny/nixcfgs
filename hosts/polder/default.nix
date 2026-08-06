@@ -27,7 +27,6 @@
     inputs.self.nixosModules.gluetun
     inputs.self.nixosModules.grafana
     inputs.self.nixosModules.hermes-agent
-    inputs.self.nixosModules.jellyfin
     inputs.self.nixosModules.karakeep
     inputs.self.nixosModules.librechat
     inputs.self.nixosModules.litellm

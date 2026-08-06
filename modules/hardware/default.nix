@@ -4,7 +4,6 @@
     {
       imports = [
         inputs.self.nixosModules.hid
-        inputs.self.nixosModules.howdy
         inputs.self.nixosModules.nvidia
         inputs.self.nixosModules.serial
       ];
@@ -13,6 +12,6 @@
     };
 
   flake.nixosModules.hid = import ./hid.nix;
-  flake.nixosModules.howdy = import ./howdy.nix;
+  flake.nixosModules.gaze = import ./gaze.nix;
   flake.nixosModules.serial = import ./serial.nix;
 }

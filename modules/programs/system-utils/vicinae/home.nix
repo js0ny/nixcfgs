@@ -51,6 +51,10 @@ lib.mkMerge [
         providers = {
           core.entrypoints = {
             sponsor.enabled = false;
+            store.preferences.alwaysShowIntro = false;
+          };
+          raycast-compat.entrypoints = {
+            store.preferences.alwaysShowIntro = false;
           };
           clipboard = {
             preferences = {

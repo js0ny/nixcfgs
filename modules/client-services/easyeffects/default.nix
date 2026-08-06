@@ -1,17 +1,17 @@
 {
   flake.homeModules.easyeffects =
-    { lib, ... }:
+    { lib, config, ... }:
     {
       services.easyeffects = {
-        enable = true;
+        enable = config.js0ny.hardware.laptop.enable;
         extraPresets = {
           EasyMic = lib.importJSON ./EasyMic.json;
         };
       };
       systemd.user.services.easyeffects = {
         Unit = {
-          PartOf = [ "waylandwm-session.target" ];
-          After = [ "waylandwm-session.target" ];
+          PartOf = lib.mkForce [ "waylandwm-session.target" ];
+          After = lib.mkForce [ "waylandwm-session.target" ];
         };
         Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
       };

@@ -5,7 +5,6 @@
       ".local/share/com.motrix.next"
 
       ".config/blender"
-      ".config/Proton Pass"
       ".config/bruno"
 
     ];

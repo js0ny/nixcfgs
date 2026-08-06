@@ -4,6 +4,9 @@
   lib,
   ...
 }:
+let
+  mod = inputs.self.nixosModules;
+in
 {
   system.stateVersion = "25.05";
 
@@ -14,15 +17,17 @@
     ./disko.nix
     ./restic.nix
     ./vars.nix
-    inputs.self.nixosModules.desktop
-    inputs.self.nixosModules.podman
-    inputs.self.nixosModules.libvirt
-    inputs.self.nixosModules.sshd
-    inputs.self.nixosModules.tailscale
+    mod.desktop
+    mod.podman
+    mod.libvirt
+    mod.sshd
+    mod.tailscale
 
-    inputs.self.nixosModules.plasma
-    inputs.self.nixosModules.hyprland
-    inputs.self.nixosModules.niri
+    mod.plasma
+    mod.hyprland
+    mod.niri
+
+    mod.gaze
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
