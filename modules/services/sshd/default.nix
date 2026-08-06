@@ -1,22 +1,5 @@
 {
-  flake.nixosModules.sshd =
-    { config, ... }:
-    let
-      port = config.nixdefs.endpoints.ssh.port;
-    in
-    {
-      services.openssh = {
-        enable = true;
-        ports = [ port ];
-        settings = {
-          UseDns = true;
-          PermitRootLogin = "no";
-          PasswordAuthentication = false;
-          # This is default to true, make sure override it when needed.
-        };
-      };
-      networking.firewall.allowedTCPPorts = [ port ];
-    };
+  flake.nixosModules.sshd = import ./nixos.nix;
   flake.darwinModules.sshd =
     { lib, config, ... }:
     let

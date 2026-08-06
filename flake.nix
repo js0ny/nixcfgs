@@ -196,6 +196,13 @@
       url = "git+ssh://forgejo@git.js0ny.net/infra/bindeps.git?lfs=1";
       flake = false;
     };
+    forgejo-file-icons = {
+      url = "git+https://git.js0ny.net/infra/forgejo-file-icons";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
     nvimdots = {
       url = "github:js0ny/nvimdots/nixvim";
       inputs = {

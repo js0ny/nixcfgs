@@ -4,6 +4,7 @@
       lib,
       config,
       secrets,
+      inputs,
       ...
     }:
     let
@@ -13,6 +14,11 @@
       sopsFile = secrets + /forgejo.yaml;
     in
     {
+      imports = [
+        inputs.forgejo-file-icons.nixosModules.default
+        ./backup.nix
+      ];
+      services.forgejo-file-icons.enable = true;
       sops.secrets = {
         forgejo_metrics_token = {
           inherit sopsFile;
@@ -77,5 +83,6 @@
       };
 
       networking.firewall.allowedTCPPorts = [ 2220 ];
+      nixdots.persist.system.directories = [ config.services.forgejo.stateDir ];
     };
 }

@@ -679,6 +679,29 @@
         "type": "github"
       }
     },
+    "forgejo-file-icons": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786040175,
+        "narHash": "sha256-iV1qQuq1dFLBJNDctdoMoGRk4CWt+S1CO9Vg60uwbcg=",
+        "ref": "refs/heads/master",
+        "rev": "1b2f76981319d4cac73e6cfca48ed600bebbb8ac",
+        "revCount": 4,
+        "type": "git",
+        "url": "https://git.js0ny.net/infra/forgejo-file-icons"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.js0ny.net/infra/forgejo-file-icons"
+      }
+    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -1973,6 +1996,7 @@
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts_2",
         "flatpak-nix": "flatpak-nix",
+        "forgejo-file-icons": "forgejo-file-icons",
         "gaze": "gaze",
         "git-hooks": "git-hooks",
         "hermes-agent": "hermes-agent",

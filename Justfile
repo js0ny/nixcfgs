@@ -17,6 +17,10 @@ eval-os args="" host=hostname extra="":
     {{ EVAL }} ".#nixosConfigurations.{{ host }}.config.{{ args }}" {{ extra }}
 
 [linux]
+locate-os args="" host=hostname extra="":
+    {{ EVAL }} '.#nixosConfigurations.{{ host }}.options.{{ args }}.definitionsWithLocations' {{ extra }}
+
+[linux]
 eval-home args="" host=hostname extra="":
     {{ EVAL }} ".#nixosConfigurations.{{ host }}.config.home-manager.users.{{ env_var("USER") }}.{{ args }}" {{ extra }}
 

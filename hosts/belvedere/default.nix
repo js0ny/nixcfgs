@@ -19,8 +19,10 @@ in
     mod.code-server
     mod.fail2ban
     mod.fish
+    mod.forgejo
     mod.jellyfin
     mod.nix-index-database
+    mod.prometheus-node
     mod.rclone
     mod.starship
     # keep-sorted end
