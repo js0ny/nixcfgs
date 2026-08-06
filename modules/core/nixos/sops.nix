@@ -15,8 +15,16 @@ lib.mkIf cfg.enable (
     (lib.mkIf (cfg.sopsEditor != null) {
       environment.sessionVariables.SOPS_EDITOR = cfg.sopsEditor;
     })
-    (lib.mkIf (cfg.keyFile != null && !lib.hasPrefix config.nixdots.user.home cfg.keyFile) {
-      nixdots.persist.system.files = [ cfg.keyFile ];
-    })
+    (lib.mkIf
+      (
+        cfg.keyFile != null
+        && !lib.hasPrefix config.nixdots.user.home cfg.keyFile
+        && !lib.hasPrefix config.nixdots.persist.path cfg.keyFile
+        && !lib.hasPrefix config.nixdots.persist.nosnap.path cfg.keyFile
+      )
+      {
+        nixdots.persist.system.files = [ cfg.keyFile ];
+      }
+    )
   ]
 )

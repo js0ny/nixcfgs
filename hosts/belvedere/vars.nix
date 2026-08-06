@@ -9,6 +9,11 @@
     sopsFile = secrets + /hosts/belvedere.yaml;
   };
   nixdots = {
+    persist = {
+      enable = true;
+      path = "/persist";
+      nosnap.path = "/nosnap";
+    };
     user = {
       name = "js0ny";
       shell = pkgs.zsh;
