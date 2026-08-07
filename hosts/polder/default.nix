@@ -11,7 +11,6 @@
     ./vars.nix
 
     # ./services/actual.nix
-    # ../../nixos/services/affine.nix
     # keep-sorted start
 
     ./static/flux.nix
@@ -21,7 +20,6 @@
     inputs.self.nixosModules.code-server
     inputs.self.nixosModules.fail2ban
     inputs.self.nixosModules.fast-note-sync
-    inputs.self.nixosModules.forgejo
     inputs.self.nixosModules.forgejo-runner
     inputs.self.nixosModules.garage
     inputs.self.nixosModules.gluetun
@@ -50,7 +48,6 @@
     inputs.self.nixosModules.sub2api
     inputs.self.nixosModules.tailscale
     inputs.self.nixosModules.telegram-inline-llm-bot
-    inputs.self.nixosModules.uptime-kuma
     inputs.self.nixosModules.valkey
     # keep-sorted end
   ];

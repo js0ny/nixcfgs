@@ -52,6 +52,8 @@ in
       sponsorblock
       # Bilibili
       bilisponsorblock
+      # Twitter
+      xcancel
 
       # Misc
       rsshub-radar

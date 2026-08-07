@@ -51,3 +51,7 @@ Then copy the output to `/var/lib/forgejo`
 ```bash
 sudo chown -R forgejo:forgejo /var/lib/forgejo
 ```
+
+## File Icons
+
+Material Icon CSS injection with [forgejo-file-icons](https://github.com/js0ny/forgejo-file-icons)

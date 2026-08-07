@@ -1,7 +1,7 @@
 {
   flake.nixosModules.prometheus =
     {
-      lib,
+      secrets,
       config,
       myLib,
       ...
@@ -13,6 +13,13 @@
     in
     {
       imports = myLib.scanPaths ./.;
+      sops.secrets = {
+        forgejo_metrics_token = {
+          sopsFile = secrets + /forgejo.yaml;
+          owner = "prometheus";
+          group = "prometheus";
+        };
+      };
       services.prometheus = {
         enable = true;
         enableReload = true; # aka. watch config file change

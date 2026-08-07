@@ -4,7 +4,6 @@
       lib,
       config,
       secrets,
-      inputs,
       ...
     }:
     let
@@ -15,10 +14,8 @@
     in
     {
       imports = [
-        inputs.forgejo-file-icons.nixosModules.default
         ./backup.nix
       ];
-      services.forgejo-file-icons.enable = true;
       sops.secrets = {
         forgejo_metrics_token = {
           inherit sopsFile;
@@ -75,11 +72,6 @@
             proxyPass = "http://unix:${socketPath}:/";
           };
         };
-      };
-      catppuccin = {
-        forgejo.enable = true;
-        accent = "pink";
-        flavor = "mocha";
       };
 
       networking.firewall.allowedTCPPorts = [ 2220 ];

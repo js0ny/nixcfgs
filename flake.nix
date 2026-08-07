@@ -46,6 +46,15 @@
     };
     # }}}
 
+    # {{{ Libraries
+    flake-compat.url = "github:NixOS/flake-compat";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+    systems.url = "github:nix-systems/default";
+    # }}}
+
     # {{{ Application Supports
     flatpak-nix.url = "github:gmodena/nix-flatpak";
     gaze.url = "github:GunduLabs/gaze";
@@ -60,11 +69,18 @@
     };
     dank-material-shell = {
       url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
     };
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+        systems.follows = "systems";
+      };
     };
     niri-nix = {
       url = "git+https://codeberg.org/BANanaD3V/niri-nix";
@@ -77,8 +93,12 @@
     };
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
     betterfox-nix = {
       url = "github:HeitorAugustoLN/betterfox-nix";
@@ -87,7 +107,10 @@
     };
     firefox-addons = {
       url = "github:petrkozorezov/firefox-addons-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
     };
     nixcord = {
       url = "github:kaylorben/nixcord";
@@ -100,8 +123,11 @@
     };
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
     };
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
@@ -130,10 +156,18 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.1.0";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
-    cachyos-kernel-nix.url = "github:xddxdd/nix-cachyos-kernel";
-    wsl-nixos.url = "github:nix-community/NixOS-WSL/main";
+    cachyos-kernel-nix = {
+      url = "github:xddxdd/nix-cachyos-kernel";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+    wsl-nixos = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.flake-compat.follows = "flake-compat";
+    };
     # }}}
 
     # {{{ Utilites
@@ -144,7 +178,11 @@
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+        utils.follows = "flake-utils";
+      };
     };
     # }}}
 
@@ -155,6 +193,10 @@
     };
     mac-app-util = {
       url = "github:hraban/mac-app-util";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+      };
     };
     # }}}
 
@@ -172,7 +214,10 @@
     };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
     };
     # }}}
 
@@ -184,9 +229,12 @@
 
     stylix = {
       url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.nur.follows = "nur";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        nur.follows = "nur";
+        systems.follows = "systems";
+      };
     };
     # }}}
 
@@ -195,13 +243,6 @@
     bindeps = {
       url = "git+ssh://forgejo@git.js0ny.net/infra/bindeps.git?lfs=1";
       flake = false;
-    };
-    forgejo-file-icons = {
-      url = "git+https://git.js0ny.net/infra/forgejo-file-icons";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
     };
     nvimdots = {
       url = "github:js0ny/nvimdots/nixvim";

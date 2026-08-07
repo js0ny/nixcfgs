@@ -28,6 +28,7 @@ in
 
   home.packages = with pkgs; [
     # keep-sorted start
+    (darktable.override { withAi = true; })
     ashpd-demo # for portal debug
     awscli2
     blender

@@ -1,7 +1,7 @@
 {
   flake.homeModules.easyeffects =
     { lib, config, ... }:
-    {
+    lib.mkIf config.js0ny.hardware.microphone.enable {
       services.easyeffects = {
         enable = config.js0ny.hardware.laptop.enable;
         extraPresets = {
