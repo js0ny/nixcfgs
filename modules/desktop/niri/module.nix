@@ -2,21 +2,16 @@
   pkgs,
   config,
   lib,
-  inputs,
   ...
 }:
 let
   xdg-config = config.xdg.configHome;
 in
 {
-  imports = [
-    inputs.niri-nix.homeModules.default
-    inputs.niri-nix.homeModules.stylix
-  ];
-
   wayland.windowManager.niri = {
     enable = true;
-    validation.enable = true;
+    checkConfig = true;
+    systemd.enable = true;
     settings = {
       spawn-sh-at-startup = [
         "systemctl --user start waylandwm-session.target"
@@ -33,7 +28,6 @@ in
       ${import ./keymaps.nix { inherit pkgs lib config; }}
       ${import ./interpolates.nix { inherit config; }}
       include "${./window-rules.kdl}"
-      include "${xdg-config}/niri/local_test.kdl"
     '';
   };
 
