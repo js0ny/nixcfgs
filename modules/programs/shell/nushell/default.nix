@@ -17,14 +17,14 @@
       programs.nushell = {
         enable = pkgs.stdenv.isLinux;
         # install nushell via brew in darwin.
-        shellAliases = {
-          "fg" = "job unfreeze";
-          "cls" = "clear";
-        };
         # plugins = with pkgs.nushellPlugins; [
         #   desktop_notifications
         # ];
         extraConfig = /* nu */ ''
+          $env.config.abbreviations = {
+            fg: "job unfreeze"
+            cls: "clear"
+          }
           $env.config.show_banner = false
           $env.config.table.mode = "frameless"
           $env.config.history = {

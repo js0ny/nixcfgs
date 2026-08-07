@@ -5,6 +5,7 @@
 }:
 let
   cfg = config.misc.shellAliases;
+  nuabbr = lib.concatMapAttrsStringSep " " (name: value: ''${name}: "${value}"'') cfg;
 in
 {
   options = {
@@ -16,7 +17,9 @@ in
   };
 
   config = lib.mkIf (cfg != { }) {
-    programs.nushell.shellAliases = cfg;
+    programs.nushell.extraConfig = /* nu */ ''
+      $env.config.abbreviations = { ${nuabbr} }
+    '';
     programs.zsh.shellAliases = cfg;
     programs.bash.shellAliases = cfg;
     programs.fish.shellAbbrs = cfg;

@@ -135,8 +135,6 @@ hl.bind(
   hl.dsp.exec_cmd('vicinae deeplink vicinae://launch/@nino-mau/store.vicinae.hypr/windows')
 )
 
-hl.bind('F5', hl.dsp.exec_cmd('~/.local/bin/press-w'))
-
 hl.bind(mod .. ' + GRAVE', function()
   local last_workspace = hl.get_last_workspace()
   if last_workspace then
