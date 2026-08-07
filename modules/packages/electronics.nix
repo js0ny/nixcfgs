@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.electronics = { }: {
+  flake.nixosModules.electronics = _: {
     users.groups."dialout" = { };
   };
   flake.homeModules.electronics =

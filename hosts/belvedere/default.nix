@@ -20,7 +20,10 @@ in
     mod.fail2ban
     mod.fish
     mod.forgejo
+    mod.hermes-agent
+    mod.immich
     mod.jellyfin
+    mod.nextcloud
     mod.nix-index-database
     mod.prometheus-node
     mod.rclone

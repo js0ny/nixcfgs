@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.matrix =
+  flake.nixosModules.matrix-server =
     {
       config,
       lib,

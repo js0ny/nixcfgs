@@ -26,6 +26,7 @@ in
     # ../../nixos/services/hermes-agent
     mod.sunshine
     mod.ollama
+    mod.prometheus-node
 
     mod.wireguard
 

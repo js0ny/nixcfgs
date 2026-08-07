@@ -15,6 +15,7 @@
             nvfetcher
             nufmt
             lua
+            keep-sorted
           ];
           devDeps = with pkgs; [
             lua-language-server

@@ -1,12 +1,10 @@
 {
-  pkgs,
-  config,
   inputs,
-  nixcfgs,
-  myLib,
-  secrets,
   ...
 }:
+let
+  mod = inputs.self.nixosModules;
+in
 {
   system.stateVersion = "26.05";
 
@@ -14,26 +12,19 @@
     ./disko.nix
     ./vars.nix
 
-    inputs.self.nixosModules.server
     inputs.srvos.nixosModules.hardware-hetzner-cloud
-    inputs.self.nixosModules.cloudflare
-    inputs.self.nixosModules.matrix
-    inputs.self.nixosModules.fail2ban
+
+    mod.server
+
+    mod.cloudflare
+    mod.fail2ban
+    mod.prometheus-node
+
+    mod.matrix-server
+    mod.bentopdf
   ];
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit
-        inputs
-        nixcfgs
-        myLib
-        secrets
-        ;
-    };
-    users."js0ny" = import ./home.nix;
-  };
+  home-manager.users."js0ny" = import ./home.nix;
 
   boot.loader.grub.enable = true;
   # boot.loader.grub.device = "/dev/sda";
@@ -44,13 +35,7 @@
   boot.loader.grub.useOSProber = false;
   boot.loader.grub.efiSupport = false;
 
-  security.sudo-rs.wheelNeedsPassword = false;
-
-  networking = {
-    firewall = {
-      enable = true;
-    };
-  };
+  networking.firewall.enable = true;
 
   systemd.network.networks."10-wan" = {
     matchConfig.Name = "enp1s0";
