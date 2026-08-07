@@ -32,9 +32,6 @@ in
       enable = lib.mkForce (enableDM "sddm");
       wayland.enable = true;
       enableHidpi = true;
-      thyx = {
-        enable = true;
-      };
       settings = {
         Theme = {
           CursorSize = config.stylix.cursor.size;

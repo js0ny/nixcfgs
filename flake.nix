@@ -130,11 +130,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    thyx = {
-      url = "github:rccyx/thyx";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
     telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
     # }}}
 
