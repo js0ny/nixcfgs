@@ -50,4 +50,7 @@ in
     scheduler = "scx_lavd";
   };
   programs.labwc.enable = true;
+  programs.clash-verge = {
+    enable = true;
+  };
 }

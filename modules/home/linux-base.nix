@@ -14,5 +14,4 @@
     # keep-sorted end
   ]
   ++ myLib.scanPathsRec ../../modules/options/home;
-  services.flatpak.packages = config.js0ny.flatpak.packages;
 }

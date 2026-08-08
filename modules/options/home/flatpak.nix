@@ -1,5 +1,8 @@
 { lib, ... }: {
-  options.js0ny.flatpak = lib.mkOption {
-    type = lib.types.anything;
+  options.js0ny.flatpak = {
+    enable = lib.mkEnableOption "enable";
+    packages = lib.mkOption {
+      type = lib.types.listOf lib.types.anything;
+    };
   };
 }

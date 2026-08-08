@@ -27,6 +27,7 @@ in
     mod.nix-index-database
     mod.prometheus-node
     mod.rclone
+    mod.sing-box
     mod.starship
     # keep-sorted end
   ];

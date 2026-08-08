@@ -39,4 +39,5 @@
   nixdots.persist.home.directories = [
     ".local/share/direnv"
   ];
+  services.flatpak.packages = config.js0ny.flatpak.packages;
 }
