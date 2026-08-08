@@ -16,7 +16,7 @@ in
     ./disko.nix
     ./vars.nix
     ./btrbk.nix
-    ./dae-wireguard.nix
+    ./dae.nix
     # ./nixos-prebuild.nix
     mod.desktop
     mod.podman
@@ -27,8 +27,6 @@ in
     mod.sunshine
     mod.ollama
     mod.prometheus-node
-
-    mod.wireguard
 
     mod.gnome
     mod.plasma
