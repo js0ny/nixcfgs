@@ -4,10 +4,12 @@
       inputs,
       pkgs,
       lib,
+      config,
       ...
     }:
     let
       system = pkgs.stdenv.hostPlatform.system;
+      inherit (config.services.hermes-agent) user group;
     in
     {
       # https://hermes-agent.nousresearch.com/docs/developer-guide/prompt-assembly
@@ -25,7 +27,11 @@
       ];
       nixdots.persist.system = {
         directories = [
-          "/var/lib/hermes"
+          {
+            inherit user group;
+            directory = "/var/lib/hermes";
+            mode = "0750";
+          }
         ];
       };
 
