@@ -117,7 +117,7 @@ in
     enable = true;
     package = pkgsStable.posting;
   };
-  services.flatpak.packages = [
+  js0ny.flatpak.packages = [
     "com.rustdesk.RustDesk"
   ];
 }

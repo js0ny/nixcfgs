@@ -8,33 +8,36 @@
   imports = [
     # keep-sorted start
 
-    (myLib.scanPathsRec ../../modules/home/darwin)
-    (myLib.scanPathsRec ../../modules/home/programs)
-    ../../modules/home/programs/aichat.nix
-    ../../modules/home/programs/cherry-studio.nix
     ../../modules/home/programs/karabiner.nix
-    ../../modules/home/programs/nix-index.nix
-    ../../modules/home/programs/productivity/anki.nix
-    ../../modules/home/programs/productivity/obsidian/module.nix
-    ../../modules/home/programs/productivity/sdcv.nix
-    ../../modules/home/programs/productivity/sioyek/module.nix
-    ../../modules/home/programs/protonvpn.nix
-    ../../modules/home/programs/shell/direnv.nix
-    ../../modules/home/programs/social/telegram.nix
-    ../../modules/home/programs/terminals/ghostty.nix
-    ../../modules/home/programs/terminals/zellij/module.nix
+    ../options
     # ../../modules/home/programs/media/mpv.nix
     # keep-sorted end
-    inputs.secrets.darwinModules.default
+    inputs.secrets.homeManagerModules.default
 
     inputs.self.homeModules.nix-index-database
-  ];
+    inputs.self.homeModules.anki
+    inputs.self.homeModules.obsidian
+    inputs.self.homeModules.sdcv
+    inputs.self.homeModules.sioyek
+    inputs.self.homeModules.protonvpn
+    inputs.self.homeModules.telegram
+    inputs.self.homeModules.ghostty
+    inputs.self.homeModules.zellij
+    ./darwin-mock-options.nix
+  ]
+  ++ myLib.scanPathsRec ../../modules/options/home;
+  # ++ (myLib.scanPathsRec ../../modules/home/programs);
 
   nixdefs = {
     acp.enable = true;
     llm.enable = true;
     mcp.enable = true;
     hardware.enable = false;
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
 }

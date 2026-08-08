@@ -32,6 +32,6 @@
       ];
 
       nixdots.darwin.homebrew.casks = [ "anki" ];
-      services.flatpak.packages = [ "net.ankiweb.Anki" ];
+      js0ny.flatpak.packages = [ "net.ankiweb.Anki" ];
     };
 }

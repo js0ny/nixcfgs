@@ -14,4 +14,7 @@
   flake.homeModules.desktop = { inputs, ... }: {
     imports = [ inputs.self.homeModules.fish ];
   };
+  flake.homeModules.darwin = { inputs, ... }: {
+    imports = [ inputs.self.homeModules.fish ];
+  };
 }

@@ -7,7 +7,6 @@
     "qlstephen"
     "quicklook-video"
     "qspace-pro"
-    "quicklook-json"
     "quicklookase"
   ];
 }

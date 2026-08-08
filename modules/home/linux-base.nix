@@ -1,4 +1,9 @@
-{ inputs, myLib, ... }:
+{
+  inputs,
+  myLib,
+  config,
+  ...
+}:
 {
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
@@ -9,4 +14,5 @@
     # keep-sorted end
   ]
   ++ myLib.scanPathsRec ../../modules/options/home;
+  services.flatpak.packages = config.js0ny.flatpak.packages;
 }

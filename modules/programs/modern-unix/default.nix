@@ -17,6 +17,9 @@
   flake.homeModules.desktop = { inputs, ... }: {
     imports = [ inputs.self.homeModules.modern-unix ];
   };
+  flake.homeModules.darwin = { inputs, ... }: {
+    imports = [ inputs.self.homeModules.modern-unix ];
+  };
   flake.homeModules.modern-unix =
     { pkgs, config, ... }:
     {

@@ -18,6 +18,7 @@
         ./stylix.nix
         inputs.self.darwinModules.sshd
         inputs.self.darwinModules.tailscale
+        inputs.self.darwinModules.core
       ];
     };
 }

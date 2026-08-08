@@ -2,11 +2,12 @@
   flake.homeModules.obsidian =
     {
       pkgs,
+      lib,
       ...
     }:
     {
-      home.packages = with pkgs; [
-        (obsidian.override {
+      home.packages = (lib.optionals pkgs.stdenv.isLinux) [
+        (pkgs.obsidian.override {
           commandLineArgs = if pkgs.stdenv.isLinux then "--password-store=gnome-libsecret" else "";
         })
       ];
@@ -20,6 +21,6 @@
         pin = true;
       };
       nixdots.persist.nosnap.home.directories = [ ".config/obsidian" ];
-
+      nixdots.darwin.homebrew.casks = [ "obsidian" ];
     };
 }

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 let
@@ -27,7 +28,7 @@ lib.mkIf cfg.enable {
       };
     };
   };
-  home.pointerCursor = {
+  home.pointerCursor = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     dotIcons.enable = false;
     hyprcursor.enable = config.wayland.windowManager.hyprland.enable;

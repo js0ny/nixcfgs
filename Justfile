@@ -16,13 +16,30 @@ update-models:
 eval-os args="" host=hostname extra="":
     {{ EVAL }} ".#nixosConfigurations.{{ host }}.config.{{ args }}" {{ extra }}
 
+[macos]
+eval-os args="" host=hostname extra="":
+    {{ EVAL }} ".#darwinConfigurations.{{ host }}.config.{{ args }}" {{ extra }}
+
 [linux]
 locate-os args="" host=hostname extra="":
     {{ EVAL }} '.#nixosConfigurations.{{ host }}.options.{{ args }}.definitionsWithLocations' {{ extra }}
 
+
 [linux]
 eval-home args="" host=hostname extra="":
     {{ EVAL }} ".#nixosConfigurations.{{ host }}.config.home-manager.users.{{ env_var("USER") }}.{{ args }}" {{ extra }}
+
+[macos]
+locate-os args="" host=hostname extra="":
+    {{ EVAL }} '.#darwinConfigurations.{{ host }}.options.{{ args }}.definitionsWithLocations' {{ extra }}
+
+[macos]
+locate-home args="" host=hostname extra="":
+    {{ EVAL }} '.#darwinConfigurations.{{ host }}.options.home-manager.users.{{ env_var("USER") }}.{{ args }}.definitionsWithLocations' {{ extra }}
+
+[macos]
+eval-home args="" host=hostname extra="":
+    {{ EVAL }} ".#darwinConfigurations.{{ host }}.config.home-manager.users.{{ env_var("USER") }}.{{ args }}" {{ extra }}
 
 [linux]
 journal-home username=env_var("USER"):

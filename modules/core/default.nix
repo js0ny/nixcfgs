@@ -15,7 +15,6 @@
   flake.homeModules.core = { inputs, ... }: {
     home.sessionVariables = import ./do-not-track-vars.nix;
     imports = [
-      ./nix.nix
       ./sops.nix
       ./home/antidots.nix
       ./home/configuration.nix
@@ -35,12 +34,14 @@
     ];
   };
 
-  flake.darwinModules.core = _: {
+  flake.darwinModules.core = { inputs, ... }: {
     environment.variables = import ./do-not-track-vars.nix;
     home-manager.sharedModules = [ { imports = [ ./nix-helper.nix ]; } ];
     imports = [
+      inputs.sops-nix.darwinModules.default
       ./nix.nix
       ./hm.nix
+      ./sops.nix
 
       ../options
     ];
@@ -50,8 +51,16 @@
     imports = [
       inputs.self.homeModules.core
       inputs.plasma-manager.homeModules.plasma-manager
+      ./nix.nix
     ];
 
   };
 
+  flake.homeModules.darwin = { inputs, pkgs, ... }: {
+    imports = [
+      inputs.self.homeModules.core
+      inputs.plasma-manager.homeModules.plasma-manager
+    ];
+    nix.package = pkgs.nix;
+  };
 }
