@@ -57,7 +57,12 @@
 
     # {{{ Application Supports
     flatpak-nix.url = "github:gmodena/nix-flatpak";
-    gaze.url = "github:GunduLabs/gaze";
+    gaze = {
+      url = "github:GunduLabs/gaze";
+      # follows inputs.nixpkgs to reuse onnxruntime
+      # or gaze will coredump every 5 secs
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";

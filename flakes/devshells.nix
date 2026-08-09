@@ -32,6 +32,7 @@
           default = pkgs.mkShell {
             inputsFrom = [ config.pre-commit.devShell ];
             buildInputs = ciDeps ++ devDeps;
+            shellHook = config.pre-commit.shellHook;
           };
           ci = pkgs.mkShell { buildInputs = ciDeps; };
         };
