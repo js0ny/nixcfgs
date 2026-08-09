@@ -23,6 +23,15 @@ hl.window_rule({
   xray = true,
 })
 
+hl.window_rule({
+  name = 'element',
+  match = {
+    class = 'element',
+  },
+  workspace = 4,
+  opacity = '0.8 0.7',
+})
+
 -- hl.window_rule({
 --   name = 'hermes',
 --   match = {
@@ -33,23 +42,24 @@ hl.window_rule({
 --   no_blur = true,
 -- })
 
--- hl.config({
---   decoration = {
---     blur = {
---       enabled = true,
---       size = 2,
---       passes = 3,
---       new_optimizations = true,
---       ignore_opacity = true,
---       xray = true,
---       noise = 0.0117,
---       contrast = 0.8916,
---       brightness = 0.8172,
---       vibrancy = 0.1696,
---       vibrancy_darkness = 0.0,
---     },
---   },
--- })
+hl.config({
+  decoration = {
+    inactive_opacity = 0.9,
+    blur = {
+      enabled = true,
+      size = 4,
+      passes = 3,
+      new_optimizations = true,
+      ignore_opacity = true,
+      xray = true,
+      noise = 0.0117,
+      contrast = 0.8916,
+      brightness = 0.8172,
+      vibrancy = 0.1696,
+      vibrancy_darkness = 0.0,
+    },
+  },
+})
 
 hl.bind('SUPER' .. ' + SHIFT + E', function()
   hl.exec_cmd('hyprctl reload')

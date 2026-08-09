@@ -87,13 +87,13 @@ in
     };
     apps = {
       terminal = {
-        package = pkgs.kitty;
-        exe = "kitty";
-        desktop = "kitty.desktop";
+        package = pkgs.ghostty;
+        exe = "ghostty";
+        desktop = "com.mitchellh.ghostty.desktop";
       };
       interactiveShell = {
-        package = pkgs.fish;
-        exe = "fish";
+        package = pkgs.nushell;
+        exe = "nu";
         desktop = "";
       };
       browser = {

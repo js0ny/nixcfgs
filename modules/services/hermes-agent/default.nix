@@ -38,6 +38,10 @@
       services.hermes-agent = {
         enable = true;
         package = inputs.hermes-agent.packages.${system}.messaging;
+        extraDependencyGroups = [
+          "matrix"
+          "messaging"
+        ];
         group = "agents";
         restart = "always";
         restartSec = 5;

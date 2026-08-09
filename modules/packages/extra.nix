@@ -73,6 +73,7 @@ in
     octaveFull
     pdf2zh
     pkgsStable.python314Packages.huggingface-hub
+    rawtherapee
     rustscan
     sequoia-sq
     tradingview

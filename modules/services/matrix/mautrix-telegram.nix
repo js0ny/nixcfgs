@@ -45,6 +45,7 @@ let
   configFile = settingsFormat.generate "mautrix-telegram.yaml" {
     env_config_prefix = "MAUTRIX_TELEGRAM_";
     network = {
+      max_member_count = 50;
       sync = {
         update_limit = 1;
         create_limit = 1;
@@ -85,12 +86,8 @@ let
       };
       portal_create_filter = {
         mode = "allow";
-        list = lib.uniqueStrings (
-          [
-            "-1001750732656" # nvim_zh
-          ]
-          ++ config.secrets.plain.mautrix-telegram.allowList
-        );
+        # expected: `channel:CHANNELID`
+        list = lib.uniqueStrings (config.secrets.plain.mautrix-telegram.allowList);
       };
     };
     backfill = {

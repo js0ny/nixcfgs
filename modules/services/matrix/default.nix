@@ -33,6 +33,7 @@
         ./livekit.nix
         ./oidc.nix
         ./stickerpicker.nix
+        ./mautrix-telegram.nix
       ];
       sops.secrets.matrix_reg_token = {
         sopsFile = secrets + /matrix.yaml;

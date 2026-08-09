@@ -5,7 +5,12 @@
 }:
 let
   cfg = config.misc.shellAliases;
-  nuabbr = lib.concatMapAttrsStringSep " " (name: value: ''${name}: "${value}"'') cfg;
+  # Remove builtins commands from nushell
+  nuAbbr = removeAttrs cfg [
+    "ls"
+    "ll"
+    "la"
+  ];
 in
 {
   options = {
@@ -18,7 +23,8 @@ in
 
   config = lib.mkIf (cfg != { }) {
     programs.nushell.extraConfig = /* nu */ ''
-      $env.config.abbreviations = { ${nuabbr} }
+      let misc_aliases = '${builtins.toJSON nuAbbr}' | from json
+      $env.config.abbreviations = $env.config.abbreviations | merge  $misc_aliases
     '';
     programs.zsh.shellAliases = cfg;
     programs.bash.shellAliases = cfg;

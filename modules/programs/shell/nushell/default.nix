@@ -20,10 +20,14 @@
         # plugins = with pkgs.nushellPlugins; [
         #   desktop_notifications
         # ];
+        shellAliases = {
+          fg = "job unfreeze";
+        };
         extraConfig = /* nu */ ''
-          $env.config.abbreviations = {
-            fg: "job unfreeze"
+          $env.config.abbreviations = $env.config.abbreviations | merge {
             cls: "clear"
+            ll: "ls -l"
+            la: "ls -a"
           }
           $env.config.show_banner = false
           $env.config.table.mode = "frameless"

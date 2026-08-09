@@ -32,14 +32,17 @@
         })
       ];
 
-      # keep-sorted start
+      # keep-sorted start block=yes
       networking.iproute2.enable = true;
       programs.iftop.enable = true;
       programs.iotop.enable = true;
       programs.less.enable = true;
       programs.mtr.enable = true;
       programs.nano.enable = false;
-      programs.neovim.enable = true;
+      programs.neovim = {
+        enable = true;
+        defaultEditor = true;
+      };
       programs.tcpdump.enable = true;
       # keep-sorted end
 
@@ -48,6 +51,11 @@
         ls = "ls --color=auto";
         ll = "ls -l";
         la = "ls -a";
+      };
+      environment.variables = {
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+        PAGER = "less";
       };
     };
 
