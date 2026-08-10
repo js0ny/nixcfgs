@@ -7,7 +7,7 @@
         ./codex.nix
         ./pi-agent.nix
         ./herdr.nix
-        # ./oh-my-pi.nix
+        ./oh-my-pi.nix
         inputs.self.homeModules.opencode
       ];
       home.packages = with pkgs; [

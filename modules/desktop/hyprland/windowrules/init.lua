@@ -29,7 +29,7 @@ hl.window_rule({
     class = 'element',
   },
   workspace = 4,
-  opacity = '0.8 0.7',
+  opacity = '0.9 0.8',
 })
 
 -- hl.window_rule({

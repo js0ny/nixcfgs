@@ -11,10 +11,12 @@
       url = ep.forgejo.domain;
       socketPath = "/run/forgejo/forgejo.sock";
       sopsFile = secrets + /forgejo.yaml;
+      sshPort = 2220;
     in
     {
       imports = [
         ./backup.nix
+        ./fail2ban.nix
       ];
       sops.secrets = {
         forgejo_metrics_token = {
@@ -33,8 +35,8 @@
             DISABLE_SSH = false;
             PROTOCOL = "http+unix";
             HTTP_ADDR = socketPath;
-            SSH_PORT = 2220;
-            SSH_LISTEN_PORT = 2220;
+            SSH_PORT = sshPort;
+            SSH_LISTEN_PORT = sshPort;
             START_SSH_SERVER = true;
             # Hardcoded template for cross-generation binary stability
             # Use together with forgejo's internal ssh server
@@ -74,7 +76,7 @@
         };
       };
 
-      networking.firewall.allowedTCPPorts = [ 2220 ];
+      networking.firewall.allowedTCPPorts = [ sshPort ];
       nixdots.persist.system.directories = [ config.services.forgejo.stateDir ];
     };
 }

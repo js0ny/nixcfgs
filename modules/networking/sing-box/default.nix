@@ -1,9 +1,20 @@
 {
   flake.nixosModules.sing-box =
-    { config, secrets, ... }:
+    {
+      config,
+      pkgs,
+      secrets,
+      ...
+    }:
     let
       port = 8443;
       realityServer = "www.apple.com";
+      resolvConf = pkgs.writeText "sing-box-resolv.conf" (
+        builtins.concatStringsSep "\n" (
+          map (nameserver: "nameserver ${nameserver}") config.networking.nameservers
+        )
+        + "\n"
+      );
       sopsFile = secrets + /sing-box.yaml;
     in
     {
@@ -48,6 +59,22 @@
             }
           ];
         };
+      };
+
+      systemd.services.sing-box.serviceConfig = {
+        # The systemd-resolved stub is blocked with the rest of localhost.
+        BindReadOnlyPaths = [ "${resolvConf}:/etc/resolv.conf" ];
+        # Prevent proxy traffic from reaching localhost, LANs, Tailscale, or IPv6 ULAs.
+        IPAddressDeny = [
+          "localhost"
+          "link-local"
+          "multicast"
+          "10.0.0.0/8"
+          "100.64.0.0/10"
+          "172.16.0.0/12"
+          "192.168.0.0/16"
+          "fc00::/7"
+        ];
       };
 
       networking.firewall.allowedTCPPorts = [ port ];
