@@ -26,6 +26,7 @@ in
     mod.plasma
     mod.hyprland
     mod.niri
+    mod.scroll
 
     mod.gaze
   ];

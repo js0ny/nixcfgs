@@ -6,6 +6,9 @@ let
   sopsFile = secrets + /hermes.yaml;
 in
 {
+  # TODO:
+  # MATRIX_ACCESS_TOKEN=${sec.hermes_matrix_access_token}
+  # MATRIX_RECOVERY_KEY=${sec.hermes_matrix_recovery_key}
   sops.templates."hermes.env".content = /* bash */ ''
     # LLM Integrations
     LITELLM_API_KEY=${sec.hermes_litellm_api_key}
@@ -19,6 +22,14 @@ in
     TELEGRAM_BOT_TOKEN=${sec.hermes_telegram_bot_token}
     TELEGRAM_ALLOWED_USERS=${sec.tg_main_chatid}
     TELEGRAM_HOME_CHANNEL=${sec.tg_main_chatid}
+
+    # Matrix
+    # [Human Intervention] Create @hermes:js0ny.net, obtain a dedicated Hermes device token and its recovery key, then add both values to hermes.yaml.
+    MATRIX_HOMESERVER=${ep.matrix.publicUrl}
+    MATRIX_USER_ID=@hermes:js0ny.net
+    MATRIX_ALLOWED_USERS=@js0ny:js0ny.net
+    MATRIX_E2EE_MODE=required
+    # To use every joined room, keep MATRIX_ALLOWED_ROOMS unset and invite @hermes:js0ny.net; only the allowed user can trigger it, and room messages require an @mention by default.
 
     ### Integrations
     # GitHub
@@ -38,6 +49,8 @@ in
 
   sops.secrets = {
     hermes_telegram_bot_token = { inherit sopsFile; };
+    # hermes_matrix_access_token = { inherit sopsFile; };
+    # hermes_matrix_recovery_key = { inherit sopsFile; };
     hermes_litellm_api_key = { inherit sopsFile; };
     hermes_github_pat = { inherit sopsFile; };
     hermes_miniflux_api_token = { inherit sopsFile; };
