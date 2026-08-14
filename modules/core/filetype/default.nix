@@ -30,7 +30,6 @@
         EDITOR = apps.editor.tui.exe;
         VISUAL = apps.editor.tui.exe;
         BROWSER = apps.browser.exe;
-        SHELL = apps.interactiveShell.exe;
       };
       xdg.configFile = builtins.listToAttrs (
         map (x: {

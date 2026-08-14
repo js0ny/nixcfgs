@@ -92,8 +92,8 @@ in
         desktop = "com.mitchellh.ghostty.desktop";
       };
       interactiveShell = {
-        package = pkgs.nushell;
-        exe = "nu";
+        package = pkgs.fish;
+        exe = "fish";
         desktop = "";
       };
       browser = {
