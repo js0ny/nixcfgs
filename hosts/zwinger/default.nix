@@ -24,6 +24,9 @@ in
     mod.bentopdf
   ];
 
+  # https://matrix-construct.github.io/tuwunel/configuration/examples.html
+  services.matrix-tuwunel.settings.global.rocksdb_allow_fallocate = false;
+
   home-manager.users."js0ny" = import ./home.nix;
 
   boot.loader.grub.enable = true;

@@ -118,7 +118,6 @@ in
     extraConfig = ''
       Defaults lecture = never
     '';
-    execWheelOnly = true;
   };
 
   networking.nftables = {

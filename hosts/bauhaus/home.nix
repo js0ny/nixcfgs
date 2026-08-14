@@ -3,11 +3,10 @@
   config,
   inputs,
   secrets,
-  lib,
   ...
 }:
 let
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
+  mod = inputs.self.homeModules;
 in
 {
 
@@ -15,19 +14,20 @@ in
 
   imports = [
     ./vars.nix
-    inputs.self.homeModules.desktop
-    inputs.self.homeModules.plasma
-    inputs.self.homeModules.niri
-    inputs.self.homeModules.gnome
-    inputs.self.homeModules.cosmic
-    inputs.self.homeModules.hyprland
-    inputs.self.homeModules.noctalia
+    mod.desktop
+    mod.plasma
+    mod.niri
+    mod.gnome
+    mod.hyprland
+    mod.noctalia
     ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 
     # keep-sorted end
-    inputs.self.homeModules.engineering
-    inputs.self.homeModules.electronics
+    mod.engineering
+    mod.electronics
+
+    mod.libvirt
 
     inputs.secrets.homeManagerModules.default
     # keep-sorted start
@@ -141,6 +141,7 @@ in
   ];
   home.packages = with pkgs; [
     librewolf
+    inputs.glide-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     digikam
     clapper
     showtime

@@ -32,7 +32,6 @@ in
     mod.plasma
     mod.hyprland
     mod.niri
-    mod.cosmic
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
@@ -46,9 +45,5 @@ in
   services.scx = {
     enable = true;
     scheduler = "scx_lavd";
-  };
-  programs.labwc.enable = true;
-  programs.clash-verge = {
-    enable = true;
   };
 }

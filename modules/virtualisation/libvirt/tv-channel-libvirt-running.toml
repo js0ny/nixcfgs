@@ -58,4 +58,3 @@ virsh --connect qemu:///system dominfo '{}'
 printf '\nInterfaces:\n'
 virsh --connect qemu:///system domiflist '{}'
 """
-

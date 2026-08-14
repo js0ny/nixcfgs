@@ -53,6 +53,9 @@
         };
       };
       nixdots.persist.system.directories = [ config.services.jellyfin.dataDir ];
-
+      fonts = {
+        packages = [ pkgs.noto-fonts-cjk-sans ];
+        fontDir.enable = true;
+      };
     };
 }

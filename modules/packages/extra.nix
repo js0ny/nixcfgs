@@ -27,7 +27,19 @@ in
   ];
 
   home.packages = with pkgs; [
-    # keep-sorted start
+    # keep-sorted start block=yes
+    # (comfyui.override {
+    #   python3 = pkgs.python3.override {
+    #     packageOverrides = pyFinal: pyPrev: {
+    #       torch = pyPrev.torch.override {
+    #         cudaSupport = true;
+    #       };
+    #       triton = pyPrev.triton.override {
+    #         cudaSupport = true;
+    #       };
+    #     };
+    #   };
+    # })
     (darktable.override { withAi = true; })
     ashpd-demo # for portal debug
     awscli2
@@ -49,6 +61,7 @@ in
     icoutils
     inkscape
     jetbrains.datagrip
+    js0ny.chatgpt
     js0ny.dirstat-rs
     js0ny.limes
     js0ny.proton-drive-cli
@@ -76,8 +89,10 @@ in
     rawtherapee
     rustscan
     sequoia-sq
+    tinymist
     tradingview
     tsukimi
+    typst
     xournalpp
     # keep-sorted end
 

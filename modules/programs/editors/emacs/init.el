@@ -334,7 +334,12 @@
 	      (goto-char end))))))))
 
 (use-package magit
-  :commands (magit))
+  :commands (magit)
+  :config
+  (evil-define-key '(normal) magit-status-mode-map
+    (kbd "<tab>") #'magit-section-toggle
+    (kbd "za") #'magit-section-toggle))
+
 
 (use-package highlight-indent-guides
   :config
@@ -348,3 +353,5 @@
   (auth-sources
    (list (expand-file-name "authinfo.gpg"
                            user-emacs-directory))))
+
+(require 'typst-overlay)

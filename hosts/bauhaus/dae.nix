@@ -51,6 +51,7 @@ in
 
       domain(
         suffix: ac.uk
+        suffix: org.uk
       ) -> direct
 
       # Blocked by British Online Safety Act

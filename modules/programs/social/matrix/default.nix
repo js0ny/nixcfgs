@@ -9,7 +9,14 @@
       };
       home.packages = with pkgs; [
         (element-desktop.override {
-          commandLineArgs = if pkgs.stdenv.isLinux then "--password-store=gnome-libsecret" else "";
+          commandLineArgs =
+            if pkgs.stdenv.isLinux then
+              [
+                "--password-store=gnome-libsecret"
+                "--enable-features=MiddleClickAutoscroll"
+              ]
+            else
+              "";
         })
       ];
 

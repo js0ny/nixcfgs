@@ -6,9 +6,11 @@
       # keep-sorted start
       kate
       kde-gtk-config # sync gtk colorscheme with kde settings
+      ktexteditor
       kwallet # kwallet: use gnome-keyring instead
       kwallet-pam
       kwalletmanager
+      plasma-workspace-wallpapers
       qrca
       # keep-sorted end
       # drkonqi # causing crash on sessions other than KDE plasma, requiredPackages, cannot be excluded

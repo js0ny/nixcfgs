@@ -57,6 +57,11 @@
 
     # {{{ Application Supports
     flatpak-nix.url = "github:gmodena/nix-flatpak";
+    glide-browser = {
+      url = "github:glide-browser/glide.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     gaze = {
       url = "github:GunduLabs/gaze";
       # follows inputs.nixpkgs to reuse onnxruntime

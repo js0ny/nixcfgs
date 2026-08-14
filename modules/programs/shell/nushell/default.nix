@@ -61,6 +61,7 @@
           source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/podman/podman-completions.nu
           source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/ssh/ssh-completions.nu
           source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/zellij/zellij-completions.nu
+          source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/television/television-completions.nu
         '';
       };
       nixdots.persist.home = {

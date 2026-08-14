@@ -15,4 +15,5 @@ _: {
       };
     };
   };
+  security.sudo-rs.execWheelOnly = false;
 }
