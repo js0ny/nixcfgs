@@ -177,7 +177,6 @@ in
         "sway"
       ];
       wm = {
-        shell = "dank-material-shell";
         clipboard = "vicinae";
       };
     };

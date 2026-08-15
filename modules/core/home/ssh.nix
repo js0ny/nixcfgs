@@ -6,6 +6,14 @@
 }:
 let
   port = config.nixdefs.endpoints.ssh.port;
+  hosts = (import ../../../definitions/hosts.nix).nixos;
+  mkTailscaleHost = _: host: {
+    HostName = host.tailscaleIp;
+    User = "js0ny";
+    Port = port;
+    ForwardAgent = true;
+    IdentityFile = [ "~/.ssh/id_ed25519" ];
+  };
 in
 {
   nixdots.persist.home = {
@@ -14,67 +22,35 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    settings = lib.mkForce {
-      "git.js0ny.net" = {
-        Port = 2220; # see forgejo/default.nix
-        IdentityFile = [ "~/.ssh/id_ed25519" ];
-      };
-      "polder" = {
-        HostName = "100.92.207.11";
-        User = "js0ny";
-        Port = port;
-        ForwardAgent = true;
-        IdentityFile = [ "~/.ssh/id_ed25519" ];
-      };
-      "gl-mt3000" = {
-        HostName = "192.168.8.1";
-        User = "root";
-        Port = 22;
-        IdentityFile = [ "~/.ssh/id_ed25519" ];
-      };
-      "zwinger" = {
-        HostName = "100.97.155.65";
-        User = "js0ny";
-        Port = port;
-        ForwardAgent = true;
-        IdentityFile = [ "~/.ssh/id_ed25519" ];
-      };
-      "bauhaus" = {
-        HostName = "100.65.81.67";
-        User = "js0ny";
-        Port = port;
-        ForwardAgent = true;
-        IdentityFile = [ "~/.ssh/id_ed25519" ];
-      };
-      "crystal" = {
-        HostName = "100.105.9.50";
-        User = "js0ny";
-        Port = port;
-        ForwardAgent = true;
-        IdentityFile = [ "~/.ssh/id_ed25519" ];
-      };
-      "belvedere" = {
-        HostName = "100.98.217.124";
-        User = "js0ny";
-        Port = port;
-        ForwardAgent = true;
-        IdentityFile = [ "~/.ssh/id_ed25519" ];
-      };
-      "*" = {
-        ForwardAgent = false;
-        AddKeysToAgent = "yes";
-        Compression = false;
-        ServerAliveInterval = 60;
-        ServerAliveCountMax = 3;
-        HashKnownHosts = false;
-        UserKnownHostsFile = "~/.ssh/known_hosts";
-        ControlMaster = "auto";
-        ControlPath = "~/.ssh/master-%r@%n:%p";
-        ControlPersist = "10m";
+    settings = lib.mkForce (
+      {
+        "git.js0ny.net" = {
+          Port = 2220; # see forgejo/default.nix
+          IdentityFile = [ "~/.ssh/id_ed25519" ];
+        };
+        "gl-mt3000" = {
+          HostName = "192.168.8.1";
+          User = "root";
+          Port = 22;
+          IdentityFile = [ "~/.ssh/id_ed25519" ];
+        };
+        "*" = {
+          ForwardAgent = false;
+          AddKeysToAgent = "yes";
+          Compression = false;
+          ServerAliveInterval = 60;
+          ServerAliveCountMax = 3;
+          HashKnownHosts = false;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
+          ControlMaster = "auto";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "10m";
+        }
+        // lib.optionalAttrs pkgs.stdenv.isDarwin {
+          UseKeychain = "yes";
+        };
       }
-      // lib.optionalAttrs pkgs.stdenv.isDarwin {
-        UseKeychain = "yes";
-      };
-    };
+      // lib.mapAttrs mkTailscaleHost hosts
+    );
   };
 }

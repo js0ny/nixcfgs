@@ -9,7 +9,7 @@
       myLib = import ./lib { lib = inputs.nixpkgs.lib; };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
-      debug = true;
+      debug = true; # for nixd
       systems = [
         "x86_64-linux"
         "aarch64-linux"

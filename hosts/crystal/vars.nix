@@ -178,13 +178,13 @@ in
     };
     desktop = {
       enable = true;
-      dm = "sddm";
+      dm = "regreet";
       session = [
+        "hyprland"
         "niri"
         "kde"
       ];
       wm = {
-        shell = "dank-material-shell";
         clipboard = "vicinae";
       };
     };
