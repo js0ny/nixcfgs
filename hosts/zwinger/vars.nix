@@ -47,9 +47,6 @@
     machine = {
       role = "guest";
       compat = false;
-      virtualisation = {
-        oci-container.podman = true;
-      };
     };
     server = {
       enable = true;

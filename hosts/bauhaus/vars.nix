@@ -159,11 +159,6 @@ in
     machine = {
       role = "host";
       compat = true;
-      virtualisation = {
-        waydroid = false;
-        libvirt.enable = true;
-        oci-container.podman = true;
-      };
     };
     desktop = {
       enable = true;
