@@ -25,6 +25,7 @@
 (use-package emacs
   :custom
   (inhibit-startup-message t)
+  (use-short-answer t)
   :config
   (menu-bar-mode -1)
   (tool-bar-mode -1))
@@ -52,7 +53,7 @@
   (evil-mode 1)
 					; % match pairs
   (evil-define-key '(normal) 'global (kbd "TAB") 'evil-jump-item))
-  
+
 
 (use-package company
   :ensure t
@@ -306,7 +307,7 @@
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   :custom
   (highlight-indent-guides-method 'character))
-  
+
 (use-package auth-source
   :ensure nil
   :custom
@@ -314,4 +315,4 @@
    (list (expand-file-name "authinfo.gpg"
                            user-emacs-directory))))
 
-(require 'typst-overlay)
+;;; (require 'typst-overlay)

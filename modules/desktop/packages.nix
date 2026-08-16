@@ -5,6 +5,7 @@
       ddcutil # requires i2c enabled
       efibootmgr
       f2fs-tools
+      f3
       gnome-firmware
       libnotify
       libva-utils
