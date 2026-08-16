@@ -14,36 +14,15 @@
       programs.emacs = {
         enable = true;
         package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else null;
+        extraConfig = /* elisp */ ''
+          (setq org-babel-python-command "${lib.getExe pkgs.python3}")
+        '';
         extraPackages =
           epkgs:
-          let
-            org-supertag = epkgs.trivialBuild {
-              pname = "org-supertag";
-              version = "5.8.2-unstable-2026-06-19";
-              src = pkgs.fetchFromGitHub {
-                owner = "yibie";
-                repo = "org-supertag";
-                rev = "ff45a9616aaecfbbfc4081715a86dd9612b8b28d";
-                hash = "sha256-NA8Rj6gMYF21PdIsxM4clZ3JVezUXJquG3ojNq0HWgM=";
-              };
-              postPatch = /* bash */ ''
-                substituteInPlace supertag-services-capture.el \
-                  --replace-fail '(lambda (t) (concat "#" t))' '(lambda (tag) (concat "#" tag))'
-                substituteInPlace supertag-ui-completion.el \
-                  --replace-fail '(lambda (t) (member t current))' '(lambda (tag) (member tag current))'
-              '';
-              packageRequires = with epkgs; [
-                gptel
-                ht
-                org
-                posframe
-              ];
-            };
-          in
           with epkgs;
           [
-
-            org-supertag
+            pkgs.js0ny.emacsPackages.typst-overlay
+            pkgs.js0ny.emacsPackages.kitty-graphics
             hnview
 
             avy
@@ -56,10 +35,10 @@
             evil-surround
             evil-mc
             evil-goggles
-            evil-org
+            evil-ghostel
             ement
             melpaPackages.telega
-            # ghostel
+            ghostel
             beancount
             counsel
             company
@@ -72,17 +51,23 @@
             magit
             elfeed
             elfeed-org
-            olivetti
-            org-modern
             doom-modeline
             gptel
             posframe
             ht
+            yasnippet
+            nix-mode
+            htmlize
             (epkgs.treesit-grammars.with-grammars (grammars: [
               grammars.tree-sitter-nix
             ]))
           ]
           ++ (lib.optionals pkgs.stdenv.isLinux [ epkgs.xclip ]);
+      };
+
+      home.directories.org = {
+        create = true;
+        persist = true;
       };
 
       xdg.configFile."emacs".source = mkSymlink "${dots}/modules/programs/editors/emacs";

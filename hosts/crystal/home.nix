@@ -2,6 +2,7 @@
   config,
   inputs,
   secrets,
+  pkgs,
   ...
 }:
 {
@@ -145,6 +146,9 @@
 
   nixdots.persist.home.directories = [
     ".config/sunshine"
+  ];
+  home.packages = [
+    inputs.glide-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
 }

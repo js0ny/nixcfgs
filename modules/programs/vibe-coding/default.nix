@@ -14,6 +14,8 @@
         llm-agents.agentsview
         llm-agents.ccusage
         abtop
+        llm-agents.chatgpt
+        llm-agents.dsh
       ];
     };
 }

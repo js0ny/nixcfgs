@@ -61,7 +61,6 @@ in
     icoutils
     inkscape
     jetbrains.datagrip
-    js0ny.chatgpt
     js0ny.dirstat-rs
     js0ny.limes
     js0ny.proton-drive-cli

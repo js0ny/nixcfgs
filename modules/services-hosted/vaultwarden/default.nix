@@ -1,14 +1,18 @@
 {
-  flake.nixosModules.vaultwarden = _: {
+  flake.nixosModules.vaultwarden = { config, ... }: {
+    nixdefs.endpoints.vaultwarden = {
+      domain = "vw.js0ny.net";
+      port = 8223;
+    };
     services.vaultwarden = {
       enable = true;
       config = {
-        DOMAIN = "https://vw.js0ny.net";
+        DOMAIN = config.nixdefs.endpoints.vaultwarden.domain;
         SIGNUPS_ALLOWED = false;
 
         # Vaultwarden recommends running behind a reverse proxy, the configureNginx option can be used for that.
         ROCKET_ADDRESS = "127.0.0.1";
-        ROCKET_PORT = 8222;
+        ROCKET_PORT = config.nixdefs.endpoints.vaultwarden.port;
 
         ROCKET_LOG = "critical";
 

@@ -54,7 +54,7 @@
           astral-sh.ty
 
           # misc
-          openai.chatgpt # coex
+          openai.chatgpt # codex
         ];
         userSettings = {
           "workbench.iconTheme" = "material-icon-theme";

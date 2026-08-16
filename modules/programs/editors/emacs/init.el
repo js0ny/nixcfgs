@@ -52,7 +52,7 @@
   (evil-mode 1)
 					; % match pairs
   (evil-define-key '(normal) 'global (kbd "TAB") 'evil-jump-item))
-  
+
 
 (use-package company
   :ensure t
@@ -136,8 +136,19 @@
 
 (use-package org
   :custom
-  (org-log-done 'time)
-  (org-startup-indented nil))
+  (org-confirm-babel-evaluate nil)
+  (org-directory (expand-file-name "~/org"))
+  :config
+  (require 'org-tempo)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (shell . t))))
+
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
 
 (use-package eshell
   :ensure t
@@ -251,16 +262,16 @@
 
 (use-package ement :ensure t)
 
-(use-package ghostel :ensure nil
+(use-package ghostel
+  :commands (ghostel)
   :bind ("C-x m" . ghostel))
+
+(use-package evil-ghostel
+  :after (evil ghostel)
+  :hook (ghostel-mode . evil-ghostel-mode))
 
 (use-package dashboard :ensure t)
 
-
-(use-package org-supertag
-  :custom
-  (supertag-data-directory (expand-file-name "org-supertag" user-emacs-data))
-  (org-supertag-sync-directories '("~/org/")))
 
 (use-package elfeed
   :commands (elfeed)
@@ -306,7 +317,7 @@
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   :custom
   (highlight-indent-guides-method 'character))
-  
+
 (use-package auth-source
   :ensure nil
   :custom
@@ -314,4 +325,39 @@
    (list (expand-file-name "authinfo.gpg"
                            user-emacs-directory))))
 
-(require 'typst-overlay)
+(use-package typst-overlay
+  :hook ((typst-ts-mode . typst-overlay-mode)
+	 (after-save . typst-overlay-save-refresh)))
+
+(use-package kitty-graphics
+ :config
+  (kitty-graphics-setup))
+
+(use-package nix-mode)
+
+(with-eval-after-load 'typst-overlay
+  (defun my/typst-overlay-analyze-org ()
+    (let (math-nodes)
+      (save-excursion
+        (goto-char (point-min))
+        (while (re-search-forward "\\$[^$]+\\$" nil t)
+          (let* ((beg (match-beginning 0))
+                 (end (match-end 0))
+                 (text (match-string-no-properties 0)))
+            (push
+             (make-typst-overlay-math-node
+              :beg beg
+              :end end
+              :text text
+              :text-hash (md5 text))
+             math-nodes))))
+      (make-typst-overlay-analysis
+       :code-nodes nil
+       :math-nodes
+       (typst-overlay--sort-math-nodes
+        (nreverse math-nodes))
+       :first-error nil)))
+
+  (advice-add 'typst-overlay--analyze-org
+              :override
+              #'my/typst-overlay-analyze-org))
