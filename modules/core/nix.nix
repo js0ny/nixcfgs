@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
@@ -30,6 +30,8 @@
         "flakes"
       ];
       warn-dirty = false;
+      # TODO: Use different value for different hosts
+      max-jobs = config.js0ny.hardware.cpu.nproc / 2;
     };
     registry = rec {
       nixpkgs.flake = inputs.nixpkgs;

@@ -6,6 +6,7 @@
         inputs.self.nixosModules.hid
         inputs.self.nixosModules.nvidia
         inputs.self.nixosModules.serial
+        inputs.self.nixosModules.asus
       ];
 
       hardware.enableRedistributableFirmware = true;

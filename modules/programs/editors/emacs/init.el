@@ -335,6 +335,7 @@
 
 (use-package nix-mode)
 
+;; TODO: Reimplement the whole typst overlay
 (with-eval-after-load 'typst-overlay
   (defun my/typst-overlay-analyze-org ()
     (let (math-nodes)

@@ -7,7 +7,7 @@
 let
   cfg = config.nixdots.linux.gpu;
 in
-lib.mkIf (cfg == "disable") {
+lib.mkIf (cfg == "none") {
   boot.extraModprobeConfig = ''
     blacklist nouveau
     options nouveau modeset=0

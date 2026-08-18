@@ -114,6 +114,7 @@ lib.mkMerge [
     nixdots.persist.nosnap.home = {
       directories = [
         ".local/share/vicinae"
+        ".cache/vicinae"
       ];
     };
     makeMutable = [ ".config/vicinae/settings.json" ];

@@ -18,5 +18,12 @@ in
         description = "Whether the host has a microphone";
       };
     };
+    cpu = {
+      nproc = mkOption {
+        type = types.int;
+        default = 0;
+        description = "Number of virtual processors visible to the system, get it via `nproc` command line";
+      };
+    };
   };
 }

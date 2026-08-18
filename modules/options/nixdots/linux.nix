@@ -46,6 +46,7 @@
     gpu = lib.mkOption {
       type = lib.types.enum [
         "none" # igpu
+        "disable" # igpu
         "nouveau"
         "nvidia"
         "vfio" # EXPERIMENTAL
