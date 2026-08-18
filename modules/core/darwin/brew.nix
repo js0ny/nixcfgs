@@ -1,24 +1,22 @@
 { config, lib, ... }:
 let
-  cfg = config.nixdots.js0ny.homebrew;
-  u = config.nixdots.user.name;
-  hm = config.home-manager.users."${u}".nixdots.js0ny.homebrew;
+  cfg = config.js0ny.homebrew;
+  primaryUser = config.nixdots.user.name;
+  homeConfig = config.home-manager.users."${primaryUser}".js0ny.homebrew;
 in
 lib.mkIf cfg.enable {
   homebrew = {
     enable = cfg.enable;
     # Get it via `brew --prefix`
-    prefix = "/opt/homebrew";
+    prefix = cfg.prefix;
     enableBashIntegration = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
-    brews = cfg.formulae ++ hm.formulae;
-    casks = cfg.casks ++ hm.casks;
+    brews = cfg.formulae ++ homeConfig.formulae;
+    casks = cfg.casks ++ homeConfig.casks;
   };
 
-  nixdots.js0ny.homebrew = {
-    taps = [ "js0ny/tap" ];
-  };
+  js0ny.homebrew.taps = [ "js0ny/tap" ];
 
   programs.fish.interactiveShellInit = /* fish */ ''
     if test -d "${cfg.prefix}/share/fish/completions"

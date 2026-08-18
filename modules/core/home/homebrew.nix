@@ -1,14 +1,12 @@
 {
-  pkgs,
   lib,
   config,
   ...
 }:
 let
-  darwin = config.nixdots.darwin;
-  brew = darwin.homebrew;
+  brew = config.js0ny.homebrew;
 in
-lib.mkIf (darwin.enable && brew.enable) {
+lib.mkIf brew.enable {
 
   misc.shellAliases = {
     brewi = "brew install";

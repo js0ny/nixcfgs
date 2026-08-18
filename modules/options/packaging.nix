@@ -5,6 +5,7 @@
   ...
 }:
 let
+  absolutePathType = lib.types.addCheck lib.types.str (path: lib.hasPrefix "/" path);
   cfg = config.js0ny;
 in
 {
@@ -17,6 +18,10 @@ in
     };
     homebrew = {
       enable = lib.mkEnableOption "Whether to enable homebrew package manager";
+      prefix = lib.mkOption {
+        type = absolutePathType;
+        default = "/opt/homebrew/";
+      };
       formulae = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];

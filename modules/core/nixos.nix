@@ -102,7 +102,7 @@ in
 
   users.users.root.shell = lib.getExe pkgs.zsh;
 
-  environment.variables = import ./do-not-track-vars.nix;
+  environment.variables = import ./shared/do-not-track-vars.nix;
   environment.sessionVariables = {
     # Default value: FRSXMK, where S indicates "Chops long lines"
     SYSTEMD_LESS = "FRXMK";
