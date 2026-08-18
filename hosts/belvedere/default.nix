@@ -15,6 +15,7 @@ in
 
     mod.server
     # keep-sorted start
+    mod.authelia
     mod.cloudflare
     mod.code-server
     mod.fail2ban
@@ -23,6 +24,7 @@ in
     mod.hermes-agent
     mod.immich
     mod.jellyfin
+    mod.lldap
     mod.nextcloud
     mod.nix-index-database
     mod.prometheus-node

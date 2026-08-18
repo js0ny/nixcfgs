@@ -14,7 +14,6 @@
     # keep-sorted start
 
     ./static/flux.nix
-    inputs.self.nixosModules.authelia
     inputs.self.nixosModules.bentopdf
     inputs.self.nixosModules.cloudflare
     inputs.self.nixosModules.code-server
@@ -28,7 +27,6 @@
     inputs.self.nixosModules.karakeep
     inputs.self.nixosModules.librechat
     inputs.self.nixosModules.litellm
-    inputs.self.nixosModules.lldap
     inputs.self.nixosModules.lobehub
     inputs.self.nixosModules.miniflux
     inputs.self.nixosModules.mongodb
