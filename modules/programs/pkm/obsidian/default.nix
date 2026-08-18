@@ -21,6 +21,6 @@
         pin = true;
       };
       nixdots.persist.nosnap.home.directories = [ ".config/obsidian" ];
-      nixdots.darwin.homebrew.casks = [ "obsidian" ];
+      js0ny.homebrew.casks = [ "obsidian" ];
     };
 }

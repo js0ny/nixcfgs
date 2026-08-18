@@ -10,6 +10,7 @@ let
 in
 {
   js0ny = {
+    flatpak.enable = true;
     apps = {
       terminal = {
         package = pkgs.kitty;
@@ -148,20 +149,6 @@ in
       firefox.enable = true;
       dolphin.enable = true;
       thunderbird.enable = true;
-    };
-    features = {
-      preferGtk = true;
-      media = {
-        obs-studio.enable = true;
-        mpv = {
-          enable = true;
-          enableNativeFrontend = false;
-        };
-      };
-      tools = {
-        vicinae.enable = true;
-      };
-      flatpak.enable = false;
     };
     linux = {
       enable = true;

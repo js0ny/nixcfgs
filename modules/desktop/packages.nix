@@ -100,7 +100,7 @@
         # keep-sorted end
       ]);
 
-    nixdots.darwin.homebrew = {
+    js0ny.homebrew = {
       taps = [
         # "daipeihust/tap" # im-select
       ];

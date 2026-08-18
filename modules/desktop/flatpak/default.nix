@@ -31,7 +31,7 @@
           };
         }) electronApps
       );
-      cfg = config.nixdots.features.flatpak;
+      cfg = config.js0ny.flatpak;
     in
     lib.mkIf cfg.enable {
       services.flatpak.enable = true;

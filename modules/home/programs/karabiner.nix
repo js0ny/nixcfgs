@@ -89,5 +89,5 @@ in
       }
     ];
   };
-  nixdots.darwin.homebrew.casks = [ "karabiner-elements" ];
+  js0ny.homebrew.casks = [ "karabiner-elements" ];
 }

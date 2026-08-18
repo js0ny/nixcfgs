@@ -16,6 +16,6 @@
           ];
         };
       })
-      (lib.mkIf (pkgs.stdenv.isDarwin) { nixdots.darwin.homebrew.casks = [ ]; })
+      (lib.mkIf (pkgs.stdenv.isDarwin) { js0ny.homebrew.casks = [ ]; })
     ];
 }

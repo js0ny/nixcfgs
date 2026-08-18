@@ -42,5 +42,5 @@ in
     pkgs.proton-vpn-cli
     pkgs.proton-vpn
   ];
-  nixdots.darwin.homebrew.casks = [ "protonvpn" ];
+  js0ny.homebrew.casks = [ "protonvpn" ];
 }

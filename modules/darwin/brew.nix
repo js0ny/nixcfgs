@@ -1,14 +1,14 @@
 { config, lib, ... }:
 let
-  cfg = config.nixdots.darwin.homebrew;
+  cfg = config.nixdots.js0ny.homebrew;
   u = config.nixdots.user.name;
-  hm = config.home-manager.users."${u}".nixdots.darwin.homebrew;
+  hm = config.home-manager.users."${u}".nixdots.js0ny.homebrew;
 in
 lib.mkIf cfg.enable {
   homebrew = {
     enable = cfg.enable;
     # Get it via `brew --prefix`
-    prefix = cfg.prefix;
+    prefix = "/opt/homebrew";
     enableBashIntegration = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
@@ -16,7 +16,7 @@ lib.mkIf cfg.enable {
     casks = cfg.casks ++ hm.casks;
   };
 
-  nixdots.darwin.homebrew = {
+  nixdots.js0ny.homebrew = {
     taps = [ "js0ny/tap" ];
   };
 

@@ -4,5 +4,5 @@
     # WiiU Emulator
     pkgs.cemu
   ];
-  nixdots.darwin.homebrew.casks = [ "cemu" ];
+  js0ny.homebrew.casks = [ "cemu" ];
 }

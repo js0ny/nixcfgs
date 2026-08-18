@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixdots.darwin.homebrew.casks = [
+  js0ny.homebrew.casks = [
     "apparency"
     "qlcolorcode"
     "qlmarkdown"

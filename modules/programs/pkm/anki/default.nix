@@ -31,7 +31,7 @@
         ".local/share/Anki2"
       ];
 
-      nixdots.darwin.homebrew.casks = [ "anki" ];
+      js0ny.homebrew.casks = [ "anki" ];
       js0ny.flatpak.packages = [ "net.ankiweb.Anki" ];
     };
 }

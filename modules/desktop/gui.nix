@@ -7,7 +7,7 @@
 let
   user = config.nixdots.user.name;
   avatar = config.nixdots.user.avatar;
-  flatpak = config.nixdots.features.flatpak;
+  flatpak = config.js0ny.flatpak;
 in
 {
   xdg.terminal-exec.enable = true;

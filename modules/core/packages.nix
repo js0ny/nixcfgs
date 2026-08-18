@@ -73,7 +73,7 @@
       git
       mas
     ];
-    nixdots.darwin.homebrew.formulae = [ "dark-mode" ];
+    nixdots.js0ny.homebrew.formulae = [ "dark-mode" ];
   };
   flake.homeModules.core = { pkgs, ... }: {
     home.packages = with pkgs; [

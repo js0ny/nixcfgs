@@ -27,7 +27,7 @@
         };
       })
       (lib.mkIf (pkgs.stdenv.isDarwin) {
-        nixdots.darwin.homebrew.casks = [
+        js0ny.homebrew.casks = [
           "ltspice"
           "ngspice"
           "kicad"

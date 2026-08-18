@@ -19,5 +19,5 @@
       ppsspp.enable = true; # PSP
     };
   };
-  nixdots.darwin.homebrew.casks = [ "retroarch" ];
+  js0ny.homebrew.casks = [ "retroarch" ];
 }

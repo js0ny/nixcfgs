@@ -5,5 +5,6 @@
     ./nixdots
     ./hardware.nix
     ./apps.nix
+    ./packaging.nix
   ];
 }
