@@ -52,7 +52,7 @@
         	vim.keymap.set("n", "q", "<cmd>qa!<CR>", { buffer = buf })
         end)
       '';
-      shell = config.nixdots.apps.interactiveShell.package;
+      shell = config.js0ny.apps.interactiveShell.package;
     in
     {
       programs.zellij = {

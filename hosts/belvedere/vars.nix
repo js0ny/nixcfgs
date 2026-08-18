@@ -8,6 +8,21 @@
   sops.secrets.tskey = {
     sopsFile = secrets + /hosts/belvedere.yaml;
   };
+  js0ny = {
+    apps = {
+      interactiveShell = {
+        package = pkgs.fish;
+        exe = "fish";
+        desktop = "";
+      };
+      editor = {
+        tui = {
+          package = pkgs.neovim;
+          exe = "nvim";
+        };
+      };
+    };
+  };
   nixdots = {
     persist = {
       enable = true;
@@ -45,19 +60,6 @@
     style = {
       enable = false;
       stylix.enable = false;
-    };
-    apps = {
-      interactiveShell = {
-        package = pkgs.fish;
-        exe = "fish";
-        desktop = "";
-      };
-      editor = {
-        tui = {
-          package = pkgs.neovim;
-          exe = "nvim";
-        };
-      };
     };
     linux = {
       enable = true;

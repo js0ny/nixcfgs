@@ -14,7 +14,7 @@
       ...
     }:
     let
-      apps = config.nixdots.apps;
+      apps = config.js0ny.apps;
       magicDir = ./magic;
 
       customMagicCompiled = pkgs.runCommand "custom.magic.mgc" { } ''

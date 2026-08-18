@@ -27,8 +27,8 @@
           };
           kdeglobals = {
             General = {
-              TerminalApplication = lib.getExe config.nixdots.apps.terminal.package;
-              TerminalService = config.nixdots.apps.terminal.desktop;
+              TerminalApplication = lib.getExe config.js0ny.apps.terminal.package;
+              TerminalService = config.js0ny.apps.terminal.desktop;
             };
             KDE = {
               ShowDeleteCommand = false;

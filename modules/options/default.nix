@@ -4,5 +4,6 @@
     ./nixdefs
     ./nixdots
     ./hardware.nix
+    ./apps.nix
   ];
 }

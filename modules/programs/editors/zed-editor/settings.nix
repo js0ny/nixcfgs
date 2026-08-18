@@ -11,7 +11,7 @@
       context_servers = config.nixdefs.mcp.clientConfigs.zed-editor;
       terminal = {
         env.EDITOR = "zeditor";
-        shell.program = config.nixdots.apps.interactiveShell.exe;
+        shell.program = config.js0ny.apps.interactiveShell.exe;
       };
       relative_line_numbers = "enabled";
       icon_theme = "Material Icon Theme";

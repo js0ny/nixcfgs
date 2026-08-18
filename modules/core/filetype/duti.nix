@@ -7,7 +7,7 @@
       ...
     }:
     let
-      apps = config.nixdots.apps;
+      apps = config.js0ny.apps;
       duti = lib.getExe pkgs.duti;
       iina = "com.colliderli.iina";
       keka = "com.aone.keka";

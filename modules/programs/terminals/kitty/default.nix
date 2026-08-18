@@ -8,7 +8,7 @@
     }:
     let
       alt = if pkgs.stdenv.isDarwin then "cmd" else "alt";
-      shell = config.nixdots.apps.interactiveShell.package;
+      shell = config.js0ny.apps.interactiveShell.package;
     in
     {
       programs.kitty = {

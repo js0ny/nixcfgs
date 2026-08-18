@@ -5,43 +5,7 @@
   ...
 }:
 {
-  nixdots = {
-    persist.enable = false;
-    darwin = {
-      enable = true;
-      homebrew = {
-        enable = true;
-      };
-    };
-    user = {
-      name = "js0ny";
-      home = "/Users/js0ny";
-      shell = pkgs.zsh;
-    };
-    core = {
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      hostname = "zen";
-      timezones = [
-        "Europe/London"
-        "Etc/UTC"
-        "Asia/Shanghai"
-      ];
-    };
-    services = {
-      tailscale = {
-        enable = true;
-        ip = "100.68.20.54";
-        ipv6 = "fd7a:115c:a1e0::df37:1436";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
-      };
-      syncthing.enable = true;
-      sshd.enable = false;
-    };
-    style = {
-      enable = true;
-      stylix.enable = true;
-    };
+  js0ny = {
     apps = {
       terminal = {
         package = pkgs.kitty;
@@ -79,6 +43,44 @@
           bundleIdentifier = "com.neovide.neovide";
         };
       };
+    };
+  };
+  nixdots = {
+    persist.enable = false;
+    darwin = {
+      enable = true;
+      homebrew = {
+        enable = true;
+      };
+    };
+    user = {
+      name = "js0ny";
+      home = "/Users/js0ny";
+      shell = pkgs.zsh;
+    };
+    core = {
+      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
+      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
+      hostname = "zen";
+      timezones = [
+        "Europe/London"
+        "Etc/UTC"
+        "Asia/Shanghai"
+      ];
+    };
+    services = {
+      tailscale = {
+        enable = true;
+        ip = "100.68.20.54";
+        ipv6 = "fd7a:115c:a1e0::df37:1436";
+        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
+      };
+      syncthing.enable = true;
+      sshd.enable = false;
+    };
+    style = {
+      enable = true;
+      stylix.enable = true;
     };
     programs = {
       obs-studio = {

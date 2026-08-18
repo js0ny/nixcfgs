@@ -9,6 +9,49 @@ let
   avatar = inputs.bindeps + "/avatar/git.jpg";
 in
 {
+  js0ny = {
+    apps = {
+      terminal = {
+        package = pkgs.kitty;
+        exe = "kitty";
+        desktop = "kitty.desktop";
+      };
+      interactiveShell = {
+        package = pkgs.fish;
+        exe = "fish";
+        desktop = "";
+      };
+      browser = {
+        package = pkgs.firefox;
+        exe = "firefox";
+        desktop = "firefox.desktop";
+      };
+      fileManager = {
+        gui = {
+          package = pkgs.kdePackages.dolphin;
+          exe = "dolphin";
+          desktop = "org.kde.dolphin.desktop";
+        };
+        tui = {
+          package = pkgs.yazi;
+          exe = "yazi";
+          desktop = "yazi.desktop";
+        };
+      };
+      editor = {
+        tui = {
+          package = pkgs.neovim;
+          exe = "nvim";
+          desktop = "nvim.desktop";
+        };
+        gui = {
+          package = pkgs.neovim;
+          exe = "nvim";
+          desktop = "nvim.desktop";
+        };
+      };
+    };
+  };
   nixdots = {
     persist = {
       enable = true;
@@ -92,47 +135,6 @@ in
         name = "ASUP1208:00 093A:3011 Touchpad";
         vendorId = "093A";
         productId = "3011";
-      };
-    };
-    apps = {
-      terminal = {
-        package = pkgs.kitty;
-        exe = "kitty";
-        desktop = "kitty.desktop";
-      };
-      interactiveShell = {
-        package = pkgs.fish;
-        exe = "fish";
-        desktop = "";
-      };
-      browser = {
-        package = pkgs.firefox;
-        exe = "firefox";
-        desktop = "firefox.desktop";
-      };
-      fileManager = {
-        gui = {
-          package = pkgs.kdePackages.dolphin;
-          exe = "dolphin";
-          desktop = "org.kde.dolphin.desktop";
-        };
-        tui = {
-          package = pkgs.yazi;
-          exe = "yazi";
-          desktop = "yazi.desktop";
-        };
-      };
-      editor = {
-        tui = {
-          package = pkgs.neovim;
-          exe = "nvim";
-          desktop = "nvim.desktop";
-        };
-        gui = {
-          package = pkgs.neovim;
-          exe = "nvim";
-          desktop = "nvim.desktop";
-        };
       };
     };
     pam.howdy = {

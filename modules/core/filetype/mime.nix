@@ -8,7 +8,7 @@
       ...
     }:
     let
-      apps = config.nixdots.apps;
+      apps = config.js0ny.apps;
       textMimes = [
         "text/*"
         "text/plain"

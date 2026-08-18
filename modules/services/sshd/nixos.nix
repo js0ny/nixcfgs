@@ -24,8 +24,12 @@ in
         message = ''
           services.openssh.ports contains duplicate ports:
             ${lib.generators.toPretty { } ports}
-
-          This usually means an OpenSSH module was imported more than once.
+        '';
+      }
+      {
+        assertion = ports != [ ];
+        message = ''
+          OpenSSH service with no port configured.
         '';
       }
     ];

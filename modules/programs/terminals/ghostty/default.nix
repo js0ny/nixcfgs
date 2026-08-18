@@ -7,7 +7,7 @@
       ...
     }:
     let
-      shell = config.nixdots.apps.interactiveShell.package;
+      shell = config.js0ny.apps.interactiveShell.package;
     in
     {
       programs.ghostty = {

@@ -5,11 +5,11 @@
   ...
 }:
 let
-  types = import ../types.nix { inherit lib; };
-  appType = types.appType;
+  types = import ./types.nix { inherit lib; };
+  inherit (types) appType;
 in
 {
-  options.nixdots.apps = {
+  options.js0ny.apps = {
     terminal = lib.mkOption {
       type = appType;
       default = {

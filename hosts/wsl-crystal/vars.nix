@@ -5,6 +5,22 @@
   ...
 }:
 {
+  js0ny = {
+    apps = {
+      interactiveShell = {
+        package = pkgs.fish;
+        exe = "fish";
+        desktop = "";
+      };
+      editor = {
+        tui = {
+          package = pkgs.neovim;
+          exe = "nvim";
+          desktop = "nvim.desktop";
+        };
+      };
+    };
+  };
   nixdots = {
     persist.enable = false;
     user = {
@@ -37,20 +53,6 @@
       };
     };
     laptop.enable = false;
-    apps = {
-      interactiveShell = {
-        package = pkgs.fish;
-        exe = "fish";
-        desktop = "";
-      };
-      editor = {
-        tui = {
-          package = pkgs.neovim;
-          exe = "nvim";
-          desktop = "nvim.desktop";
-        };
-      };
-    };
     linux = {
       enable = true;
       wsl = true;

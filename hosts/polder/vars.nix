@@ -5,6 +5,21 @@
   ...
 }:
 {
+  js0ny = {
+    apps = {
+      interactiveShell = {
+        package = pkgs.fish;
+        exe = "fish";
+        desktop = "";
+      };
+      editor = {
+        tui = {
+          package = pkgs.neovim;
+          exe = "nvim";
+        };
+      };
+    };
+  };
   sops.secrets.tskey = {
     sopsFile = secrets + /hosts/polder.yaml;
   };
@@ -40,19 +55,6 @@
     style = {
       enable = false;
       stylix.enable = false;
-    };
-    apps = {
-      interactiveShell = {
-        package = pkgs.fish;
-        exe = "fish";
-        desktop = "";
-      };
-      editor = {
-        tui = {
-          package = pkgs.neovim;
-          exe = "nvim";
-        };
-      };
     };
     linux = {
       enable = true;

@@ -9,6 +9,49 @@ let
   avatar = inputs.bindeps + "/avatar/git.jpg";
 in
 {
+  js0ny = {
+    apps = {
+      terminal = {
+        package = pkgs.ghostty;
+        exe = "ghostty";
+        desktop = "com.mitchellh.ghostty.desktop";
+      };
+      interactiveShell = {
+        package = pkgs.fish;
+        exe = "fish";
+        desktop = "";
+      };
+      browser = {
+        package = pkgs.firefox;
+        exe = "firefox";
+        desktop = "firefox.desktop";
+      };
+      fileManager = {
+        gui = {
+          package = pkgs.nautilus;
+          exe = "nautilus";
+          desktop = "org.gnome.Nautilus.desktop";
+        };
+        tui = {
+          package = pkgs.yazi;
+          exe = "yazi";
+          desktop = "yazi.desktop";
+        };
+      };
+      editor = {
+        tui = {
+          package = pkgs.neovim;
+          exe = "nvim";
+          desktop = "nvim.desktop";
+        };
+        gui = {
+          package = pkgs.neovim;
+          exe = "nvim";
+          desktop = "nvim.desktop";
+        };
+      };
+    };
+  };
   nixdots = {
     persist = {
       enable = true;
@@ -84,47 +127,6 @@ in
           name = "Jigmo";
         }
       ];
-    };
-    apps = {
-      terminal = {
-        package = pkgs.ghostty;
-        exe = "ghostty";
-        desktop = "com.mitchellh.ghostty.desktop";
-      };
-      interactiveShell = {
-        package = pkgs.fish;
-        exe = "fish";
-        desktop = "";
-      };
-      browser = {
-        package = pkgs.firefox;
-        exe = "firefox";
-        desktop = "firefox.desktop";
-      };
-      fileManager = {
-        gui = {
-          package = pkgs.nautilus;
-          exe = "nautilus";
-          desktop = "org.gnome.Nautilus.desktop";
-        };
-        tui = {
-          package = pkgs.yazi;
-          exe = "yazi";
-          desktop = "yazi.desktop";
-        };
-      };
-      editor = {
-        tui = {
-          package = pkgs.neovim;
-          exe = "nvim";
-          desktop = "nvim.desktop";
-        };
-        gui = {
-          package = pkgs.neovim;
-          exe = "nvim";
-          desktop = "nvim.desktop";
-        };
-      };
     };
     pam.howdy.enable = false;
     programs = {
