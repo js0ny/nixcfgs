@@ -7,9 +7,9 @@
       ...
     }:
     let
-      cfg = config.nixdots.desktop.session;
+      cfg = config.js0ny.desktop.session;
     in
-    lib.mkIf (false && config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
+    lib.mkIf (false && config.js0ny.desktop.enable && builtins.elem "gnome" cfg) {
       programs.gnome-shell.extensions = [
         { package = pkgs.gnomeExtensions.paperwm; }
       ];

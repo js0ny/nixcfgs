@@ -8,7 +8,6 @@
       url = epSelf.domain;
       bind = epSelf.bindAddress;
       cfg = config.nixdots.services.ollama;
-      # nvidia = config.nixdots.machine.nvidia.mode;
     in
     lib.mkIf (cfg.enable) {
       services.ollama = {

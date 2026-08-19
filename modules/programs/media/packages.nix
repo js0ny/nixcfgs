@@ -61,7 +61,7 @@ in
       yt-dlp
       # keep-sorted end
     ]
-    ++ lib.optionals (config.nixdots.desktop.enable) [
+    ++ lib.optionals (config.js0ny.desktop.enable) [
       picard
       kid3
     ];

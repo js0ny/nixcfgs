@@ -6,5 +6,6 @@
     ./hardware.nix
     ./apps.nix
     ./packaging.nix
+    ./desktop.nix
   ];
 }

@@ -7,7 +7,7 @@
 let
   hw = config.nixdots.laptop.cameraIR.devicePath;
   cfg = config.nixdots.pam.howdy;
-  desktop = config.nixdots.desktop;
+  desktop = config.js0ny.desktop;
 in
 lib.mkIf cfg.enable {
   services.howdy = {

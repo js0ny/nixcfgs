@@ -5,9 +5,9 @@
   ...
 }:
 let
-  cfg = config.nixdots.desktop.enable;
+  cfg = config.js0ny.desktop;
 in
-lib.mkIf cfg {
+lib.mkIf cfg.enable {
   # Use the systemd-boot EFI boot loader.
   # TODO: Migrate
   boot.loader.systemd-boot.enable = true;

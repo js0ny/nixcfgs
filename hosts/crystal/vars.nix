@@ -11,6 +11,14 @@ in
 {
   js0ny = {
     flatpak.enable = true;
+    desktop = {
+      enable = true;
+      session = [
+        "hyprland"
+        "niri"
+        "kde"
+      ];
+    };
     apps = {
       terminal = {
         package = pkgs.kitty;
@@ -69,9 +77,9 @@ in
       dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
       flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
       timezones = [
-        "Europe/London"
-        "Etc/UTC"
         "Asia/Shanghai"
+        "Etc/UTC"
+        "Europe/London"
       ];
       locales = {
         guiLocale = "zh-CN";
@@ -164,18 +172,6 @@ in
       role = "host";
       compat = true;
     };
-    desktop = {
-      enable = true;
-      dm = "regreet";
-      session = [
-        "hyprland"
-        "niri"
-        "kde"
-      ];
-      wm = {
-        clipboard = "vicinae";
-      };
-    };
     sops = {
       enable = true;
       yamlFile = secrets + /hosts/crystal.yaml;
@@ -184,7 +180,7 @@ in
     geo = {
       longitude = -3.2;
       latitude = 55.95;
-      city = "Edinburgh";
+      city = "Guangzhou";
     };
   };
   sops.secrets.tskey = { };

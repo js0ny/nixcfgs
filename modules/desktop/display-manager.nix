@@ -6,16 +6,16 @@
 }:
 let
   loginBg = inputs.bindeps + "/wallpaper/login.jpg";
-  cfg = config.nixdots.desktop.dm;
+  cfg = config.js0ny.desktop.displayManager;
   enableDM = displayManagerName: displayManagerName == cfg;
-  s = builtins.head config.nixdots.desktop.session;
+  s = builtins.head config.js0ny.desktop.session;
   defaultSession = if s == "hyprland" then "hyprland-uwsm" else s;
 in
 {
   services.displayManager = {
     inherit defaultSession;
     autoLogin = {
-      enable = config.nixdots.desktop.autoLogin;
+      enable = config.js0ny.desktop.autoLogin;
       user = config.nixdots.user.name;
     };
     gdm.enable = enableDM "gdm";

@@ -64,9 +64,9 @@
         vicinae
         clipboard-indicator
       ];
-      cfg = config.nixdots.desktop.session;
+      cfg = config.js0ny.desktop.session;
     in
-    lib.mkIf (config.nixdots.desktop.enable && builtins.elem "gnome" cfg) {
+    lib.mkIf (config.js0ny.desktop.enable && builtins.elem "gnome" cfg) {
       home.packages = with pkgs; [
         gnome-tweaks
         sushi

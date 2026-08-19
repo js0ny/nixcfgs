@@ -24,6 +24,11 @@ in
     enableDefaultConfig = false;
     settings = lib.mkForce (
       {
+        "github.com" = {
+          HostName = "ssh.github.com";
+          Port = 443;
+          User = "git";
+        };
         "git.js0ny.net" = {
           Port = 2220; # see forgejo/default.nix
           IdentityFile = [ "~/.ssh/id_ed25519" ];

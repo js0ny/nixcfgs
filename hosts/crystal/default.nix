@@ -17,6 +17,7 @@ in
     ./disko.nix
     ./restic.nix
     ./vars.nix
+    ./dae.nix
     mod.desktop
     mod.podman
     mod.libvirt

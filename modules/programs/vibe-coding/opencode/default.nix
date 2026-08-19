@@ -12,7 +12,7 @@
       user = config.home.username;
     in
     {
-      home.packages = lib.optionals config.nixdots.desktop.enable [ pkgs.opencode-desktop ];
+      home.packages = lib.optionals config.js0ny.desktop.enable [ pkgs.opencode-desktop ];
       imports = [
         ./integrations.nix
       ];

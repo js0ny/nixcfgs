@@ -11,12 +11,19 @@ in
 {
   js0ny = {
     flatpak.enable = true;
+    desktop = {
+      enable = true;
+      autoLogin = true;
+      session = [
+        "hyprland"
+        "niri"
+        "kde"
+        "gnome"
+        "sway"
+      ];
+    };
+    hardware.cpu.nproc = 16;
     apps = {
-      terminal = {
-        package = pkgs.ghostty;
-        exe = "ghostty";
-        desktop = "com.mitchellh.ghostty.desktop";
-      };
       interactiveShell = {
         package = pkgs.fish;
         exe = "fish";
@@ -148,21 +155,6 @@ in
     machine = {
       role = "host";
       compat = true;
-    };
-    desktop = {
-      enable = true;
-      dm = "regreet";
-      autoLogin = true;
-      session = [
-        "hyprland"
-        "niri"
-        "kde"
-        "gnome"
-        "sway"
-      ];
-      wm = {
-        clipboard = "vicinae";
-      };
     };
     sops = {
       enable = true;
