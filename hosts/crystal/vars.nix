@@ -19,6 +19,7 @@ in
         "kde"
       ];
     };
+    hardware.cpu.nproc = 16;
     apps = {
       terminal = {
         package = pkgs.kitty;

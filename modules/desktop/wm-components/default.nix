@@ -3,7 +3,7 @@
     ./noctalia.nix
     ./dms.nix
     ./wm-polkit.nix
-    ./kanshi.nix
+    ./shikane.nix
   ];
   flake.homeModules.wm-components =
     { pkgs, ... }:

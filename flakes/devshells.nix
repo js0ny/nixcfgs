@@ -1,7 +1,14 @@
-{ ... }:
+{
+  inputs,
+  ...
+}:
 {
   perSystem =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
     {
       devShells =
         let
@@ -26,6 +33,7 @@
             nixd
             nil
             nushell
+            inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
         in
         {

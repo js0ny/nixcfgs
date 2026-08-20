@@ -25,7 +25,7 @@
       xdg.stateFile."noctalia/.setup-complete".text = "";
       imports = [
         inputs.self.homeModules.wm-components
-        inputs.self.homeModules.kanshi
+        inputs.self.homeModules.shikane
         inputs.noctalia.homeModules.default
       ];
       systemd.user.services.noctalia = {
