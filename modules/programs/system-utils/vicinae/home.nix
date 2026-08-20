@@ -9,7 +9,7 @@ let
   selfhosted = config.nixdefs.selfhosted;
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
   pkg = pkgs.vicinae;
-  linux = pkgs.stdenv.isLinux;
+  home = config.home.homeDirectory;
 in
 lib.mkMerge [
   (lib.mkIf pkgs.stdenv.isLinux {
@@ -52,6 +52,12 @@ lib.mkMerge [
           core.entrypoints = {
             sponsor.enabled = false;
             store.preferences.alwaysShowIntro = false;
+          };
+          files.preferences = {
+            "autoIndexing" = true;
+            "indexingPaths" = [
+              "${home}/Obsidian"
+            ];
           };
           raycast-compat.entrypoints = {
             store.preferences.alwaysShowIntro = false;

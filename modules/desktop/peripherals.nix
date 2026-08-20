@@ -10,17 +10,16 @@ in
 {
   environment.systemPackages = with pkgs; [
     evtest
-    js0ny.openlogi
-    js0ny.openlogi-gui
+    openlogi
   ];
 
-  services.udev.packages = [ pkgs.js0ny.openlogi-agent ];
+  services.udev.packages = [ pkgs.openlogi ];
   systemd.user.services.openlogi-agent = {
     description = "OpenLogi background agent";
     after = [ "graphical-session.target" ];
     wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = lib.getExe pkgs.js0ny.openlogi-agent;
+      ExecStart = lib.getExe' pkgs.openlogi "openlogi-agent";
       Restart = "on-failure";
       RestartSec = 5;
     };
