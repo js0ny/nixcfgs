@@ -260,7 +260,10 @@
   (evil-leader/set-key-for-mode 'telega-chat-mode
     "P" 'telega-chatbuf-attach-clipboard))
 
-(use-package ement :ensure t)
+(use-package ement)
+
+(with-eval-after-load 'ement
+  (require 'ement-room-list))
 
 (use-package ghostel
   :commands (ghostel)

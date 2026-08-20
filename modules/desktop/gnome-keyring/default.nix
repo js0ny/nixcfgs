@@ -2,7 +2,7 @@
   flake = {
     nixosModules = {
       gnome-keyring =
-        { pkgs, ... }:
+        { pkgs, lib, ... }:
         {
           programs.gnupg.agent.enableSSHSupport = false;
           services.gnome.gnome-keyring.enable = true;
@@ -12,8 +12,12 @@
             enableAskPassword = true;
             askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
           };
-          security.pam.services.gdm-password.enableGnomeKeyring = true;
-          security.pam.services.login.enableGnomeKeyring = true;
+          security.pam.services = {
+            gdm-password.enableGnomeKeyring = true;
+            login.enableGnomeKeyring = true;
+            login.kwallet.enable = lib.mkForce false;
+            kde.kwallet.enable = lib.mkForce false;
+          };
         };
       desktop = { inputs, ... }: {
         imports = [ inputs.self.nixosModules.gnome-keyring ];
