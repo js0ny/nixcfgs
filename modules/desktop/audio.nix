@@ -8,7 +8,6 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    pulseaudio
     pwvucontrol
     playerctl
   ];

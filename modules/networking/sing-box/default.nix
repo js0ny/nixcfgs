@@ -66,7 +66,6 @@
       systemd.services.sing-box.serviceConfig = {
         # Prevent proxy traffic from reaching this host, private networks, or IPv6.
         IPAddressDeny = [
-          config.nixdots.server.ip
           "localhost"
           "link-local"
           "multicast"

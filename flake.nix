@@ -68,10 +68,6 @@
       # or gaze will coredump every 5 secs
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    scroll = {
-      url = "github:Diax170/scroll-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
