@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   programs.retroarch = {
-    enable = !pkgs.stdenv.isDarwin;
+    enable = !pkgs.stdenv.hostPlatform.isDarwin;
     cores = {
       # Nintendo
       # ==================

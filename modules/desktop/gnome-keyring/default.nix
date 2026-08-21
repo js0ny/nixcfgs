@@ -53,7 +53,7 @@
               "org.freedesktop.secrets".apiEnabled = true;
             };
           }
-          (lib.mkIf (pkgs.stdenv.isLinux && !config.nixdots.linux.nixos) {
+          (lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && !config.nixdots.linux.nixos) {
             services.gnome-keyring.enable = true;
           })
         ];

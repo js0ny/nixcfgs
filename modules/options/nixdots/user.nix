@@ -14,7 +14,7 @@
     home = lib.mkOption {
       type = lib.types.str;
       default =
-        if pkgs.stdenv.isDarwin then
+        if pkgs.stdenv.hostPlatform.isDarwin then
           "/Users/${config.nixdots.user.name}"
         else
           "/home/${config.nixdots.user.name}";

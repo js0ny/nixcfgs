@@ -25,7 +25,7 @@
       ./squirrel.nix
     ];
     home.activation.deployRime =
-      if pkgs.stdenv.isDarwin then
+      if pkgs.stdenv.hostPlatform.isDarwin then
         lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
           /Library/Input\ Methods/Squirrel.app/Contents/MacOS/Squirrel --reload
         ''

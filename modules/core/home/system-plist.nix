@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf pkgs.stdenv.isDarwin {
+lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
   targets.darwin = {
     defaults = {
       "com.apple.screencapture" = {

@@ -23,7 +23,7 @@ in
     player = {
       default_volume = 70;
       max_bit_rate = 0;
-      mpris = pkgs.stdenv.isLinux;
+      mpris = pkgs.stdenv.hostPlatform.isLinux;
     };
     lyrics.source = "lrclib";
     ratings.enabled = true;

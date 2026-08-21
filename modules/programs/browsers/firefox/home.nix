@@ -40,7 +40,7 @@ in
     # package =
     #   if isNixOS then
     #     pkgs.nixpaks.firefox
-    #   else if pkgs.stdenv.isDarwin then
+    #   else if pkgs.stdenv.hostPlatform.isDarwin then
     #     pkgs.firefox-bin
     #   else
     #     pkgs.firefox;
@@ -50,7 +50,7 @@ in
   home.file.".mozilla/native-messaging-hosts/.keep".enable = lib.mkForce false;
 
   nixdots.persist.home = lib.mkIf (cfg.enable) { directories = [ persistDir ]; };
-  programs.firefox.policies = lib.mkIf pkgs.stdenv.isDarwin policies;
+  programs.firefox.policies = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin policies;
 
   # Betterfox
   programs.firefox.betterfox = {

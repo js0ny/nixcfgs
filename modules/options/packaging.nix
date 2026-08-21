@@ -39,11 +39,11 @@ in
   config = {
     assertions = [
       {
-        assertion = cfg.flatpak.enable -> pkgs.stdenv.isLinux;
+        assertion = cfg.flatpak.enable -> pkgs.stdenv.hostPlatform.isLinux;
         message = "Flatpak is only available on GNU/Linux";
       }
       {
-        assertion = cfg.homebrew.enable -> pkgs.stdenv.isDarwin;
+        assertion = cfg.homebrew.enable -> pkgs.stdenv.hostPlatform.isDarwin;
         message = "Homebrew is currently only available on Darwin";
       }
     ];

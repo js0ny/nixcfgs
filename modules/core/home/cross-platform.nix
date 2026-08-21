@@ -5,7 +5,7 @@
   ...
 }:
 lib.mkMerge [
-  (lib.mkIf pkgs.stdenv.isDarwin {
+  (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     targets.genericLinux.enable = false;
     xdg.desktopEntries = lib.mkForce { };
     i18n.inputMethod.enable = false;
@@ -14,7 +14,7 @@ lib.mkMerge [
       linkApps.enable = true;
     };
   })
-  ((lib.mkIf (pkgs.stdenv.isLinux && config.nixdots.linux.nixos)) {
+  ((lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && config.nixdots.linux.nixos)) {
     targets.darwin = lib.mkForce { };
     targets.genericLinux.enable = false;
     launchd.enable = false;

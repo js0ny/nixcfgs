@@ -9,14 +9,14 @@
     let
       dotDir = ".local/share/CherryStudio";
       electronBase =
-        if pkgs.stdenv.isDarwin then
+        if pkgs.stdenv.hostPlatform.isDarwin then
           "${config.home.homeDirectory}/Library/Application Support"
         else
           "${config.xdg.configHome}";
     in
     {
       home.packages =
-        if pkgs.stdenv.isLinux then
+        if pkgs.stdenv.hostPlatform.isLinux then
           [
             (pkgs.nixpaks.cherry-studio.override {
               dotDir = dotDir;

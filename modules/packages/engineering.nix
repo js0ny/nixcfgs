@@ -2,7 +2,7 @@
   flake.homeModules.engineering =
     { pkgs, lib, ... }:
     lib.mkMerge [
-      (lib.mkIf (pkgs.stdenv.isLinux) {
+      (lib.mkIf (pkgs.stdenv.hostPlatform.isLinux) {
         home.packages = with pkgs; [
           # freecad
           openscad
@@ -16,6 +16,6 @@
           ];
         };
       })
-      (lib.mkIf (pkgs.stdenv.isDarwin) { js0ny.homebrew.casks = [ ]; })
+      (lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin) { js0ny.homebrew.casks = [ ]; })
     ];
 }

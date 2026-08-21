@@ -10,7 +10,7 @@
     cls = "clear";
     py = "nix run 'nixpkgs#python3'";
   }
-  // lib.optionalAttrs (pkgs.stdenv.isDarwin) {
+  // lib.optionalAttrs (pkgs.stdenv.hostPlatform.isDarwin) {
     reboot = "sudo reboot";
     clip = "pbcopy";
     paste = "pbpaste";

@@ -63,7 +63,7 @@
         initLua = builtins.readFile ./init.lua;
       };
       home.packages = with pkgs; [
-        (ouch.override { enableUnfree = pkgs.stdenv.isLinux; })
+        (ouch.override { enableUnfree = pkgs.stdenv.hostPlatform.isLinux; })
       ];
 
       nixdots.persist.nosnap.home.files = [

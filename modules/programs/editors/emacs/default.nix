@@ -13,7 +13,7 @@
     {
       programs.emacs = {
         enable = true;
-        package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else null;
+        package = if pkgs.stdenv.hostPlatform.isLinux then pkgs.emacs-pgtk else null;
         extraConfig = /* elisp */ ''
           (setq org-babel-python-command "${lib.getExe pkgs.python3}")
         '';
@@ -62,7 +62,7 @@
               grammars.tree-sitter-nix
             ]))
           ]
-          ++ (lib.optionals pkgs.stdenv.isLinux [ epkgs.xclip ]);
+          ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [ epkgs.xclip ]);
       };
 
       home.directories.org = {

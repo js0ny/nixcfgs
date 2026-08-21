@@ -139,7 +139,7 @@ in
   config = mkIf (activeTasks != { }) {
     assertions = [
       {
-        assertion = config.misc.mergetoolsBackend != "systemd" || pkgs.stdenv.isLinux;
+        assertion = config.misc.mergetoolsBackend != "systemd" || pkgs.stdenv.hostPlatform.isLinux;
         message = "misc.mergetoolsBackend = \"systemd\" is only supported on Linux.";
       }
     ];

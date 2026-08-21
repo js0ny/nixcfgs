@@ -14,7 +14,7 @@
     in
     {
       home.packages =
-        if pkgs.stdenv.isLinux then
+        if pkgs.stdenv.hostPlatform.isLinux then
           [
             (pkgs.nixpaks.zotero.override {
               dotDir = dotDir;

@@ -22,7 +22,7 @@
         # keep-sorted end
         pkgs.js0ny.mpvScripts.bilibili-sponsorblock
       ]
-      ++ (lib.optionals pkgs.stdenv.isLinux [ mpris ]);
+      ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [ mpris ]);
     config = {
       vo = "gpu-next";
       hwdec = "auto-safe";

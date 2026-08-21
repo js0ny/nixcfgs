@@ -92,7 +92,7 @@
           "editor.formatOnSave" = true;
           "update.showReleaseNotes" = false;
         }
-        // lib.optionalAttrs (pkgs.stdenv.isLinux) {
+        // lib.optionalAttrs (pkgs.stdenv.hostPlatform.isLinux) {
           "window.menuBarVisibility" = "hidden"; # hidden: disable when hit <Alt>
           "window.titleBarStyle" = "native"; # works better on bare WMs
           "vim.autoSwitchInputMethod.defaultIM" = "true";

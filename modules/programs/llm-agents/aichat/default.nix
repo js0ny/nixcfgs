@@ -24,7 +24,7 @@
         models = mapAichatModel providerCfg.models;
       }) enabledProviders;
       configPath =
-        if pkgs.stdenv.isDarwin then
+        if pkgs.stdenv.hostPlatform.isDarwin then
           "${config.home.homeDirectory}/Library/Application Support/aichat/"
         else
           "${config.xdg.configHome}/aichat/";

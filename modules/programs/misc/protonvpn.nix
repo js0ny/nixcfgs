@@ -8,7 +8,7 @@ let
   account = config.secrets.plain.protonAccount;
 in
 {
-  targets.darwin.defaults."ch.protonvpn.mac" = lib.mkIf pkgs.stdenv.isDarwin {
+  targets.darwin.defaults."ch.protonvpn.mac" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     AutoConnect = 0;
 
     # DONT Check Update and DONT Auto Update

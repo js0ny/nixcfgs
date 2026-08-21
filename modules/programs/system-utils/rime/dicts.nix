@@ -20,7 +20,7 @@ let
     cp -r --no-preserve=mode ${rime-dieghv}/* $out/
     cp -r --no-preserve=mode ${rime-latex}/* $out/
   '';
-  rimePath = if pkgs.stdenv.isDarwin then "Library/Rime" else ".local/share/fcitx5/rime";
+  rimePath = if pkgs.stdenv.hostPlatform.isDarwin then "Library/Rime" else ".local/share/fcitx5/rime";
 in
 {
   home.file.${rimePath} = {

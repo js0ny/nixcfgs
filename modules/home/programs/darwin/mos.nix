@@ -1,6 +1,6 @@
 # alternative: https://linearmouse.app
 { pkgs, lib, ... }:
-lib.mkIf pkgs.stdenv.isDarwin {
+lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
   home.packages = with pkgs; [ mos ];
 
   targets.darwin.defaults."com.caldis.Mos" = {

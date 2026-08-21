@@ -5,7 +5,7 @@
   flake.homeModules.electronics =
     { pkgs, lib, ... }:
     lib.mkMerge [
-      (lib.mkIf (pkgs.stdenv.isLinux) {
+      (lib.mkIf (pkgs.stdenv.hostPlatform.isLinux) {
         home.packages = with pkgs; [
           kicad
           ltspice
@@ -26,7 +26,7 @@
           ];
         };
       })
-      (lib.mkIf (pkgs.stdenv.isDarwin) {
+      (lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin) {
         js0ny.homebrew.casks = [
           "ltspice"
           "ngspice"

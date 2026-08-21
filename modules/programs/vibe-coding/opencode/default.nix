@@ -34,7 +34,7 @@
 
       home.sessionVariables = {
         # Manage LSP by DevShell
-        OPENCODE_DISABLE_LSP_DOWNLOAD = if pkgs.stdenv.isLinux then "true" else "";
+        OPENCODE_DISABLE_LSP_DOWNLOAD = if pkgs.stdenv.hostPlatform.isLinux then "true" else "";
       };
 
       sops.templates."opencode-web.env".content = /* bash */ ''

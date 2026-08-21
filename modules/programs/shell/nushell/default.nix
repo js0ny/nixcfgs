@@ -15,7 +15,7 @@
         NU_EXPERIMENTAL_OPTIONS = "native-clip";
       };
       programs.nushell = {
-        enable = pkgs.stdenv.isLinux;
+        enable = pkgs.stdenv.hostPlatform.isLinux;
         # install nushell via brew in darwin.
         # plugins = with pkgs.nushellPlugins; [
         #   desktop_notifications

@@ -22,7 +22,7 @@ in
     NODE_REPL_HISTORY = "${xdg-data}/npm/node_repl_history";
     TS_NODE_HISTORY = "${xdg-data}/npm/ts_node_repl_history";
   }
-  // (lib.optionalAttrs (pkgs.stdenv.isLinux) {
+  // (lib.optionalAttrs (pkgs.stdenv.hostPlatform.isLinux) {
     MPLBACKEND = "webagg"; # matplotlib
   });
   xdg.configFile."npm/npmrc".text = ''

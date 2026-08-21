@@ -16,7 +16,7 @@ in
     (lib.removePrefix "${config.home.homeDirectory}/" config.xdg.binHome)
   ];
   xdg.configFile."user-dirs.locale" = {
-    enable = !pkgs.stdenv.isDarwin;
+    enable = !pkgs.stdenv.hostPlatform.isDarwin;
     text = "${locales.default}";
   };
   xdg.userDirs = {

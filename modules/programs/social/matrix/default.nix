@@ -10,7 +10,7 @@
       home.packages = with pkgs; [
         (element-desktop.override {
           commandLineArgs =
-            if pkgs.stdenv.isLinux then
+            if pkgs.stdenv.hostPlatform.isLinux then
               [
                 "--password-store=gnome-libsecret"
                 "--enable-features=MiddleClickAutoscroll"

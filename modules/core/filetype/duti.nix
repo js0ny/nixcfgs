@@ -42,7 +42,7 @@
         "${sioyek}" = [ "pdf" ];
       };
     in
-    lib.mkIf pkgs.stdenv.isDarwin {
+    lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
       home.sessionVariables.TERMINAL = apps.terminal.exe;
       home.packages = [
         pkgs.duti

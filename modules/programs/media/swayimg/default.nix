@@ -7,7 +7,7 @@
       inputs,
       ...
     }:
-    lib.mkIf pkgs.stdenv.isLinux {
+    lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       programs.swayimg = {
         enable = true;
         initLua = builtins.readFile ./init.lua;

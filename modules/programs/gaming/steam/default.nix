@@ -40,7 +40,7 @@
       ...
     }:
     {
-      home.sessionVariables = lib.optionalAttrs (pkgs.stdenv.isLinux) {
+      home.sessionVariables = lib.optionalAttrs (pkgs.stdenv.hostPlatform.isLinux) {
         SDL_JOYSTICK_HIDAPI = "0";
       };
       home.packages = with pkgs; [

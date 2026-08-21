@@ -74,7 +74,7 @@ in
         ];
       }
 
-      (lib.mkIf (cfg.autoMount.enable && pkgs.stdenv.isLinux) {
+      (lib.mkIf (cfg.autoMount.enable && pkgs.stdenv.hostPlatform.isLinux) {
         systemd.user.services.gocryptfs = {
           Unit = {
             Description = "gocryptfs encrypted filesystem";
@@ -88,7 +88,7 @@ in
         };
       })
 
-      (lib.mkIf (cfg.autoMount.enable && pkgs.stdenv.isDarwin) {
+      (lib.mkIf (cfg.autoMount.enable && pkgs.stdenv.hostPlatform.isDarwin) {
         launchd.agents.gocryptfs = {
           enable = true;
           config = {

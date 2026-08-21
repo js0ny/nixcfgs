@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-lib.mkIf pkgs.stdenv.isLinux {
+lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
   # Use: https://github.com/TemariVirus/fcitx-ini2nix
   i18n.inputMethod = {
     enable = true;

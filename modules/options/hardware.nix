@@ -14,7 +14,7 @@ in
     microphone = {
       enable = mkOption {
         type = types.bool;
-        default = (pkgs.stdenv.isDarwin || cfg.laptop.enable);
+        default = (pkgs.stdenv.hostPlatform.isDarwin || cfg.laptop.enable);
         description = "Whether the host has a microphone";
       };
     };

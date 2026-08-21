@@ -7,7 +7,7 @@
       ...
     }:
     let
-      alt = if pkgs.stdenv.isDarwin then "cmd" else "alt";
+      alt = if pkgs.stdenv.hostPlatform.isDarwin then "cmd" else "alt";
       shell = config.js0ny.apps.interactiveShell.package;
     in
     {

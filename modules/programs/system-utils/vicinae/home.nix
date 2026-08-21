@@ -12,7 +12,7 @@ let
   home = config.home.homeDirectory;
 in
 lib.mkMerge [
-  (lib.mkIf pkgs.stdenv.isLinux {
+  (lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     # see block-desktop-entries.nix for disable desktop entries via vicinae
     programs.vicinae = {
       enable = true;
@@ -143,7 +143,7 @@ lib.mkMerge [
     };
     home.packages = with pkgs; [ sqlite-interactive ];
   })
-  (lib.mkIf (pkgs.stdenv.isLinux && config.programs.zoxide.enable) {
+  (lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && config.programs.zoxide.enable) {
     programs.vicinae = {
       extensions = with vicinae-extensions; [ zoxide-recent-directories ];
       settings = {

@@ -14,7 +14,7 @@
             with pkgs;
             [ poppler-utils ]
             ++ (
-              if pkgs.stdenv.isLinux then
+              if pkgs.stdenv.hostPlatform.isLinux then
                 with pkgs;
                 [
                   wl-clipboard
@@ -25,7 +25,7 @@
             );
           text = builtins.readFile ./sioyek-copy-page.sh;
         };
-        clip = if pkgs.stdenv.isLinux then "wl-copy" else "pbcopy";
+        clip = if pkgs.stdenv.hostPlatform.isLinux then "wl-copy" else "pbcopy";
       in
       {
         xdg.configFile."sioyek/prefs_user.config".text = ''
