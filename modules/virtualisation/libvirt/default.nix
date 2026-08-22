@@ -24,10 +24,8 @@
         # misc. fs
         # samba4Full
         sshfs
-        guestfs-tools
+        # guestfs-tools
 
-        # misc
-        quickemu
       ];
       programs.virt-manager.enable = true;
       virtualisation.libvirtd = {

@@ -24,7 +24,6 @@ in
     mod.sshd
     mod.tailscale
 
-    mod.plasma
     mod.hyprland
     mod.niri
 
@@ -66,4 +65,9 @@ in
   };
 
   boot.plymouth.enable = true;
+  programs.clash-verge = {
+    enable = true;
+    tunMode = true;
+    serviceMode = true;
+  };
 }

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   pkgsStable,
+  inputs,
   ...
 }:
 let
@@ -75,7 +76,6 @@ in
     kdeconnect
     keepassxc
     krabby
-    libguestfs
     mission-center
     motrix-next
     nautilus
@@ -100,7 +100,9 @@ in
     nix-diff
     nix-output-monitor
     nvd
-    nix-tree
+
+    inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.fast-nix-gc.packages.${pkgs.stdenv.hostPlatform.system}.default
     deploy-rs
     nurl
     nvfetcher

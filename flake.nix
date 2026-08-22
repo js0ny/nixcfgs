@@ -77,13 +77,6 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dank-material-shell = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
-      };
-    };
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
       inputs = {
@@ -146,6 +139,12 @@
       url = "github:Mic92/nix-tree-rs";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+    };
+    fast-nix-gc = {
+      url = "github:Mic92/fast-nix-gc";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.nix-darwin.follows = "nix-darwin";
     };
     # }}}
 

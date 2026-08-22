@@ -1,7 +1,6 @@
 {
   imports = [
     ./noctalia.nix
-    ./dms.nix
     ./wm-polkit.nix
     ./shikane.nix
   ];

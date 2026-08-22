@@ -10,7 +10,6 @@
   imports = [
     ./vars.nix
     inputs.self.homeModules.desktop
-    inputs.self.homeModules.plasma
     inputs.self.homeModules.hyprland
     inputs.self.homeModules.noctalia
     inputs.self.homeModules.niri

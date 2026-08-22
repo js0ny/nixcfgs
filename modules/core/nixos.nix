@@ -58,9 +58,6 @@ in
     ];
   };
 
-  # https://github.com/nix-community/stylix/issues/2334
-  stylix.targets.kmscon.enable = false;
-
   # Select internationalisation properties.
   i18n =
     let

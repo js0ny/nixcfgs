@@ -25,6 +25,7 @@ in
     mod.immich
     mod.jellyfin
     mod.lldap
+    mod.navidrome
     mod.nextcloud
     mod.nix-index-database
     mod.prometheus-node
