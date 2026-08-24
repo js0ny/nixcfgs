@@ -8,41 +8,51 @@
     }:
     let
       ep = config.nixdefs.endpoints;
-      ipAddr = ep.navidrome.bindAddress;
-      port = ep.navidrome.port;
-      portStr = ep.navidrome.portStr;
       url = ep.navidrome.domain;
       remoteDir = "library:Music";
       mntDir = "/mnt/music";
+      socketPath = "/run/navidrome/navidrome.sock";
+      backupDir = "/var/backup/navidrome";
+      cfg = config.services.navidrome;
     in
     {
       services.navidrome = {
         enable = true;
+        # https://www.navidrome.org/docs/usage/configuration/options/
         settings = {
-          Address = ipAddr;
-          Port = port;
+          Address = "unix:${socketPath}";
           MusicFolder = mntDir;
           DefaultTheme = "AMusic";
           EnableSharing = true;
           EnableInsightsCollector = false;
+          Backup = {
+            Path = "/var/backup/navidrome";
+            # https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format)
+            Schedule = "@weekly";
+            Count = 3;
+          };
+          EnforceNonRootUser = true;
         }
         // lib.optionalAttrs (url != null) {
           BaseUrl = ep.navidrome.publicUrl;
         };
       };
 
+      users.users.nginx.extraGroups = [ cfg.group ];
+
       services.nginx.virtualHosts = lib.mkIf (url != null) {
         "${url}" = {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass = "http://localhost:${portStr}";
+            proxyPass = "http://unix:${socketPath}:/";
           };
         };
       };
 
       systemd.tmpfiles.rules = [
         "d ${mntDir} 0755 root users -"
+        "d ${backupDir} 0755 ${cfg.user} ${cfg.group} -"
       ];
 
       nixdots.persist.system.directories = [

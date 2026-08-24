@@ -1,7 +1,6 @@
 {
-  pkgs,
   lib,
-  config,
+  osConfig,
   ...
 }:
 {
@@ -37,7 +36,7 @@
   };
 
   misc.mergetoolsBackend = "systemd";
-  home.sessionVariables = lib.mkIf (config.nixdots.linux.display == "wayland") {
+  home.sessionVariables = lib.mkIf (osConfig.hardware.graphics.enable) {
     NH_ELEVATION_STRATEGY = "run0";
   };
   xdg.dataFile."Templates".source = ./dirs/Templates;
