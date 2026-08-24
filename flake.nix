@@ -134,7 +134,6 @@
       inputs.home-manager.follows = "home-manager";
     };
     # hyprland.url = "github:hyprwm/Hyprland";
-    telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
     nix-tree-rs = {
       url = "github:Mic92/nix-tree-rs";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,22 +1,15 @@
 { pkgs, ... }:
-let
-  id = 2868840;
-in
 {
   # Fix: Slay the Spire 2 "SpeedX" mod initialization crash
   # MonoMod extracts 'mm-exhelper.so' at runtime to /tmp, bypassing NixOS RPATH patching.
   # It fails to resolve '_Unwind_RaiseException' due to missing libgcc_s.so.1.
-  programs.steam.config.apps.sts2 = {
-    id = id;
+  programs.steam.config.apps."2868840" = {
+    name = "Slay the Spire 2";
     betaBranch = "public-beta";
-    launchOptions = {
-      env = {
-        LD_PRELOAD = "${pkgs.stdenv.cc.cc.lib}/lib/libgcc_s.so.1";
-      };
-      args = [
-        "--display-driver wayland"
-      ];
-    };
+    env.LD_PRELOAD = "${pkgs.stdenv.cc.cc.lib}/lib/libgcc_s.so.1";
+    args = [
+      "--display-driver wayland"
+    ];
   };
   nixdots.persist.home = {
     directories = [

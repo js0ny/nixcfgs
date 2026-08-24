@@ -24,22 +24,23 @@
       programs.nixvim = {
         enable = true;
         plugins.lsp.servers = {
+          # keep-sorted start block=yes
+          basedpyright.enable = true;
+          bashls.enable = true;
           clangd.enable = true;
+          fish_lsp.enable = true;
+          gopls.enable = true;
+          jsonls.enable = true;
+          roslyn_ls.enable = true;
           rust_analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
           };
-          gopls.enable = true;
-          ts_ls.enable = true;
-          jsonls.enable = true;
-          taplo.enable = true;
-          bashls.enable = true;
-          fish_lsp.enable = true;
           svelte.enable = true;
-          roslyn_ls.enable = true;
+          taplo.enable = true;
           vtsls.enable = true;
-          basedpyright.enable = true;
+          # keep-sorted end
         };
         keymaps = [
           {
@@ -54,7 +55,6 @@
 
       stylix.targets.nixvim.enable = false;
 
-      # home.packages = with pkgs; [lua-language-server];
       misc.shellAliases = nvimAlias;
 
       xdg.configFile."lsp-snippets".source = snippets;

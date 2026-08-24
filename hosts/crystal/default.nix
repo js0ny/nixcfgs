@@ -60,7 +60,7 @@ in
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
 
   services.scx = {
-    enable = true;
+    enable = false;
     scheduler = "scx_lavd";
   };
 

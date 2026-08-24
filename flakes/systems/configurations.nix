@@ -32,7 +32,6 @@ let
         inputs.lanzaboote.nixosModules.lanzaboote
         inputs.secrets.nixosModules.default
         inputs.stylix.nixosModules.default
-        inputs.telegram-inline-llm-bot.nixosModules.default
         inputs.wsl-nixos.nixosModules.default
         # keep-sorted end
         ../../hosts/${hostname}

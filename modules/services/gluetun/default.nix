@@ -37,7 +37,6 @@
       '';
       virtualisation.oci-containers = {
         containers = {
-          # 1. VPN 容器 (Gluetun)
           gluetun = {
             image = "qmcgaw/gluetun:${tag}";
             capabilities = {
