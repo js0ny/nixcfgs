@@ -24,6 +24,7 @@
           MusicFolder = mntDir;
           DefaultTheme = "AMusic";
           EnableSharing = true;
+          EnableInsightsCollector = false;
         }
         // lib.optionalAttrs (url != null) {
           BaseUrl = ep.navidrome.publicUrl;
