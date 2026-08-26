@@ -38,7 +38,7 @@ in
         start_delay_ms = 0;
         start_delay_scope = "screen_lock";
       };
-      storage.encrypted_templates = lib.mkDefault false;
+      storage.encrypt_templates = lib.mkDefault false;
     };
   };
   nixdots.persist.system.directories = [

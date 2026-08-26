@@ -14,6 +14,7 @@
         iw
         kitty.kitten
         kitty.terminfo
+        linuxPackages.turbostat
         lnav
         lsof
         moreutils

@@ -16,7 +16,7 @@ in
     ./disko.nix
     ./restic.nix
     ./vars.nix
-    ./dae.nix
+    mod.dae
     mod.desktop
     mod.podman
     mod.libvirt
@@ -64,9 +64,12 @@ in
   };
 
   boot.plymouth.enable = true;
-  programs.clash-verge = {
-    enable = true;
-    tunMode = true;
-    serviceMode = true;
-  };
+  # programs.clash-verge = {
+  #   enable = true;
+  #   tunMode = true;
+  #   serviceMode = true;
+  # };
+
+  programs.labwc.enable = true;
+
 }

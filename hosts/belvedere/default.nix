@@ -28,11 +28,12 @@ in
     mod.navidrome
     mod.nextcloud
     mod.nix-index-database
+    mod.papra
     mod.prometheus-node
     mod.rclone
     mod.sing-box
-    mod.starship
     # keep-sorted end
+    mod.starship
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

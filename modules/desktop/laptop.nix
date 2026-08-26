@@ -14,8 +14,10 @@ lib.mkIf cfg.enable {
   ];
 
   nixdots.persist.system.directories = [ "/var/lib/fwupd" ];
-
-  services.upower.enable = true;
+  services.upower = {
+    enable = true;
+    ignoreLid = lib.mkDefault false;
+  };
   powerManagement.powertop.enable = true;
 
   security.sudo-rs.extraRules = [
@@ -26,10 +28,13 @@ lib.mkIf cfg.enable {
           command = lib.getExe pkgs.powertop;
           options = [ "NOPASSWD" ];
         }
+        {
+          command = "/run/current-system/sw/bin/powertop";
+          options = [ "NOPASSWD" ];
+        }
       ];
     }
   ];
-  services.upower.ignoreLid = lib.mkDefault true;
   services.logind.settings.Login = {
     HandleLidSwitchDocked = "ignore";
     HandleLidSwitch = lib.mkDefault "ignore";
