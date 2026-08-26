@@ -18,6 +18,8 @@
     {
       services.navidrome = {
         enable = true;
+        # [Human Intervention] Enable and configure plugins in Navidrome's Plugins page.
+        plugins = [ pkgs.js0ny.navidromePlugins.lyrics-bin ]; # ++ (with pkgs.navidromePlugins; [ ]);
         # https://www.navidrome.org/docs/usage/configuration/options/
         settings = {
           Address = "unix:${socketPath}";
@@ -25,6 +27,7 @@
           DefaultTheme = "AMusic";
           EnableSharing = true;
           EnableInsightsCollector = false;
+          LyricsPriority = ".ttml,.yaml,.yml,.elrc,.lrc,.srt,.txt,embedded,nd-lyrics";
           Backup = {
             Path = "/var/backup/navidrome";
             # https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format)
