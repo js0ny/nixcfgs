@@ -24,7 +24,6 @@
       };
       environment.systemPackages = with pkgs; [
         grimblast
-        hyprdynamicmonitors
       ];
       programs.uwsm.enable = true;
       xdg.portal = {
@@ -58,6 +57,7 @@
         Hidden=true
         NoDisplay=true
       '';
+
     };
   flake.homeModules.hyprland =
     {
@@ -70,6 +70,7 @@
       dots = config.nixdots.core.dots;
     in
     {
+      imports = [ ./hyprmoncfg.nix ];
       xdg.configFile =
         let
           files = [
@@ -108,8 +109,17 @@
 
           hl.on("hyprland.start", function()
             hl.exec_cmd("systemctl start --user waylandwm-session.target")
+            hl.exec_cmd("systemctl start --user hyprland-after-init.target")
           end)
         '';
+      };
+
+      systemd.user.targets.hyprland-after-init = {
+        Unit = {
+          Description = "Hyprland session, used to run services tied to the WM lifecycle";
+          Documentation = [ "man:systemd.special(7)" ];
+          PartOf = [ "waylandwm-session.target" ];
+        };
       };
     };
 }

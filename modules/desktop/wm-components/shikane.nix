@@ -20,6 +20,7 @@
         mode = "preferred";
       };
       setEnabled = enable: output: output // { inherit enable; };
+      cfg = config.services.shikane;
     in
     {
       services.shikane = {
@@ -63,7 +64,7 @@
         };
       };
 
-      systemd.user.services.shikane = {
+      systemd.user.services.shikane = lib.mkIf cfg.enable {
         Unit = {
           PartOf = lib.mkForce [ "waylandwm-session.target" ];
           After = lib.mkForce [ "waylandwm-session.target" ];
