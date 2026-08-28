@@ -44,10 +44,6 @@
       display = "none";
       gpu = "none";
     };
-    machine = {
-      role = "guest";
-      compat = false;
-    };
     server = {
       enable = true;
       ip = "178.104.159.210";

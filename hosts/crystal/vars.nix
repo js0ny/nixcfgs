@@ -19,7 +19,10 @@ in
         "kde"
       ];
     };
-    hardware.cpu.nproc = 16;
+    hardware = {
+      cpu.nproc = 16;
+      type = "bare-metal";
+    };
     apps = {
       terminal = {
         package = pkgs.kitty;
@@ -168,10 +171,6 @@ in
         nvidia = "PCI:1:0:0";
         amdgpu = "PCI:101:0:0";
       };
-    };
-    machine = {
-      role = "host";
-      compat = true;
     };
     sops = {
       enable = true;

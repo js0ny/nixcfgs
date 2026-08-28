@@ -11,6 +11,13 @@ in
 {
   options.js0ny.hardware = {
     laptop.enable = lib.mkEnableOption "Whether the host is a laptop";
+    type = mkOption {
+      type = lib.types.enum [
+        "bare-metal"
+        "virtual-machine"
+      ];
+      default = "virtual-machine";
+    };
     microphone = {
       enable = mkOption {
         type = types.bool;

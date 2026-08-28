@@ -22,7 +22,10 @@
         package = hyprland;
         portalPackage = xdg-desktop-portal-hyprland;
       };
-      environment.systemPackages = with pkgs; [ grimblast ];
+      environment.systemPackages = with pkgs; [
+        grimblast
+        hyprdynamicmonitors
+      ];
       programs.uwsm.enable = true;
       xdg.portal = {
         config.hyprland = {

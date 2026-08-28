@@ -18,7 +18,5 @@
           };
         };
       };
-
-      # [Human Intervention] Import the remote subscription and enable its TUN profile in the desktop client.
     };
 }

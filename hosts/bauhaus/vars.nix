@@ -22,7 +22,10 @@ in
         "sway"
       ];
     };
-    hardware.cpu.nproc = 16;
+    hardware = {
+      cpu.nproc = 16;
+      type = "bare-metal";
+    };
     apps = {
       interactiveShell = {
         package = pkgs.fish;
@@ -151,10 +154,6 @@ in
       lanzaboote = false;
       display = "wayland";
       gpu = "nvidia";
-    };
-    machine = {
-      role = "host";
-      compat = true;
     };
     sops = {
       enable = true;

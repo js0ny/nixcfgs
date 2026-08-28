@@ -61,7 +61,7 @@ in
     rime = {
       enable = lib.mkOption {
         type = lib.types.bool;
-        default = if (config.nixdots.machine.role == "host") then true else false;
+        default = false;
         description = "Enable Rime input method.";
       };
     };

@@ -23,7 +23,7 @@
     in
     {
       services.shikane = {
-        enable = true;
+        enable = false;
         # https://w0lff.gitlab.io/shikane/shikane.5.html
         settings = {
           profile = [

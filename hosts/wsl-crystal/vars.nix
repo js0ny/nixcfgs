@@ -60,14 +60,6 @@
     };
     machine = {
       role = "standalone";
-      compat = false;
-      virtualisation = {
-        waydroid = false;
-        libvirt = {
-          enable = false;
-        };
-        oci-container.podman = false;
-      };
     };
     desktop = {
       enable = false;

@@ -44,6 +44,9 @@
         };
       };
     };
+    hardware = {
+      type = "bare-metal";
+    };
   };
   nixdots = {
     persist.enable = false;
@@ -97,9 +100,6 @@
         enable = true;
         enableNativeFrontend = true;
       };
-    };
-    machine = {
-      role = "host";
     };
     desktop = {
       enable = true;

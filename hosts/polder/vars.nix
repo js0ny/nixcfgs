@@ -61,10 +61,6 @@
       display = "none";
       gpu = "none";
     };
-    machine = {
-      role = "guest";
-      compat = false;
-    };
     server = {
       enable = true;
       ip = config.secrets.plain.polder.ipv4;

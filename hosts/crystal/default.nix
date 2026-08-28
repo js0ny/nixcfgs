@@ -1,4 +1,5 @@
 {
+  pkgs,
   inputs,
   lib,
   ...
@@ -16,7 +17,6 @@ in
     ./disko.nix
     ./restic.nix
     ./vars.nix
-    mod.dae
     mod.clash-verge
     mod.throne
     mod.desktop
@@ -37,7 +37,7 @@ in
 
   # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
   # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
-  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
 
   # # Keep the internal MediaTek Bluetooth USB device awake; it can disappear from BlueZ after USB-C monitor hotplug/resume.
   # services.udev.extraRules = ''
