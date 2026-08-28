@@ -1,8 +1,32 @@
 {
-  flake.darwinModules.core = { inputs, myLib, ... }: {
-    imports = myLib.scanPaths ./. ++ [
-      inputs.sops-nix.darwinModules.default
-    ];
-    environment.variables = import ../shared/do-not-track-vars.nix;
-  };
+  flake.darwinModules.core =
+    {
+      inputs,
+      myLib,
+      config,
+      ...
+    }:
+    {
+      imports = myLib.scanPaths ./. ++ [
+        inputs.sops-nix.darwinModules.default
+      ];
+      environment.variables = import ../shared/do-not-track-vars.nix;
+
+      time.timeZone = builtins.head config.nixdots.core.timezones;
+      system.primaryUser = config.nixdots.user.name;
+      networking.computerName = config.nixdots.core.hostname;
+      programs.zsh.enable = true;
+
+      security.pam.services.sudo_local.touchIdAuth = true;
+
+      js0ny.homebrew.casks = [
+        "apparency"
+        "qlcolorcode"
+        "qlmarkdown"
+        "qlstephen"
+        "quicklook-video"
+        "qspace-pro"
+        "quicklookase"
+      ];
+    };
 }

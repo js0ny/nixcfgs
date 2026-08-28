@@ -372,6 +372,7 @@
 
 (use-package dirvish
   :custom
+  (dirvish-cache-dir (expand-file-name "dirvish" user-emacs-cache))
   (dirvish-quick-access-entires
    '(("h" "~/" "Home")
      ("d" download-dir "Downloads"))))

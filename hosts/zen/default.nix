@@ -16,4 +16,7 @@
   system.stateVersion = 6;
 
   programs.fish.enable = true;
+
+  # Managed by Determinate
+  nix.enable = false;
 }

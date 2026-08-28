@@ -75,6 +75,19 @@
         "audio/vnd.wave" # .wav
         "audio/x-vorbis+ogg" # .ogg
       ];
+      officeMimes = [
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      ];
+      wineMimes = [
+        "application/x-ms-dos-executable"
+        "application/x-msi"
+        "application/x-ms-shortcut"
+        "application/x-wine-extension-msp"
+        "application/x-bat"
+        "application/x-mswinurl"
+      ];
       mkAssoc =
         mimes: apps:
         builtins.listToAttrs (
@@ -110,6 +123,7 @@
       xdg.mimeApps = {
         enable = true;
         defaultApplications = {
+          "x-scheme-handler/mailto" = toMimeAppList [ "thunderbird.desktop" ];
           "inode/directory" = toMimeAppList [
             apps.fileManager.gui.desktop
             "org.kde.dolphin"
@@ -181,6 +195,12 @@
           "mpv"
           "org.kde.elisa"
           "io.bassi.Amberol"
+        ]
+        // mkAssoc officeMimes [
+          "onlyoffice-desktopeditors.desktop"
+        ]
+        // mkAssoc wineMimes [
+          "com.usebottles.bottles.desktop"
         ];
       };
     };

@@ -13,7 +13,8 @@
       _locale = d.core.locales.guiLocale;
       locale = myLib.toHanScript _locale;
       wallpaperDir = config.home.customDirs.wallpaper;
-      reloadConfig = pkgs.writeShellScriptBin "reload-compositor-config" ''
+      noctaliaStartedHook = pkgs.writeShellScriptBin "noctalia-stared-hook" ''
+        # Relaod Compositor Config
         if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
           hyprctl reload
         elif [[ $XDG_CURRENT_DESKTOP == "niri" ]]; then
@@ -137,7 +138,7 @@
             };
           };
           hooks = {
-            started = lib.getExe reloadConfig;
+            started = lib.getExe noctaliaStartedHook;
           };
           plugins.enabled = [ "noctalia/world_clock" ];
         };

@@ -15,6 +15,7 @@
     }:
     let
       apps = config.js0ny.apps;
+      # TODO: Fix magic
       magicDir = ./magic;
 
       customMagicCompiled = pkgs.runCommand "custom.magic.mgc" { } ''
