@@ -15,16 +15,15 @@ in
 
     mod.server
     # keep-sorted start
-    mod.authelia
     mod.cloudflare
     mod.code-server
     mod.fail2ban
     mod.fish
     mod.forgejo
     mod.hermes-agent
+    mod.idp
     mod.immich
     mod.jellyfin
-    mod.lldap
     mod.navidrome
     mod.nextcloud
     mod.nix-index-database
