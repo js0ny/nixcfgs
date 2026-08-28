@@ -82,4 +82,6 @@ in
   };
   makeMutable = [ ".config/claude/settings.json" ];
 
+  home.packages = [ pkgs.llm-agents.claude-desktop ];
+
 }

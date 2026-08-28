@@ -365,3 +365,18 @@
   (advice-add 'typst-overlay--analyze-org
               :override
               #'my/typst-overlay-analyze-org))
+
+(defvar download-dir
+  (or (getenv "XDG_DOWNLOAD_DIR")
+      (expand-file-name "~/Downloads")))
+
+(use-package dirvish
+  :custom
+  (dirvish-quick-access-entires
+   '(("h" "~/" "Home")
+     ("d" download-dir "Downloads"))))
+
+(use-package zoxide
+  :config
+  (evil-leader/set-key
+    "pd" #'zoxide-cd))

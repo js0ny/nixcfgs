@@ -17,33 +17,29 @@
       publicUrl = epSelf.publicUrl;
       stateDir = "/var/lib/authelia-main";
       domain = "js0ny.net";
+      sopsFile = secrets + "/authelia.yaml";
+      owner = "authelia-main";
     in
     {
       imports = myLib.scanPaths ./.;
       sops.secrets = {
         authelia_jwt_secret = {
-          sopsFile = secrets + /authelia.yaml;
-          owner = "authelia-main";
+          inherit sopsFile owner;
         };
         authelia_session_secret = {
-          sopsFile = secrets + /authelia.yaml;
-          owner = "authelia-main";
+          inherit sopsFile owner;
         };
         authelia_encryption_key = {
-          sopsFile = secrets + /authelia.yaml;
-          owner = "authelia-main";
+          inherit sopsFile owner;
         };
         authelia_oidc_hmac_secret = {
-          sopsFile = secrets + /authelia.yaml;
-          owner = "authelia-main";
+          inherit sopsFile owner;
         };
         authelia_oidc_rsa_private_key = {
-          sopsFile = secrets + /authelia.yaml;
-          owner = "authelia-main";
+          inherit sopsFile owner;
         };
         lldap_authelia_password = {
-          sopsFile = secrets + /authelia.yaml;
-          owner = "authelia-main";
+          inherit sopsFile owner;
         };
       };
 

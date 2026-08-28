@@ -29,7 +29,6 @@
   # ++ (myLib.scanPathsRec ../../modules/home/programs);
 
   nixdefs = {
-    acp.enable = true;
     llm.enable = true;
     mcp.enable = true;
     hardware.enable = false;

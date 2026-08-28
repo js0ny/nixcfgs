@@ -1,6 +1,11 @@
 {
   flake.nixosModules.dae =
-    { config, secrets, ... }:
+    {
+      config,
+      secrets,
+      pkgsStable,
+      ...
+    }:
     let
       port = toString 8443;
       sopsFile = secrets + "/sing-box.yaml";
@@ -114,6 +119,7 @@
 
       services.dae = {
         enable = true;
+        package = pkgsStable.dae;
         configFile = config.sops.templates."dae.dae".path;
         openFirewall = {
           enable = false;

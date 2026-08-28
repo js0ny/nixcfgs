@@ -17,6 +17,8 @@ in
     ./restic.nix
     ./vars.nix
     mod.dae
+    mod.clash-verge
+    mod.throne
     mod.desktop
     mod.podman
     mod.libvirt
@@ -64,11 +66,6 @@ in
   };
 
   boot.plymouth.enable = true;
-  # programs.clash-verge = {
-  #   enable = true;
-  #   tunMode = true;
-  #   serviceMode = true;
-  # };
 
   programs.labwc.enable = true;
 

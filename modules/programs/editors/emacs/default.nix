@@ -16,6 +16,7 @@
         package = if pkgs.stdenv.hostPlatform.isLinux then pkgs.emacs-pgtk else null;
         extraConfig = /* elisp */ ''
           (setq org-babel-python-command "${lib.getExe pkgs.python3}")
+          (setq dirvish-vipsthumbnail-program "${lib.getExe' pkgs.vips "vipsthumbnail"}")
         '';
         extraPackages =
           epkgs:
@@ -23,15 +24,17 @@
           [
             pkgs.js0ny.emacsPackages.typst-overlay
             pkgs.js0ny.emacsPackages.kitty-graphics
-            hnview
 
             avy
             elfeed-protocol
             dashboard
+            hnview
             evil
             counsel
+            flash
             evil-leader
             evil-commentary
+            zoxide
             evil-surround
             evil-mc
             evil-goggles

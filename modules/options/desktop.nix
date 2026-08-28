@@ -17,7 +17,7 @@
         "regreet"
         "none"
       ];
-      default = if config.nixdots.linux.display == "none" then "none" else "regreet";
+      default = if config.nixdots.linux.display == "none" then "none" else "ly";
       description = "The display manager to use.";
     };
     autoLogin = lib.mkEnableOption "Whether to login automatically";
