@@ -23,7 +23,6 @@ in
     ./nixos/sops.nix
     ./nixos/styles.nix
     ./nixos/tuned.nix
-    ./hm.nix
     ./sops.nix
     ./stylix.nix
     ../../definitions

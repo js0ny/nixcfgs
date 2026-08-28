@@ -23,7 +23,6 @@
 
     inputs.self.homeModules.editors
     inputs.self.homeModules.emacs
-    inputs.self.homeModules.flatpak
     inputs.self.homeModules.neovide
     inputs.self.homeModules.vcs-extra
     inputs.self.homeModules.vibe-coding

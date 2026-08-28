@@ -20,6 +20,7 @@
         elif [[ $XDG_CURRENT_DESKTOP == "niri" ]]; then
           niri msg action load-config-file
         fi
+        systemctl start --user shell-init.target
       '';
     in
     {
@@ -31,10 +32,10 @@
       ];
       systemd.user.services.noctalia = {
         Unit = {
-          PartOf = lib.mkForce [ "waylandwm-session.target" ];
-          After = lib.mkForce [ "waylandwm-session.target" ];
+          PartOf = lib.mkForce [ "wm-init.target" ];
+          After = lib.mkForce [ "wm-init.target" ];
         };
-        Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
+        Install.WantedBy = lib.mkForce [ "wm-init.target" ];
       };
       programs.noctalia = {
         enable = true;

@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
@@ -34,4 +35,26 @@ in
     };
   };
   services.playerctld.enable = true;
+  home-manager.sharedModules = [
+    {
+      services.easyeffects = {
+        enable = true;
+        extraPresets = {
+          EasyMic = lib.importJSON ./EasyMic.json;
+        };
+      };
+      systemd.user.services.easyeffects = {
+        Unit = {
+          PartOf = lib.mkForce [ "shell-init.target" ];
+          After = lib.mkForce [ "shell-init.target" ];
+        };
+        Install.WantedBy = lib.mkForce [ "shell-init.target" ];
+      };
+
+      nixdots.persist.home.directories = [
+        ".local/share/easyeffects"
+      ];
+
+    }
+  ];
 }

@@ -11,7 +11,6 @@
 
     ../../modules/programs/gaming/emulators/retroarch.nix
     ./linux-base.nix
-    inputs.self.homeModules.easyeffects
     inputs.self.homeModules.nix-index-database
     inputs.self.homeModules.pim
     inputs.self.homeModules.starship

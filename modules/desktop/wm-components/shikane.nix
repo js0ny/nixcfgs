@@ -66,10 +66,10 @@
 
       systemd.user.services.shikane = lib.mkIf cfg.enable {
         Unit = {
-          PartOf = lib.mkForce [ "waylandwm-session.target" ];
-          After = lib.mkForce [ "waylandwm-session.target" ];
+          PartOf = lib.mkForce [ "wm-init.target" ];
+          After = lib.mkForce [ "wm-init.target" ];
         };
-        Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
+        Install.WantedBy = lib.mkForce [ "wm-init.target" ];
       };
     };
 }

@@ -19,13 +19,5 @@
         ELECTRON_TRASH = "trash-cli";
         XAUTHORITY = "$XDG_RUNTIME_DIR/.XAuthority";
       };
-      # Bind all wm-only services to waylandwm-session
-      systemd.user.targets.waylandwm-session = {
-        Unit = {
-          Description = "Window Manager session, used to run services tied to the WM lifecycle";
-          Documentation = [ "man:systemd.special(7)" ];
-          PartOf = [ "graphical-session.target" ];
-        };
-      };
     };
 }

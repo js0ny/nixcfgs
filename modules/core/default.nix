@@ -5,9 +5,10 @@
     ./tailscale.nix
   ];
 
-  flake.nixosModules.core = { inputs, ... }: {
+  flake.nixosModules.core = { inputs, myLib, ... }: {
     imports = [
       ./nixos.nix
+      ./shared/hm.nix
       inputs.sops-nix.nixosModules.sops
     ];
   };
@@ -38,7 +39,6 @@
     home-manager.sharedModules = [ { imports = [ ./nix-helper.nix ]; } ];
     imports = [
       ./nix.nix
-      ./hm.nix
       ./sops.nix
       ../options
     ];

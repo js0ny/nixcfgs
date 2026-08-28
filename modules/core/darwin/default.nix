@@ -9,6 +9,7 @@
     {
       imports = myLib.scanPaths ./. ++ [
         inputs.sops-nix.darwinModules.default
+        ../shared/hm.nix
       ];
       environment.variables = import ../shared/do-not-track-vars.nix;
 

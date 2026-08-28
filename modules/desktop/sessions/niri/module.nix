@@ -14,7 +14,7 @@ in
     systemd.enable = true;
     settings = {
       spawn-sh-at-startup = [
-        "systemctl --user start waylandwm-session.target"
+        "systemctl --user start wm-init.target"
       ];
       debug._children = [
         {

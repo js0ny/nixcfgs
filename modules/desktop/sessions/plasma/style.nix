@@ -26,9 +26,9 @@ in
       lookAndFeel = "stylix";
     };
     fonts = {
-      fixedWidth.family = "${config.stylix.fonts.monospace.name}";
+      fixedWidth.family = config.stylix.fonts.monospace.name;
       fixedWidth.pointSize = 10;
-      general.family = "${config.stylix.fonts.sansSerif.name}";
+      general.family = config.stylix.fonts.sansSerif.name;
       general.pointSize = 10;
     };
     window-rules = (lib.mapAttrsToList iconFixRule iconFixMap);

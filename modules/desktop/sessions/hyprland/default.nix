@@ -88,7 +88,7 @@
         builtins.listToAttrs (
           map (e: {
             name = "hypr/${e}";
-            value.source = mkSymlink "${dots}/modules/desktop/hyprland/${e}";
+            value.source = mkSymlink "${dots}/modules/desktop/sessions/hyprland/${e}";
           }) files
         )
         // {
@@ -109,7 +109,7 @@
           hl.env("HYPRCURSOR_SIZE", "${toString config.stylix.cursor.size}")
 
           hl.on("hyprland.start", function()
-            hl.exec_cmd("systemctl start --user waylandwm-session.target")
+            hl.exec_cmd("systemctl start --user wm-init.target")
             hl.exec_cmd("systemctl start --user hyprland-after-init.target")
           end)
         '';
@@ -119,7 +119,7 @@
         Unit = {
           Description = "Hyprland session, used to run services tied to the WM lifecycle";
           Documentation = [ "man:systemd.special(7)" ];
-          PartOf = [ "waylandwm-session.target" ];
+          PartOf = [ "wm-init.target" ];
         };
       };
     };

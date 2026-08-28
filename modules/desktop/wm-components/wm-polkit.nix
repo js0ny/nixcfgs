@@ -3,8 +3,8 @@
     systemd.user.services.polkit-agent = {
       Unit = {
         Description = "Polkit agent";
-        PartOf = [ "waylandwm-session.target" ];
-        After = [ "waylandwm-session.target" ];
+        PartOf = [ "wm-init.target" ];
+        After = [ "wm-init.target" ];
       };
 
       Service = {
@@ -21,7 +21,7 @@
       };
 
       Install = {
-        WantedBy = [ "waylandwm-session.target" ];
+        WantedBy = [ "wm-init.target" ];
       };
     };
   };

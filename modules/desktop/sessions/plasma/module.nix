@@ -7,14 +7,15 @@
 {
   imports = [
     # keep-sorted start
-    ../../home/linux/desktop/plasma/module.nix
     ./calendar.nix
     ./input.nix
+    ./kderc.nix
     ./keymaps.nix
     ./kwin.nix
     ./panels.nix
     ./plasmarc.nix
     ./powerdevil.nix
+    ./style.nix
     # keep-sorted end
   ];
   home.packages = with pkgs; [
