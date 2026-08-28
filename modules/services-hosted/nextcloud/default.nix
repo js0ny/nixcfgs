@@ -22,7 +22,7 @@
         domain = lib.mkForce "drive.js0ny.net";
       };
       sops.secrets.nextcloud_admin_pass = {
-        sopsFile = secrets + /nextcloud.yaml;
+        sopsFile = secrets + "/nextcloud.yaml";
       };
 
       services.nextcloud = {

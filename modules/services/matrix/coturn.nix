@@ -14,12 +14,12 @@ in
 {
   sops.secrets = {
     coturn_matrix_secret = {
-      sopsFile = secrets + /matrix.yaml;
+      sopsFile = secrets + "/matrix.yaml";
       owner = config.systemd.services.coturn.serviceConfig.User;
       group = config.systemd.services.coturn.serviceConfig.Group;
     };
     tuwunel_turn_secret = {
-      sopsFile = secrets + /matrix.yaml;
+      sopsFile = secrets + "/matrix.yaml";
       key = "coturn_matrix_secret";
       owner = config.services.matrix-tuwunel.user;
       group = config.services.matrix-tuwunel.group;

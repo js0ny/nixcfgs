@@ -101,7 +101,7 @@
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /hosts/zen.yaml;
+      yamlFile = secrets + "/hosts/zen.yaml";
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
     };
   };

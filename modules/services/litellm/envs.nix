@@ -1,12 +1,12 @@
 { config, secrets, ... }:
 let
   sec = config.sops.placeholder;
-  sopsFile = secrets + /litellm.yaml;
+  sopsFile = secrets + "/litellm.yaml";
 in
 {
   sops.secrets = {
     openrouter_api_key = {
-      sopsFile = secrets + /llm.yaml;
+      sopsFile = secrets + "/llm.yaml";
     };
     litellm_master_key = {
       inherit sopsFile;
@@ -21,34 +21,34 @@ in
       key = "ui_password";
     };
     minimax_cn_api_key = {
-      sopsFile = secrets + /llm.yaml;
+      sopsFile = secrets + "/llm.yaml";
     };
     deepseek_api_key = {
-      sopsFile = secrets + /llm.yaml;
+      sopsFile = secrets + "/llm.yaml";
     };
     zai_cn_api_key = {
-      sopsFile = secrets + /llm.yaml;
+      sopsFile = secrets + "/llm.yaml";
     };
     tavily_api_key = {
-      sopsFile = secrets + /mcp.yaml;
+      sopsFile = secrets + "/mcp.yaml";
     };
     firecrawl_api_key = {
-      sopsFile = secrets + /mcp.yaml;
+      sopsFile = secrets + "/mcp.yaml";
     };
     jina_api_key = {
-      sopsFile = secrets + /llm.yaml;
+      sopsFile = secrets + "/llm.yaml";
     };
     context7_api_key = {
-      sopsFile = secrets + /mcp.yaml;
+      sopsFile = secrets + "/mcp.yaml";
     };
     aihubmix_api_key = {
-      sopsFile = secrets + /llm.yaml;
+      sopsFile = secrets + "/llm.yaml";
     };
     sub2api_litellm_openai_api_key = {
-      sopsFile = secrets + /litellm.yaml;
+      sopsFile = secrets + "/litellm.yaml";
     };
     siliconflow_api_key = {
-      sopsFile = secrets + /llm.yaml;
+      sopsFile = secrets + "/llm.yaml";
     };
   };
 

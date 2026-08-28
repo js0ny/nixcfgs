@@ -7,7 +7,7 @@
     {
       sops.secrets = {
         meili_master_key = {
-          sopsFile = secrets + /meilisearch.yaml;
+          sopsFile = secrets + "/meilisearch.yaml";
         };
       };
       services.meilisearch = {

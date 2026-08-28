@@ -18,7 +18,7 @@
       dbname = "sub2api";
       dbuser = "sub2api";
       stateDir = "/var/lib/sub2api";
-      sopsFile = secrets + /sub2api.yaml;
+      sopsFile = secrets + "/sub2api.yaml";
     in
     {
 

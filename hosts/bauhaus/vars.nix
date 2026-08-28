@@ -152,7 +152,7 @@ in
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /hosts/bauhaus.yaml;
+      yamlFile = secrets + "/hosts/bauhaus.yaml";
       keyFile = "/etc/ssh/agekey.txt";
     };
     geo = {

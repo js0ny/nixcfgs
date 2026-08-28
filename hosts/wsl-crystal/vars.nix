@@ -62,7 +62,7 @@
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /secrets.yaml;
+      yamlFile = secrets + "/secrets.yaml";
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
       secrets = {
         tskey_crystal = { };

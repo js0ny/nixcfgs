@@ -11,7 +11,7 @@ in
   home.packages = with pkgs; [ js0ny.ratune ];
   sops.secrets = {
     navidrome_my_password = {
-      sopsFile = secrets + /navidrome.yaml;
+      sopsFile = secrets + "/navidrome.yaml";
     };
   };
   xdg.configFile."ratune/config.toml".source = pkgs.writers.writeTOML "ratune-config.toml" {

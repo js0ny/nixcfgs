@@ -9,7 +9,7 @@
       port = 8443;
       realityServer = "www.apple.com";
       dnsServer = "1.1.1.1";
-      sopsFile = secrets + /sing-box.yaml;
+      sopsFile = secrets + "/sing-box.yaml";
     in
     {
       sops.secrets = {

@@ -25,7 +25,7 @@
       ];
 
       sops.secrets.opengist_forgejo_oauth_secret = {
-        sopsFile = secrets + /opengist.yaml;
+        sopsFile = secrets + "/opengist.yaml";
       };
 
       sops.templates."opengist.env".content = /* bash */ ''

@@ -63,7 +63,7 @@
   nixdots.sops.secrets = {
     nix_github_pat = {
       env = [ "NIX_CONFIG" ];
-      sopsFile = secrets + /hosts.yaml;
+      sopsFile = secrets + "/hosts.yaml";
     };
   };
   xdg.configFile."face.png".source = config.js0ny.user.avatar;

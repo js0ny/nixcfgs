@@ -8,7 +8,7 @@
       ...
     }:
     let
-      sopsFile = secrets + /mcp.yaml;
+      sopsFile = secrets + "/mcp.yaml";
       context7-mcp = pkgs.writeShellApplication {
         name = "context7-mcp";
 

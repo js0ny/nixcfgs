@@ -76,6 +76,6 @@ in
     WIKI_PATH = vaultDir;
   };
   sops.secrets.hermes_fast_note_sync = {
-    sopsFile = secrets + /hermes.yaml;
+    sopsFile = secrets + "/hermes.yaml";
   };
 }

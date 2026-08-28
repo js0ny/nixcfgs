@@ -10,7 +10,7 @@
     {
       sops.secrets = {
         anki_sync_key = {
-          sopsFile = secrets + /hosts.yaml;
+          sopsFile = secrets + "/hosts.yaml";
         };
       };
       programs.anki = {

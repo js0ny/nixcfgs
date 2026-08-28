@@ -16,7 +16,7 @@
     in
     {
       sops.secrets.rsshub_env = {
-        sopsFile = secrets + /rsshub.yaml;
+        sopsFile = secrets + "/rsshub.yaml";
         key = "env";
       };
 

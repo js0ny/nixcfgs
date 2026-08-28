@@ -16,7 +16,7 @@ let
   stateDirName = "mautrix-telegram";
   stateDir = "/var/lib/${stateDirName}";
   package = pkgs.nur.repos.moraxyc.mautrix-telegram;
-  sopsFile = secrets + /matrix.yaml;
+  sopsFile = secrets + "/matrix.yaml";
   settingsFormat = pkgs.formats.yaml { };
   registerBot = pkgs.writeShellScript "register-mautrix-telegram-bot" /* bash */ ''
     set -euo pipefail
@@ -118,10 +118,10 @@ in
 {
   sops.secrets = {
     tg_main_mtproto_id = {
-      sopsFile = secrets + /telegram.yaml;
+      sopsFile = secrets + "/telegram.yaml";
     };
     tg_main_mtproto_hash = {
-      sopsFile = secrets + /telegram.yaml;
+      sopsFile = secrets + "/telegram.yaml";
     };
     mautrix_telegram_as = { inherit sopsFile; };
     mautrix_telegram_hs = { inherit sopsFile; };

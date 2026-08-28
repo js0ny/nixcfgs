@@ -6,7 +6,7 @@
 }:
 {
   sops.secrets.tskey = {
-    sopsFile = secrets + /hosts/belvedere.yaml;
+    sopsFile = secrets + "/hosts/belvedere.yaml";
   };
   js0ny = {
     apps = {
@@ -70,7 +70,7 @@
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /hosts/belvedere.yaml;
+      yamlFile = secrets + "/hosts/belvedere.yaml";
       keyFile = "/persist/etc/ssh/agekey.txt";
     };
     geo = {

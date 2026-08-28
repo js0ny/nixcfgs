@@ -7,7 +7,7 @@
 let
   ep = config.nixdefs.endpoints;
   epSelf = ep.prometheus-alertmanager;
-  sopsFile = secrets + /alertmanager.yaml;
+  sopsFile = secrets + "/alertmanager.yaml";
   alertmanagerConfig = pkgs.writers.writeYAML "alertmanager.yaml" {
     route = {
       receiver = "telegram";
@@ -104,7 +104,7 @@ in
     alertmanager_telegram_bot_token = { inherit sopsFile; };
     alertmanager_telegram_chat_id = {
       key = "tg_main_chatid";
-      sopsFile = secrets + /telegram.yaml;
+      sopsFile = secrets + "/telegram.yaml";
     };
   };
 

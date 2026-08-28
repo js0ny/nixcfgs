@@ -23,7 +23,7 @@ in
 {
   sops.secrets = {
     cider2_jwt = {
-      sopsFile = secrets + /hosts.yaml;
+      sopsFile = secrets + "/hosts.yaml";
       path = "${config.xdg.configHome}/sh.cider.genten/User.jwt";
     };
   };

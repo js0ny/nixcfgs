@@ -37,21 +37,21 @@
       realIpConfig = lib.concatMapStrings (ip: "set_real_ip_from ${ip};\n") (
         cloudflareIpv4 ++ cloudflareIpv6
       );
+      inherit (config.services.nginx) user group;
+      sopsFile = secrets + "/cloudflare.yaml";
     in
     {
       sops.secrets = {
         js0nynet_cloudflare_origin_key = {
-          owner = config.services.nginx.user;
-          group = config.services.nginx.group;
-          sopsFile = secrets + /cloudflare.yaml;
+          owner = user;
+          inherit group sopsFile;
         };
         js0nynet_ssl_cert = {
-          owner = config.services.nginx.user;
-          group = config.services.nginx.group;
-          sopsFile = secrets + /cloudflare.yaml;
+          owner = user;
+          inherit group sopsFile;
         };
       };
-      services.nginx.commonHttpConfig = ''
+      services.nginx.commonHttpConfig = /* nginx */ ''
         ${realIpConfig}
         real_ip_header CF-Connecting-IP;
       '';

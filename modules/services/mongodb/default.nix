@@ -13,7 +13,7 @@
     {
       sops.secrets = {
         mongodb_password = {
-          sopsFile = secrets + /mongodb.yaml;
+          sopsFile = secrets + "/mongodb.yaml";
         };
       };
       services.mongodb = {

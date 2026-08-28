@@ -166,7 +166,7 @@ in
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /hosts/crystal.yaml;
+      yamlFile = secrets + "/hosts/crystal.yaml";
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
     };
     geo = {

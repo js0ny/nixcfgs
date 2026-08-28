@@ -17,7 +17,7 @@
       sec = config.sops.secrets;
       selfhosted = config.nixdefs.selfhosted;
       m = import ./librechat-helper.nix;
-      sopsFile = secrets + /librechat.yaml;
+      sopsFile = secrets + "/librechat.yaml";
     in
     {
       imports = [
@@ -31,24 +31,24 @@
         librechat_jwt_refresh_secret = { inherit sopsFile; };
         librechat_litellm_api_key = { inherit sopsFile; };
         meili_master_key = {
-          sopsFile = secrets + /meilisearch.yaml;
+          sopsFile = secrets + "/meilisearch.yaml";
         };
         context7_api_key = {
-          sopsFile = secrets + /mcp.yaml;
+          sopsFile = secrets + "/mcp.yaml";
         };
         librechat_oidc_secret = { inherit sopsFile; };
         librechat_openid_session_secret = { inherit sopsFile; };
         jina_api_key = {
-          sopsFile = secrets + /llm.yaml;
+          sopsFile = secrets + "/llm.yaml";
         };
         firecrawl_api_key = {
-          sopsFile = secrets + /mcp.yaml;
+          sopsFile = secrets + "/mcp.yaml";
         };
         tavily_api_key = {
-          sopsFile = secrets + /mcp.yaml;
+          sopsFile = secrets + "/mcp.yaml";
         };
         openrouter_api_key = {
-          sopsFile = secrets + /llm.yaml;
+          sopsFile = secrets + "/llm.yaml";
         };
       };
       services.librechat = {

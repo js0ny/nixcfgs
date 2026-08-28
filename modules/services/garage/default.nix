@@ -34,7 +34,7 @@
         # openssl rand -hex 32
         garage_rpc_secret = {
           owner = serviceUser;
-          sopsFile = secrets + /garage.yaml;
+          sopsFile = secrets + "/garage.yaml";
         };
       };
       services.garage = {

@@ -19,16 +19,16 @@
     {
       sops.secrets = {
         miniflux_admin_username = {
-          sopsFile = secrets + /miniflux.yaml;
+          sopsFile = secrets + "/miniflux.yaml";
         };
         miniflux_admin_password = {
-          sopsFile = secrets + /miniflux.yaml;
+          sopsFile = secrets + "/miniflux.yaml";
         };
         miniflux_db_password = {
-          sopsFile = secrets + /miniflux.yaml;
+          sopsFile = secrets + "/miniflux.yaml";
         };
         miniflux_oidc_secret = {
-          sopsFile = secrets + /miniflux.yaml;
+          sopsFile = secrets + "/miniflux.yaml";
         };
       };
 

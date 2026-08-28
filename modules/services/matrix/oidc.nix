@@ -12,7 +12,7 @@ in
 {
   # [Human Intervention] Add the plaintext matrix_oidc_client_secret to matrix.yaml and update the secrets input.
   sops.secrets.matrix_oidc_client_secret = {
-    sopsFile = secrets + /matrix.yaml;
+    sopsFile = secrets + "/matrix.yaml";
     owner = config.services.matrix-tuwunel.user;
     group = config.services.matrix-tuwunel.group;
     restartUnits = [ "tuwunel.service" ];

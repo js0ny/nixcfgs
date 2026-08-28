@@ -10,7 +10,7 @@
       ep = config.nixdefs.endpoints;
       url = ep.forgejo.domain;
       socketPath = "/run/forgejo/forgejo.sock";
-      sopsFile = secrets + /forgejo.yaml;
+      sopsFile = secrets + "/forgejo.yaml";
       sshPort = 2220;
     in
     {

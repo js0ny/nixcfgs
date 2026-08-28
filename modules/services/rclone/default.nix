@@ -19,7 +19,7 @@
       sops.secrets = {
         rclone = {
           key = "data";
-          sopsFile = secrets + /files/rclone.yaml;
+          sopsFile = secrets + "/files/rclone.yaml";
           path = "/var/lib/rclone/rclone.conf";
           owner = "root";
         };

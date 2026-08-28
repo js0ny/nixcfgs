@@ -15,7 +15,7 @@ let
   user = "js0ny";
   botID = "discord";
   dname = "js0ny";
-  sopsFile = secrets + /matrix.yaml;
+  sopsFile = secrets + "/matrix.yaml";
   registerBot = pkgs.writeShellScript "register-mautrix-discord-bot" /* bash */ ''
     set -euo pipefail
 

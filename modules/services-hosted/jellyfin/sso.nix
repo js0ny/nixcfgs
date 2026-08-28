@@ -15,7 +15,7 @@ in
 
   sops.secrets = {
     jellyfin_oidc_secret = {
-      sopsFile = secrets + /jellyfin.yaml;
+      sopsFile = secrets + "/jellyfin.yaml";
     };
   };
   # [Human Intervention] cp the rendered file to the same directory.

@@ -29,7 +29,7 @@
     {
       sops.secrets = {
         wg_pvpn_nl = {
-          sopsFile = secrets + /wireguard.yaml;
+          sopsFile = secrets + "/wireguard.yaml";
         };
       };
       sops.templates."gluetun.env".content = /* bash */ ''

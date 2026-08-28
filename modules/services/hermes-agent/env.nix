@@ -3,7 +3,7 @@ let
   sec = config.sops.placeholder;
   ep = config.nixdefs.endpoints;
   obsidianDir = "/var/lib/lmwiki";
-  sopsFile = secrets + /hermes.yaml;
+  sopsFile = secrets + "/hermes.yaml";
 in
 {
   # TODO:
@@ -59,10 +59,10 @@ in
     hermes_dashboard_basic_auth_username = { inherit sopsFile; };
     hermes_dashboard_basic_auth_password_hash = { inherit sopsFile; };
     tg_main_chatid = {
-      sopsFile = secrets + /telegram.yaml;
+      sopsFile = secrets + "/telegram.yaml";
     };
     tavily_api_key = {
-      sopsFile = secrets + /mcp.yaml;
+      sopsFile = secrets + "/mcp.yaml";
     };
   };
 
@@ -73,7 +73,7 @@ in
     environment = { };
   };
   sops.secrets.hermes_opencode_auth = {
-    sopsFile = secrets + /hermes/opencode-auth.yaml;
+    sopsFile = secrets + "/hermes/opencode-auth.yaml";
     key = "data";
     owner = "hermes";
     group = "agents";

@@ -28,7 +28,7 @@
     {
       sops.secrets =
         let
-          sopsFile = secrets + /grafana.yaml;
+          sopsFile = secrets + "/grafana.yaml";
           owner = service.serviceConfig.User;
         in
         {

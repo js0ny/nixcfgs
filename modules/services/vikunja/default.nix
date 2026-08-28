@@ -10,7 +10,7 @@
       ep = config.nixdefs.endpoints;
       epSelf = ep.vikunja;
       url = epSelf.domain;
-      sopsFile = secrets + /vikunja.yaml;
+      sopsFile = secrets + "/vikunja.yaml";
     in
     {
       sops.secrets = {

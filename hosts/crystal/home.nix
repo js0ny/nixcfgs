@@ -38,10 +38,10 @@
 
   sops.secrets = {
     gocryptfs_password = {
-      sopsFile = secrets + /hosts/crystal.yaml;
+      sopsFile = secrets + "/hosts/crystal.yaml";
     };
     rclone-conf = {
-      sopsFile = secrets + /files/rclone.yaml;
+      sopsFile = secrets + "/files/rclone.yaml";
       path = "${config.xdg.configHome}/rclone/rclone.conf";
       key = "data";
       mode = "0600";

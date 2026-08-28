@@ -15,10 +15,10 @@ in
 {
   sops.secrets = {
     hookshot_as = {
-      sopsFile = secrets + /matrix.yaml;
+      sopsFile = secrets + "/matrix.yaml";
     };
     hookshot_hs = {
-      sopsFile = secrets + /matrix.yaml;
+      sopsFile = secrets + "/matrix.yaml";
     };
   };
 

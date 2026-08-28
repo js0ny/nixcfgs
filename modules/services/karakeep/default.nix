@@ -36,10 +36,10 @@
       };
       sops.secrets = {
         karakeep_secret = {
-          sopsFile = secrets + /karakeep.yaml;
+          sopsFile = secrets + "/karakeep.yaml";
         };
         karakeep_oidc_secret = {
-          sopsFile = secrets + /karakeep.yaml;
+          sopsFile = secrets + "/karakeep.yaml";
         };
       };
       sops.templates."karakeep.env".content = /* bash */ ''

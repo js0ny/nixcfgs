@@ -32,7 +32,7 @@
     {
       sops.secrets = {
         llm_key_aichat = {
-          sopsFile = secrets + /llm-integrations.yaml;
+          sopsFile = secrets + "/llm-integrations.yaml";
         };
       };
       sops.templates."aichat.env" = {

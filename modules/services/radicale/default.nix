@@ -18,7 +18,7 @@
     in
     {
       sops.secrets.radicale_htpasswd = {
-        sopsFile = secrets + /radicale.yaml;
+        sopsFile = secrets + "/radicale.yaml";
         owner = serviceUser;
         group = serviceGroup;
         mode = "0400";

@@ -15,7 +15,7 @@
       imports = myLib.scanPaths ./.;
       sops.secrets = {
         forgejo_metrics_token = {
-          sopsFile = secrets + /forgejo.yaml;
+          sopsFile = secrets + "/forgejo.yaml";
           owner = "prometheus";
           group = "prometheus";
         };

@@ -21,7 +21,7 @@
     };
   };
   sops.secrets.tskey = {
-    sopsFile = secrets + /hosts/polder.yaml;
+    sopsFile = secrets + "/hosts/polder.yaml";
   };
   nixdots = {
     core = {
@@ -65,7 +65,7 @@
     };
     sops = {
       enable = true;
-      yamlFile = secrets + /hosts/polder.yaml;
+      yamlFile = secrets + "/hosts/polder.yaml";
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
     };
     geo = {

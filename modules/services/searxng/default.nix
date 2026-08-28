@@ -16,7 +16,7 @@
     in
     {
       sops.secrets.searxng_secret = {
-        sopsFile = secrets + /searxng.yaml;
+        sopsFile = secrets + "/searxng.yaml";
       };
 
       sops.templates."searxng.env".content = /* bash */ ''

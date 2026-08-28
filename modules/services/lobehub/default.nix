@@ -27,7 +27,7 @@
       selfhosted = config.nixdefs.selfhosted;
       inherit (lib) mkDefault;
       dbname = "lobechat";
-      sopsFile = secrets + /lobechat.yaml;
+      sopsFile = secrets + "/lobechat.yaml";
     in
     {
       sops.secrets = {

@@ -36,7 +36,7 @@
         ./mautrix-telegram.nix
       ];
       sops.secrets.matrix_reg_token = {
-        sopsFile = secrets + /matrix.yaml;
+        sopsFile = secrets + "/matrix.yaml";
         owner = config.services.matrix-tuwunel.user;
         group = config.services.matrix-tuwunel.group;
       };

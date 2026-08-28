@@ -8,7 +8,7 @@
       ...
     }:
     let
-      sopsFile = secrets + /opencode.yaml;
+      sopsFile = secrets + "/opencode.yaml";
       user = config.home.username;
     in
     {

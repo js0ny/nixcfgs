@@ -30,7 +30,7 @@ in
 {
   sops.secrets = {
     bilibili_sessdata = {
-      sopsFile = secrets + /net.yaml;
+      sopsFile = secrets + "/net.yaml";
     };
   };
   sops.templates."BBDown.config".content = ''

@@ -11,9 +11,9 @@ in
 {
 
   sops.secrets = {
-    lldap_admin_password.sopsFile = secrets + /authelia.yaml;
-    lldap_jwt_secret.sopsFile = secrets + /authelia.yaml;
-    lldap_key_seed.sopsFile = secrets + /authelia.yaml;
+    lldap_admin_password.sopsFile = secrets + "/authelia.yaml";
+    lldap_jwt_secret.sopsFile = secrets + "/authelia.yaml";
+    lldap_key_seed.sopsFile = secrets + "/authelia.yaml";
   };
   sops.templates."lldap.env".content = /* bash */ ''
     LLDAP_KEY_SEED=${config.sops.placeholder.lldap_key_seed}

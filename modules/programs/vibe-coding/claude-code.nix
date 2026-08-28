@@ -11,7 +11,7 @@ in
 {
   sops.secrets = {
     llm_key_claude_code = {
-      sopsFile = secrets + /llm-integrations.yaml;
+      sopsFile = secrets + "/llm-integrations.yaml";
     };
   };
   nixdots.persist.home = {

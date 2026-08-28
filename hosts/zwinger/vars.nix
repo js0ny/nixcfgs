@@ -6,7 +6,7 @@
 }:
 {
   sops.secrets.tskey = {
-    sopsFile = secrets + /hosts/zwinger.yaml;
+    sopsFile = secrets + "/hosts/zwinger.yaml";
   };
   nixdots = {
     persist.enable = true;
