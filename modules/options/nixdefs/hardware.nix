@@ -16,21 +16,6 @@ let
       };
     };
   };
-  serialDevType = lib.types.submodule (
-    { name, ... }:
-    {
-      options = {
-        dev = lib.mkOption {
-          type = devType;
-        };
-        symlink = lib.mkOption {
-          type = lib.types.str;
-          default = name;
-          description = "Link the device to /dev/SYMLINK";
-        };
-      };
-    }
-  );
   keyboardType = lib.types.submodule {
     options = {
       dev = lib.mkOption {
@@ -52,23 +37,7 @@ in
 {
   options.nixdefs.hardware = {
     enable = lib.mkEnableOption "Hardware Rules applications";
-    serial = {
-      group = lib.mkOption {
-        type = lib.types.str;
-        default = "dialout";
-        description = "group that can access to serial devices";
-      };
-      device = lib.mkOption {
-        type = lib.types.attrsOf serialDevType;
-        default = { };
-      };
-    };
     peripheral = {
-      group = lib.mkOption {
-        type = lib.types.str;
-        default = "plugdev";
-        description = "group that can access to hid/peripheral devices";
-      };
       keyboard = lib.mkOption {
         type = lib.types.attrsOf keyboardType;
         default = { };
@@ -77,13 +46,6 @@ in
   };
   config = lib.mkIf cfg.enable {
     nixdefs.hardware = {
-      serial.device = {
-        basys3 = {
-          dev.vendorId = "0403";
-          dev.productId = "6010";
-          symlink = "basys3";
-        };
-      };
       peripheral.keyboard = {
         "NuPhy Air 75 V2" = {
           dev.vendorId = "19f5";

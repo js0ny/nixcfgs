@@ -24,6 +24,7 @@
       };
       environment.systemPackages = with pkgs; [
         grimblast
+        hyprpicker
       ];
       programs.uwsm.enable = true;
       xdg.portal = {

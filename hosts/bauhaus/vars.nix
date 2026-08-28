@@ -139,7 +139,6 @@ in
         }
       ];
     };
-    pam.howdy.enable = false;
     programs = {
       steam.enable = true;
       zsh.enable = false;

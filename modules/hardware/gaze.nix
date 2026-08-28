@@ -44,6 +44,5 @@ in
   nixdots.persist.system.directories = [
     "/var/lib/gaze"
     "/var/cache/gaze" # onnx sits here
-    "/etc/gaze"
   ];
 }

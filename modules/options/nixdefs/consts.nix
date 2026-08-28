@@ -2,7 +2,6 @@
 {
   options.nixdefs.consts = lib.mkOption { type = lib.types.attrs; };
   config.nixdefs.consts = {
-    niri.extraConfig = lib.mkDefault "";
     firefox.profileDir =
       if pkgs.stdenv.hostPlatform.isDarwin then
         "Library/Application Support/Firefox"

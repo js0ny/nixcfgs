@@ -8,7 +8,7 @@ let
   username = config.nixdots.user.name;
   viaKeyboards = lib.filterAttrs (_: kbd: kbd.via) keyboard;
   keyboardRules = lib.mapAttrsToList (_: device: /* udev */ ''
-    KERNEL=="hidraw*", ATTRS{idVendor}=="${device.dev.vendorId}", ATTRS{idProduct}=="${device.dev.productId}", SUBSYSTEM=="hidraw", GROUP="${peripheral.group}", MODE="0660"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="${device.dev.vendorId}", ATTRS{idProduct}=="${device.dev.productId}", SUBSYSTEM=="hidraw", GROUP="plugdev", MODE="0660"
   '') viaKeyboards;
 in
 lib.mkIf cfg.enable {
@@ -16,9 +16,9 @@ lib.mkIf cfg.enable {
   # 19f5: Nuphy Keyboards
   services.udev.extraRules = lib.concatStringsSep "\n" keyboardRules;
 
-  users.groups."${peripheral.group}" = { };
+  users.groups.plugdev = { };
 
   users.users."${username}" = {
-    extraGroups = [ "${peripheral.group}" ];
+    extraGroups = [ "plugdev" ];
   };
 }

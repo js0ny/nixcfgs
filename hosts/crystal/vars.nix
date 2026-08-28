@@ -150,10 +150,6 @@ in
         productId = "3011";
       };
     };
-    pam.howdy = {
-      enable = true;
-      setup = true;
-    };
     programs = {
       steam.enable = true;
       obs-studio.enable = true;

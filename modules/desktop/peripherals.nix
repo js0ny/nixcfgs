@@ -35,10 +35,4 @@ in
   programs.librepods.enable = true;
   users.users.${user}.extraGroups = [ "librepods" ];
 
-  # TODO: Try OpenLogi
-  # services.logiops.enable = true;
-  # logitech.wireless = {
-  #   enable = true;
-  #   enableGraphical = true;
-  # };
 }
