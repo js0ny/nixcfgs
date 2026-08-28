@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.js0ny.homebrew;
-  primaryUser = config.nixdots.user.name;
+  primaryUser = config.js0ny.user.name;
   homeConfig = config.home-manager.users."${primaryUser}".js0ny.homebrew;
 in
 lib.mkIf cfg.enable {

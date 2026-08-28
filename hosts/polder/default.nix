@@ -45,7 +45,6 @@
     inputs.self.nixosModules.starship
     inputs.self.nixosModules.sub2api
     inputs.self.nixosModules.tailscale
-    inputs.self.nixosModules.valkey
     # keep-sorted end
   ];
 

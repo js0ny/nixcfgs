@@ -23,15 +23,11 @@
   };
   nixdots = {
     persist.enable = false;
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-    };
     programs.firefox.enable = true;
     core = {
       hostname = "crystal";
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixdots";
+      dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixdots";
       timezones = [
         "Europe/London"
         "Etc/UTC"
@@ -67,7 +63,7 @@
     sops = {
       enable = true;
       yamlFile = secrets + /secrets.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
+      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
       secrets = {
         tskey_crystal = { };
         restic_repo_password = { };

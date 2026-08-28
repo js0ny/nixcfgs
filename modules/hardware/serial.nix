@@ -14,7 +14,6 @@ let
       symlink = "basys3";
     };
   };
-  username = config.nixdots.user.name;
   serialRules = lib.mapAttrsToList (_: device: /* udev */ ''
     ATTRS{idVendor}=="${device.dev.vendorId}", ATTRS{idProduct}=="${device.dev.productId}", MODE="0660", GROUP="dialout", SYMLINK+="${device.symlink}"
   '') serial;
@@ -24,7 +23,5 @@ lib.mkIf cfg.enable {
 
   users.groups.dialout = { };
 
-  users.users."${username}" = {
-    extraGroups = [ "dialout" ];
-  };
+  js0ny.user.groups = [ "dialout" ];
 }

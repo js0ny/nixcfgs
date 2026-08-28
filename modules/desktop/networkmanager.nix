@@ -5,7 +5,7 @@
   ...
 }:
 let
-  username = config.nixdots.user.name;
+  username = config.js0ny.user.name;
 in
 {
   imports = [
@@ -24,5 +24,5 @@ in
       "/etc/NetworkManager/system-connections"
     ];
   };
-  users.users."${username}".extraGroups = [ "networkmanager" ];
+  js0ny.user.groups = [ "networkmanager" ];
 }

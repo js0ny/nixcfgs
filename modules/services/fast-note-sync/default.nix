@@ -11,7 +11,7 @@
       iportStr = "9000";
       ipAddr = epSelf.bindAddress;
       stateDir = "/var/lib/fast-note-sync";
-      username = config.nixdots.user.name;
+      username = config.js0ny.user.name;
       fileopt = "0755 ${username} users -";
     in
     {

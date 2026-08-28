@@ -7,5 +7,6 @@
     ./apps.nix
     ./packaging.nix
     ./desktop.nix
+    ./primaryUser.nix
   ];
 }

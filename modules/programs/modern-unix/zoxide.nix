@@ -21,7 +21,7 @@ let
     # `-`
     "-" = "z -";
   };
-  home = config.nixdots.user.home;
+  home = config.js0ny.user.home;
 in
 {
   programs.zoxide = {

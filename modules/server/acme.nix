@@ -2,7 +2,7 @@
 {
   security.acme = {
     acceptTerms = true;
-    defaults.email = config.nixdots.user.email;
+    defaults.email = config.js0ny.user.email;
   };
 
   nixdots.persist.system = {

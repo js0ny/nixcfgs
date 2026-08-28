@@ -10,10 +10,6 @@
   };
   nixdots = {
     persist.enable = true;
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-    };
     core = {
       hostname = "zwinger";
       timezones = [

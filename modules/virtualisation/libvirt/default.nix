@@ -6,7 +6,7 @@
       ...
     }:
     let
-      username = config.nixdots.user.name;
+      username = config.js0ny.user.name;
     in
     {
       environment.systemPackages = with pkgs; [
@@ -38,9 +38,7 @@
         onShutdown = "shutdown";
         onBoot = "ignore";
       };
-      users.users."${username}" = {
-        extraGroups = [ "libvirtd" ];
-      };
+      js0ny.user.groups = [ "libvirtd" ];
       networking.firewall.trustedInterfaces = [ "virbr0" ];
       virtualisation.spiceUSBRedirection.enable = true;
       nixdots.persist.nosnap.system = {

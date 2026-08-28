@@ -16,7 +16,7 @@ in
     inherit defaultSession;
     autoLogin = {
       enable = config.js0ny.desktop.autoLogin;
-      user = config.nixdots.user.name;
+      user = config.js0ny.user.name;
     };
     gdm.enable = enableDM "gdm";
     ly.enable = enableDM "ly";
@@ -24,7 +24,7 @@ in
       enable = enableDM "plasma-login-manager";
       settings = {
         Greeter.PreselectedSession = "${defaultSession}.desktop";
-        Autologin.User = config.nixdots.user.name;
+        Autologin.User = config.js0ny.user.name;
       };
     };
     cosmic-greeter.enable = enableDM "cosmic-greeter";

@@ -6,7 +6,7 @@
 }:
 let
   dots = config.nixdots.core.dots;
-  user = config.nixdots.user.name;
+  user = config.js0ny.user.name;
 in
 {
   home.packages = with pkgs; [ (olympus.override { celesteWrapper = "steam-run"; }) ];

@@ -5,8 +5,8 @@
   ...
 }:
 let
-  user = config.nixdots.user.name;
-  avatar = config.nixdots.user.avatar;
+  user = config.js0ny.user.name;
+  avatar = config.js0ny.user.avatar;
   flatpak = config.js0ny.flatpak;
 in
 {

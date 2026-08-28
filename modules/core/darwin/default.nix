@@ -13,7 +13,7 @@
       environment.variables = import ../shared/do-not-track-vars.nix;
 
       time.timeZone = builtins.head config.nixdots.core.timezones;
-      system.primaryUser = config.nixdots.user.name;
+      system.primaryUser = config.js0ny.user.name;
       networking.computerName = config.nixdots.core.hostname;
       programs.zsh.enable = true;
 

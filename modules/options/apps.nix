@@ -22,8 +22,8 @@ in
     interactiveShell = lib.mkOption {
       type = appType;
       default = {
-        package = config.nixdots.user.shell;
-        exe = lib.getExe config.nixdots.user.shell;
+        package = config.js0ny.user.shell;
+        exe = lib.getExe config.js0ny.user.shell;
         desktop = "";
         bundleIdentifier = "";
       };

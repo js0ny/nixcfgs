@@ -1,6 +1,6 @@
 { config, ... }: {
-  home.username = config.nixdots.user.name;
-  home.homeDirectory = config.nixdots.user.home;
+  home.username = config.js0ny.user.name;
+  home.homeDirectory = config.js0ny.user.home;
   programs.home-manager.enable = true;
 
   catppuccin = {

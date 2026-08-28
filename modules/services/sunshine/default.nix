@@ -5,16 +5,13 @@
       config,
       ...
     }:
-    let
-      user = config.nixdots.user.name;
-    in
     lib.mkIf (config.hardware.graphics.enable) {
       services.sunshine = {
         enable = true;
         autoStart = lib.mkDefault false;
         openFirewall = true;
       };
-      users.users.${user}.extraGroups = [ "uinput" ];
+      js0ny.user.groups = [ "uinput" ];
       services.avahi.enable = true;
       services.avahi.publish.enable = true;
       services.avahi.publish.userServices = true;

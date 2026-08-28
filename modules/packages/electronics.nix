@@ -1,7 +1,4 @@
 {
-  flake.nixosModules.electronics = _: {
-    users.groups."dialout" = { };
-  };
   flake.homeModules.electronics =
     { pkgs, lib, ... }:
     lib.mkMerge [

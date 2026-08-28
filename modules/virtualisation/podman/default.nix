@@ -28,7 +28,7 @@
   }:
   let
     cfg = config.nixdots.machine.virtualisation.oci-container.docker;
-    username = config.nixdots.user.name;
+    username = config.js0ny.user.name;
   in
   lib.mkIf cfg {
 

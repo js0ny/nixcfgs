@@ -18,7 +18,7 @@ lib.mkIf cfg.enable (
     (lib.mkIf
       (
         cfg.keyFile != null
-        && !lib.hasPrefix config.nixdots.user.home cfg.keyFile
+        && !lib.hasPrefix config.js0ny.user.home cfg.keyFile
         && !lib.hasPrefix config.nixdots.persist.path cfg.keyFile
         && !lib.hasPrefix config.nixdots.persist.nosnap.path cfg.keyFile
       )

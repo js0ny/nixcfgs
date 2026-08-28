@@ -9,7 +9,7 @@ let
   pickerPath = "/stickerpicker";
   stateDir = "/var/lib/matrix-stickers";
   packsDir = "${stateDir}/packs";
-  user = config.nixdots.user.name;
+  user = config.js0ny.user.name;
   source = pkgs.applyPatches {
     name = "maunium-stickerpicker-source";
     src = pkgs.fetchFromGitHub {

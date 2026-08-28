@@ -7,7 +7,7 @@
 let
   cfg = config.nixdots.persist;
   path = cfg.path; # /persist
-  user = config.nixdots.user.name;
+  user = config.js0ny.user.name;
 in
 lib.mkMerge [
   (lib.mkIf cfg.enable {

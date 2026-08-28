@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  user = config.nixdots.user.name;
+  user = config.js0ny.user.name;
   ocbase = pkgs.llm-agents.opencode;
   # Wrap bun to perform plugin installation
   ocpkg = pkgs.symlinkJoin {

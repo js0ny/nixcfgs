@@ -15,8 +15,8 @@
         enable = true;
         settings = {
           user = {
-            name = config.nixdots.user.name;
-            email = config.nixdots.user.email;
+            name = config.js0ny.user.name;
+            email = config.js0ny.user.email;
           };
           alias = {
             cl = "clone";

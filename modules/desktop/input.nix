@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 let
 
-  username = config.nixdots.user.name;
+  username = config.js0ny.user.name;
 in
 {
   services.libinput = {
@@ -34,7 +34,7 @@ in
   services.udev.extraRules = /* udev */ ''
     KERNEL=="uinput", GROUP="input", TAG+="uaccess"
   '';
-  users.users."${username}".extraGroups = [
+  js0ny.user.groups = [
     "input"
     "uinput"
   ];

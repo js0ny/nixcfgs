@@ -67,7 +67,7 @@
       sopsFile = secrets + /hosts.yaml;
     };
   };
-  xdg.configFile."face.png".source = config.nixdots.user.avatar;
+  xdg.configFile."face.png".source = config.js0ny.user.avatar;
 
   programs.swayimg.enable = true;
 

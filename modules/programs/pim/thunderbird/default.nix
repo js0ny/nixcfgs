@@ -38,7 +38,7 @@
     }:
     let
       cfg = config.nixdots.programs.thunderbird;
-      profile = config.nixdots.user.name;
+      profile = config.js0ny.user.name;
       nur-addons = pkgs.nur.repos.rycee.thunderbird-addons;
       isNixOS = config.nixdots.linux.enable && config.nixdots.linux.nixos;
     in

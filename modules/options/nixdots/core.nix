@@ -9,7 +9,7 @@
     core = {
       dots = lib.mkOption {
         type = lib.types.str;
-        default = "${config.nixdots.user.home}/.dotfiles";
+        default = "${config.js0ny.user.home}/.dotfiles";
         description = "Path for dotfiles.";
       };
       flakeDir = lib.mkOption {

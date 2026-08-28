@@ -7,8 +7,8 @@
   ...
 }:
 let
-  username = config.nixdots.user.name;
-  sysShell = config.nixdots.user.shell;
+  username = config.js0ny.user.name;
+  sysShell = config.js0ny.user.shell;
   sshKeys = config.nixdefs.misc.ssh.sshKeys;
 in
 {
@@ -78,7 +78,8 @@ in
     isNormalUser = true;
     extraGroups = [
       "wheel"
-    ]; # Enable ‘sudo’ for the user.
+    ]
+    ++ config.js0ny.user.groups; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = sshKeys;
     shell = sysShell;
   };
@@ -125,4 +126,6 @@ in
   environment.systemPackages = with pkgs; [
     iptables-nftables-compat
   ];
+
+  services.redis.package = pkgs.valkey;
 }

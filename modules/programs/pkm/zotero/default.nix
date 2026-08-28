@@ -8,7 +8,7 @@
     let
       dotDir = ".local/share/dot_zotero";
       libraryDir = ".local/share/Zotero";
-      profile = config.nixdots.user.name;
+      profile = config.js0ny.user.name;
       nur-addons = pkgs.nur.repos.rycee.firefox-addons;
       p = config.nixdots.programs.firefox.defaultProfile;
     in

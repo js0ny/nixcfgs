@@ -5,7 +5,7 @@
   ...
 }:
 let
-  user = config.nixdots.user.name;
+  user = config.js0ny.user.name;
 in
 {
   environment.systemPackages = with pkgs; [
@@ -33,6 +33,6 @@ in
   # disable xpad to prevent conflicts with xpadneo
   boot.blacklistedKernelModules = [ "xpad" ];
   programs.librepods.enable = true;
-  users.users.${user}.extraGroups = [ "librepods" ];
+  js0ny.user.groups = [ "librepods" ];
 
 }

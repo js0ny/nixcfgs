@@ -5,24 +5,24 @@
   ...
 }:
 {
-  options.nixdots.user = {
+  options.js0ny.user = {
     name = lib.mkOption {
       type = lib.types.str;
-      default = "pangu";
+      default = "js0ny";
       description = "Primary user account name.";
     };
     home = lib.mkOption {
       type = lib.types.str;
       default =
         if pkgs.stdenv.hostPlatform.isDarwin then
-          "/Users/${config.nixdots.user.name}"
+          "/Users/${config.js0ny.user.name}"
         else
-          "/home/${config.nixdots.user.name}";
+          "/home/${config.js0ny.user.name}";
       description = "Primary user home directory.";
     };
     shell = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.bash;
+      default = pkgs.zsh;
       description = "Default / Login Shell for user.";
     };
     email = lib.mkOption {
@@ -35,7 +35,7 @@
     };
     groups = lib.mkOption {
       type = with lib.types; listOf str;
-      apply = lib.unique;
+      apply = lib.uniqueStrings;
       description = "Extra groups for primary user.";
     };
   };

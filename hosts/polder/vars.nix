@@ -24,10 +24,6 @@
     sopsFile = secrets + /hosts/polder.yaml;
   };
   nixdots = {
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-    };
     core = {
       hostname = "polder";
       timezones = [
@@ -70,7 +66,7 @@
     sops = {
       enable = true;
       yamlFile = secrets + /hosts/polder.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
+      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
     };
     geo = {
       city = "Strasbourg";

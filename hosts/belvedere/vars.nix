@@ -29,10 +29,6 @@
       path = "/persist";
       nosnap.path = "/nosnap";
     };
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-    };
     core = {
       hostname = "belvedere";
       timezones = [

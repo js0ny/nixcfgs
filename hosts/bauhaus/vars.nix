@@ -11,6 +11,7 @@ in
 {
   js0ny = {
     flatpak.enable = true;
+    user.avatar = avatar;
     desktop = {
       enable = true;
       autoLogin = true;
@@ -69,15 +70,10 @@ in
       path = "/persist";
       nosnap.path = "/nosnap";
     };
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-      avatar = avatar;
-    };
     core = {
       hostname = "bauhaus";
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
+      dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       timezones = [
         "Europe/London"
         "Etc/UTC"

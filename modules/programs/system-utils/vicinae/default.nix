@@ -2,12 +2,12 @@
   flake.nixosModules.vicinae =
     { config, ... }:
     let
-      username = config.nixdots.user.name;
+      username = config.js0ny.user.name;
     in
     {
       # uinput is required for clipboard integration
       boot.kernelModules = [ "uinput" ];
-      users.users."${username}".extraGroups = [
+      js0ny.user.groups = [
         "input"
         "uinput"
       ];

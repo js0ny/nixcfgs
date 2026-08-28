@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  fx = config.nixdots.user.name;
+  fx = config.js0ny.user.name;
   fxb = config.nixdefs.consts.firefox.profileDir;
 in
 {

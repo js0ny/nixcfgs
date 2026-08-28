@@ -2,7 +2,7 @@
   flake.nixosModules.wireshark =
     { pkgs, config, ... }:
     let
-      user = config.nixdots.user.name;
+      user = config.js0ny.user.name;
     in
     {
       programs.wireshark = {

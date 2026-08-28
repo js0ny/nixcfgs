@@ -5,7 +5,7 @@ let
   # * group: plugdev
   peripheral = config.nixdefs.hardware.peripheral;
   keyboard = peripheral.keyboard;
-  username = config.nixdots.user.name;
+  username = config.js0ny.user.name;
   viaKeyboards = lib.filterAttrs (_: kbd: kbd.via) keyboard;
   keyboardRules = lib.mapAttrsToList (_: device: /* udev */ ''
     KERNEL=="hidraw*", ATTRS{idVendor}=="${device.dev.vendorId}", ATTRS{idProduct}=="${device.dev.productId}", SUBSYSTEM=="hidraw", GROUP="plugdev", MODE="0660"
@@ -18,7 +18,5 @@ lib.mkIf cfg.enable {
 
   users.groups.plugdev = { };
 
-  users.users."${username}" = {
-    extraGroups = [ "plugdev" ];
-  };
+  js0ny.user.groups = [ "plugdev" ];
 }

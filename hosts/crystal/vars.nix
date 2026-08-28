@@ -11,6 +11,7 @@ in
 {
   js0ny = {
     flatpak.enable = true;
+    user.avatar = avatar;
     desktop = {
       enable = true;
       session = [
@@ -71,15 +72,10 @@ in
       path = "/persist";
       nosnap.path = "/nosnap";
     };
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-      avatar = avatar;
-    };
     core = {
       hostname = "crystal";
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
+      dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       timezones = [
         "Asia/Shanghai"
         "Etc/UTC"
@@ -171,7 +167,7 @@ in
     sops = {
       enable = true;
       yamlFile = secrets + /hosts/crystal.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
+      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
     };
     geo = {
       longitude = -3.2;

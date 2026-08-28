@@ -35,7 +35,7 @@ in
       };
       defaultProfile = lib.mkOption {
         type = lib.types.str;
-        default = config.nixdots.user.name;
+        default = config.js0ny.user.name;
         description = "Default profile that applies to firefox";
       };
     };
@@ -47,7 +47,7 @@ in
       };
       defaultProfile = lib.mkOption {
         type = lib.types.str;
-        default = config.nixdots.user.name;
+        default = config.js0ny.user.name;
         description = "Default profile that applies to thunderbird";
       };
     };

@@ -56,14 +56,9 @@
         enable = true;
       };
     };
-    user = {
-      name = "js0ny";
-      home = "/Users/js0ny";
-      shell = pkgs.zsh;
-    };
     core = {
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
+      dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       hostname = "zen";
       timezones = [
         "Europe/London"
@@ -107,7 +102,7 @@
     sops = {
       enable = true;
       yamlFile = secrets + /hosts/zen.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
+      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
     };
   };
 }
