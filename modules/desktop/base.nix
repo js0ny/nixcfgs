@@ -1,13 +1,4 @@
 {
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-let
-  cfg = config.js0ny.desktop;
-in
-lib.mkIf cfg.enable {
   # Use the systemd-boot EFI boot loader.
   # TODO: Migrate
   boot.loader.systemd-boot.enable = true;

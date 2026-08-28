@@ -1,7 +1,4 @@
 {
-  flake.nixosModules.flatpak = _: {
-    services.flatpak.enable = true;
-  };
   flake.homeModules.flatpak =
     # https://github.com/gmodena/nix-flatpak
     {

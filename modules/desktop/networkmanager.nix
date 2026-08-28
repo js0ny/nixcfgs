@@ -1,12 +1,8 @@
 {
   pkgs,
-  config,
   secrets,
   ...
 }:
-let
-  username = config.js0ny.user.name;
-in
 {
   imports = [
     "${secrets}/nixos/nm.nix"
@@ -19,10 +15,7 @@ in
       networkmanager-fortisslvpn
     ];
   };
-  nixdots.persist.system = {
-    directories = [
-      "/etc/NetworkManager/system-connections"
-    ];
-  };
+  nixdots.persist.system.directories = [ "/etc/NetworkManager/system-connections" ];
+
   js0ny.user.groups = [ "networkmanager" ];
 }

@@ -2,7 +2,6 @@
   flake.nixosModules.desktop = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       # keep-sorted start
-      ddcutil # requires i2c enabled
       efibootmgr
       f2fs-tools
       gnome-firmware

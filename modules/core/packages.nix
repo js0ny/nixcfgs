@@ -10,7 +10,7 @@
         ethtool
         file
         ghostty.terminfo
-        git
+        gitMinimal
         iw
         kitty.kitten
         kitty.terminfo
@@ -19,6 +19,7 @@
         lsof
         moreutils
         psmisc
+        python3
         socat
         sysstat # iostat
         wget

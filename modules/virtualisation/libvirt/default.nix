@@ -2,12 +2,8 @@
   flake.nixosModules.libvirt =
     {
       pkgs,
-      config,
       ...
     }:
-    let
-      username = config.js0ny.user.name;
-    in
     {
       environment.systemPackages = with pkgs; [
         # libvirt & qemu related

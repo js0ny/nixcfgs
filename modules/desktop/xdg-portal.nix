@@ -1,17 +1,14 @@
-{
-  flake.nixosModules.desktop = { pkgs, ... }: {
-    xdg.portal = {
-      enable = true;
-      config.common = {
-        default = [ "gtk" ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-      };
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+{ pkgs, lib, ... }: {
+  xdg.portal = {
+    enable = true;
+    config.common = {
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  flake.homeModules.desktop = { lib, config, ... }: {
-    xdg.portal = {
-      enable = lib.mkForce (!config.nixdots.linux.nixos);
-    };
-  };
+  home-manager.sharedModules = [
+    # The behaviour of xdg-portal is override, prioritise NixOS by disabling home-manager module
+    { xdg.portal.enable = lib.mkForce false; }
+  ];
 }

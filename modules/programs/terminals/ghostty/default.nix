@@ -16,7 +16,7 @@
         enableBashIntegration = true;
         enableZshIntegration = true;
         enableFishIntegration = true;
-        systemd.enable = if pkgs.stdenv.hostPlatform.isDarwin then false else true;
+        systemd.enable = pkgs.stdenv.hostPlatform.isLinux;
         settings = {
           env = [
             "COLORTERM=truecolor"

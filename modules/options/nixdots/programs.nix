@@ -58,13 +58,6 @@ in
         description = "Enable Dolphin file manager.";
       };
     };
-    rime = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enable Rime input method.";
-      };
-    };
     steam = {
       enable = lib.mkOption {
         type = lib.types.bool;

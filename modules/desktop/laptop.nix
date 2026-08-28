@@ -13,7 +13,6 @@ lib.mkIf cfg.enable {
     powertop
   ];
 
-  nixdots.persist.system.directories = [ "/var/lib/fwupd" ];
   services.upower = {
     enable = true;
     ignoreLid = lib.mkDefault false;
