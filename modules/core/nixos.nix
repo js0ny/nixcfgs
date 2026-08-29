@@ -15,15 +15,13 @@ in
   # TODO: Use scanPaths
   imports = [
     "${secrets}/nixos/passwd.nix"
-    ./nix-helper.nix
-    ./nix.nix
     ./nixos/compat-tools.nix
     ./nixos/impermanence.nix
     ./nixos/kernel-hardening.nix
     ./nixos/sops.nix
     ./nixos/styles.nix
     ./nixos/tuned.nix
-    ./sops.nix
+    ./nixos/sudo.nix
     ./stylix.nix
     ../../definitions
     ../options
@@ -75,10 +73,7 @@ in
   users.users."${username}" = {
     uid = 1000;
     isNormalUser = true;
-    extraGroups = [
-      "wheel"
-    ]
-    ++ config.js0ny.user.groups; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ] ++ config.js0ny.user.groups;
     openssh.authorizedKeys.keys = sshKeys;
     shell = sysShell;
   };
@@ -105,17 +100,18 @@ in
     SYSTEMD_LESS = "FRXMK";
   };
 
+  # systemd aliases
+  environment.shellAliases = {
+    sc = "systemctl";
+    scc = "systemctl cat";
+    scs = "systemctl status";
+    jc = "journalctl";
+    jcx = "journalctl -xeu";
+  };
+
   environment.localBinInPath = true;
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-
-  security.sudo.enable = false;
-  security.sudo-rs = {
-    enable = true;
-    extraConfig = ''
-      Defaults lecture = never
-    '';
-  };
 
   networking.nftables = {
     enable = true;

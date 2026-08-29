@@ -10,7 +10,6 @@ in
       UseDns = true;
       PermitRootLogin = "no";
       PasswordAuthentication = false;
-      # This is default to true, make sure override it when needed.
     };
   };
   networking.firewall.allowedTCPPorts = [ port ];

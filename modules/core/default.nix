@@ -2,21 +2,25 @@
   imports = [
     ./packages.nix
     ./ssh.nix
-    ./tailscale.nix
   ];
 
-  flake.nixosModules.core = { inputs, myLib, ... }: {
+  flake.nixosModules.core = { inputs, ... }: {
     imports = [
       ./nixos.nix
       ./shared/hm.nix
-      inputs.sops-nix.nixosModules.sops
-    ];
+      ./shared/nix.nix
+      ./shared/nix-helper.nix
+      ./shared/sops.nix
+    ]
+    ++ (with inputs; [
+      sops-nix.nixosModules.sops
+    ]);
   };
 
   flake.homeModules.core = { inputs, ... }: {
     home.sessionVariables = import ./shared/do-not-track-vars.nix;
     imports = [
-      ./sops.nix
+      ./shared/sops.nix
       ./home/antidots.nix
       ./home/configuration.nix
       ./home/cross-platform.nix
@@ -27,6 +31,7 @@
       ./home/system-alias.nix
       ./home/system-plist.nix
       ./home/xdg-dirs.nix
+      ./home/ssh.nix
 
       ../options
 
@@ -36,10 +41,10 @@
   };
 
   flake.darwinModules.core = _: {
-    home-manager.sharedModules = [ { imports = [ ./nix-helper.nix ]; } ];
+    home-manager.sharedModules = [ { imports = [ ./shared/nix-helper.nix ]; } ];
     imports = [
-      ./nix.nix
-      ./sops.nix
+      ./shared/nix.nix
+      ./shared/sops.nix
       ../options
     ];
   };
@@ -48,7 +53,7 @@
     imports = [
       inputs.self.homeModules.core
       inputs.plasma-manager.homeModules.plasma-manager
-      ./nix.nix
+      ./shared/nix.nix
     ];
 
   };

@@ -10,11 +10,13 @@
       ...
     }:
     {
-      imports = [
-        inputs.self.nixosModules.core
-        inputs.self.nixosModules.nix-index-database
-      ]
-      ++ myLib.scanPaths ./nixos;
+      imports =
+        with inputs.self.nixosModules;
+        [
+          core
+          nix-index-database
+        ]
+        ++ myLib.scanPaths ./nixos;
       nixdefs.hardware.enable = true;
       programs.appimage = {
         enable = true;

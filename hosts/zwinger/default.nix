@@ -16,7 +16,6 @@ in
 
     mod.server
 
-    mod.cloudflare
     mod.fail2ban
     mod.prometheus-node
 

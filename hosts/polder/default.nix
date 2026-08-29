@@ -15,7 +15,6 @@
 
     ./static/flux.nix
     inputs.self.nixosModules.bentopdf
-    inputs.self.nixosModules.cloudflare
     inputs.self.nixosModules.code-server
     inputs.self.nixosModules.fail2ban
     inputs.self.nixosModules.fast-note-sync

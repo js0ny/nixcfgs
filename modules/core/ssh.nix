@@ -19,5 +19,4 @@
       programs.ssh.knownHosts = config.nixdefs.misc.ssh.knownHosts;
     };
 
-  flake.homeModules.core = import ./home/ssh.nix;
 }

@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./acme.nix
+    ./cloudflare.nix
   ];
 
   services.nginx = {

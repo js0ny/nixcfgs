@@ -15,7 +15,6 @@ in
 
     mod.server
     # keep-sorted start
-    mod.cloudflare
     mod.code-server
     mod.fail2ban
     mod.fish

@@ -1,7 +1,8 @@
 {
-  flake.nixosModules.git = _: {
+  flake.nixosModules.git = { pkgs, ... }: {
     programs.git = {
       enable = true;
+      package = pkgs.gitMinimal;
       lfs.enable = true;
       config = {
         core.editor = "nvim";
@@ -9,10 +10,11 @@
     };
   };
   flake.homeModules.git =
-    { config, ... }:
+    { pkgs, config, ... }:
     {
       programs.git = {
         enable = true;
+        package = pkgs.gitMinimal;
         settings = {
           user = {
             name = config.js0ny.user.name;

@@ -16,6 +16,7 @@
         dockerSocket.enable = lib.mkDefault (!dockerEnabled);
       };
       environment.systemPackages = [ pkgs.podman-compose ];
+      virtualisation.oci-containers.backend = "podman";
     };
 
 }

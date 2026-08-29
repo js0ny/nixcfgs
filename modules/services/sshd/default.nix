@@ -18,9 +18,4 @@
       };
     };
 
-  flake.nixosModules.server = { inputs, ... }: {
-    imports = [
-      inputs.self.nixosModules.sshd
-    ];
-  };
 }
