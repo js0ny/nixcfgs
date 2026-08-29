@@ -22,6 +22,9 @@
         fi
         systemctl start --user shell-init.target
       '';
+      noctaliaLoggintOutHook = pkgs.writeShellScriptBin "noctalia-logging-out-hook" ''
+        systemctl stop --user shell-init.target
+      '';
     in
     {
       xdg.stateFile."noctalia/.setup-complete".text = "";
@@ -124,7 +127,13 @@
             taskbar.group_by_workspace = true;
             tray = {
               drawer = true;
-              pinned = [ "Fcitx" ];
+              pinned = [
+                # Input Method
+                "Fcitx"
+                # Proxy
+                "tray-icon tray app clash-verge-rev-tray"
+                "Throne"
+              ];
             };
             clock.format = "{:%H:%M:%S}";
             osicon = {
@@ -140,6 +149,7 @@
           };
           hooks = {
             started = lib.getExe noctaliaStartedHook;
+            logging_out = lib.getExe noctaliaLoggintOutHook;
           };
           plugins.enabled = [ "noctalia/world_clock" ];
         };
