@@ -85,7 +85,4 @@
       };
     };
 
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.mcp ];
-  };
 }

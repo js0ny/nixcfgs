@@ -55,7 +55,4 @@
       };
       xdg.dataFile."kxmlgui5/okular".source = mkSymlink "${dots}/modules/programs/productivity/okular";
     };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.okular ];
-  };
 }

@@ -1,0 +1,86 @@
+{
+  pkgs,
+  config,
+  secrets,
+  lib,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    # keep-sorted start
+
+    ../../../modules/packages/extra.nix
+    ../../../modules/programs/gaming/celeste/module.nix
+    ../../../modules/programs/gaming/emulators/cemu.nix
+    ../../../modules/programs/gaming/emulators/retroarch.nix
+    ../../../modules/programs/gaming/emulators/ryujinx.nix
+    ../../../modules/programs/gaming/minecraft.nix
+    # keep-sorted end
+
+    inputs.self.homeModules.editors
+    inputs.self.homeModules.emacs
+    inputs.self.homeModules.neovide
+    inputs.self.homeModules.vcs-extra
+    inputs.self.homeModules.vibe-coding
+    inputs.self.homeModules.vscode
+    inputs.self.homeModules.zed-editor
+    inputs.self.homeModules.wakatime
+
+    inputs.self.homeModules.alacritty
+    inputs.self.homeModules.kitty
+    inputs.self.homeModules.ghostty
+    inputs.self.homeModules.zellij
+
+    inputs.self.homeModules.qutebrowser
+
+    inputs.self.homeModules.discord
+    inputs.self.homeModules.telegram
+    inputs.self.homeModules.matrix-element
+    inputs.self.homeModules.social-tencent
+
+    inputs.self.homeModules.hermes-desktop
+    inputs.self.homeModules.aichat
+    inputs.self.homeModules.cherry-studio
+
+    inputs.self.homeModules.anki
+    inputs.self.homeModules.obsidian
+    inputs.self.homeModules.zotero
+
+    inputs.self.homeModules.wine
+    inputs.self.homeModules.gaming
+
+    inputs.self.homeModules.dev
+
+    inputs.self.homeModules.protonmail-bridge
+  ];
+
+  catppuccin.thunderbird.profile = config.home.username;
+
+  nixdots.sops.secrets = {
+    nix_github_pat = {
+      env = [ "NIX_CONFIG" ];
+      sopsFile = secrets + "/hosts.yaml";
+    };
+  };
+  xdg.configFile."face.png".source = config.js0ny.user.avatar;
+
+  programs.swayimg.enable = true;
+
+  home.packages = [
+    # TODO: impl for other shell
+    (pkgs.writeShellScriptBin "setwall" ''
+      if [[ $XDG_CURRENT_DESKTOP == "Hyprland" || $XDG_CURRENT_DESKTOP == "niri" ]]; then
+        noctalia msg wallpaper-set "$@"
+      elif [[ $XDG_CURRENT_DESKTOP == "KDE" ]]; then
+        plasma-apply-wallpaperimage "$@"
+      elif [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
+        dconf write /org/gnome/desktop/background/picture-uri "file:///$@"
+      fi
+    '')
+  ];
+
+  home.activation.remove-other-autostart-entries = /* bash */ ''
+    find "$HOME/.config/autostart" -maxdepth 1 -type f -name '*.desktop' -delete
+  '';
+}

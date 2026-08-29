@@ -40,10 +40,4 @@
       ];
     };
   };
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.obs-studio ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.obs-studio ];
-  };
 }

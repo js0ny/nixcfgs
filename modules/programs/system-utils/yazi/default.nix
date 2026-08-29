@@ -72,10 +72,4 @@
       ];
 
     };
-  flake.nixosModules.core = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.yazi ];
-  };
-  flake.homeModules.core = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.yazi ];
-  };
 }

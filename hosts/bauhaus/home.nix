@@ -27,8 +27,6 @@ in
     mod.engineering
     mod.electronics
 
-    mod.libvirt
-
     inputs.secrets.homeManagerModules.default
     # keep-sorted start
     inputs.flatpak-nix.homeManagerModules.nix-flatpak

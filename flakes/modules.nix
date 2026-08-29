@@ -10,7 +10,7 @@ in
     default = { };
   };
 
-  imports = lib.filter (path: !(lib.hasPrefix optionsPath (toString path))) (
-    myLib.scanDefaultsRec modulesPath
-  );
+  imports =
+    lib.filter (path: !(lib.hasPrefix optionsPath (toString path))) (myLib.scanDefaultsRec modulesPath)
+    ++ [ ../profiles ];
 }

@@ -11,15 +11,6 @@
     ];
     programs.htop.enable = true;
   };
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.modern-unix ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.modern-unix ];
-  };
-  flake.homeModules.darwin = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.modern-unix ];
-  };
   flake.homeModules.modern-unix =
     { pkgs, config, ... }:
     {

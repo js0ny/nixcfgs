@@ -122,5 +122,4 @@
         };
       };
     };
-  flake.homeModules.core = { inputs, ... }: { imports = [ inputs.self.homeModules.fastfetch ]; };
 }

@@ -14,6 +14,15 @@ rec {
         ) (builtins.readDir path)
       )
     );
+  scanFiles =
+    path:
+    map (name: path + "/${name}") (
+      builtins.attrNames (
+        lib.attrsets.filterAttrs (
+          name: type: type == "regular" && name != "default.nix" && lib.strings.hasSuffix ".nix" name
+        ) (builtins.readDir path)
+      )
+    );
   scanDefaultsRec =
     path:
     let

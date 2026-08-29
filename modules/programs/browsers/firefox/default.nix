@@ -19,10 +19,4 @@
       };
     };
   flake.homeModules.firefox = import ./home.nix;
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.firefox ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.firefox ];
-  };
 }

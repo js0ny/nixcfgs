@@ -47,15 +47,11 @@
     hardware = {
       type = "bare-metal";
     };
+    desktop.enable = true;
+    homebrew.enable = true;
   };
   nixdots = {
     persist.enable = false;
-    darwin = {
-      enable = true;
-      homebrew = {
-        enable = true;
-      };
-    };
     core = {
       dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
@@ -88,16 +84,6 @@
       firefox.enable = true;
       dolphin.enable = true;
       thunderbird.enable = true;
-    };
-    features = {
-      enable = true;
-      media.mpv = {
-        enable = true;
-        enableNativeFrontend = true;
-      };
-    };
-    desktop = {
-      enable = true;
     };
     sops = {
       enable = true;

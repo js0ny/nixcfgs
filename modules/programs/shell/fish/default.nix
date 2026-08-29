@@ -8,13 +8,4 @@
       ".local/share/fish/fish_history"
     ];
   };
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.fish ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.fish ];
-  };
-  flake.homeModules.darwin = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.fish ];
-  };
 }

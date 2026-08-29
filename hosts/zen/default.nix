@@ -2,7 +2,7 @@
 {
   imports = [
     ../../definitions
-    inputs.self.darwinModules.darwin
+    inputs.self.darwinModules.core
 
     ./packages.nix
     ./dock.nix

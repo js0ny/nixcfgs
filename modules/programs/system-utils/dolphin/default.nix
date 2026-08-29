@@ -90,10 +90,4 @@
       };
     };
 
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.dolphin ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.dolphin ];
-  };
 }

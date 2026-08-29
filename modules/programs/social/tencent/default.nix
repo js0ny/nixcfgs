@@ -21,7 +21,4 @@
       };
     };
   };
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.social-tencent ];
-  };
 }

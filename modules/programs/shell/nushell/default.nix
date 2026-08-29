@@ -73,7 +73,4 @@
       home.packages = with pkgs; [ nufmt ];
     };
 
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.nushell ];
-  };
 }

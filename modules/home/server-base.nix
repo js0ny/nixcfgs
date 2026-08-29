@@ -1,5 +1,4 @@
-_: {
-  imports = [
-    ./linux-base.nix
-  ];
+{ inputs, ... }:
+{
+  imports = [ inputs.self.homeModules.linux ];
 }
