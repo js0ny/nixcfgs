@@ -69,4 +69,27 @@ in
 
   programs.labwc.enable = true;
 
+  # localsend, TCP/UDP 53317
+  programs.localsend.enable = true;
+
+  # only open local interface
+  networking.firewall.interfaces."wlp3s0" = {
+    # localsend
+    allowedTCPPorts = [ 53317 ];
+    allowedUDPPorts = [ 53317 ];
+    # KDE Connect
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+  };
+
 }

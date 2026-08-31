@@ -4,7 +4,6 @@
     [
       ripgrep-all
       localPkgs.edit-clipboard
-      localsend
       pandoc
       dos2unix
       gron

@@ -68,7 +68,6 @@
   programs.swayimg.enable = true;
 
   home.packages = [
-    # TODO: impl for other shell
     (pkgs.writeShellScriptBin "setwall" ''
       if [[ $XDG_CURRENT_DESKTOP == "Hyprland" || $XDG_CURRENT_DESKTOP == "niri" ]]; then
         noctalia msg wallpaper-set "$@"

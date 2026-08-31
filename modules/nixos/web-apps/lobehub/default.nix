@@ -1,6 +1,6 @@
 {
   flake.nixosModules.lobehub =
-    # NOTE: Human Intervention Required:
+    # Human Intervention Required:
     # * on first setup
     # * Adding or deleting custom provider
     # Using garage for s3 backend:

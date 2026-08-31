@@ -155,7 +155,6 @@ const vForwardFactory = {
     }
   },
 };
-// TODO: Add more search completion source (with json)
 const parseSearchResponse = function (response) {
   const res = JSON.parse(response.text);
   return res.map((r) => r.phrase);

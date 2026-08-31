@@ -53,7 +53,7 @@ in
       # Bilibili
       bilisponsorblock
       # Twitter
-      xcancel
+      # xcancel
 
       # Misc
       rsshub-radar

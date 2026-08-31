@@ -26,8 +26,8 @@
         "net.ipv4.ip_forward" = 1;
         "net.ipv6.conf.all.forwarding" = 1;
       };
-      systemd.services.tailscale-setup-exit-node = {
-        enable = cfg.exitNode;
+      systemd.services.tailscale-setup-exit-node = lib.mkIf cfg.exitNode {
+        enable = true;
         description = "Advertise Tailscale exit node";
 
         wantedBy = [ "multi-user.target" ];

@@ -61,6 +61,7 @@ print("Public key:", base64.urlsafe_b64encode(public).rstrip(b"=").decode())
 
 ```json
 {
+  "$schema": "https://raw.githubusercontent.com/xmdhs/sing-box-generate-schema/refs/heads/master/schema.generated.json",
   "inbounds": [
     {
       "type": "socks",
@@ -95,9 +96,9 @@ print("Public key:", base64.urlsafe_b64encode(public).rstrip(b"=").decode())
 ```
 
 ```bash
-# Assume config above is located in /tmp/singbox.json
+# Assume config above is located in /tmp/sing-box.json
 nix shell p#sing-box
-sing-box -c /tmp/singbox.json &
+sing-box run -c /tmp/sing-box.json &
 curl --proxy socks5h://127.0.0.1:1080 https://ifconfig.me
 # Expected: {{SERVER_PUBLIC_IP}}
 ```

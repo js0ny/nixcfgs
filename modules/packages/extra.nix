@@ -6,8 +6,9 @@
   ...
 }:
 let
+  font-manager = pkgsStable.font-manager;
   font-viewer = pkgs.writeShellScriptBin "font-viewer" ''
-    exec ${pkgs.font-manager}/libexec/font-manager/font-viewer "$@"
+    exec ${font-manager}/libexec/font-manager/font-viewer "$@"
   '';
   pdf2zh = pkgs.writeShellApplication {
     name = "pdf2zh";
