@@ -1,4 +1,4 @@
-;; All elisp files under emacs.d/lisp will be loaded
+;; -*- lexical-binding: t; -*-
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Store the auto-generated custom config to `custom.el`
@@ -25,6 +25,15 @@
 (use-package emacs
   :custom
   (inhibit-startup-message t)
+
+  ;; scroll
+  (scroll-margin 5)
+  (scroll-step 1)
+  (hscroll-margin 3)
+  (hscroll-step 1)
+
+  ;; startup
+  (initial-scratch-message "")
   :config
   (menu-bar-mode -1)
   (tool-bar-mode -1))
@@ -63,6 +72,10 @@
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.2))
+
+
+(with-eval-after-load 'company
+  (require 'company-childframe))
 
 (use-package marginalia
   :ensure t
@@ -219,11 +232,14 @@
   (transient-values-file (expand-file-name "transient/values.el" user-emacs-data))
   (transient-levels-file (expand-file-name "transient/levels.el" user-emacs-data)))
 
+(defvar sys-flake "(builtins.getFlake \"github:js0ny/nixcfgs\")")
 
 (use-package eglot
   :config
   (add-to-list 'eglot-server-programs
-	       '(nix-ts-mode . ("nixd"))))
+	       '(nix-ts-mode . ("nixd"))
+	       '(nix-mode . ("nixd"))))
+
 (use-package nix-ts-mode
     :mode "\\.nix\\'"
     :hook (nix-ts-mode . eglot-ensure))
@@ -375,9 +391,16 @@
   (dirvish-cache-dir (expand-file-name "dirvish" user-emacs-cache))
   (dirvish-quick-access-entires
    '(("h" "~/" "Home")
-     ("d" download-dir "Downloads"))))
+     ("d" download-dir "Downloads")))
+  :config
+  (dirvish-override-dired-mode))
 
 (use-package zoxide
   :config
   (evil-leader/set-key
     "pd" #'zoxide-cd))
+
+
+(use-package org-modern)
+
+(use-package ox-typst)

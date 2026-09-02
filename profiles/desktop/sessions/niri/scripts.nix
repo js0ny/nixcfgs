@@ -1,12 +1,20 @@
 # Stolen from basecamp/omarchy
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  niri = config.wayland.windowManager.niri.package;
+in
 {
   focusOrLaunch = pkgs.writeShellApplication {
     name = "nirictl-focus-or-launch";
 
     runtimeInputs = [
       pkgs.jq
-      pkgs.niri
+      niri
     ];
 
     text = ''
@@ -28,6 +36,17 @@
       else
         eval "$CMD" &
       fi
+    '';
+  };
+  killWindow = pkgs.writeShellApplication {
+    name = "niri-kill-window";
+    runtimeInputs = [
+      pkgs.coreutils
+      niri
+      pkgs.jq
+    ];
+    text = ''
+      kill -9 "$(niri msg --json focused-window | jq .pid)"
     '';
   };
 }

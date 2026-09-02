@@ -34,6 +34,8 @@
             nil
             nushell
             inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
+            nixos-anywhere
+            disko
           ];
         in
         {

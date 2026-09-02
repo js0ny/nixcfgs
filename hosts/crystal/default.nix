@@ -17,6 +17,7 @@ in
     ./disko.nix
     ./restic.nix
     ./vars.nix
+    ./sing-box.nix
     mod.clash-verge
     mod.throne
     mod.desktop

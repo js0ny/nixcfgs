@@ -6,7 +6,7 @@
 let
   vicinae = config.nixdefs.consts.vicinae;
   shell = config.nixdefs.consts.noctalia;
-  nirictl = import ./scripts.nix { inherit pkgs; };
+  nirictl = import ./scripts.nix { inherit pkgs lib config; };
   # homeDir = config.home.homeDirectory;
   nirictl-focus = lib.getExe nirictl.focusOrLaunch;
   genCmd = cmd: builtins.concatStringsSep " " (map (x: ''"${x}"'') cmd);
@@ -14,13 +14,14 @@ let
   screenDevice = config.nixdots.laptop.backlight.screen;
   kbdDevice = config.nixdots.laptop.backlight.keyboard;
   kbdStep = "1";
+  killWindow = nirictl.killWindow;
 in
 /* kdl */ ''
   binds {
       Alt+Print { screenshot-window write-to-disk=true; }
       Ctrl+Print { screenshot-screen show-pointer=false; }
       Alt+Space hotkey-overlay-title="Picker" { spawn ${genCmd vicinae.toggle}; }
-      Ctrl+Alt+Delete { quit; }
+      Ctrl+Alt+Delete { spawn ${genCmd shell.session}; }
       Mod+1 { focus-workspace "1-master"; }
       Mod+2 { focus-workspace "2-project"; }
       Mod+3 { focus-workspace "3-alt"; }
@@ -84,6 +85,7 @@ in
       "Mod+Page_Down" { focus-workspace-down; }
       "Mod+Page_Up" { focus-workspace-up; }
       Mod+Q { close-window; }
+      Mod+Shift+Q { spawn "${lib.getExe killWindow}"; }
       Mod+R { switch-preset-column-width; }
       Mod+Return hotkey-overlay-title="Open a Terminal: ${term}" { spawn "${term}"; }
       Mod+Right { focus-column-right; }

@@ -9,7 +9,7 @@
     let
       zellij-scrollback-nvim = pkgs.writeShellApplication {
         name = "zellij-scrollback-nvim";
-        runtimeInputs = [ config.programs.neovim.package ];
+        runtimeInputs = [ config.programs.nixvim.build.package ];
         text = ''
           exec nvim \
             --cmd 'set termguicolors' \

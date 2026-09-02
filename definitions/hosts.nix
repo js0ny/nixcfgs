@@ -17,6 +17,10 @@
       tailscaleIp = "100.97.155.65";
       deploy = { };
     };
+    revival = {
+      tailscaleIp = "192.168.10.154";
+      deploy = { };
+    };
   };
 
   darwin.zen = { };

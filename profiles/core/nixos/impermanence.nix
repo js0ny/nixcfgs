@@ -8,6 +8,7 @@ let
   cfg = config.nixdots.persist;
   path = cfg.path; # /persist
   user = config.js0ny.user.name;
+  util-linux = config.boot.initrd.systemd.package.util-linux;
 in
 lib.mkMerge [
   (lib.mkIf cfg.enable {
@@ -79,8 +80,8 @@ lib.mkMerge [
           mkdir = lib.getExe' pkgs.coreutils "mkdir";
           mv = lib.getExe' pkgs.coreutils "mv";
           date = lib.getExe' pkgs.coreutils "date";
-          mount = lib.getExe' pkgs.util-linux "mount";
-          umount = lib.getExe' pkgs.util-linux "umount";
+          mount = lib.getExe' util-linux "mount";
+          umount = lib.getExe' util-linux "umount";
           btrfs = lib.getExe pkgs.btrfs-progs;
           find = lib.getExe pkgs.findutils;
         in

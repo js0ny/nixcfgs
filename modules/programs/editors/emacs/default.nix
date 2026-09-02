@@ -17,6 +17,8 @@
         extraConfig = /* elisp */ ''
           (setq org-babel-python-command "${lib.getExe pkgs.python3}")
           (setq dirvish-vipsthumbnail-program "${lib.getExe' pkgs.vips "vipsthumbnail"}")
+          (setq dirvish-pdfinfo-program "${lib.getExe' pkgs.poppler-utils "pdfinfo"}")
+          (setq dirvish-pdftoppm-program "${lib.getExe' pkgs.poppler-utils "pdftoppm"}")
         '';
         extraPackages =
           epkgs:
@@ -54,6 +56,7 @@
             magit
             elfeed
             elfeed-org
+            org-modern
             doom-modeline
             gptel
             posframe
@@ -61,6 +64,10 @@
             yasnippet
             nix-mode
             htmlize
+
+            ox-typst
+            typst-ts-mode
+            typst-preview
             (epkgs.treesit-grammars.with-grammars (grammars: [
               grammars.tree-sitter-nix
             ]))
