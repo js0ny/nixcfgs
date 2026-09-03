@@ -15,7 +15,7 @@ in
         "signon.rememberSignons" = false;
         "browser.urlbar.suggest.history" = true;
 
-        "browser.ml.enabled" = true;
+        "browser.ml.enabled" = false;
         "browser.ml.chat.hideLocalhost" = false;
 
         "browser.toolbars.bookmarks.visibility" = "never";

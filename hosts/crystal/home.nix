@@ -13,6 +13,7 @@
     inputs.self.homeModules.hyprland
     inputs.self.homeModules.noctalia
     inputs.self.homeModules.niri
+    inputs.self.homeModules.glide
     ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 
@@ -146,7 +147,6 @@
     ".config/sunshine"
   ];
   home.packages = [
-    inputs.glide-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
 }

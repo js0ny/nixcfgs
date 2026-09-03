@@ -1,10 +1,4 @@
-# Stolen from basecamp/omarchy
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, config, ... }:
 let
   niri = config.wayland.windowManager.niri.package;
 in

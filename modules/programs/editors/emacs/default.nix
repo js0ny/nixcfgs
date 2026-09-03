@@ -27,47 +27,67 @@
             pkgs.js0ny.emacsPackages.typst-overlay
             pkgs.js0ny.emacsPackages.kitty-graphics
 
-            avy
-            elfeed-protocol
+            # display
             dashboard
-            hnview
-            evil
-            counsel
-            flash
-            evil-leader
-            evil-commentary
-            zoxide
-            evil-surround
-            evil-mc
-            evil-goggles
+            highlight-indent-guides
+            doom-modeline
+
+            # enhancement
             evil-ghostel
-            ement
-            melpaPackages.telega
             ghostel
-            beancount
-            counsel
             company
             vertico
             marginalia
+            counsel
             dirvish
-            nix-ts-mode
-            flycheck
-            highlight-indent-guides
+
+            # tools
             magit
+            majutsu
+            yasnippet
+            flycheck
+            zoxide
+
+            # evil
+            avy
+            flash
+            evil
+            evil-surround
+            evil-mc
+            evil-goggles
+            evil-leader
+            evil-commentary
+
+            # org
+            olivetti
+            org-modern
+            org-roam
+
+            # social
+            ement
+            melpaPackages.telega
+
+            # feed
             elfeed
             elfeed-org
-            org-modern
-            doom-modeline
-            gptel
-            posframe
-            ht
-            yasnippet
-            nix-mode
-            htmlize
+            elfeed-protocol
 
+            # typst
             ox-typst
             typst-ts-mode
             typst-preview
+
+            # clients
+            hnview
+
+            beancount
+            nix-ts-mode
+            gptel
+            posframe
+            ht
+            nix-mode
+            htmlize
+
             (epkgs.treesit-grammars.with-grammars (grammars: [
               grammars.tree-sitter-nix
             ]))

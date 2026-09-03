@@ -64,7 +64,6 @@
 
 
 (use-package company
-  :ensure t
   :hook (after-init . global-company-mode)
   :bind (:map company-active-map
 	      ("C-n" . company-select-next)
@@ -88,17 +87,8 @@
   :config
   (vertico-mode 1))
 
-(use-package avy
-  :ensure t
-  :after evil
-  :config
-  (evil-define-key '(normal) 'global (kbd "T") 'avy-goto-char)
-  (evil-define-key '(normal) 'global (kbd "s") 'avy-goto-char-2)
-  (evil-define-key '(normal) 'global (kbd "S") 'avy-goto-char-2-above))
-
 ;; Provides Vim-like Leader key <SPC>
 (use-package evil-leader
-  :after evil
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>")
@@ -157,11 +147,17 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (python . t)
-     (shell . t))))
+     (shell . t)))
+  (add-hook 'org-insert-heading-hook #'org-id-get-create)
+  (setq org-id-locations-file (expand-file-name "org-id-locations" user-emacs-data)))
 
 (use-package yasnippet
   :config
-  (yas-global-mode 1))
+  (yas-global-mode 1)
+  :commands yas-minor-mode
+  :hook
+  ((prog-mode . yas-minor-mode)
+   (org-mode . yas-minor-mode)))
 
 (use-package eshell
   :ensure t
@@ -346,6 +342,7 @@
 
 (use-package typst-overlay
   :hook ((typst-ts-mode . typst-overlay-mode)
+	 (org-mode . typst-overlay-mode)
 	 (after-save . typst-overlay-save-refresh)))
 
 (use-package kitty-graphics
@@ -401,6 +398,58 @@
     "pd" #'zoxide-cd))
 
 
-(use-package org-modern)
+
+(use-package org-modern
+  :ensure t
+  :config
+  ;; (setopt org-modern-star 'replace
+  ;;         org-modern-replace-stars '("§")
+  ;;         org-modern-hide-stars "§")
+  (setopt org-modern-list '((?- . "•")))
+  (setopt org-modern-timestamp '(" %Y-%m-%d " . " %H:%M "))
+  (setopt org-modern-block-fringe nil)
+
+;; https://github.com/neoheartbeats/.emacs.d/blob/main/lisp/init-org.el#L126C1-L159C47
+  (defun sthenno/org-modern-spacing ()
+    "Adjust line-spacing for `org-modern' to correct svg display."
+
+    ;; FIXME: This may not set properly
+    (setq-local line-spacing (cond ((eq major-mode #'org-mode) 0.20)
+                                   (t nil))))
+  (add-hook 'org-mode-hook #'sthenno/org-modern-spacing)
+
+
+  ;; Hooks
+  (add-hook 'org-mode-hook #'org-modern-mode))
 
 (use-package ox-typst)
+
+(use-package olivetti
+  :config
+  (add-hook 'org-mode-hook #'olivetti-mode))
+
+(use-package flash
+  :after evil
+  :config
+  (evil-define-key '(normal) 'global (kbd "s") #'flash-jump))
+
+
+;; (use-package avy
+;;   :ensure t
+;;   :after evil
+;;   :config
+;;   (evil-define-key '(normal) 'global (kbd "T") 'avy-goto-char)
+;;   (evil-define-key '(normal) 'global (kbd "s") 'avy-goto-char-2)
+;;   (evil-define-key '(normal) 'global (kbd "S") 'avy-goto-char-2-above))
+
+(use-package org-roam
+  :after org
+  :custom
+  (org-roam-directory (expand-file-name "~/Documents/roam"))
+  (org-roam-db-location (expand-file-name "org-roam.db" user-emacs-data))
+  :config
+  (org-roam-db-autosync-mode))
+
+
+(add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
+(require 'org-typst-preview)
