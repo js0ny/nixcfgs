@@ -62,8 +62,8 @@ in
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
 
   services.scx = {
-    enable = false;
-    scheduler = "scx_lavd";
+    enable = true;
+    scheduler = "scx_pandemonium";
   };
 
   boot.plymouth.enable = true;
@@ -93,4 +93,9 @@ in
     ];
   };
 
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+  js0ny.user.groups = [ "wireshark" ];
 }

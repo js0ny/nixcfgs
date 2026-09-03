@@ -1,11 +1,11 @@
 {
   pkgs,
   lib,
-  pkgsStable,
   inputs,
   ...
 }:
 let
+  pkgsStable = pkgs.mv.at "26.05";
   font-manager = pkgsStable.font-manager;
   font-viewer = pkgs.writeShellScriptBin "font-viewer" ''
     exec ${font-manager}/libexec/font-manager/font-viewer "$@"

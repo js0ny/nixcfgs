@@ -15,7 +15,6 @@ let
     nixcfgs = inputs.self;
     bindeps = inputs.bindeps;
     secrets = inputs.secrets;
-    pkgsStable = inputs.nixpkgs-stable.legacyPackages.${system};
   };
 
   mkNixosSystem =

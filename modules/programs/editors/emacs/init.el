@@ -450,6 +450,11 @@
   :config
   (org-roam-db-autosync-mode))
 
+(use-package org-download
+  :config
+  (setq org-download-method 'directory)
+  (setq-default org-download-image-dir "./attach"))
+
 
 (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 (require 'org-typst-preview)

@@ -116,3 +116,8 @@ glide.excmds.create(
 glide.include("./search-engines.glide.ts");
 glide.include("./excmd-alias.glide.ts");
 glide.include("./picker.glide.ts");
+
+glide.keymaps.set("command", "<C-j>", "commandline_focus_next");
+glide.keymaps.set("command", "<C-k>", "commandline_focus_back");
+glide.keymaps.set("command", "<C-n>", "commandline_focus_next");
+glide.keymaps.set("command", "<C-p>", "commandline_focus_back");

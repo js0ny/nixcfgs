@@ -26,3 +26,8 @@ let
   ) overlayFiles;
 in
 lib.composeManyExtensions overlays final prev
+// {
+  mv = inputs.multiverse.lib.mkMultiverse {
+    system = final.stdenv.hostPlatform.system;
+  };
+}

@@ -3,7 +3,6 @@
   nixcfgs,
   inputs,
   secrets,
-  pkgsStable,
   ...
 }:
 {
@@ -17,7 +16,6 @@
         nixcfgs
         myLib
         secrets
-        pkgsStable
         ;
     };
     sharedModules = [

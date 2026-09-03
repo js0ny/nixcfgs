@@ -24,7 +24,7 @@
   inputs = {
     # {{{ Core
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
 

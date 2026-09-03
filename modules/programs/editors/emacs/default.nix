@@ -62,6 +62,7 @@
             olivetti
             org-modern
             org-roam
+            org-download
 
             # social
             ement

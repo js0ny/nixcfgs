@@ -46,7 +46,7 @@ journal-home username=env_var("USER"):
     journalctl -xeu home-manager-{{ username }}.service
 
 update-nixpkgs:
-    nix flake update nixpkgs nixpkgs-unfree nixpkgs-stable
+    nix flake update nixpkgs nixpkgs-unfree multiverse
 
 [linux]
 depends-system host=hostname:

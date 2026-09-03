@@ -1,7 +1,7 @@
 {
   config,
   secrets,
-  pkgsStable,
+  pkgs,
   ...
 }:
 let
@@ -117,7 +117,7 @@ in
 
   services.dae = {
     enable = true;
-    package = pkgsStable.dae;
+    package = (pkgs.mv.at "26.05").dae;
     configFile = config.sops.templates."dae.dae".path;
     openFirewall = {
       enable = false;
