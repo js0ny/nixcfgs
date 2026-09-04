@@ -1,4 +1,6 @@
 {
+  pkgs,
+  lib,
   inputs,
   secrets,
   ...
@@ -48,5 +50,7 @@ in
   };
 
   services.sing-box.enable = true;
+
+  services.redis.package = lib.mkForce pkgs.valkey;
 
 }

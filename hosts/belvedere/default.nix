@@ -23,6 +23,7 @@ in
     mod.idp
     mod.immich
     mod.jellyfin
+    mod.miniflux
     mod.navidrome
     mod.nextcloud
     mod.nix-index-database
@@ -30,6 +31,7 @@ in
     mod.prometheus-node
     mod.radicale
     mod.rclone
+    mod.rsshub
     mod.sing-box
     # keep-sorted end
     mod.starship
