@@ -28,6 +28,7 @@ in
     mod.nix-index-database
     mod.papra
     mod.prometheus-node
+    mod.radicale
     mod.rclone
     mod.sing-box
     # keep-sorted end

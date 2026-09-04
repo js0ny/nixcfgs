@@ -40,6 +40,7 @@
       };
       services.papra = {
         enable = true;
+        # https://docs.papra.app/self-hosting/configuration/
         environment = {
           PROCESS_MODE = "all";
           SERVER_HOSTNAME = epSelf.bindAddress;

@@ -136,6 +136,11 @@
     (setq xclip-mode t)
     (setq xclip-method (quote wl-copy))))
 
+(defun js0ny/insert-emphasis-with-zws (char)
+  (interactive "c")
+  (insert ?\u200B char)
+  (save-excursion (insert char ?\u200B)))
+
 
 (use-package org
   :custom
@@ -149,7 +154,34 @@
      (python . t)
      (shell . t)))
   (add-hook 'org-insert-heading-hook #'org-id-get-create)
-  (setq org-id-locations-file (expand-file-name "org-id-locations" user-emacs-data)))
+  (setq org-id-locations-file (expand-file-name "org-id-locations" user-emacs-data))
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.2)
+                  (org-level-3 . 1.1)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.0)
+                  (org-level-6 . 1.0)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (set-face-attribute (car face) nil :height (cdr face)))
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
+  (setq org-agenda-files (list (expand-file-name "tasks/" org-directory)))
+  (evil-leader/set-key
+    "a" #'org-agenda-list
+    "A" #'org-agenda
+    "o" #'js0ny/open-org-directory)
+  (setq org-icalendar-use-scheduled '(event-if-todo event-if-not-todo))
+  (setq org-icalendar-use-deadline '(event-if-todo event-if-not-todo))
+  (setq org-log-into-drawer "LOGBOOK")
+  (setq org-src-tab-acts-natively t) ; Use TAB to indent inside codeblock
+  (setq org-startup-folded 'showall))
+
+(use-package org-appear
+  :after org
+  :hook (org-mode . org-appear-mode)
+  :init
+  (setq org-hide-emphasis-markers t))
+
 
 (use-package yasnippet
   :config
@@ -180,6 +212,12 @@
   (let ((default-directory user-emacs-directory))
     (counsel-file-jump)))
 
+(defun js0ny/open-org-directory ()
+  "Open `org-directory` using `counsel-find-file`."
+  (interactive)
+  (let ((default-directory org-directory))
+    (counsel-file-jump)))
+
 
 (use-package counsel
   :config
@@ -203,7 +241,7 @@
     (make-directory dir t)
     (message "Creating directory: %s" dir)))
 
-(setq backup-directory-alist `(("." . ,user-backup-directory)))
+(setq backup-directory-alist `((user-backup-directory)))
 
 (setq project-list-file (expand-file-name "projects-list" user-emacs-data))
 
@@ -211,8 +249,10 @@
       (expand-file-name "auto-save-list/.saves-" user-autosaves-directory))
 
 ;; TRAMP 远程文件的备份设置
-(setq tramp-backup-directory-alist (copy-tree backup-directory-alist))
-(setq tramp-persistency-file-name (expand-file-name "tramp" user-emacs-state))
+(use-package tramp
+  :config
+  (setq tramp-backup-directory-alist (copy-tree backup-directory-alist))
+  (setq tramp-persistency-file-name (expand-file-name "tramp" user-emacs-state)))
 
 
 ;; 备份设置
@@ -422,9 +462,13 @@
   ;; Hooks
   (add-hook 'org-mode-hook #'org-modern-mode))
 
-(use-package ox-typst)
+(use-package ox-typst
+  :after org
+  :commands (org-export))
 
 (use-package olivetti
+  :custom
+  (olivetti-body-width 100)
   :config
   (add-hook 'org-mode-hook #'olivetti-mode))
 
@@ -435,7 +479,6 @@
 
 
 ;; (use-package avy
-;;   :ensure t
 ;;   :after evil
 ;;   :config
 ;;   (evil-define-key '(normal) 'global (kbd "T") 'avy-goto-char)
@@ -455,6 +498,10 @@
   (setq org-download-method 'directory)
   (setq-default org-download-image-dir "./attach"))
 
+(use-package mixed-pitch
+  :hook (org-mode . mixed-pitch-mode))
+
+(use-package doom-themes)
 
 (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 (require 'org-typst-preview)

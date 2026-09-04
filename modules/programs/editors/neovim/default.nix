@@ -15,6 +15,7 @@
       snippets = (import ../lsp-snippets/lib.nix { inherit pkgs config; }).out;
       appname = "nvim";
       flakeRoot = config.nixdots.core.flakeDir;
+      imageSupport = config.programs.kitty.enable || config.programs.ghostty.enable;
     in
     {
       programs.neovim.enable = lib.mkForce false;
@@ -23,24 +24,34 @@
 
       programs.nixvim = {
         enable = true;
-        plugins.lsp.servers = {
-          # keep-sorted start block=yes
-          basedpyright.enable = true;
-          bashls.enable = true;
-          clangd.enable = true;
-          fish_lsp.enable = true;
-          gopls.enable = true;
-          jsonls.enable = true;
-          roslyn_ls.enable = true;
-          rust_analyzer = {
-            enable = true;
-            installCargo = false;
-            installRustc = false;
+        js0ny = {
+          image.enable = imageSupport;
+          typst.enable = true;
+        };
+        plugins = {
+          lsp.servers = {
+            # keep-sorted start block=yes
+            basedpyright.enable = true;
+            bashls.enable = true;
+            clangd.enable = true;
+            fish_lsp.enable = true;
+            gopls.enable = true;
+            jsonls.enable = true;
+            roslyn_ls.enable = true;
+            rust_analyzer = {
+              enable = true;
+              installCargo = false;
+              installRustc = false;
+            };
+            svelte.enable = true;
+            taplo.enable = true;
+            vtsls.enable = true;
+            # keep-sorted end
           };
-          svelte.enable = true;
-          taplo.enable = true;
-          vtsls.enable = true;
-          # keep-sorted end
+          orgmode.settings = {
+            org_agenda_files = "~/org/tasks/**/*";
+            org_default_notes_file = "~/org/tasks/inbox.org";
+          };
         };
         keymaps = [
           {

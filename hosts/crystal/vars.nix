@@ -14,6 +14,7 @@ in
     user.avatar = avatar;
     desktop = {
       enable = true;
+      displayManager = "regreet";
       session = [
         "hyprland"
         "niri"
@@ -158,7 +159,7 @@ in
       enable = true;
       lanzaboote = true;
       display = "wayland";
-      gpu = "none";
+      gpu = "nvidia";
       gpuBusIds = {
         nvidia = "PCI:1:0:0";
         amdgpu = "PCI:101:0:0";

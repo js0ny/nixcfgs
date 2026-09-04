@@ -11,6 +11,11 @@
       dots = config.nixdots.core.dots;
     in
     {
+      services.emacs = {
+        enable = true;
+        package = config.programs.emacs.finalPackage;
+        startWithUserSession = "graphical";
+      };
       programs.emacs = {
         enable = true;
         package = if pkgs.stdenv.hostPlatform.isLinux then pkgs.emacs-pgtk else null;
@@ -31,6 +36,7 @@
             dashboard
             highlight-indent-guides
             doom-modeline
+            doom-themes
 
             # enhancement
             evil-ghostel
@@ -63,6 +69,8 @@
             org-modern
             org-roam
             org-download
+            org-appear
+            mixed-pitch
 
             # social
             ement

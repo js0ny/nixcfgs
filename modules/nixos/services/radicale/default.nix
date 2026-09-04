@@ -13,14 +13,13 @@
       portStr = epSelf.portStr;
       bindAddress = epSelf.bindAddress;
       stateDir = "/var/lib/radicale";
-      serviceUser = config.systemd.services.radicale.serviceConfig.User;
-      serviceGroup = config.systemd.services.radicale.serviceConfig.Group;
+      inherit (config.systemd.services.radicale.serviceConfig) User Group;
     in
     {
       sops.secrets.radicale_htpasswd = {
         sopsFile = secrets + "/radicale.yaml";
-        owner = serviceUser;
-        group = serviceGroup;
+        owner = User;
+        group = Group;
         mode = "0400";
       };
 
@@ -57,7 +56,8 @@
               proxy_pass_header Authorization;
             '';
           };
-        };
+        }
+        // config.nixdefs.consts.nginxWithCF;
       };
     };
 }

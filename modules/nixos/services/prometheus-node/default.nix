@@ -1,11 +1,6 @@
 {
   flake.nixosModules.prometheus-node =
-    {
-      lib,
-      config,
-      myLib,
-      ...
-    }:
+    { config, ... }:
     let
       ep = config.nixdefs.endpoints;
       epProm = ep.prometheus;

@@ -6,6 +6,7 @@
       myLib,
       config,
       inputs,
+      secrets,
       ...
     }:
     let
@@ -25,8 +26,12 @@
       noctaliaLoggintOutHook = pkgs.writeShellScriptBin "noctalia-logging-out-hook" ''
         systemctl stop --user shell-init.target
       '';
+      noctaliaBatteryDischargingHook = pkgs.writeShellScriptBin "noctalia-battery-discharging-hook" ''
+        tuned-adm profile powersave-override
+      '';
     in
     {
+      home.packages = [ pkgs.mpvpaper ];
       xdg.stateFile."noctalia/.setup-complete".text = "";
       imports = [
         inputs.self.homeModules.wm-components
@@ -89,6 +94,8 @@
             ];
             margin_edge = 0;
             margin_ends = 0;
+            radius_top_left = 0;
+            radius_top_right = 0;
             shadow = false;
           };
           dock = {
@@ -150,9 +157,25 @@
           hooks = {
             started = lib.getExe noctaliaStartedHook;
             logging_out = lib.getExe noctaliaLoggintOutHook;
+            battery_discharging = lib.getExe noctaliaBatteryDischargingHook;
           };
-          plugins.enabled = [ "noctalia/world_clock" ];
+          plugins.enabled = [
+            "noctalia/world_clock"
+            "mdj2812/mihomo-control"
+            "noctalia/mpvpaper"
+          ];
+          plugin_settings = {
+            "mdj2812/mihomo-control" = {
+              port = "9090";
+            };
+          };
+          control_center.calendar.show_week_numbers = true;
         };
+      };
+      sops.secrets."noctalia_calendar.toml" = {
+        sopsFile = secrets + "/files/noctalia_calendar.yaml";
+        path = "${config.xdg.configHome}/noctalia/calendar.toml";
+        key = "data";
       };
       services.hyprpaper.enable = lib.mkForce false;
     };

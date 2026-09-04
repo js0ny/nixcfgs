@@ -97,6 +97,7 @@ lib.mkMerge [
               "network-cli-tool" = "nmcli";
             };
           };
+          "@samlinville/store.raycast.tailscale".preferences.tailscalePath = lib.getExe pkgs.tailscale;
         }
         // (lib.optionalAttrs selfhosted.searxng.enable {
           "@Ninetonine/vicinae-extension-searxng-0" = {

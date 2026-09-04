@@ -27,7 +27,6 @@
     inputs.self.nixosModules.librechat
     inputs.self.nixosModules.litellm
     inputs.self.nixosModules.lobehub
-    inputs.self.nixosModules.miniflux
     inputs.self.nixosModules.mongodb
     inputs.self.nixosModules.navidrome
     inputs.self.nixosModules.nextcloud
@@ -36,7 +35,6 @@
     inputs.self.nixosModules.pdf2zh
     inputs.self.nixosModules.postgresql
     inputs.self.nixosModules.prometheus
-    inputs.self.nixosModules.radicale
     inputs.self.nixosModules.rclone
     inputs.self.nixosModules.rsshub
     inputs.self.nixosModules.searxng

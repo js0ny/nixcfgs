@@ -110,5 +110,5 @@ in
     iptables-nftables-compat
   ];
 
-  services.redis.package = pkgs.valkey;
+  services.redis.package = pkgs.redis;
 }
