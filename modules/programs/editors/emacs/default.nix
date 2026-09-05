@@ -4,13 +4,26 @@
       pkgs,
       lib,
       config,
+      secrets,
       ...
     }:
     let
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
       dots = config.nixdots.core.dots;
+      authPath = config.sops.secrets.emacs_authinfo.path;
+      secretsPath = config.sops.secrets."emacs_secrets.el".path;
     in
     {
+      sops.secrets = {
+        emacs_authinfo = {
+          sopsFile = secrets + "/files/emacs_authinfo.yaml";
+          key = "data";
+        };
+        "emacs_secrets.el" = {
+          sopsFile = secrets + "/files/emacs_secrets.yaml";
+          key = "data";
+        };
+      };
       services.emacs = {
         enable = true;
         package = config.programs.emacs.finalPackage;
@@ -19,11 +32,16 @@
       programs.emacs = {
         enable = true;
         package = if pkgs.stdenv.hostPlatform.isLinux then pkgs.emacs-pgtk else null;
-        extraConfig = /* elisp */ ''
+        extraConfig = /* lisp */ ''
           (setq org-babel-python-command "${lib.getExe pkgs.python3}")
           (setq dirvish-vipsthumbnail-program "${lib.getExe' pkgs.vips "vipsthumbnail"}")
           (setq dirvish-pdfinfo-program "${lib.getExe' pkgs.poppler-utils "pdfinfo"}")
           (setq dirvish-pdftoppm-program "${lib.getExe' pkgs.poppler-utils "pdftoppm"}")
+          (defvar user-authinfo-file (expand-file-name "${authPath}"))
+
+          (defvar user-secrets-file (expand-file-name "${secretsPath}"))
+          (when (file-readable-p user-secrets-file)
+            (load user-secrets-file nil 'nomessage))
         '';
         extraPackages =
           epkgs:

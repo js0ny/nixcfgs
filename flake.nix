@@ -161,7 +161,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
+    preservation.url = "github:nix-community/preservation";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.1.0";
       inputs = {

@@ -4,11 +4,9 @@
 (defvar user-autosaves-directory (expand-file-name "autosaves" user-emacs-cache))
 
 (use-package auth-source
-  :ensure nil
   :custom
   (auth-sources
-   (list (expand-file-name "authinfo.gpg"
-                           user-emacs-directory))))
+   (list (expand-file-name "~/.config/sops-nix/secrets/emacs_authinfo"))))
 
 (use-package recentf
   :custom

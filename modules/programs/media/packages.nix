@@ -62,7 +62,7 @@ in
       # keep-sorted end
     ]
     ++ lib.optionals (config.js0ny.desktop.enable) [
-      picard
+      (pkgs.mv.at "26.05").picard
       kid3
     ];
 

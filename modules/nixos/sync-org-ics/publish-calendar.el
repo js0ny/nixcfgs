@@ -39,7 +39,7 @@
           '(event-if-todo event-if-not-todo))
          (org-icalendar-use-deadline
           '(event-if-todo event-if-not-todo))
-         (org-icalendar-store-UID t)
+         (org-icalendar-store-UID nil)
          (org-icalendar-timezone "Asia/Shanghai"))
     (unless org-agenda-files
       (error "No Org files found under %s" publish-calendar-org-root))
