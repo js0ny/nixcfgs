@@ -32,14 +32,51 @@ in
     "L /var/lib/dbus/machine-id - - - - /etc/machine-id"
     "z /var/lib/private 0700 root root -"
   ];
+  js0ny.persist.stores = {
+    state = {
+      files = [
+        {
+          file = "/etc/machine-id";
+          inInitrd = true;
+          how = "symlink";
+          configureParent = true;
+        }
+      ];
+      directories = [
+        {
+          directory = "/var/lib/private";
+          mode = "0700";
+          user = "root";
+          group = "root";
+        }
+        {
+          directory = "/var/lib/nixos";
+          inInitrd = true;
+          mode = "0755";
+          user = "root";
+          group = "root";
+        }
+      ];
+    };
+    local = {
+      directories = [
+        "/var/log"
+        "/var/lib/systemd/coredump"
+      ];
+    };
+  };
 
-  nixdots.persist.system = {
-    directories = [
-      {
-        directory = "/var/lib/private";
-        mode = "0700";
-      }
-      "/var/lib/nixos"
+  # 通过去掉 suppressedSystemUnits 修复了上游文档示例自相矛盾的问题
+  # 参考： https://github.com/nix-community/preservation/issues/29
+  # adapt the stock service to commit the transient ID to the persistent volume
+  systemd.services.systemd-machine-id-commit = {
+    unitConfig.ConditionPathIsMountPoint = [
+      ""
+      "/persist/etc/machine-id"
+    ];
+    serviceConfig.ExecStart = [
+      ""
+      "systemd-machine-id-setup --commit --root /persist"
     ];
   };
 
@@ -68,47 +105,15 @@ in
   # Obsolete
   programs.command-not-found.enable = false;
 
-  nixdots.persist.system.files = [
-    "/etc/machine-id"
-  ];
-
-  nixdots.persist.nosnap.system.directories = [
-    "/var/log"
-    "/var/lib/systemd/coredump"
-  ];
-
   # provides `/bin/bash` compatibility
   services.envfs.enable = true;
 
   users.users.root.shell = lib.getExe pkgs.zsh;
 
   environment.variables = import ./shared/do-not-track-vars.nix;
-  environment.sessionVariables = {
-    # Default value: FRSXMK, where S indicates "Chops long lines"
-    SYSTEMD_LESS = "FRXMK";
-  };
-
-  # systemd aliases
-  environment.shellAliases = {
-    sc = "systemctl";
-    scc = "systemctl cat";
-    scs = "systemctl status";
-    jc = "journalctl";
-    jcx = "journalctl -xeu";
-  };
-
   environment.localBinInPath = true;
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-  networking.nftables = {
-    enable = true;
-  };
-  networking.firewall.backend = "nftables";
-
-  environment.systemPackages = with pkgs; [
-    iptables-nftables-compat
-  ];
-
-  services.redis.package = pkgs.redis;
+  services.redis.package = lib.mkDefault pkgs.valkey;
 }

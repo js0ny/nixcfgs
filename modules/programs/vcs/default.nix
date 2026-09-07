@@ -15,8 +15,8 @@
       programs.lazygit = {
         enable = true;
         settings = {
-          git.pagers =
-            if config.programs.delta.enable then [ { pager = "delta --dark --paging=never"; } ] else [ ];
+          git.diffRenderers =
+            if config.programs.delta.enable then [ { command = "delta --dark --paging=never"; } ] else [ ];
         };
       };
 

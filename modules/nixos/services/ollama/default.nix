@@ -33,6 +33,5 @@
           };
         };
       };
-      # nixdots.persist.nosnap.system.directories = [ "/var/lib/ollama" ];
     };
 }

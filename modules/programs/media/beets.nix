@@ -2,8 +2,8 @@
 let
   dataDir = config.xdg.dataHome;
   library =
-    if config.nixdots.persist.enable then
-      "${config.nixdots.persist.path}${dataDir}/beets/library.db"
+    if config.js0ny.persist.enable then
+      "${config.js0ny.persist.stores.state.persistentStoragePath}${dataDir}/beets/library.db"
     else
       "${dataDir}/beets/library.db";
 in

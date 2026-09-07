@@ -27,9 +27,5 @@
       window_prevent_sleep_on_playback = true;
     };
   };
-  nixdots.persist.nosnap.home = {
-    directories = [
-      ".config/feishin"
-    ];
-  };
+  js0ny.persist.stores.local.directories = [ ".config/feishin" ];
 }

@@ -22,7 +22,7 @@ let
       persist = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Persist directory via home.impermanence";
+        description = "Deprecated API";
       };
       # TODO: Implement backup and sync
       backup = lib.mkOption {
@@ -65,13 +65,10 @@ in
     description = "Managed home directories";
   };
   config = {
-    nixdots.persist.home.directories = lib.attrNames (
-      lib.filterAttrs (_: dir: dir.enable && dir.persist) cfg
-    );
 
     systemd.user.tmpfiles.rules = lib.mapAttrsToList (
       name: _: "d ${home}/${name} 0755 ${user} users -"
-    ) (lib.filterAttrs (_: dir: dir.enable && dir.create && !dir.persist) cfg);
+    ) (lib.filterAttrs (_: dir: dir.enable && dir.create) cfg);
 
     gtk.gtk3.bookmarks = lib.mapAttrsToList (name: _: "file://${home}/${name}") (
       lib.filterAttrs (_: dir: dir.enable && dir.pin) cfg

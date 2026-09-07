@@ -27,7 +27,7 @@ in
     mod.engineering
     mod.electronics
 
-    inputs.secrets.homeManagerModules.default
+    inputs.secrets.homeModules.default
     # keep-sorted start
     inputs.flatpak-nix.homeManagerModules.nix-flatpak
     inputs.steam-config-nix.homeModules.default
@@ -57,7 +57,7 @@ in
 
     "Atelier" = {
       create = true; # via systemd.tmpfiles
-      persist = true; # via home.impermanence
+      persist = true; # via Preservation
       backup = true; # via restic
       backupExclude = [
         "dot"
@@ -112,6 +112,15 @@ in
     };
   };
 
+  js0ny.persist.stores.state.directories = [
+    "Documents"
+    "Videos"
+    "Pictures"
+    "Music"
+    "Academia"
+    "Atelier"
+  ];
+
   home.customDirs = {
     wallpaper = "${config.home.homeDirectory}/Pictures/Wallpaper";
     screenshots = "${config.xdg.cacheHome}/Captures/Screenshots";
@@ -134,9 +143,6 @@ in
     };
   };
 
-  nixdots.persist.home.directories = [
-    ".config/sunshine"
-  ];
   home.packages = with pkgs; [
     librewolf
     inputs.glide-browser.packages.${pkgs.stdenv.hostPlatform.system}.default

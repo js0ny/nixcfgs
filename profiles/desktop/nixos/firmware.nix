@@ -11,5 +11,5 @@
     pkgs.gnome-firmware
   ];
 
-  nixdots.persist.system.directories = [ "/var/lib/fwupd" ];
+  js0ny.persist.stores.state.directories = [ "/var/lib/fwupd" ];
 }

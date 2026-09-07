@@ -40,12 +40,10 @@
           user_pref("intl.locale.requested", "${config.nixdots.core.locales.guiLocale}");
         '';
       };
-      nixdots.persist.nosnap.home = {
-        directories = [
-          dotDir
-          libraryDir
-        ];
-      };
+      js0ny.persist.stores.state.directories = [
+        dotDir
+        libraryDir
+      ];
       services.xremap.config.keymap = [
         {
           name = "Zotero PDF Navigator";

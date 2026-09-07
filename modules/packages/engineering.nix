@@ -9,12 +9,10 @@
           openscad-lsp
           prusa-slicer
         ];
-        nixdots.persist.nosnap.home = {
-          directories = [
-            ".config/FreeCAD"
-            ".local/share/FreeCAD"
-          ];
-        };
+        js0ny.persist.stores.local.directories = [
+          ".config/FreeCAD"
+          ".local/share/FreeCAD"
+        ];
       })
       (lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin) { js0ny.homebrew.casks = [ ]; })
     ];

@@ -22,7 +22,6 @@
     };
   };
   nixdots = {
-    persist.enable = false;
     programs.firefox.enable = true;
     core = {
       hostname = "crystal";

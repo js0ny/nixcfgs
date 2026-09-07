@@ -41,6 +41,7 @@
       nur.flake = inputs.nur;
       js0ny.flake = inputs.js0ny-packages;
       unfree.flake = inputs.nixpkgs-unfree;
+      mv.flake = inputs.multiverse;
     };
   };
 }

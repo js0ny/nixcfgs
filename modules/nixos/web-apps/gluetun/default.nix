@@ -82,6 +82,6 @@
         "d /var/lib/qbittorrent/downloads 0755 js0ny users -"
       ];
 
-      nixdots.persist.system.directories = [ qbStateDir ];
+      js0ny.persist.stores.state.directories = [ qbStateDir ];
     };
 }

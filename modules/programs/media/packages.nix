@@ -66,9 +66,5 @@ in
       kid3
     ];
 
-  nixdots.persist.home = {
-    directories = [
-      ".config/MusicBrainz"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".config/MusicBrainz" ];
 }

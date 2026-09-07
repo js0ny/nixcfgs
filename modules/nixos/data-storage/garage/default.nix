@@ -16,9 +16,13 @@
     }:
     let
       ep = config.nixdefs.endpoints;
-      persist = config.nixdots.persist;
+      persist = config.js0ny.persist;
       # garage requires dirs to sit in the same fs
-      stateDir = if persist.enable then "${persist.path}/var/lib/garage" else "/var/lib/garage";
+      stateDir =
+        if persist.enable then
+          "${persist.stores.state.persistentStoragePath}/var/lib/garage"
+        else
+          "/var/lib/garage";
       dirs = {
         meta = "${stateDir}/meta";
         data = "${stateDir}/data";

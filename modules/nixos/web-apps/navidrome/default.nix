@@ -58,9 +58,7 @@
         "d ${backupDir} 0755 ${cfg.user} ${cfg.group} -"
       ];
 
-      nixdots.persist.system.directories = [
-        "/var/lib/navidrome"
-      ];
+      js0ny.persist.stores.state.directories = [ "/var/lib/navidrome" ];
 
       systemd.services.navidrome.after = [ "rclone-mount-music.service" ];
 

@@ -9,6 +9,7 @@
     sopsFile = secrets + "/hosts/belvedere.yaml";
   };
   js0ny = {
+    persist.enable = true;
     apps = {
       interactiveShell = {
         package = pkgs.fish;
@@ -24,11 +25,6 @@
     };
   };
   nixdots = {
-    persist = {
-      enable = true;
-      path = "/persist";
-      nosnap.path = "/nosnap";
-    };
     core = {
       hostname = "belvedere";
       timezones = [
@@ -71,7 +67,7 @@
     sops = {
       enable = true;
       yamlFile = secrets + "/hosts/belvedere.yaml";
-      keyFile = "/persist/etc/ssh/agekey.txt";
+      keyFile = "/etc/ssh/agekey.txt";
     };
     geo = {
       city = "Vienna";

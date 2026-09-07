@@ -25,15 +25,14 @@
         ./models.nix
         ./mcp-skills.nix
       ];
-      nixdots.persist.system = {
-        directories = [
-          {
-            inherit user group;
-            directory = "/var/lib/hermes";
-            mode = "0750";
-          }
-        ];
-      };
+      js0ny.persist.stores.state.directories = [
+        {
+          inherit user group;
+          directory = "/var/lib/hermes";
+          mode = "0750";
+
+        }
+      ];
 
       services.hermes-agent = {
         enable = true;

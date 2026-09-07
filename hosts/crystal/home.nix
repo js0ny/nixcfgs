@@ -22,7 +22,7 @@
     # keep-sorted start
     inputs.catppuccin.homeModules.catppuccin
     inputs.flatpak-nix.homeManagerModules.nix-flatpak
-    inputs.secrets.homeManagerModules.default
+    inputs.secrets.homeModules.default
     inputs.steam-config-nix.homeModules.default
     # keep-sorted end
   ];
@@ -52,10 +52,9 @@
   home.stateVersion = "25.05";
 
   home.directories = {
-
     "Atelier" = {
       create = true; # via systemd.tmpfiles
-      persist = true; # via home.impermanence
+      persist = true; # via Preservation
       backup = true; # via restic
       backupExclude = [
         "dot"
@@ -110,6 +109,14 @@
       icon = "folder-documents";
     };
   };
+  js0ny.persist.stores.state.directories = [
+    "Documents"
+    "Videos"
+    "Pictures"
+    "Music"
+    "Academia"
+    "Atelier"
+  ];
 
   home.customDirs = {
     wallpaper = "${config.home.homeDirectory}/Pictures/Wallpaper";
@@ -143,9 +150,6 @@
     };
   };
 
-  nixdots.persist.home.directories = [
-    ".config/sunshine"
-  ];
   home.packages = [
   ];
 

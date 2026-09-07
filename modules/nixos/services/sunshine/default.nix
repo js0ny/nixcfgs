@@ -12,8 +12,15 @@
         openFirewall = true;
       };
       js0ny.user.groups = [ "uinput" ];
-      services.avahi.enable = true;
-      services.avahi.publish.enable = true;
-      services.avahi.publish.userServices = true;
+      services.avahi = {
+        enable = true;
+        publish.enable = true;
+        publish.userServices = true;
+      };
+      home-manager.sharedModules = [
+        {
+          js0ny.persist.stores.state.directories = [ ".config/sunshine" ];
+        }
+      ];
     };
 }

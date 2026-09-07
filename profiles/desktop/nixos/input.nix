@@ -1,8 +1,4 @@
 { pkgs, config, ... }:
-let
-
-  username = config.js0ny.user.name;
-in
 {
   services.libinput = {
     enable = true;

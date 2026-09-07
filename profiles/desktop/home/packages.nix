@@ -25,6 +25,7 @@
       papirus-icon-theme
       qbittorrent
       qpwgraph
+      readest
       remmina
       ripdrag
       showmethekey
@@ -58,5 +59,10 @@
     PROTON_PASS_LINUX_KEYRING = "dbus";
   };
 
-  nixdots.persist.nosnap.home.directories = [ ".config/ticktick" ];
+  js0ny.persist.stores.local.directories = [
+    ".config/ticktick"
+    ".local/share/com.bilingify.readest"
+    ".config/com.bilingify.readest"
+  ];
+
 }

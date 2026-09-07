@@ -32,9 +32,7 @@ let
   '';
 in
 {
-  nixdots.persist.home.directories = [
-    ".config/codex"
-  ];
+  js0ny.persist.stores.state.directories = [ ".config/codex" ];
 
   home.sessionVariables = {
     CODEX_HOME = "${config.xdg.configHome}/codex";

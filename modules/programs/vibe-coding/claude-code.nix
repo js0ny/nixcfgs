@@ -14,11 +14,7 @@ in
       sopsFile = secrets + "/llm-integrations.yaml";
     };
   };
-  nixdots.persist.home = {
-    directories = [
-      ".config/claude"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".config/claude" ];
   home.sessionVariables = {
     CLAUDE_CONFIG_DIR = "${config.xdg.configHome}/claude";
   };

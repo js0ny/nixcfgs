@@ -17,12 +17,7 @@
         "2001:4860:4860::8888"
       ];
     };
-    nixdots.persist.system = {
-      directories = [
-        "/var/lib/systemd/network"
-        "/var/lib/systemd/rfkill"
-      ];
-    };
+    js0ny.persist.stores.state.directories = [ "/var/lib/systemd/network" ];
     # TODO: Split to `guest`
     services.spice-vdagentd.enable = lib.mkDefault true;
     services.qemuGuest.enable = lib.mkDefault true;

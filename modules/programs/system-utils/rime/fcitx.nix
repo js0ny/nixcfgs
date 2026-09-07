@@ -284,8 +284,6 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     };
   };
 
-  nixdots.persist.home.directories = [
-    ".local/share/fcitx5"
-  ];
+  js0ny.persist.stores.state.directories = [ ".local/share/fcitx5" ];
 
 }

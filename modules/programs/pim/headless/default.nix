@@ -8,12 +8,10 @@
       };
       accounts.calendar.basePath = "${config.xdg.dataHome}/calendar";
       accounts.contact.basePath = "${config.xdg.dataHome}/contacts";
-      nixdots.persist.home = {
-        directories = [
-          ".local/share/calendar"
-          ".local/share/contacts"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [
+        ".local/share/calendar"
+        ".local/share/contacts"
+      ];
       programs.khard = {
         enable = true;
         settings = {

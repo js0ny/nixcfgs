@@ -18,5 +18,6 @@ in
   wayland.windowManager.hyprland.extraConfig = /* lua */ ''
     require('monitors')
   '';
-  nixdots.persist.home.directories = [ ".config/hyprmoncfg" ];
+  js0ny.persist.stores.state.directories = [ ".config/hyprmoncfg" ];
+
 }

@@ -13,10 +13,8 @@ in
   home.file.".local/share/Celeste/Backups/settings.celeste".source =
     config.lib.file.mkOutOfStoreSymlink "${dots}/users/${user}/programs/gaming/celeste/settings.celeste";
 
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/Celeste"
-      ".config/Olympus"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [
+    ".local/share/Celeste"
+    ".config/Olympus"
+  ];
 }

@@ -39,7 +39,7 @@
         };
       };
 
-      nixdots.persist.system.directories = [ stateDir ];
+      js0ny.persist.stores.state.directories = [ stateDir ];
 
       services.nginx.virtualHosts = lib.mkIf (url != null) {
         ${url} = {

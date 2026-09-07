@@ -67,7 +67,7 @@ in
 
         home.packages = [ pkgs.gocryptfs ];
 
-        nixdots.persist.home.directories = [ cfg.encryptedDir ];
+        js0ny.persist.stores.state.directories = [ cfg.encryptedDir ];
 
         systemd.user.tmpfiles.rules = [
           "d ${mountPath} 0700 ${user} users -"

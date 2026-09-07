@@ -16,9 +16,12 @@ let
   };
 in
 {
-  nixdots.persist.home = {
-    directories = [ ".ssh" ];
-  };
+  js0ny.persist.stores.state.directories = [
+    {
+      directory = ".ssh";
+      mode = "0700";
+    }
+  ];
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;

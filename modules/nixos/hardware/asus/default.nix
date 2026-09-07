@@ -30,6 +30,6 @@
         mode = "0644";
       };
 
-      nixdots.persist.system.directories = [ "/etc/asusd" ];
+      js0ny.persist.stores.state.directories = [ "/etc/asusd" ];
     };
 }

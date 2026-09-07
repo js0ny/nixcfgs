@@ -40,11 +40,7 @@
           launchToTray = false;
         };
       };
-      nixdots.persist.home = {
-        directories = [
-          ".config/CherryStudio"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [ ".config/CherryStudio" ];
       systemd.user.tmpfiles.rules = (
         lib.optionals config.nixdefs.mcp.enable [
           "L+ ${config.home.homeDirectory}/${dotDir}/bin/uv - - - - ${lib.getExe pkgs.uv}"

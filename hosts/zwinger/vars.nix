@@ -8,8 +8,8 @@
   sops.secrets.tskey = {
     sopsFile = secrets + "/hosts/zwinger.yaml";
   };
+  js0ny.persist.enable = true;
   nixdots = {
-    persist.enable = true;
     core = {
       hostname = "zwinger";
       timezones = [

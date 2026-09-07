@@ -54,11 +54,7 @@
           extensions = with nur-addons; [ tbkeys ];
         };
       };
-      nixdots.persist.home = {
-        directories = [
-          ".thunderbird"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [ ".thunderbird" ];
       home.packages = lib.optionals (pkgs.stdenv.hostPlatform.isLinux) [ pkgs.birdtray ];
     };
 

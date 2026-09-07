@@ -66,10 +66,5 @@
         (ouch.override { enableUnfree = pkgs.stdenv.hostPlatform.isLinux; })
       ];
 
-      nixdots.persist.nosnap.home.files = [
-        # Persist bookmarks
-        ".local/state/yazi/.dds"
-      ];
-
     };
 }

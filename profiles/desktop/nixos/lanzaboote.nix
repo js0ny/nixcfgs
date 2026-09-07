@@ -16,5 +16,5 @@ lib.mkIf cfg {
   };
 
   environment.systemPackages = with pkgs; [ sbctl ];
-  nixdots.persist.system.directories = [ "/var/lib/sbctl" ];
+  js0ny.persist.stores.state.directories = [ "/var/lib/sbctl" ];
 }

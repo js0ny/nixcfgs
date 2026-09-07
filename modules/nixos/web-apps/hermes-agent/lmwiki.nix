@@ -62,7 +62,7 @@ in
     "Z ${vaultDir} 2775 hermes agents - -"
     "A+ ${vaultDir} - - - - g:agents:rwX,d:g:agents:rwX"
   ];
-  nixdots.persist.system.directories = [
+  js0ny.persist.stores.state.directories = [
     {
       directory = vaultDir;
       mode = "2775";

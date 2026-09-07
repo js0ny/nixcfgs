@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   config,
   ...
 }:
@@ -20,10 +19,6 @@
       };
     };
   };
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/kxmlgui5/gwenview"
-    ];
-  };
+
   xdg.dataFile."kxmlgui5/gwenview/gwenview.rc".source = ./gwenview.rc;
 }

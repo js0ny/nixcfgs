@@ -159,7 +159,7 @@ in
     group = "tuwunel";
   };
 
-  nixdots.persist.system.directories = [
+  js0ny.persist.stores.state.directories = [
     {
       directory = stateDir;
       user = "mautrix-telegram";

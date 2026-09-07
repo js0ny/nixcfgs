@@ -121,7 +121,7 @@
           ];
         };
       };
-      nixdots.persist.system.directories = [ config.services.grafana.dataDir ];
+      js0ny.persist.stores.state.directories = [ config.services.grafana.dataDir ];
       systemd.services.grafana.serviceConfig.SupplementaryGroups = [ config.services.nginx.group ];
 
       services.nginx.virtualHosts = lib.mkIf (url != null) {

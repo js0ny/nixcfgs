@@ -42,9 +42,6 @@
     };
 
   };
-  nixdots.persist.home = {
-    directories = [
-      ".config/kdedefaults"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".config/kdedefaults" ];
+
 }

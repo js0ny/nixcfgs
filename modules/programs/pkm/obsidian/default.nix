@@ -21,7 +21,10 @@
         index = true;
         pin = true;
       };
-      nixdots.persist.nosnap.home.directories = [ ".config/obsidian" ];
+      js0ny.persist.stores = {
+        state.directories = [ "Obsidian" ];
+        local.directories = [ ".config/obsidian" ];
+      };
       js0ny.homebrew.casks = [ "obsidian" ];
     };
 }

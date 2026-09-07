@@ -13,15 +13,13 @@
     "prefix": "packages",
     "body": ["home.packages= with pkgs; [", "  $1", "];"]
   },
-  "home.persist": {
-    "prefix": "persist",
-    "body": [
-      "nixdots.persist.home = {",
-      "  directories = [",
-      "    \"$1\"",
-      "  ];",
-      "};"
-    ]
+  "persist.state": {
+    "prefix": "state",
+    "body": ["js0ny.persist.stores.state"]
+  },
+  "persist.local": {
+    "prefix": "local",
+    "body": ["js0ny.persist.stores.local"]
   },
   "fakeSha": {
     "prefix": "fakeSha256",

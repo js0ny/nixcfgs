@@ -30,10 +30,6 @@
           };
         };
       };
-      nixdots.persist.system = {
-        directories = [
-          "/var/lib/fail2ban"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [ "/var/lib/fail2ban" ];
     };
 }

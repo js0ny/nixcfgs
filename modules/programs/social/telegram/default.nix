@@ -101,12 +101,11 @@
           [
             pkgs.materialgram
           ];
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".local/share/AyuGramDesktop"
-          ".local/share/materialgram"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [
+        ".local/share/AyuGramDesktop"
+        ".local/share/materialgram"
+        ".local/share/TelegramDesktop"
+      ];
       xdg.dataFile = {
         "AyuGramDesktop/tdata/experimental_options.json".text = experimentalOptions;
         "AyuGramDesktop/tdata/shortcuts-custom.json".text = shortcuts;

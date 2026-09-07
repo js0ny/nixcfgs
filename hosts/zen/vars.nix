@@ -51,7 +51,6 @@
     homebrew.enable = true;
   };
   nixdots = {
-    persist.enable = false;
     core = {
       dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";

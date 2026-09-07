@@ -40,7 +40,7 @@
         "f ${mediaLocation}/${directory}/.immich 0640 ${user} ${group} -"
       ]) storageDirectories;
 
-      nixdots.persist.system.directories = [
+      js0ny.persist.stores.state.directories = [
         "/var/lib/immich"
         {
           directory = "/var/lib/redis-immich";

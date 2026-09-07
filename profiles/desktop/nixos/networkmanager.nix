@@ -15,7 +15,7 @@
       networkmanager-fortisslvpn
     ];
   };
-  nixdots.persist.system.directories = [ "/etc/NetworkManager/system-connections" ];
+  js0ny.persist.stores.state.directories = [ "/etc/NetworkManager/system-connections" ];
 
   js0ny.user.groups = [ "networkmanager" ];
 }

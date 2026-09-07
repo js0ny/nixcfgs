@@ -132,15 +132,13 @@ in
     };
   };
 
-  nixdots.persist.system = {
-    directories = [
-      {
-        directory = config.services.mautrix-discord.dataDir;
-        user = "mautrix-discord";
-        mode = "0750";
-      }
-    ];
-  };
+  js0ny.persist.stores.state.directories = [
+    {
+      directory = config.services.mautrix-discord.dataDir;
+      user = "mautrix-discord";
+      mode = "0750";
+    }
+  ];
   users.groups."mautrix-discord" = { };
   users.users.tuwunel.extraGroups = [ "mautrix-discord" ];
 }

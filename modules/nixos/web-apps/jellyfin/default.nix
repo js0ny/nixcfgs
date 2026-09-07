@@ -52,7 +52,7 @@
           };
         };
       };
-      nixdots.persist.system.directories = [ config.services.jellyfin.dataDir ];
+      js0ny.persist.stores.state.directories = [ config.services.jellyfin.dataDir ];
       fonts = {
         packages = [ pkgs.noto-fonts-cjk-sans ];
         fontDir.enable = true;

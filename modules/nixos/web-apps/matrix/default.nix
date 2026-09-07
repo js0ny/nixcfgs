@@ -92,7 +92,7 @@
         };
       };
 
-      nixdots.persist.system = {
+      js0ny.persist.stores.state = {
         directories = [
           {
             directory = "/var/lib/tuwunel";

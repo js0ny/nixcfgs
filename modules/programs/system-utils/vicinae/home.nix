@@ -118,12 +118,10 @@ lib.mkMerge [
       };
     };
 
-    nixdots.persist.nosnap.home = {
-      directories = [
-        ".local/share/vicinae"
-        ".cache/vicinae"
-      ];
-    };
+    js0ny.persist.stores.local.directories = [
+      ".local/share/vicinae"
+      ".cache/vicinae"
+    ];
     makeMutable = [ ".config/vicinae/settings.json" ];
 
     programs.chromium.extensions = [

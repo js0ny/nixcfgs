@@ -37,11 +37,7 @@
       js0ny.user.groups = [ "libvirtd" ];
       networking.firewall.trustedInterfaces = [ "virbr0" ];
       virtualisation.spiceUSBRedirection.enable = true;
-      nixdots.persist.nosnap.system = {
-        directories = [
-          "/var/lib/libvirt"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [ "/var/lib/libvirt" ];
       # https://github.com/NixOS/nixpkgs/issues/501336#issuecomment-4092515359
       # /var/lib/libvirt/secrets/secrets-encryption-key will cause libvirt to fail to start.
       fileSystems = {

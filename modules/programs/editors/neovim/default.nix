@@ -70,13 +70,10 @@
 
       xdg.configFile."lsp-snippets".source = snippets;
 
-      nixdots.persist.nosnap.home = {
-        directories = [
-          # nvim(lazy) will download plugins to this dir
-          ".local/share/${appname}"
-          ".local/state/${appname}"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [
+        ".local/share/${appname}"
+        ".local/state/${appname}"
+      ];
 
       programs.git = {
         settings = {

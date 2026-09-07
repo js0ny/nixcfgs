@@ -49,7 +49,7 @@ in
   # antidots
   home.file.".mozilla/native-messaging-hosts/.keep".enable = lib.mkForce false;
 
-  nixdots.persist.home = lib.mkIf (cfg.enable) { directories = [ persistDir ]; };
+  js0ny.persist.stores.state = lib.mkIf (cfg.enable) { directories = [ persistDir ]; };
   programs.firefox.policies = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin policies;
 
   # Betterfox

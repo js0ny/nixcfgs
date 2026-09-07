@@ -115,9 +115,5 @@ in
       };
     };
   };
-  nixdots.persist.nosnap.home = {
-    directories = [
-      ".config/sh.cider.genten"
-    ];
-  };
+  js0ny.persist.stores.local.directories = [ ".config/sh.cider.genten" ];
 }

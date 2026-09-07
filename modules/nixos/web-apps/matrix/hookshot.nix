@@ -96,7 +96,7 @@ in
     };
   };
 
-  nixdots.persist.system.directories = [
+  js0ny.persist.stores.state.directories = [
     {
       directory = "/var/lib/matrix-hookshot";
       mode = "0700";

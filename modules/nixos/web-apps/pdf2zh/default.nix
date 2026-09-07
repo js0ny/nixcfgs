@@ -99,6 +99,6 @@
         home = "/var/lib/pdf2zh";
       };
       users.groups.pdf2zh = { };
-      nixdots.persist.system.directories = [ "/var/lib/pdf2zh" ];
+      js0ny.persist.stores.state.directories = [ "/var/lib/pdf2zh" ];
     };
 }

@@ -48,6 +48,6 @@
         ];
       };
 
-      nixdots.persist.system.directories = [ "/var/lib/${config.services.prometheus.stateDir}" ];
+      js0ny.persist.stores.state.directories = [ "/var/lib/${config.services.prometheus.stateDir}" ];
     };
 }

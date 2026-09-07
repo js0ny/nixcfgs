@@ -75,7 +75,7 @@ lib.mkIf cfg.enable {
       fi
     '') electronApps}
   '';
-  nixdots.persist.nosnap.home.directories = [
+  js0ny.persist.stores.local.directories = [
     ".local/share/flatpak"
     ".var"
   ];

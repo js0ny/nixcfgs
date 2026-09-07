@@ -8,7 +8,6 @@
 {
   imports = [
     # keep-sorted start
-
     ../../../modules/programs/gaming/emulators/retroarch.nix
     inputs.self.homeModules.linux
     inputs.self.homeModules.nix-index-database
@@ -16,10 +15,6 @@
     inputs.self.homeModules.starship
     # keep-sorted end
   ];
-
-  nixdots.persist.nosnap.home = {
-    directories = [ ".local/state/wireplumber" ];
-  };
 
   nixdefs = {
     llm.enable = true;
@@ -34,8 +29,6 @@
     enable = true;
     nix-direnv.enable = true;
   };
-  nixdots.persist.home.directories = [
-    ".local/share/direnv"
-  ];
+  js0ny.persist.stores.state.directories = [ ".local/share/direnv" ];
   services.flatpak.packages = config.js0ny.flatpak.packages;
 }

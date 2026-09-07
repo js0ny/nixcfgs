@@ -12,6 +12,7 @@ in
   js0ny = {
     flatpak.enable = true;
     user.avatar = avatar;
+    persist.enable = true;
     desktop = {
       enable = true;
       displayManager = "regreet";
@@ -68,11 +69,6 @@ in
     };
   };
   nixdots = {
-    persist = {
-      enable = true;
-      path = "/persist";
-      nosnap.path = "/nosnap";
-    };
     core = {
       hostname = "crystal";
       dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";

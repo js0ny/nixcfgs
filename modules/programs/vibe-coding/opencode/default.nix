@@ -22,12 +22,11 @@
         opencode_web_password = { inherit sopsFile; };
       };
 
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".local/share/opencode"
-        ];
+      js0ny.persist.stores = {
+        state.directories = [ ".config/opencode" ];
+        local.directories = [ ".local/share/opencode" ];
       };
-      nixdots.persist.home.directories = [ ".config/opencode" ];
+
       systemd.user.tmpfiles.rules = [
         "f ${config.xdg.dataHome}/opencode/auth.json 0600 ${user} users -"
       ];

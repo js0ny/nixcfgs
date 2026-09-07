@@ -1,7 +1,6 @@
 {
   flake.nixosModules.tailscale =
     {
-      pkgs,
       lib,
       config,
       ...
@@ -12,33 +11,17 @@
     lib.mkIf cfg.enable {
       services.tailscale = {
         enable = true;
+        useRoutingFeatures = if cfg.exitNode then "server" else "none";
         authKeyFile = cfg.authKeyFile;
+        extraUpFlags = [ "--reset" ];
+        extraSetFlags = lib.optionals (cfg.exitNode) [ "--advertise-exit-node" ];
       };
-      networking.firewall = {
-        trustedInterfaces = [ "tailscale0" ];
-      };
-      nixdots.persist.system = {
-        directories = [
-          "/var/lib/tailscale"
-        ];
-      };
+      networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
+
+      js0ny.persist.stores.state.directories = [ "/var/lib/tailscale" ];
       boot.kernel.sysctl = (lib.mkIf cfg.exitNode) {
         "net.ipv4.ip_forward" = 1;
         "net.ipv6.conf.all.forwarding" = 1;
-      };
-      systemd.services.tailscale-setup-exit-node = lib.mkIf cfg.exitNode {
-        enable = true;
-        description = "Advertise Tailscale exit node";
-
-        wantedBy = [ "multi-user.target" ];
-        requires = [ "tailscaled.service" ];
-        after = [ "tailscaled.service" ];
-
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${lib.getExe pkgs.tailscale} set --advertise-exit-node";
-          RemainAfterExit = true;
-        };
       };
     };
 

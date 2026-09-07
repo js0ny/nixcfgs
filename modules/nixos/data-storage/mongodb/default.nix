@@ -9,6 +9,8 @@
     }:
     let
       epSelf = config.nixdefs.endpoints.mongodb;
+      inherit (config.services.mongodb) user;
+      group = user;
     in
     {
       sops.secrets = {
@@ -24,11 +26,10 @@
         bind_ip = epSelf.bindAddress;
         initialRootPasswordFile = config.sops.secrets.mongodb_password.path;
       };
-      nixdots.persist.system.directories = [
+      js0ny.persist.stores.state.directories = [
         {
           directory = config.services.mongodb.dbpath;
-          user = "mongodb";
-          group = "mongodb";
+          inherit user group;
         }
       ];
     };

@@ -64,11 +64,7 @@
           source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/television/television-completions.nu
         '';
       };
-      nixdots.persist.home = {
-        directories = [
-          ".config/nushell"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [ ".config/nushell" ];
       programs.zed-editor.extensions = [ "nu" ];
       home.packages = with pkgs; [ nufmt ];
     };

@@ -14,14 +14,12 @@
           iverilog
           qucs-s
         ];
-        nixdots.persist.nosnap.home = {
-          directories = [
-            ".config/kicad"
-            ".local/share/kicad"
+        js0ny.persist.stores.local.directories = [
+          ".config/kicad"
+          ".local/share/kicad"
 
-            ".config/ltspice"
-          ];
-        };
+          ".config/ltspice"
+        ];
       })
       (lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin) {
         js0ny.homebrew.casks = [

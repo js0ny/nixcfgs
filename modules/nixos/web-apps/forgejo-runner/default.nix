@@ -75,6 +75,6 @@
         };
       };
 
-      nixdots.persist.system.directories = [ "/var/lib/gitea-runner" ];
+      js0ny.persist.stores.state.directories = [ "/var/lib/gitea-runner" ];
     };
 }

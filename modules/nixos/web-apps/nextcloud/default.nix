@@ -65,7 +65,7 @@
         };
       };
 
-      nixdots.persist.system = {
+      js0ny.persist.stores.state = {
         directories =
           let
             mode = "0750";
@@ -83,8 +83,8 @@
           ];
       };
 
-      systemd.services = lib.mkIf config.nixdots.persist.enable {
-        # During a switch, tmpfiles and newly generated impermanence mounts may otherwise start concurrently.
+      systemd.services = lib.mkIf config.js0ny.persist.enable {
+        # During a switch, tmpfiles and newly generated Preservation mounts may otherwise start concurrently.
         systemd-tmpfiles-resetup = {
           after = [ mountUnit ];
           requires = [ mountUnit ];

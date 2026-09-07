@@ -27,9 +27,7 @@
           # recolor # Use stylix
         ];
       };
-      nixdots.persist.nosnap.home.directories = [
-        ".local/share/Anki2"
-      ];
+      js0ny.persist.stores.local.directories = [ ".local/share/Anki2" ];
 
       js0ny.homebrew.casks = [ "anki" ];
       js0ny.flatpak.packages = [ "net.ankiweb.Anki" ];

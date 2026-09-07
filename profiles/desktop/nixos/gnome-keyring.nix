@@ -16,9 +16,12 @@
   };
   home-manager.sharedModules = [
     {
-      nixdots.persist.home = {
-        directories = [ ".local/share/keyrings" ];
-      };
+      js0ny.persist.stores.state.directories = [
+        {
+          directory = ".local/share/keyrings";
+          mode = "0700";
+        }
+      ];
       services.gnome-keyring.enable = lib.mkForce false;
       xdg.configFile."kwalletrc".text = lib.generators.toINI { } {
         Wallet = {

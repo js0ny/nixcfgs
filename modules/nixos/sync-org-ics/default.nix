@@ -36,7 +36,7 @@
           key = "radicale_passwd";
         };
       };
-      nixdots.persist.system.directories = [ "/var/lib/orgmode" ];
+      js0ny.persist.stores.state.directories = [ "/var/lib/orgmode" ];
       sops.templates."orgmode.vdirsyncer.ini" = {
         content = /* ini */ ''
           [general]

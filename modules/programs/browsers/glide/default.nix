@@ -36,6 +36,6 @@
             value.source = mkSymlink "${dots}/modules/programs/browsers/glide/${e}";
           }) files
         );
-      nixdots.persist.home.directories = [ ".config/glide" ];
+      js0ny.persist.stores.state.directories = [ ".config/glide" ];
     };
 }

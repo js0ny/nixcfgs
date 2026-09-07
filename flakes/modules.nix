@@ -3,6 +3,7 @@ let
   myLib = import ../lib { inherit lib; };
   modulesPath = ../modules;
   optionsPath = toString (modulesPath + "/options/");
+
 in
 {
   options.flake.darwinModules = lib.mkOption {

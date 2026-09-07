@@ -6,7 +6,7 @@
   };
   home-manager.sharedModules = [
     {
-      nixdots.persist.nosnap.home.directories = [
+      js0ny.persist.stores.local.directories = [
         ".local/share/io.github.clash-verge-rev.clash-verge-rev"
       ];
 

@@ -47,7 +47,7 @@ in
 {
   environment.systemPackages = [ cli ];
 
-  nixdots.persist.system.directories = [
+  js0ny.persist.stores.state.directories = [
     {
       directory = stateDir;
       inherit user;

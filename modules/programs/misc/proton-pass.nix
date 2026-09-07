@@ -3,7 +3,7 @@
     proton-pass-cli
     proton-pass
   ];
-  nixdots.persist.home.directories = [
+  js0ny.persist.stores.state.directories = [
     ".config/Proton Pass"
     ".local/share/proton-pass-cli"
   ];

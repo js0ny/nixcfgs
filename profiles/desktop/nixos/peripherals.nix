@@ -1,12 +1,8 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
-let
-  user = config.js0ny.user.name;
-in
 {
   environment.systemPackages = with pkgs; [
     evtest

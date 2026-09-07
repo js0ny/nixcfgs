@@ -1,7 +1,3 @@
-# $DOTFILES/.gitattributes
-# Date: 2024-11-30
-# Author: js0ny
-
 * text=auto eol=lf
 
 # Windows Batch Script, keep CRLF
@@ -27,3 +23,5 @@ _sources/*.json binary
 *.dll binary
 *.pck binary
 *.webp binary
+
+flake.lock binary

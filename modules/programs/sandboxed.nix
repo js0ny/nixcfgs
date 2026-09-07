@@ -8,9 +8,5 @@ in
     "d ${home}/.sandbox/exchange 0755 ${user} users -"
     "d ${home}/.sandbox/downloads 0755 ${user} users -"
   ];
-  nixdots.persist.nosnap.home = {
-    directories = [
-      ".sandbox/.per-app"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".sandbox/.per-app" ];
 }

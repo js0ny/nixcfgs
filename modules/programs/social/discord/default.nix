@@ -47,11 +47,7 @@
           };
         };
       };
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".config/discord"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [ ".config/discord" ];
 
     };
 }

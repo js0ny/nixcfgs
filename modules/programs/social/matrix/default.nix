@@ -2,11 +2,7 @@
   flake.homeModules.matrix-element =
     { pkgs, ... }:
     {
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".config/Element"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [ ".config/Element" ];
       home.packages = with pkgs; [
         (element-desktop.override {
           commandLineArgs =

@@ -57,12 +57,10 @@ in
 
         home.packages = [ pkgs.sops ];
 
-        nixdots.persist.home = {
-          directories = [
-            ".config/age"
-            ".config/sops/age"
-          ];
-        };
+        js0ny.persist.stores.state.directories = [
+          ".config/age"
+          ".config/sops/age"
+        ];
       }
       (lib.mkIf hasEnvVars {
         programs = {

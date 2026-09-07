@@ -122,13 +122,11 @@
           ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [ epkgs.xclip ]);
       };
 
-      home.directories.org = {
-        create = true;
-        persist = true;
-      };
-
       xdg.configFile."emacs".source = mkSymlink "${dots}/modules/programs/editors/emacs";
+      js0ny.persist.stores = {
 
-      nixdots.persist.nosnap.home.directories = [ ".local/share/emacs" ];
+        state.directories = [ "org" ];
+        local.directories = [ ".local/share/emacs" ];
+      };
     };
 }

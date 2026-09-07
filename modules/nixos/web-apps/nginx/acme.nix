@@ -5,9 +5,5 @@
     defaults.email = config.js0ny.user.email;
   };
 
-  nixdots.persist.system = {
-    directories = [
-      "/var/lib/acme"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ "/var/lib/acme" ];
 }

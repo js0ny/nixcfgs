@@ -69,12 +69,8 @@
           enable = true; # use flatpak
           config.startup_commands = lib.mkForce [ "toggle_custom_color" ];
         };
-        nixdots.persist.home = {
-          directories = [
-            # annotations
-            ".local/share/sioyek"
-          ];
-        };
+        # annotations
+        js0ny.persist.stores.state.directories = [ ".local/share/sioyek" ];
       };
     desktop = { inputs, ... }: {
       imports = [ inputs.self.homeModules.sioyek ];

@@ -29,8 +29,6 @@
       };
     };
   };
-  nixdots.persist.nosnap.home.directories = [
-    ".local/share/PrismLauncher"
-  ];
+  js0ny.persist.stores.state.directories = [ ".local/share/PrismLauncher" ];
 
 }

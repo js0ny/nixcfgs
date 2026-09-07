@@ -12,7 +12,7 @@
     ../../../../modules/options
     # ../../modules/home/programs/media/mpv.nix
     # keep-sorted end
-    inputs.secrets.homeManagerModules.default
+    inputs.secrets.homeModules.default
 
     inputs.self.homeModules.nix-index-database
     inputs.self.homeModules.anki

@@ -40,11 +40,13 @@ in
 
     stores = mkOption {
       type = types.attrsOf storeType;
-      default = {
-        state.persistentStoragePath = "/persist";
-        local.persistentStoragePath = "/nosnap";
-      };
+      default = { };
       description = "Named persistent stores using Preservation's preserveAt schema.";
     };
+  };
+
+  config.js0ny.persist.stores = {
+    state.persistentStoragePath = lib.mkDefault "/persist";
+    local.persistentStoragePath = lib.mkDefault "/nosnap";
   };
 }

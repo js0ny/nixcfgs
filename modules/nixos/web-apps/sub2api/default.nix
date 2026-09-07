@@ -156,7 +156,7 @@
       # }}}
 
       # {{{ persistence
-      nixdots.persist.system.directories = [
+      js0ny.persist.stores.state.directories = [
         stateDir
         "/var/lib/redis-sub2api"
       ];

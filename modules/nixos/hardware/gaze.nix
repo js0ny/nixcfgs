@@ -41,7 +41,7 @@ in
       storage.encrypt_templates = lib.mkDefault false;
     };
   };
-  nixdots.persist.system.directories = [
+  js0ny.persist.stores.state.directories = [
     "/var/lib/gaze"
     "/var/cache/gaze" # onnx sits here
   ];

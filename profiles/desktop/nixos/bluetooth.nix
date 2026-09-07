@@ -10,9 +10,5 @@ _: {
     };
   };
 
-  nixdots.persist.system = {
-    directories = [
-      "/var/lib/bluetooth"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ "/var/lib/bluetooth" ];
 }

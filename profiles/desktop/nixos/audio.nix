@@ -51,10 +51,12 @@ in
         Install.WantedBy = lib.mkForce [ "shell-init.target" ];
       };
 
-      nixdots.persist.home.directories = [
-        ".local/share/easyeffects"
-      ];
-
+      js0ny.persist.stores.state = {
+        directories = [
+          ".local/share/easyeffects"
+          ".local/state/wireplumber"
+        ];
+      };
     }
   ];
 }

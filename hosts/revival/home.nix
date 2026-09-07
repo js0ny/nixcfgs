@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 {
   imports = [
     inputs.self.homeModules.server
@@ -7,5 +7,6 @@
   ];
 
   home.stateVersion = "26.11";
-  sops.age.keyFile = "/persist/etc/ssh/agekey.txt";
+  sops.age.keyFile = "/etc/ssh/agekey.txt";
+  dconf.enable = lib.mkForce false;
 }

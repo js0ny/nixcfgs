@@ -40,11 +40,14 @@
 
 
 (use-package magit
+  :init
+  (evil-set-initial-state 'magit-status-mode 'motion)
   :commands (magit)
   :config
-  (evil-define-key '(normal) magit-status-mode-map
-    (kbd "<tab>") #'magit-section-toggle
-    (kbd "za") #'magit-section-toggle)
+  (evil-define-key 'motion magit-status-mode-map
+    (kbd "TAB") #'magit-section-toggle
+    (kbd "za") #'magit-section-toggle
+    (kbd "RET") #'magit-diff-visit-file)
   (evil-leader/set-key
     "g" #'magit))
 

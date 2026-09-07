@@ -30,6 +30,6 @@
         categories = [ "Utility" ];
       };
 
-      nixdots.persist.nosnap.home.directories = [ ".config/Hermes" ];
+      js0ny.persist.stores.state.directories = [ ".config/Hermes" ];
     };
 }

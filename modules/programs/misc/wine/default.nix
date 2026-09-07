@@ -15,13 +15,11 @@
           removeWarningPopup = true;
         })
       ];
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".local/share/wineprefixes"
-          ".local/share/wine-apps"
-          ".local/share/bottles"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [
+        ".local/share/wineprefixes"
+        ".local/share/wine-apps"
+        ".local/share/bottles"
+      ];
       home.sessionVariables = {
         WINEPREFIX = prefix;
       };

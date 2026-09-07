@@ -6,6 +6,8 @@
   };
 
   home-manager.sharedModules = [
-    { nixdots.persist.nosnap.home.directories = [ ".config/Throne" ]; }
+    {
+      js0ny.persist.stores.local.directories = [ ".config/Throne" ];
+    }
   ];
 }

@@ -19,7 +19,7 @@ in
   systemd.tmpfiles.rules = lib.optionals (avatar != null) [
     "L+ /var/lib/AccountsService/icons/${user} - - - - ${avatar}"
   ];
-  nixdots.persist.system.directories = [ "/var/lib/AccountsService" ];
+  js0ny.persist.stores.state.directories = [ "/var/lib/AccountsService" ];
   services.flatpak.enable = flatpak.enable;
   stylix.targets.qt.platform = lib.mkForce "kde";
 

@@ -18,5 +18,5 @@
     nixpaks.qq
   ];
 
-  nixdots.persist.nosnap.home.directories = [ ".config/QQ" ];
+  js0ny.persist.stores.local.directories = [ ".config/QQ" ];
 }

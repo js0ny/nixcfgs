@@ -16,8 +16,8 @@
     paste = "pbpaste";
     ii = "open";
   }
-  // lib.optionalAttrs (config.nixdots.persist.enable) {
-    # Hide impermanence mounted directories from duf.
+  // lib.optionalAttrs (config.js0ny.persist.enable) {
+    # Hide Preservation-mounted directories from duf.
     duf = "duf -hide-mp '/etc/*,/var/*,/home/*/*,/home/*/.*'";
   };
 }

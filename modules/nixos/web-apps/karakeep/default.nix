@@ -57,10 +57,6 @@
         }
         // config.nixdefs.consts.nginxWithCF;
       };
-      nixdots.persist.system = {
-        directories = [
-          "/var/lib/karakeep"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [ "/var/lib/karakeep" ];
     };
 }

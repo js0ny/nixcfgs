@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    ./impermanence.nix
     ./xremap/spcl.nix
     ./xremap/caps-esc-ctrl.nix
     ./xremap/module.nix

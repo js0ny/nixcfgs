@@ -302,5 +302,5 @@ in
     };
   }
   // config.nixdefs.consts.nginxWithCF;
-  nixdots.persist.system.directories = [ stateDir ];
+  js0ny.persist.stores.state.directories = [ stateDir ];
 }

@@ -77,6 +77,6 @@
       };
 
       networking.firewall.allowedTCPPorts = [ sshPort ];
-      nixdots.persist.system.directories = [ config.services.forgejo.stateDir ];
+      js0ny.persist.stores.state.directories = [ config.services.forgejo.stateDir ];
     };
 }

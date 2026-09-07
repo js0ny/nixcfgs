@@ -11,9 +11,5 @@
       "--display-driver wayland"
     ];
   };
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/SlayTheSpire2"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".local/share/SlayTheSpire2" ];
 }
