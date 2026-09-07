@@ -30,8 +30,9 @@
 
       pcloudAntidotsDesktop = pkgs.makeDesktopItem {
         name = "pcloud-antidots";
-        desktopName = "pCloud (Antidots)";
-        exec = "${lib.getExe pcloudAntidots}";
+        desktopName = "pCloud";
+        exec = lib.getExe pcloudAntidots;
+        icon = "pcloud";
         terminal = false;
         categories = [
           "Network"
@@ -45,6 +46,5 @@
         pcloudAntidots
         pcloudAntidotsDesktop
       ];
-
     };
 }

@@ -28,7 +28,6 @@
         authKeyFile = config.sops.secrets.tskey.path;
         exitNode = true;
       };
-      # syncthing.enable = true;
       sshd.enable = true;
     };
     networking.nftables.enable = true;

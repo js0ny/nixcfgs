@@ -68,7 +68,6 @@
         ipv6 = "fd7a:115c:a1e0::df37:1436";
         magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
       };
-      syncthing.enable = true;
       sshd.enable = false;
     };
     style = {
@@ -79,9 +78,6 @@
       obs-studio = {
         enable = false;
       };
-      chromium.enable = true;
-      firefox.enable = true;
-      dolphin.enable = true;
       thunderbird.enable = true;
     };
     sops = {

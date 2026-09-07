@@ -46,8 +46,6 @@ in
         appearance = "auto";
         # default: Mojave
         useAdaptiveColors = true;
-        # NOTE: "native" breaks window controls on tiling WMs (Electron bug).
-        # "default" works on both GNOME and Niri, so keep it.
         titleBarStyle = "default";
         layoutType = "default";
         fonts = {

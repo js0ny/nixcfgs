@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -99,9 +98,6 @@
           default = null;
         };
         exitNode = lib.mkEnableOption "Use as exit node";
-      };
-      syncthing = {
-        enable = lib.mkEnableOption "Enable Syncthing file synchronization service.";
       };
       sshd.enable = lib.mkOption {
         type = lib.types.bool;

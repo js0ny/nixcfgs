@@ -113,14 +113,3 @@ else
     { locked = true, repeating = true }
   )
 end
--- -- TODO:
--- local qs = '/nix/store/nm6wrf4gprrxlri8nr16kcmixpkk8hrf-quickshell-0.3.0/bin/qs'
--- hl.bind(
---   'ALT + TAB',
---   hl.dsp.exec_cmd(qs .. ' ipc -p /home/js0ny/Atelier/prj/qswitcher call switcher next')
--- )
--- hl.bind(
---   'ALT + SHIFT + TAB',
---   hl.dsp.exec_cmd(qs .. ' ipc -p /home/js0ny/Atelier/prj/qswitcher call switcher prev')
--- )
--- hl.bind(mod .. ' + backslash', hl.dsp.exec_cmd('notify-send "$(hyprctl activewindow)"'))

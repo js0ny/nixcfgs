@@ -48,7 +48,7 @@
           proxy_no_verify = null;
         };
       };
-      # NOTE: managed by stylix
+      # managed by stylix
       # ui_font_size = 16;
       # buffer_font_size = null;
       # relative_line_numbers = true;

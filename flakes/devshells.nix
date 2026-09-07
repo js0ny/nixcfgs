@@ -19,23 +19,25 @@
             shfmt
             shellcheck
             nixfmt
-            nvfetcher
             nufmt
             lua
             keep-sorted
           ];
           devDeps = with pkgs; [
+            # keep-sorted start
+            ast-grep
+            bash-language-server
+            disko
+            inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
             lua-language-server
-            pkgs.typescript-language-server
-            pkgs.bash-language-server
+            nil
+            nixd
+            nixos-anywhere
+            nushell
             pyright
             taplo
-            nixd
-            nil
-            nushell
-            inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
-            nixos-anywhere
-            disko
+            typescript-language-server
+            # keep-sorted end
           ];
         in
         {

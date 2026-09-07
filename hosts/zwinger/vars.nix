@@ -27,7 +27,6 @@
         magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
       };
-      # syncthing.enable = true;
       sshd.enable = true;
     };
     networking.nftables.enable = true;

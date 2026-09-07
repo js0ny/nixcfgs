@@ -90,7 +90,6 @@ in
         magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
       };
-      syncthing.enable = false;
       sshd.enable = true;
       ollama = {
         enable = false;
@@ -146,7 +145,6 @@ in
     programs = {
       steam.enable = true;
       obs-studio.enable = true;
-      chromium.enable = true;
       firefox.enable = true;
       dolphin.enable = true;
       thunderbird.enable = true;

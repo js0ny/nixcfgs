@@ -1,6 +1,6 @@
 {
   flake.nixosModules.garage =
-    # NOTE: Human Intervention required on first setup
+    # [Human Intervention] required on first setup
     /*
       sudo garage layout status
       sudo garage layout assign <ID> -z dc1 -c 50G
