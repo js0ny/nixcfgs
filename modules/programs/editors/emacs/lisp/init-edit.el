@@ -40,6 +40,7 @@
 
 
 (use-package magit
+  :after (evil)
   :init
   (evil-set-initial-state 'magit-status-mode 'motion)
   :commands (magit)

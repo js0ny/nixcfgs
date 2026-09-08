@@ -53,4 +53,10 @@ in
 
   services.redis.package = lib.mkForce pkgs.valkey;
 
+  environment.systemPackages = with pkgs; [
+    kdePackages.plasma-bigscreen
+  ];
+
+  services.desktopManager.plasma6.enable = true;
+
 }

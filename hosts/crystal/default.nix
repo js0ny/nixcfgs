@@ -29,11 +29,14 @@ in
 
     mod.hyprland
     mod.niri
+    mod.plasma
 
     mod.gaze
     mod.prometheus-node
 
     mod.rclone
+
+    inputs.umbriel.nixosModules.default
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
@@ -70,7 +73,11 @@ in
 
   boot.plymouth.enable = true;
 
-  programs.labwc.enable = true;
+  programs = {
+    labwc.enable = true;
+    umbriel.enable = true;
+    mangowc.enable = true;
+  };
 
   # localsend, TCP/UDP 53317
   programs.localsend.enable = true;
@@ -100,4 +107,6 @@ in
     package = pkgs.wireshark;
   };
   js0ny.user.groups = [ "wireshark" ];
+
+  environment.systemPackages = [ pkgs.kdePackages.plasma-bigscreen ];
 }

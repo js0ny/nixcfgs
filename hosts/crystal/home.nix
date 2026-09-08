@@ -14,6 +14,7 @@
     inputs.self.homeModules.noctalia
     inputs.self.homeModules.niri
     inputs.self.homeModules.glide
+    inputs.self.homeModules.plasma
     ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 

@@ -153,7 +153,7 @@ in
       enable = true;
       lanzaboote = true;
       display = "wayland";
-      gpu = "nvidia";
+      gpu = "none";
       gpuBusIds = {
         nvidia = "PCI:1:0:0";
         amdgpu = "PCI:101:0:0";
