@@ -9,7 +9,7 @@ let
   hosts = lib.filterAttrs (_: host: host ? deploy) (import ../../definitions/hosts.nix).nixos;
 
   mkNode = name: host: {
-    hostname = host.tailscaleIp;
+    hostname = host.tailscale.ipv4;
     profiles.system = {
       user = "root";
       sshUser = "js0ny";

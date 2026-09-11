@@ -11,5 +11,6 @@
     ./primaryUser.nix
     ./host.nix
     ./geo.nix
+    ./tailscale.nix
   ];
 }

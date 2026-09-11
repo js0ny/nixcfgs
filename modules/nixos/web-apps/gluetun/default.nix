@@ -20,7 +20,7 @@
       ...
     }:
     let
-      ip = config.nixdots.services.tailscale.ip;
+      ip = config.js0ny.tailscale.ipv4;
       qbStateDir = "/var/lib/qbittorrent";
       qbConfigPath = "${qbStateDir}/config";
       tag = "v3.41";

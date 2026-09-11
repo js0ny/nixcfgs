@@ -7,6 +7,7 @@
 }:
 let
   avatar = inputs.bindeps + "/avatar/git.jpg";
+  hosts = import ../../definitions/hosts.nix;
 in
 {
   js0ny = {
@@ -81,16 +82,13 @@ in
       };
       flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
+    tailscale = hosts.nixos.bauhaus.tailscale // {
+      enable = true;
+      authKeyFile = config.sops.secrets.tskey.path;
+    };
   };
   nixdots = {
     services = {
-      tailscale = {
-        enable = true;
-        ip = "100.65.81.67";
-        ipv6 = "fd7a:115c:a1e0::f735:5144";
-        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey.path;
-      };
       ollama = {
         enable = true;
         models = [

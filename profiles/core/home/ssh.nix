@@ -8,7 +8,7 @@ let
   port = config.nixdefs.endpoints.ssh.port;
   hosts = (import ../../../definitions/hosts.nix).nixos;
   mkTailscaleHost = _: host: {
-    HostName = host.tailscaleIp;
+    HostName = host.tailscale.ipv4;
     User = "js0ny";
     Port = port;
     ForwardAgent = true;

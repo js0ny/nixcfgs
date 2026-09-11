@@ -56,7 +56,7 @@
         };
         environmentFiles = [ config.sops.templates."opengist.env".path ];
         extraOptions = [
-          "--add-host=${ep.forgejo.domain}:${config.nixdots.services.tailscale.ip}"
+          "--add-host=${ep.forgejo.domain}:${config.js0ny.tailscale.ipv4}"
         ];
       };
 

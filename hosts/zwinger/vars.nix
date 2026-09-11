@@ -3,6 +3,9 @@
   secrets,
   ...
 }:
+let
+  hosts = import ../../definitions/hosts.nix;
+in
 {
   sops.secrets.tskey = {
     sopsFile = secrets + "/hosts/zwinger.yaml";
@@ -21,17 +24,12 @@
       ];
     };
     persist.enable = true;
+    tailscale = hosts.nixos.zwinger.tailscale // {
+      enable = true;
+      authKeyFile = config.sops.secrets.tskey.path;
+    };
   };
   nixdots = {
-    services = {
-      tailscale = {
-        enable = true;
-        ip = "100.71.26.71";
-        # ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey.path;
-      };
-    };
     style = {
       enable = false;
       stylix.enable = false;

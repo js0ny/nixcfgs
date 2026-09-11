@@ -31,19 +31,19 @@
         };
       };
     };
+    tailscale = {
+      enable = true;
+      ipv4 = "100.92.207.11";
+      # ipv6 = "fd7a:115c:a1e0::e701:932";
+      magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
+      authKeyFile = config.sops.secrets.tskey.path;
+    };
   };
   sops.secrets.tskey = {
     sopsFile = secrets + "/hosts/polder.yaml";
   };
   nixdots = {
     services = {
-      tailscale = {
-        enable = true;
-        ip = "100.92.207.11";
-        # ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey.path;
-      };
       ollama = {
         enable = true;
         models = [ "bge-m3" ];

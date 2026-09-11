@@ -4,6 +4,9 @@
   secrets,
   ...
 }:
+let
+  hosts = import ../../definitions/hosts.nix;
+in
 {
   sops.secrets.tskey = {
     sopsFile = secrets + "/hosts/belvedere.yaml";
@@ -35,17 +38,13 @@
         };
       };
     };
+    tailscale = hosts.nixos.belvedere.tailscale // {
+      enable = true;
+      authKeyFile = config.sops.secrets.tskey.path;
+    };
   };
   nixdots = {
     services = {
-      tailscale = {
-        enable = true;
-        ip = "100.92.207.11";
-        # ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey.path;
-        exitNode = true;
-      };
       ollama = {
         enable = false;
       };

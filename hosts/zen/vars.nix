@@ -4,6 +4,9 @@
   secrets,
   ...
 }:
+let
+  hosts = import ../../definitions/hosts.nix;
+in
 {
   js0ny = {
     apps = {
@@ -58,16 +61,11 @@
       ];
       flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
+    tailscale = hosts.darwin.zen.tailscale // {
+      enable = true;
+    };
   };
   nixdots = {
-    services = {
-      tailscale = {
-        enable = true;
-        ip = "100.68.20.54";
-        ipv6 = "fd7a:115c:a1e0::df37:1436";
-        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
-      };
-    };
     style = {
       enable = true;
       stylix.enable = true;
