@@ -15,7 +15,7 @@ in
     enable = lib.mkEnableOption "Enable theming and font management for applications.";
     mountFHS = lib.mkOption {
       type = lib.types.bool;
-      default = config.nixdots.programs.onlyoffice.enable;
+      default = false;
       description = "Whether to mount fonts and icons into FHS location for better compatibility.";
     };
     polarity = lib.mkOption {

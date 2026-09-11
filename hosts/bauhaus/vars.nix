@@ -132,9 +132,6 @@ in
         }
       ];
     };
-    programs = {
-      firefox.enable = true;
-    };
     linux = {
       enable = true;
       lanzaboote = false;

@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  p = config.nixdots.programs.firefox.defaultProfile;
+  p = config.js0ny.user.name;
 in
 {
   programs.firefox.profiles."${p}".cookie-autodelete = {

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  p = config.nixdots.programs.firefox.defaultProfile;
+  p = config.js0ny.user.name;
   baseprefs = import ./global-prefs.nix;
 in
 {

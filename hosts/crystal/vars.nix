@@ -147,10 +147,6 @@ in
         productId = "3011";
       };
     };
-    programs = {
-      firefox.enable = true;
-      thunderbird.enable = true;
-    };
     linux = {
       enable = true;
       lanzaboote = true;

@@ -2,7 +2,7 @@
 let
   id = "{3c078156-979c-498b-8990-85f7987dd929}";
   home = config.js0ny.user.home;
-  p = config.nixdots.programs.firefox.defaultProfile;
+  p = config.js0ny.user.name;
   profileDir = config.nixdefs.consts.firefox.profileDir;
 in
 {

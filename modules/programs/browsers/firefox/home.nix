@@ -8,10 +8,8 @@
 let
   profileDir = config.nixdefs.consts.firefox.profileDir;
   persistDir = lib.removeSuffix "/firefox" profileDir;
-  cfg = config.nixdots.programs.firefox;
-  profile = config.nixdots.programs.firefox.defaultProfile;
+  profile = config.js0ny.user.name;
   policies = import ./policies.nix;
-  isNixOS = config.nixdots.linux.enable && config.nixdots.linux.nixos;
   scanPaths = (import ../../../../lib { inherit lib; }).scanPaths;
 in
 {
@@ -36,7 +34,7 @@ in
   programs.firefox.configPath = "${config.home.homeDirectory}/${profileDir}";
 
   programs.firefox = {
-    enable = cfg.enable;
+    enable = true;
     # package =
     #   if isNixOS then
     #     pkgs.nixpaks.firefox
@@ -49,7 +47,9 @@ in
   # antidots
   home.file.".mozilla/native-messaging-hosts/.keep".enable = lib.mkForce false;
 
-  js0ny.persist.stores.state = lib.mkIf (cfg.enable) { directories = [ persistDir ]; };
+  js0ny.persist.stores.state = {
+    directories = [ persistDir ];
+  };
   programs.firefox.policies = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin policies;
 
   # Betterfox

@@ -72,9 +72,6 @@
       enable = true;
       stylix.enable = true;
     };
-    programs = {
-      thunderbird.enable = true;
-    };
     sops = {
       enable = true;
       yamlFile = secrets + "/hosts/zen.yaml";

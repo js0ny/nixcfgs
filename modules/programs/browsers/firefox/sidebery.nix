@@ -6,7 +6,7 @@
 let
   addons = pkgs.firefox-addons;
   id = "{3c078156-979c-498b-8990-85f7987dd929}";
-  p = config.nixdots.programs.firefox.defaultProfile;
+  p = config.js0ny.user.name;
 in
 {
   imports = [

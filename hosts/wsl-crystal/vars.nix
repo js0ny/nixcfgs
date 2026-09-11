@@ -39,7 +39,6 @@
     };
   };
   nixdots = {
-    programs.firefox.enable = true;
     style = {
       enable = false;
       stylix = {

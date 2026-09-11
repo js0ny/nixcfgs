@@ -67,8 +67,6 @@
 
   xdg.configFile."face.png".source = config.js0ny.user.avatar;
 
-  programs.swayimg.enable = true;
-
   home.packages = [
     (pkgs.writeShellScriptBin "setwall" ''
       if [[ $XDG_CURRENT_DESKTOP == "Hyprland" || $XDG_CURRENT_DESKTOP == "niri" ]]; then

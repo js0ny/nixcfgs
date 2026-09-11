@@ -5,7 +5,7 @@
 }:
 let
   addons = pkgs.firefox-addons;
-  p = config.nixdots.programs.firefox.defaultProfile;
+  p = config.js0ny.user.name;
 in
 {
   catppuccin.firefox.enable = true;

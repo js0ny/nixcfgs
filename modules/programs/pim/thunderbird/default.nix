@@ -37,12 +37,11 @@
       ...
     }:
     let
-      cfg = config.nixdots.programs.thunderbird;
       profile = config.js0ny.user.name;
       nur-addons = pkgs.nur.repos.rycee.thunderbird-addons;
       isNixOS = config.nixdots.linux.enable && config.nixdots.linux.nixos;
     in
-    lib.mkIf cfg.enable {
+    {
       programs.thunderbird = {
         enable = true;
         package = if isNixOS then pkgs.nixpaks.thunderbird else pkgs.thunderbird;

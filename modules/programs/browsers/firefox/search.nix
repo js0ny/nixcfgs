@@ -4,7 +4,7 @@
   ...
 }:
 let
-  profile = config.nixdots.programs.firefox.defaultProfile;
+  profile = config.js0ny.user.name;
   selfhosted = config.nixdefs.selfhosted;
   searxng = selfhosted.searxng;
 in

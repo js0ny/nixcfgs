@@ -10,7 +10,7 @@
       libraryDir = ".local/share/Zotero";
       profile = config.js0ny.user.name;
       nur-addons = pkgs.nur.repos.rycee.firefox-addons;
-      p = config.nixdots.programs.firefox.defaultProfile;
+      p = config.js0ny.user.name;
     in
     {
       home.packages =
