@@ -49,6 +49,10 @@ lib.mkMerge [
         consider_preedit = false;
         close_on_focus_loss = true;
         providers = {
+          applications.entrypoints = {
+            "chatgpt".alias = "codex";
+            "io.gitlab.metadatacleaner.metadatacleaner".alias = "mat";
+          };
           core.entrypoints = {
             sponsor.enabled = false;
             store.preferences.alwaysShowIntro = false;

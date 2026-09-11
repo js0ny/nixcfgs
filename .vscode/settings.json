@@ -2,5 +2,23 @@
   "Lua.workspace.library": [
     "/etc/profiles/per-user/js0ny/share/swayimg",
     "/run/current-system/sw/share/hypr/stubs"
-  ]
+  ],
+  "nix.serverSettings": {
+    "nixd": {
+      "nixpkgs": {
+        "expr": "import (builtins.getFlake (builtins.toString ./.)).inputs.nixpkgs { overlays = (builtins.getFlake (builtins.toString ./.)).outputs.allOverlays; }"
+      },
+      "options": {
+        "flake-parts": {
+          "expr": "(builtins.getFlake (builtins.toString ./.)).debug.options"
+        },
+        "home-manager": {
+          "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.bauhaus.options.home-manager.users.type.getSubOptions []"
+        },
+        "nixos": {
+          "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.bauhaus.options"
+        }
+      }
+    }
+  }
 }

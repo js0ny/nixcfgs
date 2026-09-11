@@ -14,8 +14,11 @@
     prefixes = [ "waydroid" ];
     desktops = [
       # keep-sorted start
+      "calibre-lrfviewer"
+      "himalaya"
       "howdy"
       "khal"
+      "openlogi"
       "org.fcitx.fcitx5-migrator"
       "org.kde.kdeconnect.nonplasma" # KDE Connect Indicator
       "org.kde.kwalletmanager"
@@ -24,6 +27,7 @@
       "qv4l2"
       "qvidcap"
       "url-dispatcher"
+      "uuctl"
       # keep-sorted end
     ];
   };
