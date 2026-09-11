@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  files = [
+  keys = [
     "/etc/ssh/ssh_host_ed25519_key"
     "/etc/ssh/ssh_host_ed25519_key.pub"
     "/etc/ssh/ssh_host_rsa_key"
@@ -14,5 +14,5 @@ in
     how = "symlink";
     inInitrd = true;
     configureParent = true;
-  }) files;
+  }) keys;
 }

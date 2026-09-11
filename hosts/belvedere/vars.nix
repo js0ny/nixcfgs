@@ -48,7 +48,6 @@
         enable = false;
       };
     };
-    networking.nftables.enable = true;
     style = {
       enable = false;
       stylix.enable = false;

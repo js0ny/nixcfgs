@@ -9,5 +9,6 @@
     ./desktop.nix
     ./persist.nix
     ./primaryUser.nix
+    ./host.nix
   ];
 }

@@ -64,12 +64,15 @@ in
         };
       };
     };
+    host = {
+      hostName = "bauhaus";
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
+    };
   };
   nixdots = {
     core = {
       hostname = "bauhaus";
       dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       timezones = [
         "Europe/London"
         "Etc/UTC"
@@ -96,7 +99,6 @@ in
         ];
       };
     };
-    networking.nftables.enable = true;
     style = {
       enable = true;
       stylix = {
@@ -131,7 +133,6 @@ in
       ];
     };
     programs = {
-      steam.enable = true;
       obs-studio.enable = true;
       firefox.enable = true;
       dolphin.enable = true;

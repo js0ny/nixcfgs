@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  flake = config.nixdots.core.flakeDir;
+  flake = config.js0ny.host.flakeDir;
 in
 {
   programs.nh = {

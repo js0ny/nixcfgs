@@ -14,7 +14,7 @@
       };
       snippets = (import ../lsp-snippets/lib.nix { inherit pkgs config; }).out;
       appname = "nvim";
-      flakeRoot = config.nixdots.core.flakeDir;
+      flakeRoot = config.js0ny.host.flakeDir;
       imageSupport = config.programs.kitty.enable || config.programs.ghostty.enable;
     in
     {

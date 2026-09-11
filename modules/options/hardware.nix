@@ -10,7 +10,19 @@ let
 in
 {
   options.js0ny.hardware = {
-    laptop.enable = lib.mkEnableOption "Whether the host is a laptop";
+    laptop = {
+      enable = lib.mkEnableOption "Whether the host is a laptop";
+      vendor = lib.mkOption {
+        type =
+          /*nixfmt:disable*/
+          with lib.types; nullOr (enum [
+            "asus"
+            "apple"
+          ]);
+          /*nixfmt:enable*/
+        default = null;
+      };
+    };
     type = mkOption {
       type = lib.types.enum [
         "bare-metal"

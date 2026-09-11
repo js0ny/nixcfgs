@@ -20,13 +20,16 @@
         };
       };
     };
+    host = {
+      hostName = "crystal";
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
+    };
   };
   nixdots = {
     programs.firefox.enable = true;
     core = {
       hostname = "crystal";
       dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixdots";
       timezones = [
         "Europe/London"
         "Etc/UTC"
@@ -39,7 +42,6 @@
     services = {
       sshd.enable = true;
     };
-    networking.nftables.enable = false;
     style = {
       enable = false;
       stylix = {

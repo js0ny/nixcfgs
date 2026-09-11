@@ -49,11 +49,14 @@
     };
     desktop.enable = true;
     homebrew.enable = true;
+    host = {
+      hostName = "zen";
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
+    };
   };
   nixdots = {
     core = {
       dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       hostname = "zen";
       timezones = [
         "Europe/London"

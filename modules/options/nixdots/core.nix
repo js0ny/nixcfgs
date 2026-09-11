@@ -11,11 +11,6 @@
         default = "${config.js0ny.user.home}/.dotfiles";
         description = "Path for dotfiles.";
       };
-      flakeDir = lib.mkOption {
-        type = lib.types.str;
-        default = config.nixdots.core.dots;
-        description = "Path for flake directory.";
-      };
       hostname = lib.mkOption {
         type = lib.types.str;
         default = "nixos";
@@ -114,11 +109,6 @@
             Download these models using ollama pull as soon as ollama.service has started.
           '';
         };
-      };
-    };
-    networking = {
-      nftables = {
-        enable = lib.mkEnableOption "Enable nftables firewall backend.";
       };
     };
   };

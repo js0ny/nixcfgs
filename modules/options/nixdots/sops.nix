@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, ... }:
 let
   absolutePathType = lib.types.addCheck lib.types.str (path: lib.hasPrefix "/" path);
   secretType = lib.types.submodule {

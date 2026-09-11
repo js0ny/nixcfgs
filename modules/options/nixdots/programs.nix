@@ -40,13 +40,6 @@
         description = "Enable Dolphin file manager.";
       };
     };
-    steam = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enable Steam gaming platform.";
-      };
-    };
     onlyoffice = {
       enable = lib.mkEnableOption ''
         Whether to enable onlyoffice-desktopeditors.

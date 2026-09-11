@@ -47,7 +47,6 @@
         models = [ "bge-m3" ];
       };
     };
-    networking.nftables.enable = true;
     style = {
       enable = false;
       stylix.enable = false;

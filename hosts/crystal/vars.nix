@@ -13,6 +13,9 @@ in
     flatpak.enable = true;
     user.avatar = avatar;
     persist.enable = true;
+    host = {
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
+    };
     desktop = {
       enable = true;
       displayManager = "regreet";
@@ -25,6 +28,10 @@ in
     hardware = {
       cpu.nproc = 16;
       type = "bare-metal";
+      laptop = {
+        enable = true;
+        vendor = "asus";
+      };
     };
     apps = {
       terminal = {
@@ -72,7 +79,6 @@ in
     core = {
       hostname = "crystal";
       dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       timezones = [
         "Asia/Shanghai"
         "Etc/UTC"
@@ -96,7 +102,6 @@ in
         models = [ "bge-m3" ];
       };
     };
-    networking.nftables.enable = true;
     style = {
       enable = true;
       stylix = {
@@ -112,7 +117,6 @@ in
     };
     laptop = {
       enable = true;
-      asus.enable = true;
       display = {
         connector = "eDP-1";
         makeModel = "Samsung Display Corp. ATNA40CU05-0  Unknown";
@@ -143,7 +147,6 @@ in
       };
     };
     programs = {
-      steam.enable = true;
       obs-studio.enable = true;
       firefox.enable = true;
       dolphin.enable = true;

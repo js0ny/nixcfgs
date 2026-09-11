@@ -6,9 +6,10 @@
       ...
     }:
     let
-      cfg = config.nixdots.laptop.asus;
+      cfg = config.js0ny.hardware.laptop;
+      isAsus = cfg.vendor == "asus";
     in
-    lib.mkIf cfg.enable {
+    lib.mkIf isAsus {
       services.asusd.enable = true;
       services.supergfxd.enable = true;
 
