@@ -113,6 +113,7 @@ in
     cachix
     alejandra
     manix
+    nix-auth
   ];
   home.sessionVariables = {
     GOLDENDICT_FORCE_WAYLAND = 1;

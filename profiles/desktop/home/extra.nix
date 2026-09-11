@@ -57,12 +57,14 @@
 
   catppuccin.thunderbird.profile = config.home.username;
 
-  nixdots.sops.secrets = {
-    nix_github_pat = {
-      env = [ "NIX_CONFIG" ];
-      sopsFile = secrets + "/hosts.yaml";
-    };
+  sops.secrets.nix_access_token = {
+    key = "data";
+    sopsFile = secrets + "/files/nix_access_token.yaml";
   };
+  nix.extraOptions = /* ini */ ''
+    !include ${config.sops.secrets.nix_access_token.path}
+  '';
+
   xdg.configFile."face.png".source = config.js0ny.user.avatar;
 
   programs.swayimg.enable = true;
