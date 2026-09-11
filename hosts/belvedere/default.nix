@@ -25,7 +25,6 @@ in
     mod.jellyfin
     mod.miniflux
     mod.navidrome
-    mod.nextcloud
     mod.nix-index-database
     mod.papra
     mod.prometheus-node
@@ -61,4 +60,6 @@ in
       IPv6AcceptRA = true;
     };
   };
+
+  js0ny.persist.stores.state.directories = [ "/var/lib/postgresql" ];
 }

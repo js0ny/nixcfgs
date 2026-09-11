@@ -52,6 +52,8 @@
   (evil-leader/set-key
     "g" #'magit))
 
+(use-package majutsu)
+
 ;; (use-package avy
 ;;   :after evil
 ;;   :config

@@ -26,7 +26,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree/nixos-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nur = {
       url = "github:nix-community/NUR";
@@ -80,10 +83,6 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    umbriel = {
-      url = "github:noctalia-dev/umbriel";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
       inputs = {
@@ -121,7 +120,9 @@
     nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
+      inputs.nix-darwin.follows = "nix-darwin";
+      inputs.home-manager.follows = "home-manager";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";

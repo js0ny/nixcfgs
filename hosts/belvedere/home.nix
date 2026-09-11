@@ -25,4 +25,5 @@ in
     enable = true;
     nix-direnv.enable = true;
   };
+  dconf.enable = false;
 }
