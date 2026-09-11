@@ -1,71 +1,6 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, ... }:
 {
   options.nixdots = {
-    core = {
-      dots = lib.mkOption {
-        type = lib.types.str;
-        default = "${config.js0ny.user.home}/.dotfiles";
-        description = "Path for dotfiles.";
-      };
-      hostname = lib.mkOption {
-        type = lib.types.str;
-        default = "nixos";
-        description = "Hostname for the machine.";
-      };
-      timezones = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        example = [ "Etc/UTC" ];
-        description = "Timezones for the system, the first item will be set as timezone.";
-      };
-      locales = {
-        langcode = lib.mkOption {
-          type = lib.types.str;
-          default = "en_GB";
-        };
-        charset = lib.mkOption {
-          type = lib.types.str;
-          default = "UTF-8";
-        };
-        default = lib.mkOption {
-          type = lib.types.str;
-          default =
-            let
-              l = config.nixdots.core.locales;
-            in
-            "${l.langcode}.${l.charset}";
-        };
-        ietf = lib.mkOption {
-          type = lib.types.str;
-          readOnly = true;
-          default = builtins.replaceStrings [ "_" ] [ "-" ] config.nixdots.core.locales.langcode;
-        };
-        guiLocale = lib.mkOption {
-          type = lib.types.str;
-          default = config.nixdots.core.locales.ietf;
-        };
-        settings = lib.mkOption {
-          type = lib.types.attrsOf lib.types.str;
-          default = {
-            LC_ALL = config.nixdots.core.locales.default;
-          };
-        };
-      };
-    };
-    geo = {
-      longitude = lib.mkOption {
-        type = lib.types.nullOr lib.types.number;
-      };
-      latitude = lib.mkOption {
-        type = lib.types.nullOr lib.types.number;
-      };
-      city = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-      };
-    };
     services = {
       tailscale = {
         enable = lib.mkEnableOption "Enable Tailscale VPN client and service daemon.";
@@ -93,11 +28,6 @@
           default = null;
         };
         exitNode = lib.mkEnableOption "Use as exit node";
-      };
-      sshd.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = config.nixdots.server.enable;
-        description = "Whether to enable the SSH daemon for remote access. This is typically enabled for headless or server machines.";
       };
       ollama = {
         enable = lib.mkEnableOption "Whether to enable ollama server for local large language models.";

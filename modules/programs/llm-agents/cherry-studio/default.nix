@@ -32,7 +32,7 @@
           enableDeveloperMode = true;
           enableDataCollection = false;
           autoUpdate = false;
-          language = config.nixdots.core.locales.guiLocale;
+          language = config.js0ny.host.locales.guiLocale;
           theme = "system";
           tray = true;
           enableQuickAssistant = true;

@@ -10,6 +10,11 @@ let
 in
 {
   js0ny = {
+    geo = {
+      longitude = -3.2;
+      latitude = 55.95;
+      city = "Edinburgh";
+    };
     flatpak.enable = true;
     user.avatar = avatar;
     persist.enable = true;
@@ -66,13 +71,6 @@ in
     };
     host = {
       hostName = "bauhaus";
-      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-    };
-  };
-  nixdots = {
-    core = {
-      hostname = "bauhaus";
-      dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       timezones = [
         "Europe/London"
         "Etc/UTC"
@@ -81,16 +79,18 @@ in
       locales = {
         guiLocale = "zh-CN";
       };
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
+  };
+  nixdots = {
     services = {
       tailscale = {
         enable = true;
         ip = "100.65.81.67";
         ipv6 = "fd7a:115c:a1e0::f735:5144";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
+        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
       };
-      sshd.enable = true;
       ollama = {
         enable = true;
         models = [
@@ -133,10 +133,7 @@ in
       ];
     };
     programs = {
-      obs-studio.enable = true;
       firefox.enable = true;
-      dolphin.enable = true;
-      thunderbird.enable = true;
     };
     linux = {
       enable = true;
@@ -148,11 +145,6 @@ in
       enable = true;
       yamlFile = secrets + "/hosts/bauhaus.yaml";
       keyFile = "/etc/ssh/agekey.txt";
-    };
-    geo = {
-      longitude = -3.2;
-      latitude = 55.95;
-      city = "Edinburgh";
     };
   };
   sops.secrets.tskey = { };

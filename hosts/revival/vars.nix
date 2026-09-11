@@ -9,26 +9,28 @@
     sopsFile = secrets + "/hosts/revival.yaml";
   };
   js0ny = {
-    persist.enable = true;
-  };
-  nixdots = {
-    core = {
-      hostname = "revival";
+    geo = {
+      city = "Guangzhou";
+    };
+    host = {
+      hostName = "revival";
       timezones = [
         "Etc/UTC"
         "Asia/Shanghai"
       ];
     };
+    persist.enable = true;
+  };
+  nixdots = {
     services = {
       tailscale = {
         enable = true;
         ip = "100.71.26.71";
         # ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
+        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
         exitNode = true;
       };
-      sshd.enable = true;
     };
     style = {
       enable = false;
@@ -45,9 +47,6 @@
     sops = {
       enable = true;
       keyFile = "/etc/ssh/agekey.txt";
-    };
-    geo = {
-      city = "Guangzhou";
     };
   };
 }

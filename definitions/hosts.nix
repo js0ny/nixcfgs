@@ -1,6 +1,9 @@
 {
   nixos = {
-    bauhaus.tailscaleIp = "100.65.81.67";
+    bauhaus = {
+      tailscaleIp = "100.65.81.67";
+      deploy = { };
+    };
     belvedere = {
       tailscaleIp = "100.98.217.124";
       deploy = { };

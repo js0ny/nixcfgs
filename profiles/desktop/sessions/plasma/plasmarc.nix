@@ -1,7 +1,7 @@
 { lib, config, ... }:
 let
   toINI = lib.generators.toINI;
-  locales = config.nixdots.core.locales;
+  locales = config.js0ny.host.locales;
 in
 {
   xdg.configFile = {
@@ -10,7 +10,7 @@ in
     };
     "ktimezonedrc".text = toINI { } {
       TimeZones = {
-        LocalZone = builtins.head config.nixdots.core.timezones;
+        LocalZone = builtins.head config.js0ny.host.timezones;
         ZoneinfoDir = "/etc/zoneinfo";
         Zonetab = "/etc/zoneinfo/zone.tab";
       };

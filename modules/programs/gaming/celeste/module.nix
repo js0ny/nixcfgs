@@ -5,7 +5,7 @@
   ...
 }:
 let
-  dots = config.nixdots.core.dots;
+  dots = config.js0ny.host.flakeDir;
   user = config.js0ny.user.name;
 in
 {

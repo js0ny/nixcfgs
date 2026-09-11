@@ -51,36 +51,28 @@
     homebrew.enable = true;
     host = {
       hostName = "zen";
-      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-    };
-  };
-  nixdots = {
-    core = {
-      dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-      hostname = "zen";
       timezones = [
         "Europe/London"
         "Etc/UTC"
         "Asia/Shanghai"
       ];
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
+  };
+  nixdots = {
     services = {
       tailscale = {
         enable = true;
         ip = "100.68.20.54";
         ipv6 = "fd7a:115c:a1e0::df37:1436";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
+        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
       };
-      sshd.enable = false;
     };
     style = {
       enable = true;
       stylix.enable = true;
     };
     programs = {
-      obs-studio = {
-        enable = false;
-      };
       thunderbird.enable = true;
     };
     sops = {

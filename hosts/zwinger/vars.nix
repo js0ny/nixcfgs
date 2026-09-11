@@ -7,10 +7,12 @@
   sops.secrets.tskey = {
     sopsFile = secrets + "/hosts/zwinger.yaml";
   };
-  js0ny.persist.enable = true;
-  nixdots = {
-    core = {
-      hostname = "zwinger";
+  js0ny = {
+    geo = {
+      city = "Nuremberg";
+    };
+    host = {
+      hostName = "zwinger";
       timezones = [
         "Etc/UTC"
         "Europe/Berlin"
@@ -18,15 +20,17 @@
         "Asia/Shanghai"
       ];
     };
+    persist.enable = true;
+  };
+  nixdots = {
     services = {
       tailscale = {
         enable = true;
         ip = "100.71.26.71";
         # ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
+        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
       };
-      sshd.enable = true;
     };
     style = {
       enable = false;
@@ -45,9 +49,6 @@
     sops = {
       enable = true;
       keyFile = "/etc/ssh/agekey.txt";
-    };
-    geo = {
-      city = "Nuremberg";
     };
   };
 }

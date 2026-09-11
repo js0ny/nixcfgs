@@ -6,7 +6,7 @@
 }:
 let
   xdg-data = config.xdg.dataHome;
-  locales = config.nixdots.core.locales;
+  locales = config.js0ny.host.locales;
   inherit (lib) mkDefault;
 in
 {

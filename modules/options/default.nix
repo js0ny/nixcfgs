@@ -10,5 +10,6 @@
     ./persist.nix
     ./primaryUser.nix
     ./host.nix
+    ./geo.nix
   ];
 }

@@ -46,8 +46,8 @@
                 dateFormat = "isoDate";
                 enabledCalendarPlugins = "alternatecalendar,holidaysevents";
                 firstDayOfWeek = 1;
-                lastSelectedTimezone = builtins.head config.nixdots.core.timezones;
-                selectedTimeZones = "Local,${lib.concatStringsSep "," config.nixdots.core.timezones}";
+                lastSelectedTimezone = builtins.head config.js0ny.host.timezones;
+                selectedTimeZones = "Local,${lib.concatStringsSep "," config.js0ny.host.timezones}";
                 showSeconds = "Always";
                 showWeekNumbers = true;
                 use24hFormat = 2;

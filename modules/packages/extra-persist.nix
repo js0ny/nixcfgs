@@ -17,7 +17,7 @@
       format = "json";
       settings = {
         autoCheckUpdate = false;
-        locale = config.nixdots.core.locales.guiLocale;
+        locale = config.js0ny.host.locales.guiLocale;
       };
     };
   };

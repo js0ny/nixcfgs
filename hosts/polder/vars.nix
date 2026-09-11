@@ -6,6 +6,18 @@
 }:
 {
   js0ny = {
+    geo = {
+      city = "Strasbourg";
+    };
+    host = {
+      hostName = "polder";
+      timezones = [
+        "Etc/UTC"
+        "Europe/Berlin"
+        "Europe/London"
+        "Asia/Shanghai"
+      ];
+    };
     apps = {
       interactiveShell = {
         package = pkgs.fish;
@@ -24,24 +36,14 @@
     sopsFile = secrets + "/hosts/polder.yaml";
   };
   nixdots = {
-    core = {
-      hostname = "polder";
-      timezones = [
-        "Etc/UTC"
-        "Europe/Berlin"
-        "Europe/London"
-        "Asia/Shanghai"
-      ];
-    };
     services = {
       tailscale = {
         enable = true;
         ip = "100.92.207.11";
         # ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
+        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
       };
-      sshd.enable = true;
       ollama = {
         enable = true;
         models = [ "bge-m3" ];
@@ -66,9 +68,6 @@
       enable = true;
       yamlFile = secrets + "/hosts/polder.yaml";
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
-    };
-    geo = {
-      city = "Strasbourg";
     };
   };
 }

@@ -10,10 +10,24 @@ let
 in
 {
   js0ny = {
+    geo = {
+      longitude = -3.2;
+      latitude = 55.95;
+      city = "Guangzhou";
+    };
     flatpak.enable = true;
     user.avatar = avatar;
     persist.enable = true;
     host = {
+      hostName = "crystal";
+      timezones = [
+        "Asia/Shanghai"
+        "Etc/UTC"
+        "Europe/London"
+      ];
+      locales = {
+        guiLocale = "zh-CN";
+      };
       flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
     desktop = {
@@ -76,27 +90,14 @@ in
     };
   };
   nixdots = {
-    core = {
-      hostname = "crystal";
-      dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-      timezones = [
-        "Asia/Shanghai"
-        "Etc/UTC"
-        "Europe/London"
-      ];
-      locales = {
-        guiLocale = "zh-CN";
-      };
-    };
     services = {
       tailscale = {
         enable = true;
         ip = "100.105.9.50";
         ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
+        magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
         authKeyFile = config.sops.secrets.tskey.path;
       };
-      sshd.enable = true;
       ollama = {
         enable = false;
         models = [ "bge-m3" ];
@@ -147,9 +148,7 @@ in
       };
     };
     programs = {
-      obs-studio.enable = true;
       firefox.enable = true;
-      dolphin.enable = true;
       thunderbird.enable = true;
     };
     linux = {
@@ -166,11 +165,6 @@ in
       enable = true;
       yamlFile = secrets + "/hosts/crystal.yaml";
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
-    };
-    geo = {
-      longitude = -3.2;
-      latitude = 55.95;
-      city = "Guangzhou";
     };
   };
   sops.secrets.tskey = { };

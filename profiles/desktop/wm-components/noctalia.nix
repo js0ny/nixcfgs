@@ -10,8 +10,7 @@
       ...
     }:
     let
-      d = config.nixdots;
-      _locale = d.core.locales.guiLocale;
+      _locale = config.js0ny.host.locales.guiLocale;
       locale = myLib.toHanScript _locale;
       wallpaperDir = config.home.customDirs.wallpaper;
       noctaliaStartedHook = pkgs.writeShellScriptBin "noctalia-stared-hook" ''
@@ -105,9 +104,9 @@
             show_dots = true;
           };
           location = {
-            latitude = d.geo.latitude;
-            longitude = d.geo.longitude;
-            address = d.geo.city;
+            latitude = config.js0ny.geo.latitude;
+            longitude = config.js0ny.geo.longitude;
+            address = config.js0ny.geo.city;
           };
           calendar.enabled = true;
           wallpaper = {

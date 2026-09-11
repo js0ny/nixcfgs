@@ -68,7 +68,7 @@
     }:
     let
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-      dots = config.nixdots.core.dots;
+      dots = config.js0ny.host.flakeDir;
     in
     {
       imports = [ ./hyprmoncfg.nix ];

@@ -16,8 +16,8 @@ in
     ../../definitions
     ../../modules/options
   ];
-  time.timeZone = builtins.head config.nixdots.core.timezones;
-  networking.hostName = config.nixdots.core.hostname;
+  time.timeZone = builtins.head config.js0ny.host.timezones;
+  networking.hostName = config.js0ny.host.hostName;
 
   nixpkgs.config = {
     jetbrains.vmopts = "-Dawt.toolkit.name=WLToolkit";
@@ -83,7 +83,7 @@ in
   # Select internationalisation properties.
   i18n =
     let
-      locales = config.nixdots.core.locales;
+      locales = config.js0ny.host.locales;
     in
     {
       defaultLocale = locales.default;

@@ -37,7 +37,7 @@
         '';
         "${dotDir}/zotero/${profile}/user.js".text = /* javascript */ ''
           user_pref("extensions.zotero.export.quickCopy.setting", "bibliography=http://www.zotero.org/styles/ieee");
-          user_pref("intl.locale.requested", "${config.nixdots.core.locales.guiLocale}");
+          user_pref("intl.locale.requested", "${config.js0ny.host.locales.guiLocale}");
         '';
       };
       js0ny.persist.stores.state.directories = [

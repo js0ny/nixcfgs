@@ -9,7 +9,7 @@
     }:
     let
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-      dots = config.nixdots.core.dots;
+      dots = config.js0ny.host.flakeDir;
       authPath = config.sops.secrets.emacs_authinfo.path;
       secretsPath = config.sops.secrets."emacs_secrets.el".path;
     in

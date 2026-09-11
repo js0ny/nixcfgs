@@ -48,7 +48,6 @@ in
       modules.homeModules.mcp
       modules.homeModules.modern-unix
       modules.homeModules.nushell
-      modules.homeModules.obs-studio
       modules.homeModules.okular
       modules.homeModules.pcloud
       modules.homeModules.proton-pass

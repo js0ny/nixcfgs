@@ -6,7 +6,7 @@
       ...
     }:
     let
-      dots = config.nixdots.core.dots;
+      dots = config.js0ny.host.flakeDir;
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
     in
     {

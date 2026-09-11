@@ -6,6 +6,11 @@
 }:
 {
   js0ny = {
+    geo = {
+      longitude = -3.2;
+      latitude = 55.95;
+      city = "Edinburgh";
+    };
     apps = {
       interactiveShell = {
         package = pkgs.fish;
@@ -22,14 +27,6 @@
     };
     host = {
       hostName = "crystal";
-      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
-    };
-  };
-  nixdots = {
-    programs.firefox.enable = true;
-    core = {
-      hostname = "crystal";
-      dots = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
       timezones = [
         "Europe/London"
         "Etc/UTC"
@@ -38,10 +35,11 @@
       locales = {
         guiLocale = "zh-CN";
       };
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
-    services = {
-      sshd.enable = true;
-    };
+  };
+  nixdots = {
+    programs.firefox.enable = true;
     style = {
       enable = false;
       stylix = {
@@ -69,11 +67,6 @@
         tskey_crystal = { };
         restic_repo_password = { };
       };
-    };
-    geo = {
-      longitude = -3.2;
-      latitude = 55.95;
-      city = "Edinburgh";
     };
   };
 }

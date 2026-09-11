@@ -110,7 +110,7 @@ lib.mkMerge [
               "default_category" = "general";
               "details_start_open" = false;
               "keep_previous_search" = true;
-              "languages" = config.nixdots.core.locales.guiLocale;
+              "languages" = config.js0ny.host.locales.guiLocale;
             };
             entrypoints = {
               search-with-searxng = {

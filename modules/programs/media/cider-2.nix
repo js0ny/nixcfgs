@@ -32,7 +32,7 @@ in
     format = "yaml";
     settings = {
       general = {
-        language = config.nixdots.core.locales.guiLocale;
+        language = config.js0ny.host.locales.guiLocale;
         keybindings = {
           commandCenter = [
             "ctrlKey"
