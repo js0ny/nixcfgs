@@ -11,8 +11,8 @@
     in
     {
       programs.qutebrowser = {
-        enable = config.nixdots.linux.display != "none";
-        # package = if (config.nixdots.linux.gpu == "nvidia") then qb else pkgs.qutebrowser;
+        enable = config.js0ny.desktop.display != "none";
+        # package = if (config.js0ny.hardware.gpu.driver == "nvidia") then qb else pkgs.qutebrowser;
         searchEngines = {
           g = "https://www.google.com/search?hl=en&q={}";
         };

@@ -9,7 +9,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.linux.gpu;
+  cfg = config.js0ny.hardware.gpu.driver;
 in
 lib.mkIf (cfg == "vfio") {
   boot.extraModprobeConfig = ''

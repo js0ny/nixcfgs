@@ -38,7 +38,7 @@ in
     "TelemetryUsageData${account}" = false;
     "TelemetryCrashReports${account}" = false;
   };
-  home.packages = lib.optionals (config.nixdots.linux.enable) [
+  home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     pkgs.proton-vpn-cli
     pkgs.proton-vpn
   ];

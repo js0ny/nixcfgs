@@ -64,16 +64,16 @@ in
     tailscale = hosts.darwin.zen.tailscale // {
       enable = true;
     };
-  };
-  nixdots = {
     style = {
       enable = true;
       stylix.enable = true;
     };
-    sops = {
-      enable = true;
-      yamlFile = secrets + "/hosts/zen.yaml";
+  };
+  sops = {
+    defaultSopsFile = secrets + "/hosts/zen.yaml";
+    age = {
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
+      generateKey = false;
     };
   };
 }

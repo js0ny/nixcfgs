@@ -21,6 +21,7 @@ in
     persist.enable = true;
     desktop = {
       enable = true;
+      display = "wayland";
       autoLogin = true;
       session = [
         "hyprland"
@@ -33,6 +34,7 @@ in
     hardware = {
       cpu.nproc = 16;
       type = "bare-metal";
+      gpu.driver = "nvidia";
     };
     apps = {
       interactiveShell = {
@@ -86,17 +88,6 @@ in
       enable = true;
       authKeyFile = config.sops.secrets.tskey.path;
     };
-  };
-  nixdots = {
-    services = {
-      ollama = {
-        enable = true;
-        models = [
-          "bge-m3"
-          "qwen3.6:27b"
-        ];
-      };
-    };
     style = {
       enable = true;
       stylix = {
@@ -130,17 +121,13 @@ in
         }
       ];
     };
-    linux = {
-      enable = true;
-      lanzaboote = false;
-      display = "wayland";
-      gpu = "nvidia";
-    };
-    sops = {
-      enable = true;
-      yamlFile = secrets + "/hosts/bauhaus.yaml";
-      keyFile = "/etc/ssh/agekey.txt";
-    };
   };
-  sops.secrets.tskey = { };
+  sops = {
+    defaultSopsFile = secrets + "/hosts/bauhaus.yaml";
+    age = {
+      keyFile = "/etc/ssh/agekey.txt";
+      generateKey = false;
+    };
+    secrets.tskey = { };
+  };
 }

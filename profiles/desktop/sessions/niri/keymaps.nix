@@ -11,8 +11,8 @@ let
   nirictl-focus = lib.getExe nirictl.focusOrLaunch;
   genCmd = cmd: builtins.concatStringsSep " " (map (x: ''"${x}"'') cmd);
   term = lib.getExe pkgs.xdg-terminal-exec;
-  screenDevice = config.nixdots.laptop.backlight.screen;
-  kbdDevice = config.nixdots.laptop.backlight.keyboard;
+  screenDevice = config.js0ny.hardware.laptop.backlight.screen;
+  kbdDevice = config.js0ny.hardware.laptop.backlight.keyboard;
   kbdStep = "1";
   killWindow = nirictl.killWindow;
 in

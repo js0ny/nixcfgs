@@ -1,14 +1,6 @@
 {
   flake.nixosModules.nginx =
-    {
-      pkgs,
-      lib,
-      config,
-      ...
-    }:
-    let
-      ports = config.nixdefs.endpoints;
-    in
+    { pkgs, ... }:
     {
       imports = [
         ./acme.nix
@@ -41,15 +33,6 @@
             return = "444";
           };
         };
-
       };
-      networking.firewall = {
-        allowedTCPPorts = lib.mkIf (config.nixdots.server.openHttp) [
-          ports.http.port
-          ports.https.port
-        ];
-        allowedUDPPorts = lib.mkIf (config.nixdots.server.openQuic) [ 443 ];
-      };
-
     };
 }

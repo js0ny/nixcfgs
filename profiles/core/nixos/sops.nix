@@ -1,31 +1,25 @@
 {
   pkgs,
-  config,
   lib,
+  config,
   ...
 }:
 let
-  cfg = config.nixdots.sops;
+  keyFile = config.sops.age.keyFile;
 in
-lib.mkIf cfg.enable (
-  lib.mkMerge [
-    {
-      environment.systemPackages = with pkgs; [
-        sops
-        age
-      ];
-    }
-    (lib.mkIf (cfg.sopsEditor != null) {
-      environment.sessionVariables.SOPS_EDITOR = cfg.sopsEditor;
-    })
-    (lib.mkIf (cfg.keyFile != null && !lib.hasPrefix config.js0ny.user.home cfg.keyFile) {
-      js0ny.persist.stores.state.files = [
+{
+  environment.systemPackages = with pkgs; [
+    sops
+    age
+  ];
+
+  js0ny.persist.stores.state.files =
+    lib.optionals (keyFile != null && !lib.hasPrefix config.js0ny.user.home keyFile)
+      [
         {
-          file = cfg.keyFile;
+          file = keyFile;
           how = "symlink";
           mode = "0400";
         }
       ];
-    })
-  ]
-)
+}

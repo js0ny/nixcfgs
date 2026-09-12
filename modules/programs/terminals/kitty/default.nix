@@ -24,7 +24,7 @@
         };
         font = {
           size = 12;
-          name = (builtins.head config.nixdots.style.fonts.editorMono).name;
+          name = (builtins.head config.js0ny.style.fonts.editorMono).name;
         };
         settings = {
           disable_ligatures = "never";

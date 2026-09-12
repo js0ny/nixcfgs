@@ -38,36 +38,19 @@
       magicDNS = "${config.js0ny.host.hostName}.tailee8d62.ts.net";
       authKeyFile = config.sops.secrets.tskey.path;
     };
-  };
-  sops.secrets.tskey = {
-    sopsFile = secrets + "/hosts/polder.yaml";
-  };
-  nixdots = {
-    services = {
-      ollama = {
-        enable = true;
-        models = [ "bge-m3" ];
-      };
-    };
+    desktop.display = "none";
+    hardware.gpu.driver = "none";
     style = {
       enable = false;
       stylix.enable = false;
     };
-    linux = {
-      enable = true;
-      display = "none";
-      gpu = "none";
-    };
-    server = {
-      enable = true;
-      ip = config.secrets.plain.polder.ipv4;
-      openHttp = true;
-      openQuic = true;
-    };
-    sops = {
-      enable = true;
-      yamlFile = secrets + "/hosts/polder.yaml";
+  };
+  sops = {
+    defaultSopsFile = secrets + "/hosts/polder.yaml";
+    age = {
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
+      generateKey = false;
     };
+    secrets.tskey.sopsFile = secrets + "/hosts/polder.yaml";
   };
 }

@@ -8,7 +8,7 @@
     let
       policies = import ./policies.nix;
       baseprefs = import ./global-prefs.nix;
-      wsl = config.nixdots.linux.wsl;
+      wsl = config.wsl.enable;
     in
     lib.mkIf (!wsl) {
       programs.firefox = {

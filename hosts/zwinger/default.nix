@@ -1,9 +1,11 @@
 {
   inputs,
+  config,
   ...
 }:
 let
   mod = inputs.self.nixosModules;
+  endpoints = config.nixdefs.endpoints;
 in
 {
   system.stateVersion = "26.05";
@@ -26,6 +28,9 @@ in
   # https://matrix-construct.github.io/tuwunel/configuration/examples.html
   services.matrix-tuwunel.settings.global.rocksdb_allow_fallocate = false;
 
+  # Public IPv4 of this host, advertised to WebRTC clients.
+  services.livekit.settings.rtc.node_ip = "178.104.159.210";
+
   home-manager.users."js0ny" = import ./home.nix;
 
   boot.loader.grub.enable = true;
@@ -37,7 +42,13 @@ in
   boot.loader.grub.useOSProber = false;
   boot.loader.grub.efiSupport = false;
 
-  networking.firewall.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      endpoints.http.port
+      endpoints.https.port
+    ];
+  };
 
   systemd.network.networks."10-wan" = {
     matchConfig.Name = "enp1s0";

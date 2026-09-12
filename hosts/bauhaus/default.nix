@@ -42,6 +42,11 @@ in
 
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
 
+  services.ollama.loadModels = [
+    "bge-m3"
+    "qwen3.8:27b"
+  ];
+
   services.scx = {
     enable = true;
     scheduler = "scx_lavd";

@@ -37,7 +37,6 @@ in
         port_range_start = rtcPortRange.from;
         port_range_end = rtcPortRange.to;
         use_external_ip = false;
-        node_ip = config.nixdots.server.ip;
       };
       room.auto_create = false;
     };

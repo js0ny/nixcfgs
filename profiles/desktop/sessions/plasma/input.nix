@@ -1,8 +1,8 @@
 { config, lib, ... }:
 let
-  touchpad = config.nixdots.laptop.touchpad;
+  touchpad = config.js0ny.hardware.laptop.touchpad;
 in
-lib.mkIf config.nixdots.laptop.enable {
+lib.mkIf config.js0ny.hardware.laptop.enable {
   programs.plasma = {
     input.touchpads = [
       {

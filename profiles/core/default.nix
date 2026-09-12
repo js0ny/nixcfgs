@@ -13,7 +13,6 @@ in
       ./shared/hm.nix
       ./shared/nix.nix
       ./shared/nix-helper.nix
-      ./shared/sops.nix
       inputs.sops-nix.nixosModules.sops
       modules.nixosModules.git
       modules.nixosModules.hardware
@@ -26,7 +25,6 @@ in
   flake.homeModules.core = { myLib, ... }: {
     home.sessionVariables = import ./shared/do-not-track-vars.nix;
     imports = [
-      ./shared/sops.nix
       ../../modules/options
       inputs.sops-nix.homeManagerModules.sops
       modules.homeModules.fastfetch
@@ -41,7 +39,6 @@ in
     home-manager.sharedModules = [ { imports = [ ./shared/nix-helper.nix ]; } ];
     imports = [
       ./shared/nix.nix
-      ./shared/sops.nix
       ../../modules/options
       modules.darwinModules.zsh
     ]

@@ -3,8 +3,7 @@ let
   types = import ../types.nix { inherit lib; };
 in
 {
-  options.nixdots.laptop = {
-    enable = lib.mkEnableOption "Enable laptop-specific configurations and optimizations.";
+  options.js0ny.hardware.laptop = {
     display = lib.mkOption {
       type = types.laptopDisplay;
       example = {

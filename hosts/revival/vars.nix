@@ -8,8 +8,12 @@ let
   hosts = import ../../definitions/hosts.nix;
 in
 {
-  sops.secrets.tskey = {
-    sopsFile = secrets + "/hosts/revival.yaml";
+  sops = {
+    age = {
+      keyFile = "/etc/ssh/agekey.txt";
+      generateKey = false;
+    };
+    secrets.tskey.sopsFile = secrets + "/hosts/revival.yaml";
   };
   js0ny = {
     geo = {
@@ -23,27 +27,15 @@ in
       ];
     };
     persist.enable = true;
-    tailscale = hosts.nixos.revival.tailscale // {
-      enable = true;
-      authKeyFile = config.sops.secrets.tskey.path;
-    };
-  };
-  nixdots = {
+    desktop.display = "none";
+    hardware.gpu.driver = "none";
     style = {
       enable = false;
       stylix.enable = false;
     };
-    linux = {
+    tailscale = hosts.nixos.revival.tailscale // {
       enable = true;
-      display = "none";
-      gpu = "none";
-    };
-    server = {
-      enable = true;
-    };
-    sops = {
-      enable = true;
-      keyFile = "/etc/ssh/agekey.txt";
+      authKeyFile = config.sops.secrets.tskey.path;
     };
   };
 }

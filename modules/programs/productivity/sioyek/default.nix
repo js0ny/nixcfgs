@@ -62,7 +62,7 @@
           search_url_d https://duckduckgo.com/?q=
           show_document_name_in_statusbar 1
           status_bar_format  Page %{current_page} / %{num_pages}%{chapter_name}%{search_results}%{search_progress}%{link_status}%{waiting_for_symbol}%{indexing}%{preview_index}%{synctex}%{drag}%{presentation}%{visual_scroll}%{locked_scroll}%{highlight}%{closest_bookmark}%{close_portal}%{rect_select}%{custom_message}%{document_name}
-          status_font ${(builtins.head config.nixdots.style.fonts.displayMono).name}
+          status_font ${(builtins.head config.js0ny.style.fonts.displayMono).name}
         '';
         xdg.configFile."sioyek/keys_user.config".source = ./keys_user.config;
         programs.sioyek = {

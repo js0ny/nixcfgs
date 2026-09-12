@@ -12,7 +12,7 @@
   programs.plasma = {
     enable = true;
     workspace = {
-      iconTheme = config.nixdots.style.icon.dark;
+      iconTheme = config.js0ny.style.icon.dark;
       lookAndFeel = "stylix";
     };
     configFile = {
@@ -23,13 +23,13 @@
         };
         KDE = {
           ShowDeleteCommand = false;
-          widgetStyle = config.nixdots.style.icon.dark;
+          widgetStyle = config.js0ny.style.icon.dark;
         };
         PreviewSettings = {
           EnableRemoteFolderThumbnail = false;
           MaximumRemoteSize = 0;
         };
-        Icons.Theme = config.nixdots.style.icon.dark;
+        Icons.Theme = config.js0ny.style.icon.dark;
         Shortcuts = {
           Help = "";
           Preferences = "Ctrl+,; Ctrl+Shift+,";

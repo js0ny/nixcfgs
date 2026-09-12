@@ -34,12 +34,13 @@
       pkgs,
       lib,
       config,
+      osConfig,
       ...
     }:
     let
       profile = config.js0ny.user.name;
       nur-addons = pkgs.nur.repos.rycee.thunderbird-addons;
-      isNixOS = config.nixdots.linux.enable && config.nixdots.linux.nixos;
+      isNixOS = osConfig != null;
     in
     {
       programs.thunderbird = {

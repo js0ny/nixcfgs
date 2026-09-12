@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.linux.gpu;
+  cfg = config.js0ny.hardware.gpu.driver;
 in
 lib.mkIf (cfg == "none") {
   boot.extraModprobeConfig = ''

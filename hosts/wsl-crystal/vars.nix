@@ -37,8 +37,8 @@
       };
       flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
-  };
-  nixdots = {
+    desktop.enable = false;
+    hardware.laptop.enable = false;
     style = {
       enable = false;
       stylix = {
@@ -46,26 +46,16 @@
         base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
       };
     };
-    laptop.enable = false;
-    linux = {
-      enable = true;
-      wsl = true;
-      lanzaboote = false;
-    };
-    machine = {
-      role = "standalone";
-    };
-    desktop = {
-      enable = false;
-    };
-    sops = {
-      enable = true;
-      yamlFile = secrets + "/secrets.yaml";
+  };
+  sops = {
+    defaultSopsFile = secrets + "/secrets.yaml";
+    age = {
       keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
-      secrets = {
-        tskey_crystal = { };
-        restic_repo_password = { };
-      };
+      generateKey = false;
+    };
+    secrets = {
+      tskey_crystal = { };
+      restic_repo_password = { };
     };
   };
 }

@@ -33,6 +33,7 @@ in
     };
     desktop = {
       enable = true;
+      display = "wayland";
       displayManager = "regreet";
       session = [
         "hyprland"
@@ -43,9 +44,44 @@ in
     hardware = {
       cpu.nproc = 16;
       type = "bare-metal";
+      gpu = {
+        driver = "none";
+        busIds = {
+          nvidia = "PCI:1:0:0";
+          amdgpu = "PCI:101:0:0";
+        };
+      };
       laptop = {
         enable = true;
         vendor = "asus";
+        display = {
+          connector = "eDP-1";
+          makeModel = "Samsung Display Corp. ATNA40CU05-0  Unknown";
+          VRR = true;
+        };
+        keyboard = {
+          devicePath = "/dev/input/by-path/pci-0000:65:00.3-usb-0:4:1.0-event-mouse";
+          name = "Asus Keyboard";
+          idVendor = "0b05";
+          idProduct = "19b6";
+        };
+        backlight = {
+          screen = if config.js0ny.hardware.gpu.driver == "none" then "amdgpu_bl1" else "amdgpu_bl2";
+          keyboard = "asus::kbd_backlight";
+        };
+        microphone = {
+          name = "alsa_input.pci-0000_65_00.6.analog-stereo";
+          description = "内置麦克风";
+        };
+        cameraIR = {
+          devicePath = "/dev/video2";
+        };
+        touchpad = {
+          devicePath = "/dev/input/by-path/platform-AMDI0010:00-event-mouse";
+          name = "ASUP1208:00 093A:3011 Touchpad";
+          vendorId = "093A";
+          productId = "3011";
+        };
       };
     };
     apps = {
@@ -93,14 +129,6 @@ in
       enable = true;
       authKeyFile = config.sops.secrets.tskey.path;
     };
-  };
-  nixdots = {
-    services = {
-      ollama = {
-        enable = false;
-        models = [ "bge-m3" ];
-      };
-    };
     style = {
       enable = true;
       stylix = {
@@ -114,52 +142,13 @@ in
         }
       ];
     };
-    laptop = {
-      enable = true;
-      display = {
-        connector = "eDP-1";
-        makeModel = "Samsung Display Corp. ATNA40CU05-0  Unknown";
-        VRR = true;
-      };
-      keyboard = {
-        devicePath = "/dev/input/by-path/pci-0000:65:00.3-usb-0:4:1.0-event-mouse";
-        name = "Asus Keyboard";
-        idVendor = "0b05";
-        idProduct = "19b6";
-      };
-      backlight = {
-        screen = if config.nixdots.linux.gpu == "none" then "amdgpu_bl1" else "amdgpu_bl2";
-        keyboard = "asus::kbd_backlight";
-      };
-      microphone = {
-        name = "alsa_input.pci-0000_65_00.6.analog-stereo";
-        description = "内置麦克风";
-      };
-      cameraIR = {
-        devicePath = "/dev/video2";
-      };
-      touchpad = {
-        devicePath = "/dev/input/by-path/platform-AMDI0010:00-event-mouse";
-        name = "ASUP1208:00 093A:3011 Touchpad";
-        vendorId = "093A";
-        productId = "3011";
-      };
-    };
-    linux = {
-      enable = true;
-      lanzaboote = true;
-      display = "wayland";
-      gpu = "none";
-      gpuBusIds = {
-        nvidia = "PCI:1:0:0";
-        amdgpu = "PCI:101:0:0";
-      };
-    };
-    sops = {
-      enable = true;
-      yamlFile = secrets + "/hosts/crystal.yaml";
-      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
-    };
   };
-  sops.secrets.tskey = { };
+  sops = {
+    defaultSopsFile = secrets + "/hosts/crystal.yaml";
+    age = {
+      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
+      generateKey = false;
+    };
+    secrets.tskey = { };
+  };
 }

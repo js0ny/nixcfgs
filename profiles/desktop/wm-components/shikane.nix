@@ -6,7 +6,7 @@
     { config, lib, ... }:
     let
       #   internal = {
-      #     search = "n=${config.nixdots.laptop.display.connector}";
+      #     search = "n=${config.js0ny.hardware.laptop.display.connector}";
       #     mode = "2880x1800@120";
       #     scale = 1.5;
       #   };

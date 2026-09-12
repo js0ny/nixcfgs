@@ -4,7 +4,7 @@
   ...
 }:
 let
-  style = config.nixdots.style;
+  style = config.js0ny.style;
 in
 {
   stylix = {

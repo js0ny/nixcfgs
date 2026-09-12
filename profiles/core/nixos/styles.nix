@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.style;
+  cfg = config.js0ny.style;
   fontList =
     cfg.fonts.sansSerif
     ++ cfg.fonts.serif

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  mic = config.nixdots.laptop.microphone;
+  mic = config.js0ny.hardware.laptop.microphone;
 in
 {
   environment.systemPackages = with pkgs; [

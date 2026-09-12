@@ -4,7 +4,7 @@
   services.power-profiles-daemon.enable = lib.mkForce false;
 
   services.tuned = {
-    enable = !config.nixdots.linux.wsl;
+    enable = !config.wsl.enable;
     ppdSupport = true; # Analogous to power-profiles-daemon support, but for tuned
     ppdSettings = {
       profiles = {

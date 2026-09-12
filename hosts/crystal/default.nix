@@ -41,6 +41,7 @@ in
   home-manager.users."js0ny" = import ./home.nix;
 
   boot.loader.grub.enable = lib.mkForce false;
+  boot.lanzaboote.enable = true;
 
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
 

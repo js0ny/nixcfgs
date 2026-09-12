@@ -1,9 +1,11 @@
 {
   inputs,
+  config,
   ...
 }:
 let
   mod = inputs.self.nixosModules;
+  endpoints = config.nixdefs.endpoints;
 in
 {
   system.stateVersion = "26.11";
@@ -50,6 +52,11 @@ in
   networking = {
     firewall = {
       enable = true;
+      allowedTCPPorts = [
+        endpoints.http.port
+        endpoints.https.port
+      ];
+      allowedUDPPorts = [ 443 ];
     };
   };
 

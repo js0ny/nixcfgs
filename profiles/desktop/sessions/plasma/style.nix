@@ -22,7 +22,7 @@ in
 {
   programs.plasma = {
     workspace = {
-      iconTheme = config.nixdots.style.icon.dark;
+      iconTheme = config.js0ny.style.icon.dark;
       lookAndFeel = "stylix";
     };
     fonts = {

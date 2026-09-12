@@ -9,7 +9,7 @@
       programs.mangohud = {
         enable = true;
         package = pkgs.mangohud.override {
-          nvidiaSupport = config.nixdots.linux.gpu == "nvidia";
+          nvidiaSupport = config.js0ny.hardware.gpu.driver == "nvidia";
         };
       };
     };

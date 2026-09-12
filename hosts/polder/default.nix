@@ -90,6 +90,7 @@
         80
         443
       ];
+      allowedUDPPorts = [ 443 ];
     };
   };
 

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.nixdots.laptop;
+  cfg = config.js0ny.hardware.laptop;
 in
 lib.mkIf cfg.enable {
   environment.systemPackages = with pkgs; [

@@ -84,10 +84,10 @@ in
     // {
       "cosmic/com.system76.CosmicSettings.Wallpaper/v1/current-folder".text =
         ''Some("${config.home.customDirs.wallpaper}")'';
-      "cosmic/com.system76.CosmicTk/v1/icon_theme".text = quote config.nixdots.style.icon.dark;
+      "cosmic/com.system76.CosmicTk/v1/icon_theme".text = quote config.js0ny.style.icon.dark;
       "cosmic/com.system76.CosmicTk/v1/interface_font".text =
-        toFont (builtins.head config.nixdots.style.fonts.sansSerif).name;
+        toFont (builtins.head config.js0ny.style.fonts.sansSerif).name;
       "cosmic/com.system76.CosmicTk/v1/monospace_font".text =
-        toFont (builtins.head config.nixdots.style.fonts.editorMono).name;
+        toFont (builtins.head config.js0ny.style.fonts.editorMono).name;
     };
 }

@@ -61,7 +61,7 @@
             vim_keys = true;
           };
           package = pkgs.btop.override {
-            cudaSupport = config.nixdots.linux.gpu == "nvidia";
+            cudaSupport = config.js0ny.hardware.gpu.driver == "nvidia";
           };
         };
         ripgrep = {

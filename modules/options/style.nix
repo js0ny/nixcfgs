@@ -5,13 +5,13 @@
   ...
 }:
 let
-  types = import ../types.nix { inherit lib; };
+  types = import ./types.nix { inherit lib; };
   fontType = types.fontType;
   cursorType = types.cursorType;
   iconType = types.iconType;
 in
 {
-  options.nixdots.style = {
+  options.js0ny.style = {
     enable = lib.mkEnableOption "Enable theming and font management for applications.";
     mountFHS = lib.mkOption {
       type = lib.types.bool;

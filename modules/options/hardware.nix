@@ -9,6 +9,11 @@ let
   cfg = config.js0ny.hardware;
 in
 {
+  imports = [
+    ./hardware/gpu.nix
+    ./hardware/laptop.nix
+  ];
+
   options.js0ny.hardware = {
     laptop = {
       enable = lib.mkEnableOption "Whether the host is a laptop";

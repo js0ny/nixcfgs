@@ -2,9 +2,9 @@
 {
   imports = [
     ./nixdefs
-    ./nixdots
     ./hardware.nix
     ./apps.nix
+    ./style.nix
     ./packaging.nix
     ./desktop.nix
     ./persist.nix

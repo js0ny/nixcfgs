@@ -5,7 +5,7 @@
   ...
 }:
 let
-  hw = config.nixdots.laptop.cameraIR.devicePath;
+  hw = config.js0ny.hardware.laptop.cameraIR.devicePath;
 in
 {
   imports = [ inputs.gaze.nixosModules.default ];

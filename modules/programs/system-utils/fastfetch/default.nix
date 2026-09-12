@@ -7,7 +7,7 @@
       ...
     }:
     let
-      isHeadless = config.nixdots.linux.display == "none";
+      isHeadless = config.js0ny.desktop.display == "none";
       customFastfetch = pkgs.fastfetch.override {
         x11Support = false;
         sqliteSupport = true;

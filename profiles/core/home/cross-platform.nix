@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  config,
+  osConfig,
   ...
 }:
 lib.mkMerge [
@@ -14,7 +14,7 @@ lib.mkMerge [
       linkApps.enable = true;
     };
   })
-  ((lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && config.nixdots.linux.nixos)) {
+  ((lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && osConfig != null)) {
     targets.darwin = lib.mkForce { };
     targets.genericLinux.enable = false;
     launchd.enable = false;
