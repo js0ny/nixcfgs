@@ -74,6 +74,10 @@
       # or gaze will coredump every 5 secs
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tether = {
+      url = "github:zackb/tether";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -146,6 +150,7 @@
       url = "github:Mic92/nix-tree-rs";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     fast-nix-gc = {
       url = "github:Mic92/fast-nix-gc";
@@ -204,6 +209,8 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
+        treefmt-nix.follows = "treefmt-nix";
+        systems.follows = "systems";
       };
     };
     # }}}

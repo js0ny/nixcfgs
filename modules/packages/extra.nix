@@ -81,7 +81,6 @@ in
     motrix-next
     nautilus
     newsflash
-    nextcloud-client
     nmap
     octaveFull
     pdf2zh
