@@ -3,6 +3,16 @@
   lib,
   ...
 }:
+let
+  rimeDeployScript = pkgs.writeShellApplication {
+    name = "rime-deploy";
+    runtimeInputs = [
+      pkgs.coreutils
+      pkgs.systemd
+    ];
+    text = builtins.readFile ./rime-deploy.sh;
+  };
+in
 lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
   # Use: https://github.com/TemariVirus/fcitx-ini2nix
   i18n.inputMethod = {
@@ -283,6 +293,10 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       };
     };
   };
+
+  home.packages = [
+    rimeDeployScript
+  ];
 
   js0ny.persist.stores.state.directories = [ ".local/share/fcitx5" ];
 
