@@ -52,6 +52,7 @@ lib.mkMerge [
           applications.entrypoints = {
             "chatgpt".alias = "codex";
             "io.gitlab.metadatacleaner.metadatacleaner".alias = "mat";
+            "element-desktop".alias = "matrix";
           };
           core.entrypoints = {
             sponsor.enabled = false;

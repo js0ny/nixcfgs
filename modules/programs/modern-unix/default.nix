@@ -97,5 +97,9 @@
           enable = true;
         };
       };
+      xdg.configFile."television/cable/upstream" = {
+        source = "${config.programs.television.package.src}/cable/unix";
+        recursive = true;
+      };
     };
 }

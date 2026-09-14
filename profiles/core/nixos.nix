@@ -25,6 +25,7 @@ in
     permittedInsecurePackages = [
       "pnpm-10.29.2" # Cherry Studio
       "electron-40.10.5"
+      "electron-41.10.6"
     ];
   };
 
