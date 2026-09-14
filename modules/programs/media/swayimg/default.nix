@@ -16,10 +16,13 @@
       xdg.configFile =
         let
           files = [
-            "utils.lua"
+            # keep-sorted start
+            "basic.lua"
             "gallery.lua"
             "slideshow.lua"
+            "utils.lua"
             "viewer.lua"
+            # keep-sorted end
           ];
         in
         {

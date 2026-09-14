@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}:
+{ lib, config, ... }:
 let
   zoxideAliases = {
     ".." = "z ..";

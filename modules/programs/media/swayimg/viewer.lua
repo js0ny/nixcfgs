@@ -24,11 +24,14 @@ local function move_vertical(op)
   end
 end
 
----@return string
+---@return string|nil
 local function imgpath()
   local img = swayimg.viewer.get_image()
-  local escaped_path = utils.shell_quote(img.path)
-  return escaped_path
+  if not img then
+    return nil
+  end
+
+  return utils.shell_quote(img.path)
 end
 
 local viewer_map = {
@@ -41,10 +44,10 @@ local viewer_map = {
   ['Right'] = move_horizontal(utils.sub),
   ['l'] = move_horizontal(utils.sub),
   ['n'] = function()
-    swayimg.viewer.switch_image('next')
+    swayimg.viewer.open('next')
   end,
   ['p'] = function()
-    swayimg.viewer.switch_image('prev')
+    swayimg.viewer.open('prev')
   end,
   ['z'] = function()
     swayimg.viewer.reset()
@@ -54,6 +57,10 @@ local viewer_map = {
   end,
   ['Ctrl-C'] = function()
     local escaped_path = imgpath()
+    if not escaped_path then
+      return
+    end
+
     local cmd = string.format('cat %s | wl-copy', escaped_path)
     os.execute(cmd)
     utils.notify('Image copied to clipboard')
@@ -61,6 +68,10 @@ local viewer_map = {
   -- Copy path
   ['Ctrl-Shift-C'] = function()
     local escaped_path = imgpath()
+    if not escaped_path then
+      return
+    end
+
     local cmd = string.format('echo %s | wl-copy', escaped_path)
     os.execute(cmd)
   end,
@@ -73,26 +84,34 @@ local viewer_map = {
   -- Edit with satty
   ['e'] = function()
     local path = imgpath()
+    if not path then
+      return
+    end
+
     os.execute('satty --filename ' .. path)
   end,
   ['f'] = function()
-    swayimg.set_fullscreen()
+    swayimg.fullscreen = not swayimg.fullscreen
   end,
   ['Return'] = function()
-    swayimg.set_mode('gallery')
+    swayimg.mode = 'gallery'
   end,
   ['Alt-Return'] = function()
     utils.show_properties(swayimg.viewer.get_image())
   end,
   -- thumbnail mode | gallery
   ['t'] = function()
-    swayimg.set_mode('gallery')
+    swayimg.mode = 'gallery'
   end,
   ['s'] = function()
-    swayimg.set_mode('slideshow')
+    swayimg.mode = 'slideshow'
   end,
   ['Shift-w'] = function()
     local escaped_path = imgpath()
+    if not escaped_path then
+      return
+    end
+
     os.execute('setwall ' .. escaped_path)
     utils.notify('Wallpaper set')
   end,
@@ -101,13 +120,13 @@ local viewer_map = {
     if err then
       return
     end
-    swayimg.viewer.open(utils.chomp(out))
+    swayimg.viewer.open_path(utils.chomp(out))
   end,
   ['g'] = function()
-    swayimg.viewer.switch_image('first')
+    swayimg.viewer.open('first')
   end,
   ['Shift+g'] = function()
-    swayimg.viewer.switch_image('last')
+    swayimg.viewer.open('last')
   end,
 }
 
@@ -115,10 +134,10 @@ for key, value in pairs(viewer_map) do
   swayimg.viewer.on_key(key, value)
 end
 swayimg.viewer.on_mouse('MouseExtra', function()
-  swayimg.viewer.switch_image('next')
+  swayimg.viewer.open('next')
 end)
 
 swayimg.viewer.on_mouse('MouseSide', function()
-  swayimg.viewer.switch_image('prev')
+  swayimg.viewer.open('prev')
 end)
-swayimg.viewer.set_drag_button('MouseMiddle')
+swayimg.viewer.drag_button = 'MouseMiddle'

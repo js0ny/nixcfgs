@@ -24,11 +24,14 @@ local function move_vertical(op)
   end
 end
 
----@return string
+---@return string|nil
 local function imgpath()
-  local img = swayimg.viewer.get_image()
-  local escaped_path = utils.shell_quote(img.path)
-  return escaped_path
+  local img = swayimg.slideshow.get_image()
+  if not img then
+    return nil
+  end
+
+  return utils.shell_quote(img.path)
 end
 
 local slideshow_map = {
@@ -37,6 +40,10 @@ local slideshow_map = {
   end,
   ['Ctrl-C'] = function()
     local escaped_path = imgpath()
+    if not escaped_path then
+      return
+    end
+
     local cmd = string.format('cat %s | wl-copy', escaped_path)
     os.execute(cmd)
     os.execute(
@@ -46,34 +53,42 @@ local slideshow_map = {
   -- Copy path
   ['Ctrl-Shift-C'] = function()
     local escaped_path = imgpath()
+    if not escaped_path then
+      return
+    end
+
     local cmd = string.format('echo %s | wl-copy', escaped_path)
     os.execute(cmd)
   end,
   -- Edit with satty
   ['e'] = function()
     local path = imgpath()
+    if not path then
+      return
+    end
+
     os.execute('satty --filename ' .. path)
   end,
   ['f'] = function()
-    swayimg.set_fullscreen()
+    swayimg.fullscreen = not swayimg.fullscreen
   end,
   ['Return'] = function()
-    swayimg.set_mode('viewer')
+    swayimg.mode = 'viewer'
   end,
   ['Alt-Return'] = function()
     utils.show_properties(swayimg.slideshow.get_image())
   end,
   ['t'] = function()
-    swayimg.set_mode('gallery')
+    swayimg.mode = 'gallery'
   end,
   ['s'] = function()
-    swayimg.set_mode('viewer')
+    swayimg.mode = 'viewer'
   end,
   ['n'] = function()
-    swayimg.slideshow.switch_image('next')
+    swayimg.slideshow.open('next')
   end,
   ['p'] = function()
-    swayimg.slideshow.switch_image('prev')
+    swayimg.slideshow.open('prev')
   end,
 }
 
