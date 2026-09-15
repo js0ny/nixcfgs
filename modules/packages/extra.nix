@@ -20,7 +20,6 @@ let
       uvx --python=cp312 --from pdf2zh-next pdf2zh2 "$@"
     '';
   };
-  kdeconnect = pkgs.kdePackages.kdeconnect-kde;
 in
 {
   imports = [
@@ -74,7 +73,6 @@ in
     kdePackages.kleopatra
     kdePackages.partitionmanager
     kdePackages.qttools
-    kdeconnect
     keepassxc
     krabby
     mission-center
@@ -123,10 +121,6 @@ in
       url = "*.pck";
       run = "piper -- ${lib.getExe pkgs.godotpcktool} $1";
     }
-  ];
-  xdg.autostart.entries = [
-    # KDE Connect Tray Icon
-    "${kdeconnect}/share/applications/org.kde.kdeconnect.nonplasma.desktop"
   ];
   xdg.configFile."gdb/gdbinit".text = ''
     add-auto-load-safe-path /nix/store/*/lib

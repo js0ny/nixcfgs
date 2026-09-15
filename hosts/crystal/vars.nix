@@ -42,6 +42,7 @@ in
       ];
     };
     hardware = {
+      localInterfaces = [ "wlp3s0" ];
       cpu.nproc = 16;
       type = "bare-metal";
       gpu = {

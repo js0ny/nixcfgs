@@ -15,6 +15,15 @@ in
   ];
 
   options.js0ny.hardware = {
+    localInterfaces = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      example = [
+        "enp1s0"
+        "wlp3s0"
+      ];
+      description = "Network interfaces used for local-network services; does not imply network trust.";
+    };
     laptop = {
       enable = lib.mkEnableOption "Whether the host is a laptop";
       vendor = lib.mkOption {

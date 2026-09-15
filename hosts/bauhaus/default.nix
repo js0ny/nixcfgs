@@ -32,6 +32,8 @@ in
     mod.plasma
     mod.hyprland
     mod.niri
+
+    mod.localsend
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

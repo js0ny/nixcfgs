@@ -26,7 +26,11 @@ in
     mod.sshd
     mod.tailscale
     mod.sync-org-ics
+
     mod.tether
+    mod.kdeconnect
+    mod.localsend
+    mod.uxplay
 
     mod.hyprland
     mod.niri
@@ -73,29 +77,6 @@ in
   };
 
   boot.plymouth.enable = true;
-
-  # localsend, TCP/UDP 53317
-  programs.localsend.enable = true;
-
-  # only open local interface
-  networking.firewall.interfaces."wlp3s0" = {
-    # localsend
-    allowedTCPPorts = [ 53317 ];
-    allowedUDPPorts = [ 53317 ];
-    # KDE Connect
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    allowedUDPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-  };
 
   programs.wireshark = {
     enable = true;
