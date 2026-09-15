@@ -6,6 +6,7 @@
 }:
 let
   xdg-config = config.xdg.configHome;
+  customDirs = config.home.customDirs;
 in
 {
   wayland.windowManager.niri = {
@@ -22,11 +23,11 @@ in
           honor-xdg-activation-with-invalid-serial = true;
         }
       ];
+      screenshot-path = "${customDirs.screenshots}/Screenshot from %Y-%m-%d %H-%M-%S.png";
     };
     extraConfig = ''
       include "${./base.kdl}"
       ${import ./keymaps.nix { inherit pkgs lib config; }}
-      ${import ./interpolates.nix { inherit config; }}
       include "${./window-rules.kdl}"
     '';
   };

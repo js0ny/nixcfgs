@@ -85,7 +85,6 @@ window-rule {
 
 window-rule {
     match app-id="^org.kde.(ark|dolphin)$" title="^Extracting"
-    match app-id="^steam$"
     open-focused false
     default-floating-position relative-to="top-right" x=50 y=50
 }
@@ -102,7 +101,7 @@ window-rule {
 
 window-rule {
     match app-id="^firefox$"
-    open-on-workspace "1-master"
+    open-on-workspace "1-browser"
 }
 window-rule {
     match app-id="^code$"
@@ -130,7 +129,7 @@ window-rule {
 }
 window-rule {
     match app-id="^feishin$"
-    match app-id="^Cider$"
+    match app-id="^cider$"
     open-on-workspace "5-bg"
 }
 

@@ -14,6 +14,8 @@
     prefixes = [ "waydroid" ];
     desktops = [
       # keep-sorted start
+      "calibre-ebook-edit"
+      "calibre-ebook-viewer"
       "calibre-lrfviewer"
       "himalaya"
       "howdy"

@@ -42,7 +42,17 @@ layout {
     }
     center-focused-column "never"
 }
-workspace "1-master"
+
+window-rule {
+    shadow {
+        on
+    }
+    clip-to-geometry true
+    geometry-corner-radius 20
+    draw-border-with-background false
+}
+
+workspace "1-browser"
 workspace "2-project"
 workspace "3-alt"
 workspace "4-info"

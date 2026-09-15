@@ -15,5 +15,5 @@
         }
       ];
     };
-  flake.homeModules.niri = import ./module.nix;
+  flake.homeModules.niri = import ./hm.nix;
 }

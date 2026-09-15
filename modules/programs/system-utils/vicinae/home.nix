@@ -81,11 +81,14 @@ lib.mkMerge [
               };
             };
           };
-          system.entrypoints.run = {
-            alias = ">";
-            # run directly without open a terminal window
-            # accompanied with nix-index comma
-            preferences."default-action" = "run";
+          system.entrypoints = {
+            run = {
+              alias = ">";
+              # run directly without open a terminal window
+              # accompanied with nix-index comma
+              preferences."default-action" = "run";
+            };
+            set-default-terminal.enabled = false;
           };
           "@knoopx/vicinae-extension-firefox-0" = {
             preferences = {
