@@ -20,7 +20,7 @@ in
     ./addons.nix
     ./global-speed.nix
     ./cookie-autodelete.nix
-    ./sidebery.nix
+    ./sidebery-keymap.nix
 
     inputs.betterfox-nix.modules.homeManager.betterfox
   ]
@@ -50,7 +50,12 @@ in
   js0ny.persist.stores.state = {
     directories = [ persistDir ];
   };
-  programs.firefox.policies = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin policies;
+  programs.firefox.policies = policies // {
+    "3rdparty".Extensions = {
+      "uBlock0@raymondhill.net" = import ./ublock-origin.nix;
+      "{3c078156-979c-498b-8990-85f7987dd929}" = import ./sidebery.nix;
+    };
+  };
 
   # Betterfox
   programs.firefox.betterfox = {
