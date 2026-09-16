@@ -125,6 +125,7 @@ window-rule {
     match app-id="^QQ$"
     match app-id="^discord$"
     match app-id="^thunderbird$"
+    match app-id="^element$"
     open-on-workspace "4-info"
 }
 window-rule {

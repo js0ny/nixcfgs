@@ -11,5 +11,14 @@
         allowedTCPPorts = [ 53317 ];
         allowedUDPPorts = [ 53317 ];
       });
+
+      home-manager.sharedModules = [
+        {
+          xdg.dataFile."kio/servicemenus/localsend.desktop" = {
+            source = ./localsend-kio.desktop;
+            executable = true;
+          };
+        }
+      ];
     };
 }

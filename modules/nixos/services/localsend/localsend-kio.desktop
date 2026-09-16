@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/octet-stream;
+Actions=sendWithLocalSend
+X-KDE-Priority=TopLevel
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+TryExec=localsend_app
+
+[Desktop Action sendWithLocalSend]
+Name=Send with LocalSend
+Icon=localsend
+Exec=GTK_CSD=0 localsend_app %F
+Name[zh_CN]=使用 LocalSend 发送文件
+

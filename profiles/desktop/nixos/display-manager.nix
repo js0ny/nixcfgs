@@ -15,6 +15,34 @@ let
   enableDM = displayManagerName: displayManagerName == cfg;
   s = builtins.head config.js0ny.desktop.session;
   defaultSession = if s == "hyprland" then "hyprland-uwsm" else s;
+
+  userName = config.js0ny.user.name;
+  greetdUser = config.services.greetd.settings.default_session.user;
+  greetdGroup =
+    if config.users.users.${greetdUser}.group != "" then
+      config.users.users.${greetdUser}.group
+    else
+      "greeter";
+
+  # ReGreet keys its saved sessions by the .desktop `Name`, not by the session id.
+  sessionDisplayNames = {
+    hyprland = "Hyprland (uwsm-managed)";
+    niri = "Niri";
+    sway = "Sway";
+    kde = "Plasma (Wayland)";
+    gnome = "GNOME";
+    cosmic = "COSMIC";
+  };
+
+  # ReGreet's state cache. `builtins.toJSON` is used as a TOML basic string encoder.
+  regreetState =
+    /* toml */ ''
+      last_user = ${builtins.toJSON userName}
+    ''
+    + lib.optionalString (sessionDisplayNames ? ${s}) /* toml */ ''
+      [user_to_last_sess]
+      ${builtins.toJSON userName} = ${builtins.toJSON sessionDisplayNames.${s}}
+    '';
 in
 {
   services.displayManager = {
@@ -63,5 +91,18 @@ in
       };
     };
     regreet.enable = enableDM "regreet";
+  };
+
+  # ReGreet's state cache is not configurable, and the greeter keeps writing to it while
+  # running, so it can only be reset. `f+` truncates and rewrites it on every boot and
+  # system activation, while leaving it writable so the last user/session still persists
+  # until the next reset.
+  systemd.tmpfiles.settings."20-regreet-state" = lib.mkIf (enableDM "regreet") {
+    "/var/lib/regreet/state.toml"."f+" = {
+      user = greetdUser;
+      group = greetdGroup;
+      mode = "0644";
+      argument = regreetState;
+    };
   };
 }
