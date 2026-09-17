@@ -1185,22 +1185,6 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1787305858,
-        "narHash": "sha256-IxabTv0+vrHxWceCvIDOGKedms6MdkIgsMqkAugNoN8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "63a410de48ab4442e5bf62ee5b4ce71bdf7478b0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_9": {
-      "locked": {
         "lastModified": 1789006805,
         "narHash": "sha256-xB8mKMOx1IA9vTDNLmJZ6n4wCMq/cuWBBOzGCRnqxrU=",
         "owner": "NixOS",
@@ -1474,7 +1458,6 @@
         "plasma-manager": "plasma-manager",
         "preservation": "preservation",
         "secrets": "secrets",
-        "sfd-nix": "sfd-nix",
         "sops-nix": "sops-nix",
         "srvos": "srvos",
         "steam-config-nix": "steam-config-nix",
@@ -1522,24 +1505,6 @@
       "original": {
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/infra/nix-secrets.git"
-      }
-    },
-    "sfd-nix": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_8"
-      },
-      "locked": {
-        "lastModified": 1789120300,
-        "narHash": "sha256-ANW3GcgCx0lFein4U2SLqZ9meIeIQEh4dhoOA/wDI0Y=",
-        "ref": "refs/heads/main",
-        "rev": "c1177d4d8549355459a13410a260bcab92074cd8",
-        "revCount": 22,
-        "type": "git",
-        "url": "https://forge.asnk.io/sugar/sfd-nix"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://forge.asnk.io/sugar/sfd-nix"
       }
     },
     "sops-nix": {
@@ -1933,7 +1898,7 @@
         "flake-compat": [
           "flake-compat"
         ],
-        "nixpkgs": "nixpkgs_9"
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
         "lastModified": 1789164534,

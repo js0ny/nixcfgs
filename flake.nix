@@ -60,9 +60,6 @@
 
     # {{{ Application Supports
     flatpak-nix.url = "github:gmodena/nix-flatpak";
-    sfd-nix = {
-      url = "git+https://forge.asnk.io/sugar/sfd-nix";
-    };
     glide-browser = {
       url = "github:glide-browser/glide.nix";
       inputs.nixpkgs.follows = "nixpkgs";
