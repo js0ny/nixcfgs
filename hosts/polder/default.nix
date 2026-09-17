@@ -20,21 +20,16 @@
     inputs.self.nixosModules.fast-note-sync
     inputs.self.nixosModules.forgejo-runner
     inputs.self.nixosModules.garage
-    inputs.self.nixosModules.gluetun
-    inputs.self.nixosModules.grafana
     inputs.self.nixosModules.hermes-agent
     inputs.self.nixosModules.karakeep
     inputs.self.nixosModules.librechat
     inputs.self.nixosModules.litellm
     inputs.self.nixosModules.lobehub
     inputs.self.nixosModules.mongodb
-    inputs.self.nixosModules.navidrome
-    inputs.self.nixosModules.nextcloud
     inputs.self.nixosModules.opengist
     inputs.self.nixosModules.paperless
     inputs.self.nixosModules.pdf2zh
     inputs.self.nixosModules.postgresql
-    inputs.self.nixosModules.prometheus
     inputs.self.nixosModules.rclone
     inputs.self.nixosModules.rsshub
     inputs.self.nixosModules.searxng

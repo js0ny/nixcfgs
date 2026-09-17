@@ -12,7 +12,10 @@
       epAutheliaMetrics = ep.authelia-metrics;
     in
     {
-      imports = myLib.scanPaths ./.;
+      imports = [
+        ./alertmanager.nix
+        ./exporter-blackbox.nix
+      ];
       sops.secrets = {
         forgejo_metrics_token = {
           sopsFile = secrets + "/forgejo.yaml";

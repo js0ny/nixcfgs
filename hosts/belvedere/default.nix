@@ -21,6 +21,8 @@ in
     mod.fail2ban
     mod.fish
     mod.forgejo
+    mod.gluetun
+    mod.grafana
     mod.hermes-agent
     mod.idp
     mod.immich
@@ -29,6 +31,7 @@ in
     mod.navidrome
     mod.nix-index-database
     mod.papra
+    mod.prometheus
     mod.prometheus-node
     mod.radicale
     mod.rclone

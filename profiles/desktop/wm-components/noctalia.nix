@@ -48,7 +48,7 @@
         enable = true;
         systemd.enable = true;
         settings = {
-          backdrop.enabled = false;
+          backdrop.enabled = true;
           brightness.enable_ddcutil = true;
           shell = {
             lang = locale;
@@ -177,5 +177,19 @@
         key = "data";
       };
       services.hyprpaper.enable = lib.mkForce false;
+      # https://docs.noctalia.dev/noctalia/compositor-settings/niri/
+      wayland.windowManager.niri.settings = {
+        layer-rule = {
+          match._props.namespace = "^noctalia-backdrop";
+          place-within-backdrop = true;
+        };
+        window-rule = {
+          match._props.app-id = "dev.noctalia.Noctalia";
+          open-floating = true;
+          default-column-width.fixed = 1080;
+          default-window-height.fixed = 920;
+        };
+        debug.honor-xdg-activation-with-invalid-serial = true;
+      };
     };
 }

@@ -1,7 +1,6 @@
 {
   config,
   secrets,
-  myLib,
   ...
 }:
 let

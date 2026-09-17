@@ -13,7 +13,7 @@
     ctxMenuNative = false;
     ctxMenuRenderInact = true;
     ctxMenuRenderIcons = true;
-    ### Omnibox / Address Bar
+    ### Address Bar (Omnibox)
     omniReopenInCtr = false;
     omniReopenInCtrPrefix = "";
     omniSwitchToPanel = true;
@@ -22,7 +22,7 @@
     omniMoveToPanelPrefix = "";
     omniMoveToGroup = true;
     omniMoveToGroupPrefix = "+";
-    ### Navigation bar
+    ### Nav bar
     # Layout: "horizontal", "vertical", "hidden"
     navBarLayout = "horizontal";
     # Show navigation bar in one line
@@ -32,5 +32,16 @@
     navBtnCount = true;
     hideEmptyPanels = false;
     hideDiscardedTabPanels = false;
+    ### Tabs colorization
+    colorizeTabs = true;
+    colorizeTabsSrc = "domain";
+    ### Native tabs
+    hideInact = true;
+    ### Apperance
+    theme = "proton";
+    ### Mouse
+    scrollThroughTabs = "panel";
+    scrollThroughTabsCyclic = true;
+    navActTabsPanelLeftClickAction = "new_tab";
   };
 }

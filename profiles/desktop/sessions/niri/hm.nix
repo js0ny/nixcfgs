@@ -17,18 +17,19 @@ in
       spawn-sh-at-startup = [
         "systemctl --user start wm-init.target"
       ];
-      debug._children = [
-        {
-          ignore-drm-device = "/dev/dri/renderD128";
-          honor-xdg-activation-with-invalid-serial = true;
-        }
-      ];
+      debug.ignore-drm-device = "/dev/dri/renderD128";
       screenshot-path = "${customDirs.screenshots}/Screenshot from %Y-%m-%d %H-%M-%S.png";
     };
     extraConfig = ''
       include "${./base.kdl}"
       ${import ./keymaps.nix { inherit pkgs lib config; }}
       include "${./window-rules.kdl}"
+      // Generated at runtime by Noctalia when it applies the niri theme template; upstream appends
+      // this include to config.kdl, which is read-only under home-manager.
+      include optional=true "noctalia.kdl"
+      // Local overrides written outside Nix; optional so it also validates in the build sandbox
+      // and on a fresh system where tmpfiles has not created it yet.
+      include optional=true "local_test.kdl"
     '';
   };
 
