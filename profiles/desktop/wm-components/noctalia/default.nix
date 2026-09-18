@@ -36,6 +36,7 @@
         inputs.self.homeModules.wm-components
         inputs.self.homeModules.shikane
         inputs.noctalia.homeModules.default
+        ./notification.nix
       ];
       systemd.user.services.noctalia = {
         Unit = {

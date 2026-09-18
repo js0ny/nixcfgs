@@ -1,6 +1,5 @@
 {
   imports = [
-    ./noctalia.nix
     ./shikane.nix
   ];
   flake.homeModules.wm-components =
