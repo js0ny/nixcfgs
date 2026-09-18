@@ -22,6 +22,12 @@
             nufmt
             lua
             keep-sorted
+            llvmPackages.clang-tools
+            cli11
+            taglib
+            # taglib.pc hardcodes `-lz`, but nixpkgs' taglib does not propagate zlib
+            zlib
+            pkg-config
           ];
           devDeps = with pkgs; [
             # keep-sorted start

@@ -119,7 +119,7 @@ window-rule {
 }
 window-rule {
     match app-id="^org.telegram.desktop$"
-    match app-id="^io.github.kukuruzka165.materialgram$"
+    match app-id="^io.github.kukuruzka165.materialgram$" title=r#"^materialgram$"#
     match app-id="^com.ayugram.desktop$"
     match app-id="^wechat$"
     match app-id="^QQ$"
