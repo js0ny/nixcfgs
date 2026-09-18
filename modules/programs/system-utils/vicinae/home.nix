@@ -63,6 +63,9 @@ lib.mkMerge [
             "indexingPaths" = [
               "${home}/Obsidian"
             ];
+            "excludedIndexingPaths" = [
+              "${home}/Obsidian/.obsidian"
+            ];
           };
           raycast-compat.entrypoints = {
             store.preferences.alwaysShowIntro = false;
@@ -161,7 +164,7 @@ lib.mkMerge [
               defaultFilter = "all";
               alternativeApplication = lib.getExe pkgs.xdg-terminal-exec;
             };
-            entrypoints.recent-directories.alias = "zo";
+            entrypoints.recent-directories.alias = "zi";
           };
         };
       };

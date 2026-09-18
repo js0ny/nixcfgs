@@ -25,6 +25,6 @@ let
 
 in
 {
-  home.packages = [ pi ];
+  # home.packages = [ pi ];
   js0ny.persist.stores.state.directories = [ ".config/omp" ];
 }

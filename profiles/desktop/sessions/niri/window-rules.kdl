@@ -34,6 +34,14 @@ window-rule {
     match app-id="^org.kde.isoimagewriter$" title="^ISO Image Writer$"
     match app-id="^proton-pass$" title="^Proton Pass$"
 
+    match app-id="^vicinae$" title="^Vicinae Settings$"
+
+    // Debug Windows
+    match app-id="^wev$" title="^wev$"
+    match app-id="^XEyes$" title="^xeyes$"
+    match app-id="^com.belmoussaoui.ashpd.demo$" title="^ASHPD Demo$"
+    match title="^Event Tester$"
+
     open-floating true
 }
 
@@ -134,3 +142,7 @@ window-rule {
     open-on-workspace "5-bg"
 }
 
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}

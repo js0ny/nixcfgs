@@ -21,8 +21,10 @@ in
       // Applications
       Mod+Return hotkey-overlay-title="Open a Terminal: ${term}" { spawn "${term}"; }
       Mod+Shift+Return { spawn-sh "kitty --class=terminal-float"; }
+
       Mod+B hotkey-overlay-title="Focus or launch web browser" { spawn "${nirictl-focus}" "firefox" "firefox"; }
       Mod+Shift+B hotkey-overlay-title="Launch web browser in private mode" { spawn "firefox" "--private-window"; }
+      Mod+Alt+B hotkey-overlay-title="Chromium" { spawn "chromium"; }
       Mod+O hotkey-overlay-title="Focus or launch Obsidian" { spawn "${nirictl-focus}" "obsidian" "obsidian"; }
       Mod+Shift+A hotkey-overlay-title="Focus or launch CherryStudio (AI assistant)" { spawn "${nirictl-focus}" "CherryStudio" "cherry-studio"; }
       Mod+E hotkey-overlay-title="Launch file explorer" { spawn-sh "xdg-open ~"; }
