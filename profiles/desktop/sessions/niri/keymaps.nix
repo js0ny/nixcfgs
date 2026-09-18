@@ -20,15 +20,15 @@ in
   binds {
       // Applications
       Mod+Return hotkey-overlay-title="Open a Terminal: ${term}" { spawn "${term}"; }
-      Mod+Shift+Return { spawn-sh "kitty --class=terminal-popup"; }
+      Mod+Shift+Return { spawn-sh "kitty --class=terminal-float"; }
       Mod+B hotkey-overlay-title="Focus or launch web browser" { spawn "${nirictl-focus}" "firefox" "firefox"; }
       Mod+Shift+B hotkey-overlay-title="Launch web browser in private mode" { spawn "firefox" "--private-window"; }
       Mod+O hotkey-overlay-title="Focus or launch Obsidian" { spawn "${nirictl-focus}" "obsidian" "obsidian"; }
       Mod+Shift+A hotkey-overlay-title="Focus or launch CherryStudio (AI assistant)" { spawn "${nirictl-focus}" "CherryStudio" "cherry-studio"; }
       Mod+E hotkey-overlay-title="Launch file explorer" { spawn-sh "xdg-open ~"; }
-      Mod+A { spawn-sh "${term} --class=terminal-popup -e aichat --session"; }
+      Mod+A { spawn-sh "${term} --class=terminal-float -e aichat --session"; }
       Mod+Alt+E { spawn "${term}" "yazi"; }
-      Mod+Apostrophe { spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal"; }
+      Mod+Apostrophe { spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-float -e edit-clipboard --minimal"; }
 
       // Picker
       Alt+Space hotkey-overlay-title="Picker" { spawn ${genCmd vicinae.toggle}; }

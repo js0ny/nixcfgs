@@ -124,7 +124,9 @@
             # stylix
             # default.path = "${wallpaperDir}/default.jpg";
           };
-          widget = {
+          widget = rec {
+            ram.actions.middle = "exec kitty --class=terminal-float btop";
+            cpu.actions.middle = ram.actions.middle;
             privacy = {
               hide_inactive = true;
               active_color = "secondary";

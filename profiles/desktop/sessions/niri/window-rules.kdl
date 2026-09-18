@@ -57,7 +57,7 @@ window-rule {
 
 window-rule {
     match app-id="^.*terminal-popup$"
-    match app-id="^fsearch$"
+    match app-id="^.*terminal-float$"
     open-floating true
     opacity 0.800000
 }

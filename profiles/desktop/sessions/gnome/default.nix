@@ -275,9 +275,9 @@
         <Shift><Super>b,firefox --private-window,,
         <Super>o,obsidian,,
         <Shift><Super>e,fsearch,,
-        <Alt><Super>e,xdg-terminal-exec --app-id=terminal-popup yazi
+        <Alt><Super>e,xdg-terminal-exec --app-id=terminal-float yazi
         <Alt><Super>Return,neovide,,
-        <Shift><Super>v,kitty -o close_on_child_death=yes --app-id=terminal-popup -e edit-clipboard --minimal
+        <Shift><Super>v,kitty -o close_on_child_death=yes --app-id=terminal-float -e edit-clipboard --minimal
       '';
     };
 }

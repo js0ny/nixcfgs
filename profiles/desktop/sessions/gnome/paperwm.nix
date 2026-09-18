@@ -23,6 +23,7 @@
             ''{"wm_class":"mpv","scratch_layer":true}''
             ''{"wm_class":"org.gnome.NautilusPreviewer","scratch_layer":true}''
             ''{"wm_class":"terminal-popup","scratch_layer":true}''
+            ''{"wm_class":"terminal-float","scratch_layer":true}''
             ''{"wm_class":"fsearch","scratch_layer":true}''
             ''{"wm_class":"QQ","title":"资料卡","scratch_layer":true}''
             ''{"wm_class":"","title":"Floating Window - Show Me The Key","scratch_layer":true}''
