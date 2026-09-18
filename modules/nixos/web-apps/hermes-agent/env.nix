@@ -2,7 +2,7 @@
 let
   sec = config.sops.placeholder;
   ep = config.nixdefs.endpoints;
-  obsidianDir = "/var/lib/lmwiki";
+  inherit (config.services.hermes-agent) user group;
   sopsFile = secrets + "/hermes.yaml";
 in
 {
@@ -75,8 +75,8 @@ in
   sops.secrets.hermes_opencode_auth = {
     sopsFile = secrets + "/hermes/opencode-auth.yaml";
     key = "data";
-    owner = "hermes";
-    group = "agents";
-    path = "${config.users.users.hermes.home}/.local/share/opencode/auth.json";
+    owner = user;
+    inherit group;
+    path = "${config.users.users.${user}.home}/.local/share/opencode/auth.json";
   };
 }

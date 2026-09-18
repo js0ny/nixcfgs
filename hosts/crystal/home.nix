@@ -52,6 +52,8 @@
 
   home.stateVersion = "25.05";
 
+  services.hermes-agent.enable = true;
+
   home.directories = {
     "Atelier" = {
       create = true; # via systemd.tmpfiles
@@ -150,8 +152,5 @@
       passwordFile = config.sops.secrets.gocryptfs_password.path;
     };
   };
-
-  home.packages = [
-  ];
 
 }

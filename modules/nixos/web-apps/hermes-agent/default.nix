@@ -1,27 +1,20 @@
 {
   flake.nixosModules.hermes-agent =
     {
-      inputs,
       pkgs,
       lib,
       config,
       ...
     }:
     let
-      system = pkgs.stdenv.hostPlatform.system;
       inherit (config.services.hermes-agent) user group;
     in
     {
-      # https://hermes-agent.nousresearch.com/docs/developer-guide/prompt-assembly
-      environment.variables = {
-        HERMES_HOME = "/var/lib/hermes/.hermes";
-      };
       imports = [
-        inputs.hermes-agent.nixosModules.default
+        ./nixos.nix
         ./agent-user.nix
         ./env.nix
         ./lmwiki.nix
-        ./hermes-dashboard.nix
         ./models.nix
         ./mcp-skills.nix
       ];
@@ -29,22 +22,15 @@
         {
           inherit user group;
           directory = "/var/lib/hermes";
-          mode = "0750";
-
+          mode = "2770";
         }
       ];
 
       services.hermes-agent = {
         enable = true;
-        package = inputs.hermes-agent.packages.${system}.messaging;
-        extraDependencyGroups = [
-          "matrix"
-          "messaging"
-        ];
+        package = pkgs.llm-agents.hermes-agent;
         group = "agents";
-        restart = "always";
-        restartSec = 5;
-        addToSystemPackages = true;
+        dashboard.host = "0.0.0.0";
 
         # https://github.com/NousResearch/hermes-agent/blob/main/cli-config.yaml.example
         settings = {
@@ -181,4 +167,6 @@
       };
 
     };
+
+  flake.homeModules.hermes-agent = import ./home.nix;
 }

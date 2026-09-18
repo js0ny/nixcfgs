@@ -7,6 +7,7 @@
 }:
 let
   vaultDir = "/var/lib/lmwiki";
+  inherit (config.services.hermes-agent) user group;
   fastNoteSyncConfig = {
     api = "\${FAST_NOTE_URL}";
     api_token = "\${FAST_NOTE_TOKEN}";
@@ -46,8 +47,8 @@ in
     };
     serviceConfig = {
       ExecStart = "${lib.getExe pkgs.js0ny.go-fast-note-sync} start --config ${pkgs.writers.writeYAML "go-fast-note-sync.yaml" fastNoteSyncConfig}";
-      User = "hermes";
-      Group = "hermes";
+      User = user;
+      Group = group;
       Restart = "always";
       RestartSec = 5;
       EnvironmentFile = "${config.sops.templates."go-fast-note-sync-lmwiki.env".path}";
@@ -58,16 +59,15 @@ in
     serviceConfig.ReadWritePaths = [ vaultDir ];
   };
   systemd.tmpfiles.rules = [
-    "d ${vaultDir} 2775 hermes agents - -"
-    "Z ${vaultDir} 2775 hermes agents - -"
-    "A+ ${vaultDir} - - - - g:agents:rwX,d:g:agents:rwX"
+    "d ${vaultDir} 2775 ${user} ${group} - -"
+    "Z ${vaultDir} 2775 ${user} ${group} - -"
+    "A+ ${vaultDir} - - - - g:${group}:rwX,d:g:${group}:rwX"
   ];
   js0ny.persist.stores.state.directories = [
     {
       directory = vaultDir;
       mode = "2775";
-      user = "hermes";
-      group = "agents";
+      inherit user group;
     }
   ];
 
