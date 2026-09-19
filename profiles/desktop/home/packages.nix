@@ -2,15 +2,19 @@
   home.packages =
     with pkgs;
     [
-      ripgrep-all
-      localPkgs.edit-clipboard
-      pandoc
+      # keep-sorted start
       dos2unix
       gron
+      hashcat
       httpie
       jless
       jq
+      localPkgs.edit-clipboard
+      openssl
+      pandoc
+      ripgrep-all
       yq-go
+      # keep-sorted end
     ]
     ++ ((lib.optionals pkgs.stdenv.hostPlatform.isLinux) [
       # keep-sorted start

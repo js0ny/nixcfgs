@@ -687,11 +687,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788776468,
-        "narHash": "sha256-IIpdMJmRwXeuXvUGQPZadaH0LeI+Hnlmie0qughH66o=",
+        "lastModified": 1789569909,
+        "narHash": "sha256-eexD3xcIYUN72FOpnQO+ieQvmqIQspkGe/hJvqx6hjk=",
         "owner": "js0ny",
         "repo": "nix-misc-packages",
-        "rev": "92f288c3c6b94421b3ec8a7320442e4eec851ebf",
+        "rev": "9718f5b59e94e5859656716736b37b9c8a6dc555",
         "type": "github"
       },
       "original": {
@@ -741,15 +741,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1789722857,
-        "narHash": "sha256-EsZGNrQiCZDI+yV/4Eyrjb7Blsd7ZB5995Nkp3eHDBc=",
-        "owner": "numtide",
+        "lastModified": 1789745852,
+        "narHash": "sha256-O9TzNgGEbj5eeghkyDDq1h1VKEVW0xyVWxyyMAhAhVU=",
+        "owner": "js0ny",
         "repo": "llm-agents.nix",
-        "rev": "ddc89534b9a73cd99ff4d33656569ce3be6e6490",
+        "rev": "4002d919bc3ae5b915204f751ca8c7bd0c33ed41",
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
+        "owner": "js0ny",
+        "ref": "fix/hermes-linux-icons",
         "repo": "llm-agents.nix",
         "type": "github"
       }

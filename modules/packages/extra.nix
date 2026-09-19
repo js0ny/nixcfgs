@@ -82,6 +82,7 @@ in
     nmap
     octaveFull
     pdf2zh
+    pikpaktui
     pkgsStable.python314Packages.huggingface-hub
     rawtherapee
     rustscan

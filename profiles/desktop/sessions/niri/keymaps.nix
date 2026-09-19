@@ -22,15 +22,40 @@ in
       Mod+Return hotkey-overlay-title="Open a Terminal: ${term}" { spawn "${term}"; }
       Mod+Shift+Return { spawn-sh "kitty --class=terminal-float"; }
 
+      /// A: AI Agent
+      Mod+A { spawn "chatgpt"; }
+      Mod+Shift+A { spawn-sh "kitty --working-directory=$(mktemp -d -t pi-tmp.XXXXXX) --class=terminal-popup -e pi "; }
+      Mod+Alt+A { spawn "hermes-desktop"; }
+      Mod+Alt+Shift+A { spawn-sh "kitty --working-directory=$(mktemp -d -t codex-tmp.XXXXXX) --class=terminal-popup -e codex "; }
+      Mod+Ctrl+A { spawn-sh "noctalia msg panel-toggle control-center audio"; }
+
+
+      /// B: Browser
       Mod+B hotkey-overlay-title="Focus or launch web browser" { spawn "${nirictl-focus}" "firefox" "firefox"; }
       Mod+Shift+B hotkey-overlay-title="Launch web browser in private mode" { spawn "firefox" "--private-window"; }
-      Mod+Alt+B hotkey-overlay-title="Chromium" { spawn "chromium"; }
+      Mod+Alt+B { spawn "chromium"; }
+      Mod+Alt+Shift+B { spawn-sh "chromium --incognito"; }
+      Mod+Ctrl+B { spawn-sh "noctalia msg panel-toggle control-center bluetooth"; }
+
       Mod+O hotkey-overlay-title="Focus or launch Obsidian" { spawn "${nirictl-focus}" "obsidian" "obsidian"; }
-      Mod+Shift+A hotkey-overlay-title="Focus or launch CherryStudio (AI assistant)" { spawn "${nirictl-focus}" "CherryStudio" "cherry-studio"; }
+
+      /// D: Desktop / Date
+      Mod+D { spawn-sh "noctalia msg panel-toggle control-center calendar"; }
+      Mod+Ctrl+D { spawn-sh "noctalia msg panel-toggle control-center monitor"; }
+
+      /// E: Explorer
       Mod+E hotkey-overlay-title="Launch file explorer" { spawn-sh "xdg-open ~"; }
-      Mod+A { spawn-sh "${term} --class=terminal-float -e aichat --session"; }
-      Mod+Alt+E { spawn "${term}" "yazi"; }
+      Mod+Shift+E { spawn-sh "vicinae deeplink vicinae://launch/@c4n4m1/vicinae-extension-zoxide-recent-directories-0/recent-directories"; }
+      Mod+Ctrl+E { spawn-sh "vicinae deeplink vicinae://launch/@c4n4m1/vicinae-extension-zoxide-recent-directories-0/recent-directories"; }
+      Mod+Alt+E { spawn-sh "xdg-terminal-exec yazi ~"; }
+      Mod+Shift+Alt+E { spawn-sh "kitty --class=terminal-popup -e yazi ~"; }
+
       Mod+Apostrophe { spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-float -e edit-clipboard --minimal"; }
+
+      Mod+Shift+V { spawn-sh "kitty --class=terminal-popup -e edit-clipboard"; }
+
+      Mod+Comma { spawn-sh "noctalia msg panel-toggle control-center"; }
+      Mod+Shift+Comma { spawn-sh "noctalia msg settings-toggle"; }
 
       // Picker
       Alt+Space hotkey-overlay-title="Picker" { spawn ${genCmd vicinae.toggle}; }

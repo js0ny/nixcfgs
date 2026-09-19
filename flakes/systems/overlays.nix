@@ -12,22 +12,22 @@ let
     inputs.nur.overlays.default
     inputs.vscode-extensions.overlays.default
     # keep-sorted end
-    (final: prev: {
-      llm-agents = prev.llm-agents // {
-        hermes-desktop = prev.llm-agents.hermes-desktop.overrideAttrs (oldAttrs: {
-          nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ final.imagemagick ];
-          postInstall = (oldAttrs.postInstall or "") + /* bash */ ''
-            # Vicinae does not reliably resolve the upstream 1024x1024-only icon.
-            sourceIcon="$out/share/icons/hicolor/1024x1024/apps/hermes-desktop.png"
-            for size in 256 512; do
-              install -d "$out/share/icons/hicolor/''${size}x''${size}/apps"
-              magick "$sourceIcon" -resize "''${size}x''${size}" \
-                "$out/share/icons/hicolor/''${size}x''${size}/apps/hermes-desktop.png"
-            done
-          '';
-        });
-      };
-    })
+    # (final: prev: {
+    #   llm-agents = prev.llm-agents // {
+    #     hermes-desktop = prev.llm-agents.hermes-desktop.overrideAttrs (oldAttrs: {
+    #       nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ final.imagemagick ];
+    #       postInstall = (oldAttrs.postInstall or "") + /* bash */ ''
+    #         # Vicinae does not reliably resolve the upstream 1024x1024-only icon.
+    #         sourceIcon="$out/share/icons/hicolor/1024x1024/apps/hermes-desktop.png"
+    #         for size in 256 512; do
+    #           install -d "$out/share/icons/hicolor/''${size}x''${size}/apps"
+    #           magick "$sourceIcon" -resize "''${size}x''${size}" \
+    #             "$out/share/icons/hicolor/''${size}x''${size}/apps/hermes-desktop.png"
+    #         done
+    #       '';
+    #     });
+    #   };
+    # })
   ];
 in
 {

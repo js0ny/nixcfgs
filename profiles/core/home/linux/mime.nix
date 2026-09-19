@@ -122,18 +122,6 @@ in
     enable = true;
     defaultApplications = {
       "x-scheme-handler/mailto" = toMimeAppList [ "thunderbird.desktop" ];
-      "inode/directory" = toMimeAppList [
-        apps.fileManager.gui.desktop
-        "org.kde.dolphin"
-        "org.gnome.Nautilus"
-        apps.fileManager.tui.desktop
-        "yazi"
-        "nemo"
-        "kitty-open"
-        "dev.zed.Zed"
-        "org.kde.gwenview"
-        "org.kde.kid3"
-      ];
       "application/pdf" = toMimeAppList [
         "sioyek"
         "org.kde.okular"
@@ -158,6 +146,21 @@ in
         apps.editor.gui.desktop
       ];
     }
+    //
+      mkAssoc
+        [ "inode/directory" "inode/mount-point" ]
+        [
+          apps.fileManager.gui.desktop
+          "org.kde.dolphin"
+          "org.gnome.Nautilus"
+          apps.fileManager.tui.desktop
+          "yazi"
+          "nemo"
+          "kitty-open"
+          "dev.zed.Zed"
+          "org.kde.gwenview"
+          "org.kde.kid3"
+        ]
     // mkAssoc textMimes [ apps.editor.gui.desktop ]
     // mkAssoc webpageMimes [
       "url-dispatcher"

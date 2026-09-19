@@ -25,6 +25,7 @@ in
       };
     };
   };
+  xdg.configFile."gallery-dl/config.json".force = true;
   # https://gdl-org.github.io/docs/gallery-dl.conf
   sops.templates."gdl-extra.json" = {
     content = /* json */ ''

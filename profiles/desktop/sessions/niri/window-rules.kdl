@@ -35,6 +35,7 @@ window-rule {
     match app-id="^proton-pass$" title="^Proton Pass$"
 
     match app-id="^vicinae$" title="^Vicinae Settings$"
+    match app-id="^md.obsidian.Obsidian$" title="^设置.*$"
 
     // Debug Windows
     match app-id="^wev$" title="^wev$"
@@ -58,6 +59,7 @@ window-rule {
 window-rule {
     match app-id="^control.exe$" title="^Wine Mono Installer$"
     match app-id="^jetbrains-.*$" title=r#"splash"#
+    match app-id="^QQ$" title="^资料卡$"
 
     open-floating true
     open-focused false
