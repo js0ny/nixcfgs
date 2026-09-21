@@ -67,6 +67,7 @@ in
     js0ny.proton-drive-cli
     js0ny.ratune
     js0ny.wdotool
+    js0ny.xdd
     kdePackages.elisa
     kdePackages.isoimagewriter
     kdePackages.kdenlive

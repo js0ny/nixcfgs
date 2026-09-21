@@ -22,9 +22,9 @@ in
     host = {
       hostName = "crystal";
       timezones = [
-        "Asia/Shanghai"
-        "Etc/UTC"
         "Europe/London"
+        "Etc/UTC"
+        "Asia/Shanghai"
       ];
       locales = {
         guiLocale = "zh-CN";

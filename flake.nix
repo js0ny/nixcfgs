@@ -97,7 +97,7 @@
       inputs.flake-parts.follows = "flake-parts";
     };
     llm-agents = {
-      url = "github:js0ny/llm-agents.nix/fix/hermes-linux-icons";
+      url = "github:numtide/llm-agents.nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
