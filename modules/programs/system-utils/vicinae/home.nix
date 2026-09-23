@@ -8,7 +8,17 @@
 let
   selfhosted = config.nixdefs.selfhosted;
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
-  pkg = pkgs.vicinae;
+  # disable onboarding on compile time
+  pkg = pkgs.vicinae.overrideAttrs (old: {
+    cmakeFlags =
+      (old.cmakeFlags or [ ])
+      ++ (
+        with lib;
+        mapAttrsToList cmakeFeature {
+          ENABLE_ONBOARDING = if pkgs.stdenv.hostPlatform.isLinux then "OFF" else "ON";
+        }
+      );
+  });
   home = config.home.homeDirectory;
 in
 lib.mkMerge [
