@@ -33,6 +33,7 @@ in
         "profile"
         "email"
         "groups"
+        "offline_access"
       ];
       trusted = true;
       userid_claims = [ "preferred_username" ];

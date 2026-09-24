@@ -14,13 +14,13 @@
         ./pi-agent.nix
         ./herdr.nix
         ./oh-my-pi.nix
+        ./ccusage.nix
         inputs.self.homeModules.opencode
       ];
       home.packages =
         with pkgs;
         [
           llm-agents.agentsview
-          llm-agents.ccusage
           abtop
         ]
         ++ lib.optionals (osConfig.hardware.graphics.enable) [

@@ -128,6 +128,8 @@ in
         "org.gnome.Papers"
         "calibre-gui"
       ];
+      "x-scheme-handler/http" = lib.mkAfter [ "mpv.desktop" ];
+      "x-scheme-handler/https" = lib.mkAfter [ "mpv.desktop" ];
       "application/x-bittorrent" = toMimeAppList [
         "org.qbittorrent.qBittorrent"
         "qbittorrent"

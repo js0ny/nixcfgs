@@ -12,7 +12,6 @@
     enable = true;
     plugins = with pkgs; [
       networkmanager-openvpn
-      networkmanager-fortisslvpn
     ];
   };
   js0ny.persist.stores.state.directories = [ "/etc/NetworkManager/system-connections" ];

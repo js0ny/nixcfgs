@@ -38,7 +38,7 @@
       virtualisation.oci-containers = {
         containers = {
           gluetun = {
-            image = "qmcgaw/gluetun:${tag}";
+            image = "docker.io/qmcgaw/gluetun:${tag}";
             capabilities = {
               "NET_ADMIN" = true;
             };

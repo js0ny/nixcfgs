@@ -27,6 +27,8 @@
         js0ny = {
           image.enable = imageSupport;
           typst.enable = true;
+          python.enable = true;
+          cxx.enable = true;
         };
         plugins = {
           lsp.servers = {

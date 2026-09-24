@@ -24,12 +24,13 @@
         mkdir -p $out
         cp ${autheliaDashboard} $out/authelia.json
       '';
+      owner = service.serviceConfig.User;
+      group = owner;
     in
     {
       sops.secrets =
         let
           sopsFile = secrets + "/grafana.yaml";
-          owner = service.serviceConfig.User;
         in
         {
           grafana_secret_key = { inherit sopsFile owner; }; # openssl rand -hex 32
@@ -121,7 +122,13 @@
           ];
         };
       };
-      js0ny.persist.stores.state.directories = [ config.services.grafana.dataDir ];
+      js0ny.persist.stores.state.directories = [
+        {
+          directory = config.services.grafana.dataDir;
+          inherit group;
+          user = owner;
+        }
+      ];
       systemd.services.grafana.serviceConfig.SupplementaryGroups = [ config.services.nginx.group ];
 
       services.nginx.virtualHosts = lib.mkIf (url != null) {

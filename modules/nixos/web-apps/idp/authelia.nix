@@ -120,6 +120,7 @@ in
               "groups"
               "email"
               "profile"
+              "offline_access"
             ];
             grant_types = [
               "refresh_token"

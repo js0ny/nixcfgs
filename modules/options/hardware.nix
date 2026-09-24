@@ -24,6 +24,12 @@ in
       ];
       description = "Network interfaces used for local-network services; does not imply network trust.";
     };
+    wifiInterface = {
+      type = with lib.types; nullOr str;
+      default = null;
+      example = "wlp3s0";
+      description = "Network interfaces used for Wi-Fi connection";
+    };
     laptop = {
       enable = lib.mkEnableOption "Whether the host is a laptop";
       vendor = lib.mkOption {

@@ -107,6 +107,7 @@ in
     nurl
     nvfetcher
     npins
+    hydra-check
     nil
     nixd
     cachix
