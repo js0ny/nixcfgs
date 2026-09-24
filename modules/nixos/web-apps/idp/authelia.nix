@@ -302,5 +302,12 @@ in
     };
   }
   // config.nixdefs.consts.nginxWithCF;
-  js0ny.persist.stores.state.directories = [ stateDir ];
+  js0ny.persist.stores.state.directories = [
+    {
+      directory = stateDir;
+      user = owner;
+      group = owner;
+      mode = "0700";
+    }
+  ];
 }

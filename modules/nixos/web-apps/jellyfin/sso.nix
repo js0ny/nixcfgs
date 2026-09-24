@@ -58,6 +58,7 @@ in
                 </OidScopes>
                 <CanonicalLinks></CanonicalLinks>
                 <DisableHttps>false</DisableHttps>
+                <DisablePushedAuthorization>true</DisablePushedAuthorization>
                 <DoNotValidateEndpoints>false</DoNotValidateEndpoints>
                 <DoNotValidateIssuerName>false</DoNotValidateIssuerName>
                 <SchemeOverride>https</SchemeOverride>
@@ -84,5 +85,9 @@ in
         fi
       '';
   };
+
+  systemd.tmpfiles.rules = [
+    "L+ /var/lib/jellyfin/plugins/SSO-Auth_${p.version} - - - - ${p}"
+  ];
 
 }
