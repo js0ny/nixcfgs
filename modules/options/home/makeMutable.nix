@@ -11,14 +11,15 @@ in
     description = "list of generated files that relative to home";
   };
   config = mkIf (config.makeMutable != [ ]) {
-    home.activation.makeMutable = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+    # sops-nix recreates template links during activation, so copy them only afterwards.
+    home.activation.makeMutable = lib.hm.dag.entryAfter [ "writeBoundary" "sops-nix" ] (
       lib.concatMapStringsSep "\n" (file: /* bash */ ''
         if [ -L "${home}/${file}" ]; then
           _dir=$(dirname "${home}/${file}")
           _base=$(basename "${file}")
           mv "${home}/${file}" "$_dir/$_base.nix-managed"
           cp --dereference "$_dir/$_base.nix-managed" "${home}/${file}"
-          chmod u+rwx "${home}/${file}"
+          chmod u+rw "${home}/${file}"
         fi
       '') config.makeMutable
     );

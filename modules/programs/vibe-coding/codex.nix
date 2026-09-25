@@ -128,5 +128,5 @@ in
     };
   };
   home.packages = [ (lib.hiPrio codexWrapper) ];
-  makeMutable = [ "${config.xdg.configHome}/codex/config.toml" ];
+  makeMutable = [ ".config/codex/config.toml" ];
 }
