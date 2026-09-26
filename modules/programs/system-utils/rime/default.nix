@@ -1,29 +1,14 @@
 {
-  flake.nixosModules.rime = { pkgs, ... }: {
-    i18n.inputMethod = {
-      enable = true;
-      enableGtk2 = true;
-      enableGtk3 = true;
-      type = "fcitx5";
-      fcitx5 = {
-        waylandFrontend = true;
-        # plasma6Support = true;
-        addons = with pkgs; [
-          fcitx5-rime
-          kdePackages.fcitx5-configtool
-          kdePackages.fcitx5-qt
-          fcitx5-gtk
-          fcitx5-lua
-        ];
-      };
-    };
+  flake.nixosModules.rime = _: {
+    imports = [ ./fcitx.nix ];
   };
   flake.homeModules.rime = { pkgs, lib, ... }: {
     imports = [
       ./dicts.nix
-      ./fcitx.nix
       ./squirrel.nix
     ];
+    js0ny.persist.stores.state.directories = [ ".local/share/fcitx5" ];
+    stylix.targets.fcitx5.enable = false;
     home.activation.deployRime =
       if pkgs.stdenv.hostPlatform.isDarwin then
         lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''

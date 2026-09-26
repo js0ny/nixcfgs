@@ -14,7 +14,7 @@ in
     geo = {
       longitude = -3.2;
       latitude = 55.95;
-      city = "Guangzhou";
+      city = "Edinburgh";
     };
     flatpak.enable = true;
     user.avatar = avatar;
