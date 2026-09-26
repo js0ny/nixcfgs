@@ -1,7 +1,7 @@
 { config, ... }:
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  dots = config.nixdots.core.dots;
+  dots = config.js0ny.host.flakeDir;
 
   # out: with package.json definitions required by neovim luasnip.
   out = mkSymlink "${dots}/modules/programs/editors/lsp-snippets";

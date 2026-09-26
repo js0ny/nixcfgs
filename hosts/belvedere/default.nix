@@ -1,9 +1,11 @@
 {
   inputs,
+  config,
   ...
 }:
 let
   mod = inputs.self.nixosModules;
+  endpoints = config.nixdefs.endpoints;
 in
 {
   system.stateVersion = "26.11";
@@ -15,21 +17,28 @@ in
 
     mod.server
     # keep-sorted start
-    mod.cloudflare
     mod.code-server
     mod.fail2ban
     mod.fish
     mod.forgejo
+    mod.gluetun
+    mod.grafana
     mod.hermes-agent
+    mod.idp
     mod.immich
     mod.jellyfin
-    mod.nextcloud
+    mod.miniflux
+    mod.navidrome
     mod.nix-index-database
+    mod.papra
+    mod.prometheus
     mod.prometheus-node
+    mod.radicale
     mod.rclone
+    mod.rsshub
     mod.sing-box
-    mod.starship
     # keep-sorted end
+    mod.starship
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
@@ -46,6 +55,11 @@ in
   networking = {
     firewall = {
       enable = true;
+      allowedTCPPorts = [
+        endpoints.http.port
+        endpoints.https.port
+      ];
+      allowedUDPPorts = [ 443 ];
     };
   };
 
@@ -56,4 +70,6 @@ in
       IPv6AcceptRA = true;
     };
   };
+
+  js0ny.persist.stores.state.directories = [ "/var/lib/postgresql" ];
 }

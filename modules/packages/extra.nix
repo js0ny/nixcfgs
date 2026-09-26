@@ -1,12 +1,14 @@
 {
   pkgs,
   lib,
-  pkgsStable,
+  inputs,
   ...
 }:
 let
+  pkgsStable = pkgs.mv.at "26.05";
+  font-manager = pkgsStable.font-manager;
   font-viewer = pkgs.writeShellScriptBin "font-viewer" ''
-    exec ${pkgs.font-manager}/libexec/font-manager/font-viewer "$@"
+    exec ${font-manager}/libexec/font-manager/font-viewer "$@"
   '';
   pdf2zh = pkgs.writeShellApplication {
     name = "pdf2zh";
@@ -18,7 +20,6 @@ let
       uvx --python=cp312 --from pdf2zh-next pdf2zh2 "$@"
     '';
   };
-  kdeconnect = pkgs.kdePackages.kdeconnect-kde;
 in
 {
   imports = [
@@ -61,30 +62,28 @@ in
     icoutils
     inkscape
     jetbrains.datagrip
-    js0ny.chatgpt
     js0ny.dirstat-rs
     js0ny.limes
     js0ny.proton-drive-cli
     js0ny.ratune
     js0ny.wdotool
+    js0ny.xdd
     kdePackages.elisa
     kdePackages.isoimagewriter
     kdePackages.kdenlive
     kdePackages.kleopatra
     kdePackages.partitionmanager
     kdePackages.qttools
-    kdeconnect
     keepassxc
     krabby
-    libguestfs
     mission-center
     motrix-next
     nautilus
     newsflash
-    nextcloud-client
     nmap
     octaveFull
     pdf2zh
+    pikpaktui
     pkgsStable.python314Packages.huggingface-hub
     rawtherapee
     rustscan
@@ -101,15 +100,20 @@ in
     nix-diff
     nix-output-monitor
     nvd
-    nix-tree
+
+    inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.fast-nix-gc.packages.${pkgs.stdenv.hostPlatform.system}.default
     deploy-rs
     nurl
     nvfetcher
     npins
+    hydra-check
     nil
     nixd
     cachix
     alejandra
+    manix
+    nix-auth
   ];
   home.sessionVariables = {
     GOLDENDICT_FORCE_WAYLAND = 1;
@@ -120,10 +124,6 @@ in
       url = "*.pck";
       run = "piper -- ${lib.getExe pkgs.godotpcktool} $1";
     }
-  ];
-  xdg.autostart.entries = [
-    # KDE Connect Tray Icon
-    "${kdeconnect}/share/applications/org.kde.kdeconnect.nonplasma.desktop"
   ];
   xdg.configFile."gdb/gdbinit".text = ''
     add-auto-load-safe-path /nix/store/*/lib

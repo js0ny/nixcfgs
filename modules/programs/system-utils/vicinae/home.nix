@@ -8,11 +8,21 @@
 let
   selfhosted = config.nixdefs.selfhosted;
   vicinae-extensions = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
-  pkg = pkgs.vicinae;
-  linux = pkgs.stdenv.isLinux;
+  # disable onboarding on compile time
+  pkg = pkgs.vicinae.overrideAttrs (old: {
+    cmakeFlags =
+      (old.cmakeFlags or [ ])
+      ++ (
+        with lib;
+        mapAttrsToList cmakeFeature {
+          ENABLE_ONBOARDING = if pkgs.stdenv.hostPlatform.isLinux then "OFF" else "ON";
+        }
+      );
+  });
+  home = config.home.homeDirectory;
 in
 lib.mkMerge [
-  (lib.mkIf pkgs.stdenv.isLinux {
+  (lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     # see block-desktop-entries.nix for disable desktop entries via vicinae
     programs.vicinae = {
       enable = true;
@@ -49,9 +59,23 @@ lib.mkMerge [
         consider_preedit = false;
         close_on_focus_loss = true;
         providers = {
+          applications.entrypoints = {
+            "chatgpt".alias = "codex";
+            "io.gitlab.metadatacleaner.metadatacleaner".alias = "mat";
+            "element-desktop".alias = "matrix";
+          };
           core.entrypoints = {
             sponsor.enabled = false;
             store.preferences.alwaysShowIntro = false;
+          };
+          files.preferences = {
+            "autoIndexing" = true;
+            "indexingPaths" = [
+              "${home}/Obsidian"
+            ];
+            "excludedIndexingPaths" = [
+              "${home}/Obsidian/.obsidian"
+            ];
           };
           raycast-compat.entrypoints = {
             store.preferences.alwaysShowIntro = false;
@@ -70,11 +94,14 @@ lib.mkMerge [
               };
             };
           };
-          system.entrypoints.run = {
-            alias = ">";
-            # run directly without open a terminal window
-            # accompanied with nix-index comma
-            preferences."default-action" = "run";
+          system.entrypoints = {
+            run = {
+              alias = ">";
+              # run directly without open a terminal window
+              # accompanied with nix-index comma
+              preferences."default-action" = "run";
+            };
+            set-default-terminal.enabled = false;
           };
           "@knoopx/vicinae-extension-firefox-0" = {
             preferences = {
@@ -91,6 +118,7 @@ lib.mkMerge [
               "network-cli-tool" = "nmcli";
             };
           };
+          "@samlinville/store.raycast.tailscale".preferences.tailscalePath = lib.getExe pkgs.tailscale;
         }
         // (lib.optionalAttrs selfhosted.searxng.enable {
           "@Ninetonine/vicinae-extension-searxng-0" = {
@@ -99,7 +127,7 @@ lib.mkMerge [
               "default_category" = "general";
               "details_start_open" = false;
               "keep_previous_search" = true;
-              "languages" = config.nixdots.core.locales.guiLocale;
+              "languages" = config.js0ny.host.locales.guiLocale;
             };
             entrypoints = {
               search-with-searxng = {
@@ -111,11 +139,10 @@ lib.mkMerge [
       };
     };
 
-    nixdots.persist.nosnap.home = {
-      directories = [
-        ".local/share/vicinae"
-      ];
-    };
+    js0ny.persist.stores.local.directories = [
+      ".local/share/vicinae"
+      ".cache/vicinae"
+    ];
     makeMutable = [ ".config/vicinae/settings.json" ];
 
     programs.chromium.extensions = [
@@ -136,7 +163,7 @@ lib.mkMerge [
     };
     home.packages = with pkgs; [ sqlite-interactive ];
   })
-  (lib.mkIf (pkgs.stdenv.isLinux && config.programs.zoxide.enable) {
+  (lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && config.programs.zoxide.enable) {
     programs.vicinae = {
       extensions = with vicinae-extensions; [ zoxide-recent-directories ];
       settings = {
@@ -147,7 +174,7 @@ lib.mkMerge [
               defaultFilter = "all";
               alternativeApplication = lib.getExe pkgs.xdg-terminal-exec;
             };
-            entrypoints.recent-directories.alias = "zo";
+            entrypoints.recent-directories.alias = "zi";
           };
         };
       };

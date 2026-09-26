@@ -7,7 +7,7 @@
       inputs,
       ...
     }:
-    lib.mkIf pkgs.stdenv.isLinux {
+    lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       programs.swayimg = {
         enable = true;
         initLua = builtins.readFile ./init.lua;
@@ -16,10 +16,13 @@
       xdg.configFile =
         let
           files = [
-            "utils.lua"
+            # keep-sorted start
+            "basic.lua"
             "gallery.lua"
             "slideshow.lua"
+            "utils.lua"
             "viewer.lua"
+            # keep-sorted end
           ];
         in
         {
@@ -36,7 +39,4 @@
           }) files
         );
     };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.swayimg ];
-  };
 }

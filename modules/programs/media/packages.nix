@@ -30,7 +30,7 @@ in
 {
   sops.secrets = {
     bilibili_sessdata = {
-      sopsFile = secrets + /net.yaml;
+      sopsFile = secrets + "/net.yaml";
     };
   };
   sops.templates."BBDown.config".content = ''
@@ -61,14 +61,10 @@ in
       yt-dlp
       # keep-sorted end
     ]
-    ++ lib.optionals (config.nixdots.desktop.enable) [
-      picard
+    ++ lib.optionals (config.js0ny.desktop.enable) [
+      (pkgs.mv.at "26.05").picard
       kid3
     ];
 
-  nixdots.persist.home = {
-    directories = [
-      ".config/MusicBrainz"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".config/MusicBrainz" ];
 }

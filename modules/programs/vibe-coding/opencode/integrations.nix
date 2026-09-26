@@ -88,9 +88,4 @@ in
       };
     };
   };
-  nixdefs.acp.servers.opencode = {
-    enable = config.programs.opencode.enable;
-    command = "opencode";
-    args = [ "acp" ];
-  };
 }

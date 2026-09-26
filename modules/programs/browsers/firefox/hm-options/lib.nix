@@ -6,7 +6,7 @@
 }:
 let
   profileDir = config.nixdefs.consts.firefox.profileDir;
-  p = config.nixdots.programs.firefox.defaultProfile;
+  p = config.js0ny.user.name;
 in
 {
   options.programs.firefox.profiles = lib.mkOption {

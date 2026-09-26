@@ -8,10 +8,8 @@
 let
   profileDir = config.nixdefs.consts.firefox.profileDir;
   persistDir = lib.removeSuffix "/firefox" profileDir;
-  cfg = config.nixdots.programs.firefox;
-  profile = config.nixdots.programs.firefox.defaultProfile;
+  profile = config.js0ny.user.name;
   policies = import ./policies.nix;
-  isNixOS = config.nixdots.linux.enable && config.nixdots.linux.nixos;
   scanPaths = (import ../../../../lib { inherit lib; }).scanPaths;
 in
 {
@@ -22,7 +20,7 @@ in
     ./addons.nix
     ./global-speed.nix
     ./cookie-autodelete.nix
-    ./sidebery.nix
+    ./sidebery-keymap.nix
 
     inputs.betterfox-nix.modules.homeManager.betterfox
   ]
@@ -36,11 +34,11 @@ in
   programs.firefox.configPath = "${config.home.homeDirectory}/${profileDir}";
 
   programs.firefox = {
-    enable = cfg.enable;
+    enable = true;
     # package =
     #   if isNixOS then
     #     pkgs.nixpaks.firefox
-    #   else if pkgs.stdenv.isDarwin then
+    #   else if pkgs.stdenv.hostPlatform.isDarwin then
     #     pkgs.firefox-bin
     #   else
     #     pkgs.firefox;
@@ -49,8 +47,15 @@ in
   # antidots
   home.file.".mozilla/native-messaging-hosts/.keep".enable = lib.mkForce false;
 
-  nixdots.persist.home = lib.mkIf (cfg.enable) { directories = [ persistDir ]; };
-  programs.firefox.policies = lib.mkIf pkgs.stdenv.isDarwin policies;
+  js0ny.persist.stores.state = {
+    directories = [ persistDir ];
+  };
+  programs.firefox.policies = policies // {
+    "3rdparty".Extensions = {
+      "uBlock0@raymondhill.net" = import ./ublock-origin.nix;
+      "{3c078156-979c-498b-8990-85f7987dd929}" = import ./sidebery.nix;
+    };
+  };
 
   # Betterfox
   programs.firefox.betterfox = {

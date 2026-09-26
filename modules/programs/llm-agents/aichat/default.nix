@@ -24,7 +24,7 @@
         models = mapAichatModel providerCfg.models;
       }) enabledProviders;
       configPath =
-        if pkgs.stdenv.isDarwin then
+        if pkgs.stdenv.hostPlatform.isDarwin then
           "${config.home.homeDirectory}/Library/Application Support/aichat/"
         else
           "${config.xdg.configHome}/aichat/";
@@ -32,7 +32,7 @@
     {
       sops.secrets = {
         llm_key_aichat = {
-          sopsFile = secrets + /llm-integrations.yaml;
+          sopsFile = secrets + "/llm-integrations.yaml";
         };
       };
       sops.templates."aichat.env" = {

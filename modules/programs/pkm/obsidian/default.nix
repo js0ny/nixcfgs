@@ -6,9 +6,10 @@
       ...
     }:
     {
-      home.packages = (lib.optionals pkgs.stdenv.isLinux) [
+      home.packages = (lib.optionals pkgs.stdenv.hostPlatform.isLinux) [
         (pkgs.obsidian.override {
-          commandLineArgs = if pkgs.stdenv.isLinux then "--password-store=gnome-libsecret" else "";
+          commandLineArgs =
+            if pkgs.stdenv.hostPlatform.isLinux then "--password-store=gnome-libsecret" else "";
         })
       ];
       home.directories."Obsidian" = {
@@ -20,7 +21,10 @@
         index = true;
         pin = true;
       };
-      nixdots.persist.nosnap.home.directories = [ ".config/obsidian" ];
-      nixdots.darwin.homebrew.casks = [ "obsidian" ];
+      js0ny.persist.stores = {
+        state.directories = [ "Obsidian" ];
+        local.directories = [ ".config/obsidian" ];
+      };
+      js0ny.homebrew.casks = [ "obsidian" ];
     };
 }

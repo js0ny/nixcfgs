@@ -8,13 +8,13 @@
     let
       dotDir = ".local/share/dot_zotero";
       libraryDir = ".local/share/Zotero";
-      profile = config.nixdots.user.name;
+      profile = config.js0ny.user.name;
       nur-addons = pkgs.nur.repos.rycee.firefox-addons;
-      p = config.nixdots.programs.firefox.defaultProfile;
+      p = config.js0ny.user.name;
     in
     {
       home.packages =
-        if pkgs.stdenv.isLinux then
+        if pkgs.stdenv.hostPlatform.isLinux then
           [
             (pkgs.nixpaks.zotero.override {
               dotDir = dotDir;
@@ -37,15 +37,13 @@
         '';
         "${dotDir}/zotero/${profile}/user.js".text = /* javascript */ ''
           user_pref("extensions.zotero.export.quickCopy.setting", "bibliography=http://www.zotero.org/styles/ieee");
-          user_pref("intl.locale.requested", "${config.nixdots.core.locales.guiLocale}");
+          user_pref("intl.locale.requested", "${config.js0ny.host.locales.guiLocale}");
         '';
       };
-      nixdots.persist.nosnap.home = {
-        directories = [
-          dotDir
-          libraryDir
-        ];
-      };
+      js0ny.persist.stores.state.directories = [
+        dotDir
+        libraryDir
+      ];
       services.xremap.config.keymap = [
         {
           name = "Zotero PDF Navigator";

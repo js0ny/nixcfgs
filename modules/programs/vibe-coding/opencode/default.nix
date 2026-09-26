@@ -8,11 +8,11 @@
       ...
     }:
     let
-      sopsFile = secrets + /opencode.yaml;
+      sopsFile = secrets + "/opencode.yaml";
       user = config.home.username;
     in
     {
-      home.packages = lib.optionals config.nixdots.desktop.enable [ pkgs.opencode-desktop ];
+      home.packages = lib.optionals config.js0ny.desktop.enable [ pkgs.opencode-desktop ];
       imports = [
         ./integrations.nix
       ];
@@ -22,19 +22,18 @@
         opencode_web_password = { inherit sopsFile; };
       };
 
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".local/share/opencode"
-        ];
+      js0ny.persist.stores = {
+        state.directories = [ ".config/opencode" ];
+        local.directories = [ ".local/share/opencode" ];
       };
-      nixdots.persist.home.directories = [ ".config/opencode" ];
+
       systemd.user.tmpfiles.rules = [
         "f ${config.xdg.dataHome}/opencode/auth.json 0600 ${user} users -"
       ];
 
       home.sessionVariables = {
         # Manage LSP by DevShell
-        OPENCODE_DISABLE_LSP_DOWNLOAD = if pkgs.stdenv.isLinux then "true" else "";
+        OPENCODE_DISABLE_LSP_DOWNLOAD = if pkgs.stdenv.hostPlatform.isLinux then "true" else "";
       };
 
       sops.templates."opencode-web.env".content = /* bash */ ''

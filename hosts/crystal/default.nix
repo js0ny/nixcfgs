@@ -17,27 +17,38 @@ in
     ./disko.nix
     ./restic.nix
     ./vars.nix
+    ./sing-box.nix
+    mod.clash-verge
+    mod.throne
     mod.desktop
     mod.podman
     mod.libvirt
     mod.sshd
     mod.tailscale
+    mod.sync-org-ics
 
-    mod.plasma
+    mod.tether
+    mod.kdeconnect
+    mod.localsend
+    mod.uxplay
+
     mod.hyprland
     mod.niri
-    mod.scroll
+    mod.plasma
 
     mod.gaze
+    mod.prometheus-node
+
+    mod.rclone
+
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
 
   boot.loader.grub.enable = lib.mkForce false;
+  boot.lanzaboote.enable = true;
 
-  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
-  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
-  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
 
   # # Keep the internal MediaTek Bluetooth USB device awake; it can disappear from BlueZ after USB-C monitor hotplug/resume.
   # services.udev.extraRules = ''
@@ -62,8 +73,16 @@ in
 
   services.scx = {
     enable = true;
-    scheduler = "scx_lavd";
+    scheduler = "scx_pandemonium";
   };
 
   boot.plymouth.enable = true;
+
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+  js0ny.user.groups = [ "wireshark" ];
+
+  environment.systemPackages = [ pkgs.kdePackages.plasma-bigscreen ];
 }

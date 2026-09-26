@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (setq package-enable-at-startup nil)
 
 (setq initial-frame-alist '((name . "emacs")))

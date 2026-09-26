@@ -34,15 +34,15 @@
       pkgs,
       lib,
       config,
+      osConfig,
       ...
     }:
     let
-      cfg = config.nixdots.programs.thunderbird;
-      profile = config.nixdots.user.name;
+      profile = config.js0ny.user.name;
       nur-addons = pkgs.nur.repos.rycee.thunderbird-addons;
-      isNixOS = config.nixdots.linux.enable && config.nixdots.linux.nixos;
+      isNixOS = osConfig != null;
     in
-    lib.mkIf cfg.enable {
+    {
       programs.thunderbird = {
         enable = true;
         package = if isNixOS then pkgs.nixpaks.thunderbird else pkgs.thunderbird;
@@ -54,18 +54,8 @@
           extensions = with nur-addons; [ tbkeys ];
         };
       };
-      nixdots.persist.home = {
-        directories = [
-          ".thunderbird"
-        ];
-      };
-      home.packages = lib.optionals (pkgs.stdenv.isLinux) [ pkgs.birdtray ];
+      js0ny.persist.stores.state.directories = [ ".thunderbird" ];
+      home.packages = lib.optionals (pkgs.stdenv.hostPlatform.isLinux) [ pkgs.birdtray ];
     };
 
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.thunderbird ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.thunderbird ];
-  };
 }

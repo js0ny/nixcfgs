@@ -7,16 +7,16 @@
       ...
     }:
     let
-      shell = config.nixdots.apps.interactiveShell.package;
+      shell = config.js0ny.apps.interactiveShell.package;
     in
     {
       programs.ghostty = {
         enable = true;
-        package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+        package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
         enableBashIntegration = true;
         enableZshIntegration = true;
         enableFishIntegration = true;
-        systemd.enable = if pkgs.stdenv.isDarwin then false else true;
+        systemd.enable = pkgs.stdenv.hostPlatform.isLinux;
         settings = {
           env = [
             "COLORTERM=truecolor"
@@ -45,7 +45,7 @@
         };
       };
       programs.zed-editor.extensions = [ "ghostty" ];
-      targets.darwin.defaults."com.mitchellh.ghostty" = lib.mkIf pkgs.stdenv.isDarwin {
+      targets.darwin.defaults."com.mitchellh.ghostty" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
         SUEnableAutomaticChecks = 0;
         SUHasLaunchedBefore = 1;
         SUSendProfileInfo = 0;

@@ -15,7 +15,7 @@
         NU_EXPERIMENTAL_OPTIONS = "native-clip";
       };
       programs.nushell = {
-        enable = pkgs.stdenv.isLinux;
+        enable = pkgs.stdenv.hostPlatform.isLinux;
         # install nushell via brew in darwin.
         # plugins = with pkgs.nushellPlugins; [
         #   desktop_notifications
@@ -64,16 +64,9 @@
           source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/television/television-completions.nu
         '';
       };
-      nixdots.persist.home = {
-        directories = [
-          ".config/nushell"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [ ".config/nushell" ];
       programs.zed-editor.extensions = [ "nu" ];
       home.packages = with pkgs; [ nufmt ];
     };
 
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.nushell ];
-  };
 }

@@ -18,7 +18,7 @@
       };
 
       sops.secrets.wakatime_api_key = {
-        sopsFile = secrets + /hosts.yaml;
+        sopsFile = secrets + "/hosts.yaml";
       };
       sops.templates."wakatime.cfg" = {
         content = /* ini */ ''

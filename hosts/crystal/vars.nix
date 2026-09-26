@@ -7,23 +7,20 @@
 }:
 let
   avatar = inputs.bindeps + "/avatar/git.jpg";
+  hosts = import ../../definitions/hosts.nix;
 in
 {
-  nixdots = {
-    persist = {
-      enable = true;
-      path = "/persist";
-      nosnap.path = "/nosnap";
+  js0ny = {
+    geo = {
+      longitude = -3.2;
+      latitude = 55.95;
+      city = "Edinburgh";
     };
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-      avatar = avatar;
-    };
-    core = {
-      hostname = "crystal";
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
+    flatpak.enable = true;
+    user.avatar = avatar;
+    persist.enable = true;
+    host = {
+      hostName = "crystal";
       timezones = [
         "Europe/London"
         "Etc/UTC"
@@ -32,67 +29,67 @@ in
       locales = {
         guiLocale = "zh-CN";
       };
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
-    services = {
-      tailscale = {
-        enable = true;
-        ip = "100.105.9.50";
-        ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey.path;
-      };
-      syncthing.enable = false;
-      sshd.enable = true;
-      ollama = {
-        enable = false;
-        models = [ "bge-m3" ];
-      };
-    };
-    networking.nftables.enable = true;
-    style = {
+    desktop = {
       enable = true;
-      stylix = {
-        enable = true;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
-      };
+      display = "wayland";
+      displayManager = "regreet";
+      session = [
+        "hyprland"
+        "niri"
+        "kde"
+      ];
     };
-    laptop = {
-      enable = true;
-      asus.enable = true;
-      display = {
-        connector = "eDP-1";
-        makeModel = "Samsung Display Corp. ATNA40CU05-0  Unknown";
-        VRR = true;
+    hardware = {
+      localInterfaces = [ "wlp3s0" ];
+      cpu.nproc = 16;
+      type = "bare-metal";
+      gpu = {
+        driver = "none";
+        busIds = {
+          nvidia = "PCI:1:0:0";
+          amdgpu = "PCI:101:0:0";
+        };
       };
-      keyboard = {
-        devicePath = "/dev/input/by-path/pci-0000:65:00.3-usb-0:4:1.0-event-mouse";
-        name = "Asus Keyboard";
-        idVendor = "0b05";
-        idProduct = "19b6";
-      };
-      backlight = {
-        screen = if config.nixdots.linux.gpu == "none" then "amdgpu_bl1" else "amdgpu_bl2";
-        keyboard = "asus::kbd_backlight";
-      };
-      microphone = {
-        name = "alsa_input.pci-0000_65_00.6.analog-stereo";
-        description = "内置麦克风";
-      };
-      cameraIR = {
-        devicePath = "/dev/video2";
-      };
-      touchpad = {
-        devicePath = "/dev/input/by-path/platform-AMDI0010:00-event-mouse";
-        name = "ASUP1208:00 093A:3011 Touchpad";
-        vendorId = "093A";
-        productId = "3011";
+      laptop = {
+        enable = true;
+        vendor = "asus";
+        display = {
+          connector = "eDP-1";
+          makeModel = "Samsung Display Corp. ATNA40CU05-0  Unknown";
+          VRR = true;
+        };
+        keyboard = {
+          devicePath = "/dev/input/by-path/pci-0000:65:00.3-usb-0:4:1.0-event-mouse";
+          name = "Asus Keyboard";
+          idVendor = "0b05";
+          idProduct = "19b6";
+        };
+        backlight = {
+          screen = if config.js0ny.hardware.gpu.driver == "none" then "amdgpu_bl1" else "amdgpu_bl2";
+          keyboard = "asus::kbd_backlight";
+        };
+        microphone = {
+          name = "alsa_input.pci-0000_65_00.6.analog-stereo";
+          description = "内置麦克风";
+        };
+        cameraIR = {
+          devicePath = "/dev/video2";
+        };
+        touchpad = {
+          devicePath = "/dev/input/by-path/platform-AMDI0010:00-event-mouse";
+          name = "ASUP1208:00 093A:3011 Touchpad";
+          vendorId = "093A";
+          productId = "3011";
+        };
       };
     };
     apps = {
       terminal = {
-        package = pkgs.kitty;
-        exe = "kitty";
-        desktop = "kitty.desktop";
+        package = pkgs.ghostty;
+        exe = "ghostty";
+        desktop = "com.mitchellh.ghostty.desktop";
       };
       interactiveShell = {
         package = pkgs.fish;
@@ -129,113 +126,30 @@ in
         };
       };
     };
-    pam.howdy = {
+    tailscale = hosts.nixos.crystal.tailscale // {
       enable = true;
-      setup = true;
+      authKeyFile = config.sops.secrets.tskey.path;
     };
-    programs = {
-      steam.enable = true;
-      obs-studio.enable = true;
-      chromium.enable = true;
-      firefox.enable = true;
-      dolphin.enable = true;
-      thunderbird.enable = true;
-    };
-    features = {
-      preferGtk = true;
-      media = {
-        obs-studio.enable = true;
-        mpv = {
-          enable = true;
-          enableNativeFrontend = false;
-        };
-      };
-      tools = {
-        vicinae.enable = true;
-      };
-      flatpak.enable = false;
-    };
-    linux = {
+    style = {
       enable = true;
-      lanzaboote = true;
-      display = "wayland";
-      gpu = "nvidia";
-      gpuBusIds = {
-        nvidia = "PCI:1:0:0";
-        amdgpu = "PCI:101:0:0";
+      stylix = {
+        enable = true;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
       };
-    };
-    machine = {
-      role = "host";
-      compat = true;
-      virtualisation = {
-        waydroid = false;
-        libvirt = {
-          enable = false;
-        };
-        oci-container.podman = true;
-      };
-    };
-    desktop = {
-      enable = true;
-      dm = "sddm";
-      session = [
-        "niri"
-        "kde"
+      fonts.extraFonts = [
+        {
+          package = pkgs.corefonts;
+          name = "Corefonts";
+        }
       ];
-      wm = {
-        shell = "dank-material-shell";
-        clipboard = "vicinae";
-      };
-    };
-    sops = {
-      enable = true;
-      yamlFile = secrets + /hosts/crystal.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
-    };
-    geo = {
-      longitude = -3.2;
-      latitude = 55.95;
-      city = "Edinburgh";
-    };
-    devenvs = {
-      c = {
-        enable = true;
-        global = true;
-      };
-      nix = {
-        enable = true;
-        global = true;
-      };
-      lua = {
-        enable = true;
-        global = true;
-      };
-      typst = {
-        enable = true;
-        global = true;
-      };
-      configfiles = {
-        enable = true;
-        global = true;
-      };
-      webdev = {
-        enable = true;
-        global = true;
-      };
-      rust = {
-        enable = true;
-        global = true;
-      };
-      python = {
-        enable = true;
-        global = true;
-      };
-      dotnet = {
-        enable = true;
-        global = true;
-      };
     };
   };
-  sops.secrets.tskey = { };
+  sops = {
+    defaultSopsFile = secrets + "/hosts/crystal.yaml";
+    age = {
+      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
+      generateKey = false;
+    };
+    secrets.tskey = { };
+  };
 }

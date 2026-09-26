@@ -7,8 +7,8 @@
       ...
     }:
     let
-      alt = if pkgs.stdenv.isDarwin then "cmd" else "alt";
-      shell = config.nixdots.apps.interactiveShell.package;
+      alt = if pkgs.stdenv.hostPlatform.isDarwin then "cmd" else "alt";
+      shell = config.js0ny.apps.interactiveShell.package;
     in
     {
       programs.kitty = {
@@ -24,7 +24,7 @@
         };
         font = {
           size = 12;
-          name = (builtins.head config.nixdots.style.fonts.editorMono).name;
+          name = (builtins.head config.js0ny.style.fonts.editorMono).name;
         };
         settings = {
           disable_ligatures = "never";

@@ -1,7 +1,7 @@
 { config, secrets, ... }:
 let
   port = toString 8443;
-  sopsFile = secrets + /sing-box.yaml;
+  sopsFile = secrets + "/sing-box.yaml";
 in
 {
   sops.secrets = {

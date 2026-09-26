@@ -5,7 +5,7 @@
   ...
 }:
 let
-  p = config.nixdots.programs.firefox.defaultProfile;
+  p = config.js0ny.user.name;
   baseprefs = import ./global-prefs.nix;
 in
 {
@@ -15,7 +15,7 @@ in
         "signon.rememberSignons" = false;
         "browser.urlbar.suggest.history" = true;
 
-        "browser.ml.enabled" = true;
+        "browser.ml.enabled" = false;
         "browser.ml.chat.hideLocalhost" = false;
 
         "browser.toolbars.bookmarks.visibility" = "never";
@@ -38,7 +38,7 @@ in
         "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
         "browser.tabs.closeTabByDblclick" = true;
         # Disable Ctrl-Q / Ctrl-Shift-W
-        "browser.quitShortcut.disabled" = if pkgs.stdenv.isDarwin then false else true;
+        "browser.quitShortcut.disabled" = if pkgs.stdenv.hostPlatform.isDarwin then false else true;
         ### Session
         # * 0: Blank Page
         # * 1: Home Page
@@ -103,7 +103,7 @@ in
         # 147: Keep playing videos in Picture-in-Picture when switching tabs
         "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled" = false;
       }
-      // (lib.optionalAttrs (pkgs.stdenv.isDarwin) baseprefs);
+      // (lib.optionalAttrs (pkgs.stdenv.hostPlatform.isDarwin) baseprefs);
     };
   };
 }

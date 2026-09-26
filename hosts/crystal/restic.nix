@@ -6,13 +6,13 @@
   ...
 }:
 let
-  user = config.nixdots.user.name;
+  user = config.js0ny.user.name;
   latestPersistSnapshot = "/run/latest-persist-snapshot";
 in
 {
   sops.secrets.restic_repo_password = { };
   sops.secrets.rclone_conf = {
-    sopsFile = secrets + /files/rclone.yaml;
+    sopsFile = secrets + "/files/rclone.yaml";
     key = "data";
   };
 

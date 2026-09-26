@@ -14,32 +14,22 @@
     # keep-sorted start
 
     ./static/flux.nix
-    inputs.self.nixosModules.authelia
     inputs.self.nixosModules.bentopdf
-    inputs.self.nixosModules.cloudflare
     inputs.self.nixosModules.code-server
     inputs.self.nixosModules.fail2ban
     inputs.self.nixosModules.fast-note-sync
     inputs.self.nixosModules.forgejo-runner
     inputs.self.nixosModules.garage
-    inputs.self.nixosModules.gluetun
-    inputs.self.nixosModules.grafana
     inputs.self.nixosModules.hermes-agent
     inputs.self.nixosModules.karakeep
     inputs.self.nixosModules.librechat
     inputs.self.nixosModules.litellm
-    inputs.self.nixosModules.lldap
     inputs.self.nixosModules.lobehub
-    inputs.self.nixosModules.miniflux
     inputs.self.nixosModules.mongodb
-    inputs.self.nixosModules.navidrome
-    inputs.self.nixosModules.nextcloud
     inputs.self.nixosModules.opengist
     inputs.self.nixosModules.paperless
     inputs.self.nixosModules.pdf2zh
     inputs.self.nixosModules.postgresql
-    inputs.self.nixosModules.prometheus
-    inputs.self.nixosModules.radicale
     inputs.self.nixosModules.rclone
     inputs.self.nixosModules.rsshub
     inputs.self.nixosModules.searxng
@@ -47,8 +37,6 @@
     inputs.self.nixosModules.starship
     inputs.self.nixosModules.sub2api
     inputs.self.nixosModules.tailscale
-    inputs.self.nixosModules.telegram-inline-llm-bot
-    inputs.self.nixosModules.valkey
     # keep-sorted end
   ];
 
@@ -59,7 +47,7 @@
   sops.secrets = {
     rclone = {
       key = "data";
-      sopsFile = secrets + /files/rclone.yaml;
+      sopsFile = secrets + "/files/rclone.yaml";
       path = "/var/lib/rclone/rclone.conf";
       owner = "root";
     };
@@ -97,6 +85,7 @@
         80
         443
       ];
+      allowedUDPPorts = [ 443 ];
     };
   };
 

@@ -11,14 +11,10 @@ in
 {
   sops.secrets = {
     llm_key_claude_code = {
-      sopsFile = secrets + /llm-integrations.yaml;
+      sopsFile = secrets + "/llm-integrations.yaml";
     };
   };
-  nixdots.persist.home = {
-    directories = [
-      ".config/claude"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".config/claude" ];
   home.sessionVariables = {
     CLAUDE_CONFIG_DIR = "${config.xdg.configHome}/claude";
   };
@@ -81,5 +77,7 @@ in
     executable = true;
   };
   makeMutable = [ ".config/claude/settings.json" ];
+
+  home.packages = [ pkgs.llm-agents.claude-desktop ];
 
 }

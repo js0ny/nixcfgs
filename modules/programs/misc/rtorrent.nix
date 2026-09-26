@@ -34,9 +34,5 @@ in
     "d ${dataDir}/socket 0777 ${user} users -"
   ];
 
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/rtorrent"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".local/share/rtorrent" ];
 }

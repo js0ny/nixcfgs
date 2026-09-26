@@ -2,7 +2,7 @@
   flake.homeModules.telegram =
     { pkgs, lib, ... }:
     let
-      mod = if pkgs.stdenv.isDarwin then "meta" else "alt";
+      mod = if pkgs.stdenv.hostPlatform.isDarwin then "meta" else "alt";
       shortcuts = builtins.toJSON [
         {
           command = "previous_chat";
@@ -91,7 +91,7 @@
     in
     {
       home.packages =
-        if pkgs.stdenv.isLinux then
+        if pkgs.stdenv.hostPlatform.isLinux then
           [
             pkgs.nixpaks.ayugram-desktop
             pkgs.nixpaks.materialgram
@@ -101,19 +101,18 @@
           [
             pkgs.materialgram
           ];
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".local/share/AyuGramDesktop"
-          ".local/share/materialgram"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [
+        ".local/share/AyuGramDesktop"
+        ".local/share/materialgram"
+        ".local/share/TelegramDesktop"
+      ];
       xdg.dataFile = {
         "AyuGramDesktop/tdata/experimental_options.json".text = experimentalOptions;
         "AyuGramDesktop/tdata/shortcuts-custom.json".text = shortcuts;
         "materialgram/tdata/experimental_options.json".text = experimentalOptions;
         "materialgram/tdata/shortcuts-custom.json".text = shortcuts;
       };
-      home.file = lib.mkIf pkgs.stdenv.isDarwin {
+      home.file = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
         "Library/Application Support/Telegram Desktop/tdata/shortcuts-custom.json".text = shortcuts;
       };
     };

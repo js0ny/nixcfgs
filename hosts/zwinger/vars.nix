@@ -1,21 +1,25 @@
 {
-  pkgs,
   config,
   secrets,
   ...
 }:
+let
+  hosts = import ../../definitions/hosts.nix;
+in
 {
-  sops.secrets.tskey = {
-    sopsFile = secrets + /hosts/zwinger.yaml;
-  };
-  nixdots = {
-    persist.enable = true;
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
+  sops = {
+    age = {
+      keyFile = "/etc/ssh/agekey.txt";
+      generateKey = false;
     };
-    core = {
-      hostname = "zwinger";
+    secrets.tskey.sopsFile = secrets + "/hosts/zwinger.yaml";
+  };
+  js0ny = {
+    geo = {
+      city = "Nuremberg";
+    };
+    host = {
+      hostName = "zwinger";
       timezones = [
         "Etc/UTC"
         "Europe/Berlin"
@@ -23,45 +27,16 @@
         "Asia/Shanghai"
       ];
     };
-    services = {
-      tailscale = {
-        enable = true;
-        ip = "100.71.26.71";
-        # ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey.path;
-      };
-      # syncthing.enable = true;
-      sshd.enable = true;
-    };
-    networking.nftables.enable = true;
+    persist.enable = true;
+    desktop.display = "none";
+    hardware.gpu.driver = "none";
     style = {
       enable = false;
       stylix.enable = false;
     };
-    linux = {
+    tailscale = hosts.nixos.zwinger.tailscale // {
       enable = true;
-      display = "none";
-      gpu = "none";
-    };
-    machine = {
-      role = "guest";
-      compat = false;
-      virtualisation = {
-        oci-container.podman = true;
-      };
-    };
-    server = {
-      enable = true;
-      ip = "178.104.159.210";
-      openHttp = true;
-    };
-    sops = {
-      enable = true;
-      keyFile = "/etc/ssh/agekey.txt";
-    };
-    geo = {
-      city = "Nuremberg";
+      authKeyFile = config.sops.secrets.tskey.path;
     };
   };
 }

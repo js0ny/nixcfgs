@@ -27,10 +27,6 @@
           # keep-sorted end
         ];
       };
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".local/share/zed"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [ ".local/share/zed" ];
     };
 }

@@ -1,16 +1,14 @@
 {
-  flake.homeModules.editors =
-    { config, ... }:
-    {
-      nixdefs = {
-        lsp.enable = true;
-        mcp.enable = true;
-      };
-      nixdots.persist.home.directories = [
-        {
-          directory = ".config/github-copilot";
-          mode = "0700";
-        }
-      ];
+  flake.homeModules.editors = _: {
+    nixdefs = {
+      lsp.enable = true;
+      mcp.enable = true;
     };
+    js0ny.persist.stores.state.directories = [
+      {
+        directory = ".config/github-copilot";
+        mode = "0700";
+      }
+    ];
+  };
 }

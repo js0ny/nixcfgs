@@ -11,7 +11,7 @@
       context_servers = config.nixdefs.mcp.clientConfigs.zed-editor;
       terminal = {
         env.EDITOR = "zeditor";
-        shell.program = config.nixdots.apps.interactiveShell.exe;
+        shell.program = config.js0ny.apps.interactiveShell.exe;
       };
       relative_line_numbers = "enabled";
       icon_theme = "Material Icon Theme";
@@ -48,7 +48,7 @@
           proxy_no_verify = null;
         };
       };
-      # NOTE: managed by stylix
+      # managed by stylix
       # ui_font_size = 16;
       # buffer_font_size = null;
       # relative_line_numbers = true;

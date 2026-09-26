@@ -4,44 +4,11 @@
   secrets,
   ...
 }:
+let
+  hosts = import ../../definitions/hosts.nix;
+in
 {
-  nixdots = {
-    persist.enable = false;
-    darwin = {
-      enable = true;
-      homebrew = {
-        enable = true;
-      };
-    };
-    user = {
-      name = "js0ny";
-      home = "/Users/js0ny";
-      shell = pkgs.zsh;
-    };
-    core = {
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      hostname = "zen";
-      timezones = [
-        "Europe/London"
-        "Etc/UTC"
-        "Asia/Shanghai"
-      ];
-    };
-    services = {
-      tailscale = {
-        enable = true;
-        ip = "100.68.20.54";
-        ipv6 = "fd7a:115c:a1e0::df37:1436";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
-      };
-      syncthing.enable = true;
-      sshd.enable = false;
-    };
-    style = {
-      enable = true;
-      stylix.enable = true;
-    };
+  js0ny = {
     apps = {
       terminal = {
         package = pkgs.kitty;
@@ -80,32 +47,33 @@
         };
       };
     };
-    programs = {
-      obs-studio = {
-        enable = false;
-      };
-      chromium.enable = true;
-      firefox.enable = true;
-      dolphin.enable = true;
-      thunderbird.enable = true;
+    hardware = {
+      type = "bare-metal";
     };
-    features = {
-      enable = true;
-      media.mpv = {
-        enable = true;
-        enableNativeFrontend = true;
-      };
+    desktop.enable = true;
+    homebrew.enable = true;
+    host = {
+      hostName = "zen";
+      timezones = [
+        "Europe/London"
+        "Etc/UTC"
+        "Asia/Shanghai"
+      ];
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
-    machine = {
-      role = "host";
-    };
-    desktop = {
+    tailscale = hosts.darwin.zen.tailscale // {
       enable = true;
     };
-    sops = {
+    style = {
       enable = true;
-      yamlFile = secrets + /hosts/zen.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
+      stylix.enable = true;
+    };
+  };
+  sops = {
+    defaultSopsFile = secrets + "/hosts/zen.yaml";
+    age = {
+      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
+      generateKey = false;
     };
   };
 }

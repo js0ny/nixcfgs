@@ -26,5 +26,8 @@ let
 in
 {
   home.packages = [ pi ];
-  nixdots.persist.home.directories = [ ".config/pi/agent" ];
+  js0ny.persist.stores.state.directories = [
+    ".config/pi/agent"
+    ".local/share/pi/agent"
+  ];
 }

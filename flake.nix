@@ -9,7 +9,7 @@
       myLib = import ./lib { lib = inputs.nixpkgs.lib; };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
-      debug = true;
+      debug = true; # for nixd
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -24,9 +24,12 @@
   inputs = {
     # {{{ Core
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree/nixos-unstable";
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree/nixos-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nur = {
       url = "github:nix-community/NUR";
@@ -68,25 +71,17 @@
       # or gaze will coredump every 5 secs
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    scroll = {
-      url = "github:Diax170/scroll-flake";
+    tether = {
+      url = "github:zackb/tether";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hermes-agent.url = "github:NousResearch/hermes-agent";
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dank-material-shell = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
-      };
     };
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
@@ -125,7 +120,9 @@
     nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
+      inputs.nix-darwin.follows = "nix-darwin";
+      inputs.home-manager.follows = "home-manager";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -145,7 +142,18 @@
       inputs.home-manager.follows = "home-manager";
     };
     # hyprland.url = "github:hyprwm/Hyprland";
-    telegram-inline-llm-bot.url = "github:js0ny/telegram-inline-llm-bot";
+    nix-tree-rs = {
+      url = "github:Mic92/nix-tree-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
+    fast-nix-gc = {
+      url = "github:Mic92/fast-nix-gc";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.nix-darwin.follows = "nix-darwin";
+    };
     # }}}
 
     # {{{ NixOS
@@ -154,12 +162,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    impermanence = {
-      url = "github:nix-community/impermanence";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
+    preservation.url = "github:nix-community/preservation";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.1.0";
       inputs = {
@@ -202,6 +205,8 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
+        treefmt-nix.follows = "treefmt-nix";
+        systems.follows = "systems";
       };
     };
     # }}}

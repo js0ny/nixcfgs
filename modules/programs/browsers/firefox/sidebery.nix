@@ -1,51 +1,47 @@
+# https://github.com/mbnuqw/sidebery/blob/v5.6.1/src/services/settings.ts
+# https://github.com/mbnuqw/sidebery/blob/v5.6.1/src/services/styles.fg.ts
+# https://github.com/mbnuqw/sidebery/blob/v5.6.1/src/defaults/settings.ts
 {
-  pkgs,
-  config,
-  ...
-}:
-let
-  addons = pkgs.firefox-addons;
-  id = "{3c078156-979c-498b-8990-85f7987dd929}";
-  p = config.nixdots.programs.firefox.defaultProfile;
-in
-{
-  imports = [
-    ./sidebery-keymap.nix
-  ];
-  programs.firefox.profiles."${p}" = {
-    extensions.packages = with addons; [ sidebery ];
-    extensionStorage."${id}".settings = {
-      sidebarCSS = builtins.readFile ./sidebery.css;
-      settings = {
-        ### General
-        nativeScrollbars = true;
-        nativeScrollbarsThin = true;
-        nativeScrollbarsLeft = false;
-        updateSidebarTitle = false;
-        ### Context Menu
-        ctxMenuNative = false;
-        ctxMenuRenderInact = true;
-        ctxMenuRenderIcons = true;
-        ### Omnibox / Address Bar
-        omniReopenInCtr = false;
-        omniReopenInCtrPrefix = "";
-        omniSwitchToPanel = true;
-        omniSwitchToPanelPrefix = "=";
-        omniMoveToPanel = false;
-        omniMoveToPanelPrefix = "";
-        omniMoveToGroup = true;
-        omniMoveToGroupPrefix = "+";
-        ### Navigation bar
-        # Layout: "horizontal", "vertical", "hidden"
-        navBarLayout = "horizontal";
-        # Show navigation bar in one line
-        navBarInline = true;
-        # Side: "left", "right"; available only if navBarLayout is "vertical"
-        navBarSide = "left";
-        navBtnCount = true;
-        hideEmptyPanels = false;
-        hideDiscardedTabPanels = false;
-      };
-    };
+  sidebarCSS = builtins.readFile ./sidebery.css;
+  settings = {
+    ### General
+    nativeScrollbars = true;
+    nativeScrollbarsThin = true;
+    nativeScrollbarsLeft = false;
+    updateSidebarTitle = false;
+    ### Context Menu
+    ctxMenuNative = false;
+    ctxMenuRenderInact = true;
+    ctxMenuRenderIcons = true;
+    ### Address Bar (Omnibox)
+    omniReopenInCtr = false;
+    omniReopenInCtrPrefix = "";
+    omniSwitchToPanel = true;
+    omniSwitchToPanelPrefix = "=";
+    omniMoveToPanel = false;
+    omniMoveToPanelPrefix = "";
+    omniMoveToGroup = true;
+    omniMoveToGroupPrefix = "+";
+    ### Nav bar
+    # Layout: "horizontal", "vertical", "hidden"
+    navBarLayout = "horizontal";
+    # Show navigation bar in one line
+    navBarInline = true;
+    # Side: "left", "right"; available only if navBarLayout is "vertical"
+    navBarSide = "left";
+    navBtnCount = true;
+    hideEmptyPanels = false;
+    hideDiscardedTabPanels = false;
+    ### Tabs colorization
+    colorizeTabs = true;
+    colorizeTabsSrc = "domain";
+    ### Native tabs
+    hideInact = true;
+    ### Apperance
+    theme = "proton";
+    ### Mouse
+    scrollThroughTabs = "panel";
+    scrollThroughTabsCyclic = true;
+    navActTabsPanelLeftClickAction = "new_tab";
   };
 }

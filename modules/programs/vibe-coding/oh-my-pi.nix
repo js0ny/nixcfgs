@@ -26,5 +26,5 @@ let
 in
 {
   home.packages = [ pi ];
-  nixdots.persist.home.directories = [ ".config/omp" ];
+  js0ny.persist.stores.state.directories = [ ".config/omp" ];
 }

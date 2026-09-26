@@ -16,12 +16,13 @@
   home.packages = with pkgs.kdePackages; [
     elisa
   ];
-  nixdots.persist.home = {
+  js0ny.persist.stores.state = {
     files = [
-      ".config/elisarc"
+      {
+        file = ".config/elisarc";
+        how = "symlink";
+      }
     ];
-    directories = [
-      ".local/share/elisa"
-    ];
+    directories = [ ".local/share/elisa" ];
   };
 }

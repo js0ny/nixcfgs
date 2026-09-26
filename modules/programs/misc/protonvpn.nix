@@ -8,7 +8,7 @@ let
   account = config.secrets.plain.protonAccount;
 in
 {
-  targets.darwin.defaults."ch.protonvpn.mac" = lib.mkIf pkgs.stdenv.isDarwin {
+  targets.darwin.defaults."ch.protonvpn.mac" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     AutoConnect = 0;
 
     # DONT Check Update and DONT Auto Update
@@ -38,9 +38,9 @@ in
     "TelemetryUsageData${account}" = false;
     "TelemetryCrashReports${account}" = false;
   };
-  home.packages = lib.optionals (config.nixdots.linux.enable) [
+  home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     pkgs.proton-vpn-cli
     pkgs.proton-vpn
   ];
-  nixdots.darwin.homebrew.casks = [ "protonvpn" ];
+  js0ny.homebrew.casks = [ "protonvpn" ];
 }

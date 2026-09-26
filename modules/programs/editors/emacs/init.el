@@ -1,4 +1,4 @@
-;; All elisp files under emacs.d/lisp will be loaded
+;; -*- lexical-binding: t; -*-
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Store the auto-generated custom config to `custom.el`
@@ -7,18 +7,20 @@
 
 (set-default-coding-systems 'utf-8)
 
-
-(when (eq system-type 'darwin)
-  (setq mac-option-modifier 'meta)
-  (setq mac-command-modifier 'super))
-
-(when window-system
-  (setq initial-frame-alist '((name . "emacs")))
-  (setq use-default-font-for-symbols nil)
-  (set-fontset-font t 'emoji "Noto Color Emoji-12")
-  (dolist (charset '(kana han cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font) charset
-			(font-spec :family "HarmonyOS Sans"))))
+(require 'init-display)
+(require 'init-files)
+(require 'init-gui)
+(require 'init-tui)
+(require 'init-linux)
+(require 'init-darwin)
+(require 'init-edit)
+(require 'init-evil)
+(require 'init-counsel)
+(require 'init-dired)
+(require 'init-org)
+(require 'init-lang)
+(require 'init-social)
+(require 'init-feed)
 
 
 

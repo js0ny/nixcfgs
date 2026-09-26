@@ -1,35 +1,30 @@
 {
   flake.homeModules.hermes-desktop =
-    { pkgs, lib, ... }:
-    let
-      hermes-desktop = (
-        pkgs.hermes-agent.hermesDesktop.overrideAttrs (old: {
-          nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
-
-          postFixup = (old.postFixup or "") + /* bash */ ''
-            wrapProgram $out/bin/hermes-desktop \
-              --add-flags "--password-store=gnome-libsecret"
-            mkdir -p $out/share/icons/hicolor/256x256/apps
-            # extracted from windows binary (MIT)
-            ln -s ${./icon.png} $out/share/icons/hicolor/256x256/apps/hermes.png
-            ln -s ${./icon.png} $out/share/icons/hicolor/256x256/apps/Hermes.png
-          '';
-        })
-      );
-    in
     {
-      home.packages = [ hermes-desktop ];
+      pkgs,
+      config,
+      inputs,
+      ...
+    }:
+    {
+      imports = [ inputs.self.homeModules.hermes-agent ];
 
-      xdg.desktopEntries."com.NousResearch.hermes-agent.hermes-desktop" = {
-        name = "Hermes Desktop";
-        genericName = "Generic LLM Agent";
-        comment = "A desktop application for Hermes";
-        exec = lib.getExe hermes-desktop;
-        icon = "hermes";
-        terminal = false;
-        categories = [ "Utility" ];
+      home.packages = with pkgs.llm-agents; [
+        hermes-agent
+        hermes-desktop
+      ];
+
+      home.sessionVariables.HERMES_HOME = "${config.xdg.configHome}/hermes-agent";
+
+      js0ny.persist.stores.state.directories = [
+        ".config/Hermes"
+        ".config/hermes-agent"
+      ];
+
+      xdg.configFile = {
+        "Hermes/project-dir.json".text = builtins.toJSON {
+          dir = "${config.home.homeDirectory}/Atelier/hermes";
+        };
       };
-
-      nixdots.persist.nosnap.home.directories = [ ".config/Hermes" ];
     };
 }

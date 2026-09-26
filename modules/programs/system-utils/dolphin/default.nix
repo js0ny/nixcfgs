@@ -18,7 +18,7 @@
       ...
     }:
     let
-      dots = config.nixdots.core.dots;
+      dots = config.js0ny.host.flakeDir;
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
     in
     {
@@ -90,10 +90,4 @@
       };
     };
 
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.dolphin ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.dolphin ];
-  };
 }

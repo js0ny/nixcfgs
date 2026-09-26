@@ -1,13 +1,8 @@
 {
   pkgs,
-  lib,
   config,
   ...
 }:
-let
-  feat = config.nixdots.features;
-  cfg = feat.mpv;
-in
 {
   # MPV GTK4 frontend
   imports = [ ./mpv.nix ]; # Include MPV configuration

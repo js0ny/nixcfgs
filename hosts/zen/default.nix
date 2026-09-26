@@ -2,7 +2,7 @@
 {
   imports = [
     ../../definitions
-    inputs.self.darwinModules.darwin
+    inputs.self.darwinModules.core
 
     ./packages.nix
     ./dock.nix
@@ -16,4 +16,7 @@
   system.stateVersion = 6;
 
   programs.fish.enable = true;
+
+  # Managed by Determinate
+  nix.enable = false;
 }

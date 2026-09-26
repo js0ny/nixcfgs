@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-lib.mkIf pkgs.stdenv.isDarwin {
+lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
   targets.darwin.defaults = {
     "com.apple.inputsources.plist" = {
       "AppleEnabledThirdPartyInputSources" = [
@@ -19,7 +19,7 @@ lib.mkIf pkgs.stdenv.isDarwin {
       ];
     };
   };
-  nixdots.darwin.homebrew.casks = [
+  js0ny.homebrew.casks = [
     "squirrel-app" # Input Method
   ];
 }

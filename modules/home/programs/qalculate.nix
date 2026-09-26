@@ -1,17 +1,12 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }:
-let
-  features = config.nixdots.features;
-in
 {
   programs.qalculate = {
     enable = true;
-    package =
-      if (features.preferQt && pkgs.stdenv.isLinux) then pkgs.qalculate-qt else pkgs.qalculate-gtk;
+    package = pkgs.qalculate-qt;
   };
   # Add cli version
   home.packages = [ pkgs.libqalculate ];

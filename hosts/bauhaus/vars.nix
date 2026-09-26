@@ -7,90 +7,36 @@
 }:
 let
   avatar = inputs.bindeps + "/avatar/git.jpg";
+  hosts = import ../../definitions/hosts.nix;
 in
 {
-  nixdots = {
-    persist = {
+  js0ny = {
+    geo = {
+      longitude = -3.2;
+      latitude = 55.95;
+      city = "Edinburgh";
+    };
+    flatpak.enable = true;
+    user.avatar = avatar;
+    persist.enable = true;
+    desktop = {
       enable = true;
-      path = "/persist";
-      nosnap.path = "/nosnap";
-    };
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-      avatar = avatar;
-    };
-    core = {
-      hostname = "bauhaus";
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      timezones = [
-        "Europe/London"
-        "Etc/UTC"
-        "Asia/Shanghai"
+      display = "wayland";
+      autoLogin = true;
+      session = [
+        "hyprland"
+        "niri"
+        "kde"
+        "gnome"
+        "sway"
       ];
-      locales = {
-        guiLocale = "zh-CN";
-      };
     };
-    services = {
-      tailscale = {
-        enable = true;
-        ip = "100.65.81.67";
-        ipv6 = "fd7a:115c:a1e0::f735:5144";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey.path;
-      };
-      syncthing.enable = false;
-      sshd.enable = true;
-      ollama = {
-        enable = true;
-        models = [
-          "bge-m3"
-          "qwen3.6:27b"
-        ];
-      };
-    };
-    networking.nftables.enable = true;
-    style = {
-      enable = true;
-      stylix = {
-        enable = true;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
-      };
-      fonts.extraFonts = [
-        {
-          package = pkgs.vollkorn;
-          name = "Vollkorn";
-        }
-        {
-          package = pkgs.font-awesome;
-          name = "Font Awesome 6 Free";
-        }
-        {
-          package = pkgs.ubuntu-sans;
-          name = "Ubuntu Sans";
-        }
-        {
-          package = pkgs.nerd-fonts.fira-code;
-          name = "Fira Code Nerd Font";
-        }
-        {
-          package = pkgs.cinzel;
-          name = "Cinzel";
-        }
-        {
-          package = pkgs.jigmo;
-          name = "Jigmo";
-        }
-      ];
+    hardware = {
+      cpu.nproc = 16;
+      type = "bare-metal";
+      gpu.driver = "nvidia";
     };
     apps = {
-      terminal = {
-        package = pkgs.ghostty;
-        exe = "ghostty";
-        desktop = "com.mitchellh.ghostty.desktop";
-      };
       interactiveShell = {
         package = pkgs.fish;
         exe = "fish";
@@ -126,109 +72,62 @@ in
         };
       };
     };
-    pam.howdy.enable = false;
-    programs = {
-      steam.enable = true;
-      zsh.enable = false;
-      obs-studio.enable = true;
-      chromium.enable = false;
-      firefox.enable = true;
-      dolphin.enable = true;
-      thunderbird.enable = true;
-    };
-    features = {
-      preferGtk = true;
-      media = {
-        obs-studio.enable = false;
-        mpv = {
-          enable = true;
-          enableNativeFrontend = false;
-        };
-      };
-      tools = {
-        vicinae.enable = true;
-      };
-      flatpak.enable = true;
-    };
-    linux = {
-      enable = true;
-      lanzaboote = false;
-      display = "wayland";
-      gpu = "nvidia";
-    };
-    machine = {
-      role = "host";
-      compat = true;
-      virtualisation = {
-        waydroid = false;
-        libvirt.enable = true;
-        oci-container.podman = true;
-      };
-    };
-    desktop = {
-      enable = true;
-      dm = "regreet";
-      autoLogin = true;
-      session = [
-        "hyprland"
-        "niri"
-        "kde"
-        "gnome"
-        "sway"
+    host = {
+      hostName = "bauhaus";
+      timezones = [
+        "Europe/London"
+        "Etc/UTC"
+        "Asia/Shanghai"
       ];
-      wm = {
-        shell = "dank-material-shell";
-        clipboard = "vicinae";
+      locales = {
+        guiLocale = "zh-CN";
       };
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
-    sops = {
+    tailscale = hosts.nixos.bauhaus.tailscale // {
       enable = true;
-      yamlFile = secrets + /hosts/bauhaus.yaml;
-      keyFile = "/etc/ssh/agekey.txt";
+      authKeyFile = config.sops.secrets.tskey.path;
     };
-    geo = {
-      longitude = -3.2;
-      latitude = 55.95;
-      city = "Edinburgh";
-    };
-    devenvs = {
-      c = {
+    style = {
+      enable = true;
+      stylix = {
         enable = true;
-        global = true;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
       };
-      nix = {
-        enable = true;
-        global = true;
-      };
-      lua = {
-        enable = true;
-        global = true;
-      };
-      typst = {
-        enable = true;
-        global = true;
-      };
-      configfiles = {
-        enable = true;
-        global = true;
-      };
-      webdev = {
-        enable = true;
-        global = true;
-      };
-      rust = {
-        enable = true;
-        global = true;
-      };
-      python = {
-        enable = true;
-        global = true;
-      };
-      dotnet = {
-        enable = true;
-        global = true;
-      };
+      fonts.extraFonts = [
+        {
+          package = pkgs.vollkorn;
+          name = "Vollkorn";
+        }
+        {
+          package = pkgs.font-awesome;
+          name = "Font Awesome 6 Free";
+        }
+        {
+          package = pkgs.ubuntu-sans;
+          name = "Ubuntu Sans";
+        }
+        {
+          package = pkgs.nerd-fonts.fira-code;
+          name = "Fira Code Nerd Font";
+        }
+        {
+          package = pkgs.cinzel;
+          name = "Cinzel";
+        }
+        {
+          package = pkgs.jigmo;
+          name = "Jigmo";
+        }
+      ];
     };
   };
-  sops.secrets.tskey = { };
+  sops = {
+    defaultSopsFile = secrets + "/hosts/bauhaus.yaml";
+    age = {
+      keyFile = "/etc/ssh/agekey.txt";
+      generateKey = false;
+    };
+    secrets.tskey = { };
+  };
 }

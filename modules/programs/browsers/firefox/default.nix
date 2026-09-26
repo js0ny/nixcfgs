@@ -8,7 +8,7 @@
     let
       policies = import ./policies.nix;
       baseprefs = import ./global-prefs.nix;
-      wsl = config.nixdots.linux.wsl;
+      wsl = config.wsl.enable;
     in
     lib.mkIf (!wsl) {
       programs.firefox = {
@@ -19,10 +19,4 @@
       };
     };
   flake.homeModules.firefox = import ./home.nix;
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.firefox ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.firefox ];
-  };
 }

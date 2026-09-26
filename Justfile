@@ -46,7 +46,20 @@ journal-home username=env_var("USER"):
     journalctl -xeu home-manager-{{ username }}.service
 
 update-nixpkgs:
-    nix flake update nixpkgs nixpkgs-unfree nixpkgs-stable
+    nix flake update nixpkgs nixpkgs-unfree multiverse
 
+[linux]
 depends-system host=hostname:
     {{EVAL}} ".#nixosConfigurations.{{ host }}.options.environment.systemPackages.definitionsWithLocations" --json | jless
+
+issue-search query repo="NixOS/nixpkgs":
+    gh issue list --repo {{ repo }} --search {{ query }}
+
+pr-search query repo="NixOS/nixpkgs":
+    gh pr list --repo {{ repo }} --search {{ query }}
+
+issue-view number web="" repo="NixOS/nixpkgs":
+    gh issue view --repo {{ repo }} {{ number }} {{ web }}
+
+pr-view number web="" repo="NixOS/nixpkgs":
+    gh pr view --repo {{ repo }} {{ number }} {{ web }}

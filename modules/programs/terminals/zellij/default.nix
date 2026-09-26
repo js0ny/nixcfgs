@@ -9,7 +9,7 @@
     let
       zellij-scrollback-nvim = pkgs.writeShellApplication {
         name = "zellij-scrollback-nvim";
-        runtimeInputs = [ config.programs.neovim.package ];
+        runtimeInputs = [ config.programs.nixvim.build.package ];
         text = ''
           exec nvim \
             --cmd 'set termguicolors' \
@@ -52,7 +52,7 @@
         	vim.keymap.set("n", "q", "<cmd>qa!<CR>", { buffer = buf })
         end)
       '';
-      shell = config.nixdots.apps.interactiveShell.package;
+      shell = config.js0ny.apps.interactiveShell.package;
     in
     {
       programs.zellij = {

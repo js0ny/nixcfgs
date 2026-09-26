@@ -1,9 +1,22 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
-lib.mkIf pkgs.stdenv.isLinux {
+let
+  rimeDeployScript = (
+    pkgs.writers.writeNuBin "rime-deploy" {
+      makeWrapperArgs = [
+        "--prefix"
+        "PATH"
+        ":"
+        "${lib.makeBinPath [ config.systemd.package ]}"
+      ];
+    } "${builtins.readFile ./rime-deploy.nu}"
+  );
+in
+{
   # Use: https://github.com/TemariVirus/fcitx-ini2nix
   i18n.inputMethod = {
     enable = true;
@@ -12,10 +25,8 @@ lib.mkIf pkgs.stdenv.isLinux {
       waylandFrontend = true;
       addons = with pkgs; [
         fcitx5-rime
-        kdePackages.fcitx5-configtool
         kdePackages.fcitx5-qt
         fcitx5-gtk
-        qt6Packages.fcitx5-chinese-addons
       ];
       settings = {
         "inputMethod" = {
@@ -201,23 +212,23 @@ lib.mkIf pkgs.stdenv.isLinux {
               "WheelForPaging" = "True";
               # NOTE: manged by stylix
               # Font
-              # "Font" = ''"LXGW WenKai Medium 14"'';
-              # # Menu Font
-              # "MenuFont" = ''"LXGW WenKai 14"'';
-              # # Tray Font
-              # "TrayFont" = ''"Sans Bold 10"'';
-              # # Tray Label Outline Color
-              # "TrayOutlineColor" = ''''; #000000
-              # # Tray Label Text Color
-              # "TrayTextColor" = ''''; #ffffff
+              "Font" = ''"LXGW WenKai Medium 14"'';
+              # Menu Font
+              "MenuFont" = ''"LXGW WenKai 14"'';
+              # Tray Font
+              "TrayFont" = ''"Sans Bold 10"'';
+              # Tray Label Outline Color
+              "TrayOutlineColor" = ""; # 000000
+              # Tray Label Text Color
+              "TrayTextColor" = ""; # ffffff
               # Theme
-              # "Theme" = ''plasma'';
-              # # Dark Theme
-              # "DarkTheme" = ''plasma'';
-              # # Follow system light/dark color scheme
-              # "UseDarkTheme" = ''True'';
-              # # Follow system accent color if it is supported by theme and desktop
-              # "UseAccentColor" = ''True'';
+              "Theme" = "plasma";
+              # Dark Theme
+              "DarkTheme" = "plasma";
+              # Follow system light/dark color scheme
+              "UseDarkTheme" = "True";
+              # Follow system accent color if it is supported by theme and desktop
+              "UseAccentColor" = "True";
               # Prefer Text Icon
               "PreferTextIcon" = "False";
               # Show Layout Name In Icon
@@ -284,8 +295,6 @@ lib.mkIf pkgs.stdenv.isLinux {
     };
   };
 
-  nixdots.persist.home.directories = [
-    ".local/share/fcitx5"
-  ];
+  environment.systemPackages = [ rimeDeployScript ];
 
 }

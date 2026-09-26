@@ -1,12 +1,10 @@
 {
-  pkgs,
   lib,
-  config,
+  osConfig,
   ...
 }:
 {
   imports = [
-    ./impermanence.nix
     ./xremap/spcl.nix
     ./xremap/caps-esc-ctrl.nix
     ./xremap/module.nix
@@ -16,8 +14,13 @@
     prefixes = [ "waydroid" ];
     desktops = [
       # keep-sorted start
+      "calibre-ebook-edit"
+      "calibre-ebook-viewer"
+      "calibre-lrfviewer"
+      "himalaya"
       "howdy"
       "khal"
+      "openlogi"
       "org.fcitx.fcitx5-migrator"
       "org.kde.kdeconnect.nonplasma" # KDE Connect Indicator
       "org.kde.kwalletmanager"
@@ -26,6 +29,7 @@
       "qv4l2"
       "qvidcap"
       "url-dispatcher"
+      "uuctl"
       # keep-sorted end
     ];
   };
@@ -37,7 +41,7 @@
   };
 
   misc.mergetoolsBackend = "systemd";
-  home.sessionVariables = lib.mkIf (config.nixdots.linux.display == "wayland") {
+  home.sessionVariables = lib.mkIf (osConfig.hardware.graphics.enable) {
     NH_ELEVATION_STRATEGY = "run0";
   };
   xdg.dataFile."Templates".source = ./dirs/Templates;

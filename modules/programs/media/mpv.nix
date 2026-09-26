@@ -2,13 +2,9 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
-let
-  cfg = config.nixdots.features.media.mpv;
-in
-lib.mkIf cfg.enable {
+{
   programs.mpv = {
     enable = true;
     scripts =
@@ -26,7 +22,7 @@ lib.mkIf cfg.enable {
         # keep-sorted end
         pkgs.js0ny.mpvScripts.bilibili-sponsorblock
       ]
-      ++ (lib.optionals pkgs.stdenv.isLinux [ mpris ]);
+      ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [ mpris ]);
     config = {
       vo = "gpu-next";
       hwdec = "auto-safe";

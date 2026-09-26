@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}:
+{ lib, config, ... }:
 let
   zoxideAliases = {
     ".." = "z ..";
@@ -21,7 +15,7 @@ let
     # `-`
     "-" = "z -";
   };
-  home = config.nixdots.user.home;
+  home = config.js0ny.user.home;
 in
 {
   programs.zoxide = {
@@ -38,13 +32,11 @@ in
     "/tmp/*"
     "/proc/*"
     "${home}/.cache/*"
-    "${home}/.pi/agent/sessions"
+    "${home}/.pi/agent/sessions/*"
+    "${home}/.local/share/pi/agent/session/*"
+    "${home}/.config/claude/projects/*"
   ];
-  nixdots.persist.home = {
-    directories = [
-      ".local/share/zoxide"
-    ];
-  };
+  js0ny.persist.stores.state.directories = [ ".local/share/zoxide" ];
   systemd.user.tmpfiles.rules = [
     "R ${config.xdg.dataHome}/zoxide/tmp_* - - - 1d"
   ];

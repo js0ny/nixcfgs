@@ -7,7 +7,7 @@
 let
   cfg = config.nixdefs.lsp;
   sysFlake = ''(builtins.getFlake ("github:js0ny/nixcfgs"))'';
-  # username = config.nixdots.user.name;
+  # username = config.js0ny.user.name;
   # independentHomeExpr = ''(builtins.getFlake ("git+file://${flake}")).homeConfigurations.${username}.options'';
   lspServerType = lib.types.submodule {
     options = {

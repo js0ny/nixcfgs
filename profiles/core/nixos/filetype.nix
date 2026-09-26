@@ -1,0 +1,3 @@
+{
+  xdg.mime.enable = true;
+}

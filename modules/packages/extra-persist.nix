@@ -1,14 +1,11 @@
 { config, ... }: {
-  nixdots.persist.nosnap.home = {
-    directories = [
-      ".local/share/agentsview"
-      ".local/share/com.motrix.next"
+  js0ny.persist.stores.local.directories = [
+    ".local/share/agentsview"
+    ".local/share/com.motrix.next"
 
-      ".config/blender"
-      ".config/bruno"
-
-    ];
-  };
+    ".config/blender"
+    ".config/bruno"
+  ];
 
   home.sessionVariables = {
     AGENTSVIEW_DATA_DIR = "${config.xdg.dataHome}/agentsview";
@@ -20,7 +17,7 @@
       format = "json";
       settings = {
         autoCheckUpdate = false;
-        locale = config.nixdots.core.locales.guiLocale;
+        locale = config.js0ny.host.locales.guiLocale;
       };
     };
   };

@@ -15,8 +15,8 @@
       programs.lazygit = {
         enable = true;
         settings = {
-          git.pagers =
-            if config.programs.delta.enable then [ { pager = "delta --dark --paging=never"; } ] else [ ];
+          git.diffRenderers =
+            if config.programs.delta.enable then [ { command = "delta --dark --paging=never"; } ] else [ ];
         };
       };
 
@@ -24,8 +24,8 @@
         enable = true;
         settings = {
           user = {
-            name = config.nixdots.user.name;
-            email = config.nixdots.user.email;
+            name = config.js0ny.user.name;
+            email = config.js0ny.user.email;
           };
         };
       };

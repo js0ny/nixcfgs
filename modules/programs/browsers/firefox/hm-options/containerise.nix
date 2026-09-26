@@ -5,7 +5,7 @@
   ...
 }:
 let
-  p = config.nixdots.programs.firefox.defaultProfile;
+  p = config.js0ny.user.name;
   id = "containerise@kinte.sh";
   pkg = pkgs.firefox-addons.containerise;
 in

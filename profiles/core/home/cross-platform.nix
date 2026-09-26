@@ -1,0 +1,22 @@
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
+lib.mkMerge [
+  (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    targets.genericLinux.enable = false;
+    xdg.desktopEntries = lib.mkForce { };
+    i18n.inputMethod.enable = false;
+    systemd.user.tmpfiles.rules = lib.mkForce [ ];
+    targets.darwin = {
+      linkApps.enable = true;
+    };
+  })
+  ((lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && osConfig != null)) {
+    targets.darwin = lib.mkForce { };
+    targets.genericLinux.enable = false;
+    launchd.enable = false;
+  })
+]

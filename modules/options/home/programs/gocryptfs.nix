@@ -67,14 +67,14 @@ in
 
         home.packages = [ pkgs.gocryptfs ];
 
-        nixdots.persist.home.directories = [ cfg.encryptedDir ];
+        js0ny.persist.stores.state.directories = [ cfg.encryptedDir ];
 
         systemd.user.tmpfiles.rules = [
           "d ${mountPath} 0700 ${user} users -"
         ];
       }
 
-      (lib.mkIf (cfg.autoMount.enable && pkgs.stdenv.isLinux) {
+      (lib.mkIf (cfg.autoMount.enable && pkgs.stdenv.hostPlatform.isLinux) {
         systemd.user.services.gocryptfs = {
           Unit = {
             Description = "gocryptfs encrypted filesystem";
@@ -88,7 +88,7 @@ in
         };
       })
 
-      (lib.mkIf (cfg.autoMount.enable && pkgs.stdenv.isDarwin) {
+      (lib.mkIf (cfg.autoMount.enable && pkgs.stdenv.hostPlatform.isDarwin) {
         launchd.agents.gocryptfs = {
           enable = true;
           config = {

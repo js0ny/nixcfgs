@@ -1,10 +1,13 @@
 local utils = require('utils')
 
----@return string
+---@return string|nil
 local function imgpath()
   local img = swayimg.gallery.get_image()
-  local escaped_path = utils.shell_quote(img.path)
-  return escaped_path
+  if not img then
+    return nil
+  end
+
+  return utils.shell_quote(img.path)
 end
 
 local gallery_map = {
@@ -13,6 +16,10 @@ local gallery_map = {
   end,
   ['Ctrl-C'] = function()
     local escaped_path = imgpath()
+    if not escaped_path then
+      return
+    end
+
     local cmd = string.format('cat %s | wl-copy', escaped_path)
     os.execute(cmd)
     utils.notify('Image copied to clipboard')
@@ -20,64 +27,72 @@ local gallery_map = {
   -- Copy path
   ['Ctrl-Shift-C'] = function()
     local escaped_path = imgpath()
+    if not escaped_path then
+      return
+    end
+
     local cmd = string.format('echo %s | wl-copy', escaped_path)
     os.execute(cmd)
   end,
   -- Edit with satty
   ['e'] = function()
     local path = imgpath()
+    if not path then
+      return
+    end
+
     os.execute('satty --filename ' .. path)
   end,
   ['f'] = function()
-    swayimg.set_fullscreen()
+    swayimg.fullscreen = not swayimg.fullscreen
   end,
   ['Return'] = function()
-    swayimg.set_mode('viewer')
+    swayimg.mode = 'viewer'
   end,
   ['Alt-Return'] = function()
     utils.show_properties(swayimg.gallery.get_image())
   end,
   ['t'] = function()
-    swayimg.set_mode('viewer')
+    swayimg.mode = 'viewer'
   end,
   ['s'] = function()
-    swayimg.set_mode('slideshow')
+    swayimg.mode = 'slideshow'
   end,
   ['n'] = function()
-    swayimg.gallery.switch_image('pgdown')
+    swayimg.gallery.select('pgdown')
   end,
   ['p'] = function()
-    swayimg.gallery.switch_image('pgup')
+    swayimg.gallery.select('pgup')
   end,
   ['h'] = function()
-    swayimg.gallery.switch_image('left')
+    swayimg.gallery.select('left')
   end,
   ['Left'] = function()
-    swayimg.gallery.switch_image('left')
+    swayimg.gallery.select('left')
   end,
   ['Down'] = function()
-    swayimg.gallery.switch_image('down')
+    swayimg.gallery.select('down')
   end,
   ['j'] = function()
-    swayimg.gallery.switch_image('down')
+    swayimg.gallery.select('down')
   end,
   ['Up'] = function()
-    swayimg.gallery.switch_image('up')
+    swayimg.gallery.select('up')
   end,
   ['k'] = function()
-    swayimg.gallery.switch_image('up')
+    swayimg.gallery.select('up')
   end,
   ['Right'] = function()
-    swayimg.gallery.switch_image('right')
+    swayimg.gallery.select('right')
   end,
   ['l'] = function()
-    swayimg.gallery.switch_image('right')
+    swayimg.gallery.select('right')
   end,
   ['g'] = function()
-    swayimg.gallery.switch_image('first')
+    swayimg.gallery.select('first')
   end,
   ['Shift+g'] = function()
-    swayimg.gallery.switch_image('last')
+    swayimg.gallery.select('last')
   end,
 }
 

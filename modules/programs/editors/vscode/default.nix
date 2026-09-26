@@ -12,7 +12,7 @@
         "Code"
       ];
       snippets = (import ../lsp-snippets/lib.nix { inherit pkgs config; }).raw;
-      dots = config.nixdots.core.dots;
+      dots = config.js0ny.host.flakeDir;
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
     in
     {
@@ -54,7 +54,7 @@
           astral-sh.ty
 
           # misc
-          openai.chatgpt # coex
+          openai.chatgpt # codex
         ];
         userSettings = {
           "workbench.iconTheme" = "material-icon-theme";
@@ -92,7 +92,7 @@
           "editor.formatOnSave" = true;
           "update.showReleaseNotes" = false;
         }
-        // lib.optionalAttrs (pkgs.stdenv.isLinux) {
+        // lib.optionalAttrs (pkgs.stdenv.hostPlatform.isLinux) {
           "window.menuBarVisibility" = "hidden"; # hidden: disable when hit <Alt>
           "window.titleBarStyle" = "native"; # works better on bare WMs
           "vim.autoSwitchInputMethod.defaultIM" = "true";

@@ -1,0 +1,19 @@
+{
+  # Use the systemd-boot EFI boot loader.
+  # TODO: Migrate
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Disable modem
+  networking.modemmanager.enable = false;
+  zramSwap = {
+    enable = true;
+    memoryPercent = 10;
+    algorithm = "lz4";
+    priority = 100;
+  };
+
+  programs.gnupg.agent.enable = true;
+
+  services.printing.enable = true;
+}

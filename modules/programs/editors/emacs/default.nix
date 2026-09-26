@@ -4,89 +4,129 @@
       pkgs,
       lib,
       config,
+      secrets,
       ...
     }:
     let
       mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-      dots = config.nixdots.core.dots;
+      dots = config.js0ny.host.flakeDir;
+      authPath = config.sops.secrets.emacs_authinfo.path;
+      secretsPath = config.sops.secrets."emacs_secrets.el".path;
     in
     {
+      sops.secrets = {
+        emacs_authinfo = {
+          sopsFile = secrets + "/files/emacs_authinfo.yaml";
+          key = "data";
+        };
+        "emacs_secrets.el" = {
+          sopsFile = secrets + "/files/emacs_secrets.yaml";
+          key = "data";
+        };
+      };
+      services.emacs = {
+        enable = true;
+        package = config.programs.emacs.finalPackage;
+        startWithUserSession = "graphical";
+      };
       programs.emacs = {
         enable = true;
-        package = if pkgs.stdenv.isLinux then pkgs.emacs-pgtk else null;
+        package = if pkgs.stdenv.hostPlatform.isLinux then pkgs.emacs-pgtk else null;
+        extraConfig = /* lisp */ ''
+          (setq org-babel-python-command "${lib.getExe pkgs.python3}")
+          (setq dirvish-vipsthumbnail-program "${lib.getExe' pkgs.vips "vipsthumbnail"}")
+          (setq dirvish-pdfinfo-program "${lib.getExe' pkgs.poppler-utils "pdfinfo"}")
+          (setq dirvish-pdftoppm-program "${lib.getExe' pkgs.poppler-utils "pdftoppm"}")
+          (defvar user-authinfo-file (expand-file-name "${authPath}"))
+
+          (defvar user-secrets-file (expand-file-name "${secretsPath}"))
+          (when (file-readable-p user-secrets-file)
+            (load user-secrets-file nil 'nomessage))
+        '';
         extraPackages =
           epkgs:
-          let
-            org-supertag = epkgs.trivialBuild {
-              pname = "org-supertag";
-              version = "5.8.2-unstable-2026-06-19";
-              src = pkgs.fetchFromGitHub {
-                owner = "yibie";
-                repo = "org-supertag";
-                rev = "ff45a9616aaecfbbfc4081715a86dd9612b8b28d";
-                hash = "sha256-NA8Rj6gMYF21PdIsxM4clZ3JVezUXJquG3ojNq0HWgM=";
-              };
-              postPatch = /* bash */ ''
-                substituteInPlace supertag-services-capture.el \
-                  --replace-fail '(lambda (t) (concat "#" t))' '(lambda (tag) (concat "#" tag))'
-                substituteInPlace supertag-ui-completion.el \
-                  --replace-fail '(lambda (t) (member t current))' '(lambda (tag) (member tag current))'
-              '';
-              packageRequires = with epkgs; [
-                gptel
-                ht
-                org
-                posframe
-              ];
-            };
-          in
           with epkgs;
           [
+            pkgs.js0ny.emacsPackages.typst-overlay
+            pkgs.js0ny.emacsPackages.kitty-graphics
 
-            org-supertag
-            hnview
-
-            avy
-            elfeed-protocol
+            # display
             dashboard
-            evil
-            counsel
-            evil-leader
-            evil-commentary
-            evil-surround
-            evil-mc
-            evil-goggles
-            evil-org
-            ement
-            melpaPackages.telega
-            # ghostel
-            beancount
-            counsel
+            highlight-indent-guides
+            doom-modeline
+            doom-themes
+
+            # enhancement
+            evil-ghostel
+            ghostel
             company
             vertico
             marginalia
+            counsel
             dirvish
-            nix-ts-mode
-            flycheck
-            highlight-indent-guides
+
+            # tools
             magit
-            elfeed
-            elfeed-org
+            majutsu
+            yasnippet
+            flycheck
+            zoxide
+
+            # evil
+            avy
+            flash
+            evil
+            evil-surround
+            evil-mc
+            evil-goggles
+            evil-leader
+            evil-commentary
+
+            # org
             olivetti
             org-modern
-            doom-modeline
+            org-roam
+            org-download
+            org-appear
+            mixed-pitch
+
+            # social
+            ement
+            melpaPackages.telega
+
+            # feed
+            elfeed
+            elfeed-org
+            elfeed-protocol
+
+            # typst
+            ox-typst
+            typst-ts-mode
+            typst-preview
+
+            # clients
+            hnview
+
+            beancount
+            nix-ts-mode
             gptel
             posframe
             ht
+            nix-mode
+            htmlize
+
             (epkgs.treesit-grammars.with-grammars (grammars: [
               grammars.tree-sitter-nix
             ]))
           ]
-          ++ (lib.optionals pkgs.stdenv.isLinux [ epkgs.xclip ]);
+          ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [ epkgs.xclip ]);
       };
 
       xdg.configFile."emacs".source = mkSymlink "${dots}/modules/programs/editors/emacs";
+      js0ny.persist.stores = {
 
-      nixdots.persist.nosnap.home.directories = [ ".local/share/emacs" ];
+        state.directories = [ "org" ];
+        local.directories = [ ".local/share/emacs" ];
+      };
     };
 }

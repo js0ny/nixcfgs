@@ -11,7 +11,7 @@
         discord = {
           enable = true;
           # package =
-          #   if pkgs.stdenv.isLinux then
+          #   if pkgs.stdenv.hostPlatform.isLinux then
           #     pkgs.nixpaks.discord
           #   else
           #     inputs.nixcord.packages.${pkgs.stdenv.hostPlatform.system}.discord;
@@ -47,11 +47,7 @@
           };
         };
       };
-      nixdots.persist.nosnap.home = {
-        directories = [
-          ".config/discord"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [ ".config/discord" ];
 
     };
 }

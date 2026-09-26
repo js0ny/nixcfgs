@@ -32,6 +32,8 @@ in
     mod.plasma
     mod.hyprland
     mod.niri
+
+    mod.localsend
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
@@ -41,6 +43,11 @@ in
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
 
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
+
+  services.ollama.loadModels = [
+    "bge-m3"
+    "qwen3.8:27b"
+  ];
 
   services.scx = {
     enable = true;

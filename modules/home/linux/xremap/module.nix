@@ -23,9 +23,9 @@
 
   systemd.user.services.xremap = {
     Unit = {
-      PartOf = [ "waylandwm-session.target" ];
-      After = [ "waylandwm-session.target" ];
+      PartOf = [ "wm-init.target" ];
+      After = [ "wm-init.target" ];
     };
-    Install.WantedBy = lib.mkForce [ "waylandwm-session.target" ];
+    Install.WantedBy = lib.mkForce [ "wm-init.target" ];
   };
 }

@@ -23,7 +23,7 @@ in
 {
   sops.secrets = {
     cider2_jwt = {
-      sopsFile = secrets + /hosts.yaml;
+      sopsFile = secrets + "/hosts.yaml";
       path = "${config.xdg.configHome}/sh.cider.genten/User.jwt";
     };
   };
@@ -32,7 +32,7 @@ in
     format = "yaml";
     settings = {
       general = {
-        language = config.nixdots.core.locales.guiLocale;
+        language = config.js0ny.host.locales.guiLocale;
         keybindings = {
           commandCenter = [
             "ctrlKey"
@@ -46,8 +46,6 @@ in
         appearance = "auto";
         # default: Mojave
         useAdaptiveColors = true;
-        # NOTE: "native" breaks window controls on tiling WMs (Electron bug).
-        # "default" works on both GNOME and Niri, so keep it.
         titleBarStyle = "default";
         layoutType = "default";
         fonts = {
@@ -115,9 +113,5 @@ in
       };
     };
   };
-  nixdots.persist.nosnap.home = {
-    directories = [
-      ".config/sh.cider.genten"
-    ];
-  };
+  js0ny.persist.stores.local.directories = [ ".config/sh.cider.genten" ];
 }

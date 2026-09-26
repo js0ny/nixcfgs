@@ -75,5 +75,4 @@
         }) dictionaries
       );
     };
-  flake.homeModules.desktop = { inputs, ... }: { imports = [ inputs.self.homeModules.sdcv ]; };
 }

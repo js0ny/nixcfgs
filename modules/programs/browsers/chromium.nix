@@ -69,11 +69,7 @@
           "jplgfhpmjnbigmhklmmbgecoobifkmpa" # Proton VPN
         ];
       };
-      nixdots.persist.home = {
-        directories = [
-          ".config/chromium"
-        ];
-      };
+      js0ny.persist.stores.state.directories = [ ".config/chromium" ];
       mergetools.chromiumPrefs = {
         target = "${config.xdg.configHome}/chromium/Default/Preferences";
         format = "json";
@@ -85,10 +81,4 @@
       };
     };
 
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.chromium ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.chromium ];
-  };
 }

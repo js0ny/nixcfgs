@@ -1,7 +1,14 @@
-{ ... }:
+{
+  inputs,
+  ...
+}:
 {
   perSystem =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
     {
       devShells =
         let
@@ -12,20 +19,31 @@
             shfmt
             shellcheck
             nixfmt
-            nvfetcher
             nufmt
             lua
             keep-sorted
+            llvmPackages.clang-tools
+            cli11
+            taglib
+            # taglib.pc hardcodes `-lz`, but nixpkgs' taglib does not propagate zlib
+            zlib
+            pkg-config
           ];
           devDeps = with pkgs; [
+            # keep-sorted start
+            ast-grep
+            bash-language-server
+            disko
+            inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
             lua-language-server
-            pkgs.typescript-language-server
-            pkgs.bash-language-server
+            nil
+            nixd
+            nixos-anywhere
+            nushell
             pyright
             taplo
-            nixd
-            nil
-            nushell
+            typescript-language-server
+            # keep-sorted end
           ];
         in
         {

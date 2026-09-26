@@ -1,12 +1,14 @@
 {
   flake.homeModules = {
-    mediatools = _: {
-      imports = [
-        ./packages.nix
-        ./beets.nix
-        ./gallery-dl.nix
-      ];
-    };
+    mediatools =
+      { inputs, ... }:
+      {
+        imports = [
+          ./packages.nix
+          inputs.self.homeModules.beets
+          ./gallery-dl.nix
+        ];
+      };
     elisa = import ./elisa.nix;
     lollypop = import ./lollypop.nix;
     feishin = import ./feishin.nix;

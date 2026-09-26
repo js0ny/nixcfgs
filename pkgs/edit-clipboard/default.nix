@@ -6,7 +6,7 @@ pkgs.writeShellApplication {
     [
       coreutils
     ]
-    ++ lib.optionals stdenv.isLinux [
+    ++ lib.optionals stdenv.hostPlatform.isLinux [
       wl-clipboard
       libnotify
     ];

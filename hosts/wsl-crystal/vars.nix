@@ -5,38 +5,12 @@
   ...
 }:
 {
-  nixdots = {
-    persist.enable = false;
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
+  js0ny = {
+    geo = {
+      longitude = -3.2;
+      latitude = 55.95;
+      city = "Edinburgh";
     };
-    programs.firefox.enable = true;
-    core = {
-      hostname = "crystal";
-      dots = "${config.nixdots.user.home}/Atelier/dot/nixcfgs";
-      flakeDir = "${config.nixdots.user.home}/Atelier/dot/nixdots";
-      timezones = [
-        "Europe/London"
-        "Etc/UTC"
-        "Asia/Shanghai"
-      ];
-      locales = {
-        guiLocale = "zh-CN";
-      };
-    };
-    services = {
-      sshd.enable = true;
-    };
-    networking.nftables.enable = false;
-    style = {
-      enable = false;
-      stylix = {
-        enable = false;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-      };
-    };
-    laptop.enable = false;
     apps = {
       interactiveShell = {
         package = pkgs.fish;
@@ -51,38 +25,37 @@
         };
       };
     };
-    linux = {
-      enable = true;
-      wsl = true;
-      lanzaboote = false;
-    };
-    machine = {
-      role = "standalone";
-      compat = false;
-      virtualisation = {
-        waydroid = false;
-        libvirt = {
-          enable = false;
-        };
-        oci-container.podman = false;
+    host = {
+      hostName = "crystal";
+      timezones = [
+        "Europe/London"
+        "Etc/UTC"
+        "Asia/Shanghai"
+      ];
+      locales = {
+        guiLocale = "zh-CN";
       };
+      flakeDir = "${config.js0ny.user.home}/Atelier/dot/nixcfgs";
     };
-    desktop = {
+    desktop.enable = false;
+    hardware.laptop.enable = false;
+    style = {
       enable = false;
-    };
-    sops = {
-      enable = true;
-      yamlFile = secrets + /secrets.yaml;
-      keyFile = "${config.nixdots.user.home}/.config/sops/age/keys.txt";
-      secrets = {
-        tskey_crystal = { };
-        restic_repo_password = { };
+      stylix = {
+        enable = false;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
       };
     };
-    geo = {
-      longitude = -3.2;
-      latitude = 55.95;
-      city = "Edinburgh";
+  };
+  sops = {
+    defaultSopsFile = secrets + "/secrets.yaml";
+    age = {
+      keyFile = "${config.js0ny.user.home}/.config/sops/age/keys.txt";
+      generateKey = false;
+    };
+    secrets = {
+      tskey_crystal = { };
+      restic_repo_password = { };
     };
   };
 }

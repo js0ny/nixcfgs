@@ -14,7 +14,8 @@
       };
       snippets = (import ../lsp-snippets/lib.nix { inherit pkgs config; }).out;
       appname = "nvim";
-      flakeRoot = config.nixdots.core.flakeDir;
+      flakeRoot = config.js0ny.host.flakeDir;
+      imageSupport = config.programs.kitty.enable || config.programs.ghostty.enable;
     in
     {
       programs.neovim.enable = lib.mkForce false;
@@ -23,23 +24,36 @@
 
       programs.nixvim = {
         enable = true;
-        plugins.lsp.servers = {
-          clangd.enable = true;
-          rust_analyzer = {
-            enable = true;
-            installCargo = false;
-            installRustc = false;
+        js0ny = {
+          image.enable = imageSupport;
+          typst.enable = true;
+          python.enable = true;
+          cxx.enable = true;
+        };
+        plugins = {
+          lsp.servers = {
+            # keep-sorted start block=yes
+            basedpyright.enable = true;
+            bashls.enable = true;
+            clangd.enable = true;
+            fish_lsp.enable = true;
+            gopls.enable = true;
+            jsonls.enable = true;
+            roslyn_ls.enable = true;
+            rust_analyzer = {
+              enable = true;
+              installCargo = false;
+              installRustc = false;
+            };
+            svelte.enable = true;
+            taplo.enable = true;
+            vtsls.enable = true;
+            # keep-sorted end
           };
-          gopls.enable = true;
-          ts_ls.enable = true;
-          jsonls.enable = true;
-          taplo.enable = true;
-          bashls.enable = true;
-          fish_lsp.enable = true;
-          svelte.enable = true;
-          roslyn_ls.enable = true;
-          vtsls.enable = true;
-          basedpyright.enable = true;
+          orgmode.settings = {
+            org_agenda_files = "~/org/tasks/**/*";
+            org_default_notes_file = "~/org/tasks/inbox.org";
+          };
         };
         keymaps = [
           {
@@ -54,18 +68,14 @@
 
       stylix.targets.nixvim.enable = false;
 
-      # home.packages = with pkgs; [lua-language-server];
       misc.shellAliases = nvimAlias;
 
       xdg.configFile."lsp-snippets".source = snippets;
 
-      nixdots.persist.nosnap.home = {
-        directories = [
-          # nvim(lazy) will download plugins to this dir
-          ".local/share/${appname}"
-          ".local/state/${appname}"
-        ];
-      };
+      js0ny.persist.stores.local.directories = [
+        ".local/share/${appname}"
+        ".local/state/${appname}"
+      ];
 
       programs.git = {
         settings = {

@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  dots = config.nixdots.core.dots;
+  dots = config.js0ny.host.flakeDir;
   xdgDirs = config.xdg.userDirs;
 in
 {

@@ -1,0 +1,7 @@
+
+
+(use-package kitty-graphics
+ :config
+  (kitty-graphics-setup))
+
+(provide 'init-tui)

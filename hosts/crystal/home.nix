@@ -2,6 +2,7 @@
   config,
   inputs,
   secrets,
+  pkgs,
   ...
 }:
 {
@@ -9,11 +10,11 @@
   imports = [
     ./vars.nix
     inputs.self.homeModules.desktop
-    inputs.self.homeModules.plasma
     inputs.self.homeModules.hyprland
     inputs.self.homeModules.noctalia
     inputs.self.homeModules.niri
-    inputs.self.homeModules.scroll
+    inputs.self.homeModules.glide
+    inputs.self.homeModules.plasma
     ../../modules/programs/gaming/steam/sts2.nix
     # keep-sorted start
 
@@ -22,7 +23,7 @@
     # keep-sorted start
     inputs.catppuccin.homeModules.catppuccin
     inputs.flatpak-nix.homeManagerModules.nix-flatpak
-    inputs.secrets.homeManagerModules.default
+    inputs.secrets.homeModules.default
     inputs.steam-config-nix.homeModules.default
     # keep-sorted end
   ];
@@ -39,10 +40,10 @@
 
   sops.secrets = {
     gocryptfs_password = {
-      sopsFile = secrets + /hosts/crystal.yaml;
+      sopsFile = secrets + "/hosts/crystal.yaml";
     };
     rclone-conf = {
-      sopsFile = secrets + /files/rclone.yaml;
+      sopsFile = secrets + "/files/rclone.yaml";
       path = "${config.xdg.configHome}/rclone/rclone.conf";
       key = "data";
       mode = "0600";
@@ -51,11 +52,12 @@
 
   home.stateVersion = "25.05";
 
-  home.directories = {
+  services.hermes-agent.enable = true;
 
+  home.directories = {
     "Atelier" = {
       create = true; # via systemd.tmpfiles
-      persist = true; # via home.impermanence
+      persist = true; # via Preservation
       backup = true; # via restic
       backupExclude = [
         "dot"
@@ -110,6 +112,14 @@
       icon = "folder-documents";
     };
   };
+  js0ny.persist.stores.state.directories = [
+    "Documents"
+    "Videos"
+    "Pictures"
+    "Music"
+    "Academia"
+    "Atelier"
+  ];
 
   home.customDirs = {
     wallpaper = "${config.home.homeDirectory}/Pictures/Wallpaper";
@@ -142,9 +152,5 @@
       passwordFile = config.sops.secrets.gocryptfs_password.path;
     };
   };
-
-  nixdots.persist.home.directories = [
-    ".config/sunshine"
-  ];
 
 }

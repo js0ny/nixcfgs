@@ -4,22 +4,24 @@
   secrets,
   ...
 }:
+let
+  hosts = import ../../definitions/hosts.nix;
+in
 {
-  sops.secrets.tskey = {
-    sopsFile = secrets + /hosts/belvedere.yaml;
+  sops = {
+    defaultSopsFile = secrets + "/hosts/belvedere.yaml";
+    age = {
+      keyFile = "/etc/ssh/agekey.txt";
+      generateKey = false;
+    };
+    secrets.tskey.sopsFile = secrets + "/hosts/belvedere.yaml";
   };
-  nixdots = {
-    persist = {
-      enable = true;
-      path = "/persist";
-      nosnap.path = "/nosnap";
+  js0ny = {
+    geo = {
+      city = "Vienna";
     };
-    user = {
-      name = "js0ny";
-      shell = pkgs.zsh;
-    };
-    core = {
-      hostname = "belvedere";
+    host = {
+      hostName = "belvedere";
       timezones = [
         "Etc/UTC"
         "Europe/Vienna"
@@ -27,21 +29,9 @@
         "Asia/Shanghai"
       ];
     };
-    services = {
-      tailscale = {
-        enable = true;
-        ip = "100.92.207.11";
-        # ipv6 = "fd7a:115c:a1e0::e701:932";
-        magicDNS = "${config.nixdots.core.hostname}.tailee8d62.ts.net";
-        authKeyFile = config.sops.secrets.tskey.path;
-        exitNode = true;
-      };
-      sshd.enable = true;
-      ollama = {
-        enable = false;
-      };
-    };
-    networking.nftables.enable = true;
+    persist.enable = true;
+    desktop.display = "none";
+    hardware.gpu.driver = "none";
     style = {
       enable = false;
       stylix.enable = false;
@@ -59,31 +49,9 @@
         };
       };
     };
-    linux = {
+    tailscale = hosts.nixos.belvedere.tailscale // {
       enable = true;
-      display = "none";
-      gpu = "none";
-    };
-    machine = {
-      role = "guest";
-      compat = false;
-      virtualisation = {
-        oci-container.podman = true;
-      };
-    };
-    server = {
-      enable = true;
-      ip = config.secrets.plain.belvedere.ipv4;
-      openHttp = true;
-      openQuic = true;
-    };
-    sops = {
-      enable = true;
-      yamlFile = secrets + /hosts/belvedere.yaml;
-      keyFile = "/persist/etc/ssh/agekey.txt";
-    };
-    geo = {
-      city = "Vienna";
+      authKeyFile = config.sops.secrets.tskey.path;
     };
   };
 }

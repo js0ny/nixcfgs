@@ -11,15 +11,6 @@
     ];
     programs.htop.enable = true;
   };
-  flake.nixosModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.modern-unix ];
-  };
-  flake.homeModules.desktop = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.modern-unix ];
-  };
-  flake.homeModules.darwin = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.modern-unix ];
-  };
   flake.homeModules.modern-unix =
     { pkgs, config, ... }:
     {
@@ -30,13 +21,7 @@
         la = "lsd -a";
         lt = "lsd --tree";
       };
-      nixdots.persist = {
-        home.directories = [
-          ".local/share/atuin"
-        ];
-        nosnap.home.directories = [ ".cache/tealdeer" ];
-
-      };
+      js0ny.persist.stores.local.directories = [ ".cache/tealdeer" ];
       home.sessionVariables = {
         MANPAGER = ''sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman' '';
         NIX_PAGER = "bat --style grid,numbers --wrap auto";
@@ -76,7 +61,7 @@
             vim_keys = true;
           };
           package = pkgs.btop.override {
-            cudaSupport = config.nixdots.linux.gpu == "nvidia";
+            cudaSupport = config.js0ny.hardware.gpu.driver == "nvidia";
           };
         };
         ripgrep = {
@@ -111,6 +96,10 @@
         television = {
           enable = true;
         };
+      };
+      xdg.configFile."television/cable/upstream" = {
+        source = "${config.programs.television.package.src}/cable/unix";
+        recursive = true;
       };
     };
 }

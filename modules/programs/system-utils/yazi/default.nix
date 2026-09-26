@@ -63,19 +63,8 @@
         initLua = builtins.readFile ./init.lua;
       };
       home.packages = with pkgs; [
-        (ouch.override { enableUnfree = pkgs.stdenv.isLinux; })
-      ];
-
-      nixdots.persist.nosnap.home.files = [
-        # Persist bookmarks
-        ".local/state/yazi/.dds"
+        (ouch.override { enableUnfree = pkgs.stdenv.hostPlatform.isLinux; })
       ];
 
     };
-  flake.nixosModules.core = { inputs, ... }: {
-    imports = [ inputs.self.nixosModules.yazi ];
-  };
-  flake.homeModules.core = { inputs, ... }: {
-    imports = [ inputs.self.homeModules.yazi ];
-  };
 }
