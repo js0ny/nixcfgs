@@ -10,6 +10,7 @@ let
     "ls"
     "ll"
     "la"
+    "clip"
   ];
 in
 {

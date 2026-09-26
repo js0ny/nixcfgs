@@ -62,10 +62,8 @@ in
     ];
   };
   xdg.configFile = {
-    "codex/herdr-agent-state.sh".source = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/herdrdev/herdr/refs/tags/v${config.programs.herdr.package.version}/src/integration/assets/codex/herdr-agent-state.sh";
-      hash = "sha256-KsgRU1n/hJzWHkUFdLNx9nMngKY6B62HwARI21wgNi0=";
-    };
+    "codex/herdr-agent-state.sh".source =
+      "${config.programs.herdr.package.src}/src/integration/assets/codex/herdr-agent-state.sh";
     "herdr/config.toml".onChange =
       let
         binPath = if cfg.package == null then "herdr" else "${lib.getExe cfg.package}";

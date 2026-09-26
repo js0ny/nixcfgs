@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   services.sing-box.enable = true;
   systemd.tmpfiles.rules = [
     "L+ /var/lib/sing-box/dashboard - - - - ${pkgs.js0ny.sing-box-dashboard}"
@@ -9,4 +9,5 @@
       how = "symlink";
     }
   ];
+  systemd.services.sing-box.wantedBy = lib.mkForce [ ];
 }
