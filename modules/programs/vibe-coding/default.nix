@@ -24,7 +24,6 @@
           abtop
         ]
         ++ lib.optionals (osConfig.hardware.graphics.enable) [
-          llm-agents.chatgpt
           llm-agents.dsh
         ];
     };

@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  osConfig,
   ...
 }:
 let
@@ -32,7 +33,10 @@ let
   '';
 in
 {
-  js0ny.persist.stores.state.directories = [ ".config/codex" ];
+  js0ny.persist.stores = {
+    state.directories = [ ".config/codex" ];
+    local.directories = [ ".cache/codex-runtimes" ];
+  };
 
   home.sessionVariables = {
     CODEX_HOME = "${config.xdg.configHome}/codex";
@@ -128,6 +132,9 @@ in
       };
     };
   };
-  home.packages = [ (lib.hiPrio codexWrapper) ];
+  home.packages = [
+    (lib.hiPrio codexWrapper)
+  ]
+  ++ lib.optionals (osConfig.hardware.graphics.enable) [ pkgs.llm-agents.chatgpt ];
   makeMutable = [ ".config/codex/config.toml" ];
 }

@@ -21,5 +21,10 @@
         ".config/hermes-agent"
       ];
 
+      xdg.configFile = {
+        "Hermes/project-dir.json".text = builtins.toJSON {
+          dir = "${config.home.homeDirectory}/Atelier/hermes";
+        };
+      };
     };
 }

@@ -131,16 +131,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1788011267,
-        "narHash": "sha256-mEq2kU+ljompTToZ44Afvm7d/rHJ5iMBl0tjZuyShJs=",
+        "lastModified": 1790001035,
+        "narHash": "sha256-1/SLBjSYBzDdDhvLQ83wrzBakyS/xNGgtxHGNuveOEQ=",
         "owner": "Mic92",
         "repo": "bun2nix",
-        "rev": "5765b0614591f75ee8ba5596e81ae85c167d1071",
+        "rev": "07a5bfc8ac36c5370199343fa620b69f63186e33",
         "type": "github"
       },
       "original": {
         "owner": "Mic92",
-        "ref": "fix-structured-attrs-hook",
+        "ref": "llm-agents",
         "repo": "bun2nix",
         "type": "github"
       }
@@ -741,11 +741,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789987094,
-        "narHash": "sha256-jzlT1EofmNifqUjpiSJMPbm/GiU17r65WUi44Kfkmdc=",
+        "lastModified": 1790416022,
+        "narHash": "sha256-DjGLaiqnHlHQ9d8EfKhklMlCRoEC97FkI9XRgznopL8=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "7c0157f864d113d9f0ce324a78496de6da6e7e07",
+        "rev": "03aa73a454d7468e0a3d44faee511fa6ae7c7ded",
         "type": "github"
       },
       "original": {
@@ -1194,11 +1194,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1790326699,
-        "narHash": "sha256-MPMV2nvfAv4moV/u0RbfqTLYnGoP2TL1DQsjIQJiWjk=",
+        "lastModified": 1790407071,
+        "narHash": "sha256-8TEZpjGjex/D/COmBAn6qOcL/n0ZcheJqDqLCt1nio4=",
         "owner": "js0ny",
         "repo": "nvimdots",
-        "rev": "80eb34bd34348006b0f839c46025b98405a9f181",
+        "rev": "77607bd49b9ddb2890afef6638e9895dc63734b6",
         "type": "github"
       },
       "original": {
@@ -1340,11 +1340,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1789754550,
-        "narHash": "sha256-sF7/bLz9dfncaXrxLWmHViU/9wUKY+n3QvEwAIyS/pY=",
+        "lastModified": 1790417501,
+        "narHash": "sha256-Ku0OsJVL1Yq5M5ikB2tU3h63JXxXFmnBkzoB+oMynYk=",
         "ref": "refs/heads/master",
-        "rev": "18e74899a6d26340bb02b2b0f7a69a1aabf7bfce",
-        "revCount": 83,
+        "rev": "a2afabde86f873d625721e57eca3c9a190823124",
+        "revCount": 85,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/infra/nix-secrets.git"
       },
