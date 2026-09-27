@@ -150,6 +150,21 @@
       inputs.treefmt-nix.follows = "treefmt-nix";
       inputs.nix-darwin.follows = "nix-darwin";
     };
+    sonora = {
+      url = "github:sonorahq/sonora";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rox = {
+      url = "github:zealsprince/rox";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dbx = {
+      url = "github:t8y2/dbx";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
     # }}}
 
     # {{{ NixOS

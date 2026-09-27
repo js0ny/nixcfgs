@@ -20,6 +20,7 @@ let
       uvx --python=cp312 --from pdf2zh-next pdf2zh2 "$@"
     '';
   };
+  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   imports = [
@@ -61,6 +62,8 @@ in
     himalaya
     icoutils
     inkscape
+    inputs.rox.packages.${system}.default
+    inputs.sonora.packages.${system}.default
     jetbrains.datagrip
     js0ny.dirstat-rs
     js0ny.limes
@@ -101,8 +104,8 @@ in
     nix-output-monitor
     nvd
 
-    inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.fast-nix-gc.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.nix-tree-rs.packages.${system}.default
+    inputs.fast-nix-gc.packages.${system}.default
     deploy-rs
     nurl
     nvfetcher
