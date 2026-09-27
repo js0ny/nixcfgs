@@ -1,7 +1,7 @@
 {
   flake.nixosModules.code-server = _: {
     services.code-server = {
-      enable = true;
+      enable = false;
       disableTelemetry = true;
       disableGettingStartedOverride = true;
       disableUpdateCheck = true;

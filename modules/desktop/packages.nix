@@ -73,7 +73,7 @@
         jq
         yq-go
       ]
-      ++ ((lib.optionals pkgs.stdenv.isLinux) [
+      ++ ((lib.optionals pkgs.stdenv.hostPlatform.isLinux) [
         # keep-sorted start
         bluetui
         dex
@@ -93,7 +93,7 @@
         siyuan
         # keep-sorted end
       ])
-      ++ ((lib.optionals pkgs.stdenv.isDarwin) [
+      ++ ((lib.optionals pkgs.stdenv.hostPlatform.isDarwin) [
         # keep-sorted start
         betterdisplay
         macism # swift-native im-select alternative
@@ -115,7 +115,7 @@
       ];
     };
 
-    home.sessionVariables = lib.optionalAttrs (pkgs.stdenv.isLinux) {
+    home.sessionVariables = lib.optionalAttrs (pkgs.stdenv.hostPlatform.isLinux) {
       PROTON_PASS_LINUX_KEYRING = "dbus";
     };
 
