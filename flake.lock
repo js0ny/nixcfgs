@@ -1309,7 +1309,6 @@
         "steam-config-nix": "steam-config-nix",
         "stylix": "stylix",
         "systems": "systems_4",
-        "tether": "tether",
         "treefmt-nix": "treefmt-nix_2",
         "vicinae-extensions": "vicinae-extensions",
         "vscode-extensions": "vscode-extensions",
@@ -1517,26 +1516,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tether": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1789941766,
-        "narHash": "sha256-IzwEjHqcf9vMGuNLq0HB35I/GsMv67pk4eIz1vHS7z0=",
-        "owner": "zackb",
-        "repo": "tether",
-        "rev": "8f00b15364b6d604d4235a9ce1c05f62be3d2ce0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zackb",
-        "repo": "tether",
         "type": "github"
       }
     },

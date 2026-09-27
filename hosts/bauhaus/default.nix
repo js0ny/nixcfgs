@@ -23,10 +23,14 @@ in
     mod.libvirt
     mod.sshd
     mod.tailscale
-    # ../../nixos/services/hermes-agent
     mod.sunshine
     mod.ollama
     mod.prometheus-node
+
+    mod.tether
+    mod.kdeconnect
+    mod.localsend
+    mod.uxplay
 
     mod.gnome
     mod.plasma
@@ -34,6 +38,8 @@ in
     mod.niri
 
     mod.localsend
+
+    mod.siyuan
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

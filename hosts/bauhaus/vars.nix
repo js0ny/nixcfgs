@@ -32,7 +32,7 @@ in
       ];
     };
     hardware = {
-      cpu.nproc = 16;
+      cpu.nproc = 20;
       type = "bare-metal";
       gpu.driver = "nvidia";
     };
