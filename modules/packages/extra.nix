@@ -69,6 +69,7 @@ in
     js0ny.limes
     js0ny.proton-drive-cli
     js0ny.ratune
+    js0ny.tty7-src
     js0ny.wdotool
     js0ny.xdd
     kdePackages.elisa

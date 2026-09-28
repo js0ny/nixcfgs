@@ -11,7 +11,8 @@ let
   runtime = moduleLib.mkRuntime {
     inherit pkgs cfg;
     configMode = "0660";
-    directoryMode = "2770";
+    # tmpfiles sets the setgid mode; RestrictSUIDSGID prevents setting it in ExecStartPre.
+    directoryMode = null;
   };
   serviceEnvironment = cfg.environment // {
     HERMES_HOME = cfg.home;

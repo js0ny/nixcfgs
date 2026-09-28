@@ -13,8 +13,10 @@ in
     ];
 
     model = {
-      default = "gpt-5.6-terra";
+      default = "gpt-5.6-luna-900k";
       provider = "openai-codex";
+      base_url = "https://chatgpt.com/backend-api/codex";
+      api_mode = "codex_responses";
     };
 
     auxiliary = {
@@ -43,6 +45,15 @@ in
         provider = "custom:litellm";
         model = "deepseek-v4-flash";
       };
+    };
+
+    image_gen = {
+      provider = "openai-codex";
+      model = "gpt-image-2-medium";
+    };
+    video_gen = {
+      provider = "openrouter";
+      model = "minimax/hailuo-3-max";
     };
   };
 }

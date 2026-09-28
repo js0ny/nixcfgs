@@ -193,7 +193,9 @@
           pkgs.util-linux
         ];
         text = /* bash */ ''
-          install -d -m ${directoryMode} ${lib.escapeShellArg cfg.home}
+          ${
+            if directoryMode == null then "mkdir -p" else "install -d -m ${directoryMode}"
+          } ${lib.escapeShellArg cfg.home}
           mkdir -p ${lib.escapeShellArg cfg.workingDirectory}
           rm -f ${lib.escapeShellArg "${cfg.home}/.managed"}
           exec flock ${lib.escapeShellArg "${cfg.home}/.nix-config.lock"} \

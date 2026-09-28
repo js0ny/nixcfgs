@@ -24,6 +24,14 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = 'steam-notification-toasts',
+  match = { class = 'steam', title = '^notificationtoasts_\\d+_desktop$' },
+  float = true,
+  no_initial_focus = true,
+  move = { '(monitor_w-window_w-10)', '(monitor_h-window_h-10)' },
+})
+
+hl.window_rule({
   name = 'element',
   match = {
     class = 'element',
@@ -275,6 +283,14 @@ hl.window_rule({
   name = 'pcloud',
   match = { class = 'pcloud' },
   float = true,
+})
+
+hl.window_rule({
+  name = 'pcloud-update-notification',
+  match = { class = 'pcloud', title = '^New update available$' },
+  float = true,
+  no_initial_focus = true,
+  move = { '(monitor_w-window_w-10)', '(monitor_h-window_h-10)' },
 })
 
 hl.bind('SUPER + F1', function()
