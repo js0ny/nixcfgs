@@ -30,7 +30,9 @@ in
     mod.miniflux
     mod.navidrome
     mod.nix-index-database
+    mod.opengist
     mod.papra
+    mod.pdf2zh
     mod.prometheus
     mod.prometheus-node
     mod.radicale

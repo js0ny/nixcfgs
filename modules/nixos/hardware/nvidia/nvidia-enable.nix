@@ -38,6 +38,17 @@ lib.mkIf (cfg == "nvidia") (
         config.hardware.nvidia-container-toolkit.package
       ];
       hardware.nvidia-container-toolkit.enable = true;
+      systemd.services.nvidia-container-toolkit-cdi-generator.serviceConfig.ExecCondition =
+        pkgs.writeShellScript "nvidia-cdi-driver-version-check"
+          (/* bash */ ''
+            if [ -r /sys/module/nvidia/version ]; then
+              loadedVersion=$(< /sys/module/nvidia/version)
+              if [ "$loadedVersion" != "${config.hardware.nvidia.package.version}" ]; then
+                echo "Skipping NVIDIA CDI generation: loaded driver $loadedVersion differs from configured driver ${config.hardware.nvidia.package.version}; reboot required" >&2
+                exit 1
+              fi
+            fi
+          '');
     }
 
     (lib.mkIf laptop {
