@@ -86,8 +86,4 @@ in
       '';
   };
 
-  systemd.tmpfiles.rules = [
-    "L+ /var/lib/jellyfin/plugins/.nix-managed.SSO-Auth_${p.version} - - - - ${p}"
-  ];
-
 }

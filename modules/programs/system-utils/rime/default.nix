@@ -16,8 +16,6 @@
         ''
       else
         # TODO: Buggy
-        lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
-          # ${lib.getExe' pkgs.kdePackages.qttools "qdbus"} org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.SetConfig "fcitx://config/addon/rime/deploy" ""
-        '';
+        lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ "";
   };
 }
