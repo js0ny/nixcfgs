@@ -37,6 +37,9 @@ in
     lldap_authelia_password = {
       inherit sopsFile owner;
     };
+    authelia_resend_api_key = {
+      inherit sopsFile owner;
+    };
   };
 
   services.authelia.instances."main" = {
@@ -49,8 +52,10 @@ in
       oidcHmacSecretFile = sec.authelia_oidc_hmac_secret.path;
       oidcIssuerPrivateKeyFile = sec.authelia_oidc_rsa_private_key.path;
     };
-    environmentVariables.AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE =
-      sec.lldap_authelia_password.path;
+    environmentVariables = {
+      AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = sec.lldap_authelia_password.path;
+      AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = sec.authelia_resend_api_key.path;
+    };
 
     # https://www.authelia.com/configuration/
     settings = {
@@ -72,8 +77,13 @@ in
       ];
 
       notifier = {
-        disable_startup_check = true;
-        filesystem.filename = "${stateDir}/notification.txt";
+        disable_startup_check = false;
+        smtp = {
+          address = "submission://smtp.resend.com:587";
+          username = "resend";
+          sender = "Authelia <authelia@notify.js0ny.net>";
+          timeout = "10s";
+        };
       };
 
       storage.local.path = "${stateDir}/db.sqlite3";
