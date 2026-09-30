@@ -8,7 +8,6 @@
   programs.zed-editor = {
     userSettings = {
       load_direnv = if config.programs.direnv.enable then "direct" else "disabled";
-      context_servers = config.nixdefs.mcp.clientConfigs.zed-editor;
       terminal = {
         env.EDITOR = "zeditor";
         shell.program = config.js0ny.apps.interactiveShell.exe;

@@ -146,7 +146,7 @@
             bookmarks = true;
             multiConvo = true;
           };
-          mcpServers = config.nixdefs.mcp.clientConfigs.librechat or { };
+          mcpServers = { };
           registration = {
             socialLogin = [ "openid" ];
           };

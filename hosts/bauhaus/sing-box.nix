@@ -10,4 +10,5 @@
     }
   ];
   systemd.services.sing-box.wantedBy = lib.mkForce [ ];
+  js0ny.user.groups = [ "sing-box" ];
 }

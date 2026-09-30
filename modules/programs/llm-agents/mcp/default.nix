@@ -8,53 +8,59 @@
       ...
     }:
     let
+      nodejs = pkgs.nodejs_26;
+      context7-mcp = pkgs.callPackage ./pkgs/context7-mcp.nix {
+        inherit nodejs;
+        apiKeyPath = config.sops.secrets.context7_api_key.path;
+      };
+      tavily-mcp = pkgs.callPackage ./pkgs/tavily-mcp.nix {
+        inherit nodejs;
+        apiKeyPath = config.sops.secrets.tavily_api_key.path;
+      };
       sopsFile = secrets + "/mcp.yaml";
-      context7-mcp = pkgs.writeShellApplication {
-        name = "context7-mcp";
-
-        runtimeInputs = [
-          pkgs.coreutils
-          pkgs.nodejs_26
-        ];
-
-        text = ''
-          secret_file="${config.sops.secrets.context7_api_key.path}"
-
-          if [ ! -r "$secret_file" ]; then
-            echo "context7-mcp: cannot read Context7 API key at $secret_file" >&2
-            exit 1
-          fi
-
-          CONTEXT7_API_KEY="$(cat "$secret_file")"
-          export CONTEXT7_API_KEY
-
-          export CTX7_TELEMETRY_DISABLED=1
-
-          exec npx -y @upstash/context7-mcp
-        '';
+      mcpAttr = {
+        context7.command = lib.getExe context7-mcp;
+        nixos.command = lib.getExe pkgs.mcp-nixos;
+        tavily.command = lib.getExe tavily-mcp;
+        deepwiki.url = "https://mcp.deepwiki.com/mcp";
+        ghgrep.url = "https://mcp.grep.app";
       };
-      tavily-mcp = pkgs.writeShellApplication {
-        name = "tavily-mcp";
-
-        runtimeInputs = [
-          pkgs.coreutils
-          pkgs.nodejs_26
-        ];
-
-        text = ''
-          secret_file="${config.sops.secrets.tavily_api_key.path}"
-
-          if [ ! -r "$secret_file" ]; then
-            echo "tavily-mcp: cannot read tavily API key at $secret_file" >&2
-            exit 1
-          fi
-
-          TAVILY_API_KEY="$(cat "$secret_file")"
-          export TAVILY_API_KEY
-
-          exec npx -y tavily-mcp@0.1.3
-        '';
+      mcpOpenCodeConfig = {
+        context7 = {
+          type = "local";
+          command = [ (lib.getExe context7-mcp) ];
+        };
+        deepwiki = {
+          type = "remote";
+          url = "https://mcp.deepwiki.com/mcp";
+        };
+        ghgrep = {
+          type = "remote";
+          url = "https://mcp.grep.app";
+        };
+        nixos = {
+          type = "local";
+          command = [ (lib.getExe pkgs.mcp-nixos) ];
+        };
+        tavily = {
+          type = "local";
+          command = [ (lib.getExe tavily-mcp) ];
+        };
       };
+      mcpVSCodeConfig = {
+        context7.command = lib.getExe context7-mcp;
+        nixos.command = lib.getExe pkgs.mcp-nixos;
+        tavily.command = lib.getExe tavily-mcp;
+        deepwiki = {
+          type = "http";
+          url = "https://mcp.deepwiki.com/mcp";
+        };
+        ghgrep = {
+          type = "http";
+          url = "https://mcp.grep.app";
+        };
+      };
+      mcpZedConfig = builtins.mapAttrs (_: value: value // { enabled = true; }) mcpAttr;
     in
     {
       sops.secrets = {
@@ -62,27 +68,16 @@
         tavily_api_key = { inherit sopsFile; };
       };
 
-      xdg.configFile."pi/agent/mcp.json".text = builtins.toJSON {
-        mcpServers = {
-          context7.command = lib.getExe context7-mcp;
-          deepwiki.url = "https://mcp.deepwiki.com/mcp";
-          ghgrep.url = "https://mcp.grep.app";
-          nixos.command = lib.getExe pkgs.mcp-nixos;
-          tavily.command = lib.getExe tavily-mcp;
-        };
-        settings = {
-          showStatusIcon = false;
-        };
-      };
-      programs.codex.settings = {
-        mcp_servers = {
-          context7.command = lib.getExe context7-mcp;
-          deepwiki.url = "https://mcp.deepwiki.com/mcp";
-          ghgrep.url = "https://mcp.grep.app";
-          nixos.command = lib.getExe pkgs.mcp-nixos;
-          tavily.command = lib.getExe tavily-mcp;
-        };
-      };
+      xdg.configFile."pi/agent/mcp.json".text = builtins.toJSON { mcpServers = mcpAttr; };
+      xdg.configFile."omp/agent/mcp.json".text = builtins.toJSON { mcpServers = mcpAttr; };
+      programs.opencode.settings.mcp.servers = mcpOpenCodeConfig;
+      # Vendor harness, search builtins
+      programs.codex.settings.mcp_servers = (removeAttrs mcpAttr [ "tavily" ]);
+
+      # Editor
+      programs.zed-editor.userSettings.context_servers = mcpZedConfig;
+      programs.vscode.profiles.default.userMcp.servers = mcpVSCodeConfig;
+
     };
 
 }

@@ -16,7 +16,7 @@ in
     ./disko.nix
     ./vars.nix
     ./btrbk.nix
-    ./dae.nix
+    ./sing-box.nix
     # ./nixos-prebuild.nix
     mod.desktop
     mod.podman
@@ -40,6 +40,7 @@ in
     mod.localsend
 
     mod.siyuan
+    mod.gatus
   ];
 
   home-manager.users."js0ny" = import ./home.nix;
@@ -59,4 +60,6 @@ in
     enable = true;
     scheduler = "scx_lavd";
   };
+
+  services.wastebin.enable = true;
 }

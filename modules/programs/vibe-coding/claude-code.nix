@@ -2,6 +2,8 @@
   config,
   pkgs,
   secrets,
+  lib,
+  osConfig,
   ...
 }:
 let
@@ -78,6 +80,8 @@ in
   };
   makeMutable = [ ".config/claude/settings.json" ];
 
-  home.packages = [ pkgs.llm-agents.claude-desktop ];
+  home.packages = lib.optionals (osConfig.hardware.graphics.enable) [
+    pkgs.llm-agents.claude-desktop
+  ];
 
 }
