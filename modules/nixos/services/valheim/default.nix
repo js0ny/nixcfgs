@@ -1,0 +1,54 @@
+{
+  flake.nixosModules.valheim =
+    {
+      config,
+      lib,
+      secrets,
+      ...
+    }:
+    let
+      stateDir = "/var/lib/valheim";
+    in
+    {
+      sops.secrets.valheim_password.sopsFile = secrets + "/hosts/belvedere.yaml";
+
+      virtualisation.oci-containers.containers.valheim = {
+        image = "ghcr.io/community-valheim-tools/valheim-server:latest";
+        environment = {
+          SERVER_NAME = "belvedere";
+          WORLD_NAME = "belvedere";
+          SERVER_PUBLIC = "true";
+          CROSSPLAY = "false";
+          SERVER_PASS_FILE = "/run/secrets/valheim_password";
+          TZ = "Europe/Vienna";
+        };
+        ports = [
+          "2456:2456/udp"
+          "2457:2457/udp"
+        ];
+        volumes = [
+          "${stateDir}/config:/config"
+          "${stateDir}/data:/opt/valheim"
+          "${config.sops.secrets.valheim_password.path}:/run/secrets/valheim_password:ro"
+        ];
+        extraOptions = [ "--stop-timeout=120" ];
+      };
+
+      systemd.services.podman-valheim = {
+        unitConfig.RequiresMountsFor = [ stateDir ];
+        serviceConfig = {
+          StateDirectory = [
+            "valheim/config"
+            "valheim/data"
+          ];
+          StateDirectoryMode = "0750";
+          TimeoutStopSec = lib.mkForce 150;
+        };
+      };
+      networking.firewall.allowedUDPPorts = [
+        2456
+        2457
+      ];
+      js0ny.persist.stores.state.directories = [ stateDir ];
+    };
+}

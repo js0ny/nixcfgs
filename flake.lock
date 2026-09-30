@@ -781,11 +781,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790570005,
-        "narHash": "sha256-+o/d1qwS8bHNwuiDevl+EKYGJ0IjdzroMxpmoY0JmRg=",
+        "lastModified": 1790746077,
+        "narHash": "sha256-I4O5GSbZgmvzV7dj8fZN8furV2UdEpahh4rvsZOfs/Q=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "e28ea84e78517e5d05ae0c399da00e848e207261",
+        "rev": "af40d966859ec4075ecc172dbb39e53f474dc5d9",
         "type": "github"
       },
       "original": {
@@ -1500,11 +1500,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1790594069,
-        "narHash": "sha256-m8JCMkChlugdJuYsJpC4g+jkDHX7/tIBHlMqV+kXVN8=",
+        "lastModified": 1790704510,
+        "narHash": "sha256-qIYeYT8xTst/LEiq9yA1OMyUn2maZIlWbHuCPlqKM5g=",
         "ref": "refs/heads/master",
-        "rev": "9f4191177cc710f828f266bdbb8d893739f0fdc7",
-        "revCount": 86,
+        "rev": "d6ce1df97f7551b71acf71a79ec1ff1af7b03ec7",
+        "revCount": 87,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/infra/nix-secrets.git"
       },

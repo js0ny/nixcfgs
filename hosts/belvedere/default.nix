@@ -39,6 +39,7 @@ in
     mod.rclone
     mod.rsshub
     mod.sing-box
+    mod.valheim
     # keep-sorted end
     mod.starship
   ];
