@@ -53,11 +53,11 @@
         };
         # https://opencode.ai/docs/config/
         settings = {
-          model = "openai/gpt-5.6-sol";
+          model = "openai/gpt-6.1-sol";
           agent = {
             "yolo" = {
               mode = "primary";
-              model = "openai/gpt-5.6-sol";
+              model = "openai/gpt-6.1-sol";
               permission = {
                 bash = "allow";
                 edit = "allow";

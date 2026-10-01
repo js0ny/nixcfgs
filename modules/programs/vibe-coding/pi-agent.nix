@@ -52,6 +52,13 @@ in
     defaultProvider = "openai-codex";
     defaultModel = "gpt-6.1-sol";
     defaultThinkingLevel = "high";
+
+    packages = [
+      "npm:pi-prompt-template-model"
+      "npm:pi-subagents"
+      "npm:pi-btw"
+    ];
+
     enabledModels = [
       "openai-codex/gpt-6.1-sol"
       # keep-sorted start

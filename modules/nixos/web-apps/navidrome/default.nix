@@ -19,7 +19,7 @@
       services.navidrome = {
         enable = true;
         # [Human Intervention] Enable and configure plugins in Navidrome's Plugins page.
-        plugins = [ pkgs.navidromePlugins.lyrics-plugin ];
+        plugins = [ pkgs.js0ny.navidromePlugins.lyrics-bin ];
         # https://www.navidrome.org/docs/usage/configuration/options/
         settings = {
           Address = "unix:${socketPath}";

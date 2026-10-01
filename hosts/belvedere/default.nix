@@ -35,7 +35,6 @@ in
     mod.papra
     mod.pdf2zh
     mod.prometheus
-    mod.prometheus-node
     mod.radicale
     mod.rclone
     mod.rsshub

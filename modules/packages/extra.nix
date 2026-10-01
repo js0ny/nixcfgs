@@ -53,6 +53,7 @@ in
     font-manager
     font-viewer
     fontforge
+    gcx # grafana cli
     gdb
     gh
     gimp

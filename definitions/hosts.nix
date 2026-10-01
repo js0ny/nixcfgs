@@ -7,6 +7,9 @@
         magicDNS = "bauhaus.tailee8d62.ts.net";
       };
       deploy = { };
+      prometheus = {
+        node-exporter = true;
+      };
     };
     belvedere = {
       tailscale = {
@@ -16,6 +19,9 @@
         exitNode = true;
       };
       deploy = { };
+      prometheus = {
+        node-exporter = true;
+      };
     };
     crystal = {
       tailscale = {
@@ -24,6 +30,9 @@
         magicDNS = "crystal.tailee8d62.ts.net";
       };
       deploy.interactiveSudo = true;
+      prometheus = {
+        node-exporter = true;
+      };
     };
     # polder = {
     #   tailscale.ipv4 = "100.92.207.11";
@@ -36,6 +45,9 @@
         magicDNS = "zwinger.tailee8d62.ts.net";
       };
       deploy = { };
+      prometheus = {
+        node-exporter = true;
+      };
     };
     revival = {
       tailscale = {
