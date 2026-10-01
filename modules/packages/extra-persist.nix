@@ -7,19 +7,15 @@
     ".config/bruno"
   ];
 
+  js0ny.persist.stores.local.files = [
+    {
+      file = ".config/gcx/config.yaml";
+      how = "symlink";
+    }
+  ];
+
   home.sessionVariables = {
     AGENTSVIEW_DATA_DIR = "${config.xdg.dataHome}/agentsview";
-  };
-
-  mergetools = {
-    "motrix-next-config" = {
-      target = "${config.xdg.dataHome}/com.motrix.next/config.json";
-      format = "json";
-      settings = {
-        autoCheckUpdate = false;
-        locale = config.js0ny.host.locales.guiLocale;
-      };
-    };
   };
 
   xdg.configFile."krabby/config.toml".text = /* toml */ ''

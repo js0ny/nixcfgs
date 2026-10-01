@@ -158,13 +158,7 @@
       url = "github:zealsprince/rox";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dbx = {
-      url = "github:t8y2/dbx";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    dbx.url = "github:t8y2/dbx";
     # }}}
 
     # {{{ NixOS

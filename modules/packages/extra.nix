@@ -65,7 +65,6 @@ in
     inkscape
     inputs.rox.packages.${system}.default
     inputs.sonora.packages.${system}.default
-    jetbrains.datagrip
     js0ny.dirstat-rs
     js0ny.limes
     js0ny.m365
