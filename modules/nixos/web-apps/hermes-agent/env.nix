@@ -72,11 +72,4 @@ in
     ];
     environment = { };
   };
-  sops.secrets.hermes_opencode_auth = {
-    sopsFile = secrets + "/hermes/opencode-auth.yaml";
-    key = "data";
-    owner = user;
-    inherit group;
-    path = "${config.users.users.${user}.home}/.local/share/opencode/auth.json";
-  };
 }

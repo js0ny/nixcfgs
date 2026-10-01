@@ -50,7 +50,7 @@ in
       check_for_update_on_startup = false;
       default_permissions = ":workspace";
       sandbox_mode = "danger-full-access";
-      model = "gpt-6-sol";
+      model = "gpt-6.1-sol";
       model_reasoning_effort = "medium";
       features.hooks = true;
       tui = {

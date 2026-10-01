@@ -148,6 +148,8 @@
             extract_backend = "firecrawl";
           };
 
+          browser.cloud_provider = "local";
+
           # https://hermes-agent.nousresearch.com/docs/user-guide/features/tts
           tts = {
             provider = "edge";

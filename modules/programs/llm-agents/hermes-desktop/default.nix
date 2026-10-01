@@ -2,6 +2,7 @@
   flake.homeModules.hermes-desktop =
     {
       pkgs,
+      lib,
       config,
       inputs,
       ...
@@ -13,8 +14,10 @@
         hermes-agent
         hermes-desktop
       ];
-
-      home.sessionVariables.HERMES_HOME = "${config.xdg.configHome}/hermes-agent";
+      home.sessionVariables = {
+        AGENT_BROWSER_EXECUTABLE_PATH = (lib.getExe pkgs.chromium);
+        HERMES_HOME = "${config.xdg.configHome}/hermes-agent";
+      };
 
       js0ny.persist.stores.state.directories = [
         ".config/Hermes"

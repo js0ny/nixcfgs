@@ -11,6 +11,7 @@
       js0ny.persist.stores.state.directories = [
         ".local/share/calendar"
         ".local/share/contacts"
+        ".local/state/m365-cli"
       ];
       programs.khard = {
         enable = true;
@@ -61,5 +62,6 @@
           };
         };
       };
+      programs.aerc.enable = true;
     };
 }

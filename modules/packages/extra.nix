@@ -67,6 +67,7 @@ in
     jetbrains.datagrip
     js0ny.dirstat-rs
     js0ny.limes
+    js0ny.m365
     js0ny.proton-drive-cli
     js0ny.ratune
     js0ny.tty7-src

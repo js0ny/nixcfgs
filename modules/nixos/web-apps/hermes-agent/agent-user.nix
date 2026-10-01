@@ -1,29 +1,20 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   user = config.js0ny.user.name;
-  ocbase = pkgs.llm-agents.opencode;
-  ocpkg = pkgs.symlinkJoin {
-    name = "opencode-with-bun";
-    paths = [ ocbase ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram "$out/bin/opencode" \
-        --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.bun ]} \
-        --set BUN_TELEMETRY_DISABLED 1 \
-        --set CI 1
-    '';
-  };
-in
-{
-  services.hermes-agent.extraPackages = with pkgs; [
+  packages = with pkgs; [
     # keep-sorted start
     agent-browser
+    chromium # deps of agent-browser
     ffmpeg-headless
+    findutils
     gh
     jq
     nodejs_26
-    ocpkg
-    pyright
     python314
     python314Packages.ddgs
     python314Packages.mdformat
@@ -36,6 +27,16 @@ in
     uv
     # keep-sorted end
   ];
+in
+{
+  services.hermes-agent.extraPackages = packages;
+  users.users.hermes = {
+    packages = packages;
+    shell = pkgs.bashInteractive;
+  };
+  environment.variables = {
+    AGENT_BROWSER_EXECUTABLE_PATH = (lib.getExe pkgs.chromium);
+  };
 
   users.users."${user}".extraGroups = [ config.services.hermes-agent.group ];
 }
