@@ -19,6 +19,7 @@ in
     # keep-sorted start
     mod.code-server
     mod.fail2ban
+    mod.fast-note-sync
     mod.fish
     mod.forgejo
     mod.gluetun

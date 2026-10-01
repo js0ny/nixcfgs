@@ -21,17 +21,25 @@
       };
       users.groups.${user} = { };
 
-      sops.secrets.fast_note_sync_auth_token_key.sopsFile = secrets + "/hosts/fast-note-sync.yaml";
+      sops.secrets.fast_note_sync_auth_token_key.sopsFile = secrets + "/fast-note-sync.yaml";
       sops.templates."fast-note-sync-service.yaml" = {
         owner = user;
         group = user;
         mode = "0400";
         restartUnits = [ "fast-note-sync-service.service" ];
+        # https://github.com/haierkeys/fast-note-sync-service/blob/master/config/config.yaml
         content = /* yaml */ ''
           server:
+            run-mode: release
             http-port: "${epSelf.bindAddress}:${portStr}"
           security:
             auth-token-key: "${config.sops.placeholder.fast_note_sync_auth_token_key}"
+          user:
+            register-is-enable: false
+            admin-uid: 1 # first user registers as admin
+          git:
+            name: "[Bot] Fast Note Sync"
+            email: "bot@js0ny.net"
         '';
       };
 

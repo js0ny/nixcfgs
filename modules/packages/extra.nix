@@ -93,6 +93,7 @@ in
     rawtherapee
     rustscan
     sequoia-sq
+    super-productivity
     tinymist
     tradingview
     tsukimi
