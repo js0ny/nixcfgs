@@ -10,6 +10,8 @@
       stateDir = "/var/lib/valheim";
     in
     {
+      imports = [ ./backup.nix ];
+
       sops.secrets.valheim_password.sopsFile = secrets + "/hosts/belvedere.yaml";
 
       virtualisation.oci-containers.containers.valheim = {
@@ -21,6 +23,12 @@
           CROSSPLAY = "false";
           SERVER_PASS_FILE = "/run/secrets/valheim_password";
           TZ = "Europe/Vienna";
+          # MOD Manager
+          BEPINEX = "false";
+          VALHEIM_PLUS = "true";
+          VALHEIM_PLUS_REPO = "Grantapher/ValheimPlus";
+          VALHEIM_PLUS_RELEASE = "tags/0.10.2.0";
+          ADMINLIST_IDS = "${config.secrets.plain.steamId}";
         };
         ports = [
           "2456:2456/udp"

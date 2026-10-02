@@ -81,6 +81,7 @@ in
     kdePackages.qttools
     keepassxc
     krabby
+    marktext
     mission-center
     motrix-next
     nautilus

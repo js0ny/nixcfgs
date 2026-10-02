@@ -55,6 +55,7 @@
       js0ny.persist.stores.local.directories = [
         ".local/share/Steam"
         ".steam"
+        ".config/unity3d"
       ];
       # https://github.com/different-name/steam-config-nix/blob/master/options.md
       programs.steam.config = {
