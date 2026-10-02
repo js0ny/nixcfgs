@@ -22,7 +22,6 @@
     inputs.self.homeModules.emacs
     inputs.self.homeModules.neovide
     inputs.self.homeModules.vcs-extra
-    inputs.self.homeModules.vibe-coding
     inputs.self.homeModules.vscode
     inputs.self.homeModules.zed-editor
     inputs.self.homeModules.wakatime
@@ -40,8 +39,7 @@
     inputs.self.homeModules.social-tencent
 
     inputs.self.homeModules.hermes-desktop
-    inputs.self.homeModules.aichat
-    inputs.self.homeModules.cherry-studio
+    inputs.self.homeModules.llm-agents
 
     inputs.self.homeModules.anki
     inputs.self.homeModules.obsidian

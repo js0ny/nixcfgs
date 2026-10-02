@@ -45,7 +45,6 @@ in
       modules.homeModules.dolphin
       modules.homeModules.firefox
       modules.homeModules.fish
-      modules.homeModules.mcp
       modules.homeModules.modern-unix
       modules.homeModules.nushell
       modules.homeModules.okular

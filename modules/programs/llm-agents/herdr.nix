@@ -48,29 +48,13 @@ in
       worktrees.directory = "${config.xdg.stateHome}/herdr/worktrees";
     };
   };
-  programs.codex.hooks = {
-    SessionStart = [
-      {
-        hooks = [
-          {
-            type = "command";
-            command = "bash '${config.xdg.configHome}/codex/herdr-agent-state.sh' session";
-            timeout = 10;
-          }
-        ];
-      }
-    ];
-  };
-  xdg.configFile = {
-    "codex/herdr-agent-state.sh".source =
-      "${config.programs.herdr.package.src}/src/integration/assets/codex/herdr-agent-state.sh";
-    "herdr/config.toml".onChange =
-      let
-        binPath = if cfg.package == null then "herdr" else "${lib.getExe cfg.package}";
-      in
-      lib.mkForce /* bash */ ''
-        ${binPath} config check
-        ${binPath} server reload-config || true
-      '';
-  };
+
+  xdg.configFile."herdr/config.toml".onChange =
+    let
+      binPath = if cfg.package == null then "herdr" else "${lib.getExe cfg.package}";
+    in
+    lib.mkForce /* bash */ ''
+      ${binPath} config check
+      ${binPath} server reload-config || true
+    '';
 }
