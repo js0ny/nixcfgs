@@ -42,7 +42,7 @@ in
   xdg.configFile."pi/agent/settings.json".text = builtins.toJSON {
     enableInstallTelemetry = false;
     enableAnalytics = false;
-    quietStartup = true;
+    quietStartup = false;
 
     lastChangelogVersion = pibase.version;
 
@@ -67,7 +67,6 @@ in
     defaultThinkingLevel = "high";
 
     packages = [
-      "npm:pi-prompt-template-model"
       "npm:pi-subagents"
       "npm:pi-btw"
     ];

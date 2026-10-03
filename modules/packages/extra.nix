@@ -50,6 +50,7 @@ in
     bruno-cli
     calibre
     dmg2img
+    dnscontrol
     font-manager
     font-viewer
     fontforge

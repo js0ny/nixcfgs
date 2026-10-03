@@ -5,8 +5,8 @@
 }:
 {
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
+      nix-path = [ "nixpkgs=${inputs.nixpkgs}" ];
       trusted-users = [ "@wheel" ];
       substituters = [
         "https://cache.nixos.org"

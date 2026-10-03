@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   secrets,
   ...
@@ -18,7 +19,10 @@ in
     server = {
       url = ep.navidrome.publicUrl;
       username = "js0ny";
-      password_command = "cat ${config.sops.secrets.navidrome_my_password.path}";
+      password_command = lib.escapeShellArgs [
+        "cat"
+        "${config.sops.secrets.navidrome_my_password.path}"
+      ];
     };
     player = {
       default_volume = 70;

@@ -14,7 +14,8 @@
         };
       };
       programs.anki = {
-        enable = false;
+        enable = true;
+        package = pkgs.anki;
         profiles."User 1".sync = {
           username = "ankiweb.unusable450@passmail.net";
           keyFile = config.sops.secrets.anki_sync_key.path;
@@ -30,6 +31,5 @@
       js0ny.persist.stores.local.directories = [ ".local/share/Anki2" ];
 
       js0ny.homebrew.casks = [ "anki" ];
-      js0ny.flatpak.packages = [ "net.ankiweb.Anki" ];
     };
 }

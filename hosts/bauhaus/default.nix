@@ -17,6 +17,7 @@ in
     ./vars.nix
     ./btrbk.nix
     ./sing-box.nix
+    ./strata.nix
     # ./nixos-prebuild.nix
     mod.desktop
     mod.podman
@@ -25,6 +26,7 @@ in
     mod.tailscale
     mod.sunshine
     mod.ollama
+    mod.strata
     mod.prometheus-node
 
     mod.tether

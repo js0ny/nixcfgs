@@ -87,6 +87,11 @@
           # svelte
           "svelte.enable-ts-plugin" = true;
 
+          # python
+          "ruff.lint.ignore" = [
+            "EXE001"
+          ];
+
           # misc
           "redhat.telemetry.enabled" = false;
           "editor.formatOnSave" = true;
