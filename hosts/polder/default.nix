@@ -14,7 +14,6 @@
     # keep-sorted start
 
     ./static/flux.nix
-    inputs.self.nixosModules.bentopdf
     inputs.self.nixosModules.code-server
     inputs.self.nixosModules.fail2ban
     inputs.self.nixosModules.fast-note-sync
@@ -22,14 +21,8 @@
     inputs.self.nixosModules.garage
     inputs.self.nixosModules.hermes-agent
     inputs.self.nixosModules.karakeep
-    inputs.self.nixosModules.librechat
-    inputs.self.nixosModules.litellm
-    inputs.self.nixosModules.lobehub
     inputs.self.nixosModules.mongodb
-    inputs.self.nixosModules.opengist
-    inputs.self.nixosModules.paperless
     inputs.self.nixosModules.pdf2zh
-    inputs.self.nixosModules.postgresql
     inputs.self.nixosModules.rclone
     inputs.self.nixosModules.rsshub
     inputs.self.nixosModules.searxng

@@ -16,7 +16,6 @@
       browserPort = epSelf.port + 1;
     in
     {
-      nixpkgs.config.permittedInsecurePackages = [ "pnpm-9.15.9" ];
       services.karakeep = {
         enable = true;
         browser = {
@@ -24,12 +23,13 @@
         };
         extraEnvironment = {
           PORT = portStr;
-          # DISABLE_SIGNUPS = "true";
+          DISABLE_SIGNUPS = "true";
           DISABLE_NEW_RELEASE_CHECK = "true";
           LOG_LEVEL = "notice";
           NEXTAUTH_URL = epSelf.publicUrl;
           OAUTH_WELLKNOWN_URL = consts.oidc.discovery;
           OAUTH_CLIENT_ID = "karakeep";
+          OAUTH_SCOPE = "openid email profile";
           OAUTH_PROVIDER_NAME = consts.oidc.name;
         };
         environmentFile = config.sops.templates."karakeep.env".path;

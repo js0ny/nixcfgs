@@ -28,6 +28,7 @@ in
     mod.idp
     mod.immich
     mod.jellyfin
+    mod.karakeep
     mod.miniflux
     mod.navidrome
     mod.nix-index-database

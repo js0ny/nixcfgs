@@ -5,6 +5,10 @@
 
     ".config/blender"
     ".config/bruno"
+
+    ".config/sonora"
+    ".local/share/sonora"
+    ".cache/sonora"
   ];
 
   js0ny.persist.stores.local.files = [

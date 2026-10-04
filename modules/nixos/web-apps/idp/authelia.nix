@@ -114,6 +114,8 @@ in
           "groups"
           "preferred_username"
         ];
+        claims_policies.karakeep.id_token = [ "email" ];
+
         clients = [
           {
             client_id = "matrix";
@@ -242,7 +244,7 @@ in
             client_name = "Karakeep";
             client_secret = "$pbkdf2-sha512$310000$.mimWXT9.vi0XhZ7BmbvqQ$H1fKslTExGcxp.gfTOzu8uHtUrSEXZDqZm6JZt/Kco4h5bQH1bwRw6pySwPuUb6ZCC5MGAx0Yugwc/vjeGn83w";
             public = false;
-            authorization_policy = "two_factor";
+            claims_policy = "karakeep";
             require_pkce = false;
             redirect_uris = [
               "${ep.karakeep.publicUrl}/api/auth/callback/custom"
