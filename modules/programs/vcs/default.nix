@@ -38,6 +38,8 @@
         enable = true;
         hosts."github.com" = {
           user = lib.mkDefault config.home.username;
+          git_protocol = "ssh";
+          users.${config.home.username}.git_protocol = "ssh";
         };
         settings = {
           version = 1;

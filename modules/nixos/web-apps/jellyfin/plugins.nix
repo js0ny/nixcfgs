@@ -1,6 +1,9 @@
 { lib, pkgs, ... }:
 let
-  plugins = [ pkgs.js0ny.jellyfin-plugin-sso-bin ];
+  plugins = [
+    pkgs.js0ny.jellyfin-plugin-sso-bin
+    pkgs.js0ny.jellyfin-plugin-ldapauth-src
+  ];
   expandPluginPackage = p: {
     name = p.passthru.pluginName;
     version = p.version;

@@ -24,8 +24,8 @@ in
       display = "wayland";
       autoLogin = true;
       session = [
-        "hyprland"
         "niri"
+        "hyprland"
         "kde"
         "gnome"
         "sway"

@@ -36,8 +36,8 @@ in
       display = "wayland";
       displayManager = "regreet";
       session = [
-        "hyprland"
         "niri"
+        "hyprland"
         "kde"
       ];
     };

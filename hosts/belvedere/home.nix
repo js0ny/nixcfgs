@@ -7,7 +7,6 @@ in
     mod.server
     mod.starship
     mod.neovim
-    mod.vibe-coding
     mod.modern-unix
     mod.fish
     mod.zellij

@@ -146,7 +146,6 @@ in
   };
 
   home.packages = with pkgs; [
-    librewolf
     inputs.glide-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     digikam
     clapper
