@@ -90,7 +90,6 @@
   };
 
   nixdefs = {
-    mcp.enable = true;
     llm.enable = true;
   };
 

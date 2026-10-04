@@ -29,7 +29,6 @@
 
   nixdefs = {
     llm.enable = true;
-    mcp.enable = true;
     hardware.enable = false;
   };
 

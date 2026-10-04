@@ -221,9 +221,6 @@
         # enableLocalDB = true;
       };
 
-      systemd.services.librechat = {
-        path = lib.optionals (config.nixdefs.mcp.enable) [ pkgs.mcp-nixos ];
-      };
       services.nginx.virtualHosts = lib.mkIf (url != null) {
         ${url} = {
           locations."/" = {

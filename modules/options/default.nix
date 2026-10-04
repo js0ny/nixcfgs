@@ -4,6 +4,7 @@
     ./nixdefs
     ./hardware.nix
     ./apps.nix
+    ./mcp.nix
     ./style.nix
     ./packaging.nix
     ./desktop.nix

@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -21,10 +20,7 @@ in
         value.source = ./${f};
       }) files
     )
-    // {
-
-    }
-    // lib.mkIf config.programs.herdr.enable {
+    // lib.optionalAttrs config.programs.herdr.enable {
       "${dir}/herdr-agent-state.ts".source =
         "${config.programs.herdr.package.src}/src/integration/assets/pi/herdr-agent-state.ts";
     };

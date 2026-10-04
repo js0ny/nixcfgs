@@ -73,6 +73,7 @@ in
           trusted_hash = "sha256:abcdb76f675d626b427d709a097643c97288c1ec6bf4dcbb3fb96bc7f874e8ba";
         };
       };
+      mcp_servers = config.js0ny.mcp.clientSettings.codex.mcp_servers;
     };
   };
 

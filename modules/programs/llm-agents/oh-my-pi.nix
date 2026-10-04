@@ -34,6 +34,12 @@ in
     ".local/share/omp-telegram"
   ];
 
+  xdg.configFile."omp/agent/mcp.json".text = builtins.toJSON {
+    "$schema" =
+      "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/src/config/mcp-schema.json";
+    mcpServers = config.js0ny.mcp.clientSettings.omp.mcpServers;
+  };
+
   sops.secrets = lib.optionalAttrs isLinux {
     omp_telegram_bot_token.sopsFile = secrets + "/telegram.yaml";
     tg_main_chatid.sopsFile = secrets + "/telegram.yaml";

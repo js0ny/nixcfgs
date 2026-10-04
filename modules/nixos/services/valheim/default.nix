@@ -12,7 +12,13 @@
     {
       imports = [ ./backup.nix ];
 
-      sops.secrets.valheim_password.sopsFile = secrets + "/hosts/belvedere.yaml";
+      sops.secrets = {
+        valheim_password.sopsFile = secrets + "/hosts/belvedere.yaml";
+        valheim_admins.sopsFile = secrets + "/hosts/belvedere.yaml";
+      };
+      sops.templates."valheim.env".content = /* bash */ ''
+        ADMINLIST_IDS="${config.sops.placeholder.valheim_admins}"
+      '';
 
       virtualisation.oci-containers.containers.valheim = {
         image = "ghcr.io/community-valheim-tools/valheim-server:latest";
@@ -28,8 +34,8 @@
           VALHEIM_PLUS = "true";
           VALHEIM_PLUS_REPO = "Grantapher/ValheimPlus";
           VALHEIM_PLUS_RELEASE = "tags/0.10.2.0";
-          ADMINLIST_IDS = "${config.secrets.plain.steamId}";
         };
+        environmentFiles = [ config.sops.templates."valheim.env".path ];
         ports = [
           "2456:2456/udp"
           "2457:2457/udp"

@@ -13,12 +13,8 @@
       "ctrl+g"
       "alt+e"
     ];
-    "app.model.select" = [
+    "app.model.cycleForward" = [
       "ctrl+shift+m"
     ];
-    "app.model.cycleForward" = [
-      "ctrl+m"
-    ];
-    "app.model.cycleBackward" = [ ];
   };
 }

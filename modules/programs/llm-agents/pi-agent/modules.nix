@@ -27,6 +27,7 @@ in
 {
   imports = [
     ./extensions/modules.nix
+    ./settings.nix
   ];
   home.packages = [ pi ];
   js0ny.persist.stores.state.directories = [ ".config/pi/agent" ];
@@ -80,5 +81,6 @@ in
       # keep-sorted end
     ];
   };
+  xdg.configFile."pi/agent/mcp.json".text = builtins.toJSON config.js0ny.mcp.clientSettings.pi;
 
 }

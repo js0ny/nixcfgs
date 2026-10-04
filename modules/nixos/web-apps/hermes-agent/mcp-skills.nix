@@ -13,31 +13,7 @@ let
   '';
 in
 {
-  services.hermes-agent.mcpServers = {
-    # tavily = {
-    #   url = "${litellm}/tavily/mcp";
-    #   headers = {
-    #     Authorization = "Bearer \${LITELLM_API_KEY}";
-    #   };
-    # };
-    # firecrawl = {
-    #   url = "${litellm}/firecrawl/mcp";
-    #   headers = {
-    #     Authorization = "Bearer \${LITELLM_API_KEY}";
-    #   };
-    # };
-    github = {
-      url = "https://api.githubcopilot.com/mcp/";
-      headers.Authorization = "Bearer \${GITHUB_TOKEN}";
-    };
-    grafana = {
-      command = lib.getExe pkgs.js0ny.mcp-grafana;
-      env = {
-        GRAFANA_SERVICE_ACCOUNT_TOKEN_FILE = config.sops.secrets.grafana_mcp_api_key_hermes.path;
-        GRAFANA_URL = config.nixdefs.endpoints.grafana.publicUrl;
-      };
-    };
-  };
+  services.hermes-agent.mcpServers = config.js0ny.mcp.clientSettings.hermes.mcp_servers;
 
   sops.secrets = {
     grafana_mcp_api_key_hermes = {

@@ -9,7 +9,6 @@
     {
       imports = [
         ./codex/modules.nix
-        ./mcp/modules.nix
         ./pi-agent/modules.nix
         ./ccusage.nix
         ./herdr.nix

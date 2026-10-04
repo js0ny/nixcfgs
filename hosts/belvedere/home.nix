@@ -16,8 +16,6 @@ in
     ../../definitions
   ];
 
-  nixdefs.mcp.enable = true;
-
   home.stateVersion = "26.05";
 
   programs.direnv = {

@@ -2,7 +2,6 @@
   flake.homeModules.editors = _: {
     nixdefs = {
       lsp.enable = true;
-      mcp.enable = true;
     };
     js0ny.persist.stores.state.directories = [
       {
