@@ -27,7 +27,11 @@
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
-          ExecStart = "${lib.getExe pdf2zh} --gui --server-port=${pdf2zhPortStr}";
+          ExecStart = lib.escapeShellArgs [
+            (lib.getExe pdf2zh)
+            "--gui"
+            "--server-port=${pdf2zhPortStr}"
+          ];
           StateDirectory = "pdf2zh";
           WorkingDirectory = "/var/lib/pdf2zh";
           User = "pdf2zh";

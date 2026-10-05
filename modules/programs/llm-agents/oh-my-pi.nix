@@ -9,6 +9,7 @@ let
   pibase = pkgs.llm-agents.omp;
   isLinux = pkgs.stdenv.hostPlatform.isLinux;
   ompTelegram = pkgs.js0ny.omp-telegram;
+  python3 = pkgs.python3.withPackages (ps: [ ps.pyyaml ]);
   pi = pkgs.symlinkJoin {
     name = "omp-env";
     paths = [ pibase ];
@@ -19,7 +20,7 @@ let
     /*nixfmt:disable*/
     postBuild = ''
       wrapProgram "$out/bin/omp" \
-        --prefix PATH : ${ lib.makeBinPath [ pkgs.python3 pkgs.nodejs ] } \
+        --prefix PATH : ${ lib.makeBinPath [ python3 pkgs.nodejs ] } \
         --set PI_CODING_AGENT_SESSION_DIR "${config.xdg.dataHome}/omp/agent/session" \
         --set PI_CODING_AGENT_DIR "${config.xdg.configHome}/omp/agent"
     '';

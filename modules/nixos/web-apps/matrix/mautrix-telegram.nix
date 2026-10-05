@@ -191,7 +191,12 @@ in
       StateDirectory = stateDirName;
       EnvironmentFile = config.sops.templates."mautrix-telegram.env".path;
       ExecStartPre = registerBot;
-      ExecStart = "${lib.getExe package} -n -c ${configFile}";
+      ExecStart = lib.escapeShellArgs [
+        (lib.getExe package)
+        "-n"
+        "-c"
+        configFile
+      ];
       Restart = "on-failure";
       RestartSec = "30s";
       UMask = "0027";

@@ -46,7 +46,12 @@ in
       FAST_NOTE_URL = config.nixdefs.endpoints.fast-note-sync.publicUrl;
     };
     serviceConfig = {
-      ExecStart = "${lib.getExe pkgs.js0ny.go-fast-note-sync} start --config ${pkgs.writers.writeYAML "go-fast-note-sync.yaml" fastNoteSyncConfig}";
+      ExecStart = lib.escapeShellArgs [
+        (lib.getExe pkgs.js0ny.go-fast-note-sync)
+        "start"
+        "--config"
+        (pkgs.writers.writeYAML "go-fast-note-sync.yaml" fastNoteSyncConfig)
+      ];
       User = user;
       Group = group;
       Restart = "always";

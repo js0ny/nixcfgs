@@ -28,15 +28,9 @@ in
   xdg.configFile."gallery-dl/config.json".force = true;
   # https://gdl-org.github.io/docs/gallery-dl.conf
   sops.templates."gdl-extra.json" = {
-    content = /* json */ ''
-      {
-        "extractor": {
-          "pixiv": {
-            "refresh-token": "${config.sops.placeholder.gdl_pixiv_refresh_token}"
-          }
-        }
-      }
-    '';
+    content = builtins.toJSON {
+      extractor.pixiv.refresh-token = config.sops.placeholder.gld_pixiv_refresh_token;
+    };
     mode = "0400";
   };
   sops.secrets."gdl_pixiv_refresh_token" = {

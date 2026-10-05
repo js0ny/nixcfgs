@@ -24,7 +24,10 @@
         services.waydroid-mount = {
           wantedBy = [ "multi-user.target" ];
           serviceConfig = {
-            ExecStart = "${lib.getExe pkgs.waydroid-helper} --start-mount";
+            ExecStart = lib.escapeShellArgs [
+              (lib.getExe pkgs.waydroid-helper)
+              "--start-mount"
+            ];
           };
         };
       };

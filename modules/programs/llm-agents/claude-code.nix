@@ -35,28 +35,26 @@ in
   #   Discovery is opt-in. Without CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1, Claude Code will not query your proxy's /v1/models.
   #   source: https://docs.litellm.ai/docs/tutorials/claude_non_anthropic_models
   sops.templates."claude-settings.json" = {
-    content = /* json */ ''
-      {
-          "env": {
-              "ANTHROPIC_BASE_URL": "${config.nixdefs.endpoints.litellm.publicUrl}",
-              "ANTHROPIC_AUTH_TOKEN": "${config.sops.placeholder.llm_key_claude_code}",
-              "API_TIMEOUT_MS": "3000000",
-              "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": 1,
-              "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1,
-              "CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT": 1,
-              "CLAUDE_CODE_ATTRIBUTION_HEADER": 0,
-              "ANTHROPIC_MODEL": "${model}",
-              "ANTHROPIC_SMALL_FAST_MODEL": "${model}",
-              "ANTHROPIC_DEFAULT_SONNET_MODEL": "${model}",
-              "ANTHROPIC_DEFAULT_OPUS_MODEL": "${model}",
-              "ANTHROPIC_DEFAULT_HAIKU_MODEL": "${model}"
-          },
-          "statusline": {
-              "type": "command",
-              "command": "~/.config/claude/statusline.sh"
-          }
-      }
-    '';
+    content = builtins.toJSON {
+      env = {
+        ANTHROPIC_BASE_URL = "${config.nixdefs.endpoints.litellm.publicUrl}";
+        ANTHROPIC_AUTH_TOKEN = "${config.sops.placeholder.llm_key_claude_code}";
+        API_TIMEOUT_MS = "3000000";
+        CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY = 1;
+        CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = 1;
+        CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT = 1;
+        CLAUDE_CODE_ATTRIBUTION_HEADER = 0;
+        ANTHROPIC_MODEL = "${model}";
+        ANTHROPIC_SMALL_FAST_MODEL = "${model}";
+        ANTHROPIC_DEFAULT_SONNET_MODEL = "${model}";
+        ANTHROPIC_DEFAULT_OPUS_MODEL = "${model}";
+        ANTHROPIC_DEFAULT_HAIKU_MODEL = "${model}";
+      };
+      statusline = {
+        type = "command";
+        command = "~/.config/claude/statusline.sh";
+      };
+    };
     path = "${config.xdg.configHome}/claude/settings.json";
   };
   xdg.configFile."claude/statusline.sh" = {

@@ -31,7 +31,11 @@ in
     description = "Reload Fail2Ban jellyfin jail";
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${lib.getExe' config.services.fail2ban.package "fail2ban-client"} reload jellyfin";
+      ExecStart = lib.escapeShellArgs [
+        (lib.getExe' config.services.fail2ban.package "fail2ban-client")
+        "reload"
+        "jellyfin"
+      ];
     };
   };
 

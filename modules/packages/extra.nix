@@ -51,6 +51,7 @@ in
     calibre
     dmg2img
     dnscontrol
+    ffsend
     font-manager
     font-viewer
     fontforge
@@ -64,7 +65,6 @@ in
     himalaya
     icoutils
     inkscape
-    inputs.rox.packages.${system}.default
     js0ny.dirstat-rs
     js0ny.limes
     js0ny.m365
@@ -73,7 +73,6 @@ in
     js0ny.tty7-src
     js0ny.wdotool
     js0ny.xdd
-    kdePackages.elisa
     kdePackages.isoimagewriter
     kdePackages.kdenlive
     kdePackages.kleopatra
