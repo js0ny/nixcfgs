@@ -1530,11 +1530,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1791109138,
-        "narHash": "sha256-PoM1OnXe1rEBNqmzDKzvuokYaOlZNkYTqy2CnKQ2gwM=",
+        "lastModified": 1791203067,
+        "narHash": "sha256-CM/ZcBey8/tb38t05pb6kJJftTLhBI0pQ1R0D4/EUnc=",
         "ref": "refs/heads/master",
-        "rev": "51ccd7e15a4c2c8a27dab384b7abf4f8df8f198a",
-        "revCount": 103,
+        "rev": "fc0de8503ce132c0bf4677c9f77da4323c2a902c",
+        "revCount": 105,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/infra/nix-secrets.git"
       },

@@ -32,6 +32,7 @@ let
     "application/x-zerosize" # empty file
     "text/vnd.trolltech.linguist" # .ts (Qt Translation Source File)
     "text/x-typst"
+    "application/json"
   ];
   webpageMimes = [
     "text/html"

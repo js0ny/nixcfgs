@@ -50,7 +50,7 @@ in
       Mod+Alt+E { spawn-sh "xdg-terminal-exec yazi ~"; }
       Mod+Shift+Alt+E { spawn-sh "kitty --class=terminal-popup -e yazi ~"; }
 
-      Mod+Apostrophe { spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-float -e edit-clipboard --minimal"; }
+      Mod+Apostrophe { spawn-sh "EDITOR_MINIMAL=1 ${term} -o close_on_child_death=yes --app-id=terminal-float -e edit-clipboard"; }
 
       Mod+Shift+V { spawn-sh "kitty --class=terminal-popup -e edit-clipboard"; }
 

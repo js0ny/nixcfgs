@@ -1,14 +1,18 @@
-{ pkgs, ... }:
-pkgs.writeShellApplication {
-  name = "edit-clipboard";
-  runtimeInputs =
-    with pkgs;
-    [
-      coreutils
-    ]
-    ++ lib.optionals stdenv.hostPlatform.isLinux [
-      wl-clipboard
-      libnotify
-    ];
-  text = builtins.readFile ./edit-clipboard.sh;
-}
+{ lib, pkgs, ... }:
+pkgs.writers.writeNuBin "edit-clipboard" {
+  makeWrapperArgs = [
+    "--prefix"
+    "PATH"
+    ":"
+    (lib.makeBinPath (
+      with pkgs;
+      [
+        coreutils
+      ]
+      ++ lib.optionals stdenv.hostPlatform.isLinux [
+        libnotify
+        wl-clipboard
+      ]
+    ))
+  ];
+} (builtins.readFile ./edit-clipboard.nu)

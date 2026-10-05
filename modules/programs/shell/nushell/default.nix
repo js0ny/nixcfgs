@@ -22,13 +22,10 @@
         # ];
         shellAliases = {
           fg = "job unfreeze";
+          ll = "ls -l";
+          la = "ls -a";
         };
         extraConfig = /* nu */ ''
-          $env.config.abbreviations = $env.config.abbreviations | merge {
-            cls: "clear"
-            ll: "ls -l"
-            la: "ls -a"
-          }
           $env.config.show_banner = false
           $env.config.table.mode = "frameless"
           $env.config.history = {
