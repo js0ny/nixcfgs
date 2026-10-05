@@ -23,7 +23,7 @@ in
     brainz_token = { inherit sopsFile; };
   };
 
-  sops.templates."sonora-config.json" = {
+  sops.templates."sonora-settings.json" = {
     content = builtins.toJSON {
       normalisation = false;
       gapless = true;
@@ -150,6 +150,6 @@ in
         fullscreen_controls_autohide = "automatic";
       };
     };
-    path = "${config.xdg.configHome}/sonora/config.json";
+    path = "${config.xdg.configHome}/sonora/settings.json";
   };
 }
