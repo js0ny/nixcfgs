@@ -9,8 +9,7 @@
     let
       ep = config.nixdefs.endpoints;
       url = ep.navidrome.domain;
-      remoteDir = "library:Music";
-      mntDir = "/mnt/music";
+      mntDir = config.js0ny.rclone.mounts.music.mountPoint;
       socketPath = "/run/navidrome/navidrome.sock";
       backupDir = "/var/backup/navidrome";
       cfg = config.services.navidrome;
@@ -54,7 +53,6 @@
       };
 
       systemd.tmpfiles.rules = [
-        "d ${mntDir} 0755 root users -"
         "d ${backupDir} 0755 ${cfg.user} ${cfg.group} -"
       ];
 
@@ -62,30 +60,11 @@
 
       systemd.services.navidrome.after = [ "rclone-mount-music.service" ];
 
-      systemd.services.rclone-mount-music = {
-        description = "Rclone mount for Music";
-        wants = [ "network-online.target" ];
-        after = [ "network-online.target" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          Type = "notify";
-          ExecStart = /* bash */ ''
-            ${lib.getExe pkgs.rclone} mount ${remoteDir} ${mntDir} \
-              --config=/var/lib/rclone/rclone.conf \
-              --allow-other \
-              --umask=022 \
-              --vfs-cache-mode=full \
-              --vfs-cache-max-size=5G \
-              --vfs-cache-max-age=24h \
-              --dir-cache-time=72h \
-              --log-level=INFO \
-              --allow-non-empty
-          '';
-
-          ExecStop = "${lib.getExe' pkgs.fuse3 "fusermount3"} -u ${mntDir}";
-          Restart = "on-failure";
-          RestartSec = "10s";
-        };
+      js0ny.rclone.mounts.music = {
+        remote = "library:Music";
+        mountPoint = "/mnt/music";
+        mountPointGroup = "users";
+        settings.allow-non-empty = true;
       };
     };
 }

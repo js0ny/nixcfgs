@@ -2,6 +2,8 @@
   flake.nixosModules.rclone =
     { secrets, ... }:
     {
+      imports = [ ./options.nix ];
+
       programs.fuse = {
         enable = true;
         userAllowOther = true;

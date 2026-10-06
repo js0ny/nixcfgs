@@ -92,7 +92,7 @@
           StartLimitBurst = 3;
         };
         environment = {
-          ORG_CALENDAR_ROOT = "/mnt/org/tasks";
+          ORG_CALENDAR_ROOT = "${config.js0ny.rclone.mounts.org.mountPoint}/tasks";
           ORG_CALENDAR_OUTPUT = outputPath;
         };
       };
@@ -105,38 +105,10 @@
         };
       };
 
-      systemd.services.rclone-mount-org =
-        let
-          remoteDir = "pcloud:Org";
-          mntDir = "/mnt/org";
-        in
-        {
-          description = "Rclone mount for Org";
-          wants = [ "network-online.target" ];
-          after = [ "network-online.target" ];
-          wantedBy = [ "multi-user.target" ];
-          serviceConfig = {
-            Type = "notify";
-            ExecStart = /* bash */ ''
-              ${lib.getExe pkgs.rclone} mount ${remoteDir} ${mntDir} \
-                --config=/var/lib/rclone/rclone.conf \
-                --allow-other \
-                --umask=022 \
-                --vfs-cache-mode=full \
-                --vfs-cache-max-size=5G \
-                --vfs-cache-max-age=24h \
-                --dir-cache-time=72h \
-                --log-level=INFO \
-                --allow-non-empty
-            '';
-
-            ExecStop = "${lib.getExe' pkgs.fuse3 "fusermount3"} -u ${mntDir}";
-            Restart = "on-failure";
-            RestartSec = "10s";
-          };
-        };
-      systemd.tmpfiles.rules = [
-        "d /mnt/org 0755 root root -"
-      ];
+      js0ny.rclone.mounts.org = {
+        remote = "pcloud:Org";
+        mountPoint = "/mnt/org";
+        settings.allow-non-empty = true;
+      };
     };
 }
