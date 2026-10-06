@@ -1,11 +1,11 @@
 {
+  lib,
   config,
   ...
 }:
 let
   cfg = config.services.forgejo;
   sshPort = cfg.settings.server.SSH_PORT;
-  portStr = toString sshPort;
 in
 {
   # routers/web/auth/auth.go、modules/ssh/ssh.go
@@ -21,7 +21,13 @@ in
     forgejo.settings = {
       backend = "auto";
       enabled = true;
-      port = "80,443,${portStr}";
+      port = lib.concatStringsSep "," (
+        map toString [
+          "80"
+          "443"
+          sshPort
+        ]
+      );
       protocol = "tcp";
       filter = "forgejo";
       maxretry = 10;

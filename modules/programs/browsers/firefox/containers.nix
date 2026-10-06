@@ -37,6 +37,13 @@ in
           color = "red";
           name = "Chinese";
         }
+        {
+          userContextId = 10;
+          public = true;
+          icon = "briefcase";
+          color = "orange";
+          name = "Anthropic";
+        }
       ];
     };
   };

@@ -16,7 +16,12 @@ in
     jellyfin.settings = {
       backend = "auto";
       enabled = true;
-      port = "80,443";
+      port = lib.concatStringsSep "," (
+        map toString [
+          80
+          443
+        ]
+      );
       protocol = "tcp";
       filter = "jellyfin";
       maxretry = 3;

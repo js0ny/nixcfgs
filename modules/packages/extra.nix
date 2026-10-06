@@ -90,6 +90,7 @@ in
     pdf2zh
     pikpaktui
     pkgsStable.python314Packages.huggingface-hub
+    poppler-utils
     rawtherapee
     rustscan
     sequoia-sq

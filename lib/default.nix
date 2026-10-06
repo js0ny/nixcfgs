@@ -59,4 +59,7 @@ rec {
       builtins.replaceStrings [ "CN" "SG" "HK" "TW" ] [ "Hans" "Hans" "Hant" "Hant" ] lang
     else
       lang;
+
+  attrsToEnvList = attr: map (e: "${e.name}=${toString e.value}") (lib.attrsToList attr);
+  attrsToEnvFile = attr: builtins.concatStringsSep "\n" (attrsToEnvList attr);
 }

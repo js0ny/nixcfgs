@@ -30,6 +30,6 @@ let
 in
 {
   systemd.services.jellyfin = {
-    preStart = lib.getExe preStartScript;
+    serviceConfig.ExecStartPre = lib.getExe preStartScript;
   };
 }

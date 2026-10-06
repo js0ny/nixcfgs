@@ -29,7 +29,7 @@ in
   # https://gdl-org.github.io/docs/gallery-dl.conf
   sops.templates."gdl-extra.json" = {
     content = builtins.toJSON {
-      extractor.pixiv.refresh-token = config.sops.placeholder.gld_pixiv_refresh_token;
+      extractor.pixiv.refresh-token = config.sops.placeholder.gdl_pixiv_refresh_token;
     };
     mode = "0400";
   };
