@@ -14,7 +14,7 @@
         ./nixos.nix
         ./agent-user.nix
         ./env.nix
-        ./lmwiki.nix
+        ./workspace-sync.nix
         ./models.nix
         ./mcp-skills.nix
       ];
@@ -68,7 +68,7 @@
           terminal = {
             backend = "local";
             home_mode = "real";
-            cwd = "/var/lib/hermes";
+            cwd = "/var/lib/hermes/workspace/default";
             timeout = 180;
             persistent_shell = true;
           };

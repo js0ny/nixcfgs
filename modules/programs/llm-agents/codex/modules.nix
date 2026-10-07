@@ -3,6 +3,7 @@
   pkgs,
   lib,
   osConfig,
+  inputs,
   ...
 }:
 let
@@ -33,7 +34,10 @@ let
   '';
 in
 {
-  imports = [ ./desktop.nix ];
+  imports = [
+    ./desktop.nix
+    "${inputs.secrets}/llm-contexts/home/codex.nix"
+  ];
   js0ny.persist.stores = {
     state.directories = [ ".config/codex" ];
     local.directories = [ ".cache/codex-runtimes" ];

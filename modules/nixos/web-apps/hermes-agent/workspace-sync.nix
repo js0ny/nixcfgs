@@ -6,7 +6,7 @@
   ...
 }:
 let
-  vaultDir = "/var/lib/lmwiki";
+  vaultDir = "/var/lib/hermes/workspace";
   inherit (config.services.hermes-agent) user group;
   fastNoteSyncConfig = {
     api = "\${FAST_NOTE_URL}";
@@ -35,11 +35,11 @@ let
   };
 in
 {
-  sops.templates."go-fast-note-sync-lmwiki.env".content = /* bash */ ''
+  sops.templates."go-fast-note-sync-agent-workspace.env".content = /* bash */ ''
     FAST_NOTE_TOKEN=${config.sops.placeholder.hermes_fast_note_sync}
   '';
-  systemd.services.go-fast-note-sync-lmwiki = {
-    description = "Sync LMWiki for Hermes Agent";
+  systemd.services.go-fast-note-sync-agent-workspace = {
+    description = "Sync Workspace for Hermes Agent";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     environment = {
@@ -56,11 +56,11 @@ in
       Group = group;
       Restart = "always";
       RestartSec = 5;
-      EnvironmentFile = "${config.sops.templates."go-fast-note-sync-lmwiki.env".path}";
+      EnvironmentFile = "${config.sops.templates."go-fast-note-sync-agent-workspace.env".path}";
     };
   };
   systemd.services.hermes-agent = {
-    after = [ "go-fast-note-sync-lmwiki.service" ];
+    after = [ "go-fast-note-sync-agent-workspace.service" ];
     serviceConfig.ReadWritePaths = [ vaultDir ];
   };
   systemd.tmpfiles.rules = [
@@ -68,17 +68,9 @@ in
     "Z ${vaultDir} 2775 ${user} ${group} - -"
     "A+ ${vaultDir} - - - - g:${group}:rwX,d:g:${group}:rwX"
   ];
-  js0ny.persist.stores.state.directories = [
-    {
-      directory = vaultDir;
-      mode = "2775";
-      inherit user group;
-    }
-  ];
 
   services.hermes-agent.environment = {
     OBSIDIAN_VAULT_PATH = vaultDir;
-    WIKI_PATH = vaultDir;
   };
   sops.secrets.hermes_fast_note_sync = {
     sopsFile = secrets + "/hermes.yaml";

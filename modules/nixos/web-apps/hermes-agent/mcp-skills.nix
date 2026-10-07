@@ -1,8 +1,7 @@
 {
   pkgs,
-  lib,
   config,
-  secrets,
+  inputs,
   ...
 }:
 let
@@ -13,14 +12,15 @@ let
   '';
 in
 {
-  services.hermes-agent.mcpServers = config.js0ny.mcp.clientSettings.hermes.mcp_servers;
-
-  sops.secrets = {
-    grafana_mcp_api_key_hermes = {
-      sopsFile = secrets + "/mcp.yaml";
-      key = "grafana_mcp_api_key";
-      owner = "hermes";
-      group = config.services.hermes-agent.group;
+  imports = [
+    "${inputs.secrets}/llm-contexts/nixos/hermes.nix"
+  ];
+  services.hermes-agent = {
+    mcpServers = config.js0ny.mcp.clientSettings.hermes.mcp_servers;
+    # https://hermes-agent.nousresearch.com/docs/user-guide/configuration#skill-settings
+    settings.skills = {
+      external_dirs = [ "/var/lib/hermes/agent-skills" ];
+      write_approval = true; # stage every write for review `/skills pending`
     };
   };
 

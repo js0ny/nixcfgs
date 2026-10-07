@@ -3,6 +3,7 @@
   lib,
   config,
   secrets,
+  inputs,
   ...
 }:
 let
@@ -28,6 +29,9 @@ let
   };
 in
 {
+  imports = [
+    "${inputs.secrets}/llm-contexts/home/omp.nix"
+  ];
   home.packages = [ pi ] ++ lib.optionals isLinux [ ompTelegram ];
 
   js0ny.persist.stores.state.directories = [

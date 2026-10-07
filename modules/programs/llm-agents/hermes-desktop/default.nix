@@ -8,7 +8,10 @@
       ...
     }:
     {
-      imports = [ inputs.self.homeModules.hermes-agent ];
+      imports = [
+        inputs.self.homeModules.hermes-agent
+        "${inputs.secrets}/llm-contexts/home/hermes.nix"
+      ];
 
       home.packages = with pkgs.llm-agents; [
         hermes-agent

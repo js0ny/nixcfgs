@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 let
@@ -28,6 +29,7 @@ in
   imports = [
     ./extensions/modules.nix
     ./settings.nix
+    "${inputs.secrets}/llm-contexts/home/pi.nix"
   ];
   home.packages = [ pi ];
   js0ny.persist.stores.state.directories = [ ".config/pi/agent" ];
