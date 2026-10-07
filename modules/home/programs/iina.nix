@@ -71,7 +71,7 @@ lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin) {
       enableAdvancedSettings = 0;
     };
   };
-  # See ../mpv.nix
+  # See ../../programs/media/mpv/default.nix
   # Since iina will build the keybindings from scratch (instead of override mpv's), more keybindings should be added manually
   # this can also interact with iina's api
   home.file."Library/Application Support/com.colliderli.iina/input_conf/vim.conf" = {

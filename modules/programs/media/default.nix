@@ -13,7 +13,7 @@
       imports = [
         inputs.self.homeModules.mediatools
         ./sonora.nix
-        ./mpv.nix
+        inputs.self.homeModules.mpv
         ./ratune.nix
       ];
       home.packages = [

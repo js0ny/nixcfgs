@@ -3,6 +3,7 @@
     services.desktopManager.plasma6.enable = true;
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       # keep-sorted start
+      elisa
       kate
       kde-gtk-config # sync gtk colorscheme with kde settings
       ktexteditor

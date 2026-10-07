@@ -5,7 +5,6 @@
 }:
 {
   # MPV GTK4 frontend
-  imports = [ ./mpv.nix ]; # Include MPV configuration
   home.packages = [ pkgs.celluloid ];
   dconf.settings = {
     "io/github/celluloid-player/celluloid" = {
