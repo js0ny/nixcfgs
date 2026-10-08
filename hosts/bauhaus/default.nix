@@ -17,6 +17,7 @@ in
     ./vars.nix
     ./btrbk.nix
     ./sing-box.nix
+    ./incus.nix
     ./strata.nix
     # ./nixos-prebuild.nix
     mod.desktop
@@ -63,5 +64,4 @@ in
     scheduler = "scx_lavd";
   };
 
-  services.wastebin.enable = true;
 }

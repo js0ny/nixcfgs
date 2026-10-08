@@ -5,8 +5,14 @@
   ...
 }:
 let
-  user = config.js0ny.user.name;
   packages = with pkgs; [
+    (python314.withPackages (ps: [
+      # keep-sorted start
+      ps.ddgs
+      ps.pyyaml
+      ps.requests
+      # keep-sorted end
+    ]))
     # keep-sorted start
     agent-browser
     chromium # deps of agent-browser
@@ -15,10 +21,7 @@ let
     gh
     jq
     nodejs_26
-    python314
-    python314Packages.ddgs
-    python314Packages.mdformat
-    python314Packages.mdformat-gfm
+    poppler-utils
     ripgrep
     ripgrep-all
     shellcheck
@@ -27,6 +30,12 @@ let
     uv
     # keep-sorted end
   ];
+  stateDir = "/var/lib/hermes";
+  gitConfig = /* ini */ ''
+    [user]
+      email = "bot@js0ny.net"
+      name = "js0ny LLM Agent"
+  '';
 in
 {
   services.hermes-agent.extraPackages = packages;
@@ -38,5 +47,9 @@ in
     AGENT_BROWSER_EXECUTABLE_PATH = (lib.getExe pkgs.chromium);
   };
 
-  users.users."${user}".extraGroups = [ config.services.hermes-agent.group ];
+  js0ny.user.groups = [ config.services.hermes-agent.group ];
+
+  systemd.tmpfiles.rules = [
+    "L+ ${stateDir}/.gitconfig - - - - ${pkgs.writeText "gitconfig" gitConfig}"
+  ];
 }

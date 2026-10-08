@@ -8,7 +8,6 @@
   misc.shellAliases = {
     ni = "touch";
     cls = "clear";
-    py = "nix run 'nixpkgs#python3'";
   }
   // lib.optionalAttrs (pkgs.stdenv.hostPlatform.isDarwin) {
     reboot = "sudo reboot";

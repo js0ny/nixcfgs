@@ -103,6 +103,12 @@
         home = "/var/lib/pdf2zh";
       };
       users.groups.pdf2zh = { };
-      js0ny.persist.stores.state.directories = [ "/var/lib/pdf2zh" ];
+      js0ny.persist.stores.state.directories = [
+        {
+          directory = "/var/lib/pdf2zh";
+          user = "pdf2zh";
+          group = "pdf2zh";
+        }
+      ];
     };
 }

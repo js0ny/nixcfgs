@@ -40,6 +40,9 @@
         };
       services.grafana = {
         enable = true;
+        declarativePlugins = with pkgs.grafanaPlugins; [
+          yesoreyeram-infinity-datasource
+        ];
         settings = {
           server = {
             protocol = "socket";

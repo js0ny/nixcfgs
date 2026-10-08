@@ -1,6 +1,10 @@
 { pkgs, config, ... }:
 {
   environment.systemPackages = with pkgs; [
+    (python3.withPackages (ps: [
+      ps.pyyaml
+      ps.requests
+    ]))
     # keep-sorted start
     bind
     curl
@@ -17,7 +21,6 @@
     lsof
     moreutils
     psmisc
-    python3
     socat
     sysstat # iostat
     wget

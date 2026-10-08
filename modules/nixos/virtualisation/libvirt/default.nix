@@ -11,6 +11,7 @@
         virtiofsd
         virt-top
         qemu-utils
+        cifs-utils
 
         # viewer
         spice-gtk

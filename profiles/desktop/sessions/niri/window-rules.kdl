@@ -88,6 +88,10 @@ window-rule {
 }
 window-rule {
     match app-id="^mpv$"
+    open-floating true
+}
+
+window-rule {
     match app-id="^org.gnome.Loupe$"
     open-floating true
     default-floating-position relative-to="bottom-right" x=50 y=50

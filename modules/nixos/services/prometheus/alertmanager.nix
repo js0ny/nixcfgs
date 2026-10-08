@@ -50,16 +50,18 @@ let
         rules = [
           {
             alert = "FilesystemAlmostFull";
+            # Bind mounts and Btrfs subvolumes share capacity; retain the lowest free-space ratio per device.
             expr = ''
-              node_filesystem_avail_bytes{fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*",mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"}
-                / node_filesystem_size_bytes{fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*",mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"}
-                < 0.10
+              min without (mountpoint) (
+                node_filesystem_avail_bytes{fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*",mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"}
+                  / node_filesystem_size_bytes{fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*",mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"}
+              ) < 0.10
             '';
             for = "10m";
             labels.severity = "warning";
             annotations = {
               summary = "Filesystem is over 90% full";
-              description = "{{ $labels.instance }} {{ $labels.mountpoint }} has less than 10% free space.";
+              description = "{{ $labels.instance }} filesystem on {{ $labels.device }} ({{ $labels.fstype }}) has less than 10% free space.";
             };
           }
           {

@@ -34,6 +34,9 @@
           ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [ mpris ]);
 
         config = {
+          # Keep large videos from requesting a window wider than the usable display.
+          autofit-larger = "90%x90%";
+
           # Use the libplacebo renderer and conservative automatic hardware decoding.
           vo = "gpu-next";
           hwdec = "auto-safe";

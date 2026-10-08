@@ -57,5 +57,6 @@ in
     pandoc
     md2pdf
     typst
+    js0ny.tylax
   ];
 }
