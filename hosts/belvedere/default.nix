@@ -39,6 +39,7 @@ in
     mod.radicale
     mod.rclone
     mod.rsshub
+    mod.searxng
     mod.sing-box
     mod.valheim
     # keep-sorted end

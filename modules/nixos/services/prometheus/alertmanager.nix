@@ -51,7 +51,7 @@ let
           {
             alert = "FilesystemAlmostFull";
             # Bind mounts and Btrfs subvolumes share capacity; retain the lowest free-space ratio per device.
-            expr = ''
+            expr = /* promql */ ''
               min without (mountpoint) (
                 node_filesystem_avail_bytes{fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*",mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"}
                   / node_filesystem_size_bytes{fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*",mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"}
@@ -66,7 +66,7 @@ let
           }
           {
             alert = "PostgreSQLDown";
-            expr = "pg_up == 0";
+            expr = /* promql */ "pg_up == 0";
             for = "10m";
             labels.severity = "critical";
             annotations = {
@@ -76,7 +76,7 @@ let
           }
           {
             alert = "HighCPUUsage";
-            expr = ''
+            expr = /* promql */ ''
               1 - avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) > 0.95
             '';
             for = "30m";
@@ -88,7 +88,7 @@ let
           }
           {
             alert = "HighMemoryUsage";
-            expr = "node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.10";
+            expr = /* promql */ "node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.10";
             for = "30m";
             labels.severity = "warning";
             annotations = {

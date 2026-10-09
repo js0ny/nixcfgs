@@ -17,6 +17,7 @@
         if pkgs.stdenv.hostPlatform.isLinux then
           [
             (pkgs.nixpaks.zotero.override {
+              package = (pkgs.mv.at "26.05").zotero;
               dotDir = dotDir;
               libraryDir = libraryDir;
             })

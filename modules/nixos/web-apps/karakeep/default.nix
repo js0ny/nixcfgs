@@ -57,6 +57,12 @@
         }
         // config.nixdefs.consts.nginxWithCF;
       };
-      js0ny.persist.stores.state.directories = [ "/var/lib/karakeep" ];
+      js0ny.persist.stores.state.directories = [
+        {
+          user = "karakeep";
+          group = "karakeep";
+          directory = "/var/lib/karakeep";
+        }
+      ];
     };
 }

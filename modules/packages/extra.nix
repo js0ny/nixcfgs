@@ -99,6 +99,7 @@ in
     tradingview
     tsukimi
     typst
+    woxi
     xournalpp
     # keep-sorted end
 
