@@ -4,6 +4,7 @@
       lib,
       config,
       secrets,
+      myLib,
       ...
     }:
     let
@@ -17,10 +18,10 @@
         vikunja_service_secret = { inherit sopsFile; };
         vikunja_oidc_secret = { inherit sopsFile; };
       };
-      sops.templates."vikunja.env".content = /* bash */ ''
-        VIKUNJA_SERVICE_SECRET=${config.sops.placeholder.vikunja_service_secret}
-        VIKUNJA_AUTH_OPENID_PROVIDERS_AUTHELIA_CLIENTSECRET=${config.sops.placeholder.vikunja_oidc_secret}
-      '';
+      sops.templates."vikunja.env".content = myLib.attrsToEnvFile {
+        VIKUNJA_SERVICE_SECRET = config.sops.placeholder.vikunja_service_secret;
+        VIKUNJA_AUTH_OPENID_PROVIDERS_AUTHELIA_CLIENTSECRET = config.sops.placeholder.vikunja_oidc_secret;
+      };
       services.vikunja = {
         enable = true;
         address = epSelf.bindAddress;

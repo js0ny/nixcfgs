@@ -3,6 +3,7 @@
   lib,
   config,
   secrets,
+  myLib,
   ...
 }:
 let
@@ -35,9 +36,9 @@ let
   };
 in
 {
-  sops.templates."go-fast-note-sync-agent-workspace.env".content = /* bash */ ''
-    FAST_NOTE_TOKEN=${config.sops.placeholder.hermes_fast_note_sync}
-  '';
+  sops.templates."go-fast-note-sync-agent-workspace.env".content = myLib.attrsToEnvFile {
+    FAST_NOTE_TOKEN = config.sops.placeholder.hermes_fast_note_sync;
+  };
   systemd.services.go-fast-note-sync-agent-workspace = {
     description = "Sync Workspace for Hermes Agent";
     after = [ "network.target" ];

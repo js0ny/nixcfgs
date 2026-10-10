@@ -3,6 +3,7 @@
   lib,
   pkgs,
   secrets,
+  myLib,
   ...
 }:
 let
@@ -45,10 +46,10 @@ in
     mautrix_discord_as = { inherit sopsFile; };
     mautrix_discord_hs = { inherit sopsFile; };
   };
-  sops.templates."mautrix-discord.env".content = /* bash */ ''
-    MAUTRIX_DISCORD_APPSERVICE_AS_TOKEN=${config.sops.placeholder.mautrix_discord_as}
-    MAUTRIX_DISCORD_APPSERVICE_HS_TOKEN=${config.sops.placeholder.mautrix_discord_hs}
-  '';
+  sops.templates."mautrix-discord.env".content = myLib.attrsToEnvFile {
+    MAUTRIX_DISCORD_APPSERVICE_AS_TOKEN = config.sops.placeholder.mautrix_discord_as;
+    MAUTRIX_DISCORD_APPSERVICE_HS_TOKEN = config.sops.placeholder.mautrix_discord_hs;
+  };
   sops.templates."discord-registration.yaml" = {
     content = /* yaml */ ''
       id: ${botID}

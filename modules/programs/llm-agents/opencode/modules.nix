@@ -3,6 +3,7 @@
   lib,
   config,
   secrets,
+  myLib,
   ...
 }:
 let
@@ -34,10 +35,10 @@ in
     OPENCODE_DISABLE_LSP_DOWNLOAD = if pkgs.stdenv.hostPlatform.isLinux then "true" else "";
   };
 
-  sops.templates."opencode-web.env".content = /* bash */ ''
-    OPENCODE_SERVER_USERNAME=${config.sops.placeholder.opencode_web_username}
-    OPENCODE_SERVER_PASSWORD=${config.sops.placeholder.opencode_web_password}
-  '';
+  sops.templates."opencode-web.env".content = myLib.attrsToEnvFile {
+    OPENCODE_SERVER_USERNAME = config.sops.placeholder.opencode_web_username;
+    OPENCODE_SERVER_PASSWORD = config.sops.placeholder.opencode_web_password;
+  };
 
   programs.zsh.initContent = /* bash */ ''
     source <(opencode completion)

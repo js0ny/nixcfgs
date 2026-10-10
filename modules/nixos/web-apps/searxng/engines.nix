@@ -1,5 +1,12 @@
 {
   services.searx.settings = {
+    engines = [
+      {
+        name = "braveapi";
+        engine = "braveapi";
+        api_key = "$BRAVE_SEARCH_API_KEY";
+      }
+    ];
     #   use_default_settings.engines.keep_only = [
     #     "startpage"
     #     "brave"

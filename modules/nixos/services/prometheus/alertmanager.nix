@@ -2,6 +2,7 @@
   pkgs,
   config,
   secrets,
+  myLib,
   ...
 }:
 let
@@ -110,10 +111,10 @@ in
     };
   };
 
-  sops.templates."alertmanager.env".content = /* bash */ ''
-    TELEGRAM_BOT_TOKEN=${config.sops.placeholder.alertmanager_telegram_bot_token}
-    TELEGRAM_CHAT_ID=${config.sops.placeholder.alertmanager_telegram_chat_id}
-  '';
+  sops.templates."alertmanager.env".content = myLib.attrsToEnvFile {
+    TELEGRAM_BOT_TOKEN = config.sops.placeholder.alertmanager_telegram_bot_token;
+    TELEGRAM_CHAT_ID = config.sops.placeholder.alertmanager_telegram_chat_id;
+  };
 
   services.prometheus.alertmanager = {
     enable = true;

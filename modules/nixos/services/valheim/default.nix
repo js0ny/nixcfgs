@@ -4,6 +4,7 @@
       config,
       lib,
       secrets,
+      myLib,
       ...
     }:
     let
@@ -16,9 +17,9 @@
         valheim_password.sopsFile = secrets + "/hosts/belvedere.yaml";
         valheim_admins.sopsFile = secrets + "/hosts/belvedere.yaml";
       };
-      sops.templates."valheim.env".content = /* bash */ ''
-        ADMINLIST_IDS="${config.sops.placeholder.valheim_admins}"
-      '';
+      sops.templates."valheim.env".content = myLib.attrsToEnvFile {
+        ADMINLIST_IDS = config.sops.placeholder.valheim_admins;
+      };
 
       virtualisation.oci-containers.containers.valheim = {
         image = "ghcr.io/community-valheim-tools/valheim-server:latest";

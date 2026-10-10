@@ -23,6 +23,7 @@
         glib
         libxcb
         libGL
+        alsa-lib
         libsecret
       ]);
   };

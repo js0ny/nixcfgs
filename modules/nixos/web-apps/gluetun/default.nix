@@ -17,6 +17,7 @@
     {
       secrets,
       config,
+      myLib,
       ...
     }:
     let
@@ -32,9 +33,9 @@
           sopsFile = secrets + "/wireguard.yaml";
         };
       };
-      sops.templates."gluetun.env".content = /* bash */ ''
-        WIREGUARD_PRIVATE_KEY=${config.sops.placeholder.wg_pvpn_nl}
-      '';
+      sops.templates."gluetun.env".content = myLib.attrsToEnvFile {
+        WIREGUARD_PRIVATE_KEY = config.sops.placeholder.wg_pvpn_nl;
+      };
       virtualisation.oci-containers = {
         containers = {
           gluetun = {

@@ -1,6 +1,7 @@
 {
   config,
   secrets,
+  myLib,
   ...
 }:
 let
@@ -15,9 +16,9 @@ in
     lldap_jwt_secret.sopsFile = secrets + "/authelia.yaml";
     lldap_key_seed.sopsFile = secrets + "/authelia.yaml";
   };
-  sops.templates."lldap.env".content = /* bash */ ''
-    LLDAP_KEY_SEED=${config.sops.placeholder.lldap_key_seed}
-  '';
+  sops.templates."lldap.env".content = myLib.attrsToEnvFile {
+    LLDAP_KEY_SEED = config.sops.placeholder.lldap_key_seed;
+  };
 
   services.lldap = {
     enable = true;

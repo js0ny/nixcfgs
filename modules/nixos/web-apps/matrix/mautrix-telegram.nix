@@ -3,6 +3,7 @@
   lib,
   pkgs,
   secrets,
+  myLib,
   ...
 }:
 let
@@ -128,13 +129,13 @@ in
     mautrix_telegram_secret = { inherit sopsFile; };
   };
 
-  sops.templates."mautrix-telegram.env".content = /* bash */ ''
-    MAUTRIX_TELEGRAM_NETWORK__API_ID=${config.sops.placeholder.tg_main_mtproto_id}
-    MAUTRIX_TELEGRAM_NETWORK__API_HASH=${config.sops.placeholder.tg_main_mtproto_hash}
-    MAUTRIX_TELEGRAM_APPSERVICE__AS_TOKEN=${config.sops.placeholder.mautrix_telegram_as}
-    MAUTRIX_TELEGRAM_APPSERVICE__HS_TOKEN=${config.sops.placeholder.mautrix_telegram_hs}
-    MAUTRIX_TELEGRAM_ENCRYPTION__PICKLE_KEY=${config.sops.placeholder.mautrix_telegram_secret}
-  '';
+  sops.templates."mautrix-telegram.env".content = myLib.attrsToEnvFile {
+    MAUTRIX_TELEGRAM_NETWORK__API_ID = config.sops.placeholder.tg_main_mtproto_id;
+    MAUTRIX_TELEGRAM_NETWORK__API_HASH = config.sops.placeholder.tg_main_mtproto_hash;
+    MAUTRIX_TELEGRAM_APPSERVICE__AS_TOKEN = config.sops.placeholder.mautrix_telegram_as;
+    MAUTRIX_TELEGRAM_APPSERVICE__HS_TOKEN = config.sops.placeholder.mautrix_telegram_hs;
+    MAUTRIX_TELEGRAM_ENCRYPTION__PICKLE_KEY = config.sops.placeholder.mautrix_telegram_secret;
+  };
 
   sops.templates."telegram-registration.yaml" = {
     content = /* yaml */ ''

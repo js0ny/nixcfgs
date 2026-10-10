@@ -5,6 +5,7 @@
       pkgs,
       lib,
       secrets,
+      myLib,
       ...
     }:
     let
@@ -141,12 +142,12 @@
         log-driver = "journald";
       };
 
-      sops.templates."sub2api.env".content = /* bash */ ''
-        DATABASE_PASSWORD=${config.sops.placeholder.sub2api_db_password}
-        ADMIN_PASSWORD=${config.sops.placeholder.sub2api_admin_password}
-        JWT_SECRET=${config.sops.placeholder.sub2api_jwt_secret}
-        TOTP_ENCRYPTION_KEY=${config.sops.placeholder.sub2api_totp_encryption_key}
-      '';
+      sops.templates."sub2api.env".content = myLib.attrsToEnvFile {
+        DATABASE_PASSWORD = config.sops.placeholder.sub2api_db_password;
+        ADMIN_PASSWORD = config.sops.placeholder.sub2api_admin_password;
+        JWT_SECRET = config.sops.placeholder.sub2api_jwt_secret;
+        TOTP_ENCRYPTION_KEY = config.sops.placeholder.sub2api_totp_encryption_key;
+      };
       # }}}
 
       # {{{ tmpfiles

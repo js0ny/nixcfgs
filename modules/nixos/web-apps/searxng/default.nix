@@ -5,6 +5,7 @@
       lib,
       config,
       secrets,
+      myLib,
       ...
     }:
     let
@@ -15,13 +16,16 @@
       port = epSelf.port;
     in
     {
-      sops.secrets.searxng_secret = {
-        sopsFile = secrets + "/searxng.yaml";
+      imports = myLib.scanPaths ./.;
+      sops.secrets = {
+        searxng_secret.sopsFile = secrets + "/searxng.yaml";
+        brave_search_api_key.sopsFile = secrets + "/searxng.yaml";
       };
 
-      sops.templates."searxng.env".content = /* bash */ ''
-        SEARXNG_SECRET=${config.sops.placeholder.searxng_secret}
-      '';
+      sops.templates."searxng.env".content = myLib.attrsToEnvFile {
+        SEARXNG_SECRET = config.sops.placeholder.searxng_secret;
+        BRAVE_SEARCH_API_KEY = config.sops.placeholder.brave_search_api_key;
+      };
 
       services.searx = {
         enable = true;

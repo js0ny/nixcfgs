@@ -5,6 +5,7 @@
       lib,
       config,
       secrets,
+      myLib,
       ...
     }:
     let
@@ -42,10 +43,10 @@
           sopsFile = secrets + "/karakeep.yaml";
         };
       };
-      sops.templates."karakeep.env".content = /* bash */ ''
-        NEXTAUTH_SECRET=${config.sops.placeholder.karakeep_secret}
-        OAUTH_CLIENT_SECRET=${config.sops.placeholder.karakeep_oidc_secret}
-      '';
+      sops.templates."karakeep.env".content = myLib.attrsToEnvFile {
+        NEXTAUTH_SECRET = config.sops.placeholder.karakeep_secret;
+        OAUTH_CLIENT_SECRET = config.sops.placeholder.karakeep_oidc_secret;
+      };
 
       services.nginx.virtualHosts = lib.mkIf (url != null) {
         ${url} = {

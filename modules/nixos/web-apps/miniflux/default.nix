@@ -4,6 +4,7 @@
       config,
       lib,
       secrets,
+      myLib,
       ...
     }:
     let
@@ -32,12 +33,11 @@
         };
       };
 
-      sops.templates."miniflux.env".content = /* bash */ ''
-        ADMIN_USERNAME="${config.sops.placeholder.miniflux_admin_username}"
-        ADMIN_PASSWORD="${config.sops.placeholder.miniflux_admin_password}"
-        OAUTH2_CLIENT_SECRET="${config.sops.placeholder.miniflux_oidc_secret}"
-        # DATABASE_URL='postgres://${dbuser}:${config.sops.placeholder.miniflux_db_password}@127.0.0.1:5432/${dbname}?sslmode=disable'
-      '';
+      sops.templates."miniflux.env".content = myLib.attrsToEnvFile {
+        ADMIN_USERNAME = config.sops.placeholder.miniflux_admin_username;
+        ADMIN_PASSWORD = config.sops.placeholder.miniflux_admin_password;
+        OAUTH2_CLIENT_SECRET = config.sops.placeholder.miniflux_oidc_secret;
+      };
 
       services.miniflux = {
         enable = true;

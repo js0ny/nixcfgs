@@ -4,6 +4,7 @@
       config,
       secrets,
       lib,
+      myLib,
       ...
     }:
     let
@@ -30,9 +31,9 @@
       ];
     in
     {
-      sops.templates."papra.env".content = /* bash */ ''
-        AUTH_PROVIDERS_CUSTOMS=${builtins.toJSON authConfig}
-      '';
+      sops.templates."papra.env".content = myLib.attrsToEnvFile {
+        AUTH_PROVIDERS_CUSTOMS = builtins.toJSON authConfig;
+      };
       sops.secrets = {
         papra_oidc_secret = {
           sopsFile = secrets + "/papra.yaml";

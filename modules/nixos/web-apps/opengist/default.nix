@@ -1,10 +1,11 @@
 {
   flake.nixosModules.opengist =
     {
-      config,
-      lib,
       pkgs,
+      lib,
+      config,
       secrets,
+      myLib,
       ...
     }:
     let
@@ -22,9 +23,9 @@
         sopsFile = secrets + "/opengist.yaml";
       };
 
-      sops.templates."opengist.env".content = /* bash */ ''
-        OG_GITEA_SECRET=${config.sops.placeholder.opengist_forgejo_oauth_secret}
-      '';
+      sops.templates."opengist.env".content = myLib.attrsToEnvFile {
+        OG_GITEA_SECRET = config.sops.placeholder.opengist_forgejo_oauth_secret;
+      };
 
       users.users.opengist = {
         isSystemUser = true;
