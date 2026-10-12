@@ -91,6 +91,7 @@ in
     pikpaktui
     pkgsStable.python314Packages.huggingface-hub
     poppler-utils
+    proton-cli
     rawtherapee
     rustscan
     sequoia-sq

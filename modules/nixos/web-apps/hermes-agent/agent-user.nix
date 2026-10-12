@@ -9,6 +9,8 @@ let
     (python314.withPackages (ps: [
       # keep-sorted start
       ps.ddgs
+      ps.pymupdf
+      ps.pymupdf4llm
       ps.pyyaml
       ps.requests
       # keep-sorted end
@@ -20,6 +22,7 @@ let
     findutils
     gh
     jq
+    localPkgs.pdf2zh-next
     nodejs_26
     poppler-utils
     ripgrep

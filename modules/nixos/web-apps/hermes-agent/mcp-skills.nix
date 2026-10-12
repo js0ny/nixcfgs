@@ -20,6 +20,9 @@ in
     # https://hermes-agent.nousresearch.com/docs/user-guide/configuration#skill-settings
     settings.skills = {
       external_dirs = [ "/var/lib/hermes/agent-skills" ];
+      auto_load = [
+        "workspace-management"
+      ];
       write_approval = true; # stage every write for review `/skills pending`
     };
   };

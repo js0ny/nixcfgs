@@ -9,16 +9,16 @@
     let
       pdf2zhPortStr = config.nixdefs.endpoints.pdf2zh.portStr;
       autheliaPortStr = config.nixdefs.endpoints.authelia.portStr;
-      pdf2zh = pkgs.writeShellApplication {
-        name = "pdf2zh";
-        runtimeInputs = with pkgs; [
-          uv
-          stdenv.cc
-        ];
-        text = ''
-          uvx --python=cp312 --from pdf2zh-next pdf2zh2 "$@"
-        '';
-      };
+      # pdf2zh = pkgs.writeShellApplication {
+      #   name = "pdf2zh";
+      #   runtimeInputs = with pkgs; [
+      #     uv
+      #     stdenv.cc
+      #   ];
+      #   text = ''
+      #     uvx --python=cp312 --from pdf2zh-next pdf2zh2 "$@"
+      #   '';
+      # };
     in
     {
       # listens to 0.0.0.0:7860 by default, no customisable options for address
@@ -28,7 +28,7 @@
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           ExecStart = lib.escapeShellArgs [
-            (lib.getExe pdf2zh)
+            (lib.getExe pkgs.localPkgs.pdf2zh-next)
             "--gui"
             "--server-port=${pdf2zhPortStr}"
           ];

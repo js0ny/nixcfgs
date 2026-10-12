@@ -2,12 +2,16 @@
   lib,
   writeShellApplication,
   uv,
+  stdenv,
 }:
 
 writeShellApplication {
   name = "pdf2zh";
 
-  runtimeInputs = [ uv ];
+  runtimeInputs = [
+    uv
+    stdenv.cc
+  ];
 
   text = ''
     exec ${lib.getExe uv} tool run --python 3.12 --from pdf2zh-next pdf2zh "$@"
