@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Patch Strata's setup.py for a Nix-provided engine and Python environment (pkgs/strata).
+"""Patch Strata's setup.py for a Nix-provided engine and Python environment (pkgs/strata-inference).
 
 Nix builds the engine and supplies the Python packages, so the packaged setup must neither compile nor download
 the engine and must not pip-install anything: its tree is read-only, and the host has no toolkit. Every other step
@@ -18,7 +18,7 @@ from pathlib import Path
 
 PIP_INSTALL = '''
 def pip_install(packages, what):
-    """The Nix Python environment (pkgs/strata's passthru.python) already provides these: setup.py installs
+    """The Nix Python environment (pkgs/strata-inference's passthru.python) already provides these: setup.py installs
     nothing, and nothing may be installed - its tree is a read-only store path."""
     ok(f"{what}: provided by the Nix Python environment")
 '''
@@ -44,7 +44,7 @@ def update_installed_engine(url_base) -> None:
 
 BUILD_ENGINE = '''
 def build_engine(gpu, vision, yes, llama) -> Path:
-    """Setup never compiles: pkgs/strata builds the engine with the CUDA toolkit and llama.cpp that Nix provides."""
+    """Setup never compiles: pkgs/strata-inference builds the engine with the CUDA toolkit and llama.cpp that Nix provides."""
     fail("this setup does not build the engine",
          "Nix builds it, so update it with the system (nixos-rebuild) and run setup again")
 '''

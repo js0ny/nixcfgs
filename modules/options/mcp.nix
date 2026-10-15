@@ -107,6 +107,7 @@ in
         tavily_api_key = secretSettings;
         grafana_mcp_api_key = secretSettings;
         exa_api_key = secretSettings;
+        edstem_token = secretSettings;
       };
       js0ny.mcp.servers = {
         context7 = {
@@ -123,6 +124,25 @@ in
               exec ${lib.getExe' pkgs.nodejs "npx"} -y @upstash/context7-mcp
             ''
           );
+        };
+        edstem = {
+          enable = true;
+          type = "stdio";
+          category = "work";
+          server.command = lib.getExe (
+            pkgs.writeShellScriptBin "edstem-mcp-wrapped" /* bash */ ''
+              secret_file="${config.sops.secrets.edstem_token.path}"
+              export EDSTEM_TOKEN="$(${lib.getExe' pkgs.coreutils "cat"} "$secret_file")"
+              export EDSTEM_REGIO=eu
+
+              exec ${lib.getExe' pkgs.js0ny.edstem-cli "edstem-mcp"}
+            ''
+          );
+          clientConfig = {
+            codex.default_tools_approval_mode = "writes";
+            hermes.trust = "untrusted";
+            pi.exposure = "deferred";
+          };
         };
         deepwiki = {
           enable = false;

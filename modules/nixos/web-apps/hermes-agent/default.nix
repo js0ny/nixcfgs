@@ -34,9 +34,6 @@
 
         # https://github.com/NousResearch/hermes-agent/blob/main/cli-config.yaml.example
         settings = {
-          _config_version = 33;
-          # Model — routed through litellm
-
           timezone = "Europe/London";
 
           # ── Agent ──────────────────────────────────────────────────────
@@ -99,16 +96,21 @@
           # ── Security ───────────────────────────────────────────────────
           security = {
             redact_secrets = true;
+
+            protected_instruction_files = true;
+
             tirith_enabled = true;
             tirith_path = lib.getExe pkgs.tirith;
             tirith_timeout = 5;
             tirith_fail_open = true;
+
+            allow_lazy_installs = false;
           };
 
           # ── Approvals ──────────────────────────────────────────────────
           approvals = {
             mode = "smart";
-            timeout = 60;
+            timeout = 60 * 5; # seconds
           };
 
           # ── Display ────────────────────────────────────────────────────
@@ -174,6 +176,18 @@
           lsp = {
             enabled = true;
             install_strategy = "manual";
+          };
+
+          telemetry = {
+            shared_metrics = {
+              enabled = true;
+              send = false;
+            };
+          };
+          sessions = {
+            auto_prune = false;
+            auto_archive = true;
+            auto_archive_days = 7;
           };
         };
       };

@@ -59,6 +59,10 @@
     # }}}
 
     # {{{ Application Supports
+    artcraft = {
+      url = "github:ipeglin/artcraft-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flatpak-nix.url = "github:gmodena/nix-flatpak";
     glide-browser = {
       url = "github:glide-browser/glide.nix";
@@ -113,13 +117,6 @@
         flake-utils.follows = "flake-utils";
       };
     };
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-darwin.follows = "nix-darwin";
-      inputs.home-manager.follows = "home-manager";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -156,6 +153,10 @@
     };
     rox = {
       url = "github:zealsprince/rox";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    strata = {
+      url = "github:reimeri/strata-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dbx.url = "github:t8y2/dbx";

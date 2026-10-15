@@ -8,7 +8,7 @@
     }:
     let
       cfg = config.services.strata;
-      package = pkgs.localPkgs.strata;
+      package = pkgs.localPkgs.strata-inference;
       epSelf = config.nixdefs.endpoints.strata;
       user = "strata";
       stateDir = "/var/lib/strata";

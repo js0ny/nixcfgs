@@ -6,9 +6,9 @@
 # support and engine tree, setup.py is patched (setup-patch.py) so that the engine and the Python packages are
 # Nix's, and the wrappers drive it:
 #
-#   strata-setup    upstream's setup across a mutable root (STRATA_ROOT, default the current directory)
-#   strata-server   upstream's HTTP server
-#   strata          the engine itself
+#   strata-setup       upstream's setup across a mutable root (STRATA_ROOT, default the current directory)
+#   strata-server      upstream's HTTP server
+#   strata-inference   the engine itself
 #
 # The NixOS module that runs them is modules/nixos/services/strata/default.nix.
 {
@@ -25,7 +25,7 @@
 let
   version = "0.1.38";
 
-  # pkgs/strata builds for these GPUs only: one CUDA architecture (Ada, the RTX 40 series and the RTX 4070 Ti
+  # pkgs/strata-inference builds for these GPUs only: one CUDA architecture (Ada, the RTX 40 series and the RTX 4070 Ti
   # SUPER) and the portable AVX2 CPU baseline.
   cudaArch = "89";
 
@@ -106,7 +106,7 @@ let
   ];
 in
 (cudaPackages.backendStdenv).mkDerivation {
-  pname = "strata";
+  pname = "strata-inference";
   inherit version;
   src = strataSrc;
 
@@ -173,7 +173,7 @@ in
     # no CMAKE_RUNTIME_OUTPUT_DIRECTORY of its own; only ggml's subdirectory does, for its own tools).
     install -Dm755 "$strataSrcRoot/build/strata" "$out/share/strata/engine/strata"
     install -Dm644 ${engineManifest} "$out/share/strata/engine/BUILD.json"
-    ln -s ../share/strata/engine/strata "$out/bin/strata"
+    ln -s ../share/strata/engine/strata "$out/bin/strata-inference"
 
     # The source and support tree the wrappers use (the engine above lives in it as engine/).
     for path in ${lib.escapeShellArgs shipped}; do
@@ -195,7 +195,7 @@ in
     description = "Strata: Qwen3.8-Flash-Next inference engine (CUDA) with its setup and server";
     homepage = "https://github.com/Niko1221/Strata";
     license = lib.licenses.mit;
-    mainProgram = "strata";
+    mainProgram = "strata-inference";
     platforms = [ "x86_64-linux" ];
   };
 }

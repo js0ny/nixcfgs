@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }:
 let
@@ -23,7 +24,7 @@ let
   flake-lock-reset-input = pkgs.writers.writeNuBin "flake-lock-reset-input" { } /* nu */ ''
     # Restore an input's pin from this repository's HEAD without changing other inputs.
     def main [input: string] {
-      let head = (^${lib.getExe pkgs.git} show HEAD:./flake.lock | complete)
+      let head = (^${lib.getExe config.programs.git.package} show HEAD:./flake.lock | complete)
       if $head.exit_code != 0 {
         error make {msg: $head.stderr}
       }
@@ -94,6 +95,7 @@ in
     icoutils
     inkscape
     js0ny.dirstat-rs
+    js0ny.edstem-cli
     js0ny.limes
     js0ny.m365
     js0ny.proton-drive-cli
@@ -139,6 +141,10 @@ in
     nix-output-monitor
     nvd
     flake-lock-reset-input
+
+    inputs.artcraft.packages.${system}.photocraft
+    inputs.artcraft.packages.${system}.pdfcraft
+    inputs.artcraft.packages.${system}.lightcraft
 
     inputs.nix-tree-rs.packages.${system}.default
     inputs.fast-nix-gc.packages.${system}.default

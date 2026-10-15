@@ -22,6 +22,7 @@ let
     findutils
     gh
     jq
+    js0ny.edstem-cli
     localPkgs.pdf2zh-next
     nodejs_26
     poppler-utils

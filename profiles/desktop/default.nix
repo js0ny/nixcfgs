@@ -55,6 +55,7 @@ in
       modules.homeModules.rtorrent
       modules.homeModules.sdcv
       modules.homeModules.steam
+      modules.homeModules.strata
       modules.homeModules.swayimg
       modules.homeModules.thunderbird
       modules.homeModules.vicinae
