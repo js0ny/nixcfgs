@@ -59,6 +59,7 @@ in
       localPkgs.mediatools.video-gen-grid
       mediainfo
       yt-dlp
+      ytdl-sub
       # keep-sorted end
     ]
     ++ lib.optionals (config.js0ny.desktop.enable) [

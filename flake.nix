@@ -23,7 +23,7 @@
 
   inputs = {
     # {{{ Core
-    nixpkgs.url = "github:NixOS/nixpkgs/c24ac651a424faa8468252a107f3a911123b9cfc";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs-unfree = {

@@ -42,7 +42,7 @@
             nushell
             pyright
             taplo
-            typescript-language-server
+            vtsls
             # keep-sorted end
           ];
         in

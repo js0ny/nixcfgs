@@ -19,6 +19,7 @@ in
         {
           file = keyFile;
           how = "symlink";
+          inInitrd = true;
           mode = "0400";
         }
       ];

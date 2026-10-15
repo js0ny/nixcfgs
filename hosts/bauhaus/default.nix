@@ -50,7 +50,7 @@ in
 
   boot.loader.grub.enable = lib.mkForce false;
 
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
+  # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
 
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
 

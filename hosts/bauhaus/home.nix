@@ -22,7 +22,6 @@ in
     mod.noctalia
     ../../modules/programs/gaming/steam/sts2.nix
     ../../modules/programs/gaming/steam/sts.nix
-    ../../modules/programs/gaming/steam/valheim.nix
     # keep-sorted start
 
     # keep-sorted end

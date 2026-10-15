@@ -41,7 +41,7 @@
       services.grafana = {
         enable = true;
         declarativePlugins = with pkgs.grafanaPlugins; [
-          yesoreyeram-infinity-datasource
+          # yesoreyeram-infinity-datasource
         ];
         settings = {
           server = {

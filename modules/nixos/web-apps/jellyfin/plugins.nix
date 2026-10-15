@@ -3,6 +3,7 @@ let
   plugins = [
     pkgs.js0ny.jellyfin-plugin-sso-bin
     pkgs.js0ny.jellyfin-plugin-ldapauth-src
+    pkgs.js0ny.jellyfin-plugin-youtube-metadata
   ];
   expandPluginPackage = p: {
     name = p.passthru.pluginName;

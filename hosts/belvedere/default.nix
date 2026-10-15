@@ -41,7 +41,6 @@ in
     mod.rsshub
     mod.searxng
     mod.sing-box
-    mod.valheim
     # keep-sorted end
     mod.starship
   ];
@@ -58,6 +57,8 @@ in
   boot.loader.grub.efiSupport = false;
 
   networking = {
+    useNetworkd = true;
+    useDHCP = false;
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -70,10 +71,17 @@ in
 
   systemd.network.networks."10-wan" = {
     matchConfig.MACAddress = "da:cc:d5:81:92:7b";
+    address = [ "89.58.62.165/22" ];
     networkConfig = {
-      DHCP = "ipv4";
+      DHCP = "no";
       IPv6AcceptRA = true;
     };
+    routes = [
+      {
+        Gateway = "89.58.60.1";
+        GatewayOnLink = true;
+      }
+    ];
   };
 
   js0ny.persist.stores.state.directories = [ "/var/lib/postgresql" ];

@@ -127,10 +127,20 @@
             skin = "charizard"; # 增火龙说是
             streaming = true;
             show_cost = true;
+            vim_mode = true;
             platforms.telegram = {
-              tool_progress = "off";
-              tool_progress_command = false;
-              runtime_footer.enabled = false;
+              tool_progress = "verbose";
+              tool_progress_command = true;
+              runtime_footer = {
+                enabled = true;
+                fields = [
+                  "model"
+                  "context_pct"
+                  "latency"
+                ];
+              };
+              show_commentary = true;
+              show_reasoning = true;
             };
           };
 

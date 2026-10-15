@@ -36,6 +36,7 @@ window-rule {
 
     match app-id="^vicinae$" title="^Vicinae Settings$"
     match app-id="^md.obsidian.Obsidian$" title="^设置.*$"
+    match app-id="^firefox$" title=r#"^Extension: \(Sidebery\)"#
 
     // Debug Windows
     match app-id="^wev$" title="^wev$"

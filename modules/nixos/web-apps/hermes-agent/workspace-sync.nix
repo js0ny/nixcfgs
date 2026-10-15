@@ -7,7 +7,7 @@
   ...
 }:
 let
-  vaultDir = "/var/lib/hermes/workspace";
+  vaultDir = "/var/lib/hermes/vault";
   inherit (config.services.hermes-agent) user group;
   fastNoteSyncConfig = {
     api = "\${FAST_NOTE_URL}";
