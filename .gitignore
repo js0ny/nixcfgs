@@ -36,6 +36,12 @@ tools/nushell/
 # Lock files
 lazy-lock.json
 
+
+# OpenTofu
+**/.terraform/
+*.tfstate
+*.tfstate.*
+
 # Emacs
 *.elc
 

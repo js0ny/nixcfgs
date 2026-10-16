@@ -14,7 +14,7 @@
         "https://cache.nixos-cuda.org"
         "https://cache.numtide.com"
         "https://js0ny.cachix.org"
-        "https://attic.xuyh0120.win/lantian"
+        # "https://attic.xuyh0120.win/lantian"
         "https://hyprland.cachix.org"
         "https://noctalia.cachix.org"
       ];
@@ -24,7 +24,7 @@
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
         "js0ny.cachix.org-1:3wFjMGtsxTjJTzE9fT4CgaUCT76rQUh3siumobHQLw0="
-        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+        # "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       ];

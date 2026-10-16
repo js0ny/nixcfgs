@@ -5,6 +5,7 @@
 
     ".config/blender"
     ".config/bruno"
+    ".config/superProductivity"
 
     ".config/sonora"
     ".local/share/sonora"
