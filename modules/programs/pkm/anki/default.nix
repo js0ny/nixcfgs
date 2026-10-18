@@ -7,7 +7,7 @@
       secrets,
       ...
     }:
-    {
+    lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       sops.secrets = {
         anki_sync_key = {
           sopsFile = secrets + "/hosts.yaml";
