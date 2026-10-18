@@ -295,6 +295,15 @@ in
     };
   };
 
-  environment.systemPackages = [ rimeDeployScript ];
+  environment.systemPackages = [
+    rimeDeployScript
+    pkgs.js0ny.limes
+  ];
 
+  home-manager.users.js0ny.xdg.configFile."limes/config.toml".source = (
+    pkgs.writers.writeTOML "limes-config" {
+      default_backend = "fcitx5-rime";
+      fcitx5_rime_mode = "ascii";
+    }
+  );
 }

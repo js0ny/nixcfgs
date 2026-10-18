@@ -29,6 +29,7 @@
     inputs.self.homeModules.alacritty
     inputs.self.homeModules.kitty
     inputs.self.homeModules.ghostty
+    inputs.self.homeModules.tty7
     inputs.self.homeModules.zellij
 
     inputs.self.homeModules.qutebrowser

@@ -94,13 +94,14 @@ in
     himalaya
     icoutils
     inkscape
+    inputs.artcraft.packages.${system}.lightcraft
+    inputs.artcraft.packages.${system}.pdfcraft
+    inputs.artcraft.packages.${system}.photocraft
     js0ny.dirstat-rs
     js0ny.edstem-cli
-    js0ny.limes
     js0ny.m365
     js0ny.proton-drive-cli
     js0ny.ratune
-    js0ny.tty7-src
     js0ny.wdotool
     js0ny.xdd
     kdePackages.isoimagewriter
@@ -141,10 +142,6 @@ in
     nix-output-monitor
     nvd
     flake-lock-reset-input
-
-    inputs.artcraft.packages.${system}.photocraft
-    inputs.artcraft.packages.${system}.pdfcraft
-    inputs.artcraft.packages.${system}.lightcraft
 
     inputs.nix-tree-rs.packages.${system}.default
     inputs.fast-nix-gc.packages.${system}.default
