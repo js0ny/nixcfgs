@@ -18,11 +18,12 @@ in
 
     mod.server
 
-    mod.fail2ban
     mod.prometheus-node
 
     mod.matrix-server
-    mod.bentopdf
+
+    ../../migrated/nixos/web-apps/bentopdf.nix
+    ../../migrated/nixos/server-apps/fail2ban.nix
   ];
 
   # https://matrix-construct.github.io/tuwunel/configuration/examples.html

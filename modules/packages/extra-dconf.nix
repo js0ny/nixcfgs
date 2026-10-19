@@ -13,7 +13,6 @@
       mpv-subtitle-font = "Normal";
       mpv-subtitle-preferred-lang = 2; # 0: None, 1: English, 2: Chinese, 3: Japanese
       music-repeat-mode = "none";
-      root-pic = "${config.home.homeDirectory}/Pictures/20260927_092807.png";
       preferred-server = "Belvedere";
     };
 

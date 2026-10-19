@@ -186,7 +186,7 @@ hl.window_rule({
   name = 'wechat-viewer',
   match = {
     class = 'wechat',
-    title = '图片和视频',
+    title = '图片和视频|Photos and Videos',
   },
   float = true,
   size = utils.size_from_h(16 / 9, 900),

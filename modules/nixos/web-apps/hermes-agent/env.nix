@@ -17,17 +17,22 @@ in
   sops.templates."hermes.env".content = myLib.attrsToEnvFile {
     LITELLM_API_KEY = sec.hermes_litellm_api_key;
     TAVILY_API_KEY = sec.tavily_api_key;
+
     TELEGRAM_BOT_TOKEN = sec.hermes_telegram_bot_token;
     TELEGRAM_ALLOWED_USERS = sec.tg_main_chatid;
     TELEGRAM_HOME_CHANNEL = sec.tg_main_chatid;
+
     MATRIX_HOMESERVER = ep.matrix.publicUrl;
     MATRIX_USER_ID = "@hermes:js0ny.net";
     MATRIX_ALLOWED_USERS = "@js0ny:js0ny.net";
     MATRIX_E2EE_MODE = "required";
+
     GITHUB_TOKEN = sec.hermes_github_pat;
     GH_TOKEN = sec.hermes_github_pat;
+
     MINIFLUX_BASE_URL = ep.miniflux.publicUrl;
     MINIFLUX_API_TOKEN = sec.hermes_miniflux_api_token;
+
     HERMES_DASHBOARD_BASIC_AUTH_USERNAME = sec.hermes_dashboard_basic_auth_username;
     HERMES_DASHBOARD_BASIC_AUTH_PASSWORD_HASH = sec.hermes_dashboard_basic_auth_password_hash;
     HERMES_DASHBOARD_BASIC_AUTH_SECRET = sec.hermes_dashboard_basic_auth_secret;

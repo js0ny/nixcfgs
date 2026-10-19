@@ -68,6 +68,7 @@
             cwd = "/var/lib/hermes/workspace/default";
             timeout = 180;
             persistent_shell = true;
+            font_family = "Maple Mono NF CN";
           };
 
           # ── Checkpoints ────────────────────────────────────────────────
@@ -159,8 +160,10 @@
             search_backend = "tavily";
             extract_backend = "firecrawl";
           };
-
-          browser.cloud_provider = "local";
+          browser = {
+            backend = "off";
+            cloud_provider = "local";
+          };
 
           # https://hermes-agent.nousresearch.com/docs/user-guide/features/tts
           tts = {
@@ -180,14 +183,14 @@
 
           telemetry = {
             shared_metrics = {
-              enabled = true;
+              enabled = false;
               send = false;
             };
           };
           sessions = {
             auto_prune = false;
             auto_archive = true;
-            auto_archive_days = 7;
+            auto_archive_days = 8;
           };
         };
       };

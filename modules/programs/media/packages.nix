@@ -57,7 +57,6 @@ in
       localPkgs.mediatools.to-avif
       localPkgs.mediatools.to-webp
       localPkgs.mediatools.video-gen-grid
-      mediainfo
       yt-dlp
       ytdl-sub
       # keep-sorted end

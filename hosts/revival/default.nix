@@ -18,7 +18,6 @@ in
 
     mod.server
 
-    mod.fail2ban
     mod.prometheus-node
     mod.rclone
     mod.immich

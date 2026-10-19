@@ -17,12 +17,12 @@ in
 
     mod.server
     # keep-sorted start
-    mod.code-server
-    mod.fail2ban
-    mod.fast-note-sync
+    ../../migrated/nixos/server-apps/fail2ban.nix
+    ../../migrated/nixos/web-apps/fast-note-sync.nix
+    ../../migrated/nixos/web-apps/gluetun.nix
+    ../../migrated/nixos/web-apps/navidrome.nix
     mod.fish
     mod.forgejo
-    mod.gluetun
     mod.grafana
     mod.hermes-agent
     mod.idp
@@ -30,7 +30,6 @@ in
     mod.jellyfin
     mod.karakeep
     mod.miniflux
-    mod.navidrome
     mod.nix-index-database
     mod.opengist
     mod.papra

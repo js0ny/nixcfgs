@@ -16,7 +16,10 @@
       ];
       home.packages = lib.optionals (osConfig.hardware.graphics.enable) [
         pkgs.llm-agents.dsh
+        pkgs.js0ny.magpie-gui
       ];
+
+      js0ny.persist.stores.state.directories = [ { directory = ".config/magpie"; } ];
     };
 
 }

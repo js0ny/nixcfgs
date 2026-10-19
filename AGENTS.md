@@ -21,6 +21,19 @@ text = /* bash */ ''
 '';
 ```
 
+## Coding styles
+
+- Prefer structured values and existing helper functions over manually encoded strings when they improve readability and produce focused diffs. For example, use `lib.concatStringsSep ","` with a list instead of a long comma-separated string, or `lib.concatStringsSep "\n"` instead of manually joining lines.
+- Put each item of a multi-item configuration list on its own line so additions, removals, and reordering are easy to review. Preserve the generated value and item order when refactoring.
+
+```nix
+LyricsPriority = lib.concatStringsSep "," [
+  ".ttml"
+  ".lrc"
+  "embedded"
+];
+```
+
 ## Comments
 
 - If a module requires manual setup outside Nix evaluation or activation (not declarative), mark it with a comment in this format: `# [Human Intervention] xxxxxx`.

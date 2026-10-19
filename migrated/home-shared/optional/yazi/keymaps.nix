@@ -9,6 +9,7 @@ in
   programs.yazi.keymap = {
     mgr.prepend_keymap = [
       {
+
         on = "K";
         run = "seek -5";
         desc = "Seek up 5 units in the preview";

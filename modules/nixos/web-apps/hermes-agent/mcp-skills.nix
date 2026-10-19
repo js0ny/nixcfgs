@@ -23,6 +23,11 @@ in
       auto_load = [
         "workspace-management"
       ];
+      disabled = [
+        "obsidian"
+        "airtable"
+        "github-auth"
+      ];
       write_approval = true; # stage every write for review `/skills pending`
     };
   };

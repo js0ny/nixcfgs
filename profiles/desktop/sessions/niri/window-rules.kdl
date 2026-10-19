@@ -21,7 +21,6 @@ window-rule {
     match app-id="^steam$" title="^Recordings & Screenshots$"
 
     // Popup Windows
-    match app-id="^dev.zed.Zed$" title="^Zed — Settings$"
     match app-id="^QQ$" title="^.*的聊天记录$"
     match app-id="^QQ$" title="^.*视频播放器$"
     match app-id="^org.gnome.Settings.GlobalShortcutsProvider$" title="^Add Keyboard Shortcuts$"
@@ -34,9 +33,11 @@ window-rule {
     match app-id="^org.kde.isoimagewriter$" title="^ISO Image Writer$"
     match app-id="^proton-pass$" title="^Proton Pass$"
 
+    // Settings Window
     match app-id="^vicinae$" title="^Vicinae Settings$"
     match app-id="^md.obsidian.Obsidian$" title="^设置.*$"
-    match app-id="^firefox$" title=r#"^Extension: \(Sidebery\)"#
+    match app-id="^dev.zed.Zed$" title="^Zed — Settings$"
+    match app-id="^tty7$" title="^Settings|设置$"
 
     // Debug Windows
     match app-id="^wev$" title="^wev$"

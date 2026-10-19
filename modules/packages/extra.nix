@@ -103,7 +103,6 @@ in
     js0ny.proton-drive-cli
     js0ny.ratune
     js0ny.wdotool
-    js0ny.xdd
     kdePackages.isoimagewriter
     kdePackages.kdenlive
     kdePackages.kleopatra

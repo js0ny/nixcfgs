@@ -1,4 +1,8 @@
-{
+{ pkgs, ... }: {
+  home.packages = [ pkgs.mediainfo ];
+
+  programs.yazi.plugins.mediainfo = pkgs.yaziPlugins.mediainfo;
+
   programs.yazi.settings.plugin = {
 
     prepend_preloaders = [

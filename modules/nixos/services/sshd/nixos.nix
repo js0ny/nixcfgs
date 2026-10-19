@@ -10,6 +10,7 @@ in
       UseDns = true;
       PermitRootLogin = "no";
       PasswordAuthentication = false;
+      AcceptEnv = lib.mkForce [ "TERM_PROGRAM" ];
     };
   };
   networking.firewall.allowedTCPPorts = [ port ];

@@ -16,7 +16,6 @@ in
       inputs.sops-nix.nixosModules.sops
       modules.nixosModules.git
       modules.nixosModules.hardware
-      modules.nixosModules.yazi
       modules.nixosModules.zsh
     ]
     ++ myLib.scanFiles ./nixos;
@@ -26,10 +25,11 @@ in
     home.sessionVariables = import ./shared/do-not-track-vars.nix;
     imports = [
       ../../modules/options
+      ../../migrated/home-shared/optional/yazi
+      ../../migrated/home-shared/optional/mediainfo.nix
       inputs.sops-nix.homeManagerModules.sops
       modules.homeModules.fastfetch
       modules.homeModules.git
-      modules.homeModules.yazi
       modules.homeModules.zsh
     ]
     ++ myLib.scanFiles ./home;

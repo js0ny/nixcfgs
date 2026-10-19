@@ -77,7 +77,7 @@ in
     enabledModels = [
       "openai-codex/gpt-6.1-sol"
       # keep-sorted start
-      "deepseek/deepseek-v4-flash-vision-exp"
+      "deepseek/deepseek-flash"
       "openai-codex/gpt-5.6-luna"
       "openai-codex/gpt-6-astra"
       # keep-sorted end
