@@ -83,11 +83,6 @@ in
         desc = "Open $SHELL here";
       }
       {
-        on = [ "C" ];
-        run = "plugin ouch";
-        desc = "Compress with ouch";
-      }
-      {
         on = [ "m" ];
         run = "plugin bookmarks save";
         desc = "Save current position as a bookmark";

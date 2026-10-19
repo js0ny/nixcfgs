@@ -1,14 +1,17 @@
 { pkgs, ... }: {
   programs.yazi = {
     plugins = {
-      git = pkgs.yaziPlugins.git;
-      starship = pkgs.yaziPlugins.starship;
-      ouch = pkgs.yaziPlugins.ouch;
-      bookmarks = pkgs.yaziPlugins.bookmarks;
-      clipboard = pkgs.yaziPlugins.clipboard;
-      dump-tabs = pkgs.js0ny.yaziPlugins.dump-tabs;
-      piper = pkgs.yaziPlugins.piper;
-      chmod = pkgs.yaziPlugins.chmod;
+      inherit (pkgs.yaziPlugins)
+        # keep-sorted start
+        bookmarks
+        chmod
+        clipboard
+        git
+        piper
+        starship
+        # keep-sorted end
+        ;
+      inherit (pkgs.js0ny.yaziPlugins) dump-tabs;
     };
     keymap = {
       mgr.prepend_keymap = [
@@ -33,12 +36,6 @@
           group = "git";
           url = "*/";
           run = "git";
-        }
-      ];
-      plugin.prepend_previewers = [
-        {
-          mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}";
-          run = "ouch --show-file-icons";
         }
       ];
     };

@@ -4,7 +4,6 @@
   programs.yazi.plugins.mediainfo = pkgs.yaziPlugins.mediainfo;
 
   programs.yazi.settings.plugin = {
-
     prepend_preloaders = [
       {
         mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}";
@@ -74,11 +73,6 @@
         run = "mediainfo";
       }
 
-      # Specific flags
-      # {
-      #   mime = "{image}/*";
-      #   run = "mediainfo --no-metadata";
-      # }
       {
         mime = "{video}/*";
         run = "mediainfo --no-preview";

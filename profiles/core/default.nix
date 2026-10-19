@@ -27,6 +27,7 @@ in
       ../../modules/options
       ../../migrated/home-shared/optional/yazi
       ../../migrated/home-shared/optional/mediainfo.nix
+      ../../migrated/home-shared/optional/ouch.nix
       inputs.sops-nix.homeManagerModules.sops
       modules.homeModules.fastfetch
       modules.homeModules.git

@@ -19,7 +19,6 @@
     })
 
     # keep-sorted start
-    (ouch.override { enableUnfree = pkgs.stdenv.hostPlatform.isLinux; })
     # aria2
     ddgr
     gopass
