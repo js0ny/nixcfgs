@@ -22,12 +22,7 @@
         lt = "lsd --tree";
       };
       js0ny.persist.stores.local.directories = [ ".cache/tealdeer" ];
-      home.sessionVariables = {
-        MANPAGER = ''sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman' '';
-        NIX_PAGER = "bat --style grid,numbers --wrap auto";
-      };
       programs = {
-        bat.enable = true;
         lsd = {
           enable = true;
           icons = "always";

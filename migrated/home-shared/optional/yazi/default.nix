@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./piper.nix
     ./keymaps.nix
     ./opener.nix
     ./plugins.nix

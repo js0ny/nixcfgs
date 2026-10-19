@@ -8,10 +8,4 @@ in
     VISUAL = apps.editor.tui.exe;
     BROWSER = apps.browser.exe;
   };
-  xdg.configFile = builtins.listToAttrs (
-    map (name: {
-      name = "bat/syntaxes/${name}";
-      value.source = ../filetype/sublime-syntax/${name};
-    }) (builtins.attrNames (builtins.readDir ../filetype/sublime-syntax))
-  );
 }

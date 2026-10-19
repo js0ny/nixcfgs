@@ -116,6 +116,7 @@ in
       {
         on = "<C-n>";
         run = "shell -- ripdrag %s -x 2>/dev/null &";
+        for = "linux";
       }
       {
         on = "<C-x>";

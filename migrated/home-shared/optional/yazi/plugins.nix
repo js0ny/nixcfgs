@@ -12,9 +12,15 @@
         # keep-sorted end
         ;
       inherit (pkgs.js0ny.yaziPlugins) dump-tabs;
+      confirm-quit = ./plugins/confirm-quit.yazi;
     };
     keymap = {
       mgr.prepend_keymap = [
+        {
+          on = "q";
+          run = "plugin confirm-quit";
+          desc = "Quit with confirmation if multiple tabs are open";
+        }
         {
           on = [
             "c"

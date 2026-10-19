@@ -8,7 +8,6 @@
 {
   imports = [
     # keep-sorted start
-    ../../../migrated/home-shared/desktop-base/xdd.nix
     ../../../modules/programs/gaming/emulators/retroarch.nix
     inputs.self.homeModules.linux
     inputs.self.homeModules.nix-index-database

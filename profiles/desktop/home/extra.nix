@@ -66,18 +66,6 @@
 
   xdg.configFile."face.png".source = config.js0ny.user.avatar;
 
-  home.packages = [
-    (pkgs.writeShellScriptBin "setwall" ''
-      if [[ $XDG_CURRENT_DESKTOP == "Hyprland" || $XDG_CURRENT_DESKTOP == "niri" ]]; then
-        noctalia msg wallpaper-set "$@"
-      elif [[ $XDG_CURRENT_DESKTOP == "KDE" ]]; then
-        plasma-apply-wallpaperimage "$@"
-      elif [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
-        dconf write /org/gnome/desktop/background/picture-uri "file:///$@"
-      fi
-    '')
-  ];
-
   home.activation.remove-other-autostart-entries = /* bash */ ''
     find "$HOME/.config/autostart" -maxdepth 1 -type f -name '*.desktop' -delete
   '';
