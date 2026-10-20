@@ -38,7 +38,11 @@
   # keep-sorted start block=yes
   networking.iproute2.enable = true;
   programs.iftop.enable = true;
-  programs.iotop.enable = true;
+  programs.iotop = {
+    enable = true;
+    # iotop 0.6 is a Python script; the setcap wrapper requires an ELF.
+    package = pkgs.iotop-c;
+  };
   programs.less.enable = true;
   programs.mtr.enable = true;
   programs.nano.enable = false;

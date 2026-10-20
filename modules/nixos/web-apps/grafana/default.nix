@@ -40,8 +40,9 @@
         };
       services.grafana = {
         enable = true;
-        declarativePlugins = with pkgs.grafanaPlugins; [
-          # yesoreyeram-infinity-datasource
+        declarativePlugins = [
+          pkgs.grafanaPlugins.yesoreyeram-infinity-datasource
+          pkgs.grafanaPlugins.prometheus
         ];
         settings = {
           server = {

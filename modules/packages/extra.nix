@@ -66,7 +66,7 @@ in
     gdb
     gh
     gimp
-    godot
+    # godot
     godotpcktool
     goldendict-ng
     himalaya
@@ -90,7 +90,6 @@ in
     krabby
     marktext
     mission-center
-    motrix-next
     nautilus
     newsflash
     nmap
@@ -101,6 +100,7 @@ in
     poppler-utils
     proton-cli
     rawtherapee
+    rayburst
     rustscan
     sequoia-sq
     super-productivity

@@ -48,7 +48,7 @@
           PORT = epSelf.port;
           APP_BASE_URL = epSelf.publicUrl;
         };
-        environmentFile = config.sops.templates."papra.env".path;
+        environmentFiles = [ config.sops.templates."papra.env".path ];
       };
 
       services.nginx.virtualHosts = lib.mkIf (url != null) {

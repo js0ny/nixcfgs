@@ -93,8 +93,9 @@
       home.packages =
         if pkgs.stdenv.hostPlatform.isLinux then
           [
-            pkgs.nixpaks.ayugram-desktop
-            pkgs.nixpaks.materialgram
+            # CVE-2026-107181
+            # pkgs.nixpaks.ayugram-desktop
+            # pkgs.nixpaks.materialgram
             pkgs.telegram-desktop
           ]
         else

@@ -44,7 +44,7 @@ in
     with pkgs;
     [
       # keep-sorted start
-      bbdown-wrapped
+      # bbdown-wrapped
       exiftool
       flac
       js0ny.danmaku2ass

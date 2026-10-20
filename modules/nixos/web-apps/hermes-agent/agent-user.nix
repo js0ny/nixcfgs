@@ -2,9 +2,13 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 let
+  nixpkgs-pr-tracker = pkgs.writers.writeNuBin "nixpkgs-pr-tracker" { } (
+    builtins.readFile "${inputs.self.outPath}/.bin/nixpkgs-pr-tracker.nu"
+  );
   packages = with pkgs; [
     (python314.withPackages (ps: [
       # keep-sorted start
@@ -24,6 +28,7 @@ let
     jq
     js0ny.edstem-cli
     localPkgs.pdf2zh-next
+    nixpkgs-pr-tracker
     nodejs_26
     poppler-utils
     ripgrep

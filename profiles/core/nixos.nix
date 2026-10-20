@@ -24,6 +24,7 @@ in
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-41.10.6"
+      "firefox-esr-140-bin-unwrapped-140.17.0esr" # pkgs.zotero
     ];
   };
 

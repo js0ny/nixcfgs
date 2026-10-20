@@ -21,6 +21,7 @@ in
     ../../migrated/nixos/web-apps/fast-note-sync.nix
     ../../migrated/nixos/web-apps/gluetun.nix
     ../../migrated/nixos/web-apps/navidrome.nix
+    ../../migrated/nixos/web-apps/pdf2zh.nix
     mod.fish
     mod.forgejo
     mod.grafana
@@ -33,7 +34,6 @@ in
     mod.nix-index-database
     mod.opengist
     mod.papra
-    mod.pdf2zh
     mod.prometheus
     mod.radicale
     mod.rclone

@@ -12,6 +12,17 @@ let
     inputs.nur.overlays.default
     inputs.vscode-extensions.overlays.default
     # keep-sorted end
+    # llm-agents does not put libtss2 in ChatGPT's buildInputs, so auto-formatelf
+    # cannot resolve the TPM key module shipped in native/remote-control-device-key.node.
+    (final: prev: {
+      llm-agents = prev.llm-agents // {
+        chatgpt = prev.llm-agents.chatgpt.override {
+          chatgpt-unwrapped = prev.llm-agents.chatgpt.unwrapped.overrideAttrs (old: {
+            buildInputs = old.buildInputs ++ [ final.tpm2-tss ];
+          });
+        };
+      };
+    })
     # (final: prev: {
     #   llm-agents = prev.llm-agents // {
     #     hermes-desktop = prev.llm-agents.hermes-desktop.overrideAttrs (oldAttrs: {

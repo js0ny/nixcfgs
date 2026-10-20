@@ -13,6 +13,7 @@
       p = config.js0ny.user.name;
     in
     {
+
       home.packages =
         if pkgs.stdenv.hostPlatform.isLinux then
           [
