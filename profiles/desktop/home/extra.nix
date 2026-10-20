@@ -9,7 +9,7 @@
 {
   imports = [
     # keep-sorted start
-
+    ../../../migrated/home-shared/optional/libreoffice.nix
     ../../../modules/packages/extra.nix
     ../../../modules/programs/gaming/celeste/module.nix
     ../../../modules/programs/gaming/emulators/cemu.nix

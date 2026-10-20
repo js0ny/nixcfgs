@@ -2,10 +2,10 @@
   pkgs,
   lib,
   inputs,
-  config,
   ...
 }:
 let
+  flakeRoot = inputs.self.outPath;
   pkgsStable = pkgs.mv.at "26.05";
   font-manager = pkgsStable.font-manager;
   font-viewer = pkgs.writeShellScriptBin "font-viewer" ''
@@ -21,34 +21,12 @@ let
       uvx --python=cp312 --from pdf2zh-next pdf2zh2 "$@"
     '';
   };
-  flake-lock-reset-input = pkgs.writers.writeNuBin "flake-lock-reset-input" { } /* nu */ ''
-    # Restore an input's pin from this repository's HEAD without changing other inputs.
-    def main [input: string] {
-      let head = (^${lib.getExe config.programs.git.package} show HEAD:./flake.lock | complete)
-      if $head.exit_code != 0 {
-        error make {msg: $head.stderr}
-      }
-      let previous = ($head.stdout | from json)
-      let current = (open --raw flake.lock | from json)
-      let previous_node = ($previous | get ([nodes $previous.root inputs $input] | into cell-path))
-      let current_node = ($current | get ([nodes $current.root inputs $input] | into cell-path))
-      if ($previous_node | describe) != "string" or ($current_node | describe) != "string" {
-        error make {msg: "Cannot reset a following input"}
-      }
-      let locked = ($previous | get ([nodes $previous_node locked] | into cell-path))
-      let restored = ($current
-        | update ([nodes $current_node locked] | into cell-path) $locked
-        | to json --indent 2)
-      let temporary = (mktemp flake.lock.XXXXXXXX)
-      try {
-        $"($restored)\n" | save --raw --force $temporary
-        mv --force $temporary flake.lock
-      } catch {|err|
-        rm --force $temporary
-        error make {msg: $err.msg}
-      }
-    }
-  '';
+  flake-lock-reset-input = pkgs.writers.writeNuBin "flake-lock-reset-input" { } (
+    builtins.readFile "${flakeRoot}/.bin/flake-lock-reset-input.nu"
+  );
+  nixpkgs-pr-tracker = pkgs.writers.writeNuBin "nixpkgs-pr-tracker" { } (
+    builtins.readFile "${flakeRoot}/.bin/nixpkgs-pr-tracker.nu"
+  );
   system = pkgs.stdenv.hostPlatform.system;
 in
 {
@@ -141,6 +119,7 @@ in
     nix-output-monitor
     nvd
     flake-lock-reset-input
+    nixpkgs-pr-tracker
 
     inputs.nix-tree-rs.packages.${system}.default
     inputs.fast-nix-gc.packages.${system}.default

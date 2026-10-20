@@ -6,6 +6,7 @@
   perSystem =
     {
       config,
+      lib,
       pkgs,
       ...
     }:
@@ -34,6 +35,7 @@
             ast-grep
             bash-language-server
             disko
+            gh
             inputs.nix-tree-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
             lua-language-server
             nil
@@ -50,7 +52,12 @@
           default = pkgs.mkShell {
             inputsFrom = [ config.pre-commit.devShell ];
             buildInputs = ciDeps ++ devDeps;
-            shellHook = config.pre-commit.shellHook;
+            shellHook = config.pre-commit.shellHook + /* bash */ ''
+              if repo_root="$(${lib.getExe pkgs.git} rev-parse --show-toplevel 2>/dev/null)"; then
+                export PATH="$repo_root/.bin:$PATH"
+              fi
+              unset repo_root
+            '';
           };
           ci = pkgs.mkShell { buildInputs = ciDeps; };
         };
