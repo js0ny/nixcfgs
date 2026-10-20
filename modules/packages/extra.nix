@@ -75,6 +75,7 @@ in
     inputs.artcraft.packages.${system}.lightcraft
     inputs.artcraft.packages.${system}.pdfcraft
     inputs.artcraft.packages.${system}.photocraft
+    inputs.dbx.packages.${system}.default
     js0ny.dirstat-rs
     js0ny.edstem-cli
     js0ny.m365

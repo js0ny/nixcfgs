@@ -16,7 +16,7 @@
       environment.etc."asusd/slash.ron" = {
         text = /* ron */ ''
           (
-              enabled: true,
+              enabled: false,
               brightness: 255,
               display_interval: 0,
               display_mode: Bounce,

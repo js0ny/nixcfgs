@@ -13,6 +13,7 @@ in
       ./shared/hm.nix
       ./shared/nix.nix
       ./shared/nix-helper.nix
+      ../../migrated/nixos/core/hardening.nix
       inputs.sops-nix.nixosModules.sops
       modules.nixosModules.git
       modules.nixosModules.hardware
