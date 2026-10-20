@@ -66,7 +66,7 @@ in
     gdb
     gh
     gimp
-    # godot
+    godot
     godotpcktool
     goldendict-ng
     himalaya
