@@ -55,7 +55,6 @@ in
     blender
     bruno
     bruno-cli
-    calibre
     dmg2img
     dnscontrol
     ffsend
@@ -91,12 +90,14 @@ in
     krabby
     marktext
     mission-center
+    moonlight-qt
     nautilus
     newsflash
     nmap
     octaveFull
     pdf2zh
     pikpaktui
+    pkgsStable.calibre
     pkgsStable.python314Packages.huggingface-hub
     poppler-utils
     proton-cli

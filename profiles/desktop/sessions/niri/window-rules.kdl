@@ -13,9 +13,6 @@ window-rule {
     // File Preview
     match app-id="^org.gnome.NautilusPreviewer$"
     match app-id="^QQ$" title="^图片查看器$"
-    match app-id="^org.telegram.desktop$" title="^m|Media viewer$"
-    match app-id="^com.ayugram.desktop$" title="^m|Media viewer$"
-    match app-id="^io.github.kukuruzka165.materialgram$" title="^m|Media viewer$"
     match app-id="^wechat$" title="^图片和视频$"
     match app-id="^steam$" title="^录像及截图$"
     match app-id="^steam$" title="^Recordings & Screenshots$"
@@ -134,8 +131,26 @@ window-rule {
     match app-id="^discord$"
     match app-id="^thunderbird$"
     match app-id="^element$"
+
+    // Never move media viewer to predefined workspace
+    exclude title="^(媒体查看器)|(Media viewer)$"
+
     open-on-workspace "4-info"
 }
+
+window-rule {
+    match app-id="^org.telegram.desktop$" title="^(媒体查看器)|(Media viewer)$"
+    match app-id="^com.ayugram.desktop$" title="^(媒体查看器)|(Media viewer)$"
+    match app-id="^io.github.kukuruzka165.materialgram$" title="^(媒体查看器)|(Media viewer)$"
+
+    open-floating true
+    open-maximized false
+    open-fullscreen false
+
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.5; }
+}
+
 window-rule {
     match app-id="^feishin$"
     match app-id="^cider$"
@@ -148,3 +163,4 @@ window-rule {
     default-floating-position x=10 y=10 relative-to="bottom-right"
     open-focused false
 }
+

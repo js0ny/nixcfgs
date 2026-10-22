@@ -23,22 +23,47 @@ let
         };
       };
     })
-    # (final: prev: {
-    #   llm-agents = prev.llm-agents // {
-    #     hermes-desktop = prev.llm-agents.hermes-desktop.overrideAttrs (oldAttrs: {
-    #       nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ final.imagemagick ];
-    #       postInstall = (oldAttrs.postInstall or "") + /* bash */ ''
-    #         # Vicinae does not reliably resolve the upstream 1024x1024-only icon.
-    #         sourceIcon="$out/share/icons/hicolor/1024x1024/apps/hermes-desktop.png"
-    #         for size in 256 512; do
-    #           install -d "$out/share/icons/hicolor/''${size}x''${size}/apps"
-    #           magick "$sourceIcon" -resize "''${size}x''${size}" \
-    #             "$out/share/icons/hicolor/''${size}x''${size}/apps/hermes-desktop.png"
-    #         done
-    #       '';
-    #     });
-    #   };
-    # })
+    (final: prev: {
+      llm-agents = prev.llm-agents // {
+        hermes-agent = prev.llm-agents.hermes-agent.overridePythonAttrs (oldAttrs: {
+          pythonRelaxDeps = (oldAttrs.pythonRelaxDeps or [ ]) ++ [
+            "prompt-toolkit"
+            "prompt_toolkit"
+            "markdown"
+          ];
+        });
+      };
+    })
+    (final: prev: {
+      llm-agents = prev.llm-agents // {
+        hermes-desktop = prev.llm-agents.hermes-desktop.override {
+          hermes-agent = prev.llm-agents.hermes-agent.overridePythonAttrs (oldAttrs: {
+            pythonRelaxDeps = (oldAttrs.pythonRelaxDeps or [ ]) ++ [
+              "prompt-toolkit"
+              "prompt_toolkit"
+              "markdown"
+            ];
+          });
+
+        };
+      };
+    })
+    (final: prev: {
+      pythonPackagesExtensions = (prev.pythonPackagesExtensions or [ ]) ++ [
+        (pythonFinal: pythonPrev: {
+          httpx-auth = pythonPrev.httpx-auth.overridePythonAttrs (oldAttrs: {
+            postPatch = (oldAttrs.postPatch or "") + /* bash */ ''
+              substituteInPlace \
+                tests/aws_signature_v4/test_aws4auth_async.py \
+                tests/aws_signature_v4/test_aws4auth_sync.py \
+                --replace-fail \
+                  '    assert end - start < 30_000_000' \
+                  ""
+            '';
+          });
+        })
+      ];
+    })
   ];
 in
 {

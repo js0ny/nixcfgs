@@ -1,0 +1,43 @@
+--- a/tests/test_error.py
++++ b/tests/test_error.py
+@@ -122,24 +122,25 @@
+             raise Conflict("Something something.")
+ 
+     @pytest.mark.parametrize(
+-        ("exception", "attributes"),
++        ("exception_type", "args", "attributes"),
+         [
+-            (TelegramError("test message"), ["message"]),
+-            (Forbidden("test message"), ["message"]),
+-            (InvalidToken(), ["message"]),
+-            (NetworkError("test message"), ["message"]),
+-            (BadRequest("test message"), ["message"]),
+-            (TimedOut(), ["message"]),
+-            (ChatMigrated(1234), ["message", "new_chat_id"]),
+-            (RetryAfter(12), ["message", "retry_after"]),
+-            (RetryAfter(dtm.timedelta(seconds=12)), ["message", "retry_after"]),
+-            (Conflict("test message"), ["message"]),
+-            (PassportDecryptionError("test message"), ["message"]),
+-            (InvalidCallbackData("test data"), ["callback_data"]),
+-            (EndPointNotFound("endPoint"), ["message"]),
++            (TelegramError, ("test message",), ["message"]),
++            (Forbidden, ("test message",), ["message"]),
++            (InvalidToken, (), ["message"]),
++            (NetworkError, ("test message",), ["message"]),
++            (BadRequest, ("test message",), ["message"]),
++            (TimedOut, (), ["message"]),
++            (ChatMigrated, (1234,), ["message", "new_chat_id"]),
++            (RetryAfter, (12,), ["message", "retry_after"]),
++            (RetryAfter, (dtm.timedelta(seconds=12),), ["message", "retry_after"]),
++            (Conflict, ("test message",), ["message"]),
++            (PassportDecryptionError, ("test message",), ["message"]),
++            (InvalidCallbackData, ("test data",), ["callback_data"]),
++            (EndPointNotFound, ("endPoint",), ["message"]),
+         ],
+     )
+-    def test_errors_pickling(self, exception, attributes):
++    def test_errors_pickling(self, exception_type, args, attributes, PTB_TIMEDELTA):
++        exception = exception_type(*args)
+         pickled = pickle.dumps(exception)
+         unpickled = pickle.loads(pickled)
+         assert type(unpickled) is type(exception)

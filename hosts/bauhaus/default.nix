@@ -1,5 +1,4 @@
 {
-  pkgs,
   inputs,
   lib,
   ...
@@ -58,6 +57,8 @@ in
     "bge-m3"
     "qwen3.8:27b"
   ];
+
+  programs.labwc.enable = true;
 
   services.scx = {
     enable = true;

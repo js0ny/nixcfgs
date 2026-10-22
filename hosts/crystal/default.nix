@@ -26,7 +26,7 @@ in
     mod.libvirt
     mod.sshd
     mod.tailscale
-    mod.sync-org-ics
+    # mod.sync-org-ics
 
     mod.tether
     mod.kdeconnect

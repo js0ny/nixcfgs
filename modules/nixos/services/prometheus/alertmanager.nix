@@ -38,6 +38,8 @@ let
               <b>Summary:</b> {{ .Annotations.summary }}
               <b>Description:</b> {{ .Annotations.description }}
               {{ end }}
+
+              <a href="${ep.grafana.publicUrl}">Grafana</a>
             '';
           }
         ];
@@ -89,12 +91,22 @@ let
           }
           {
             alert = "HighMemoryUsage";
-            expr = /* promql */ "node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.10";
+            expr = /* promql */ "node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.15";
             for = "30m";
             labels.severity = "warning";
             annotations = {
-              summary = "Memory usage is over 90%";
-              description = "{{ $labels.instance }} has less than 10% available memory.";
+              summary = "Memory usage is over 85%";
+              description = "{{ $labels.instance }} has less than 15% available memory.";
+            };
+          }
+          {
+            alert = "ExtraHighMemoryUsage";
+            expr = /* promql */ "node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.08";
+            for = "5m";
+            labels.severity = "warning";
+            annotations = {
+              summary = "Memory usage is over 92%";
+              description = "{{ $labels.instance }} has less than 8% available memory.";
             };
           }
         ];

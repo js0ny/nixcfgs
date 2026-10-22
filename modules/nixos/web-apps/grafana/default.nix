@@ -16,14 +16,6 @@
       url = epSelf.domain;
       openid = config.nixdefs.selfhosted.openid;
       socketPath = "/run/grafana/grafana.sock";
-      autheliaDashboard = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/authelia/authelia/master/examples/grafana-dashboards/simple.json";
-        hash = "sha256-y+WbEev4ezdJyorjnnZi37CL1Pd9PxYAvl5N0hsFJnk=";
-      };
-      dashboardDir = pkgs.runCommand "grafana-dashboards" { } /* bash */ ''
-        mkdir -p $out
-        cp ${autheliaDashboard} $out/authelia.json
-      '';
       owner = service.serviceConfig.User;
       group = owner;
     in
@@ -98,16 +90,6 @@
         };
         provision = {
           enable = true;
-          dashboards.settings = {
-            apiVersion = 1;
-            providers = [
-              {
-                name = "Authelia";
-                type = "file";
-                options.path = dashboardDir;
-              }
-            ];
-          };
           datasources.settings.datasources = [
             {
               name = "Prometheus";

@@ -3,6 +3,7 @@
     {
       pkgs,
       lib,
+      config,
       osConfig,
       ...
     }:
@@ -16,10 +17,17 @@
       ];
       home.packages = lib.optionals (osConfig.hardware.graphics.enable) [
         pkgs.llm-agents.dsh
-        pkgs.js0ny.magpie-gui
+        pkgs.js0ny.magpie
       ];
 
-      js0ny.persist.stores.state.directories = [ { directory = ".config/magpie"; } ];
+      home.sessionVariables = {
+        DSH_HOME = "${config.xdg.configHome}/deepseek-harness";
+      };
+
+      js0ny.persist.stores.state.directories = [
+        ".config/magpie"
+        ".config/deepseek-harness"
+      ];
     };
 
 }
