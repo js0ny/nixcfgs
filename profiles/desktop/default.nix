@@ -43,6 +43,7 @@ in
     imports = [
       ../../migrated/home-shared/desktop-base/set-wallpaper.nix
       ../../migrated/home-shared/desktop-base/xdd.nix
+      ../../migrated/home-shared/optional/sequoia.nix
       modules.homeModules.chromium
       modules.homeModules.dolphin
       modules.homeModules.firefox
