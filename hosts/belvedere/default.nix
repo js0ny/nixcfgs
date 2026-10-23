@@ -20,6 +20,7 @@ in
     ../../migrated/nixos/server-apps/fail2ban.nix
     ../../migrated/nixos/web-apps/fast-note-sync.nix
     ../../migrated/nixos/web-apps/gluetun.nix
+    ../../migrated/nixos/web-apps/miniflux
     ../../migrated/nixos/web-apps/navidrome.nix
     ../../migrated/nixos/web-apps/pdf2zh.nix
     mod.fish
@@ -30,7 +31,6 @@ in
     mod.immich
     mod.jellyfin
     mod.karakeep
-    mod.miniflux
     mod.nix-index-database
     mod.opengist
     mod.papra

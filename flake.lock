@@ -1131,11 +1131,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1792467041,
-        "narHash": "sha256-o2UixE9TRYjC2vt3g2oobULEyA9DwfiJ8XADkRX9Bhk=",
+        "lastModified": 1792502884,
+        "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f43dcf4b67a1ad8af1032918c0af0b66297e9781",
+        "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
         "type": "github"
       },
       "original": {
@@ -1254,11 +1254,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1792250472,
-        "narHash": "sha256-Qmq56OR5CF1XPtjlbY9NPX4cwj2besY6MxAxfIT4zc4=",
+        "lastModified": 1792756707,
+        "narHash": "sha256-24DfmYqvhwLsvAWY6jqCQle/YHVHKb+MyXBsnESg6ck=",
         "owner": "js0ny",
         "repo": "nvimdots",
-        "rev": "d871195f613a874d620725c422d960163993f7ff",
+        "rev": "f1c1c3b7dd7a1cadf0e31ef448f0e1ba1d2b6de4",
         "type": "github"
       },
       "original": {
@@ -1488,11 +1488,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1792462579,
-        "narHash": "sha256-NChN55t0TYBhdvhCFeZ0TA6klsLGHKX9d9fieJBF6I4=",
+        "lastModified": 1792756938,
+        "narHash": "sha256-jlvFsL5PZQo0KRQ348+E0ZPV4nhf/nAzIvMfwVMPXGU=",
         "ref": "refs/heads/master",
-        "rev": "92634f3958f89e2438961d14fafe38d40915c4a2",
-        "revCount": 123,
+        "rev": "0ea304c775ef785696cee30b01a3bec7fe786ba9",
+        "revCount": 125,
         "submodules": true,
         "type": "git",
         "url": "ssh://forgejo@git.js0ny.net/infra/nix-secrets.git"

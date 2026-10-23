@@ -28,6 +28,8 @@
             taglib
             # taglib.pc hardcodes `-lz`, but nixpkgs' taglib does not propagate zlib
             zlib
+            pnpm
+            nodejs
             pkg-config
           ];
           devDeps = with pkgs; [

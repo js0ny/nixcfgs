@@ -1,0 +1,29 @@
+{
+  "name": "miniflux-sync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "check": "tsc --noEmit",
+    "start": "node main.ts"
+  },
+  "keywords": [],
+  "author": "js0ny",
+  "license": "MIT",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.15.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.15.0",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^26.6.5"
+  },
+  "dependencies": {
+    "typescript": "^7.0.2"
+  }
+}

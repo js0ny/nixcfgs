@@ -65,3 +65,5 @@ AGENTS.override.md
 __pycache__
 .claude/settings.local.json
 result*
+
+node_modules/
