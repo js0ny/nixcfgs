@@ -4,6 +4,16 @@
     {
       home.packages = with pkgs; [
         concord-tui
+        (localPkgs.terminal-app {
+          name = "concord";
+          desktopName = "Concord";
+          exec = "concord";
+          icon = "discord";
+          categories = [
+            "Network"
+            "InstantMessaging"
+          ];
+        })
         discord
       ];
       # imports = [ inputs.nixcord.homeModules.nixcord ];

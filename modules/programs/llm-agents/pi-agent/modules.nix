@@ -66,19 +66,20 @@ in
     hideThinkingBlock = false;
 
     defaultProvider = "openai-codex";
-    defaultModel = "gpt-6.1-sol";
+    defaultModel = "gpt-5.6-luna";
     defaultThinkingLevel = "high";
 
     packages = [
       "npm:pi-subagents"
       "npm:pi-btw"
+      "npm:@narumitw/pi-usage"
     ];
 
     enabledModels = [
       "openai-codex/gpt-6.1-sol"
+      "openai-codex/gpt-5.6-luna"
       # keep-sorted start
       "deepseek/deepseek-flash"
-      "openai-codex/gpt-5.6-luna"
       "openai-codex/gpt-6-astra"
       # keep-sorted end
     ];
