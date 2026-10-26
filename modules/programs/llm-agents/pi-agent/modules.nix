@@ -29,9 +29,13 @@ in
   imports = [
     ./extensions/modules.nix
     ./settings.nix
+    ./providers.nix
     "${inputs.secrets}/llm-contexts/home/pi.nix"
   ];
   home.packages = [ pi ];
+  systemd.user.tmpfiles.rules = [
+    "L+ ${config.xdg.configHome}/pi/agent/sessions - - - - ${config.xdg.dataHome}/pi/agent/session"
+  ];
   js0ny.persist.stores.state.directories = [ ".config/pi/agent" ];
   js0ny.persist.stores.local.directories = [ ".local/share/pi/agent" ];
 
@@ -43,6 +47,7 @@ in
 
   # https://pi.dev/docs/latest/settings
   xdg.configFile."pi/agent/settings.json".text = builtins.toJSON {
+    "$schema" = "https://pi.dev/schemas/settings.schema.json";
     enableInstallTelemetry = false;
     enableAnalytics = false;
     quietStartup = false;
@@ -73,11 +78,12 @@ in
       "npm:pi-subagents"
       "npm:pi-btw"
       "npm:@narumitw/pi-usage"
+      "npm:pi-codex-goal"
     ];
 
     enabledModels = [
-      "openai-codex/gpt-6.1-sol"
       "openai-codex/gpt-5.6-luna"
+      "openai-codex/gpt-6.1-sol"
       # keep-sorted start
       "deepseek/deepseek-flash"
       "openai-codex/gpt-6-astra"

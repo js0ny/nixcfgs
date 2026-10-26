@@ -24,7 +24,6 @@ in
     mod.libvirt
     mod.sshd
     mod.tailscale
-    mod.sunshine
     mod.ollama
     mod.strata
     mod.prometheus-node
@@ -41,8 +40,10 @@ in
 
     mod.localsend
 
-    mod.siyuan
-    mod.gatus
+    # keep-sorted start
+    ../../migrated/nixos/desktop-apps/sunshine.nix
+    ../../migrated/nixos/desktop-apps/virtual-desktop.nix
+    # keep-sorted end
   ];
 
   home-manager.users."js0ny" = import ./home.nix;

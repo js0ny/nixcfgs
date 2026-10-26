@@ -25,6 +25,7 @@ let
     ffmpeg-headless
     findutils
     gh
+    git # required by installing plugins
     jq
     js0ny.edstem-cli
     localPkgs.pdf2zh-next

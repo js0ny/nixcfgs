@@ -84,6 +84,4 @@ in
     package = pkgs.wireshark;
   };
   js0ny.user.groups = [ "wireshark" ];
-
-  environment.systemPackages = [ pkgs.kdePackages.plasma-bigscreen ];
 }

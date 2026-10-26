@@ -12,40 +12,15 @@ let
     inputs.nur.overlays.default
     inputs.vscode-extensions.overlays.default
     # keep-sorted end
-    # llm-agents does not put libtss2 in ChatGPT's buildInputs, so auto-formatelf
-    # cannot resolve the TPM key module shipped in native/remote-control-device-key.node.
-    (final: prev: {
-      llm-agents = prev.llm-agents // {
-        chatgpt = prev.llm-agents.chatgpt.override {
-          chatgpt-unwrapped = prev.llm-agents.chatgpt.unwrapped.overrideAttrs (old: {
-            buildInputs = old.buildInputs ++ [ final.tpm2-tss ];
-          });
-        };
-      };
-    })
     (final: prev: {
       llm-agents = prev.llm-agents // {
         hermes-agent = prev.llm-agents.hermes-agent.overridePythonAttrs (oldAttrs: {
-          pythonRelaxDeps = (oldAttrs.pythonRelaxDeps or [ ]) ++ [
-            "prompt-toolkit"
-            "prompt_toolkit"
-            "markdown"
-          ];
+          postPatch = (oldAttrs.postPatch or "") + /* bash */ ''
+            substituteInPlace hermes_cli/kanban_db_dispatch.py \
+              --replace-fail 'return [sys.executable, "-m", "hermes_cli.kanban_worker_client"]' \
+                'return [os.environ.get("HERMES_PYTHON", sys.executable), "-m", "hermes_cli.kanban_worker_client"]'
+          '';
         });
-      };
-    })
-    (final: prev: {
-      llm-agents = prev.llm-agents // {
-        hermes-desktop = prev.llm-agents.hermes-desktop.override {
-          hermes-agent = prev.llm-agents.hermes-agent.overridePythonAttrs (oldAttrs: {
-            pythonRelaxDeps = (oldAttrs.pythonRelaxDeps or [ ]) ++ [
-              "prompt-toolkit"
-              "prompt_toolkit"
-              "markdown"
-            ];
-          });
-
-        };
       };
     })
     (final: prev: {

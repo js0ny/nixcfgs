@@ -19,7 +19,7 @@ let
   fGitHubRelease = repo: {
     feed_url = lGitHub repo;
     category = cRelease;
-    blocklist_rules = "EntryTitle=(?i)(prerelease|alpha|nightly)";
+    blocklist_rules = "EntryTitle=(?i)(prerelease|alpha|nightly|Nightly|canary)";
   };
 
   fsGitHub = map fGitHubRelease [

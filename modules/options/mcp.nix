@@ -216,6 +216,22 @@ in
             pi.exposure = "hidden";
           };
         };
+        undermind = {
+          enable = true;
+          type = "streamable-http";
+          category = "work";
+          tags = [ "research" ];
+          server.url = "https://mcp.undermind.ai/mcp";
+          clientConfig = {
+            codex = {
+              auth = "oauth";
+              oauth.client_id = "codex";
+              scopes = [ "mcp" ];
+            };
+            hermes.auth = "oauth";
+          };
+        };
+
         grafana = {
           enable = true;
           type = "stdio";

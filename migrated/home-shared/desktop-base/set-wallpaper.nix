@@ -9,9 +9,12 @@ let
       dconf write /org/gnome/desktop/background/picture-uri "file://$@"
     fi
   '';
+  setwall-darwin = pkgs.writeShellScriptBin "setwall" ''
+    osascript -e 'on run {img}' -e 'tell application "System Events" to set picture of every desktop to img' -e 'end run'
+  '';
 in
 {
-  home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ setwall ];
+  home.packages = if pkgs.stdenv.hostPlatform.isDarwin then [ setwall-darwin ] else [ setwall ];
   programs.yazi.settings = {
     open.prepend_rules = [
       {
@@ -32,9 +35,7 @@ in
 
         }
         {
-          run = /* bash */ ''
-            	osascript -e 'on run {img}' -e 'tell application "System Events" to set picture of every desktop to img' -e 'end run' %s1
-          '';
+          run = /* bash */ "${lib.getExe setwall-darwin} %s1";
           desc = "Set as wallpaper";
           for = "macos";
         }
