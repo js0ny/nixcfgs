@@ -40,7 +40,8 @@ let
     uv
     # keep-sorted end
   ];
-  stateDir = "/var/lib/hermes";
+  inherit (config.services.hermes-agent) stateDir group workingDirectory;
+  hermesHome = "${stateDir}/.hermes";
   gitConfig = /* ini */ ''
     [user]
       email = "bot@js0ny.net"
@@ -49,10 +50,6 @@ let
 in
 {
   services.hermes-agent.extraPackages = packages;
-  users.users.hermes = {
-    packages = packages;
-    shell = pkgs.bashInteractive;
-  };
   environment.variables = {
     AGENT_BROWSER_EXECUTABLE_PATH = (lib.getExe pkgs.chromium);
   };
@@ -61,5 +58,12 @@ in
 
   systemd.tmpfiles.rules = [
     "L+ ${stateDir}/.gitconfig - - - - ${pkgs.writeText "gitconfig" gitConfig}"
-  ];
+  ]
+  ++ map (directory: "A+ ${directory} - - - - g:${group}:rwX,d:g:${group}:rwX") (
+    lib.unique [
+      stateDir
+      hermesHome
+      workingDirectory
+    ]
+  );
 }

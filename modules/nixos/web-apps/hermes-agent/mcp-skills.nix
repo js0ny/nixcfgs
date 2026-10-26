@@ -16,7 +16,9 @@ in
     "${inputs.secrets}/llm-contexts/nixos/hermes.nix"
   ];
   services.hermes-agent = {
-    mcpServers = config.js0ny.mcp.clientSettings.hermes.mcp_servers;
+    # The upstream mcpServers submodule does not expose the trust field.
+    # https://hermes-agent.nousresearch.com/docs/reference/mcp-config-reference/
+    settings.mcp_servers = config.js0ny.mcp.clientSettings.hermes.mcp_servers;
     # https://hermes-agent.nousresearch.com/docs/user-guide/configuration#skill-settings
     settings.skills = {
       external_dirs = [ "/var/lib/hermes/agent-skills" ];

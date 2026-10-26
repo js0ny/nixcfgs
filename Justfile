@@ -3,7 +3,15 @@ hostname := `hostname`
 
 update:
     nix flake update
+    @just update-hermes-version
     @just update-models
+
+update-hermes:
+    nix flake update hermes-agent
+    @just update-hermes-version
+
+update-hermes-version:
+    nu --no-config-file .bin/update-hermes-version.nu
 
 repl:
     nix repl --expr 'import <nixpkgs> {}'

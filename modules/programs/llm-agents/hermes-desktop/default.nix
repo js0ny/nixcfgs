@@ -9,18 +9,20 @@
     }:
     {
       imports = [
-        inputs.self.homeModules.hermes-agent
+        inputs.hermes-agent.homeManagerModules.default
         "${inputs.secrets}/llm-contexts/home/hermes.nix"
       ];
 
-      home.packages = with pkgs.llm-agents; [
-        hermes-agent
-        hermes-desktop
-      ];
-      home.sessionVariables = {
-        AGENT_BROWSER_EXECUTABLE_PATH = (lib.getExe pkgs.chromium);
-        HERMES_HOME = "${config.xdg.configHome}/hermes-agent";
+      programs.hermes-agent = {
+        enable = true;
+        desktop.enable = true;
       };
+      services.hermes-agent = {
+        package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hermes-agent;
+        hermesHome = "${config.xdg.configHome}/hermes-agent";
+        backend.mode = "dashboard";
+      };
+      home.sessionVariables.AGENT_BROWSER_EXECUTABLE_PATH = lib.getExe pkgs.chromium;
 
       js0ny.persist.stores.state.directories = [
         ".config/Hermes"

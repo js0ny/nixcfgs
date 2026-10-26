@@ -13,17 +13,6 @@ let
     inputs.vscode-extensions.overlays.default
     # keep-sorted end
     (final: prev: {
-      llm-agents = prev.llm-agents // {
-        hermes-agent = prev.llm-agents.hermes-agent.overridePythonAttrs (oldAttrs: {
-          postPatch = (oldAttrs.postPatch or "") + /* bash */ ''
-            substituteInPlace hermes_cli/kanban_db_dispatch.py \
-              --replace-fail 'return [sys.executable, "-m", "hermes_cli.kanban_worker_client"]' \
-                'return [os.environ.get("HERMES_PYTHON", sys.executable), "-m", "hermes_cli.kanban_worker_client"]'
-          '';
-        });
-      };
-    })
-    (final: prev: {
       pythonPackagesExtensions = (prev.pythonPackagesExtensions or [ ]) ++ [
         (pythonFinal: pythonPrev: {
           httpx-auth = pythonPrev.httpx-auth.overridePythonAttrs (oldAttrs: {
@@ -47,4 +36,18 @@ in
     # Exposed for nixd evaluation and shared by system configurations.
     allOverlays = overlays;
   };
+  perSystem =
+    { lib, pkgs, ... }:
+    let
+      metadata = builtins.fromJSON (builtins.readFile ../../_sources/hermes-agent.json);
+    in
+    {
+      packages.hermes-agent =
+        assert lib.assertMsg (
+          metadata.rev == inputs.hermes-agent.rev
+        ) "Hermes version metadata is stale; run `just update-hermes-version`.";
+        inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+          inherit (metadata) version distance;
+        };
+    };
 }

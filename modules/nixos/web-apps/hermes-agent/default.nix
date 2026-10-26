@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.nixosModules.hermes-agent =
     {
@@ -11,9 +12,10 @@
     in
     {
       imports = [
-        ./nixos.nix
+        inputs.hermes-agent.nixosModules.default
         ./agent-user.nix
         ./env.nix
+        ./gateway.nix
         ./workspace-sync.nix
         ./models.nix
         ./mcp-skills.nix
@@ -28,9 +30,14 @@
 
       services.hermes-agent = {
         enable = true;
-        package = pkgs.llm-agents.hermes-agent;
+        package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hermes-agent;
+        addToSystemPackages = true;
         group = "agents";
-        dashboard.host = "0.0.0.0";
+        workingDirectory = "/var/lib/hermes";
+        backend = {
+          mode = "dashboard";
+          host = "0.0.0.0";
+        };
 
         # https://github.com/NousResearch/hermes-agent/blob/main/cli-config.yaml.example
         settings = {
@@ -131,20 +138,6 @@
             streaming = true;
             show_cost = true;
             vim_mode = true;
-            platforms.telegram = {
-              tool_progress = "verbose";
-              tool_progress_command = true;
-              runtime_footer = {
-                enabled = true;
-                fields = [
-                  "model"
-                  "context_pct"
-                  "latency"
-                ];
-              };
-              show_commentary = true;
-              show_reasoning = true;
-            };
           };
 
           privacy.redact_pii = true;
@@ -196,6 +189,4 @@
       };
 
     };
-
-  flake.homeModules.hermes-agent = import ./home.nix;
 }
