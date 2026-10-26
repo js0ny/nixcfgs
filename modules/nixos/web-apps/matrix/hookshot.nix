@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   secrets,
   ...
 }:
@@ -81,7 +80,7 @@ in
 
       generic = {
         enabled = true;
-        urlPrefix = "https://matrix.${domain}/webhook";
+        urlPrefix = "https://matrix.${domain}/webhook/";
         outbound = false;
         allowJsTransformationFunctions = true;
       };
@@ -104,8 +103,8 @@ in
   ];
 
   services.nginx.virtualHosts."matrix.${domain}" = {
-    locations."/webhook" = {
-      proxyPass = "http://localhost:${portStr}";
+    locations."/webhook/" = {
+      proxyPass = "http://localhost:${ep.hookshot-webhooks.portStr}/webhook/";
       proxyWebsockets = true;
       extraConfig = /* nginx */ ''
         proxy_buffering off;
