@@ -7,11 +7,8 @@
       ...
     }:
     {
-      boot.extraModulePackages = [
-        (config.boot.kernelPackages.v4l2loopback.overrideAttrs (old: {
-          # Remove once nixpkgs#575861 lands; NixOS generates depmod indices after merging modules.
-          installFlags = (old.installFlags or [ ]) ++ [ "DEPMOD=true" ];
-        }))
+      boot.extraModulePackages = with config.boot.kernelPackages; [
+        v4l2loopback
       ];
       programs.obs-studio = {
         enable = true;
