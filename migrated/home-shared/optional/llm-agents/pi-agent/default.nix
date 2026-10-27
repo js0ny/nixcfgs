@@ -18,7 +18,6 @@ let
         postBuild = ''
           wrapProgram "$out/bin/pi" \
             --prefix PATH : ${ lib.makeBinPath [ pkgs.python3 pkgs.nodejs ] } \
-            --set PI_CODING_AGENT_SESSION_DIR "${config.xdg.dataHome}/pi/agent/session" \
             --set PI_CODING_AGENT_DIR "${config.xdg.configHome}/pi/agent"
         '';
     /*nixfmt:enable*/
@@ -33,9 +32,9 @@ in
     "${inputs.secrets}/llm-contexts/home/pi.nix"
   ];
   home.packages = [ pi ];
-  systemd.user.tmpfiles.rules = [
-    "L+ ${config.xdg.configHome}/pi/agent/sessions - - - - ${config.xdg.dataHome}/pi/agent/session"
-  ];
+  # systemd.user.tmpfiles.rules = [
+  #   "L+ ${config.xdg.configHome}/pi/agent/sessions - - - - ${config.xdg.dataHome}/pi/agent/session"
+  # ];
   js0ny.persist.stores.state.directories = [ ".config/pi/agent" ];
   js0ny.persist.stores.local.directories = [ ".local/share/pi/agent" ];
 
@@ -43,6 +42,7 @@ in
   home.sessionVariables = {
     PI_SKIP_VERSION_CHECK = "1";
     PI_TELEMETRY = "0";
+    # PI_CODING_AGENT_DIR = "${config.xdg.configHome}/pi/agent";
   };
 
   # https://pi.dev/docs/latest/settings
