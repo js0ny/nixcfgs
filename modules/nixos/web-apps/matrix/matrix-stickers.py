@@ -42,21 +42,27 @@ async def request(
 ) -> dict | None:
     headers = {"Authorization": f"Bearer {config['access_token']}"}
     url = f"{config['homeserver'].rstrip('/')}{path}"
-    async with aiohttp.ClientSession(headers=headers) as session:
-        async with session.request(method, url, json=payload) as response:
-            if allow_missing and response.status == 404:
-                return None
-            if response.status >= 400:
-                body = await response.text()
-                raise RuntimeError(f"Matrix request failed ({response.status}): {body}")
-            if response.content_length == 0:
-                return {}
-            return await response.json()
+    async with (
+        aiohttp.ClientSession(headers=headers) as session,
+        session.request(method, url, json=payload) as response,
+    ):
+        if allow_missing and response.status == 404:
+            return None
+        if response.status >= 400:
+            body = await response.text()
+            raise RuntimeError(
+                f"Matrix request failed ({response.status}): {body}"
+            )
+        if response.content_length == 0:
+            return {}
+        return await response.json()
 
 
 async def import_scalar_packs(names: list[str]) -> None:
     await load_config()
-    available = {path.stem: path for path in (SOURCE_DIR / "packs").glob("*.json")}
+    available = {
+        path.stem: path for path in (SOURCE_DIR / "packs").glob("*.json")
+    }
     if not names:
         names = sorted(available)
 
@@ -143,7 +149,9 @@ def convert_pack(pack: dict) -> dict:
     }
 
 
-async def publish_pack(pack_path: Path, room_id: str, state_key: str | None) -> None:
+async def publish_pack(
+    pack_path: Path, room_id: str, state_key: str | None
+) -> None:
     config = await load_config()
     with pack_path.open() as pack_file:
         legacy_pack = json.load(pack_file)
@@ -166,10 +174,12 @@ async def publish_pack(pack_path: Path, room_id: str, state_key: str | None) -> 
     for account_type in ("m.image_pack.rooms", "im.ponies.emote_rooms"):
         encoded_type = quote(account_type, safe="")
         path = f"/_matrix/client/v3/user/{user_id}/account_data/{encoded_type}"
-        account_data = await request(config, "GET", path, allow_missing=True) or {
-            "rooms": {}
-        }
-        account_data.setdefault("rooms", {}).setdefault(room_id, {})[state_key] = {}
+        account_data = await request(
+            config, "GET", path, allow_missing=True
+        ) or {"rooms": {}}
+        account_data.setdefault("rooms", {}).setdefault(room_id, {})[
+            state_key
+        ] = {}
         await request(config, "PUT", path, account_data)
 
     print(

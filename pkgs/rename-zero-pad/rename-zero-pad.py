@@ -2,13 +2,12 @@
 # vim:ft=python
 
 import argparse
-import sys
+import fnmatch
 import re
-from pathlib import Path
+import sys
 from collections import Counter
 from datetime import datetime
-import fnmatch
-
+from pathlib import Path
 
 LOG_FILE = Path("./rename-zero-pad.log")
 
@@ -24,7 +23,8 @@ def parse_args():
         description="Rename files with zero-padded numeric names."
     )
     p.add_argument(
-        "--ext", "-e",
+        "--ext",
+        "-e",
         help="File extension without dot (auto-detect if omitted)",
     )
     p.add_argument(
@@ -59,7 +59,8 @@ def parse_args():
         help="Preview changes without renaming",
     )
     p.add_argument(
-        "--recursive", "-r",
+        "--recursive",
+        "-r",
         action="store_true",
         help="Process directories recursively (each directory has its own counter)",
     )
@@ -132,16 +133,28 @@ def build_rename_plan(
     if numeral or paren_number:
         numbered = []
         for f in files:
-            n = extract_paren_number(f.stem) if paren_number else extract_number(f.stem)
+            n = (
+                extract_paren_number(f.stem)
+                if paren_number
+                else extract_number(f.stem)
+            )
             if n is None:
-                msg = f"[SKIP] {display_dir}: no parentheses number in {f.name}" if paren_number else f"[SKIP] {display_dir}: no number in {f.name}"
+                msg = (
+                    f"[SKIP] {display_dir}: no parentheses number in {f.name}"
+                    if paren_number
+                    else f"[SKIP] {display_dir}: no number in {f.name}"
+                )
                 print(msg)
                 log_skip(msg)
                 continue
             numbered.append((n, f))
 
         if not numbered:
-            msg = f"[SKIP] {display_dir}: no files contain parentheses numbers" if paren_number else f"[SKIP] {display_dir}: no files contain numeric parts"
+            msg = (
+                f"[SKIP] {display_dir}: no files contain parentheses numbers"
+                if paren_number
+                else f"[SKIP] {display_dir}: no files contain numeric parts"
+            )
             print(msg)
             log_skip(msg)
             return []
@@ -154,7 +167,6 @@ def build_rename_plan(
         ordered_files = sorted(files, key=lambda f: f.name)
         numbers = list(range(initial, initial + len(ordered_files)))
 
-    cnt = len(ordered_files)
     max_number = max(numbers) if numbers else initial
     pad = len(str(max_number))
 
@@ -186,12 +198,16 @@ def main():
     full_plan: list[tuple[Path, Path]] = []
 
     for directory, files in dir_map.items():
-        display_dir = str(directory.relative_to(base)) if args.recursive else "."
+        display_dir = (
+            str(directory.relative_to(base)) if args.recursive else "."
+        )
         ext = args.ext
         if ext is None:
             ext = auto_detect_ext(files)
             if ext is None:
-                msg = f"[SKIP] {display_dir}: cannot auto-detect unique extension"
+                msg = (
+                    f"[SKIP] {display_dir}: cannot auto-detect unique extension"
+                )
                 print(msg)
                 log_skip(msg)
                 continue

@@ -8,7 +8,11 @@ function isMissingFile(error: unknown): boolean {
     return (error as NodeJS.ErrnoException).code === "ENOENT";
 }
 
-function appendProjectContext(systemPrompt: string, path: string, content: string): string {
+function appendProjectContext(
+    systemPrompt: string,
+    path: string,
+    content: string,
+): string {
     const instructions = `<project_instructions path="${path}">\n${content}\n</project_instructions>`;
     const closingTag = "\n</project_context>";
     const contextEnd = systemPrompt.lastIndexOf(closingTag);
@@ -35,10 +39,19 @@ export default function agentsOverride(pi: ExtensionAPI) {
         if (!content.trim()) return;
 
         const contextFiles = event.systemPromptOptions.contextFiles ?? [];
-        if (contextFiles.some((file) => resolve(file.path) === resolve(path))) return;
+        if (contextFiles.some((file) => resolve(file.path) === resolve(path)))
+            return;
 
-        event.systemPromptOptions.contextFiles = [...contextFiles, { path, content }];
-        return { systemPrompt: appendProjectContext(event.systemPrompt, path, content) };
+        event.systemPromptOptions.contextFiles = [
+            ...contextFiles,
+            { path, content },
+        ];
+        return {
+            systemPrompt: appendProjectContext(
+                event.systemPrompt,
+                path,
+                content,
+            ),
+        };
     });
 }
-

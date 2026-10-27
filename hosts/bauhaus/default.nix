@@ -18,6 +18,7 @@ in
     ./sing-box.nix
     ./incus.nix
     ./strata.nix
+    ./marimohub.nix
     # ./nixos-prebuild.nix
     mod.desktop
     mod.podman

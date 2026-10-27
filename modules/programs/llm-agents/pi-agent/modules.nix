@@ -79,6 +79,7 @@ in
       "npm:pi-btw"
       "npm:@narumitw/pi-usage"
       "npm:pi-codex-goal"
+      "npm:@juicesharp/rpiv-ask-user-question"
     ];
 
     enabledModels = [

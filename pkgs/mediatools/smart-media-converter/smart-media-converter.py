@@ -4,7 +4,8 @@
 # Date: 2025-12-03
 # Author: js0ny
 # Requires: fd ffmpeg imagemagick python >= 3.10
-# Notes: Recursively searches media via 'fd' and converts them using ThreadPoolExecutor.
+# Notes: Recursively searches media via 'fd'
+#        and converts them using ThreadPoolExecutor.
 ##########
 # Flags:
 #   --debug(-d): Enable debug logging
@@ -18,15 +19,14 @@
 #   --picture-format: Image output format for magick (default: webp)
 ##########
 
-import sys
-import logging
 import argparse
-import subprocess
+import logging
 import shutil
+import subprocess
+import sys
 import threading
-from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import List, Tuple, Optional
+from pathlib import Path
 
 # Configuration Constants
 VIDEO_CRF = "32"
@@ -44,32 +44,58 @@ _print_lock = threading.Lock()
 # Setup Logging
 logger = logging.getLogger("MediaConverter")
 handler = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%H:%M:%S')
+formatter = logging.Formatter(
+    "%(asctime)s - %(levelname)s - %(message)s", datefmt="%H:%M:%S"
+)
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
+
 def parse_size_human_readable(size: float) -> str:
     """Converts bytes into a human-readable string."""
-    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+    for unit in ["B", "KB", "MB", "GB", "TB"]:
         if size < 1024:
             return f"{size:.2f}{unit}"
         size /= 1024
     return f"{size:.2f}PB"
 
-def get_video_duration(file_path: Path) -> Optional[float]:
+
+def get_video_duration(file_path: Path) -> float | None:
     """Gets video duration in seconds using ffprobe. Returns None on failure."""
     try:
         result = subprocess.run(
-            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
-             "-of", "default=noprint_wrappers=1:nokey=1", str(file_path)],
-            capture_output=True, text=True, timeout=30
+            [
+                "ffprobe",
+                "-v",
+                "error",
+                "-show_entries",
+                "format=duration",
+                "-of",
+                "default=noprint_wrappers=1:nokey=1",
+                str(file_path),
+            ],
+            capture_output=True,
+            check=True,
+            text=True,
+            timeout=30,
         )
         return float(result.stdout.strip())
-    except (subprocess.CalledProcessError, ValueError, subprocess.TimeoutExpired):
+    except (
+        subprocess.CalledProcessError,
+        ValueError,
+        subprocess.TimeoutExpired,
+    ):
         return None
 
-def run_video_command(cmd: List[str], dry_run: bool, file_path: Path, output_path: Path,
-                      remove_source: bool, duration: Optional[float]) -> bool:
+
+def run_video_command(
+    cmd: list[str],
+    dry_run: bool,
+    file_path: Path,
+    output_path: Path,
+    remove_source: bool,
+    duration: float | None,
+) -> bool:
     """Runs ffmpeg with real-time progress bar for video conversion."""
     cmd_str_list = [str(c) for c in cmd]
     cmd_display = " ".join(f'"{c}"' if " " in c else c for c in cmd_str_list)
@@ -96,13 +122,15 @@ def run_video_command(cmd: List[str], dry_run: bool, file_path: Path, output_pat
             bufsize=1,
         )
 
-        duration_us = int(duration * 1_000_000) if duration and duration > 0 else 0
+        duration_us = (
+            int(duration * 1_000_000) if duration and duration > 0 else 0
+        )
 
         for line in proc.stdout:
             line = line.strip()
-            if not line or '=' not in line:
+            if not line or "=" not in line:
                 continue
-            key, _, value = line.partition('=')
+            key, _, value = line.partition("=")
 
             if key == "out_time_us" and duration_us > 0:
                 try:
@@ -118,7 +146,9 @@ def run_video_command(cmd: List[str], dry_run: bool, file_path: Path, output_pat
                 out_label = parse_size_human_readable(out_size)
 
                 with _print_lock:
-                    sys.stdout.write(f"\r\033[K[VID] {display_name}  {pct:.0f}%  {out_label} / {src_label}")
+                    sys.stdout.write(
+                        f"\r\033[K[VID] {display_name}  {pct:.0f}%  {out_label} / {src_label}"
+                    )
                     sys.stdout.flush()
 
         proc.wait()
@@ -126,12 +156,14 @@ def run_video_command(cmd: List[str], dry_run: bool, file_path: Path, output_pat
         if proc.returncode != 0:
             stderr_out = proc.stderr.read()
             with _print_lock:
-                sys.stdout.write(f"\r\033[K")
+                sys.stdout.write("\r\033[K")
                 sys.stdout.flush()
             logger.error(f"Command failed: {cmd_display}")
             if stderr_out:
-                err_lines = stderr_out.strip().split('\n')
-                logger.error(f"Stderr: {err_lines[-1] if err_lines else 'Unknown error'}")
+                err_lines = stderr_out.strip().split("\n")
+                logger.error(
+                    f"Stderr: {err_lines[-1] if err_lines else 'Unknown error'}"
+                )
             return False
 
         # Conversion succeeded — print final line (no percentage)
@@ -140,23 +172,28 @@ def run_video_command(cmd: List[str], dry_run: bool, file_path: Path, output_pat
             out_label = parse_size_human_readable(out_size)
 
             with _print_lock:
-                sys.stdout.write(f"\r\033[K[VID] {display_name}  {out_label} / {src_label}\n")
+                sys.stdout.write(
+                    f"\r\033[K[VID] {display_name}  {out_label} / {src_label}\n"
+                )
                 sys.stdout.flush()
 
             if out_size >= src_size:
-                logger.warning(f"[BLOAT] Output is larger ({out_size} > {src_size}).")
+                logger.warning(
+                    f"[BLOAT] Output is larger ({out_size} > {src_size})."
+                )
 
             if remove_source:
                 safe_remove(file_path, output_path, dry_run)
 
         return True
 
-    except Exception as e:
+    except Exception:
         with _print_lock:
-            sys.stdout.write(f"\r\033[K")
+            sys.stdout.write("\r\033[K")
             sys.stdout.flush()
-        logger.error(f"Video conversion error for {file_path.name}: {e}")
+        logger.exception("Video conversion error for %s", file_path.name)
         return False
+
 
 def check_dependencies():
     """Checks if required external tools are available."""
@@ -168,7 +205,14 @@ def check_dependencies():
         logger.error(f"Missing required dependencies: {', '.join(missing)}")
         sys.exit(1)
 
-def run_command(cmd: List[str], dry_run: bool, file_path: Path, output_path: Path, remove_source: bool) -> bool:
+
+def run_command(
+    cmd: list[str],
+    dry_run: bool,
+    file_path: Path,
+    output_path: Path,
+    remove_source: bool,
+) -> bool:
     """Executes a shell command safely."""
     cmd_str_list = [str(c) for c in cmd]
     cmd_display = " ".join(f'"{c}"' if " " in c else c for c in cmd_str_list)
@@ -185,8 +229,8 @@ def run_command(cmd: List[str], dry_run: bool, file_path: Path, output_path: Pat
             check=True,
             stdout=subprocess.DEVNULL if capture else None,
             stderr=subprocess.PIPE if capture else None,
-            stdin=subprocess.DEVNULL, # Important for parallel ffmpeg
-            text=True
+            stdin=subprocess.DEVNULL,  # Important for parallel ffmpeg
+            text=True,
         )
 
         if not dry_run and output_path.exists():
@@ -195,7 +239,9 @@ def run_command(cmd: List[str], dry_run: bool, file_path: Path, output_path: Pat
 
             # 如果体积变大 (或者几乎没变小，比如只小了 1%)，则回滚
             if out_size >= src_size:
-                logger.warning(f"[BLOAT] Output is larger ({out_size} > {src_size}).")# " Discarding AV1.")
+                logger.warning(
+                    f"[BLOAT] Output is larger ({out_size} > {src_size})."
+                )  # " Discarding AV1.")
             # elif remove_source:
 
             if remove_source:
@@ -205,19 +251,24 @@ def run_command(cmd: List[str], dry_run: bool, file_path: Path, output_path: Pat
     except subprocess.CalledProcessError as e:
         logger.error(f"Command failed: {cmd_display}")
         if e.stderr:
-            err_lines = e.stderr.strip().split('\n')
-            logger.error(f"Stderr: {err_lines[-1] if err_lines else 'Unknown error'}")
+            err_lines = e.stderr.strip().split("\n")
+            logger.error(
+                f"Stderr: {err_lines[-1] if err_lines else 'Unknown error'}"
+            )
         return False
+
 
 def safe_remove(source: Path, output: Path, dry_run: bool):
     """Safely removes source file after verifying output."""
     if dry_run:
-        logger.info(f"[DRY-RUN] rm \"{source}\"")
+        logger.info(f'[DRY-RUN] rm "{source}"')
         return
 
     # DOUBLE CHECK: verify output exists and has content
     if not output.exists() or output.stat().st_size == 0:
-        logger.critical(f"SAFETY ABORT: Output file {output} is missing or empty! Keeping source.")
+        logger.critical(
+            f"SAFETY ABORT: Output file {output} is missing or empty! Keeping source."
+        )
         return
 
     try:
@@ -226,7 +277,14 @@ def safe_remove(source: Path, output: Path, dry_run: bool):
     except OSError as e:
         logger.error(f"Failed to delete source {source}: {e}")
 
-def convert_image(file_path: Path, dry_run: bool, remove_source: bool, picture_quality: int, picture_format: str) -> None:
+
+def convert_image(
+    file_path: Path,
+    dry_run: bool,
+    remove_source: bool,
+    picture_quality: int,
+    picture_format: str,
+) -> None:
     """Converts image to configured format and quality."""
     try:
         size = file_path.stat().st_size
@@ -248,10 +306,23 @@ def convert_image(file_path: Path, dry_run: bool, remove_source: bool, picture_q
 
     logger.info(f"[{label}] {file_path.name} -> {ext}")
 
-    cmd = ["magick", str(file_path), "-quality", str(picture_quality), str(output_path)]
+    cmd = [
+        "magick",
+        str(file_path),
+        "-quality",
+        str(picture_quality),
+        str(output_path),
+    ]
     run_command(cmd, dry_run, file_path, output_path, remove_source)
 
-def convert_video(file_path: Path, dry_run: bool, remove_source: bool, video_container: str, gpu_video: bool) -> None:
+
+def convert_video(
+    file_path: Path,
+    dry_run: bool,
+    remove_source: bool,
+    video_container: str,
+    gpu_video: bool,
+) -> None:
     """Converts video to AV1 with progress tracking."""
     output_ext = f".av1.{video_container}"
 
@@ -266,48 +337,68 @@ def convert_video(file_path: Path, dry_run: bool, remove_source: bool, video_con
 
     duration = get_video_duration(file_path)
     if duration is None:
-        logger.warning(f"[VID] Could not probe duration for {file_path.name}, no progress bar")
+        logger.warning(
+            f"[VID] Could not probe duration for {file_path.name}, no progress bar"
+        )
 
     encoder_label = "AV1 (GPU)" if gpu_video else "AV1"
     logger.info(f"[VID] {file_path.name} -> {encoder_label}")
 
     cmd = [
-        "ffmpeg", "-hide_banner", "-loglevel", "error",
-        "-progress", "pipe:1",
-        "-i", str(file_path),
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-progress",
+        "pipe:1",
+        "-i",
+        str(file_path),
     ]
 
     if gpu_video:
-        cmd.extend(["-c:v", "av1_nvenc", "-cq", VIDEO_CRF, "-preset", GPU_VIDEO_PRESET])
+        cmd.extend(
+            ["-c:v", "av1_nvenc", "-cq", VIDEO_CRF, "-preset", GPU_VIDEO_PRESET]
+        )
     else:
-        cmd.extend(["-c:v", "libsvtav1", "-crf", VIDEO_CRF, "-preset", VIDEO_PRESET])
+        cmd.extend(
+            ["-c:v", "libsvtav1", "-crf", VIDEO_CRF, "-preset", VIDEO_PRESET]
+        )
 
-    cmd.extend([
-        "-c:a", "aac", "-b:a", "192k",
-        "-sn",
-    ])
+    cmd.extend(
+        [
+            "-c:a",
+            "aac",
+            "-b:a",
+            "192k",
+            "-sn",
+        ]
+    )
 
     if video_container == "mp4":
         cmd.extend(["-movflags", "+faststart"])
 
     cmd.append(str(output_path))
 
-    run_video_command(cmd, dry_run, file_path, output_path, remove_source, duration)
+    run_video_command(
+        cmd, dry_run, file_path, output_path, remove_source, duration
+    )
 
 
-def scan_files(target_dir: Path) -> Tuple[List[Path], List[Path]]:
+def scan_files(target_dir: Path) -> tuple[list[Path], list[Path]]:
     """Scans for all relevant files in one pass using fd."""
     logger.info("Scanning for files...")
-    
+
     cmd = ["fd", "--type", "f", "--absolute-path", "--print0"]
     all_exts = IMG_EXTS.union(VID_EXTS)
     for ext in all_exts:
-        cmd.extend(["-e", ext.lstrip('.')])
+        cmd.extend(["-e", ext.lstrip(".")])
     cmd.extend([".", str(target_dir)])
 
     try:
         result = subprocess.run(cmd, capture_output=True, check=True)
-        files = [Path(p.decode('utf-8')) for p in result.stdout.split(b'\0') if p]
+        files = [
+            Path(p.decode("utf-8")) for p in result.stdout.split(b"\0") if p
+        ]
     except subprocess.CalledProcessError as e:
         logger.error(f"fd search failed: {e}")
         return [], []
@@ -320,21 +411,59 @@ def scan_files(target_dir: Path) -> Tuple[List[Path], List[Path]]:
             images.append(f)
         elif suffix in VID_EXTS:
             videos.append(f)
-            
+
     return images, videos
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Batch convert media using fd, ffmpeg and magick.")
+    parser = argparse.ArgumentParser(
+        description="Batch convert media using fd, ffmpeg and magick."
+    )
     parser.add_argument("--dir", default=".", help="Target directory")
-    parser.add_argument("-d", "--debug", action="store_true", help="Enable debug logging")
-    parser.add_argument("-n", "--dry-run", action="store_true", help="Dry run mode")
-    parser.add_argument("--rm", action="store_true", help="Remove source file after successful conversion")
-    parser.add_argument("-j", "--workers", type=int, default=3, help="Number of parallel workers")
-    parser.add_argument("--video-container", choices=["mp4", "mkv"], default="mp4", help="Video output container format")
-    parser.add_argument("--gpu-video", "--gpu", dest="gpu_video", action="store_true", help="Use GPU video encoding with av1_nvenc")
-    parser.add_argument("--picture-quality", type=int, default=85, help="Image quality for magick")
-    parser.add_argument("--picture-format", choices=["webp", "avif"], default="webp", help="Image output format for magick")
-    
+    parser.add_argument(
+        "-d", "--debug", action="store_true", help="Enable debug logging"
+    )
+    parser.add_argument(
+        "-n", "--dry-run", action="store_true", help="Dry run mode"
+    )
+    parser.add_argument(
+        "--rm",
+        action="store_true",
+        help="Remove source file after successful conversion",
+    )
+    parser.add_argument(
+        "-j",
+        "--workers",
+        type=int,
+        default=3,
+        help="Number of parallel workers",
+    )
+    parser.add_argument(
+        "--video-container",
+        choices=["mp4", "mkv"],
+        default="mp4",
+        help="Video output container format",
+    )
+    parser.add_argument(
+        "--gpu-video",
+        "--gpu",
+        dest="gpu_video",
+        action="store_true",
+        help="Use GPU video encoding with av1_nvenc",
+    )
+    parser.add_argument(
+        "--picture-quality",
+        type=int,
+        default=85,
+        help="Image quality for magick",
+    )
+    parser.add_argument(
+        "--picture-format",
+        choices=["webp", "avif"],
+        default="webp",
+        help="Image output format for magick",
+    )
+
     args = parser.parse_args()
 
     if args.debug:
@@ -350,15 +479,21 @@ def main():
         sys.exit(1)
 
     if args.rm and not args.dry_run:
-        logger.warning("!!! [WARNING] --rm flag is set. Source files will be DELETED after conversion. !!!")
+        logger.warning(
+            "!!! [WARNING] --rm flag is set. Source files will be DELETED after conversion. !!!"
+        )
         # Optional: Add a 3-second sleep to let user Ctrl+C if they panic
         # import time; time.sleep(3)
 
-    logger.info(f"Starting Smart Media Converter in: {target_path} (Workers: {args.workers})")
+    logger.info(
+        f"Starting Smart Media Converter in: {target_path} (Workers: {args.workers})"
+    )
 
     image_files, video_files = scan_files(target_path)
     total_files = len(image_files) + len(video_files)
-    logger.info(f"Found {total_files} files ({len(image_files)} images, {len(video_files)} videos).")
+    logger.info(
+        f"Found {total_files} files ({len(image_files)} images, {len(video_files)} videos)."
+    )
 
     if total_files == 0:
         logger.info("Nothing to do.")
@@ -366,20 +501,39 @@ def main():
 
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
         futures = []
-        
+
         for img in image_files:
-            futures.append(executor.submit(convert_image, img, args.dry_run, args.rm, args.picture_quality, args.picture_format))
-        
+            futures.append(
+                executor.submit(
+                    convert_image,
+                    img,
+                    args.dry_run,
+                    args.rm,
+                    args.picture_quality,
+                    args.picture_format,
+                )
+            )
+
         for vid in video_files:
-            futures.append(executor.submit(convert_video, vid, args.dry_run, args.rm, args.video_container, args.gpu_video))
+            futures.append(
+                executor.submit(
+                    convert_video,
+                    vid,
+                    args.dry_run,
+                    args.rm,
+                    args.video_container,
+                    args.gpu_video,
+                )
+            )
 
         for future in as_completed(futures):
             try:
                 future.result()
-            except Exception as e:
-                logger.error(f"Task exception: {e}")
+            except Exception:
+                logger.exception("Task failed")
 
     logger.info("All tasks completed.")
+
 
 if __name__ == "__main__":
     try:

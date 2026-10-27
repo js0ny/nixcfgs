@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Patch Strata's setup.py for a Nix-provided engine and Python environment (pkgs/strata-inference).
+"""Patch Strata's setup.py for a Nix-provided engine and Python environment
+(pkgs/strata-inference).
 
-Nix builds the engine and supplies the Python packages, so the packaged setup must neither compile nor download
-the engine and must not pip-install anything: its tree is read-only, and the host has no toolkit. Every other step
-- the PC checks, the model download, the pack build, the run config, the start script - is upstream's, reused
+Nix builds the engine and supplies the Python packages,
+so the packaged setup must neither compile nor download
+the engine and must not pip-install anything: its tree is read-only,
+and the host has no toolkit. Every other step
+- the PC checks, the model download, the pack build, the run config,
+the start script - is upstream's, reused
 unchanged.
 
-Each function is replaced whole and located through the syntax tree, so an upstream rename fails this script (and
+Each function is replaced whole and located through the syntax tree,
+so an upstream rename fails this script (and
 so the build) instead of silently leaving the old behaviour in place.
 """
 
@@ -70,23 +75,36 @@ REPLACEMENTS = {
 
 
 def target_lines(text: str, name: str) -> tuple[int, int]:
-    """The first and last line (1-based, both inclusive) of the top-level function `name`."""
+    """
+    The first and last line (1-based, both inclusive)
+    of the top-level function `name`.
+    """
     found = [
         node
         for node in ast.parse(text).body
-        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name == name
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+        and node.name == name
     ]
     if len(found) != 1:
-        raise SystemExit(f"setup-patch.py: expected exactly one top-level {name}(), found {len(found)}")
+        raise SystemExit(
+            f"setup-patch.py: expected exactly one top-level {name}(), found {len(found)}"
+        )
     node = found[0]
-    first = min([node.lineno, *[decorator.lineno for decorator in node.decorator_list]])
+    first = min(
+        [node.lineno, *[decorator.lineno for decorator in node.decorator_list]]
+    )
     return first, node.end_lineno
 
 
 def replace(text: str, name: str, new: str) -> str:
     first, last = target_lines(text, name)
     lines = text.splitlines(keepends=True)
-    return "".join(lines[: first - 1]) + new.strip("\n") + "\n" + "".join(lines[last:])
+    return (
+        "".join(lines[: first - 1])
+        + new.strip("\n")
+        + "\n"
+        + "".join(lines[last:])
+    )
 
 
 def main() -> int:
@@ -94,7 +112,7 @@ def main() -> int:
     text = path.read_text(encoding="utf-8")
     for name, new in REPLACEMENTS.items():
         text = replace(text, name, new)
-    ast.parse(text)                                   # a replacement that does not parse stops the build here
+    ast.parse(text)  # a replacement that does not parse stops the build here
     path.write_text(text, encoding="utf-8")
     print(f"setup-patch.py: replaced {', '.join(REPLACEMENTS)} in {path}")
     return 0

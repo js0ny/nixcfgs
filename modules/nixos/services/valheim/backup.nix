@@ -61,7 +61,10 @@ in
   systemd.services.valheim-backup = {
     description = "Back up the Valheim world and configuration";
     after = [ "local-fs.target" ];
-    unitConfig.RequiresMountsFor = [ stateDir backupDir ];
+    unitConfig.RequiresMountsFor = [
+      stateDir
+      backupDir
+    ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = backup;

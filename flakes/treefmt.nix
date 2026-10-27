@@ -18,10 +18,9 @@
         };
         programs.nixfmt.enable = true;
         programs.prettier.enable = true;
+        programs.ruff.enable = true;
         programs.shfmt.enable = true;
-        programs.stylua = {
-          enable = true;
-        };
+        programs.stylua.enable = true;
         # keep-sorted end
       };
 
