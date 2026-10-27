@@ -138,7 +138,7 @@ in
           "t"
           "q"
         ];
-        run = "tab_close";
+        run = "close";
         desc = "Close current tab";
       }
       {

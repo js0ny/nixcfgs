@@ -1,7 +1,6 @@
 {
   flake.nixosModules.navidrome =
     {
-      pkgs,
       lib,
       config,
       ...
@@ -17,8 +16,7 @@
     {
       services.navidrome = {
         enable = true;
-        # [Human Intervention] Enable and configure plugins in Navidrome's Plugins page.
-        plugins = [ pkgs.js0ny.navidromePlugins.lyrics-bin ];
+        withPlugins = p: [ p.lyrics-plugin ];
         # https://www.navidrome.org/docs/usage/configuration/options/
         settings = {
           Address = "unix:${socketPath}";

@@ -40,7 +40,12 @@ let
     uv
     # keep-sorted end
   ];
-  inherit (config.services.hermes-agent) stateDir group workingDirectory;
+  inherit (config.services.hermes-agent)
+    user
+    stateDir
+    group
+    workingDirectory
+    ;
   hermesHome = "${stateDir}/.hermes";
   gitConfig = /* ini */ ''
     [user]
@@ -62,8 +67,11 @@ in
   ++ map (directory: "A+ ${directory} - - - - g:${group}:rwX,d:g:${group}:rwX") (
     lib.unique [
       stateDir
-      hermesHome
       workingDirectory
     ]
-  );
+  )
+  ++ [
+    "A+ ${hermesHome} - - - - g:${group}:rX,d:g:${group}:rX"
+    "z ${hermesHome} 0750 ${user} ${group} - -"
+  ];
 }

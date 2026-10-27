@@ -16,6 +16,7 @@
       };
       programs.nushell = {
         enable = pkgs.stdenv.hostPlatform.isLinux;
+        loadSessionVariables = true;
         # install nushell via brew in darwin.
         # plugins = with pkgs.nushellPlugins; [
         #   desktop_notifications

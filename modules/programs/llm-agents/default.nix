@@ -12,7 +12,6 @@
         ./codex/modules.nix
         ./pi-agent/modules.nix
         ./ccusage.nix
-        ./herdr.nix
         ./oh-my-pi.nix
       ];
       home.packages = lib.optionals (osConfig.hardware.graphics.enable) [

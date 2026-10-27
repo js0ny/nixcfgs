@@ -5,7 +5,7 @@
       (lib.mkIf (pkgs.stdenv.hostPlatform.isLinux) {
         home.packages = with pkgs; [
           kicad
-          ltspice
+          # ltspice
           ngspice
           gtkwave
           picocom

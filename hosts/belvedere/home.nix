@@ -14,6 +14,7 @@ in
     inputs.sops-nix.homeManagerModules.sops
     ./vars.nix
     ../../definitions
+    ../../migrated/home-shared/optional/herdr.nix
   ];
 
   home.stateVersion = "26.05";

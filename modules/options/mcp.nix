@@ -158,13 +158,13 @@ in
           tags = [ "docs" ];
           server.url = "https://mcp.mdn.mozilla.net/";
         };
-        nixos = {
-          enable = true;
-          type = "stdio";
-          category = "code";
-          tags = [ "docs" ];
-          server.command = lib.getExe pkgs.mcp-nixos;
-        };
+        # nixos = {
+        #   enable = true;
+        #   type = "stdio";
+        #   category = "code";
+        #   tags = [ "docs" ];
+        #   server.command = lib.getExe pkgs.mcp-nixos;
+        # };
         ghgrep = {
           enable = false;
           type = "streamable-http";

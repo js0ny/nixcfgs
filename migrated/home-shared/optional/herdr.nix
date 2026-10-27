@@ -17,6 +17,7 @@ in
       onboarding = false;
       terminal = {
         default_shell = lib.getExe shell;
+        kitty_graphics = true;
         new_cwd = "follow";
       };
       update = {
@@ -24,21 +25,29 @@ in
         version_check = false;
         manifest_check = true;
       };
-      experimental = {
-        kitty_graphics = (config.programs.kitty.enable || config.programs.ghostty.enable);
-      };
+
+      remote.manage_ssh_config = false;
+
       keys = {
-        prefix = "ctrl+b";
+        prefix = "ctrl+m";
         help = "prefix+?";
         switch_tab = [
           "prefix+1..9"
           "alt+1..9"
         ];
+        goto = [
+          "prefix+g"
+          "alt+shift+o" # zellij
+          "prefix+shift+o"
+        ];
+        detach = "prefix+d";
+        close_workspace = "prefix+shift+q";
+        reload_config = [ ];
       };
       ui = {
         tab_bar_position = "bottom";
         toast = {
-          delivery = "terminal";
+          delivery = "system";
           herdr.position = "bottom-right";
         };
         sidebar_start_collapsed = true;

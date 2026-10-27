@@ -33,7 +33,6 @@
         plugins = {
           lsp.servers = {
             # keep-sorted start block=yes
-            basedpyright.enable = true;
             bashls.enable = true;
             clangd.enable = true;
             fish_lsp.enable = true;
