@@ -15,6 +15,7 @@ in
     ./vars.nix
     ../../definitions
     ../../migrated/home-shared/optional/herdr.nix
+    ../../migrated/home-shared/optional/llm-agents/codex
   ];
 
   home.stateVersion = "26.05";

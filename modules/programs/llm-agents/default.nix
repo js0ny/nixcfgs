@@ -9,8 +9,6 @@
     }:
     {
       imports = [
-        ./codex/modules.nix
-        ./pi-agent/modules.nix
         ./ccusage.nix
         ./oh-my-pi.nix
       ];

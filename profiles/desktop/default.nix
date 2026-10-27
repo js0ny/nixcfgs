@@ -45,6 +45,7 @@ in
       ../../migrated/home-shared/desktop-base/xdd.nix
       ../../migrated/home-shared/optional/sequoia.nix
       ../../migrated/home-shared/optional/herdr.nix
+      ../../migrated/home-shared/optional/llm-agents
       modules.homeModules.chromium
       modules.homeModules.dolphin
       modules.homeModules.firefox

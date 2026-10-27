@@ -12,6 +12,8 @@ in
       files = [
         "agents-override.ts"
         "command-guard.ts"
+        "lazy-skills.ts"
+        "tmpdir.ts"
       ];
     in
     builtins.listToAttrs (

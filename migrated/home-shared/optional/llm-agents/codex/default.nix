@@ -49,6 +49,7 @@ in
   programs.codex = {
     enable = true;
     package = pkgs.llm-agents.codex;
+    mutableSettings = true;
     # https://learn.chatgpt.com/docs/config-file/config-basic
     settings = {
       analytics.enabled = false;
@@ -72,7 +73,7 @@ in
         status_line_use_colors = true;
         vim_mode_default = true;
       };
-      hooks.state = lib.mkIf config.programs.herdr.enable {
+      hooks.state = lib.optionalAttrs config.programs.herdr.enable {
         "${config.xdg.configHome}/codex/hooks.json:session_start:0:0" = {
           trusted_hash = "sha256:abcdb76f675d626b427d709a097643c97288c1ec6bf4dcbb3fb96bc7f874e8ba";
         };
@@ -102,5 +103,4 @@ in
     (lib.hiPrio codexWrapper)
   ]
   ++ lib.optionals (osConfig.hardware.graphics.enable) [ pkgs.llm-agents.chatgpt ];
-  makeMutable = [ ".config/codex/config.toml" ];
 }

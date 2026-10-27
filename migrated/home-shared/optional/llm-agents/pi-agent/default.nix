@@ -27,7 +27,7 @@ let
 in
 {
   imports = [
-    ./extensions/modules.nix
+    ./extensions
     ./settings.nix
     ./providers.nix
     "${inputs.secrets}/llm-contexts/home/pi.nix"
@@ -71,7 +71,7 @@ in
     hideThinkingBlock = false;
 
     defaultProvider = "openai-codex";
-    defaultModel = "gpt-5.6-luna";
+    defaultModel = "gpt-6.1-terra";
     defaultThinkingLevel = "high";
 
     packages = [
@@ -83,7 +83,7 @@ in
     ];
 
     enabledModels = [
-      "openai-codex/gpt-5.6-luna"
+      "openai-codex/gpt-6.1-terra"
       "openai-codex/gpt-6.1-sol"
       # keep-sorted start
       "deepseek/deepseek-flash"
