@@ -10,7 +10,6 @@ let
   callbackUrl = "https://${matrixDomain}/_matrix/client/unstable/login/sso/callback/${clientId}";
 in
 {
-  # [Human Intervention] Add the plaintext matrix_oidc_client_secret to matrix.yaml and update the secrets input.
   sops.secrets.matrix_oidc_client_secret = {
     sopsFile = secrets + "/matrix.yaml";
     owner = config.services.matrix-tuwunel.user;
