@@ -286,6 +286,23 @@ in
             userinfo_signed_response_alg = "none";
             token_endpoint_auth_method = "client_secret_basic";
           }
+          {
+            client_id = "opengist";
+            client_name = "Opengist";
+            client_secret = "$pbkdf2-sha512$310000$OyhcSDsniXU9e.1ZDp8HJg$HSYHNSHfB.9vpW55qOi8HvPqK.MBUtveSOYS2RmPp.ambdXbCau6k0VDrPkFG49gfcSjrIOByQH6R6zlb7lFlg";
+            authorization_policy = "two_factor";
+            redirect_uris = [ "${ep.opengist.publicUrl}/oauth/openid-connect/callback" ];
+            scopes = [
+              "openid"
+              "profile"
+              "email"
+              "groups"
+            ];
+            grant_types = [
+              "authorization_code"
+            ];
+            token_endpoint_auth_method = "client_secret_post";
+          }
         ];
       };
       access_control = {

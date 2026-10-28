@@ -1,18 +1,17 @@
-// Discovers configured skills when their environment variables are set to "1".
+// Discovers configured skills when their environment variable or file condition is met.
 // /lazy-skill <name-or-directory> [request] loads a skill regardless of its condition.
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { homedir } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import {
     getAgentDir,
     type ExtensionAPI,
 } from "@earendil-works/pi-coding-agent";
 
-const rules = [
-    { env: "HERDR_ENV", skill: "herdr" },
-    { env: "TTY7", skill: "tty7" },
-];
+type Rule = { env: string; skill: string } | { file: string; skill: string };
+
+const defaultRules: Rule[] = [{ env: "HERDR_ENV", skill: "herdr" }];
 
 function skillPath(name: string): string {
     const directory = name.startsWith("/")
@@ -23,12 +22,54 @@ function skillPath(name: string): string {
     return join(directory, "SKILL.md");
 }
 
+function readRules(path: string): Rule[] {
+    let content: string;
+    try {
+        content = readFileSync(path, "utf8");
+    } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+        throw error;
+    }
+
+    const rules: unknown = JSON.parse(content);
+    if (
+        !Array.isArray(rules) ||
+        !rules.every(
+            (rule) =>
+                rule !== null &&
+                typeof rule === "object" &&
+                typeof rule.skill === "string" &&
+                ((typeof rule.env === "string" && rule.file === undefined) ||
+                    (typeof rule.file === "string" && rule.env === undefined)),
+        )
+    ) {
+        throw new Error(`Invalid lazy skill rules in ${path}`);
+    }
+    return rules;
+}
+
 export default function lazySkills(pi: ExtensionAPI) {
-    pi.on("resources_discover", () => ({
-        skillPaths: rules
-            .filter(({ env }) => process.env[env] === "1")
-            .map(({ skill }) => skillPath(skill)),
-    }));
+    let rules = defaultRules;
+    pi.on("resources_discover", (_event, ctx) => {
+        const paths = new Set([
+            join(getAgentDir(), "lazy-skills.json"),
+            resolve(ctx.cwd, "lazy-skills.json"),
+        ]);
+        rules = [...defaultRules, ...[...paths].flatMap(readRules)];
+        return {
+            skillPaths: [
+                ...new Set(
+                    rules
+                        .filter((rule) =>
+                            "env" in rule
+                                ? process.env[rule.env] === "1"
+                                : existsSync(resolve(ctx.cwd, rule.file)),
+                        )
+                        .map(({ skill }) => skillPath(skill)),
+                ),
+            ],
+        };
+    });
 
     pi.registerCommand("lazy-skill", {
         description: "Load a lazy skill: /lazy-skill <name> [request]",
