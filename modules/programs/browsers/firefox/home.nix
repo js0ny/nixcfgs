@@ -21,6 +21,7 @@ in
     ./global-speed.nix
     ./cookie-autodelete.nix
     ./sidebery-keymap.nix
+    ./userstyle.nix
 
     inputs.betterfox-nix.modules.homeManager.betterfox
   ]

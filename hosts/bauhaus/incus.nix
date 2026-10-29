@@ -4,7 +4,9 @@
     enable = true;
     package = pkgs.incus;
     ui.enable = true;
+    # https://linuxcontainers.org/incus/docs/main/howto/initialize/#non-interactive-configuration
     preseed = {
+      config.https_address = "0.0.0.0:9191";
       networks = [
         {
           name = "incusbr0";

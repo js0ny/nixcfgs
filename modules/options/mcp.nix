@@ -133,7 +133,7 @@ in
             pkgs.writeShellScriptBin "edstem-mcp-wrapped" /* bash */ ''
               secret_file="${config.sops.secrets.edstem_token.path}"
               export EDSTEM_TOKEN="$(${lib.getExe' pkgs.coreutils "cat"} "$secret_file")"
-              export EDSTEM_REGIO=eu
+              export EDSTEM_REGION=eu
 
               exec ${lib.getExe' pkgs.js0ny.edstem-cli "edstem-mcp"}
             ''
@@ -152,7 +152,7 @@ in
           server.url = "https://mcp.deepwiki.com/mcp";
         };
         mdn = {
-          enable = true;
+          enable = false;
           type = "streamable-http";
           category = "code";
           tags = [ "docs" ];

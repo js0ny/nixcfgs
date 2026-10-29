@@ -43,6 +43,14 @@ in
         detach = "prefix+d";
         close_workspace = "prefix+shift+q";
         reload_config = [ ];
+        navigate_workspace_up = [
+          "up"
+          "k"
+        ];
+        navigate_workspace_down = [
+          "down"
+          "j"
+        ];
       };
       ui = {
         tab_bar_position = "bottom";
