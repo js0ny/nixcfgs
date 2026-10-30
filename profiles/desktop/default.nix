@@ -42,6 +42,7 @@ in
   flake.homeModules.desktop = { myLib, ... }: {
     imports = [
       ../../migrated/home-shared/desktop-base/set-wallpaper.nix
+      ../../migrated/home-shared/desktop-base/url-dispatcher
       ../../migrated/home-shared/desktop-base/xdd.nix
       ../../migrated/home-shared/optional/sequoia.nix
       ../../migrated/home-shared/optional/herdr.nix

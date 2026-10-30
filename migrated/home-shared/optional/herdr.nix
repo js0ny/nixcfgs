@@ -26,7 +26,9 @@ in
         manifest_check = true;
       };
 
-      remote.manage_ssh_config = false;
+      # Herdr generates its ssh_config and include system's and user's
+      # This won't edit ~/.ssh/config
+      remote.manage_ssh_config = true;
 
       keys = {
         prefix = "ctrl+m";

@@ -71,6 +71,20 @@ script = /* bash */ ''
 home.packages = [ inputs.glide-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 ```
 
+- Never use `with lib;` on the top of the module, use `inherit` for frequently called function instead.
+
+```nix
+# Bad
+with lib;
+let
+  ...
+in { ... };
+# Good
+let
+    inherit (lib) mkDefault;
+in { ... };
+```
+
 ## Scripting
 
 ### Choosing a scripting language
@@ -101,7 +115,9 @@ text = /* bash */ ''
 - If the upstream provides a json `$schema`, define it in the config file.
 
 ```nix
-xdg.configFile."claude/ccusage.json".text = builtins.toJSON { ... };
+xdg.configFile."claude/ccusage.json".text = builtins.toJSON {
+  "$schema" = "https://ccusage.com/config-schema.json";
+};
 ```
 
 - If reverse-proxy is used, prefer unix socket to port

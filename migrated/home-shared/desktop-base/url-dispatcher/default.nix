@@ -1,12 +1,21 @@
-{ config, ... }:
 {
+  lib,
+  config,
+  ...
+}:
+{
+  imports = [ ./option.nix ];
+
   programs.urlDispatcher = {
     enable = true;
 
-    defaultBrowser = "firefox";
-    incognitoBrowser = "chromium --incognito";
+    defaultBrowser = [ (lib.getExe config.programs.firefox.package) ];
+    incognitoBrowser = [
+      (lib.getExe config.programs.chromium.finalPacakge)
+      "--incognito"
+    ];
 
-    allowList = [
+    trusted = [
       "github\\.com"
       "ycombinator\\.com"
       "reddit\\.com"
@@ -15,13 +24,18 @@
       "zhihu\\.com"
     ];
 
-    denyList = [
+    untrusted = [
       "twitter\\.com"
       "x\\.com"
       "weibo\\.com"
       "douban\\.com"
     ]
     ++ config.secrets.plain.urlDispatcher.denyList;
+
+    echoEnv = [
+      "SSH_CLIENT"
+      "SSH_TTY"
+    ];
 
     defaultBehaviour = "allow";
   };

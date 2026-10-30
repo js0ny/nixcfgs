@@ -31,21 +31,25 @@ let
             send_resolved = true;
             parse_mode = "HTML";
             message = /* gotmpl */ ''
-              <b>{{ .Status | toUpper }}</b> {{ .CommonLabels.alertname }}
+              {{ if eq .Status "firing" }}{{ if eq .CommonLabels.severity "critical" }}🚨{{ else }}⚠️{{ end }}{{ else }}✅{{ end }} <b>{{ .Status | toUpper }}</b> {{ .CommonLabels.alertname }}
 
               {{ range .Alerts }}
-              <b>Instance:</b> {{ .Labels.instance }}
-              <b>Summary:</b> {{ .Annotations.summary }}
-              <b>Description:</b> {{ .Annotations.description }}
+              🖥 <b>Instance:</b> {{ .Labels.instance }}
+              📌 <b>Summary:</b> {{ .Annotations.summary }}
+              📝 <b>Description:</b> {{ .Annotations.description }}
               {{ end }}
 
-              <a href="${ep.grafana.publicUrl}">Grafana</a>
+              📊 <a href="${ep.grafana.publicUrl}">Grafana</a>
             '';
           }
         ];
       }
     ];
   };
+  fsSelector = builtins.concatStringsSep "," [
+    ''fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*"''
+    ''mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"''
+  ];
   alertRules = pkgs.writers.writeYAML "prometheus-alert-rules.yaml" {
     groups = [
       {
@@ -55,16 +59,32 @@ let
             alert = "FilesystemAlmostFull";
             # Bind mounts and Btrfs subvolumes share capacity; retain the lowest free-space ratio per device.
             expr = /* promql */ ''
-              min without (mountpoint) (
-                node_filesystem_avail_bytes{fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*",mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"}
-                  / node_filesystem_size_bytes{fstype!~"tmpfs|devtmpfs|overlay|squashfs|fuse.*",mountpoint!~"/boot/efi|/run.*|/var/lib/docker/.+|/var/lib/containers/.+"}
-              ) < 0.10
+              max without (mountpoint) (
+                1 - (
+                  node_filesystem_avail_bytes{${fsSelector}}
+                    / node_filesystem_size_bytes{${fsSelector}}
+                )
+              ) > 0.90
             '';
             for = "10m";
             labels.severity = "warning";
             annotations = {
-              summary = "Filesystem is over 90% full";
-              description = "{{ $labels.instance }} filesystem on {{ $labels.device }} ({{ $labels.fstype }}) has less than 10% free space.";
+              summary = "Filesystem {{ $labels.device }} is {{ $value | humanizePercentage }} full";
+              /*
+                Rendered example:
+                  belvedere:9100: /dev/nvme0n1p2 (btrfs) is 93.2% full.
+                  📈 Used: 812.3GiB
+                  📉 Free: 59.1GiB
+                  💾 Total: 871.4GiB
+                  📂 Mountpoints: /, /home, /nix
+              */
+              description = /* gotmpl */ ''
+                {{ $labels.instance }}: {{ $labels.device }} ({{ $labels.fstype }}) is {{ $value | humanizePercentage }} full.
+                📈 Used: {{ with printf "max(node_filesystem_size_bytes{instance=%q,device=%q}) - min(node_filesystem_avail_bytes{instance=%q,device=%q})" $labels.instance $labels.device $labels.instance $labels.device | query }}{{ . | first | value | humanize1024 }}B{{ end }}
+                📉 Free: {{ with printf "min(node_filesystem_avail_bytes{instance=%q,device=%q})" $labels.instance $labels.device | query }}{{ . | first | value | humanize1024 }}B{{ end }}
+                💾 Total: {{ with printf "max(node_filesystem_size_bytes{instance=%q,device=%q})" $labels.instance $labels.device | query }}{{ . | first | value | humanize1024 }}B{{ end }}
+                📂 Mountpoints: {{ range $i, $m := printf `node_filesystem_size_bytes{instance=%q,device=%q,${fsSelector}}` $labels.instance $labels.device | query }}{{ if $i }}, {{ end }}{{ $m.Labels.mountpoint }}{{ end }}
+              '';
             };
           }
           {
@@ -100,7 +120,7 @@ let
             };
           }
           {
-            alert = "ExtraHighMemoryUsage";
+            alert = "ExtremeHighMemoryUsage";
             expr = /* promql */ "node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.08";
             for = "5m";
             labels.severity = "warning";
