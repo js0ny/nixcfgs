@@ -43,7 +43,7 @@
     };
 
     js0ny-packages = {
-      url = "github:js0ny/nix-misc-packages";
+      url = "github:js0ny/miscpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };

@@ -11,7 +11,7 @@
 
     defaultBrowser = [ (lib.getExe config.programs.firefox.package) ];
     incognitoBrowser = [
-      (lib.getExe config.programs.chromium.finalPacakge)
+      (lib.getExe config.programs.chromium.finalPackage)
       "--incognito"
     ];
 
