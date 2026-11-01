@@ -1,7 +1,8 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 let
   fx = config.js0ny.user.name;
   fxb = config.nixdefs.consts.firefox.profileDir;
+  containerise = pkgs.js0ny.containerise-managed;
 in
 {
   mergetools.firefox-containers = {
@@ -51,7 +52,16 @@ in
           color = "gray";
           name = "SpaceX";
         }
+        {
+          userContextId = 12;
+          public = true;
+          icon = "fence";
+          color = "cyan";
+          name = "Facebook";
+        }
       ];
     };
   };
+
+  programs.firefox.profiles.${fx}.extensions.packages = [ containerise ];
 }

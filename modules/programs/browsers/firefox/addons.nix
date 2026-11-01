@@ -40,7 +40,6 @@ in
 
       # Privacy
       google-container
-      facebook-container
       dont-track-me-google1
 
       ### Site Specific
@@ -76,24 +75,6 @@ in
       # clearurls
       # multi-account-container
     ];
-    containerise = {
-      enable = true;
-      settings = {
-        "Academia" = {
-          containerId = 8;
-          patterns = [
-            "*.office.com"
-          ];
-        };
-        "Chinese" = {
-          containerId = 9;
-          patterns = [
-            "*.zhihu.com"
-            "*.bilibili.com"
-          ];
-        };
-      };
-    };
     surfingkeys = {
       enable = true;
       showAdvanced = true;

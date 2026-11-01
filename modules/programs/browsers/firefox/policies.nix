@@ -1,4 +1,4 @@
-# This setup is imported to programs.firfox.poclies in NixOS,
+# This setup is imported to programs.firfox.policies in NixOS,
 # and non-NixOS home-manager
 {
   DisableTelemetry = true;
