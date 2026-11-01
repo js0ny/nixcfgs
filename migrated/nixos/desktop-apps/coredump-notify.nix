@@ -19,7 +19,7 @@
 
     serviceConfig = {
       ExecStart = lib.escapeShellArgs [
-        (lib.getExe pkgs.js0ny.coredump-notify)
+        (lib.getExe pkgs.localPkgs.coredump-notify)
         "--xdg-terminal-exec"
         (lib.getExe pkgs.xdg-terminal-exec)
       ];

@@ -27,6 +27,7 @@ in
         modules.nixosModules.steam
         modules.nixosModules.thunderbird
         modules.nixosModules.vicinae
+        ../../migrated/nixos/desktop-apps/coredump-notify.nix
       ]
       ++ myLib.scanFiles ./nixos;
 

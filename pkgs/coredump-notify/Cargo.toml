@@ -1,0 +1,10 @@
+[package]
+name = "coredump-notify"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+notify-rust = "4.18.0"
+systemd = { version = "0.10.1", features = ["journal"] }
+tracing = "0.1.44"
+tracing-subscriber = "0.3.23"

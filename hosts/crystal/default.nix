@@ -15,7 +15,6 @@ in
     ./hardware-configuration.nix
     ./btrbk.nix
     ./disko.nix
-    ./incus.nix
     ./restic.nix
     ./vars.nix
     ./sing-box.nix
@@ -41,6 +40,8 @@ in
     mod.prometheus-node
 
     mod.rclone
+
+    ../../migrated/nixos/optional/incus
 
   ];
 

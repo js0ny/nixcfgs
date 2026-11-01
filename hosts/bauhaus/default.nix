@@ -16,7 +16,6 @@ in
     ./vars.nix
     ./btrbk.nix
     ./sing-box.nix
-    ./incus.nix
     ./strata.nix
     ./marimohub.nix
     # ./nixos-prebuild.nix
@@ -44,6 +43,7 @@ in
     # keep-sorted start
     ../../migrated/nixos/desktop-apps/sunshine.nix
     ../../migrated/nixos/desktop-apps/virtual-desktop.nix
+    ../../migrated/nixos/optional/incus
     # keep-sorted end
   ];
 

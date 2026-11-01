@@ -44,6 +44,13 @@ in
           color = "orange";
           name = "Anthropic";
         }
+        {
+          userContextId = 11;
+          public = true;
+          icon = "briefcase";
+          color = "gray";
+          name = "SpaceX";
+        }
       ];
     };
   };
