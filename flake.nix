@@ -168,6 +168,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dbx.url = "github:t8y2/dbx";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.url = "nixpkgs";
+      inputs.home-manager.url = "home-manager";
+    };
     # }}}
 
     # {{{ NixOS

@@ -3,12 +3,14 @@
     {
       lib,
       config,
+      inputs,
       ...
     }:
     let
-      policies = import ./policies.nix;
       baseprefs = import ./global-prefs.nix;
       wsl = config.wsl.enable;
+      sharedPath = "${inputs.self.outPath}/migrated/shared-modules/firefox";
+      policies = import "${sharedPath}/policies/vanilla.nix";
     in
     lib.mkIf (!wsl) {
       programs.firefox = {
@@ -17,9 +19,9 @@
         preferences = baseprefs;
         policies = policies // {
           "3rdparty".Extensions = {
-            "uBlock0@raymondhill.net" = import ./ublock-origin.nix;
             "{3c078156-979c-498b-8990-85f7987dd929}" = import ./sidebery.nix;
-            "containerise-managed@js0ny.net" = import ./containerise.nix;
+            "uBlock0@raymondhill.net" = import "${sharedPath}/policies/ublock-origin.nix";
+            "containerise-managed@js0ny.net" = import "${sharedPath}/policies/containerise.nix";
           };
         };
       };

@@ -26,6 +26,8 @@
     inputs.secrets.homeModules.default
     inputs.steam-config-nix.homeModules.default
     # keep-sorted end
+
+    ../../migrated/home-shared/desktop-optional/zen-browser
   ];
 
   home.sessionVariables = {

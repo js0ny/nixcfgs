@@ -58,7 +58,7 @@
               (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
             ];
           "3rdparty".Extensions = {
-            "uBlock0@raymondhill.net" = import ../firefox/ublock-origin.nix;
+            # "uBlock0@raymondhill.net" = import ../firefox/ublock-origin.nix;
             "{3c078156-979c-498b-8990-85f7987dd929}" = import ../firefox/sidebery.nix;
           };
         };
