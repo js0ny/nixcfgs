@@ -14,7 +14,16 @@
       };
       programs.lazygit = {
         enable = true;
+        # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
         settings = {
+          os.copyToClipboardCmd = "printf '%s' {{text}} | ${lib.getExe pkgs.localPkgs.clipboard-copy}";
+          # Lazygit also switches paste to a custom command when copy is overridden.
+          os.readFromClipboardCmd = lib.escapeShellArgs [
+            (lib.getExe pkgs.zsh)
+            "-f"
+            "-c"
+            "source ${../shell/zsh/zsh_clipboard_paste.zsh}; zsh_clipboard_paste"
+          ];
           git.diffRenderers =
             if config.programs.delta.enable then [ { command = "delta --dark --paging=never"; } ] else [ ];
         };
@@ -56,6 +65,7 @@
         };
       };
       home.packages = with pkgs; [
+        localPkgs.clipboard-copy
         tea
         lazyjj
       ];

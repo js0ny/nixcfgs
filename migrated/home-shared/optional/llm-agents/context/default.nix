@@ -1,6 +1,7 @@
 { pkgs, config, ... }:
 let
   pi = "pi/agent";
+  codex = "codex/skills";
   brunoSkills = pkgs.fetchFromGitHub {
     owner = "bruno-collections";
     repo = "bruno-agent-skills";
@@ -24,10 +25,13 @@ in
     "${pi}/lazy-skills/bruno-collection-generator".source = "${brunoSkills}/bruno-collection-generator";
     "${pi}/lazy-skills/bruno-ci-setup".source = "${brunoSkills}/bruno-ci-setup";
     "${pi}/lazy-skills/bruno-test-writer".source = "${brunoSkills}/bruno-test-writer";
+    "${codex}/bruno-collection-generator".source = "${brunoSkills}/bruno-collection-generator";
 
     # GPUI
     "${pi}/lazy-skills/gpui-kit".source = "${gpuiSkills}/gpui-kit";
     "${pi}/lazy-skills/gpui-kit-design-guides".source = "${gpuiSkills}/gpui-kit-design-guides";
+    "${codex}/gpui-kit".source = "${gpuiSkills}/gpui-kit";
+    "${codex}/gpui-kit-design-guides".source = "${gpuiSkills}/gpui-kit-design-guides";
 
     "${pi}/lazy-skills.json".text = builtins.toJSON [
       {

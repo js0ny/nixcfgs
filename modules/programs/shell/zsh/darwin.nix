@@ -5,6 +5,7 @@
   ...
 }:
 {
+  environment.systemPackages = [ pkgs.localPkgs.clipboard-copy ];
   programs.zsh = {
     enable = true;
     enableCompletion = true;

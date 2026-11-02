@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }: {
+  environment.systemPackages = [ pkgs.localPkgs.clipboard-copy ];
   programs.fish = {
     enable = true;
     interactiveShellInit = /* fish */ ''

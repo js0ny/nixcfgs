@@ -72,14 +72,12 @@
   PROMPT='%(#.%F{red}.%F{green})%n%f@%F{magenta}%m%f %F{blue}%B%~%b%f %# '
   RPROMPT='[%F{yellow}%?%f]'
 
-  copy-osc52() {
-    local data
-    data="$(printf '%s' "$BUFFER" | base64 | tr -d '\n')"
-    printf '\e]52;c;%s\a' "$data"
+  copy-command-line() {
+    printf '%s' "$BUFFER" | ${lib.getExe pkgs.localPkgs.clipboard-copy}
   }
 
-  zle -N copy-osc52
-  bindkey '^X' copy-osc52
+  zle -N copy-command-line
+  bindkey '^X' copy-command-line
 
   ${builtins.readFile ./zsh_clipboard_paste.zsh}
   bindkey '^V' zsh_clipboard_paste
