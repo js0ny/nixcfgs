@@ -17,6 +17,7 @@
     kitty.kitten
     kitty.terminfo
     linuxPackages.turbostat
+    llm-agents.herdr-core
     lnav
     lsof
     moreutils

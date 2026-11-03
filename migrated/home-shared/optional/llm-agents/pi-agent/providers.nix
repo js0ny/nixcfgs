@@ -8,6 +8,7 @@ in
     pi_openrouter_api_key = { inherit sopsFile; };
     pi_minimaxcn_api_key = { inherit sopsFile; };
     pi_openai_api_key = { inherit sopsFile; };
+    pi_anthropic_api_key = { inherit sopsFile; };
   };
   # https://pi.dev/docs/latest/models
   # https://pi.dev/docs/latest/models-configuration
@@ -18,6 +19,7 @@ in
       openrouter.apiKey = "!cat ${config.sops.secrets.pi_openrouter_api_key.path}";
       minimax-cn.apiKey = "!cat ${config.sops.secrets.pi_minimaxcn_api_key.path}";
       openai.apiKey = "!cat ${config.sops.secrets.pi_openai_api_key.path}";
+      anthropic.apiKey = "!cat ${config.sops.secrets.pi_anthropic_api_key.path}";
     };
   };
 }

@@ -59,10 +59,6 @@
     # }}}
 
     # {{{ Application Supports
-    artcraft = {
-      url = "github:ipeglin/artcraft-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flatpak-nix.url = "github:gmodena/nix-flatpak";
     glide-browser = {
       url = "github:glide-browser/glide.nix";

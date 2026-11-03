@@ -71,9 +71,6 @@ in
     himalaya
     icoutils
     inkscape
-    inputs.artcraft.packages.${system}.lightcraft
-    inputs.artcraft.packages.${system}.pdfcraft
-    inputs.artcraft.packages.${system}.photocraft
     inputs.dbx.packages.${system}.default
     js0ny.dirstat-rs
     js0ny.edstem-cli
@@ -88,6 +85,7 @@ in
     kdePackages.qttools
     keepassxc
     krabby
+    lightcraft
     marktext
     mission-center
     moonlight-qt
@@ -96,6 +94,8 @@ in
     nmap
     octaveFull
     pdf2zh
+    pdfcraft
+    photocraft
     pikpaktui
     pkgsStable.calibre
     pkgsStable.python314Packages.huggingface-hub
