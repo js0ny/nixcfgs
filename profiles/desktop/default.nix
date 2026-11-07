@@ -28,6 +28,7 @@ in
         modules.nixosModules.thunderbird
         modules.nixosModules.vicinae
         ../../migrated/nixos/desktop-apps/coredump-notify.nix
+        ../../migrated/nixos/desktop-apps/sched.nix
       ]
       ++ myLib.scanFiles ./nixos;
 

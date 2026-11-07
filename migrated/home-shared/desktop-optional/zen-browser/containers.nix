@@ -17,6 +17,11 @@ _: {
         icon = "fence";
         color = "red";
       };
+      Finance = {
+        id = 4;
+        icon = "dollar";
+        color = "red";
+      };
       Google = {
         id = 10;
         icon = "fence";

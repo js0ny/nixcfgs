@@ -1,12 +1,16 @@
-{ pkgs, ... }: {
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
+{
   imports = [
     ./codex
     ./pi-agent
     ./context
   ];
-  home.packages = with pkgs.llm-agents; [
-    cursor-agent
-    grok
-    grok-bot
-  ];
+  home.packages = lib.optionals osConfig.hardware.graphics.enable (
+    with pkgs.llm-agents; [ grok-bot ]
+  );
 }

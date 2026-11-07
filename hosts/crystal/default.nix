@@ -18,6 +18,7 @@ in
     ./restic.nix
     ./vars.nix
     ./sing-box.nix
+    ./hardware.nix
     mod.clash-verge
     mod.throne
     mod.desktop
@@ -35,6 +36,7 @@ in
     mod.hyprland
     mod.niri
     mod.plasma
+    mod.umbriel
 
     mod.gaze
     mod.prometheus-node
@@ -57,26 +59,7 @@ in
   #   ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0489", ATTR{idProduct}=="e0f6", TEST=="power/control", ATTR{power/control}="on"
   # '';
 
-  services.libinput = {
-    enable = true;
-    touchpad = {
-      clickMethod = "clickfinger";
-      disableWhileTyping = true;
-      naturalScrolling = true;
-      scrollMethod = "twofinger";
-      tapping = true;
-      tappingButtonMap = "lrm";
-    };
-  };
-  boot.kernelParams = [
-    "amdgpu.dcdebugmask=0x10"
-  ];
   stylix.image = inputs.bindeps + "/wallpaper/2.jpg";
-
-  services.scx = {
-    enable = true;
-    scheduler = "scx_pandemonium";
-  };
 
   boot.plymouth.enable = true;
 

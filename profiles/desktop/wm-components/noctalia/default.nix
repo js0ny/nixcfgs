@@ -133,7 +133,10 @@
               capsule = true;
               capsule_border = "secondary";
             };
-            taskbar.group_by_workspace = true;
+            taskbar = {
+              group_by_workspace = true;
+              label_source = "id";
+            };
             tray = {
               drawer = true;
               pinned = [

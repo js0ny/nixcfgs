@@ -12,4 +12,5 @@
   GEMINI_TELEMETRY_ENABLED = "false";
   SCARF_NO_ANALYTICS = "true";
   ANONYMIZED_TELEMETRY = "false";
+  ORT_DISABLE_TELEMETRY = "1"; # https://github.com/microsoft/onnxruntime/blob/main/docs/Privacy.md
 }

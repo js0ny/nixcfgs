@@ -86,6 +86,7 @@
           "svgthumbnail"
           "textthumbnail"
           "ffmpegthumbs" # pkgs.kdePackages.ffmpegthumbs
+          "gsthumbnail" # PDF
         ];
       };
     };
