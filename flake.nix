@@ -105,14 +105,6 @@
         treefmt-nix.follows = "treefmt-nix";
       };
     };
-    hermes-agent = {
-      url = "github:NousResearch/hermes-agent";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        home-manager.follows = "home-manager";
-      };
-    };
     betterfox-nix = {
       url = "github:HeitorAugustoLN/betterfox-nix";
       inputs.flake-parts.follows = "flake-parts";

@@ -19,7 +19,6 @@
     inputs.self.nixosModules.fast-note-sync
     inputs.self.nixosModules.forgejo-runner
     inputs.self.nixosModules.garage
-    inputs.self.nixosModules.hermes-agent
     inputs.self.nixosModules.karakeep
     inputs.self.nixosModules.mongodb
     inputs.self.nixosModules.pdf2zh

@@ -28,7 +28,6 @@ in
     mod.fish
     mod.forgejo
     mod.grafana
-    mod.hermes-agent
     mod.idp
     mod.immich
     mod.jellyfin

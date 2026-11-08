@@ -2,7 +2,6 @@
 #
 # ClientConfig:
 # * Codex: https://learn.chatgpt.com/docs/extend/mcp
-# * Hermes Agent: https://hermes-agent.nousresearch.com/docs/reference/mcp-config-reference/
 # * Pi: https://pi.dev/docs/latest/mcp
 # * OMP: https://github.com/can1357/oh-my-pi/blob/main/docs/mcp-config.md
 {
@@ -81,9 +80,9 @@ in
       type = lib.types.attrs;
       readOnly = true;
       description = ''
-        Generated Codex and Hermes mcp_servers settings and Pi and OMP mcpServers settings.
-        Pi and OMP include enabled common and code servers. Codex and Hermes also include
-        work servers. Codex, Hermes and OMP exclude servers tagged search-common.
+        Generated Codex mcp_servers settings and Pi and OMP mcpServers settings.
+        Pi and OMP include enabled common and code servers. Codex also includes
+        work servers. Codex and OMP exclude servers tagged search-common.
         Per-server clientConfig overrides are applied after transport conversion.
         Servers use either stdio or streamable-http transport.
       '';
@@ -140,7 +139,6 @@ in
           );
           clientConfig = {
             codex.default_tools_approval_mode = "writes";
-            hermes.trust = "untrusted";
             pi.exposure = "deferred";
           };
         };
@@ -228,7 +226,6 @@ in
               oauth.client_id = "codex";
               scopes = [ "mcp" ];
             };
-            hermes.auth = "oauth";
           };
         };
 
@@ -246,7 +243,6 @@ in
           };
           clientConfig = {
             codex.default_tools_approval_mode = "writes";
-            hermes.trust = "untrusted";
             pi.exposure = "deferred";
           };
         };
@@ -255,7 +251,6 @@ in
         # clientServers: String -> List -> List -> Attrs
         # client: categories: excludedTags:
         codex.mcp_servers = clientServers "codex" [ "common" "code" "work" ] [ "search-common" ];
-        hermes.mcp_servers = clientServers "hermes" [ "common" "code" "work" ] [ "search-common" ];
         pi.mcpServers = clientServers "pi" [ "common" "code" ] [ ];
         omp.mcpServers = clientServers "omp" [ "common" "code" ] [ "search-common" ];
       };
