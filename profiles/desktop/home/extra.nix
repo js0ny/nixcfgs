@@ -39,7 +39,6 @@
     inputs.self.homeModules.matrix-element
     inputs.self.homeModules.social-tencent
 
-    inputs.self.homeModules.hermes-desktop
     inputs.self.homeModules.llm-agents
 
     inputs.self.homeModules.anki

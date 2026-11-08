@@ -44,6 +44,7 @@ in
     ../../migrated/nixos/desktop-apps/sunshine.nix
     ../../migrated/nixos/desktop-apps/virtual-desktop.nix
     ../../migrated/nixos/optional/incus
+    ../../migrated/nixos/web-apps/openmausbot
     # keep-sorted end
   ];
 

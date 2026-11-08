@@ -791,11 +791,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793612190,
-        "narHash": "sha256-FSmsqth5iA8+MNA/uFgmWP0kufPsHpddyHdm4VE7BOQ=",
+        "lastModified": 1794096229,
+        "narHash": "sha256-8GPdZn0tlRH+p8KDRDytJKMlZmp+jJajbcTzP8EFUv4=",
         "owner": "js0ny",
         "repo": "miscpkgs",
-        "rev": "8ebf9331dfbed41588d4abb2652c60f4d3579342",
+        "rev": "0eb318680a1c2770fe40bf85368460461973db29",
         "type": "github"
       },
       "original": {

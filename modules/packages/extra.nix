@@ -77,6 +77,7 @@ in
     js0ny.m365
     js0ny.proton-drive-cli
     js0ny.ratune
+    js0ny.shotori
     js0ny.wdotool
     kdePackages.isoimagewriter
     kdePackages.kdenlive
