@@ -83,5 +83,4 @@ in
     ];
   };
 
-  js0ny.persist.stores.state.directories = [ "/var/lib/postgresql" ];
 }

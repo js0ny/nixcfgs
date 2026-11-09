@@ -48,6 +48,14 @@
   environment.systemPackages = [ pkgs.opentofu ];
 
   js0ny.user.groups = [ "incus-admin" ];
+
+  js0ny.persist.stores.local.directories = [
+    {
+      directory = "/var/lib/incus";
+      user = "root";
+      group = "incus-admin";
+    }
+  ];
   networking.firewall.interfaces.incusbr0 = {
     allowedTCPPorts = [ 53 ];
     allowedUDPPorts = [

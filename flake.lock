@@ -1267,11 +1267,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1793556018,
-        "narHash": "sha256-/tYcPCR63sZpNzYOft6spwC4khaW+/t1chTlyQDmqy8=",
+        "lastModified": 1794161201,
+        "narHash": "sha256-qIYd+mIgwnj86uTQc3UYU4JkNK0eiU8qZgM61BbWl5M=",
         "owner": "js0ny",
         "repo": "nvimdots",
-        "rev": "ac0dfcf9b2d19c045466ac4dfd7be9c2399b8938",
+        "rev": "b9c3f1e2182ed198ed2a3b3033d1f8dcd8832b59",
         "type": "github"
       },
       "original": {

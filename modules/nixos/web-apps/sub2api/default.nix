@@ -49,7 +49,7 @@
         description = "Initialize Sub2API PostgreSQL role";
         requires = [ "postgresql-setup.service" ];
         after = [ "postgresql-setup.service" ];
-        path = [ pkgs.postgresql ];
+        path = [ config.services.postgresql.finalPackage ];
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;

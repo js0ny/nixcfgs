@@ -94,6 +94,8 @@ in
       "user@${toString uid}.service"
     ];
     unitConfig.RequiresMountsFor = stateDir;
+    # Rootless UID mapping needs NixOS's privileged wrappers, not shadow's store binaries.
+    path = [ (builtins.dirOf config.security.wrapperDir) ];
     environment = {
       HOME = config.js0ny.user.home;
       XDG_RUNTIME_DIR = "/run/user/${toString uid}";
