@@ -17,14 +17,6 @@
         pkgs.js0ny.magpie
       ];
 
-      home.sessionVariables = {
-        DSH_HOME = "${config.xdg.configHome}/deepseek-harness";
-      };
-
-      js0ny.persist.stores.state.directories = [
-        ".config/magpie"
-        ".config/deepseek-harness"
-      ];
     };
 
 }

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   osConfig,
+  config,
   ...
 }:
 {
@@ -9,8 +10,22 @@
     ./codex
     ./pi-agent
     ./context
+    ./ccusage.nix
   ];
   home.packages = lib.optionals osConfig.hardware.graphics.enable (
-    with pkgs.llm-agents; [ grok-bot ]
+    with pkgs.llm-agents;
+    [
+      grok-bot
+      dsh
+    ]
   );
+
+  home.sessionVariables = {
+    DSH_HOME = "${config.xdg.configHome}/deepseek-harness";
+  };
+
+  js0ny.persist.stores.state.directories = [
+    ".config/magpie"
+    ".config/deepseek-harness"
+  ];
 }

@@ -24,9 +24,7 @@ in
     mod.desktop
     mod.podman
     mod.libvirt
-    mod.sshd
     mod.tailscale
-    # mod.sync-org-ics
 
     mod.tether
     mod.kdeconnect
@@ -44,6 +42,7 @@ in
     mod.rclone
 
     ../../migrated/nixos/optional/incus
+    ../../migrated/nixos/server-apps/sshd.nix
 
   ];
 

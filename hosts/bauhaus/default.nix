@@ -22,7 +22,6 @@ in
     mod.desktop
     mod.podman
     mod.libvirt
-    mod.sshd
     mod.tailscale
     mod.ollama
     mod.strata
@@ -44,6 +43,7 @@ in
     ../../migrated/nixos/desktop-apps/sunshine.nix
     ../../migrated/nixos/desktop-apps/virtual-desktop.nix
     ../../migrated/nixos/optional/incus
+    ../../migrated/nixos/server-apps/sshd.nix
     ../../migrated/nixos/web-apps/openmausbot
     # keep-sorted end
   ];

@@ -6,7 +6,7 @@
       nginx
       tailscale
       podman
-      sshd
+      ../migrated/nixos/server-apps/sshd.nix
     ];
     # Server config
     networking = {

@@ -11,11 +11,11 @@
       stores = [
         {
           name = "pi-agent";
-          path = "${config.xdg.dataHome}/pi/agent/session";
+          path = "${config.xdg.configHome}/pi/agent/session";
         }
         {
           name = "omp";
-          path = "${config.xdg.dataHome}/omp/agent/session";
+          path = "${config.xdg.configHome}/omp/agent/session";
         }
       ];
     };

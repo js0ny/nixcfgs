@@ -18,6 +18,7 @@ in
     mod.server
     # keep-sorted start
 
+    ../../migrated/nixos/data-storage/postgresql.nix
     ../../migrated/nixos/server-apps/fail2ban.nix
     ../../migrated/nixos/web-apps/fast-note-sync.nix
     ../../migrated/nixos/web-apps/gluetun.nix
