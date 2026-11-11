@@ -14,7 +14,7 @@ in
     inputs.sops-nix.homeManagerModules.sops
     ./vars.nix
     ../../definitions
-    ../../migrated/home-shared/optional/herdr.nix
+    ../../migrated/home-shared/optional/herdr
     ../../migrated/home-shared/optional/llm-agents/codex
   ];
 

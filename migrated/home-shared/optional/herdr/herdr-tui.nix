@@ -1,6 +1,5 @@
 {
   config,
-  osConfig,
   pkgs,
   lib,
   ...
@@ -10,10 +9,6 @@ let
   cfg = config.programs.herdr;
 in
 {
-  home.packages = lib.optionals osConfig.hardware.graphics.enable [
-    pkgs.llm-agents.herdr-app
-  ];
-
   programs.herdr = {
     enable = true;
     package = pkgs.llm-agents.herdr;
