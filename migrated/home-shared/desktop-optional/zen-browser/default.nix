@@ -37,6 +37,7 @@ in
       extensions = {
         packages = with pkgs.firefox-addons; [
           pkgs.js0ny.containerise-managed
+          dark-reader
           surfingkeys_ff
           violentmonkey
           ublock-origin
