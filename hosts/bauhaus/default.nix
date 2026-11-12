@@ -36,6 +36,7 @@ in
     mod.plasma
     mod.hyprland
     mod.niri
+    mod.umbriel
 
     mod.localsend
 
@@ -62,5 +63,8 @@ in
   ];
 
   programs.labwc.enable = true;
+
+  # FFmpeg loads the active NVIDIA driver's CUDA and NVENC libraries at runtime.
+  systemd.user.services.sunshine.environment.LD_LIBRARY_PATH = "/run/opengl-driver/lib";
 
 }

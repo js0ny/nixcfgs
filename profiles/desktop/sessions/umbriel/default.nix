@@ -1,11 +1,10 @@
 {
-  flake.nixosModules.umbriel = { inputs, ... }: {
+  flake.nixosModules.umbriel = { inputs, pkgs, ... }: {
     imports = [ inputs.umbriel.nixosModules.default ];
 
-    programs.umbriel.enable = true;
-
-    home-manager.users.js0ny.xdg.configFile = {
-
+    programs.umbriel = {
+      enable = true;
+      package = inputs.umbriel.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
   };
 }

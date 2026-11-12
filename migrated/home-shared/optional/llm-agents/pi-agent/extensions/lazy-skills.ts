@@ -48,6 +48,13 @@ function readRules(path: string): Rule[] {
     return rules;
 }
 
+function ruleMatches(rule: Rule, cwd: string): boolean {
+    if ("env" in rule) return process.env[rule.env] === "1";
+    if ("file" in rule) return existsSync(resolve(cwd, rule.file));
+    const unhandled: never = rule;
+    throw new Error(`Unknown lazy skill rule: ${JSON.stringify(unhandled)}`);
+}
+
 export default function lazySkills(pi: ExtensionAPI) {
     let rules = defaultRules;
     pi.on("resources_discover", (_event, ctx) => {
@@ -60,11 +67,7 @@ export default function lazySkills(pi: ExtensionAPI) {
             skillPaths: [
                 ...new Set(
                     rules
-                        .filter((rule) =>
-                            "env" in rule
-                                ? process.env[rule.env] === "1"
-                                : existsSync(resolve(ctx.cwd, rule.file)),
-                        )
+                        .filter((rule) => ruleMatches(rule, ctx.cwd))
                         .map(({ skill }) => skillPath(skill)),
                 ),
             ],
